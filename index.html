@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== Primary SEO ===== -->
+  <title>AI Tools Directory 2025 – Best AI Tools, Agent Frameworks & Skill Libraries</title>
+  <meta name="description" content="Discover 45+ curated open-source AI tools, agent frameworks & skill libraries from GitHub. Compare ChatGPT alternatives, LangChain, AutoGen, CrewAI & more. Updated 2025.">
+  <meta name="keywords" content="AI tools directory,best AI tools 2025,AI agent frameworks,LLM tools,AI skill libraries,free AI tools,open source AI,LangChain,AutoGen,CrewAI,AI工具导航,AI工具大全,智能体框架,AI工具推荐2025">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="AI Nav">
+  <meta name="theme-color" content="#080c14">
+
+  <!-- ===== Canonical & Hreflang ===== -->
+  <link rel="canonical" href="https://yourdomain.com/">
+  <link rel="alternate" hreflang="en" href="https://yourdomain.com/?lang=en">
+  <link rel="alternate" hreflang="zh-CN" href="https://yourdomain.com/?lang=zh">
+  <link rel="alternate" hreflang="x-default" href="https://yourdomain.com/">
+
+  <!-- ===== Open Graph ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Tools Directory 2025 – Best AI Tools, Agent Frameworks & Skill Libraries">
+  <meta property="og:description" content="Discover 45+ curated open-source AI tools, agent frameworks & skill libraries. Updated weekly.">
+  <meta property="og:url" content="https://yourdomain.com/">
+  <meta property="og:image" content="https://yourdomain.com/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_CN">
+
+  <!-- ===== Twitter Card ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Tools Directory 2025 – Best AI Tools, Agent Frameworks & Skill Libraries">
+  <meta name="twitter:description" content="45+ curated open-source AI tools, agent frameworks & skill libraries. Updated weekly.">
+  <meta name="twitter:image" content="https://yourdomain.com/og-cover.png">
+
+  <!-- ===== Schema.org JSON-LD ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AI Tools Directory",
+    "alternateName": "AI工具导航",
+    "url": "https://yourdomain.com",
+    "description": "Curated directory of 45+ open-source AI tools, agent frameworks and skill libraries from GitHub",
+    "inLanguage": ["en", "zh-CN"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": { "@type": "EntryPoint", "urlTemplate": "https://yourdomain.com/?q={search_term_string}" },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AI Nav",
+    "url": "https://yourdomain.com",
+    "logo": { "@type": "ImageObject", "url": "https://yourdomain.com/logo.png", "width": 200, "height": 60 }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best free AI tool in 2025?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ChatGPT (free tier), Claude (free tier), and Ollama for local use are among the best free AI tools in 2025. Ollama lets you run powerful models like Llama 3 completely offline." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between AI tools and AI agents?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AI tools are standalone applications (like ChatGPT or Midjourney) that perform specific tasks. AI agents are autonomous systems built using frameworks like LangChain or AutoGen that can plan, reason, and execute multi-step tasks independently." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which AI agent framework should I choose?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LangChain is best for flexible LLM pipelines, AutoGen for multi-agent collaboration, CrewAI for role-based teams, and LlamaIndex for RAG and document Q&A use cases." }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ===== Preconnect ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+  <!-- ===== Font ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- 内嵌数据：直接用浏览器打开 HTML 时生效，HTTP 服务器下 fetch 会获取最新数据 -->
+  <script src="data.js"></script>
+
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --bg:            #080c14;
+      --surface:       #0d1321;
+      --card:          #111827;
+      --card-hover:    #141e2e;
+      --border:        #1a2438;
+      --border-bright: #2d3f5e;
+      --accent:        #818cf8;
+      --accent-hover:  #a5b4fc;
+      --accent-dim:    rgba(129,140,248,0.08);
+      --accent-glow:   rgba(129,140,248,0.18);
+      --text:          #e2e8f0;
+      --text-2:        #94a3b8;
+      --text-3:        #64748b;
+      --star:          #fbbf24;
+      --green:         #34d399;
+      --amber:         #fbbf24;
+      --radius:        10px;
+      --radius-sm:     6px;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== Header ===== */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,12,20,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px;
+      height: 58px; display: flex; align-items: center; gap: 16px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 800; font-size: 17px; white-space: nowrap; flex-shrink: 0;
+    }
+    .logo-icon { font-size: 20px; }
+    .logo-accent { color: var(--accent); }
+    .nav-tabs { display: flex; gap: 2px; flex: 1; }
+    .nav-tab {
+      padding: 5px 13px; border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 500; color: var(--text-3);
+      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+      border: none; background: none;
+    }
+    .nav-tab:hover { color: var(--text); background: var(--accent-dim); }
+    .nav-tab.active { color: var(--accent); background: var(--accent-dim); }
+    .header-search { flex: 0 1 260px; position: relative; }
+    .header-search input {
+      width: 100%; padding: 6px 10px 6px 32px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-size: 13px; outline: none; transition: border-color 0.15s;
+      font-family: inherit;
+    }
+    .header-search input::placeholder { color: var(--text-3); }
+    .header-search input:focus { border-color: var(--accent); }
+    .search-ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: var(--text-3); font-size: 13px; pointer-events: none; }
+    .lang-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; }
+    .lang-btn { padding: 4px 9px; font-size: 11px; font-weight: 700; color: var(--text-3); background: none; border: none; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .lang-btn.active { background: var(--accent-dim); color: var(--accent); }
+    .gh-link { color: var(--text-3); font-size: 18px; transition: color 0.15s; flex-shrink: 0; line-height: 1; }
+    .gh-link:hover { color: var(--text); }
+
+    /* ===== Ad Banners ===== */
+    .ad-strip {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center; padding: 6px 16px;
+    }
+    .ad-box {
+      background: var(--card); border: 1px dashed var(--border-bright);
+      border-radius: var(--radius-sm); display: flex; align-items: center;
+      justify-content: center; color: var(--text-3); font-size: 11px; gap: 5px;
+    }
+    .ad-728 { width: 728px; height: 90px; max-width: 100%; }
+    .ad-300 { width: 300px; height: 250px; }
+    .ad-320 { width: 320px; height: 100px; max-width: 100%; }
+    .ad-infeed { width: 100%; min-height: 120px; border: 1px dashed var(--border-bright) !important; }
+    .ad-label { font-size: 9px; color: var(--text-3); letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* ===== Hero ===== */
+    .hero {
+      max-width: 1280px; margin: 0 auto; padding: 60px 24px 40px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 14px; background: var(--accent-dim);
+      border: 1px solid rgba(129,140,248,0.25); border-radius: 999px;
+      font-size: 12px; color: var(--accent); margin-bottom: 22px; font-weight: 600;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5.5vw, 52px); font-weight: 800;
+      line-height: 1.12; margin-bottom: 16px; letter-spacing: -0.03em;
+    }
+    .gradient {
+      background: linear-gradient(135deg, #818cf8 0%, #a78bfa 45%, #38bdf8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 16px; color: var(--text-2); max-width: 560px;
+      margin: 0 auto 28px; line-height: 1.7;
+    }
+    .hero-search { position: relative; max-width: 540px; margin: 0 auto 28px; }
+    .hero-search input {
+      width: 100%; padding: 14px 48px 14px 48px;
+      background: var(--card); border: 1.5px solid var(--border-bright);
+      border-radius: 14px; color: var(--text); font-size: 15px;
+      outline: none; transition: border-color 0.15s, box-shadow 0.15s; font-family: inherit;
+    }
+    .hero-search input::placeholder { color: var(--text-3); }
+    .hero-search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .hero-search .search-ico-lg { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-3); font-size: 17px; }
+    .hero-stats { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+    .stat { display: flex; align-items: center; gap: 7px; font-size: 14px; color: var(--text-2); }
+    .stat-num { font-weight: 700; color: var(--text); font-size: 16px; }
+    .stat-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* ===== Layout ===== */
+    .main-wrap {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px 72px;
+      display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start;
+    }
+
+    /* ===== Filter Bar ===== */
+    .filter-bar {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 18px; flex-wrap: wrap;
+    }
+    .filter-lbl { font-size: 12px; color: var(--text-3); font-weight: 500; }
+    .pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pill {
+      padding: 5px 13px; border-radius: 999px; font-size: 12px; font-weight: 600;
+      border: 1px solid var(--border); background: none; color: var(--text-2);
+      cursor: pointer; transition: all 0.15s; font-family: inherit;
+    }
+    .pill:hover { border-color: var(--border-bright); color: var(--text); }
+    .pill.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+    .pill-num {
+      font-size: 10px; background: var(--border); border-radius: 999px;
+      padding: 1px 5px; margin-left: 3px; font-weight: 600;
+    }
+    .result-ct { margin-left: auto; font-size: 12px; color: var(--text-3); }
+
+    /* ===== Tools Grid ===== */
+    .grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+
+    /* ===== Tool Card ===== */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px; display: flex;
+      flex-direction: column; gap: 9px; transition: all 0.2s; cursor: default;
+    }
+    .card:hover {
+      border-color: var(--accent); background: var(--card-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 24px var(--accent-glow), 0 0 0 1px rgba(129,140,248,0.12);
+    }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .card-ico-nm { display: flex; align-items: center; gap: 10px; }
+    .card-ico {
+      width: 38px; height: 38px; border-radius: 9px;
+      background: var(--accent-dim); border: 1px solid rgba(129,140,248,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .card-nm { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.25; }
+    .card-nm-cn { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+    .card-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+    .card-cat {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 4px;
+    }
+    .c-ai  { background: rgba(99,102,241,0.12); color: #818cf8; }
+    .c-sk  { background: rgba(16,185,129,0.12); color: #34d399; }
+    .c-ag  { background: rgba(245,158,11,0.12);  color: #fbbf24; }
+    .card-stars { font-size: 11px; color: var(--star); font-weight: 600; }
+    .card-desc { font-size: 12px; color: var(--text-2); line-height: 1.55; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag {
+      font-size: 10px; padding: 2px 7px; border-radius: 4px;
+      background: rgba(30,41,59,0.8); color: var(--text-3); border: 1px solid var(--border);
+    }
+    .card-foot { display: flex; align-items: center; justify-content: flex-end; }
+    .visit-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 5px 11px; background: var(--accent-dim);
+      border: 1px solid rgba(129,140,248,0.2); border-radius: var(--radius-sm);
+      color: var(--accent); font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .visit-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ===== In-feed Ad Card ===== */
+    .card-ad {
+      background: var(--card); border: 1px dashed var(--border-bright);
+      border-radius: var(--radius); display: flex; align-items: center;
+      justify-content: center; min-height: 140px;
+    }
+
+    /* ===== Empty State ===== */
+    .empty { grid-column: 1/-1; text-align: center; padding: 56px 20px; color: var(--text-3); }
+    .empty-ico { font-size: 44px; margin-bottom: 10px; }
+
+    /* ===== Sidebar ===== */
+    .sidebar { position: sticky; top: 74px; display: flex; flex-direction: column; gap: 14px; }
+    .sb-block { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+    .sb-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 12px;
+    }
+    .sb-links { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .sb-links li a {
+      font-size: 13px; color: var(--text-2); display: flex; align-items: center; gap: 6px;
+      padding: 4px 0; transition: color 0.15s;
+    }
+    .sb-links li a:hover { color: var(--accent); }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    /* ===== FAQ ===== */
+    .faq-wrap { max-width: 1280px; margin: 0 auto 64px; padding: 0 24px; }
+    .faq-h { font-size: 20px; font-weight: 700; margin-bottom: 18px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
+    .faq-q {
+      padding: 15px 18px; font-size: 14px; font-weight: 600; color: var(--text);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      background: var(--card); transition: background 0.15s; user-select: none;
+    }
+    .faq-q:hover { background: var(--card-hover); }
+    .faq-a {
+      padding: 0 18px; max-height: 0; overflow: hidden;
+      font-size: 13px; color: var(--text-2); line-height: 1.7;
+      background: var(--surface); transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 13px 18px; }
+    .faq-arr { transition: transform 0.3s; font-size: 11px; color: var(--text-3); flex-shrink: 0; }
+    .faq-item.open .faq-arr { transform: rotate(180deg); }
+
+    /* ===== Footer ===== */
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 24px 24px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-ad { display: flex; justify-content: center; margin-bottom: 28px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 28px; }
+    .footer-brand p { font-size: 13px; color: var(--text-3); margin-top: 8px; max-width: 240px; line-height: 1.6; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-3); margin-bottom: 10px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .footer-col ul li a { font-size: 13px; color: var(--text-2); transition: color 0.15s; }
+    .footer-col ul li a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 18px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    }
+    .footer-bottom p { font-size: 12px; color: var(--text-3); }
+
+    /* ===== Language Toggle ===== */
+    [data-lang="zh"] .en { display: none !important; }
+    [data-lang="en"] .zh { display: none !important; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1100px) {
+      .grid { grid-template-columns: repeat(2,1fr); }
+      .main-wrap { grid-template-columns: 1fr; }
+      .sidebar { position: static; flex-direction: row; flex-wrap: wrap; }
+      .sb-block { flex: 1; min-width: 180px; }
+    }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .nav-tabs { display: none; }
+      .header-search { flex: 1; }
+      .hero { padding: 36px 16px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .ad-728 { display: none; }
+    }
+    @media (max-width: 480px) {
+      .header-inner { gap: 8px; padding: 0 14px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== Skeleton Loading ===== */
+    @keyframes shimmer {
+      0%   { background-position: -600px 0; }
+      100% { background-position: 600px 0; }
+    }
+    .skel {
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+      background-size: 600px 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    .skel-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .skel-top { display: flex; align-items: center; gap: 10px; }
+    .skel-ico { width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0; }
+    .skel-lines { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+    /* ===== Animations ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card { animation: fadeUp 0.3s ease both; }
+
+    /* ===== Updated badge pulse ===== */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.6; }
+    }
+    .loading-badge { animation: pulse 1.2s ease infinite; }
+
+    /* ===== Scrollbar ===== */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  </style>
+</head>
+
+<body>
+
+<!-- ====================================================
+     HEADER
+===================================================== -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </div>
+
+    <nav class="nav-tabs" role="navigation" aria-label="Category navigation">
+      <button class="nav-tab active" data-filter="all"       onclick="setFilter('all',this)"><span class="en">All</span><span class="zh">全部</span></button>
+      <button class="nav-tab"        data-filter="ai-tools"  onclick="setFilter('ai-tools',this)"><span class="en">AI Tools</span><span class="zh">AI 工具</span></button>
+      <button class="nav-tab"        data-filter="skill"     onclick="setFilter('skill',this)"><span class="en">Skill</span><span class="zh">技能框架</span></button>
+      <button class="nav-tab"        data-filter="agent"     onclick="setFilter('agent',this)"><span class="en">Agent</span><span class="zh">智能体</span></button>
+    </nav>
+
+    <div class="header-search">
+      <span class="search-ico">🔍</span>
+      <input type="search" id="hSearch" placeholder="Search tools…" oninput="onSearch(this.value)" aria-label="Search tools">
+    </div>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="lang-btn active" id="lbEn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        id="lbZh" onclick="setLang('zh')">中</button>
+    </div>
+
+    <a href="https://github.com/trending" target="_blank" rel="noopener noreferrer" class="gh-link" title="GitHub Trending" aria-label="GitHub">
+      <!-- GitHub icon SVG inline -->
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+<!-- ====================================================
+     AD BANNER — Top (728×90)
+     Replace comment below with actual AdSense code
+===================================================== -->
+<div class="ad-strip" aria-label="Advertisement">
+  <!-- ADSENSE_BANNER_TOP_728x90
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+  <div class="ad-box ad-728">
+    <span>📢</span><span>Advertisement · 728×90 Leaderboard</span>
+    <span class="ad-label">Google AdSense</span>
+  </div>
+</div>
+
+<!-- ====================================================
+     HERO
+===================================================== -->
+<section class="hero" aria-label="Hero section">
+  <div class="hero-badge" id="heroBadge">
+    <span>✨</span>
+    <span class="en loading-badge">Loading tools…</span>
+    <span class="zh loading-badge">加载中…</span>
+  </div>
+
+  <h1>
+    <span class="en">The Most Complete<br><span class="gradient">AI Tools Directory</span></span>
+    <span class="zh">最完整的<br><span class="gradient">AI 工具导航</span></span>
+  </h1>
+
+  <p class="hero-sub en">Discover the best open-source AI tools, agent frameworks &amp; skill libraries.<br>All curated from GitHub's highest-starred repositories.</p>
+  <p class="hero-sub zh">精选最优质的开源 AI 工具、Agent 智能体框架与技能库。<br>全部来自 GitHub 高星仓库，持续收录更新。</p>
+
+  <div class="hero-search">
+    <span class="search-ico-lg">🔍</span>
+    <input type="search" id="mSearch" placeholder="Search AI tools, agent frameworks, skill libraries…" oninput="onSearch(this.value)" aria-label="Search AI tools">
+  </div>
+
+  <div class="hero-stats" aria-label="Statistics">
+    <div class="stat">
+      <div class="stat-dot" style="background:var(--accent)"></div>
+      <span class="stat-num" id="sAi">15</span>
+      <span class="en">AI Tools</span><span class="zh">AI 工具</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background:var(--green)"></div>
+      <span class="stat-num" id="sSk">13</span>
+      <span class="en">Skill Frameworks</span><span class="zh">技能框架</span>
+    </div>
+    <div class="stat">
+      <div class="stat-dot" style="background:var(--amber)"></div>
+      <span class="stat-num" id="sAg">17</span>
+      <span class="en">AI Agents</span><span class="zh">AI 智能体</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     MAIN CONTENT
+===================================================== -->
+<div class="main-wrap">
+  <div>
+    <!-- Filter Bar -->
+    <div class="filter-bar" role="toolbar" aria-label="Filter tools">
+      <span class="filter-lbl en">Filter:</span>
+      <span class="filter-lbl zh">筛选：</span>
+      <div class="pills" role="group">
+        <button class="pill active" data-filter="all"      onclick="setFilter('all',this)"><span class="en">All</span><span class="zh">全部</span><span class="pill-num" id="pAll">300</span></button>
+        <button class="pill"        data-filter="ai-tools" onclick="setFilter('ai-tools',this)">🤖 <span class="en">AI Tools</span><span class="zh">AI 工具</span><span class="pill-num" id="pAi">100</span></button>
+        <button class="pill"        data-filter="skill"    onclick="setFilter('skill',this)">⚙️ <span class="en">Skill</span><span class="zh">技能框架</span><span class="pill-num" id="pSk">100</span></button>
+        <button class="pill"        data-filter="agent"    onclick="setFilter('agent',this)">🚀 <span class="en">Agent</span><span class="zh">智能体</span><span class="pill-num" id="pAg">100</span></button>
+      </div>
+      <span class="result-ct" id="rCount">Showing 45 tools</span>
+    </div>
+
+    <!-- Tools Grid -->
+    <main class="grid" id="grid" aria-label="AI tools list">
+      <!-- Rendered by JS -->
+    </main>
+  </div>
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="sidebar" aria-label="Sidebar">
+
+    <!-- Sidebar Ad (300×250) -->
+    <div class="sb-block" style="padding:0;overflow:hidden;border-style:dashed" aria-label="Advertisement">
+      <!-- ADSENSE_SIDEBAR_300x250
+      <ins class="adsbygoogle" style="display:block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      <div class="ad-box ad-300">
+        <div style="text-align:center;line-height:2">
+          <div>📢</div><div>Advertisement</div><div>300×250</div>
+          <div class="ad-label">Google AdSense</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Nav -->
+    <div class="sb-block">
+      <div class="sb-title en">Quick Nav</div>
+      <div class="sb-title zh">快速导航</div>
+      <ul class="sb-links">
+        <li><a href="#" onclick="setFilter('ai-tools');return false">🤖 <span class="en">AI Tools</span><span class="zh">AI 工具</span></a></li>
+        <li><a href="#" onclick="setFilter('skill');return false">⚙️ <span class="en">Skill Frameworks</span><span class="zh">技能框架</span></a></li>
+        <li><a href="#" onclick="setFilter('agent');return false">🚀 <span class="en">Agent Systems</span><span class="zh">Agent 系统</span></a></li>
+      </ul>
+    </div>
+
+    <!-- Tag Cloud -->
+    <div class="sb-block">
+      <div class="sb-title en">Browse by Tag</div>
+      <div class="sb-title zh">按标签浏览</div>
+      <div class="tag-cloud">
+        <button class="pill" onclick="tagFilter('open-source')">open-source</button>
+        <button class="pill" onclick="tagFilter('llm')">llm</button>
+        <button class="pill" onclick="tagFilter('rag')">rag</button>
+        <button class="pill" onclick="tagFilter('code')">code</button>
+        <button class="pill" onclick="tagFilter('agent')">agent</button>
+        <button class="pill" onclick="tagFilter('framework')">framework</button>
+        <button class="pill" onclick="tagFilter('image')">image</button>
+        <button class="pill" onclick="tagFilter('local')">local</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ====================================================
+     FAQ (SEO Section)
+===================================================== -->
+<section class="faq-wrap" id="faq" aria-label="FAQ">
+  <h2 class="faq-h en">Frequently Asked Questions</h2>
+  <h2 class="faq-h zh">常见问题</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)" role="button" tabindex="0" aria-expanded="false">
+      <span class="en">What is the best free AI tool in 2025?</span>
+      <span class="zh">2025年最好用的免费AI工具是什么？</span>
+      <span class="faq-arr">▼</span>
+    </div>
+    <div class="faq-a">
+      <span class="en">ChatGPT (free tier), Claude (free tier), and Ollama for local use are among the best free AI tools in 2025. Ollama lets you run powerful models like Llama 3 and Mistral completely offline on your own machine.</span>
+      <span class="zh">ChatGPT（免费版）、Claude（免费版）和本地运行的 Ollama 是2025年最好用的免费AI工具。Ollama 可以让你在自己的电脑上完全离线运行 Llama 3、Mistral 等强大模型。</span>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)" role="button" tabindex="0" aria-expanded="false">
+      <span class="en">What is the difference between AI tools and AI agents?</span>
+      <span class="zh">AI工具和AI智能体（Agent）有什么区别？</span>
+      <span class="faq-arr">▼</span>
+    </div>
+    <div class="faq-a">
+      <span class="en">AI tools are standalone applications (like ChatGPT or Midjourney) that perform specific tasks when you prompt them. AI agents are autonomous systems built with frameworks like LangChain or AutoGen that can independently plan, reason, use tools, and execute multi-step tasks without constant human input.</span>
+      <span class="zh">AI工具是独立应用程序（如ChatGPT或Midjourney），在你提示时执行特定任务。AI智能体是使用LangChain或AutoGen等框架构建的自主系统，能够独立规划、推理、使用工具并执行多步骤任务，无需持续的人工输入。</span>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)" role="button" tabindex="0" aria-expanded="false">
+      <span class="en">Which AI agent framework should I choose for my project?</span>
+      <span class="zh">我的项目应该选择哪个AI智能体框架？</span>
+      <span class="faq-arr">▼</span>
+    </div>
+    <div class="faq-a">
+      <span class="en">LangChain is best for flexible LLM pipelines and custom integrations. AutoGen excels at multi-agent conversation. CrewAI is ideal for role-based agent teams. LlamaIndex is best for RAG and document Q&amp;A. Dify and Flowise offer no-code visual builders for beginners.</span>
+      <span class="zh">LangChain 最适合灵活的LLM管线和自定义集成；AutoGen 擅长多智能体对话；CrewAI 适合角色分工团队；LlamaIndex 最适合RAG和文档问答；Dify 和 Flowise 为初学者提供可视化无代码构建器。</span>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="faqToggle(this)" role="button" tabindex="0" aria-expanded="false">
+      <span class="en">Are all tools on this directory open-source?</span>
+      <span class="zh">导航中的所有工具都是开源的吗？</span>
+      <span class="faq-arr">▼</span>
+    </div>
+    <div class="faq-a">
+      <span class="en">Yes. All tools featured here are open-source projects hosted on GitHub. We focus on projects with 1,000+ stars to ensure community validation, active maintenance, and production-readiness.</span>
+      <span class="zh">是的。本导航收录的所有工具均为托管在GitHub上的开源项目，我们重点关注具有1000+星标的项目，以确保社区验证、活跃维护和生产可用性。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     FOOTER
+===================================================== -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <!-- Footer Ad (320×100) -->
+    <div class="footer-ad" aria-label="Advertisement">
+      <!-- ADSENSE_FOOTER_320x100
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      <div class="ad-box ad-320">
+        <span>📢</span><span>Advertisement · 320×100</span>
+        <span class="ad-label">Google AdSense</span>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p class="en">A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+        <p class="zh">精选最优质的开源AI工具、Agent框架与技能库，全部来自GitHub高星仓库。</p>
+      </div>
+      <div class="footer-col">
+        <h4 class="en">Categories</h4><h4 class="zh">分类</h4>
+        <ul>
+          <li><a href="#" onclick="setFilter('ai-tools');return false"><span class="en">AI Tools</span><span class="zh">AI 工具</span></a></li>
+          <li><a href="#" onclick="setFilter('skill');return false"><span class="en">Skill Frameworks</span><span class="zh">技能框架</span></a></li>
+          <li><a href="#" onclick="setFilter('agent');return false"><span class="en">AI Agents</span><span class="zh">AI 智能体</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="en">Resources</h4><h4 class="zh">资源链接</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener"><span class="en">GitHub Trending</span><span class="zh">GitHub 趋势</span></a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="en">About</h4><h4 class="zh">关于</h4>
+        <ul>
+          <li><a href="#faq"><span class="en">FAQ</span><span class="zh">常见问题</span></a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener"><span class="en">Submit a Tool</span><span class="zh">提交工具</span></a></li>
+          <li><a href="sitemap.xml"><span class="en">Sitemap</span><span class="zh">站点地图</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav &nbsp;·&nbsp; <span class="en">All tools are open-source, hosted on GitHub.</span><span class="zh">所有工具均为开源项目，托管于 GitHub。</span></p>
+      <p><span class="en">Built for the AI community ❤️</span><span class="zh">为 AI 社区而建 ❤️</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ====================================================
+     JAVASCRIPT
+===================================================== -->
+<script>
+// ========================================
+// STATE
+// ========================================
+let TOOLS = [];
+let state = { cat: 'all', q: '', tag: '' };
+const isZh = () => document.documentElement.getAttribute('data-lang') === 'zh';
+
+// ========================================
+// EMOJI MAP
+// ========================================
+const EMOJI = { image:'🎨', generative:'🎨', speech:'🎙️', audio:'🎙️', code:'💻', chat:'💬', local:'🏠', privacy:'🔒', rag:'🧠', embeddings:'🧠', 'vector-db':'🗄️', memory:'💾', workflow:'🔄', visualization:'📊', autonomous:'🚀', framework:'⚙️', llm:'🤖', sdk:'📦', search:'🔍', sql:'🗃️', data:'📈', 'multi-modal':'🌐', productivity:'⚡', platform:'🏗️', 'no-code':'🧩', inference:'⚡', research:'🔬', education:'📚', 'structured-output':'📋', nlp:'🔤', microsoft:'🪟', agent:'🤖' };
+function getEmoji(t){ for(const tag of t.tags){ if(EMOJI[tag]) return EMOJI[tag]; } return '✨'; }
+
+const CATNM = { en:{ 'ai-tools':'AI Tools', skill:'Skill', agent:'Agent' }, zh:{ 'ai-tools':'AI 工具', skill:'技能框架', agent:'智能体' } };
+const CATCLS = { 'ai-tools':'c-ai', skill:'c-sk', agent:'c-ag' };
+
+// ========================================
+// SKELETON LOADING
+// ========================================
+function showSkeleton(n = 9) {
+  const grid = document.getElementById('grid');
+  if (!grid) return;
+  let html = '';
+  for (let i = 0; i < n; i++) {
+    html += `<div class="skel-card">
+      <div class="skel-top">
+        <div class="skel skel-ico"></div>
+        <div class="skel-lines">
+          <div class="skel" style="height:13px;width:60%"></div>
+          <div class="skel" style="height:10px;width:40%"></div>
+        </div>
+        <div class="skel" style="width:48px;height:18px;border-radius:4px"></div>
+      </div>
+      <div class="skel" style="height:11px;width:100%"></div>
+      <div class="skel" style="height:11px;width:80%"></div>
+      <div style="display:flex;gap:5px">
+        <div class="skel" style="width:55px;height:18px;border-radius:4px"></div>
+        <div class="skel" style="width:45px;height:18px;border-radius:4px"></div>
+        <div class="skel" style="width:50px;height:18px;border-radius:4px"></div>
+      </div>
+    </div>`;
+  }
+  grid.innerHTML = html;
+}
+
+// ========================================
+// UPDATED AT BADGE
+// ========================================
+function formatUpdated(iso) {
+  const zh = isZh();
+  try {
+    const d = new Date(iso);
+    const days = Math.floor((Date.now() - d) / 86400000);
+    if (days === 0) return zh ? '今日更新' : 'Updated today';
+    if (days === 1) return zh ? '昨日更新' : 'Updated yesterday';
+    if (days < 7)  return zh ? `${days} 天前更新` : `Updated ${days} days ago`;
+    if (days < 30) return zh ? `${Math.floor(days/7)} 周前更新` : `Updated ${Math.floor(days/7)} weeks ago`;
+    return zh ? `${Math.floor(days/30)} 个月前更新` : `Updated ${Math.floor(days/30)} months ago`;
+  } catch { return ''; }
+}
+
+function updateBadge(updatedAt) {
+  const badge = document.getElementById('heroBadge');
+  if (!badge || !updatedAt) return;
+  const label = formatUpdated(updatedAt);
+  const total = TOOLS.length;
+  const zh = isZh();
+  badge.innerHTML = `<span>✨</span><span class="en">${total}+ Curated Open-Source AI Tools · ${label}</span><span class="zh">${total}+ 精选开源 AI 工具 · ${label}</span>`;
+}
+
+function updateStats() {
+  const ai = TOOLS.filter(t => t.category === 'ai-tools').length;
+  const sk = TOOLS.filter(t => t.category === 'skill').length;
+  const ag = TOOLS.filter(t => t.category === 'agent').length;
+  const tot = TOOLS.length;
+  const el = id => document.getElementById(id);
+  if (el('sAi')) el('sAi').textContent = ai;
+  if (el('sSk')) el('sSk').textContent = sk;
+  if (el('sAg')) el('sAg').textContent = ag;
+  if (el('pAll')) el('pAll').textContent = tot;
+  if (el('pAi'))  el('pAi').textContent = ai;
+  if (el('pSk'))  el('pSk').textContent = sk;
+  if (el('pAg'))  el('pAg').textContent = ag;
+}
+
+// ========================================
+// RENDER
+// ========================================
+function render() {
+  const zh = isZh();
+  const filtered = TOOLS.filter(t => {
+    const mc = state.cat === 'all' || t.category === state.cat;
+    const mt = !state.tag || t.tags.includes(state.tag);
+    const q  = state.q.toLowerCase();
+    const ms = !q || [t.name, t.nameCn, t.descEn, t.descCn, ...t.tags].some(s => s.toLowerCase().includes(q));
+    return mc && mt && ms;
+  });
+
+  const rct = document.getElementById('rCount');
+  if (rct) rct.textContent = zh ? `显示 ${filtered.length} 个工具` : `Showing ${filtered.length} tools`;
+
+  const grid = document.getElementById('grid');
+  if (!grid) return;
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="empty"><div class="empty-ico">🔍</div><div>${zh ? '没有找到相关工具' : 'No tools found'}</div></div>`;
+    return;
+  }
+
+  let html = '';
+  filtered.forEach((t, i) => {
+    if (i > 0 && i % 9 === 0) {
+      html += `<div class="card-ad">
+        <!-- ADSENSE_INFEED -->
+        <div class="ad-box ad-infeed"><span>📢</span><span>${zh ? '广告' : 'Ad'}</span><span class="ad-label">AdSense In-feed</span></div>
+      </div>`;
+    }
+    const em   = getEmoji(t);
+    const cc   = CATCLS[t.category];
+    const cn   = CATNM[zh ? 'zh' : 'en'][t.category];
+    const desc = zh ? t.descCn : t.descEn;
+    const lbl  = t.starsLabel || t.stars;
+    const tags = t.tags.slice(0, 3).map(tg => `<span class="tag">${tg}</span>`).join('');
+    html += `<article class="card" style="animation-delay:${(i % 9) * 25}ms" itemscope itemtype="https://schema.org/SoftwareApplication">
+  <div class="card-top">
+    <div class="card-ico-nm">
+      <div class="card-ico" aria-hidden="true">${em}</div>
+      <div>
+        <div class="card-nm" itemprop="name">${t.name}</div>
+        <div class="card-nm-cn">${t.nameCn}</div>
+      </div>
+    </div>
+    <div class="card-meta">
+      <span class="card-cat ${cc}">${cn}</span>
+      <span class="card-stars">★ ${lbl}</span>
+    </div>
+  </div>
+  <p class="card-desc" itemprop="description">${desc}</p>
+  <div class="card-tags">${tags}</div>
+  <div class="card-foot">
+    <a href="${t.githubUrl}" target="_blank" rel="noopener noreferrer" class="visit-btn" itemprop="url">GitHub ↗</a>
+  </div>
+</article>`;
+  });
+  grid.innerHTML = html;
+}
+
+// ========================================
+// FILTER / SEARCH
+// ========================================
+function setFilter(cat) {
+  state.cat = cat;
+  state.tag = '';
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+  document.querySelectorAll('.pill[data-filter]').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+  render();
+}
+
+function tagFilter(tag) {
+  state.tag = state.tag === tag ? '' : tag;
+  state.cat = 'all';
+  document.querySelectorAll('.pill[data-filter]').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.pill[data-filter="all"]').forEach(b => b.classList.add('active'));
+  render();
+}
+
+function onSearch(v) {
+  state.q = v;
+  document.getElementById('hSearch').value = v;
+  document.getElementById('mSearch').value = v;
+  render();
+}
+
+// ========================================
+// LANGUAGE
+// ========================================
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+  document.getElementById('lbEn').classList.toggle('active', lang === 'en');
+  document.getElementById('lbZh').classList.toggle('active', lang === 'zh');
+  const ph = lang === 'zh' ? '搜索 AI 工具、框架、智能体…' : 'Search AI tools, agent frameworks, skill libraries…';
+  document.querySelectorAll('input[type=search]').forEach(el => el.placeholder = ph);
+  render();
+}
+
+// ========================================
+// FAQ
+// ========================================
+function faqToggle(btn) {
+  const item = btn.parentElement;
+  const open = item.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.target.classList.contains('faq-q') && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault(); faqToggle(e.target);
+  }
+});
+
+// ========================================
+// INIT — 双轨加载：本地变量 + fetch 刷新
+// ========================================
+(async function init() {
+  // 第一优先：data.js 内嵌数据（直接打开 HTML 时可用，无需服务器）
+  if (window.TOOLS_DATA && window.TOOLS_DATA.tools) {
+    TOOLS = window.TOOLS_DATA.tools;
+    updateStats();
+    updateBadge(window.TOOLS_DATA.updatedAt);
+    render();
+  } else {
+    showSkeleton(9);
+  }
+
+  // 第二优先：通过 fetch 获取最新 data.json（HTTP 服务器/部署环境下覆盖更新）
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    if (!res.ok) return; // 非 HTTP 环境正常失败，已用内嵌数据，无需报错
+    const data = await res.json();
+    // 只有 fetch 拿到的数据更新时才刷新页面
+    if (!window.TOOLS_DATA || data.updatedAt !== window.TOOLS_DATA.updatedAt) {
+      TOOLS = data.tools || [];
+      updateStats();
+      updateBadge(data.updatedAt);
+      render();
+    }
+  } catch (_) {
+    // file:// 协议下 fetch 会失败，属于预期行为，已有内嵌数据兜底
+  }
+})();
+</script>
+
+<!-- Google Analytics placeholder -->
+<!-- GA_PLACEHOLDER
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+-->
+
+</body>
+</html>
