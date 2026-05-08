@@ -9,4 +9,4 @@ Disallow: /redirect/
 User-agent: Googlebot-Image
 Allow: /
 
-Sitemap: https://yuzechang.github.io/AI_Guide/sitemap.xml
+Sitemap: https://yuzec.com/sitemap.xml

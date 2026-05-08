@@ -48,7 +48,8 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {% for faq in faqs %}
+      {% set faq_list = tool.faqs if tool.faqs else faqs %}
+      {% for faq in faq_list %}
       {
         "@type": "Question",
         "name": {{ faq.q | tojson }},
@@ -193,6 +194,33 @@
       </ul>
       {% endif %}
 
+      <!-- Pros & Cons -->
+      {% if tool.pros or tool.cons %}
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        {% if tool.pros %}
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            {% for p in tool.pros %}
+            <li>{{ p }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% if tool.cons %}
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            {% for c in tool.cons %}
+            <li>{{ c }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -230,6 +258,19 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      {% if tool.website %}
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with {{ tool.name }}</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="{{ tool.website }}" target="_blank" rel="noopener sponsored" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      {% endif %}
+
       <!-- Related Tools -->
       {% if related %}
       <h2 id="alternatives">Similar {{ cat.label }}s</h2>
@@ -250,16 +291,29 @@
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        {% for faq in faqs %}
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            {{ faq.q }} <span class="faq-arr">▼</span>
+        {% if tool.faqs %}
+          {% for faq in tool.faqs %}
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              {{ faq.q }} <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">{{ faq.a }}</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">{{ faq.a }}</div>
+          {% endfor %}
+        {% else %}
+          {% for faq in faqs %}
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              {{ faq.q }} <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">{{ faq.a }}</div>
+            </div>
           </div>
-        </div>
-        {% endfor %}
+          {% endfor %}
+        {% endif %}
       </div>
 
     </article>
@@ -293,6 +347,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is {{ tool.name }}?</a></li>
           {% if features %}<li><a href="#features">Key Features</a></li>{% endif %}
+          {% if tool.pros or tool.cons %}<li><a href="#pros-cons">Pros &amp; Cons</a></li>{% endif %}
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           {% if related %}<li><a href="#alternatives">Alternatives</a></li>{% endif %}

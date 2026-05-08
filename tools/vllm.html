@@ -3,44 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>vLLM Review 2026 | Fast LLM Inference Server for Production</title>
-  <meta name="description" content="Complete vLLM guide: PagedAttention, continuous batching, OpenAI-compatible API. Setup, benchmarks, vs TensorRT-LLM comparison, and production deployment tips.">
+  <title>vLLM Guide 2026 | High-throughput LLM serving with PagedAttention – AI Nav</title>
+  <meta name="description" content="High-throughput LLM serving with PagedAttention 38k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/vllm.html">
+  <link rel="canonical" href="https://yuzec.com/tools/vllm.html">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="vLLM Guide 2026 | High-throughput LLM serving with PagedAttention – AI Nav">
+  <meta property="og:description" content="High-throughput LLM serving with PagedAttention 38k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta property="og:url" content="https://yuzec.com/tools/vllm.html">
+  <meta property="og:site_name" content="AI Nav">
+
+  <!-- Schema.org: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "vLLM",
     "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Linux (NVIDIA GPU)",
+    "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/vllm-project/vllm",
-    "description": "vLLM is a fast and memory-efficient inference and serving engine for LLMs, featuring PagedAttention for up to 24x higher throughput than HuggingFace Transformers.",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache 2.0" }]
+    "description": "High-throughput LLM serving with PagedAttention",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
   </script>
+
+  <!-- Schema.org: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
-      { "@type": "ListItem", "position": 2, "name": "Skill Frameworks", "item": "https://yuzechang.github.io/AI_Guide/#skill" },
-      { "@type": "ListItem", "position": 3, "name": "vLLM", "item": "https://yuzechang.github.io/AI_Guide/tools/vllm.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Skill Framework", "item": "https://yuzec.com/#skill" },
+      { "@type": "ListItem", "position": 3, "name": "vLLM", "item": "https://yuzec.com/tools/vllm.html" }
     ]
   }
   </script>
+
+  <!-- Schema.org: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "What is PagedAttention in vLLM?", "acceptedAnswer": { "@type": "Answer", "text": "PagedAttention is vLLM's core innovation. It manages the KV cache (key-value attention cache) in fixed-size blocks, similar to virtual memory paging. This prevents GPU memory fragmentation and allows vLLM to serve 24x more requests per GPU than naive implementations." } },
-      { "@type": "Question", "name": "How much faster is vLLM than HuggingFace Transformers?", "acceptedAnswer": { "@type": "Answer", "text": "vLLM achieves 24x higher throughput than HuggingFace Transformers on serving workloads (measured in tokens/second per GPU). The improvement is most dramatic under concurrent request load." } },
-      { "@type": "Question", "name": "Does vLLM support OpenAI API format?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. vLLM's OpenAI-compatible server exposes /v1/completions and /v1/chat/completions endpoints. Any code using the OpenAI Python SDK can use vLLM as a drop-in replacement by changing the base_url." } },
-      { "@type": "Question", "name": "vLLM vs TensorRT-LLM: which is faster?", "acceptedAnswer": { "@type": "Answer", "text": "TensorRT-LLM is faster on single-request latency with compiled engines. vLLM has better throughput under concurrent load due to PagedAttention. vLLM is also much easier to set up and supports more models out of the box." } },
-      { "@type": "Question", "name": "What hardware does vLLM require?", "acceptedAnswer": { "@type": "Answer", "text": "vLLM requires NVIDIA GPUs with CUDA 11.8+. It works best with A100, H100, and consumer RTX 30/40 series. Experimental AMD ROCm support is available. CPU-only is not supported—use llama.cpp or Ollama for CPU inference." } }
+      
+      
+      {
+        "@type": "Question",
+        "name": "What is vLLM?",
+        "acceptedAnswer": { "@type": "Answer", "text": "vLLM is a high-throughput and memory-efficient inference and serving engine for LLMs. It uses PagedAttention to manage KV cache efficiently, achieving up to 24x higher throughput than standard HuggingFace Transformers serving." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "When should I use vLLM instead of Ollama?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use vLLM for production serving with high concurrent request volumes. It excels at maximizing GPU utilization and throughput for batch inference. Use Ollama for local development, prototyping, and single-user scenarios where ease of use matters more than throughput." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "How do I start vLLM as an OpenAI-compatible server?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Run: vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000. Then point any OpenAI SDK client to http://localhost:8000/v1. The API supports /v1/chat/completions, /v1/completions, and /v1/models endpoints." }
+      }
+      
     ]
   }
   </script>
@@ -52,153 +79,410 @@
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <div class="header-inner">
-    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
     <div class="header-spacer"></div>
     <a href="../index.html" class="nav-home">← All Tools</a>
   </div>
 </header>
 
+<!-- Breadcrumb -->
 <div class="breadcrumb">
-  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
-  <a href="../index.html#skill">Skill Frameworks</a><span class="breadcrumb-sep">›</span>
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html#skill">Skill Framework</a>
+  <span class="breadcrumb-sep">›</span>
   <span class="breadcrumb-cur">vLLM</span>
 </div>
 
+<!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
-      <span class="article-badge" style="background:rgba(16,185,129,0.1); border-color:rgba(52,211,153,0.25); color:#34d399">⚡ LLM Inference</span>
-      <span class="stars-badge">★ 40k+ GitHub Stars</span>
-      <span class="tag-chip">Apache 2.0</span>
-      <span class="tag-chip">Production-Ready</span>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+      <span class="article-badge" style="background:rgba(34d3991a);border-color:rgba(34d39940);color:#34d399">
+        ⚙️ Skill Framework
+      </span>
+      <span class="stars-badge">★ 38k+ GitHub Stars</span>
+      
+      <span class="tag-chip">llm</span>
+      
+      <span class="tag-chip">inference</span>
+      
+      <span class="tag-chip">serving</span>
+      
     </div>
-    <h1 class="article-title"><span class="gradient">vLLM</span> – High-Throughput LLM Inference Server</h1>
-    <p class="article-desc">
-      vLLM is the industry standard for production LLM serving. With PagedAttention delivering up to 24x higher throughput than naive implementations, it's the inference engine behind most self-hosted LLM API deployments.
-    </p>
-    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
-      <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener" class="cta-btn">View on GitHub ↗</a>
-      <a href="https://docs.vllm.ai" target="_blank" rel="noopener" class="cta-btn-outline">Documentation ↗</a>
+    <h1 class="article-title">
+      <span class="gradient">vLLM</span>
+       – vLLM 高吞吐推理
+    </h1>
+    <p class="article-desc">High-throughput LLM serving with PagedAttention</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
+      <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener" class="cta-btn">
+        View on GitHub ↗
+      </a>
+      
+      <a href="https://docs.vllm.ai" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
 
+<!-- Content -->
 <div class="page-wrap-wide">
   <div class="content-layout">
     <article class="content">
 
+      <!-- Quick Facts Grid -->
       <div class="info-grid">
-        <div class="info-card"><div class="info-card-label">Stars</div><div class="info-card-value">40k+</div><div class="info-card-sub">Apache 2.0 license</div></div>
-        <div class="info-card"><div class="info-card-label">Throughput</div><div class="info-card-value">24× faster</div><div class="info-card-sub">vs HuggingFace Transformers</div></div>
-        <div class="info-card"><div class="info-card-label">API</div><div class="info-card-value">OpenAI-compatible</div><div class="info-card-sub">/v1/chat/completions</div></div>
-        <div class="info-card"><div class="info-card-label">Hardware</div><div class="info-card-value">NVIDIA GPU</div><div class="info-card-sub">CUDA 11.8+ required</div></div>
+        <div class="info-card">
+          <div class="info-card-label">Category</div>
+          <div class="info-card-value">Skill Framework</div>
+          <div class="info-card-sub">skill</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">GitHub Stars</div>
+          <div class="info-card-value">38k+</div>
+          <div class="info-card-sub">Community adoption</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">License</div>
+          <div class="info-card-value">Apache-2.0</div>
+          <div class="info-card-sub">Check repository</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Tags</div>
+          <div class="info-card-value" style="font-size:13px">llm, inference, serving</div>
+          <div class="info-card-sub">4 tags total</div>
+        </div>
       </div>
 
+      <!-- What is {name}? -->
       <h2 id="what-is">What Is vLLM?</h2>
       <p>
-        vLLM is an open-source LLM inference and serving engine developed by the Sky Computing Lab at UC Berkeley. Its core innovation is <strong>PagedAttention</strong>—a memory management algorithm that dramatically increases GPU utilization under concurrent request loads.
+        <strong>vLLM</strong> is an open-source developer framework for building AI applications with
+        38k+ GitHub stars. High-throughput LLM serving with PagedAttention
       </p>
       <p>
-        While tools like Ollama and llama.cpp are designed for individual developers running models locally, vLLM targets <strong>production API deployments</strong> where hundreds or thousands of users send requests concurrently.
+        As a developer framework for building AI applications, vLLM is designed to help developers and teams
+        
+        build production-ready AI applications with reliable, tested abstractions.
+        It handles the complexity of connecting LLMs to external data and tools,
+        so engineers can focus on business logic instead of plumbing.
+        
+      </p>
+      <p>
+        The project is maintained on GitHub at
+        <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">github.com/vllm-project/vllm</a>
+        and is actively developed with a strong open-source community.
+        
+        With 38k+ stars, it is one of the most widely adopted tools in its category.
+        
       </p>
 
-      <h2 id="paged-attention">PagedAttention: The Core Innovation</h2>
-      <p>
-        Traditional LLM serving pre-allocates a fixed KV (key-value) cache for the maximum sequence length. This wastes GPU memory—often 60-80% of allocated VRAM is never used. PagedAttention manages the KV cache in fixed-size blocks (like OS virtual memory pages), eliminating fragmentation and enabling near-100% GPU memory utilization.
-      </p>
-      <p>
-        The result: vLLM can serve 24× more requests per GPU second than HuggingFace Transformers, making it the most cost-efficient option for production deployments.
-      </p>
-
+      <!-- Features -->
+      
       <h2 id="features">Key Features</h2>
       <ul class="feature-list">
-        <li><span class="feat-icon">📄</span><div><strong>PagedAttention</strong> — Memory-efficient KV cache management. Enables 24× higher throughput under concurrent load vs naive implementations.</div></li>
-        <li><span class="feat-icon">🔄</span><div><strong>Continuous batching</strong> — Dynamically adds new requests to in-progress batches. Maximizes GPU utilization without waiting for batch completion.</div></li>
-        <li><span class="feat-icon">🌐</span><div><strong>OpenAI-compatible API</strong> — Drop-in replacement for the OpenAI API. Serve any supported model through the same interface your existing code uses.</div></li>
-        <li><span class="feat-icon">💡</span><div><strong>Speculative decoding</strong> — Use a small draft model to predict multiple tokens ahead, then verify with the large model. Reduces latency by 2-3× for generation tasks.</div></li>
-        <li><span class="feat-icon">🔢</span><div><strong>Tensor parallelism</strong> — Automatically distribute large models across multiple GPUs. Run 70B models on 4× A10G GPUs seamlessly.</div></li>
-        <li><span class="feat-icon">🤗</span><div><strong>HuggingFace integration</strong> — Load any HuggingFace model with `vllm serve meta-llama/Llama-3-8b-instruct`.</div></li>
+        
+        <li>
+          <span class="feat-icon">🤖</span>
+          <div><strong>LLM Integration</strong> — Seamless integration with major LLMs including GPT-4o, Claude 4, Llama 3, and Mistral for text generation and reasoning.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">⚡</span>
+          <div><strong>High-Performance Inference</strong> — Optimized model inference with quantization support, batching, and sub-second latency.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔓</span>
+          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+        </li>
+        
       </ul>
+      
 
-      <h2 id="quick-start">Quick Start</h2>
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; margin:16px 0; font-family:'Fira Code',monospace; font-size:13px; color:var(--text-2);">
-        # Install<br>
-        pip install vllm<br><br>
-        # Start server (OpenAI-compatible)<br>
-        vllm serve meta-llama/Llama-3.1-8B-Instruct<br><br>
-        # Query with OpenAI SDK<br>
-        from openai import OpenAI<br>
-        client = OpenAI(base_url="http://localhost:8000/v1", api_key="none")<br>
-        response = client.chat.completions.create(model="Llama-3.1-8B-Instruct", ...)
-      </div>
-
-      <h2 id="pros-cons">Pros & Cons</h2>
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
       <div class="pros-cons">
-        <div class="pros-box"><h4>Pros</h4><ul>
-          <li>Highest throughput LLM serving</li>
-          <li>OpenAI-compatible API out of the box</li>
-          <li>Continuous batching for efficiency</li>
-          <li>Production-tested at scale</li>
-          <li>Apache 2.0, commercial-friendly</li>
-          <li>Active community and development</li>
-        </ul></div>
-        <div class="cons-box"><h4>Cons</h4><ul>
-          <li>NVIDIA GPU required (no CPU)</li>
-          <li>Linux-first (Windows support limited)</li>
-          <li>Higher setup complexity than Ollama</li>
-          <li>Requires significant VRAM</li>
-          <li>Overkill for single-user local use</li>
-        </ul></div>
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Up to 24x higher throughput than HuggingFace Transformers</li>
+            
+            <li>PagedAttention algorithm maximizes GPU memory utilization</li>
+            
+            <li>OpenAI-compatible REST API – minimal code changes to integrate</li>
+            
+            <li>Supports LLaMA, Mistral, Gemma, Falcon, and 40+ model architectures</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Requires NVIDIA GPU with CUDA; no CPU-only support</li>
+            
+            <li>Minimum 1 GPU with 16GB+ VRAM for most production models</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
+      <!-- Use Cases -->
+      <h2 id="use-cases">Use Cases</h2>
+      <p>
+        vLLM is used across a wide range of applications in the AI development ecosystem.
+        Here are the most common scenarios where teams choose vLLM:
+      </p>
+      
+      <h3>🏗️ LLM Application Development</h3>
+      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
+      
+      <h3>📚 RAG & Knowledge Systems</h3>
+      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      
+      <h3>🤖 Agent Orchestration</h3>
+      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      
+      <h3>🔌 Model Provider Abstraction</h3>
+      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      
+
+      <!-- Getting Started -->
+      <h2 id="getting-started">Getting Started with vLLM</h2>
+      <p>
+        To get started with vLLM, visit the
+        <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">GitHub repository</a>
+        and follow the installation instructions in the README.
+        
+        Most Python frameworks can be installed via pip:
+        <code>pip install vllm</code>
+        
+      </p>
+      <div class="alert alert-info">
+        💡 <strong>Tip:</strong> Check the GitHub repository's
+        <a href="https://github.com/vllm-project/vllm/issues" target="_blank" rel="noopener">Issues</a> and
+        <a href="https://github.com/vllm-project/vllm/discussions" target="_blank" rel="noopener">Discussions</a>
+        pages for community support, and the
+        <a href="https://github.com/vllm-project/vllm/releases" target="_blank" rel="noopener">Releases</a>
+        page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with vLLM</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://docs.vllm.ai" target="_blank" rel="noopener sponsored" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+
+      <!-- Related Tools -->
+      
+      <h2 id="alternatives">Similar Skill Frameworks</h2>
+      <p>
+        If vLLM doesn't fit your needs, here are other popular
+        Skill Frameworks you might consider:
+      </p>
+      <div class="related-grid">
+        
+        <a href="tgi.html" class="related-card">
+          <div class="related-card-name">Text Generation Inference</div>
+          <div class="related-card-desc">Production LLM serving toolkit by HuggingFace</div>
+        </a>
+        
+        <a href="openllm.html" class="related-card">
+          <div class="related-card-name">OpenLLM</div>
+          <div class="related-card-desc">Run LLMs in production with BentoML</div>
+        </a>
+        
+        <a href="llamacpp-python.html" class="related-card">
+          <div class="related-card-name">llama-cpp-python</div>
+          <div class="related-card-desc">Python bindings for llama.cpp with OpenAI-compatible API</div>
+        </a>
+        
+        <a href="sglang.html" class="related-card">
+          <div class="related-card-name">SGLang</div>
+          <div class="related-card-desc">Fast serving framework for large language and vision models</div>
+        </a>
+        
+      </div>
+      
+
+      <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What is PagedAttention? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">PagedAttention manages the KV cache in fixed-size memory blocks, inspired by OS virtual memory paging. This prevents GPU memory fragmentation that wastes 60-80% of VRAM in traditional serving. The result is near-100% GPU utilization and 24× throughput improvement under concurrent load.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">vLLM vs Ollama: when to use which? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Use Ollama for local development and personal use—it's easier to set up and works on CPU. Use vLLM for production deployments serving multiple concurrent users—it's far more efficient at scale. Many teams use Ollama locally and deploy vLLM in production.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">How does speculative decoding work? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Speculative decoding uses a small "draft" model to predict multiple tokens ahead. The large model then verifies all predictions in parallel. If most predictions are correct, effective tokens per second increases 2-3× because most generation happens on the fast small model.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Does vLLM support quantized models? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes. vLLM supports AWQ, GPTQ, and SqueezeLLM quantization formats. These reduce VRAM requirements while maintaining most of the model quality. GGUF format (used by llama.cpp) is not supported—use AWQ-quantized models from HuggingFace instead.</div></div></div>
+        
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is vLLM? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">vLLM is a high-throughput and memory-efficient inference and serving engine for LLMs. It uses PagedAttention to manage KV cache efficiently, achieving up to 24x higher throughput than standard HuggingFace Transformers serving.</div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              When should I use vLLM instead of Ollama? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Use vLLM for production serving with high concurrent request volumes. It excels at maximizing GPU utilization and throughput for batch inference. Use Ollama for local development, prototyping, and single-user scenarios where ease of use matters more than throughput.</div>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How do I start vLLM as an OpenAI-compatible server? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Run: vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000. Then point any OpenAI SDK client to http://localhost:8000/v1. The API supports /v1/chat/completions, /v1/completions, and /v1/models endpoints.</div>
+            </div>
+          </div>
+          
+        
       </div>
 
     </article>
 
+    <!-- Sidebar -->
     <aside class="content-sidebar">
-      <div class="sidebar-card"><h4>Quick Facts</h4><div style="font-size:13px; color:var(--text-2);">
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Origin:</span> UC Berkeley</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 40k+</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Apache 2.0</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">GPU:</span> NVIDIA (CUDA 11.8+)</div>
-        <div><span style="color:var(--text-3)">API:</span> OpenAI-compatible</div>
-      </div></div>
-      <div class="sidebar-card"><h4>Table of Contents</h4><ul class="toc-list">
-        <li><a href="#what-is">What Is vLLM?</a></li>
-        <li><a href="#paged-attention">PagedAttention</a></li>
-        <li><a href="#features">Key Features</a></li>
-        <li><a href="#quick-start">Quick Start</a></li>
-        <li><a href="#pros-cons">Pros & Cons</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul></div>
-      <div class="sidebar-card"><h4>Related Tools</h4><ul class="toc-list">
-        <li><a href="llama-cpp.html">llama.cpp</a></li>
-        <li><a href="ollama.html">Ollama</a></li>
-        <li><a href="langchain.html">LangChain</a></li>
-      </ul></div>
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">GitHub:</span>
+            <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener" style="color:var(--accent)">
+              vllm-project/vllm
+            </a>
+          </div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 38k+</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> Skill Framework</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
+          
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://docs.vllm.ai" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#what-is">What Is vLLM?</a></li>
+          <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#alternatives">Alternatives</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="sidebar-card">
+        <h4>Related Tools</h4>
+        <ul class="toc-list">
+          
+          <li><a href="tgi.html">Text Generation Inference</a></li>
+          
+          <li><a href="openllm.html">OpenLLM</a></li>
+          
+          <li><a href="llamacpp-python.html">llama-cpp-python</a></li>
+          
+          <li><a href="sglang.html">SGLang</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <div class="sidebar-card">
+        <h4>Tags</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">
+          
+          <span class="tag-chip">llm</span>
+          
+          <span class="tag-chip">inference</span>
+          
+          <span class="tag-chip">serving</span>
+          
+          <span class="tag-chip">open-source</span>
+          
+        </div>
+      </div>
     </aside>
   </div>
 </div>
 
+<!-- Footer -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
-      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
-      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
-      <div class="footer-col"><h4>Tools</h4><ul><li><a href="llama-cpp.html">llama.cpp</a></li><li><a href="ollama.html">Ollama</a></li><li><a href="langchain.html">LangChain</a></li></ul></div>
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools, agent frameworks, and skill libraries.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Featured</h4>
+        <ul>
+          <li><a href="cursor.html">Cursor AI</a></li>
+          <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="chatgpt.html">ChatGPT</a></li>
+          <li><a href="ollama.html">Ollama</a></li>
+          <li><a href="langchain.html">LangChain</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
   </div>
 </footer>
-<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+</script>
 </body>
 </html>

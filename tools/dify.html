@@ -3,47 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dify Review 2026 | Open-Source LLM App Development Platform</title>
-  <meta name="description" content="Complete Dify review: build LLM apps, RAG workflows, and AI agents without code. Features, self-hosting vs cloud, pricing, and comparison with Flowise and Langflow.">
+  <title>Dify Review 2026 | Open-source LLM app development and orchestration platform – AI Nav</title>
+  <meta name="description" content="Open-source LLM app development and orchestration platform 55k+ GitHub stars. Features, pricing, and how to get started.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/dify.html">
+  <link rel="canonical" href="https://yuzec.com/tools/dify.html">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Dify Review 2026 | Open-source LLM app development and orchestration platform – AI Nav">
+  <meta property="og:description" content="Open-source LLM app development and orchestration platform 55k+ GitHub stars. Features, pricing, and how to get started.">
+  <meta property="og:url" content="https://yuzec.com/tools/dify.html">
+  <meta property="og:site_name" content="AI Nav">
+
+  <!-- Schema.org: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Dify",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Windows, macOS, Linux (Docker)",
-    "url": "https://dify.ai",
-    "description": "Dify is an open-source LLM app development platform with visual workflow builder, RAG pipeline, agent framework, and model management for building AI applications.",
-    "offers": [
-      { "@type": "Offer", "name": "Self-hosted", "price": "0", "priceCurrency": "USD" },
-      { "@type": "Offer", "name": "Cloud", "price": "59", "priceCurrency": "USD", "billingIncrement": "P1M" }
-    ]
+    "applicationCategory": "AIApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://github.com/langgenius/dify",
+    "description": "Open-source LLM app development and orchestration platform",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
   </script>
+
+  <!-- Schema.org: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
-      { "@type": "ListItem", "position": 2, "name": "AI Agents", "item": "https://yuzechang.github.io/AI_Guide/#agent" },
-      { "@type": "ListItem", "position": 3, "name": "Dify", "item": "https://yuzechang.github.io/AI_Guide/tools/dify.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "AI Agent", "item": "https://yuzec.com/#agent" },
+      { "@type": "ListItem", "position": 3, "name": "Dify", "item": "https://yuzec.com/tools/dify.html" }
     ]
   }
   </script>
+
+  <!-- Schema.org: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "What is Dify?", "acceptedAnswer": { "@type": "Answer", "text": "Dify is an open-source LLM application development platform with a visual workflow builder, RAG engine, agent capabilities, and model management. It lets developers and non-developers build production-ready AI applications without writing code." } },
-      { "@type": "Question", "name": "Is Dify free?", "acceptedAnswer": { "@type": "Answer", "text": "Dify is MIT licensed and free to self-host using Docker. The cloud version (dify.ai) offers a free tier with 200 messages/day and paid plans starting at $59/month for teams." } },
-      { "@type": "Question", "name": "Dify vs Flowise: which is better?", "acceptedAnswer": { "@type": "Answer", "text": "Dify has a more polished UI, better RAG capabilities, and more enterprise features. Flowise is simpler and more developer-focused. Dify is better for teams and production apps; Flowise is better for quick prototyping with LangChain components." } },
-      { "@type": "Question", "name": "Can Dify connect to my own LLM?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Dify supports 100+ model providers including OpenAI, Anthropic, Google, Ollama (local models), HuggingFace, and custom OpenAI-compatible endpoints. Switch models in the settings without changing your application." } },
-      { "@type": "Question", "name": "How do I self-host Dify?", "acceptedAnswer": { "@type": "Answer", "text": "Self-hosting Dify requires Docker. Run: `git clone https://github.com/langgenius/dify && cd dify/docker && docker compose up -d`. The full stack (API, web, database, Redis, vector store) starts in minutes." } }
+      
+      {
+        "@type": "Question",
+        "name": "What can Dify do autonomously?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dify can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals\u2014all without human confirmation at each step." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "How much does running Dify cost?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50\u2013$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Is it safe to run Dify without supervision?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For production-critical systems, always run with human-in-the-loop confirmation enabled. Dify includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "How does Dify compare to prompt chaining?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dify goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results\u2014making it suitable for open-ended tasks where the exact steps aren\u0027t known in advance." }
+      }
+      
     ]
   }
   </script>
@@ -55,153 +84,364 @@
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <div class="header-inner">
-    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
     <div class="header-spacer"></div>
     <a href="../index.html" class="nav-home">← All Tools</a>
   </div>
 </header>
 
+<!-- Breadcrumb -->
 <div class="breadcrumb">
-  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
-  <a href="../index.html#agent">AI Agents</a><span class="breadcrumb-sep">›</span>
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html#agent">AI Agent</a>
+  <span class="breadcrumb-sep">›</span>
   <span class="breadcrumb-cur">Dify</span>
 </div>
 
+<!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
-      <span class="article-badge" style="background:rgba(245,158,11,0.1); border-color:rgba(251,191,36,0.25); color:#fbbf24">🚀 LLM Platform</span>
-      <span class="stars-badge">★ 50k+ GitHub Stars</span>
-      <span class="tag-chip">Self-Hostable</span>
-      <span class="tag-chip">No-Code + Code</span>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+      <span class="article-badge" style="background:rgba(fbbf241a);border-color:rgba(fbbf2440);color:#fbbf24">
+        🚀 AI Agent
+      </span>
+      <span class="stars-badge">★ 55k+ GitHub Stars</span>
+      
+      <span class="tag-chip">agent</span>
+      
+      <span class="tag-chip">platform</span>
+      
+      <span class="tag-chip">workflow</span>
+      
     </div>
-    <h1 class="article-title"><span class="gradient">Dify</span> – Visual LLM App Development Platform</h1>
-    <p class="article-desc">
-      Dify combines a visual workflow builder, production-grade RAG engine, and agent framework in one platform. Build chatbots, document Q&A apps, and AI agents—deploy in minutes, self-host for free.
-    </p>
-    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
-      <a href="https://dify.ai" target="_blank" rel="noopener" class="cta-btn">Try Dify Free ↗</a>
-      <a href="https://github.com/langgenius/dify" target="_blank" rel="noopener" class="cta-btn-outline">GitHub ↗</a>
+    <h1 class="article-title">
+      <span class="gradient">Dify</span>
+       – Dify LLM 应用平台
+    </h1>
+    <p class="article-desc">Open-source LLM app development and orchestration platform</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
+      <a href="https://github.com/langgenius/dify" target="_blank" rel="noopener" class="cta-btn">
+        View on GitHub ↗
+      </a>
+      
     </div>
   </div>
 </div>
 
+<!-- Content -->
 <div class="page-wrap-wide">
   <div class="content-layout">
     <article class="content">
 
+      <!-- Quick Facts Grid -->
       <div class="info-grid">
-        <div class="info-card"><div class="info-card-label">Stars</div><div class="info-card-value">50k+</div><div class="info-card-sub">Fast-growing</div></div>
-        <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">Apache 2.0</div><div class="info-card-sub">Self-host for free</div></div>
-        <div class="info-card"><div class="info-card-label">Deployment</div><div class="info-card-value">Docker / Cloud</div><div class="info-card-sub">Self-host or dify.ai</div></div>
-        <div class="info-card"><div class="info-card-label">Models</div><div class="info-card-value">100+</div><div class="info-card-sub">OpenAI, Anthropic, Ollama...</div></div>
+        <div class="info-card">
+          <div class="info-card-label">Category</div>
+          <div class="info-card-value">AI Agent</div>
+          <div class="info-card-sub">agent</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">GitHub Stars</div>
+          <div class="info-card-value">55k+</div>
+          <div class="info-card-sub">Community adoption</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">License</div>
+          <div class="info-card-value">Open Source</div>
+          <div class="info-card-sub">Free to use</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Tags</div>
+          <div class="info-card-value" style="font-size:13px">agent, platform, workflow</div>
+          <div class="info-card-sub">4 tags total</div>
+        </div>
       </div>
 
+      <!-- What is {name}? -->
       <h2 id="what-is">What Is Dify?</h2>
       <p>
-        Dify (previously known as LangGenius) is an open-source platform for building LLM-powered applications. Unlike pure code frameworks (LangChain) or pure no-code tools, Dify bridges both: a visual workflow builder for rapid prototyping, with code extensibility for advanced customization.
+        <strong>Dify</strong> is an open-source autonomous AI agent system with
+        55k+ GitHub stars. Open-source LLM app development and orchestration platform
       </p>
       <p>
-        The platform covers the full LLM app lifecycle: model management, knowledge base (RAG), workflow orchestration, API deployment, and user analytics—all in one unified dashboard.
+        As a autonomous AI agent system, Dify is designed to help developers and teams
+        
+        automate complex tasks by combining planning, tool use, and iterative execution.
+        Instead of following a fixed script, it dynamically adapts its approach
+        based on intermediate results and feedback.
+        
+      </p>
+      <p>
+        The project is maintained on GitHub at
+        <a href="https://github.com/langgenius/dify" target="_blank" rel="noopener">github.com/langgenius/dify</a>
+        and is actively developed with a strong open-source community.
+        
+        With 55k+ stars, it is one of the most widely adopted tools in its category.
+        
       </p>
 
+      <!-- Features -->
+      
       <h2 id="features">Key Features</h2>
       <ul class="feature-list">
-        <li><span class="feat-icon">🔄</span><div><strong>Visual Workflow Builder</strong> — Drag-and-drop nodes to compose LLM pipelines. Connect prompts, retrievers, code blocks, and API calls visually without writing application code.</div></li>
-        <li><span class="feat-icon">📚</span><div><strong>Knowledge Base (RAG)</strong> — Upload PDFs, docs, websites, or databases. Dify handles chunking, embedding, vector storage, and retrieval automatically. Powers document Q&A apps in minutes.</div></li>
-        <li><span class="feat-icon">🤖</span><div><strong>Agent Mode</strong> — Build AI agents that use tools (web search, code execution, custom APIs) to complete tasks autonomously. Supports ReAct and Function Calling patterns.</div></li>
-        <li><span class="feat-icon">🔌</span><div><strong>100+ Model Providers</strong> — OpenAI, Anthropic, Google, Ollama, Groq, Azure, HuggingFace, and custom endpoints. Switch models without changing your application.</div></li>
-        <li><span class="feat-icon">📡</span><div><strong>API & SDK</strong> — Every app built in Dify automatically gets a REST API. Integrate into any application with a few lines of code using the Dify SDK.</div></li>
-        <li><span class="feat-icon">📊</span><div><strong>Observability</strong> — Built-in logging, conversation history, token usage tracking, and user analytics. Debug LLM chains with complete trace visibility.</div></li>
+        
+        <li>
+          <span class="feat-icon">🤖</span>
+          <div><strong>Agent Capabilities</strong> — Autonomous task execution with planning, tool use, self-correction, and iterative goal pursuit.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🏗️</span>
+          <div><strong>Platform</strong> — Comprehensive infrastructure for building, testing, and deploying AI applications at scale.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔄</span>
+          <div><strong>Workflow Orchestration</strong> — Visual or programmatic pipeline composition for complex multi-step AI workflows with branching logic.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔓</span>
+          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+        </li>
+        
       </ul>
+      
 
-      <h2 id="self-hosting">Self-Hosting with Docker</h2>
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; margin:16px 0; font-family:'Fira Code',monospace; font-size:13px; color:var(--text-2);">
-        git clone https://github.com/langgenius/dify<br>
-        cd dify/docker<br>
-        cp .env.example .env<br>
-        docker compose up -d<br>
-        # Open http://localhost in your browser
-      </div>
-      <p>The self-hosted instance includes: Dify API server, web frontend, PostgreSQL, Redis, Weaviate vector database, and Nginx proxy—all in one docker-compose file.</p>
-
+      <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
-      <h3>Customer Support Chatbots</h3>
-      <p>Upload your product documentation to Dify's knowledge base and deploy a RAG-powered chatbot in minutes. The chatbot answers questions accurately from your docs and escalates to humans when needed.</p>
+      <p>
+        Dify is used across a wide range of applications in the AI development ecosystem.
+        Here are the most common scenarios where teams choose Dify:
+      </p>
+      
+      <h3>🔍 Research Automation</h3>
+      <p>Gather, analyze, and synthesize information from the web, databases, and documents autonomously.</p>
+      
+      <h3>💻 Code Generation & Debugging</h3>
+      <p>Implement features, fix bugs, write tests, and refactor codebases with minimal human intervention.</p>
+      
+      <h3>📊 Data Processing Pipelines</h3>
+      <p>Build automated workflows that ingest, transform, validate, and analyze data at scale.</p>
+      
+      <h3>🌐 Multi-Step Task Execution</h3>
+      <p>Complete complex goals requiring planning across many tools, APIs, and decision branches.</p>
+      
 
-      <h3>Internal Knowledge Tools</h3>
-      <p>Connect your company wiki, Confluence, Notion, or Google Drive. Build an internal AI assistant that employees can query without sending data to third-party cloud services (self-hosted).</p>
-
-      <h3>Data Processing Pipelines</h3>
-      <p>Build LLM-powered data pipelines: extract structured data from documents, classify text, translate content, or generate reports—all orchestrated visually in Dify's workflow builder.</p>
-
-      <h2 id="pros-cons">Pros & Cons</h2>
-      <div class="pros-cons">
-        <div class="pros-box"><h4>Pros</h4><ul>
-          <li>Full platform: model + RAG + agents + API</li>
-          <li>Visual + code: accessible to all skill levels</li>
-          <li>Self-hostable for complete data privacy</li>
-          <li>100+ model providers supported</li>
-          <li>Built-in observability and analytics</li>
-          <li>Active development, frequent updates</li>
-        </ul></div>
-        <div class="cons-box"><h4>Cons</h4><ul>
-          <li>Self-hosting requires Docker knowledge</li>
-          <li>Less flexible than pure code frameworks</li>
-          <li>Visual workflows can become complex</li>
-          <li>Cloud pricing is relatively high ($59+/mo)</li>
-          <li>Community support primary for free tier</li>
-        </ul></div>
+      <!-- Getting Started -->
+      <h2 id="getting-started">Getting Started with Dify</h2>
+      <p>
+        To get started with Dify, visit the
+        <a href="https://github.com/langgenius/dify" target="_blank" rel="noopener">GitHub repository</a>
+        and follow the installation instructions in the README.
+        
+        Agent frameworks typically require an API key for the LLM backend
+        (OpenAI, Anthropic, or a local model via Ollama).
+        
+      </p>
+      <div class="alert alert-info">
+        💡 <strong>Tip:</strong> Check the GitHub repository's
+        <a href="https://github.com/langgenius/dify/issues" target="_blank" rel="noopener">Issues</a> and
+        <a href="https://github.com/langgenius/dify/discussions" target="_blank" rel="noopener">Discussions</a>
+        pages for community support, and the
+        <a href="https://github.com/langgenius/dify/releases" target="_blank" rel="noopener">Releases</a>
+        page for the latest stable version.
       </div>
 
+      <!-- Related Tools -->
+      
+      <h2 id="alternatives">Similar AI Agents</h2>
+      <p>
+        If Dify doesn't fit your needs, here are other popular
+        AI Agents you might consider:
+      </p>
+      <div class="related-grid">
+        
+        <a href="langflow.html" class="related-card">
+          <div class="related-card-name">Langflow</div>
+          <div class="related-card-desc">Visual framework for building AI agents and RAG apps</div>
+        </a>
+        
+        <a href="flowise.html" class="related-card">
+          <div class="related-card-name">Flowise</div>
+          <div class="related-card-desc">Drag-and-drop UI to build LLM workflows</div>
+        </a>
+        
+        <a href="botpress.html" class="related-card">
+          <div class="related-card-name">Botpress</div>
+          <div class="related-card-desc">Developer-first platform for building conversational AI</div>
+        </a>
+        
+        <a href="superagi.html" class="related-card">
+          <div class="related-card-name">SuperAGI</div>
+          <div class="related-card-desc">Open-source autonomous AI agent infrastructure</div>
+        </a>
+        
+      </div>
+      
+
+      <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Is Dify free? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Self-hosting via Docker is free with no limits. The cloud version (dify.ai) has a free tier with 200 messages/day, and Team plan starts at $59/month for 10,000 messages/day and collaboration features.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Dify vs LangChain? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">LangChain is a code-first Python/JS framework giving maximum flexibility. Dify is a platform with a visual builder that abstracts LangChain-like operations. Dify is faster to get started; LangChain is more powerful for custom applications. Dify actually uses LangChain under the hood for some features.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Can I use local models with Dify? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes. Dify integrates with Ollama, LM Studio, and any OpenAI-compatible endpoint. For self-hosted Dify with Ollama, both run locally and no data leaves your machine. Point Dify to `http://host.docker.internal:11434` for the Ollama URL.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">How does Dify compare to Flowise? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Dify has a more polished UI, better RAG features, and enterprise-readiness. Flowise is simpler and more developer-focused with direct LangChain component access. Dify is better for teams and production; Flowise is better for quick LangChain prototyping.</div></div></div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            What can Dify do autonomously? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Dify can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals—all without human confirmation at each step.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            How much does running Dify cost? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50–$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            Is it safe to run Dify without supervision? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">For production-critical systems, always run with human-in-the-loop confirmation enabled. Dify includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            How does Dify compare to prompt chaining? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Dify goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results—making it suitable for open-ended tasks where the exact steps aren't known in advance.</div>
+          </div>
+        </div>
+        
       </div>
 
     </article>
 
+    <!-- Sidebar -->
     <aside class="content-sidebar">
-      <div class="sidebar-card"><h4>Quick Facts</h4><div style="font-size:13px; color:var(--text-2);">
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Website:</span> <a href="https://dify.ai" target="_blank" rel="noopener" style="color:var(--accent)">dify.ai</a></div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Apache 2.0</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Self-host:</span> ✅ Free with Docker</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Cloud:</span> $59/mo for teams</div>
-        <div><span style="color:var(--text-3)">Stars:</span> 50k+ GitHub</div>
-      </div></div>
-      <div class="sidebar-card"><h4>Table of Contents</h4><ul class="toc-list">
-        <li><a href="#what-is">What Is Dify?</a></li>
-        <li><a href="#features">Key Features</a></li>
-        <li><a href="#self-hosting">Self-Hosting</a></li>
-        <li><a href="#use-cases">Use Cases</a></li>
-        <li><a href="#pros-cons">Pros & Cons</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul></div>
-      <div class="sidebar-card"><h4>Related Tools</h4><ul class="toc-list">
-        <li><a href="langchain.html">LangChain</a></li>
-        <li><a href="autogpt.html">AutoGPT</a></li>
-        <li><a href="ollama.html">Ollama</a></li>
-      </ul></div>
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">GitHub:</span>
+            <a href="https://github.com/langgenius/dify" target="_blank" rel="noopener" style="color:var(--accent)">
+              langgenius/dify
+            </a>
+          </div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 55k+</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Agent</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#what-is">What Is Dify?</a></li>
+          <li><a href="#features">Key Features</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#alternatives">Alternatives</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="sidebar-card">
+        <h4>Related Tools</h4>
+        <ul class="toc-list">
+          
+          <li><a href="langflow.html">Langflow</a></li>
+          
+          <li><a href="flowise.html">Flowise</a></li>
+          
+          <li><a href="botpress.html">Botpress</a></li>
+          
+          <li><a href="superagi.html">SuperAGI</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <div class="sidebar-card">
+        <h4>Tags</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">
+          
+          <span class="tag-chip">agent</span>
+          
+          <span class="tag-chip">platform</span>
+          
+          <span class="tag-chip">workflow</span>
+          
+          <span class="tag-chip">open-source</span>
+          
+        </div>
+      </div>
     </aside>
   </div>
 </div>
 
+<!-- Footer -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
-      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
-      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
-      <div class="footer-col"><h4>Tools</h4><ul><li><a href="cursor.html">Cursor AI</a></li><li><a href="autogpt.html">AutoGPT</a></li><li><a href="langchain.html">LangChain</a></li></ul></div>
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools, agent frameworks, and skill libraries.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Featured</h4>
+        <ul>
+          <li><a href="cursor.html">Cursor AI</a></li>
+          <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="chatgpt.html">ChatGPT</a></li>
+          <li><a href="ollama.html">Ollama</a></li>
+          <li><a href="langchain.html">LangChain</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
   </div>
 </footer>
-<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+</script>
 </body>
 </html>

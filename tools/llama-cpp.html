@@ -3,44 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>llama.cpp Review 2026 | Fast Local LLM Inference in C++</title>
-  <meta name="description" content="Complete llama.cpp guide: run Llama, Mistral, Gemma locally without GPU. Installation, GGUF models, quantization, Python bindings (llama-cpp-python), and performance tips.">
+  <title>llama.cpp Review 2026 | Fast LLM inference in C/C++ for local deployment – AI Nav</title>
+  <meta name="description" content="Fast LLM inference in C/C++ for local deployment Open-source, 66k+ GitHub stars. Find alternatives, features, and use cases.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/llama-cpp.html">
+  <link rel="canonical" href="https://yuzec.com/tools/llama-cpp.html">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="llama.cpp Review 2026 | Fast LLM inference in C/C++ for local deployment – AI Nav">
+  <meta property="og:description" content="Fast LLM inference in C/C++ for local deployment Open-source, 66k+ GitHub stars. Find alternatives, features, and use cases.">
+  <meta property="og:url" content="https://yuzec.com/tools/llama-cpp.html">
+  <meta property="og:site_name" content="AI Nav">
+
+  <!-- Schema.org: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "llama.cpp",
-    "applicationCategory": "DeveloperApplication",
+    "applicationCategory": "AIApplication",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/ggerganov/llama.cpp",
-    "description": "llama.cpp enables efficient LLM inference in C/C++ with minimal dependencies, supporting CPU and GPU acceleration across all platforms.",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT License" }]
+    "description": "Fast LLM inference in C/C++ for local deployment",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
   </script>
+
+  <!-- Schema.org: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
-      { "@type": "ListItem", "position": 2, "name": "AI Tools", "item": "https://yuzechang.github.io/AI_Guide/#ai-tools" },
-      { "@type": "ListItem", "position": 3, "name": "llama.cpp", "item": "https://yuzechang.github.io/AI_Guide/tools/llama-cpp.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "AI Tool", "item": "https://yuzec.com/#ai-tools" },
+      { "@type": "ListItem", "position": 3, "name": "llama.cpp", "item": "https://yuzec.com/tools/llama-cpp.html" }
     ]
   }
   </script>
+
+  <!-- Schema.org: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "What is llama.cpp?", "acceptedAnswer": { "@type": "Answer", "text": "llama.cpp is a C/C++ implementation of LLM inference that runs on CPUs and GPUs without requiring Python or heavy ML frameworks. It's the engine behind Ollama, LM Studio, and many other local LLM tools." } },
-      { "@type": "Question", "name": "Can llama.cpp run without a GPU?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. llama.cpp runs on CPU only. Performance is slower than GPU (5-15 tokens/sec on modern CPUs), but it makes LLM inference accessible on any machine. Apple Silicon CPUs perform excellently via Metal GPU acceleration." } },
-      { "@type": "Question", "name": "What is GGUF format?", "acceptedAnswer": { "@type": "Answer", "text": "GGUF (GGML Unified Format) is the model file format used by llama.cpp. It stores model weights in quantized form (Q4_K_M, Q5_K_M, Q8_0, etc.) to reduce memory requirements while maintaining quality. Available on HuggingFace." } },
-      { "@type": "Question", "name": "What quantization level should I use?", "acceptedAnswer": { "@type": "Answer", "text": "Q4_K_M is the best balance of quality and size for most use cases. Q5_K_M gives slightly better quality at larger size. Q8_0 is near-lossless but 2× larger. Use the highest quantization your RAM can fit." } },
-      { "@type": "Question", "name": "Is llama.cpp the same as Ollama?", "acceptedAnswer": { "@type": "Answer", "text": "No, but Ollama uses llama.cpp internally. llama.cpp is the low-level C++ inference engine. Ollama adds a user-friendly CLI, model management, REST API, and automatic GPU detection on top of llama.cpp." } }
+      
+      {
+        "@type": "Question",
+        "name": "Is llama.cpp free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "llama.cpp is open-source and free to self-host (MIT or Apache license). Some advanced cloud-hosted tiers have pricing. Check the GitHub repository and official website for the latest licensing and pricing details." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does llama.cpp require a GPU?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on the specific workload. Many AI tools run on CPU with acceptable performance for light use. For intensive image generation or large model inference, a modern NVIDIA GPU (8GB+ VRAM) significantly improves speed." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "What are the best alternatives to llama.cpp?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The AI Nav directory lists 100+ tools in the AI Tools category. Use the tag filter to find tools with similar capabilities, or browse the \u0027Similar Tools\u0027 section on this page for direct alternatives." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can llama.cpp be self-hosted for enterprise privacy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. As an open-source project, llama.cpp can be deployed on your own servers, Kubernetes cluster, or private cloud. This eliminates data egress concerns and satisfies compliance requirements like SOC 2, HIPAA, and GDPR." }
+      }
+      
     ]
   }
   </script>
@@ -52,148 +84,363 @@
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <div class="header-inner">
-    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
     <div class="header-spacer"></div>
     <a href="../index.html" class="nav-home">← All Tools</a>
   </div>
 </header>
 
+<!-- Breadcrumb -->
 <div class="breadcrumb">
-  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
-  <a href="../index.html#ai-tools">AI Tools</a><span class="breadcrumb-sep">›</span>
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html#ai-tools">AI Tool</a>
+  <span class="breadcrumb-sep">›</span>
   <span class="breadcrumb-cur">llama.cpp</span>
 </div>
 
+<!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
-      <span class="article-badge">⚡ Local Inference</span>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+      <span class="article-badge" style="background:rgba(818cf81a);border-color:rgba(818cf840);color:#818cf8">
+        🤖 AI Tool
+      </span>
       <span class="stars-badge">★ 66k+ GitHub Stars</span>
-      <span class="tag-chip">CPU + GPU</span>
-      <span class="tag-chip">MIT License</span>
+      
+      <span class="tag-chip">llm</span>
+      
+      <span class="tag-chip">local</span>
+      
+      <span class="tag-chip">inference</span>
+      
     </div>
-    <h1 class="article-title"><span class="gradient">llama.cpp</span> – LLM Inference Engine in Pure C++</h1>
-    <p class="article-desc">
-      llama.cpp is the foundational C/C++ engine that makes running LLMs locally possible. No Python, no CUDA requirement, no heavy frameworks—just fast, portable inference that powers Ollama, LM Studio, and countless other tools.
-    </p>
-    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
-      <a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener" class="cta-btn">View on GitHub ↗</a>
+    <h1 class="article-title">
+      <span class="gradient">llama.cpp</span>
+       – llama.cpp 本地推理
+    </h1>
+    <p class="article-desc">Fast LLM inference in C/C++ for local deployment</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
+      <a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener" class="cta-btn">
+        View on GitHub ↗
+      </a>
+      
     </div>
   </div>
 </div>
 
+<!-- Content -->
 <div class="page-wrap-wide">
   <div class="content-layout">
     <article class="content">
 
+      <!-- Quick Facts Grid -->
       <div class="info-grid">
-        <div class="info-card"><div class="info-card-label">Stars</div><div class="info-card-value">66k+</div><div class="info-card-sub">GitHub</div></div>
-        <div class="info-card"><div class="info-card-label">Language</div><div class="info-card-value">C / C++</div><div class="info-card-sub">Zero Python dependency</div></div>
-        <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">MIT</div><div class="info-card-sub">Commercial use allowed</div></div>
-        <div class="info-card"><div class="info-card-label">CPU Support</div><div class="info-card-value">✅ Yes</div><div class="info-card-sub">No GPU required</div></div>
+        <div class="info-card">
+          <div class="info-card-label">Category</div>
+          <div class="info-card-value">AI Tool</div>
+          <div class="info-card-sub">ai-tools</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">GitHub Stars</div>
+          <div class="info-card-value">66k+</div>
+          <div class="info-card-sub">Community adoption</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">License</div>
+          <div class="info-card-value">Open Source</div>
+          <div class="info-card-sub">Free to use</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Tags</div>
+          <div class="info-card-value" style="font-size:13px">llm, local, inference</div>
+          <div class="info-card-sub">4 tags total</div>
+        </div>
       </div>
 
+      <!-- What is {name}? -->
       <h2 id="what-is">What Is llama.cpp?</h2>
       <p>
-        llama.cpp is created by Georgi Gerganov and enables LLM inference without Python, PyTorch, or any ML framework. It compiles to a single binary that runs on virtually any hardware: x86 CPUs, Apple Silicon, NVIDIA GPUs, AMD GPUs, even Raspberry Pi.
+        <strong>llama.cpp</strong> is an open-source end-user AI application with
+        66k+ GitHub stars. Fast LLM inference in C/C++ for local deployment
       </p>
       <p>
-        The project introduced <strong>GGUF</strong> (GGML Unified Format)—a quantized model format that dramatically reduces memory requirements. A 7B parameter model that normally requires 14GB RAM can run in 4GB using Q4 quantization.
+        As a end-user AI application, llama.cpp is designed to help developers and teams
+        
+        integrate AI capabilities into their projects without building everything from scratch.
+        It provides a ready-to-use interface that reduces the time from idea to working prototype.
+        
+      </p>
+      <p>
+        The project is maintained on GitHub at
+        <a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener">github.com/ggerganov/llama.cpp</a>
+        and is actively developed with a strong open-source community.
+        
+        With 66k+ stars, it is one of the most widely adopted tools in its category.
+        
       </p>
 
+      <!-- Features -->
+      
       <h2 id="features">Key Features</h2>
       <ul class="feature-list">
-        <li><span class="feat-icon">⚡</span><div><strong>GGUF quantization</strong> — Q4, Q5, Q8 quantization levels trade a small quality loss for 2-4× memory reduction. Essential for running large models on consumer hardware.</div></li>
-        <li><span class="feat-icon">🍎</span><div><strong>Apple Silicon Metal</strong> — Native Metal GPU acceleration on M1/M2/M3 chips delivers 50-100 tokens/sec on 7B models—comparable to NVIDIA RTX 3080 performance.</div></li>
-        <li><span class="feat-icon">🌐</span><div><strong>llama-server</strong> — Built-in HTTP server with OpenAI-compatible API. Expose llama.cpp as a REST endpoint for any application.</div></li>
-        <li><span class="feat-icon">🐍</span><div><strong>llama-cpp-python</strong> — Official Python bindings. Use llama.cpp from Python with a simple API that mirrors the OpenAI SDK format.</div></li>
-        <li><span class="feat-icon">🔢</span><div><strong>Multi-GPU support</strong> — Distribute model layers across multiple GPUs for running large 70B+ models that don't fit on a single GPU.</div></li>
-        <li><span class="feat-icon">📊</span><div><strong>100+ model support</strong> — Llama, Mistral, Gemma, Phi, Falcon, Qwen, Yi, and every major open model family.</div></li>
+        
+        <li>
+          <span class="feat-icon">🤖</span>
+          <div><strong>LLM Integration</strong> — Seamless integration with major LLMs including GPT-4o, Claude 4, Llama 3, and Mistral for text generation and reasoning.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🏠</span>
+          <div><strong>Local Deployment</strong> — Run entirely on your own hardware—no cloud dependency, no data egress, full privacy by design.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">⚡</span>
+          <div><strong>High-Performance Inference</strong> — Optimized model inference with quantization support, batching, and sub-second latency.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔓</span>
+          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+        </li>
+        
       </ul>
+      
 
-      <h2 id="quantization">GGUF Quantization Guide</h2>
-      <div class="info-grid" style="grid-template-columns: repeat(4, 1fr)">
-        <div class="info-card"><div class="info-card-label">Q4_K_M</div><div class="info-card-value">Best</div><div class="info-card-sub">Quality/size balance. Recommended default.</div></div>
-        <div class="info-card"><div class="info-card-label">Q5_K_M</div><div class="info-card-value">High Quality</div><div class="info-card-sub">20% larger than Q4, slightly better output.</div></div>
-        <div class="info-card"><div class="info-card-label">Q8_0</div><div class="info-card-value">Near-Lossless</div><div class="info-card-sub">Largest GGUF. Use if RAM allows.</div></div>
-        <div class="info-card"><div class="info-card-label">Q3_K_M</div><div class="info-card-value">Small</div><div class="info-card-sub">For RAM-constrained devices. Quality drops.</div></div>
+      <!-- Use Cases -->
+      <h2 id="use-cases">Use Cases</h2>
+      <p>
+        llama.cpp is used across a wide range of applications in the AI development ecosystem.
+        Here are the most common scenarios where teams choose llama.cpp:
+      </p>
+      
+      <h3>🚀 Rapid Prototyping</h3>
+      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
+      
+      <h3>⚡ Developer Productivity</h3>
+      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      
+      <h3>🔍 Research & Analysis</h3>
+      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      
+      <h3>🏠 Local & Private AI</h3>
+      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      
+
+      <!-- Getting Started -->
+      <h2 id="getting-started">Getting Started with llama.cpp</h2>
+      <p>
+        To get started with llama.cpp, visit the
+        <a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener">GitHub repository</a>
+        and follow the installation instructions in the README.
+        
+        Many AI tools provide Docker images for quick deployment:
+        check the repository for the latest <code>docker-compose.yml</code> or installer script.
+        
+      </p>
+      <div class="alert alert-info">
+        💡 <strong>Tip:</strong> Check the GitHub repository's
+        <a href="https://github.com/ggerganov/llama.cpp/issues" target="_blank" rel="noopener">Issues</a> and
+        <a href="https://github.com/ggerganov/llama.cpp/discussions" target="_blank" rel="noopener">Discussions</a>
+        pages for community support, and the
+        <a href="https://github.com/ggerganov/llama.cpp/releases" target="_blank" rel="noopener">Releases</a>
+        page for the latest stable version.
       </div>
 
-      <h2 id="python">Python Usage</h2>
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; margin:16px 0; font-family:'Fira Code',monospace; font-size:13px; color:var(--text-2);">
-        pip install llama-cpp-python<br><br>
-        from llama_cpp import Llama<br><br>
-        llm = Llama(model_path="./llama-3-8b-Q4_K_M.gguf", n_gpu_layers=-1)<br>
-        output = llm("What is the capital of France?", max_tokens=100)<br>
-        print(output['choices'][0]['text'])
+      <!-- Related Tools -->
+      
+      <h2 id="alternatives">Similar AI Tools</h2>
+      <p>
+        If llama.cpp doesn't fit your needs, here are other popular
+        AI Tools you might consider:
+      </p>
+      <div class="related-grid">
+        
+        <a href="ollama.html" class="related-card">
+          <div class="related-card-name">Ollama</div>
+          <div class="related-card-desc">Run large language models locally on your machine</div>
+        </a>
+        
+        <a href="koboldcpp.html" class="related-card">
+          <div class="related-card-name">KoboldCpp</div>
+          <div class="related-card-desc">Easy-to-use local LLM inference with KoboldAI interface</div>
+        </a>
+        
+        <a href="text-gen-webui.html" class="related-card">
+          <div class="related-card-name">Text Generation WebUI</div>
+          <div class="related-card-desc">Gradio-based web UI for running local LLMs</div>
+        </a>
+        
+        <a href="localai.html" class="related-card">
+          <div class="related-card-name">LocalAI</div>
+          <div class="related-card-desc">Free, open-source alternative to OpenAI API running locally</div>
+        </a>
+        
       </div>
+      
 
-      <h2 id="pros-cons">Pros & Cons</h2>
-      <div class="pros-cons">
-        <div class="pros-box"><h4>Pros</h4><ul>
-          <li>Runs on any hardware including CPU-only</li>
-          <li>GGUF reduces RAM requirements dramatically</li>
-          <li>No Python/PyTorch installation required</li>
-          <li>OpenAI-compatible server API</li>
-          <li>Powers Ollama, LM Studio, and more</li>
-          <li>Actively maintained (daily commits)</li>
-        </ul></div>
-        <div class="cons-box"><h4>Cons</h4><ul>
-          <li>CLI interface, less beginner-friendly than Ollama</li>
-          <li>Manual model downloading required</li>
-          <li>Slower than Ollama for most users</li>
-          <li>Requires compilation on some platforms</li>
-        </ul></div>
-      </div>
-
+      <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">llama.cpp vs Ollama: which should I use? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Use Ollama for ease of use—it wraps llama.cpp with a friendly CLI and API. Use llama.cpp directly when you need maximum control, want to embed inference in a C/C++ application, or need custom compilation flags for specific hardware optimization.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What quantization should I use? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Q4_K_M is the best balance for most users. If you have extra RAM, use Q5_K_M or Q8_0 for better quality. For RAM-limited devices (≤8GB), use Q3_K_S or Q4_0 for smaller models.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Where do I download GGUF models? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">HuggingFace (huggingface.co) is the primary source. Search for "[model-name] GGUF". Bartowski and TheBloke are popular HuggingFace users who publish many GGUF-quantized models. Filter by quantization level to find the right file size.</div></div></div>
-        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Can I use llama.cpp on a Mac? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes, llama.cpp has excellent macOS support with Metal GPU acceleration for Apple Silicon (M1/M2/M3). Install via Homebrew: `brew install llama.cpp`. Apple Silicon Macs achieve 50-100 tokens/sec on 7B models.</div></div></div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            Is llama.cpp free to use? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">llama.cpp is open-source and free to self-host (MIT or Apache license). Some advanced cloud-hosted tiers have pricing. Check the GitHub repository and official website for the latest licensing and pricing details.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            Does llama.cpp require a GPU? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">It depends on the specific workload. Many AI tools run on CPU with acceptable performance for light use. For intensive image generation or large model inference, a modern NVIDIA GPU (8GB+ VRAM) significantly improves speed.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            What are the best alternatives to llama.cpp? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">The AI Nav directory lists 100+ tools in the AI Tools category. Use the tag filter to find tools with similar capabilities, or browse the 'Similar Tools' section on this page for direct alternatives.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            Can llama.cpp be self-hosted for enterprise privacy? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Yes. As an open-source project, llama.cpp can be deployed on your own servers, Kubernetes cluster, or private cloud. This eliminates data egress concerns and satisfies compliance requirements like SOC 2, HIPAA, and GDPR.</div>
+          </div>
+        </div>
+        
       </div>
 
     </article>
 
+    <!-- Sidebar -->
     <aside class="content-sidebar">
-      <div class="sidebar-card"><h4>Quick Facts</h4><div style="font-size:13px; color:var(--text-2);">
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Author:</span> Georgi Gerganov</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 66k+</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
-        <div style="margin-bottom:8px"><span style="color:var(--text-3)">GPU Required:</span> ❌ No</div>
-        <div><span style="color:var(--text-3)">Powers:</span> Ollama, LM Studio</div>
-      </div></div>
-      <div class="sidebar-card"><h4>Table of Contents</h4><ul class="toc-list">
-        <li><a href="#what-is">What Is llama.cpp?</a></li>
-        <li><a href="#features">Key Features</a></li>
-        <li><a href="#quantization">Quantization Guide</a></li>
-        <li><a href="#python">Python Usage</a></li>
-        <li><a href="#pros-cons">Pros & Cons</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul></div>
-      <div class="sidebar-card"><h4>Related Tools</h4><ul class="toc-list">
-        <li><a href="ollama.html">Ollama</a></li>
-        <li><a href="langchain.html">LangChain</a></li>
-        <li><a href="vllm.html">vLLM</a></li>
-      </ul></div>
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">GitHub:</span>
+            <a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener" style="color:var(--accent)">
+              ggerganov/llama.cpp
+            </a>
+          </div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 66k+</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Tool</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#what-is">What Is llama.cpp?</a></li>
+          <li><a href="#features">Key Features</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#alternatives">Alternatives</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="sidebar-card">
+        <h4>Related Tools</h4>
+        <ul class="toc-list">
+          
+          <li><a href="ollama.html">Ollama</a></li>
+          
+          <li><a href="koboldcpp.html">KoboldCpp</a></li>
+          
+          <li><a href="text-gen-webui.html">Text Generation WebUI</a></li>
+          
+          <li><a href="localai.html">LocalAI</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <div class="sidebar-card">
+        <h4>Tags</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">
+          
+          <span class="tag-chip">llm</span>
+          
+          <span class="tag-chip">local</span>
+          
+          <span class="tag-chip">inference</span>
+          
+          <span class="tag-chip">open-source</span>
+          
+        </div>
+      </div>
     </aside>
   </div>
 </div>
 
+<!-- Footer -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
-      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
-      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
-      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
-      <div class="footer-col"><h4>Tools</h4><ul><li><a href="ollama.html">Ollama</a></li><li><a href="vllm.html">vLLM</a></li><li><a href="langchain.html">LangChain</a></li></ul></div>
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools, agent frameworks, and skill libraries.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Featured</h4>
+        <ul>
+          <li><a href="cursor.html">Cursor AI</a></li>
+          <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="chatgpt.html">ChatGPT</a></li>
+          <li><a href="ollama.html">Ollama</a></li>
+          <li><a href="langchain.html">LangChain</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
   </div>
 </footer>
-<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+</script>
 </body>
 </html>

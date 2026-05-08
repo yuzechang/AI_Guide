@@ -26,7 +26,7 @@ TEMPLATES_DIR = BASE_DIR / "templates"
 TOOLS_DIR     = BASE_DIR / "tools"
 SITEMAP_FILE  = BASE_DIR / "sitemap.xml"
 
-BASE_URL = "https://yuzechang.github.io/AI_Guide"
+BASE_URL = "https://yuzec.com"
 TODAY    = date.today().isoformat()
 
 # ─── 手写详情页（id → html 文件名，跳过自动生成）────────────────────────────
@@ -226,8 +226,22 @@ def build_seo(tool, cat_info):
     return title, seo_desc
 
 
+def _tool_priority(tool):
+    """按 GitHub stars 分级设置 sitemap 优先级。"""
+    stars = tool.get("stars", 0)
+    if tool["id"] in MANUAL_PAGES:
+        return "0.95"
+    if stars >= 50000:
+        return "0.9"
+    if stars >= 20000:
+        return "0.85"
+    if stars >= 5000:
+        return "0.8"
+    return "0.7"
+
+
 def generate_sitemap(tools_dir, all_tools):
-    """生成完整 sitemap.xml，包含首页、静态页、所有工具页。"""
+    """生成完整 sitemap.xml，包含首页、静态页、所有工具页（按 stars 设置优先级）。"""
     urls = []
 
     # 首页
@@ -237,19 +251,25 @@ def generate_sitemap(tools_dir, all_tools):
         alternates=True
     ))
     # 静态页
-    for page, prio in [("about.html", "0.6"), ("contact.html", "0.5"), ("privacy-policy.html", "0.3")]:
-        urls.append(dict(loc=f"{BASE_URL}/{page}", lastmod=TODAY, changefreq="monthly", priority=prio))
+    for page, prio, freq in [
+        ("about.html",          "0.7", "monthly"),
+        ("contact.html",        "0.5", "monthly"),
+        ("privacy-policy.html", "0.3", "yearly"),
+    ]:
+        urls.append(dict(loc=f"{BASE_URL}/{page}", lastmod=TODAY, changefreq=freq, priority=prio))
 
-    # 工具页
-    for t in all_tools:
+    # 工具页（按 stars 降序排列，高质量页面在 sitemap 靠前）
+    sorted_tools = sorted(all_tools, key=lambda t: t.get("stars", 0), reverse=True)
+    for t in sorted_tools:
         tid = t["id"]
         filename = MANUAL_PAGES.get(tid, tid)
         page_path = tools_dir / f"{filename}.html"
         if page_path.exists():
-            prio = "0.9" if tid in MANUAL_PAGES else "0.8"
+            prio = _tool_priority(t)
+            freq = "weekly" if t.get("stars", 0) >= 20000 else "monthly"
             urls.append(dict(
                 loc=f"{BASE_URL}/tools/{filename}.html",
-                lastmod=TODAY, changefreq="monthly", priority=prio
+                lastmod=TODAY, changefreq=freq, priority=prio
             ))
 
     lines = ['<?xml version="1.0" encoding="UTF-8"?>']

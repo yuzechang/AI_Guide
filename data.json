@@ -16,6 +16,37 @@
         "generative",
         "open-source",
         "web-ui"
+      ],
+      "website": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+      "license": "AGPL-3.0",
+      "featured": true,
+      "pros": [
+        "Most popular Stable Diffusion UI with 1000+ community extensions",
+        "Supports SD 1.5, SDXL, SD 3, and FLUX.1 checkpoints",
+        "Powerful img2img, inpainting, ControlNet, and LoRA support",
+        "Runs on consumer GPUs (6GB+ VRAM) or even CPU"
+      ],
+      "cons": [
+        "Setup requires Python and can be challenging for non-technical users",
+        "Performance limited by GPU VRAM; large models need 12GB+ for best quality"
+      ],
+      "faqs": [
+        {
+          "q": "What is Stable Diffusion WebUI?",
+          "a": "Stable Diffusion WebUI (also called AUTOMATIC1111 or A1111) is a browser-based graphical interface for running Stable Diffusion image generation models locally on your own hardware."
+        },
+        {
+          "q": "What GPU do I need for Stable Diffusion WebUI?",
+          "a": "A minimum of 4GB VRAM is required for SD 1.5 models. For SDXL and FLUX.1, 8–12GB VRAM is recommended. NVIDIA GPUs (RTX 3060 and above) offer the best performance via CUDA acceleration."
+        },
+        {
+          "q": "How does Stable Diffusion WebUI compare to ComfyUI?",
+          "a": "A1111 WebUI is easier for beginners with a form-based interface. ComfyUI uses a node-based workflow editor that's more powerful and flexible for advanced pipelines, but has a steeper learning curve."
+        },
+        {
+          "q": "Can Stable Diffusion WebUI run on Mac?",
+          "a": "Yes. It supports Apple Silicon (M1/M2/M3) via Metal GPU acceleration. Performance is generally good for SDXL generation, though slower than equivalent NVIDIA hardware."
+        }
       ]
     },
     {
@@ -33,6 +64,33 @@
         "local",
         "inference",
         "open-source"
+      ],
+      "website": "https://github.com/ggerganov/llama.cpp",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "Runs 4-bit quantized LLMs on CPU-only machines",
+        "Optimized for Apple Silicon via Metal; supports CUDA and Vulkan",
+        "Provides an OpenAI-compatible server mode (llama-server)",
+        "Foundation of Ollama and LM Studio – battle-tested at scale"
+      ],
+      "cons": [
+        "C++ codebase requires compilation from source for some platforms",
+        "Quantization reduces quality compared to full-precision models"
+      ],
+      "faqs": [
+        {
+          "q": "What is llama.cpp?",
+          "a": "llama.cpp is a high-performance C++ implementation for running Large Language Models (LLMs) efficiently on consumer hardware. It supports quantized models (GGUF format) that can run on CPU, Apple Silicon, NVIDIA, and AMD GPUs."
+        },
+        {
+          "q": "What is GGUF format?",
+          "a": "GGUF (GPT-Generated Unified Format) is a binary file format for quantized LLM weights, introduced by llama.cpp. Quantization reduces model size by 4–8x, enabling large models to run on consumer hardware with acceptable accuracy loss."
+        },
+        {
+          "q": "How does llama.cpp compare to Ollama?",
+          "a": "llama.cpp is the underlying inference engine that Ollama uses internally. Ollama wraps llama.cpp with a user-friendly CLI and model management system. Use Ollama for easy model management; use llama.cpp directly when you need low-level control or maximum performance tuning."
+        }
       ]
     },
     {
@@ -50,6 +108,29 @@
         "productivity",
         "vision",
         "open-source"
+      ],
+      "website": "https://screenshottocode.com",
+      "license": "MIT",
+      "featured": false,
+      "pros": [
+        "Convert design screenshots to clean HTML/CSS/React code instantly",
+        "Supports multiple output formats: HTML/CSS, React, Vue, Bootstrap, Tailwind",
+        "Works with screenshots, Figma designs, and video recordings",
+        "GPT-4 Vision and Claude models for high-accuracy conversion"
+      ],
+      "cons": [
+        "Requires OpenAI or Anthropic API key (has API usage costs)",
+        "Complex responsive layouts may need manual adjustments"
+      ],
+      "faqs": [
+        {
+          "q": "What is Screenshot to Code?",
+          "a": "Screenshot to Code is an open-source AI tool that converts design screenshots, Figma designs, or video recordings into clean, functional HTML/CSS, React, Vue, or Tailwind code using GPT-4 Vision or Claude."
+        },
+        {
+          "q": "Is Screenshot to Code free?",
+          "a": "The open-source version is MIT-licensed and free. You need to provide your own OpenAI or Anthropic API key (costs ~$0.01–$0.05 per screenshot depending on the model). A hosted version at screenshottocode.com has a free tier."
+        }
       ]
     },
     {
@@ -67,6 +148,33 @@
         "web-ui",
         "local",
         "open-source"
+      ],
+      "website": "https://openwebui.com",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "ChatGPT-like UI for self-hosted LLMs via Ollama or OpenAI API",
+        "Multi-model conversations, document upload, and web search",
+        "User management and access control for team deployments",
+        "Built-in Retrieval-Augmented Generation (RAG) with local documents"
+      ],
+      "cons": [
+        "Requires running Ollama or a compatible API server separately",
+        "Advanced features (voice, vision) depend on underlying model capabilities"
+      ],
+      "faqs": [
+        {
+          "q": "What is Open WebUI?",
+          "a": "Open WebUI (formerly Ollama WebUI) is a self-hosted web interface for interacting with LLMs. It provides a ChatGPT-like experience for models running through Ollama or any OpenAI-compatible API endpoint."
+        },
+        {
+          "q": "How do I install Open WebUI with Ollama?",
+          "a": "With Docker: docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main. Then open http://localhost:3000 in your browser."
+        },
+        {
+          "q": "Is Open WebUI free?",
+          "a": "Yes, Open WebUI is MIT-licensed and completely free to self-host. There are no subscription fees. You only pay for the LLM API costs if you connect to OpenAI/Claude; Ollama models run at zero API cost."
+        }
       ]
     },
     {
@@ -84,6 +192,37 @@
         "local",
         "open-source",
         "inference"
+      ],
+      "website": "https://ollama.com",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "One-command install and run for 100+ open-source LLMs",
+        "OpenAI-compatible REST API – drop-in replacement in most apps",
+        "Supports GPU acceleration on NVIDIA, AMD, and Apple Silicon",
+        "Built-in model library with automatic versioning and updates"
+      ],
+      "cons": [
+        "Models require 4–64GB of disk space and 4–32GB RAM/VRAM",
+        "Larger models (70B+) need high-end hardware for acceptable performance"
+      ],
+      "faqs": [
+        {
+          "q": "What is Ollama?",
+          "a": "Ollama is an open-source tool that lets you run large language models (LLMs) like Llama 3, Mistral, Gemma 2, and Phi-3 locally on your Mac, Linux, or Windows machine with a simple CLI and REST API."
+        },
+        {
+          "q": "How do I run Llama 3 with Ollama?",
+          "a": "Install Ollama from ollama.com, then run: ollama run llama3. The model downloads automatically (~4GB for the 8B version). Then chat in the terminal or call the OpenAI-compatible API at http://localhost:11434/v1."
+        },
+        {
+          "q": "Is Ollama free?",
+          "a": "Yes. Ollama is MIT-licensed and free to download and use. You run models on your own hardware, so there are no API fees. The only cost is your electricity and hardware."
+        },
+        {
+          "q": "What models does Ollama support?",
+          "a": "Ollama supports 100+ models including Llama 3.1 (8B/70B/405B), Mistral, Gemma 2, Phi-3, DeepSeek Coder, CodeLlama, LLaVA (vision), and many more. See the full list at ollama.com/library."
+        }
       ]
     },
     {
@@ -203,6 +342,29 @@
         "web-ui",
         "open-source",
         "productivity"
+      ],
+      "website": "https://nextchat.dev",
+      "license": "MIT",
+      "featured": false,
+      "pros": [
+        "Self-hosted ChatGPT web app deployable on Vercel in one click",
+        "Supports OpenAI, Claude, Google Gemini, and local Ollama models",
+        "Custom system prompts, chat history export, and plugin support",
+        "Mobile-responsive PWA design"
+      ],
+      "cons": [
+        "Requires your own API keys – not a standalone AI model",
+        "Vercel free tier has usage limits for high-traffic deployments"
+      ],
+      "faqs": [
+        {
+          "q": "What is ChatGPT Next Web?",
+          "a": "ChatGPT Next Web (NextChat) is an open-source, self-hostable web application that provides a polished ChatGPT-like interface for multiple LLM providers including OpenAI, Claude, Gemini, and local Ollama models."
+        },
+        {
+          "q": "How do I deploy ChatGPT Next Web on Vercel?",
+          "a": "Fork the GitHub repository, create a Vercel account, import the repo, and set OPENAI_API_KEY as an environment variable. The entire deployment takes less than 5 minutes and runs for free on Vercel's free tier."
+        }
       ]
     },
     {
@@ -407,6 +569,33 @@
         "audio",
         "open-source",
         "recognition"
+      ],
+      "website": "https://openai.com/research/whisper",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "State-of-the-art accuracy across 99 languages",
+        "Open-source and free to run locally – no API costs",
+        "Handles noisy audio, accents, and technical vocabulary well",
+        "Multiple model sizes from tiny (39M) to large-v3 (1.5B)"
+      ],
+      "cons": [
+        "Real-time transcription requires GPU for acceptable latency",
+        "Large-v3 model requires 10GB+ VRAM for fast batch processing"
+      ],
+      "faqs": [
+        {
+          "q": "What is OpenAI Whisper?",
+          "a": "Whisper is an open-source automatic speech recognition (ASR) model released by OpenAI. It was trained on 680,000 hours of multilingual audio and achieves near-human accuracy on transcription and translation tasks."
+        },
+        {
+          "q": "How do I use Whisper for transcription?",
+          "a": "Install with: pip install openai-whisper. Then run: whisper audio.mp3 --model medium. The model downloads automatically. For Python usage: import whisper; model = whisper.load_model('medium'); result = model.transcribe('audio.mp3')."
+        },
+        {
+          "q": "What is the fastest Whisper model?",
+          "a": "The 'tiny' model is fastest (39M parameters, ~3x real-time on CPU) but less accurate. The 'medium' model offers the best speed/accuracy trade-off. Use 'large-v3' for maximum accuracy when latency is not critical."
+        }
       ]
     },
     {
@@ -492,6 +681,29 @@
         "local",
         "open-source",
         "chat"
+      ],
+      "website": "https://gpt4all.io",
+      "license": "MIT",
+      "featured": false,
+      "pros": [
+        "Easiest local LLM setup: one-click desktop installer for Windows/Mac/Linux",
+        "Built-in chat UI – no command line knowledge required",
+        "Local document chat (LocalDocs) without any data leaving your machine",
+        "Supports 100+ GGUF models from Hugging Face"
+      ],
+      "cons": [
+        "Less flexible than Ollama for API-based integrations",
+        "Desktop app is larger in size than CLI-only alternatives"
+      ],
+      "faqs": [
+        {
+          "q": "What is GPT4All?",
+          "a": "GPT4All is a free, open-source application for running large language models locally on your Windows, Mac, or Linux computer. It features a one-click installer, a built-in chat interface, and local document Q&A without any data leaving your device."
+        },
+        {
+          "q": "GPT4All vs Ollama: which is better for beginners?",
+          "a": "GPT4All is better for non-technical users because it has a full desktop GUI with point-and-click installation. Ollama is better for developers who want an API-based interface to integrate local LLMs into their own applications."
+        }
       ]
     },
     {
@@ -560,6 +772,33 @@
         "generative",
         "workflow",
         "open-source"
+      ],
+      "website": "https://www.comfy.org",
+      "license": "GPL-3.0",
+      "featured": true,
+      "pros": [
+        "Node-based workflow editor enables complex multi-step image pipelines",
+        "More memory-efficient than A1111 WebUI; runs with less VRAM",
+        "Active custom node ecosystem (ControlNet, IPAdapter, AnimateDiff, etc.)",
+        "Workflow JSON files are portable and shareable"
+      ],
+      "cons": [
+        "Steeper learning curve than form-based UIs like A1111",
+        "Node graph interface can become unwieldy for very complex workflows"
+      ],
+      "faqs": [
+        {
+          "q": "What is ComfyUI?",
+          "a": "ComfyUI is a node-based graphical interface for Stable Diffusion and other diffusion models. Instead of a form-based UI, you build image generation pipelines by connecting processing nodes on a canvas, enabling highly customizable workflows."
+        },
+        {
+          "q": "ComfyUI vs Stable Diffusion WebUI: which is better?",
+          "a": "ComfyUI is better for advanced users who want precise control over the generation pipeline (conditioning, LoRA stacking, multi-pass workflows). A1111 WebUI is better for beginners who want a simpler form-based interface with fewer steps to get good results."
+        },
+        {
+          "q": "Does ComfyUI support FLUX.1?",
+          "a": "Yes. ComfyUI fully supports FLUX.1 (dev and schnell variants) and provides example workflows. FLUX.1 requires 16GB+ VRAM for full precision, but 8-bit and FP8 quantized versions work on 8–12GB cards."
+        }
       ]
     },
     {
@@ -1461,6 +1700,33 @@
         "framework",
         "huggingface",
         "open-source"
+      ],
+      "website": "https://huggingface.co/docs/transformers",
+      "license": "Apache-2.0",
+      "featured": true,
+      "pros": [
+        "Largest model hub: 500k+ pretrained models for every task",
+        "Unified API across PyTorch, TensorFlow, and JAX",
+        "First-class support for LLMs, vision, audio, and multimodal models",
+        "Backed by Hugging Face with regular releases and strong documentation"
+      ],
+      "cons": [
+        "Large dependency footprint; full install requires multiple GB",
+        "API changes between versions can break existing code"
+      ],
+      "faqs": [
+        {
+          "q": "What is Hugging Face Transformers?",
+          "a": "Transformers is an open-source Python library by Hugging Face that provides a unified API to download, run, and fine-tune thousands of pre-trained AI models for NLP, vision, audio, and multimodal tasks."
+        },
+        {
+          "q": "How do I install Transformers?",
+          "a": "Install with: pip install transformers. For GPU support, also install torch with CUDA: pip install torch --index-url https://download.pytorch.org/whl/cu121. Then load any model with AutoModel.from_pretrained('model-name')."
+        },
+        {
+          "q": "What is the difference between Transformers and LangChain?",
+          "a": "Transformers is a model-level library for loading and running ML models directly. LangChain is a higher-level framework for building applications that use LLMs, with tools for chaining, memory, and agents. They complement each other."
+        }
       ]
     },
     {
@@ -1478,6 +1744,37 @@
         "framework",
         "rag",
         "open-source"
+      ],
+      "website": "https://langchain.com",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "Most widely adopted LLM framework with the largest ecosystem",
+        "Modular design: swap LLM providers, vector stores, and tools freely",
+        "Built-in RAG pipeline with 50+ document loaders and vector store integrations",
+        "LangSmith platform for tracing, debugging, and evaluating chains"
+      ],
+      "cons": [
+        "Heavy abstraction can make debugging difficult for complex chains",
+        "Rapid API changes require frequent dependency updates"
+      ],
+      "faqs": [
+        {
+          "q": "What is LangChain?",
+          "a": "LangChain is an open-source framework for building applications powered by language models. It provides composable building blocks for chaining LLM calls, adding memory, integrating tools, and building RAG pipelines."
+        },
+        {
+          "q": "Is LangChain free?",
+          "a": "Yes, LangChain the library is MIT-licensed and completely free. LangSmith (the observability platform) has a free tier and paid plans starting at $39/month for teams."
+        },
+        {
+          "q": "LangChain vs LlamaIndex: which should I use?",
+          "a": "LangChain excels at building general-purpose LLM applications, agents, and conversational systems. LlamaIndex specializes in document ingestion, indexing, and retrieval (RAG). For pure document Q&A, LlamaIndex is often simpler; for complex agent workflows, LangChain has more flexibility."
+        },
+        {
+          "q": "Does LangChain work with local LLMs?",
+          "a": "Yes. LangChain has a ChatOllama integration that connects to any Ollama-hosted model (Llama 3, Mistral, Gemma 2, etc.) with a single line: ChatOllama(model='llama3'). No API key required for fully local usage."
+        }
       ]
     },
     {
@@ -1580,6 +1877,33 @@
         "inference",
         "serving",
         "open-source"
+      ],
+      "website": "https://docs.vllm.ai",
+      "license": "Apache-2.0",
+      "featured": true,
+      "pros": [
+        "Up to 24x higher throughput than HuggingFace Transformers",
+        "PagedAttention algorithm maximizes GPU memory utilization",
+        "OpenAI-compatible REST API – minimal code changes to integrate",
+        "Supports LLaMA, Mistral, Gemma, Falcon, and 40+ model architectures"
+      ],
+      "cons": [
+        "Requires NVIDIA GPU with CUDA; no CPU-only support",
+        "Minimum 1 GPU with 16GB+ VRAM for most production models"
+      ],
+      "faqs": [
+        {
+          "q": "What is vLLM?",
+          "a": "vLLM is a high-throughput and memory-efficient inference and serving engine for LLMs. It uses PagedAttention to manage KV cache efficiently, achieving up to 24x higher throughput than standard HuggingFace Transformers serving."
+        },
+        {
+          "q": "When should I use vLLM instead of Ollama?",
+          "a": "Use vLLM for production serving with high concurrent request volumes. It excels at maximizing GPU utilization and throughput for batch inference. Use Ollama for local development, prototyping, and single-user scenarios where ease of use matters more than throughput."
+        },
+        {
+          "q": "How do I start vLLM as an OpenAI-compatible server?",
+          "a": "Run: vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000. Then point any OpenAI SDK client to http://localhost:8000/v1. The API supports /v1/chat/completions, /v1/completions, and /v1/models endpoints."
+        }
       ]
     },
     {
@@ -2889,6 +3213,37 @@
         "autonomous",
         "open-source",
         "llm"
+      ],
+      "website": "https://agpt.co",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "Fully autonomous – sets its own sub-goals without human intervention",
+        "Plugin ecosystem for web browsing, code execution, and file I/O",
+        "First mover: largest community and most community tutorials",
+        "Supports GPT-4o, Claude, and local LLMs via Ollama"
+      ],
+      "cons": [
+        "Token costs can escalate quickly on long autonomous tasks",
+        "Still experimental – results are non-deterministic and require supervision"
+      ],
+      "faqs": [
+        {
+          "q": "What is AutoGPT?",
+          "a": "AutoGPT is an open-source autonomous AI agent that can decompose a high-level goal into sub-tasks and execute them using tools like web search, file reading/writing, and code execution—without step-by-step human prompting."
+        },
+        {
+          "q": "Is AutoGPT free?",
+          "a": "The software is MIT-licensed and free to use. You'll need an OpenAI API key (costs ~$0.01–$0.10 per task with GPT-4o Mini) or you can use Ollama for fully free local execution."
+        },
+        {
+          "q": "How does AutoGPT compare to LangChain?",
+          "a": "AutoGPT focuses on end-to-end autonomous task execution with a built-in agent loop, while LangChain is a lower-level framework for building custom chains and agents. Use AutoGPT for out-of-the-box automation; use LangChain when you need precise control over each step."
+        },
+        {
+          "q": "Can AutoGPT run locally without an internet connection?",
+          "a": "Yes. Configure AutoGPT to use Ollama as the LLM backend (e.g., with Llama 3 or Mistral) and disable web-search plugins. This gives you full offline execution at no API cost."
+        }
       ]
     },
     {
@@ -2957,6 +3312,33 @@
         "platform",
         "workflow",
         "open-source"
+      ],
+      "website": "https://dify.ai",
+      "license": "Apache-2.0",
+      "featured": true,
+      "pros": [
+        "Visual workflow builder – build RAG and agent apps without code",
+        "100+ model integrations (OpenAI, Claude, Gemini, Ollama, etc.)",
+        "Built-in knowledge base management with chunking and embedding",
+        "Self-hostable with Docker and available as a managed cloud service"
+      ],
+      "cons": [
+        "Self-hosted setup requires Docker and moderate DevOps knowledge",
+        "Advanced customization still requires Python code"
+      ],
+      "faqs": [
+        {
+          "q": "What is Dify?",
+          "a": "Dify is an open-source LLM application development platform that provides a visual workflow builder, knowledge base management, and multi-model support for building and deploying AI-powered applications."
+        },
+        {
+          "q": "Is Dify free?",
+          "a": "Dify is open-source (Apache 2.0) and free to self-host. The Dify Cloud hosted service has a free tier (200 OpenAI API calls/day) and paid plans starting at $59/month for teams."
+        },
+        {
+          "q": "How does Dify compare to LangChain?",
+          "a": "Dify is a no-code/low-code platform focused on rapid deployment of LLM apps through a visual interface. LangChain is a developer-focused Python library for programmatic control. Dify is better for business users; LangChain is better when you need full programmatic control."
+        }
       ]
     },
     {
@@ -2974,6 +3356,29 @@
         "code",
         "autonomous",
         "open-source"
+      ],
+      "website": "https://gptengineer.app",
+      "license": "MIT",
+      "featured": false,
+      "pros": [
+        "Generate entire codebases from a natural language specification",
+        "Interactive clarification loop asks questions before generating",
+        "Supports multiple languages and web frameworks",
+        "Cloud-hosted version (gptengineer.app) requires no local setup"
+      ],
+      "cons": [
+        "Generated code often requires manual review and fixes",
+        "Complex projects with many dependencies can produce inconsistent results"
+      ],
+      "faqs": [
+        {
+          "q": "What is GPT Engineer?",
+          "a": "GPT Engineer is an open-source AI coding tool that generates complete software projects from a natural language description. It interactively asks clarifying questions before writing the full codebase."
+        },
+        {
+          "q": "How does GPT Engineer compare to GitHub Copilot?",
+          "a": "GPT Engineer generates entire projects from scratch based on a spec document. GitHub Copilot assists with code completion and generation within an existing project. Use GPT Engineer for greenfield projects; use Copilot for everyday coding assistance."
+        }
       ]
     },
     {
