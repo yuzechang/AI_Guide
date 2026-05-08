@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact AI Nav – Submit a Tool or Report an Issue</title>
+  <meta name="description" content="Contact AI Nav to submit a new AI tool, report outdated information, suggest improvements, or inquire about partnerships and advertising.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/contact.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact AI Nav",
+    "url": "https://yuzechang.github.io/AI_Guide/contact.html",
+    "description": "Contact page for AI Nav – submit tools, report issues, or inquire about partnerships."
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="index.html" class="nav-home">← Back to Directory</a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Contact</span>
+</div>
+
+<!-- Main Content -->
+<div class="page-wrap">
+  <div class="article-header" style="margin-top: 20px;">
+    <span class="article-badge">✉️ Get in Touch</span>
+    <h1 class="article-title" style="margin-top:12px">Contact Us</h1>
+    <p class="article-desc">
+      Have a tool to submit? Found outdated information? Want to collaborate? We'd love to hear from you.
+    </p>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 32px;" class="contact-grid">
+
+    <!-- Contact options -->
+    <div>
+      <div class="content">
+        <h2 style="margin-top:0">Ways to Reach Us</h2>
+      </div>
+
+      <ul class="feature-list">
+        <li>
+          <span class="feat-icon">🐙</span>
+          <div>
+            <strong>GitHub Issues (Preferred)</strong><br>
+            <span style="font-size:12px">Open an issue on our repository for tool submissions, bug reports, and feature requests. This is the fastest way to get a response.</span><br>
+            <a href="https://github.com/yuzechang/AI_Guide/issues/new" target="_blank" rel="noopener" style="color:var(--accent); font-size:12px; font-weight:600; margin-top:6px; display:inline-block">Open GitHub Issue ↗</a>
+          </div>
+        </li>
+        <li>
+          <span class="feat-icon">🔧</span>
+          <div>
+            <strong>Submit a Pull Request</strong><br>
+            <span style="font-size:12px">Want to add a tool directly? Fork the repo, add your tool to <code>data.json</code> following the schema, and open a PR. We review PRs within 48 hours.</span><br>
+            <a href="https://github.com/yuzechang/AI_Guide/fork" target="_blank" rel="noopener" style="color:var(--accent); font-size:12px; font-weight:600; margin-top:6px; display:inline-block">Fork Repository ↗</a>
+          </div>
+        </li>
+        <li>
+          <span class="feat-icon">📢</span>
+          <div>
+            <strong>Advertising & Partnerships</strong><br>
+            <span style="font-size:12px">Interested in sponsoring a tool listing or partnering with AI Nav? Use the form on this page or open a GitHub issue tagged "partnership".</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="content">
+        <h2>How to Submit a Tool</h2>
+        <p>When submitting a new tool, please include:</p>
+        <ul>
+          <li>Tool name and GitHub URL</li>
+          <li>A one-sentence description in English (and optionally Chinese)</li>
+          <li>Category: <strong>ai-tools</strong>, <strong>skill</strong>, or <strong>agent</strong></li>
+          <li>Relevant tags (e.g., <code>llm</code>, <code>rag</code>, <code>code</code>)</li>
+          <li>Why it deserves to be listed (stars, use case, uniqueness)</li>
+        </ul>
+        <div class="alert alert-info" style="margin-top:16px">
+          💡 We only accept open-source tools hosted on GitHub with 1,000+ stars.
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact form -->
+    <div>
+      <div class="sidebar-card" style="position:static">
+        <h4 style="font-size:15px; color:var(--text); margin-bottom:20px; text-transform:none; letter-spacing:0">Send a Message</h4>
+
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="name">Your Name *</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject *</label>
+            <select id="subject" name="subject" class="form-input form-select" required>
+              <option value="">Select a topic...</option>
+              <option value="submit-tool">Submit a New Tool</option>
+              <option value="report-issue">Report Outdated Info</option>
+              <option value="bug">Bug Report</option>
+              <option value="partnership">Partnership / Advertising</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Message *</label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Tell us more..." rows="5" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="github-url">GitHub URL (for tool submissions)</label>
+            <input type="url" id="github-url" name="github-url" class="form-input" placeholder="https://github.com/owner/repo">
+          </div>
+
+          <button type="submit" class="cta-btn" style="width:100%; justify-content:center">
+            Send via GitHub ↗
+          </button>
+          <p style="font-size:11px; color:var(--text-3); margin-top:10px; text-align:center">
+            This will open a pre-filled GitHub Issue in a new tab.
+          </p>
+        </form>
+
+        <div id="formSuccess" style="display:none; padding:16px; background:rgba(52,211,153,0.08); border:1px solid rgba(52,211,153,0.2); border-radius:var(--radius); text-align:center;">
+          <div style="font-size:24px; margin-bottom:8px">✅</div>
+          <div style="font-size:14px; color:var(--green); font-weight:600">GitHub Issue opened!</div>
+          <div style="font-size:12px; color:var(--text-3); margin-top:4px">We'll respond within 48 hours.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr !important; } }
+</style>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+  const githubUrl = document.getElementById('github-url').value;
+  const body = encodeURIComponent(
+    `**From:** ${name}\n\n**Subject:** ${subject}\n\n**Message:**\n${message}${githubUrl ? '\n\n**GitHub URL:** ' + githubUrl : ''}`
+  );
+  const title = encodeURIComponent(`[Contact] ${subject}`);
+  window.open(`https://github.com/yuzechang/AI_Guide/issues/new?title=${title}&body=${body}`, '_blank');
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

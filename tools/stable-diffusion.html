@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stable Diffusion WebUI Review 2026 | Free AI Image Generator</title>
+  <meta name="description" content="Complete Stable Diffusion WebUI guide: install AUTOMATIC1111, generate AI images locally, best models, ControlNet, img2img, and prompt tips for 2026.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/stable-diffusion.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Stable Diffusion WebUI (AUTOMATIC1111)",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+    "description": "The most popular web interface for Stable Diffusion image generation. Run locally with GPU or CPU, supports 1000s of models and extensions.",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free & Open Source" }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
+      { "@type": "ListItem", "position": 2, "name": "AI Tools", "item": "https://yuzechang.github.io/AI_Guide/#ai-tools" },
+      { "@type": "ListItem", "position": 3, "name": "Stable Diffusion WebUI", "item": "https://yuzechang.github.io/AI_Guide/tools/stable-diffusion.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What GPU do I need for Stable Diffusion?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum: NVIDIA GPU with 4GB VRAM (generates 512×512 images slowly). Recommended: 8GB+ VRAM for comfortable 512×768 generation. Ideal: 12GB+ for high-res, fast generation. AMD GPU support is available via ROCm but less optimized." } },
+      { "@type": "Question", "name": "Is Stable Diffusion free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Stable Diffusion is open source and free. AUTOMATIC1111 WebUI is also MIT licensed and free. You need your own GPU hardware (or can use Google Colab for free with limitations)." } },
+      { "@type": "Question", "name": "What is ControlNet in Stable Diffusion?", "acceptedAnswer": { "@type": "Answer", "text": "ControlNet is an extension for Stable Diffusion that gives precise control over image composition. You can guide generation using pose estimation, edge detection, depth maps, or scribbles—ensuring the AI follows your structural input." } },
+      { "@type": "Question", "name": "Stable Diffusion vs Midjourney: which is better?", "acceptedAnswer": { "@type": "Answer", "text": "Midjourney produces higher aesthetic quality with less effort. Stable Diffusion gives full control, is free, runs locally, and supports far more customization. For privacy-sensitive or commercial work without usage restrictions, Stable Diffusion is better. For quick high-quality results, Midjourney wins." } },
+      { "@type": "Question", "name": "What is SDXL?", "acceptedAnswer": { "@type": "Answer", "text": "SDXL (Stable Diffusion XL) is Stability AI's improved model that generates 1024×1024 images natively with significantly better detail and photorealism than SD 1.5. AUTOMATIC1111 supports SDXL fully." } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="../index.html#ai-tools">AI Tools</a><span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Stable Diffusion WebUI</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
+      <span class="article-badge">🎨 AI Image Generation</span>
+      <span class="stars-badge">★ 140k+ GitHub Stars</span>
+      <span class="tag-chip">Free & Local</span>
+      <span class="tag-chip">AUTOMATIC1111</span>
+    </div>
+    <h1 class="article-title"><span class="gradient">Stable Diffusion</span> WebUI – Free AI Image Generator</h1>
+    <p class="article-desc">
+      AUTOMATIC1111's Stable Diffusion WebUI is the most powerful free AI image generation tool. Run thousands of models locally, generate unlimited images, and customize everything—with no subscription fees and no usage limits.
+    </p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
+      <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener" class="cta-btn">View on GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-label">GitHub Stars</div><div class="info-card-value">140k+</div><div class="info-card-sub">#1 most starred AI image tool</div></div>
+        <div class="info-card"><div class="info-card-label">Cost</div><div class="info-card-value">Free</div><div class="info-card-sub">No subscription, unlimited use</div></div>
+        <div class="info-card"><div class="info-card-label">Min VRAM</div><div class="info-card-value">4 GB</div><div class="info-card-sub">8GB+ recommended</div></div>
+        <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">AGPL-3.0</div><div class="info-card-sub">Open source</div></div>
+      </div>
+
+      <h2 id="what-is">What Is Stable Diffusion WebUI?</h2>
+      <p>
+        AUTOMATIC1111's Stable Diffusion WebUI is an open-source browser-based interface for running Stable Diffusion image generation models locally. With 140,000+ GitHub stars, it's one of the most popular open-source projects ever built.
+      </p>
+      <p>
+        The interface runs locally on your machine, accessing your GPU for generation. Images are created entirely on your hardware—no cloud, no subscription, no censorship, and unlimited generation.
+      </p>
+
+      <h2 id="features">Key Features</h2>
+      <ul class="feature-list">
+        <li><span class="feat-icon">🎨</span><div><strong>txt2img</strong> — Generate images from text prompts using any Stable Diffusion model. Control resolution, steps, CFG scale, and sampler.</div></li>
+        <li><span class="feat-icon">🖼️</span><div><strong>img2img</strong> — Transform existing images with AI. Inpainting removes and replaces objects. Outpainting extends the canvas.</div></li>
+        <li><span class="feat-icon">🎮</span><div><strong>ControlNet</strong> — Precise compositional control using poses, edges, depth maps, and more. The most powerful extension in the ecosystem.</div></li>
+        <li><span class="feat-icon">🔌</span><div><strong>1000+ Extensions</strong> — Face restoration, upscaling (4×), model merging, prompt editing, tiling, video, and more.</div></li>
+        <li><span class="feat-icon">🤗</span><div><strong>HuggingFace integration</strong> — Download any model from HuggingFace or CivitAI with one click. Thousands of free models available.</div></li>
+        <li><span class="feat-icon">📡</span><div><strong>API mode</strong> — Run as an API server for programmatic image generation in your applications.</div></li>
+      </ul>
+
+      <h2 id="use-cases">Use Cases</h2>
+      <h3>Creative Professionals</h3>
+      <p>Concept art, illustration, product mockups, and storyboarding. SD WebUI's img2img and ControlNet let artists maintain creative control while using AI to accelerate production.</p>
+
+      <h3>Developers Building AI Image Apps</h3>
+      <p>Use SD WebUI's REST API as the backend for your own image generation service. Handle authentication, rate limiting, and user management in your app while SD WebUI handles the generation.</p>
+
+      <h2 id="pros-cons">Pros & Cons</h2>
+      <div class="pros-cons">
+        <div class="pros-box"><h4>Pros</h4><ul>
+          <li>Completely free, unlimited generations</li>
+          <li>Full control over every parameter</li>
+          <li>Thousands of community models</li>
+          <li>No content restrictions</li>
+          <li>Runs 100% locally, fully private</li>
+          <li>Massive extension ecosystem</li>
+        </ul></div>
+        <div class="cons-box"><h4>Cons</h4><ul>
+          <li>Requires powerful NVIDIA GPU</li>
+          <li>Complex setup for beginners</li>
+          <li>Lower out-of-the-box quality than Midjourney</li>
+          <li>Requires prompt engineering knowledge</li>
+          <li>Large model downloads (2-10GB each)</li>
+        </ul></div>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What GPU do I need? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Minimum: NVIDIA GPU with 4GB VRAM for 512×512 images. Recommended: 8GB VRAM (RTX 3070/4060 or better) for comfortable generation at 768×768. For SDXL 1024×1024: 12GB+ VRAM. AMD GPU support exists via ROCm but performance is lower.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What is ControlNet? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">ControlNet is an extension that adds structural guidance to generation. You provide a reference image (pose, edges, depth, etc.) and the AI follows that structure. Essential for consistent character poses, architecture, and maintaining composition across generations.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">SD vs Midjourney? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Midjourney produces aesthetically superior images with minimal prompting. Stable Diffusion gives you full control, runs locally, is completely free, and has no usage restrictions. For commercial work, SD's open license gives more flexibility. For quick high-quality results, Midjourney is easier.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Where do I get models? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">CivitAI (civitai.com) is the largest community repository with thousands of free models. HuggingFace (huggingface.co) hosts official models from Stability AI. Download .safetensors files and place them in the SD WebUI models folder.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What is SDXL? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">SDXL (Stable Diffusion XL) is the improved model generating 1024×1024 images with better detail and photorealism. AUTOMATIC1111 supports SDXL via the standard model checkpoint system. Requires 12GB+ VRAM for comfortable use.</div></div></div>
+      </div>
+
+    </article>
+
+    <aside class="content-sidebar">
+      <div class="sidebar-card"><h4>Quick Facts</h4><div style="font-size:13px; color:var(--text-2);">
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">GitHub:</span> <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener" style="color:var(--accent)">AUTOMATIC1111</a></div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 140k+</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> AGPL-3.0</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Free:</span> ✅ 100% free</div>
+        <div><span style="color:var(--text-3)">Min GPU:</span> 4GB VRAM</div>
+      </div></div>
+      <div class="sidebar-card"><h4>Table of Contents</h4><ul class="toc-list">
+        <li><a href="#what-is">What Is SD WebUI?</a></li>
+        <li><a href="#features">Key Features</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul></div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
+      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="cursor.html">Cursor AI</a></li><li><a href="ollama.html">Ollama</a></li><li><a href="llama-cpp.html">llama.cpp</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+  </div>
+</footer>
+<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+</body>
+</html>

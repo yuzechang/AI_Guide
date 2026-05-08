@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoGPT Review 2026 | Autonomous AI Agent Framework</title>
+  <meta name="description" content="Complete AutoGPT review: autonomous AI agent that completes complex tasks independently. Setup, use cases, vs other agents (CrewAI, LangGraph), and getting started guide.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/autogpt.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AutoGPT",
+    "applicationCategory": "AIApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://github.com/Significant-Gravitas/AutoGPT",
+    "description": "AutoGPT is an experimental open-source autonomous AI agent that chains LLM calls together to complete complex multi-step tasks independently.",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT License" }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
+      { "@type": "ListItem", "position": 2, "name": "AI Agents", "item": "https://yuzechang.github.io/AI_Guide/#agent" },
+      { "@type": "ListItem", "position": 3, "name": "AutoGPT", "item": "https://yuzechang.github.io/AI_Guide/tools/autogpt.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is AutoGPT?", "acceptedAnswer": { "@type": "Answer", "text": "AutoGPT is an autonomous AI agent that uses GPT-4 to complete complex tasks by breaking them into subtasks, using tools (web search, code execution, file access), and iterating until the goal is achieved—all without human intervention." } },
+      { "@type": "Question", "name": "Is AutoGPT free?", "acceptedAnswer": { "@type": "Answer", "text": "AutoGPT itself is MIT licensed and free. However, it requires an OpenAI API key and will consume tokens (costs money) as the agent runs. A single task can cost $0.50-$5 depending on complexity and number of iterations." } },
+      { "@type": "Question", "name": "AutoGPT vs CrewAI: what's the difference?", "acceptedAnswer": { "@type": "Answer", "text": "AutoGPT is a single autonomous agent with broad capabilities. CrewAI is a multi-agent framework where specialized agents collaborate on tasks. CrewAI is more controllable and better for defined workflows. AutoGPT is better for open-ended tasks requiring autonomous exploration." } },
+      { "@type": "Question", "name": "Can AutoGPT browse the internet?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. AutoGPT has web browsing capabilities using various search and scraping tools. It can search Google, read web pages, and use information from the web to complete tasks." } },
+      { "@type": "Question", "name": "Is AutoGPT still actively developed?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. AutoGPT has evolved from the original CLI experiment into AutoGPT Platform—a full agent builder with a visual interface for creating, testing, and deploying AI agents. The project has over 170k GitHub stars." } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="../index.html#agent">AI Agents</a><span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">AutoGPT</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
+      <span class="article-badge" style="background:rgba(245,158,11,0.1); border-color:rgba(251,191,36,0.25); color:#fbbf24">🚀 AI Agent</span>
+      <span class="stars-badge">★ 170k+ GitHub Stars</span>
+      <span class="tag-chip">Open Source</span>
+      <span class="tag-chip">Autonomous</span>
+    </div>
+    <h1 class="article-title"><span class="gradient">AutoGPT</span> – The Original Autonomous AI Agent</h1>
+    <p class="article-desc">
+      AutoGPT pioneered the concept of autonomous AI agents: give it a goal, and it plans, acts, and iterates independently until the task is complete. The most-starred AI agent project on GitHub with 170k+ stars.
+    </p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
+      <a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" rel="noopener" class="cta-btn">View on GitHub ↗</a>
+      <a href="https://agpt.co" target="_blank" rel="noopener" class="cta-btn-outline">AutoGPT Platform ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-label">Stars</div><div class="info-card-value">170k+</div><div class="info-card-sub">Most starred AI agent</div></div>
+        <div class="info-card"><div class="info-card-label">Type</div><div class="info-card-value">Autonomous Agent</div><div class="info-card-sub">Single-agent, goal-driven</div></div>
+        <div class="info-card"><div class="info-card-label">Models</div><div class="info-card-value">GPT-4o, Claude</div><div class="info-card-sub">Configurable backend</div></div>
+        <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">MIT</div><div class="info-card-sub">Open source</div></div>
+      </div>
+
+      <h2 id="what-is">What Is AutoGPT?</h2>
+      <p>
+        AutoGPT was released by Toran Bruce Richards in March 2023 and immediately went viral—reaching 100,000 GitHub stars in record time. It was the first widely-adopted demonstration that LLMs could function as autonomous agents, chaining their own reasoning and tool use to complete complex tasks.
+      </p>
+      <p>
+        The core insight: instead of a single LLM call, AutoGPT creates a loop where the AI plans subtasks, executes tools (web search, code execution, file I/O), observes results, and plans next steps—all autonomously, without human confirmation for each action.
+      </p>
+
+      <h2 id="how-it-works">How AutoGPT Works</h2>
+      <ol>
+        <li><strong>Goal definition</strong>: User provides a high-level objective (e.g., "Research competitors and write a market analysis report").</li>
+        <li><strong>Planning</strong>: AutoGPT breaks the goal into a series of subtasks using GPT-4.</li>
+        <li><strong>Execution</strong>: For each subtask, it selects and uses available tools (search, browse, write file, execute code).</li>
+        <li><strong>Memory</strong>: Results are stored in short-term and long-term memory (via vector database).</li>
+        <li><strong>Iteration</strong>: The agent evaluates progress and adjusts its plan until the goal is achieved or it's stuck.</li>
+      </ol>
+
+      <h2 id="features">Key Features</h2>
+      <ul class="feature-list">
+        <li><span class="feat-icon">🎯</span><div><strong>Goal-oriented execution</strong> — Give it a single objective; the agent plans and executes all steps autonomously.</div></li>
+        <li><span class="feat-icon">🌐</span><div><strong>Web browsing & research</strong> — Search the internet, read pages, and gather information without human guidance.</div></li>
+        <li><span class="feat-icon">💻</span><div><strong>Code execution</strong> — Write and run code in a sandboxed environment to complete tasks programmatically.</div></li>
+        <li><span class="feat-icon">🧠</span><div><strong>Long-term memory</strong> — Vector database stores past observations, enabling persistent context across sessions.</div></li>
+        <li><span class="feat-icon">🔌</span><div><strong>Plugin system</strong> — Extend capabilities with community plugins for APIs, databases, and services.</div></li>
+        <li><span class="feat-icon">🖥️</span><div><strong>AutoGPT Platform</strong> — Visual agent builder for creating, testing, and deploying agents without writing code.</div></li>
+      </ul>
+
+      <h2 id="use-cases">Use Cases</h2>
+      <h3>Research & Competitive Intelligence</h3>
+      <p>Ask AutoGPT to research a topic, gather information from multiple sources, analyze findings, and produce a structured report. Useful for market research, competitor analysis, and technical literature reviews.</p>
+
+      <h3>Code Generation Tasks</h3>
+      <p>Give AutoGPT a software task: "Build a Python script that monitors GitHub trending repos and sends a daily email digest." It will research APIs, write code, test it, debug errors, and iterate until it works.</p>
+
+      <h3>Content Creation Pipelines</h3>
+      <p>Automate multi-step content workflows: research a topic, outline structure, write sections, check facts, and format the final document—all in a single agent run.</p>
+
+      <h2 id="pros-cons">Pros & Cons</h2>
+      <div class="pros-cons">
+        <div class="pros-box"><h4>Pros</h4><ul>
+          <li>Fully autonomous: minimal human intervention</li>
+          <li>Web browsing + code execution built-in</li>
+          <li>Long-term memory via vector database</li>
+          <li>Large community, active development</li>
+          <li>AutoGPT Platform for no-code deployment</li>
+          <li>Supports GPT-4o and Claude</li>
+        </ul></div>
+        <div class="cons-box"><h4>Cons</h4><ul>
+          <li>Can be unpredictable and hard to control</li>
+          <li>API costs can escalate with long runs</li>
+          <li>Often gets stuck in loops</li>
+          <li>Slower than manually guided tools</li>
+          <li>Not suitable for production critical tasks</li>
+          <li>Requires OpenAI API key</li>
+        </ul></div>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Is AutoGPT free? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">AutoGPT is MIT licensed and free to download. However, it uses the OpenAI API which costs money. A typical research task costs $0.50-$5 in API usage. Long autonomous runs can cost $10-$20 if not monitored. Always set a token budget limit.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">AutoGPT vs CrewAI vs LangGraph? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">AutoGPT: single autonomous agent, best for open-ended tasks. CrewAI: multi-agent teams with defined roles, more predictable for workflows. LangGraph: most flexible and controllable, uses graph-based state machines, best for production systems. For beginners: AutoGPT. For production: LangGraph or CrewAI.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Can AutoGPT access my files? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes, with permissions. AutoGPT can read and write files in a designated workspace directory. You can configure which directories it can access. File operations are logged in the agent's memory.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Is AutoGPT safe to run? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">AutoGPT includes safety confirmations for destructive actions (file deletion, code execution). You can run in "human in the loop" mode where it asks for confirmation before each step. Never give AutoGPT credentials to sensitive systems or allow it to execute arbitrary code in production environments.</div></div></div>
+      </div>
+
+    </article>
+
+    <aside class="content-sidebar">
+      <div class="sidebar-card"><h4>Quick Facts</h4><div style="font-size:13px; color:var(--text-2);">
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 170k+ GitHub</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Type:</span> Autonomous Agent</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Requires:</span> OpenAI API key</div>
+        <div><span style="color:var(--text-3)">Platform:</span> <a href="https://agpt.co" target="_blank" rel="noopener" style="color:var(--accent)">agpt.co</a></div>
+      </div></div>
+      <div class="sidebar-card"><h4>Table of Contents</h4><ul class="toc-list">
+        <li><a href="#what-is">What Is AutoGPT?</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Key Features</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul></div>
+      <div class="sidebar-card"><h4>Related Tools</h4><ul class="toc-list">
+        <li><a href="dify.html">Dify</a></li>
+        <li><a href="langchain.html">LangChain</a></li>
+        <li><a href="claude-code.html">Claude Code</a></li>
+      </ul></div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
+      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="cursor.html">Cursor AI</a></li><li><a href="dify.html">Dify</a></li><li><a href="langchain.html">LangChain</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+  </div>
+</footer>
+<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+</body>
+</html>

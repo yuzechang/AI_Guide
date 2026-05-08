@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Review 2026 | Anthropic's AI Coding CLI Agent</title>
+  <meta name="description" content="Complete Claude Code review: terminal-based AI coding agent by Anthropic. Features, pricing, vs Cursor comparison, setup guide, and best practices.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/claude-code.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Claude Code Review 2026 | Anthropic's AI Coding CLI">
+  <meta property="og:description" content="Claude Code is Anthropic's terminal-based AI agent for coding. Deep review of features, pricing, and comparison with Cursor and GitHub Copilot.">
+  <meta property="og:url" content="https://yuzechang.github.io/AI_Guide/tools/claude-code.html">
+  <meta property="og:site_name" content="AI Nav">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Claude Code",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://claude.ai/code",
+    "description": "Claude Code is Anthropic's agentic CLI coding tool that lives in the terminal, reads your codebase, and makes complex multi-file code changes.",
+    "offers": [{ "@type": "Offer", "name": "Pro", "price": "20", "priceCurrency": "USD", "billingIncrement": "P1M" }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
+      { "@type": "ListItem", "position": 2, "name": "AI Tools", "item": "https://yuzechang.github.io/AI_Guide/#ai-tools" },
+      { "@type": "ListItem", "position": 3, "name": "Claude Code", "item": "https://yuzechang.github.io/AI_Guide/tools/claude-code.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "How much does Claude Code cost?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code is available to Claude Pro subscribers ($20/month) and Claude API users. API usage is billed per token—typically $0.003–$0.015 per 1K tokens depending on the Claude model used." } },
+      { "@type": "Question", "name": "What is Claude Code used for?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code is used for complex multi-file code changes, refactoring, bug fixing, writing tests, and codebase exploration—all from the terminal without leaving your development environment." } },
+      { "@type": "Question", "name": "Is Claude Code open source?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code itself is not open source, but Anthropic has published the Claude Code SDK, which allows developers to build agents using Claude Code's capabilities in their own applications." } },
+      { "@type": "Question", "name": "Claude Code vs Cursor: which is better?", "acceptedAnswer": { "@type": "Answer", "text": "They serve different workflows. Cursor is best for GUI-based editing with an IDE experience. Claude Code excels for developers who prefer the terminal and need deep codebase reasoning without leaving their workflow." } },
+      { "@type": "Question", "name": "What models does Claude Code use?", "acceptedAnswer": { "@type": "Answer", "text": "Claude Code uses Claude Sonnet 4 by default, with options to use Claude Opus 4 for complex reasoning tasks. The model can be configured via the ANTHROPIC_MODEL environment variable." } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html#ai-tools">AI Tools</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Claude Code</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
+      <span class="article-badge">🤖 AI Agent</span>
+      <span class="tag-chip">By Anthropic</span>
+      <span class="tag-chip">Terminal-First</span>
+      <span class="tag-chip">CLI</span>
+    </div>
+    <h1 class="article-title"><span class="gradient">Claude Code</span> – AI Coding Agent for the Terminal</h1>
+    <p class="article-desc">
+      Claude Code is Anthropic's agentic coding tool that operates entirely in the terminal. It reads your entire codebase, understands complex tasks, and makes precise multi-file changes—without ever opening a GUI.
+    </p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
+      <a href="https://claude.ai/code" target="_blank" rel="noopener" class="cta-btn">Visit claude.ai/code ↗</a>
+      <a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener" class="cta-btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-label">Developer</div><div class="info-card-value">Anthropic</div><div class="info-card-sub">Claude model family</div></div>
+        <div class="info-card"><div class="info-card-label">Interface</div><div class="info-card-value">Terminal / CLI</div><div class="info-card-sub">npm install -g @anthropic-ai/claude-code</div></div>
+        <div class="info-card"><div class="info-card-label">Models Used</div><div class="info-card-value">Claude Sonnet 4</div><div class="info-card-sub">Opus 4 for complex tasks</div></div>
+        <div class="info-card"><div class="info-card-label">Pricing</div><div class="info-card-value">Per-token API</div><div class="info-card-sub">~$6 per session avg.</div></div>
+      </div>
+
+      <h2 id="what-is">What Is Claude Code?</h2>
+      <p>
+        Claude Code is Anthropic's answer to AI-powered software engineering. Unlike Cursor (a GUI editor) or GitHub Copilot (an extension), Claude Code is a command-line agent. You invoke it from your terminal, describe what you want, and it autonomously reads files, runs commands, and makes precise changes to your codebase.
+      </p>
+      <p>
+        The core philosophy: Claude Code should feel like hiring a senior engineer who can read your entire codebase and implement tasks independently. It uses the <strong>Claude Sonnet 4</strong> model by default, with access to Opus 4 for tasks requiring deep reasoning.
+      </p>
+
+      <h2 id="features">Key Features</h2>
+      <ul class="feature-list">
+        <li><span class="feat-icon">🔍</span><div><strong>Codebase indexing</strong> — Reads your entire repository, understands file structure, dependencies, and patterns before making any changes.</div></li>
+        <li><span class="feat-icon">🛠️</span><div><strong>Autonomous tool use</strong> — Can read files, write files, run shell commands, run tests, and search the web—all without manual intervention.</div></li>
+        <li><span class="feat-icon">📋</span><div><strong>CLAUDE.md instructions</strong> — Project-level instruction file. Define your tech stack, coding conventions, and workflow—Claude Code reads it on every session start.</div></li>
+        <li><span class="feat-icon">🔄</span><div><strong>Git-aware</strong> — Understands git history, creates meaningful commits, and can work with branches and pull requests.</div></li>
+        <li><span class="feat-icon">🧩</span><div><strong>MCP Server support</strong> — Model Context Protocol integration allows connecting external tools, databases, and APIs directly into the coding session.</div></li>
+        <li><span class="feat-icon">🚀</span><div><strong>Headless mode</strong> — Can run non-interactively in CI/CD pipelines for automated code review, documentation generation, or testing.</div></li>
+      </ul>
+
+      <h2 id="install">Installation & Setup</h2>
+      <div class="alert alert-info">
+        💡 Requires Node.js 18+ and an Anthropic API key or Claude Pro subscription.
+      </div>
+      <ol>
+        <li>Install via npm: <code>npm install -g @anthropic-ai/claude-code</code></li>
+        <li>Set your API key: <code>export ANTHROPIC_API_KEY=sk-ant-...</code></li>
+        <li>Navigate to your project: <code>cd my-project</code></li>
+        <li>Start a session: <code>claude</code></li>
+        <li>Create <code>CLAUDE.md</code> with project instructions for best results.</li>
+      </ol>
+
+      <h2 id="use-cases">Use Cases</h2>
+      <h3>Large Codebase Refactoring</h3>
+      <p>Claude Code excels at cross-file refactoring tasks that would take a human developer hours: renaming functions across 50 files, migrating from one library to another, updating API integrations, or restructuring folder hierarchies. It does this in one session with full context.</p>
+
+      <h3>Test Generation</h3>
+      <p>Point Claude Code at a module and ask it to write comprehensive tests. It reads the implementation, understands edge cases, and writes tests that match your existing test style and framework.</p>
+
+      <h3>Code Review & Documentation</h3>
+      <p>Run Claude Code in headless mode as part of your CI pipeline to automatically add JSDoc/docstring comments, generate README sections, or flag potential bugs in new PRs.</p>
+
+      <h2 id="pros-cons">Pros & Cons</h2>
+      <div class="pros-cons">
+        <div class="pros-box">
+          <h4>Pros</h4>
+          <ul>
+            <li>Deepest codebase understanding of any AI tool</li>
+            <li>Terminal-first: stays in your existing workflow</li>
+            <li>Claude Sonnet 4 is excellent at code</li>
+            <li>CLAUDE.md makes context persistent</li>
+            <li>Headless mode for CI/CD automation</li>
+            <li>MCP ecosystem for tool extension</li>
+          </ul>
+        </div>
+        <div class="cons-box">
+          <h4>Cons</h4>
+          <ul>
+            <li>Per-token cost adds up for long sessions</li>
+            <li>Terminal-only: no GUI, no inline completions</li>
+            <li>Learning curve for new users</li>
+            <li>Slower than inline completions for simple tasks</li>
+            <li>Requires Anthropic API key or Pro plan</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 id="vs-cursor">Claude Code vs Cursor</h2>
+      <p>These tools are often compared but serve genuinely different use cases:</p>
+      <ul>
+        <li><strong>Interface</strong>: Cursor = GUI editor. Claude Code = terminal agent.</li>
+        <li><strong>Best for</strong>: Cursor for active coding sessions with inline completions. Claude Code for batch changes, refactoring, and automation.</li>
+        <li><strong>Context window</strong>: Both support large codebases, but Claude Code can be configured to ingest more files explicitly.</li>
+        <li><strong>Many developers use both</strong>: Cursor for day-to-day coding, Claude Code for complex refactoring tasks.</li>
+      </ul>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">How much does Claude Code cost? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Claude Code is available to Claude Pro subscribers ($20/month) with usage limits, or via the Anthropic API billed per token. API pricing is ~$0.003–$0.015 per 1K tokens. An average coding session costs $3–$10 depending on codebase size and task complexity.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is Claude Code open source? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Claude Code itself is not open source. However, Anthropic has published the Claude Code SDK (npm package) and documentation. The underlying Claude models are proprietary.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">What is CLAUDE.md? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">CLAUDE.md is a markdown file placed in your project root. Claude Code automatically reads it at the start of every session. Use it to define your tech stack, coding standards, test commands, and any project-specific context. Think of it as a persistent system prompt for your project.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can Claude Code run tests automatically? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Claude Code can run your test suite, read the output, identify failures, and fix them—all in one autonomous loop. This is one of its most powerful use cases: ask it to "implement X and make all tests pass" and it will iterate until done.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Does Claude Code work with all programming languages? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Claude Code works with any programming language since it operates via file reads and writes. It performs best with popular languages (Python, JavaScript/TypeScript, Go, Rust, Java) where Claude's training data is richest.</div></div>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px; color:var(--text-2);">
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Website:</span> <a href="https://claude.ai/code" target="_blank" rel="noopener" style="color:var(--accent)">claude.ai/code</a></div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">By:</span> Anthropic</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Interface:</span> Terminal / CLI</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Proprietary</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Free Plan:</span> ✅ With API key</div>
+          <div><span style="color:var(--text-3)">npm:</span> <code>@anthropic-ai/claude-code</code></div>
+        </div>
+      </div>
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#what-is">What Is Claude Code?</a></li>
+          <li><a href="#features">Key Features</a></li>
+          <li><a href="#install">Installation</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#pros-cons">Pros & Cons</a></li>
+          <li><a href="#vs-cursor">vs Cursor</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Related Tools</h4>
+        <ul class="toc-list">
+          <li><a href="cursor.html">Cursor AI</a></li>
+          <li><a href="chatgpt.html">ChatGPT</a></li>
+          <li><a href="ollama.html">Ollama</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
+      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="cursor.html">Cursor AI</a></li><li><a href="claude-code.html">Claude Code</a></li><li><a href="chatgpt.html">ChatGPT</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+  </div>
+</footer>
+
+<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+</body>
+</html>

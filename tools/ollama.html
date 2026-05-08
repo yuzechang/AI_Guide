@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ollama Review 2026 | Run LLMs Locally on Your Machine</title>
+  <meta name="description" content="Complete Ollama guide: run Llama 3, Mistral, Gemma, and 100+ LLMs locally on Mac, Windows, and Linux. Setup, model library, API, and performance tips.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/ollama.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Ollama",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://ollama.com",
+    "description": "Ollama makes it easy to run large language models locally. Get up and running with Llama 3, Mistral, Gemma, and other models with a single command.",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free & Open Source" }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
+      { "@type": "ListItem", "position": 2, "name": "AI Tools", "item": "https://yuzechang.github.io/AI_Guide/#ai-tools" },
+      { "@type": "ListItem", "position": 3, "name": "Ollama", "item": "https://yuzechang.github.io/AI_Guide/tools/ollama.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What hardware do I need to run Ollama?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum: 8GB RAM for 7B models. Recommended: 16GB RAM for 13B models, 32GB+ for 70B models. Ollama runs on Apple Silicon (M1/M2/M3) natively and supports NVIDIA/AMD GPUs on Windows/Linux. CPU-only is also supported but slower." } },
+      { "@type": "Question", "name": "Is Ollama free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ollama is completely free and open source (MIT license). All models available in the Ollama library are also free to download and use locally." } },
+      { "@type": "Question", "name": "What models does Ollama support?", "acceptedAnswer": { "@type": "Answer", "text": "Ollama supports 100+ models including Llama 3 (Meta), Mistral, Gemma (Google), Phi-3 (Microsoft), CodeLlama, Vicuna, Orca, and many more. New models are added regularly via the Ollama model library at ollama.com/library." } },
+      { "@type": "Question", "name": "Does Ollama have an API?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ollama exposes a REST API on port 11434 that is compatible with the OpenAI API format. This means any tool that works with the OpenAI API (LangChain, Open WebUI, etc.) can use Ollama as a local backend." } },
+      { "@type": "Question", "name": "Can Ollama run vision models?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Ollama supports multimodal models like LLaVA and Moondream that can analyze images alongside text prompts. Use `ollama run llava` to try image understanding locally." } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="../index.html#ai-tools">AI Tools</a><span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Ollama</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
+      <span class="article-badge">🏠 Local LLM</span>
+      <span class="stars-badge">★ 85k+ GitHub Stars</span>
+      <span class="tag-chip">Free & Open Source</span>
+      <span class="tag-chip">Privacy-First</span>
+    </div>
+    <h1 class="article-title"><span class="gradient">Ollama</span> – Run LLMs Locally, No Cloud Required</h1>
+    <p class="article-desc">
+      Ollama is the easiest way to run large language models on your own hardware. One command to download and run Llama 3, Mistral, Gemma, and 100+ other models—completely private, completely offline.
+    </p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
+      <a href="https://ollama.com" target="_blank" rel="noopener" class="cta-btn">Download Ollama Free ↗</a>
+      <a href="https://github.com/ollama/ollama" target="_blank" rel="noopener" class="cta-btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">MIT</div><div class="info-card-sub">Free & open source</div></div>
+        <div class="info-card"><div class="info-card-label">Models</div><div class="info-card-value">100+</div><div class="info-card-sub">Llama, Mistral, Gemma, Phi</div></div>
+        <div class="info-card"><div class="info-card-label">Min RAM</div><div class="info-card-value">8 GB</div><div class="info-card-sub">For 7B parameter models</div></div>
+        <div class="info-card"><div class="info-card-label">Platforms</div><div class="info-card-value">Mac, Win, Linux</div><div class="info-card-sub">Apple Silicon + NVIDIA GPU</div></div>
+      </div>
+
+      <h2 id="what-is">What Is Ollama?</h2>
+      <p>
+        Ollama is an open-source tool that makes running large language models on your own machine as easy as running a Docker container. Launched in 2023, it quickly became the go-to solution for developers who want the power of ChatGPT-level AI without sending data to the cloud.
+      </p>
+      <p>
+        Under the hood, Ollama uses <strong>llama.cpp</strong> for fast CPU and GPU inference, GGUF model format for efficient quantization, and a clean CLI + REST API interface. It supports Apple Silicon natively with Metal GPU acceleration, giving M1/M2/M3 Mac users exceptional performance.
+      </p>
+
+      <h2 id="getting-started">Quick Start</h2>
+      <div class="alert alert-info">
+        💡 Ollama installs as a native app on Mac/Windows or as a Linux service.
+      </div>
+      <ol>
+        <li>Download from <a href="https://ollama.com" target="_blank" rel="noopener">ollama.com</a> for your OS, or install via curl on Linux.</li>
+        <li>Pull a model: <code>ollama pull llama3</code> (downloads ~4GB for 8B model)</li>
+        <li>Start chatting: <code>ollama run llama3</code></li>
+        <li>Access the API: <code>curl http://localhost:11434/api/generate</code></li>
+        <li>Pair with Open WebUI for a ChatGPT-like browser interface.</li>
+      </ol>
+
+      <h2 id="models">Popular Models</h2>
+      <ul class="feature-list">
+        <li><span class="feat-icon">🦙</span><div><strong>Llama 3.3 (70B)</strong> — Meta's best open model. Comparable to GPT-4o on many benchmarks. Requires 40GB+ RAM.</div></li>
+        <li><span class="feat-icon">⚡</span><div><strong>Llama 3.2 (3B / 1B)</strong> — Ultra-fast small models. Runs on any modern laptop. Great for quick tasks and edge deployment.</div></li>
+        <li><span class="feat-icon">🔷</span><div><strong>Mistral 7B / Mixtral</strong> — French AI startup's models. Excellent instruction-following and coding at small size.</div></li>
+        <li><span class="feat-icon">💎</span><div><strong>Gemma 2 (Google)</strong> — Google's open model family. Gemma2 9B outperforms models twice its size on many benchmarks.</div></li>
+        <li><span class="feat-icon">🔬</span><div><strong>Phi-3 (Microsoft)</strong> — Small but mighty. Phi-3 mini (3.8B) matches much larger models in reasoning tasks.</div></li>
+        <li><span class="feat-icon">💻</span><div><strong>CodeLlama / DeepSeek Coder</strong> — Specialized coding models. Better than Llama at code generation tasks.</div></li>
+      </ul>
+
+      <h2 id="use-cases">Use Cases</h2>
+      <h3>Privacy-Sensitive Applications</h3>
+      <p>Any application where data cannot leave the company: medical records analysis, legal document review, internal code review, or enterprise knowledge base queries. Ollama enables enterprise-grade AI with zero data egress.</p>
+
+      <h3>Development & Prototyping</h3>
+      <p>Develop and test AI applications locally before deploying to production. The OpenAI-compatible API means you can swap between Ollama (development) and OpenAI (production) with a single URL change.</p>
+
+      <h3>Offline AI</h3>
+      <p>Field work, air-gapped environments, or areas with unreliable internet. Ollama works fully offline once models are downloaded.</p>
+
+      <h2 id="pros-cons">Pros & Cons</h2>
+      <div class="pros-cons">
+        <div class="pros-box"><h4>Pros</h4><ul>
+          <li>100% free and open source</li>
+          <li>Full privacy: data never leaves your machine</li>
+          <li>OpenAI-compatible API</li>
+          <li>Excellent Apple Silicon performance</li>
+          <li>100+ models available with one command</li>
+          <li>Active development, frequent updates</li>
+        </ul></div>
+        <div class="cons-box"><h4>Cons</h4><ul>
+          <li>Hardware-limited: needs 8GB+ RAM</li>
+          <li>Slower than cloud APIs on CPU</li>
+          <li>Smaller models = lower quality than GPT-4o</li>
+          <li>No built-in web UI (use Open WebUI)</li>
+          <li>Model downloads are large (4-40GB)</li>
+        </ul></div>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What hardware do I need? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Minimum 8GB RAM for 7B models. Recommended: 16GB for 13B models, 32GB+ for 70B models. Apple M1/M2/M3 chips are ideal. NVIDIA/AMD GPUs are supported on Windows and Linux for much faster inference.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Is Ollama free? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes, completely free and MIT licensed. All models in the Ollama library are also free to download and use.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">How does Ollama compare to OpenAI? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">OpenAI's models (GPT-4o) are generally more capable than local models, especially for complex reasoning. But Ollama wins on privacy, cost (free), and latency for simple tasks. Many teams use Ollama for development and OpenAI for production.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Can I use Ollama with LangChain? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes. LangChain has native Ollama integration via the `langchain-ollama` package. Since Ollama also exposes an OpenAI-compatible API, any LangChain code using the OpenAI provider works with Ollama by changing the base URL to http://localhost:11434/v1.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Can Ollama run vision models? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes. Ollama supports LLaVA, Moondream, and other multimodal models. Run `ollama run llava` and pass image paths in your prompts for local image understanding.</div></div></div>
+      </div>
+
+    </article>
+
+    <aside class="content-sidebar">
+      <div class="sidebar-card"><h4>Quick Facts</h4><div style="font-size:13px; color:var(--text-2);">
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Website:</span> <a href="https://ollama.com" target="_blank" rel="noopener" style="color:var(--accent)">ollama.com</a></div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 85k+ GitHub</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Free:</span> ✅ Yes (100% free)</div>
+        <div><span style="color:var(--text-3)">API:</span> OpenAI-compatible</div>
+      </div></div>
+      <div class="sidebar-card"><h4>Table of Contents</h4><ul class="toc-list">
+        <li><a href="#what-is">What Is Ollama?</a></li>
+        <li><a href="#getting-started">Quick Start</a></li>
+        <li><a href="#models">Popular Models</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul></div>
+      <div class="sidebar-card"><h4>Related Tools</h4><ul class="toc-list">
+        <li><a href="llama-cpp.html">llama.cpp</a></li>
+        <li><a href="stable-diffusion.html">Stable Diffusion</a></li>
+        <li><a href="langchain.html">LangChain</a></li>
+      </ul></div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
+      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="cursor.html">Cursor AI</a></li><li><a href="claude-code.html">Claude Code</a></li><li><a href="chatgpt.html">ChatGPT</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+  </div>
+</footer>
+<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+</body>
+</html>

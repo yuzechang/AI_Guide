@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LangChain Review 2026 | LLM Framework for Building AI Applications</title>
+  <meta name="description" content="Complete LangChain guide: build LLM-powered apps, RAG pipelines, agents, and chatbots. Features, LCEL, LangGraph, LangSmith, and getting started tutorial.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/langchain.html">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "LangChain",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://langchain.com",
+    "description": "LangChain is a framework for building LLM-powered applications including chatbots, RAG pipelines, AI agents, and multi-step reasoning systems.",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
+      { "@type": "ListItem", "position": 2, "name": "Skill Frameworks", "item": "https://yuzechang.github.io/AI_Guide/#skill" },
+      { "@type": "ListItem", "position": 3, "name": "LangChain", "item": "https://yuzechang.github.io/AI_Guide/tools/langchain.html" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is LangChain used for?", "acceptedAnswer": { "@type": "Answer", "text": "LangChain is used to build LLM-powered applications including chatbots with memory, RAG (Retrieval-Augmented Generation) systems for document Q&A, multi-step AI agents, and structured data extraction pipelines." } },
+      { "@type": "Question", "name": "Is LangChain free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, LangChain is open source (MIT license) and free to use. LangSmith (observability platform) and LangGraph Cloud have paid tiers, but the core library is completely free." } },
+      { "@type": "Question", "name": "LangChain vs LlamaIndex: which should I use?", "acceptedAnswer": { "@type": "Answer", "text": "LangChain is better for building agents and general LLM pipelines. LlamaIndex specializes in RAG and document indexing with more sophisticated retrieval strategies. Many production apps use both: LlamaIndex for retrieval, LangChain for agent orchestration." } },
+      { "@type": "Question", "name": "What is LCEL (LangChain Expression Language)?", "acceptedAnswer": { "@type": "Answer", "text": "LCEL is LangChain's declarative syntax for composing chain components using the pipe operator (|). It enables streaming, batch processing, and async execution out of the box: `chain = prompt | llm | output_parser`." } },
+      { "@type": "Question", "name": "Does LangChain support local LLMs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. LangChain integrates with Ollama, llama.cpp, LM Studio, HuggingFace, and other local model providers. You can swap between OpenAI and local models by changing the LLM provider in your chain." } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a><span class="breadcrumb-sep">›</span>
+  <a href="../index.html#skill">Skill Frameworks</a><span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">LangChain</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:14px">
+      <span class="article-badge" style="background:rgba(16,185,129,0.1); border-color:rgba(52,211,153,0.25); color:#34d399">⚙️ Skill Framework</span>
+      <span class="stars-badge">★ 93k+ GitHub Stars</span>
+      <span class="tag-chip">Open Source</span>
+      <span class="tag-chip">Python + JS</span>
+    </div>
+    <h1 class="article-title"><span class="gradient">LangChain</span> – The LLM Application Framework</h1>
+    <p class="article-desc">
+      LangChain is the most widely adopted framework for building production-ready LLM applications. From simple chatbots to complex multi-agent RAG pipelines, LangChain provides the building blocks and ecosystem to ship AI apps faster.
+    </p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
+      <a href="https://langchain.com" target="_blank" rel="noopener" class="cta-btn">Visit langchain.com ↗</a>
+      <a href="https://github.com/langchain-ai/langchain" target="_blank" rel="noopener" class="cta-btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <div class="info-grid">
+        <div class="info-card"><div class="info-card-label">GitHub Stars</div><div class="info-card-value">93k+</div><div class="info-card-sub">Most starred LLM framework</div></div>
+        <div class="info-card"><div class="info-card-label">Languages</div><div class="info-card-value">Python + JS/TS</div><div class="info-card-sub">Both fully maintained</div></div>
+        <div class="info-card"><div class="info-card-label">License</div><div class="info-card-value">MIT</div><div class="info-card-sub">Open source, free to use</div></div>
+        <div class="info-card"><div class="info-card-label">Integrations</div><div class="info-card-value">300+</div><div class="info-card-sub">LLMs, vector DBs, tools</div></div>
+      </div>
+
+      <h2 id="what-is">What Is LangChain?</h2>
+      <p>
+        LangChain is an open-source framework for building applications powered by large language models. Created by Harrison Chase in October 2022, it became one of the fastest-growing open source projects ever—reaching 10,000 GitHub stars in just 3 months.
+      </p>
+      <p>
+        The core idea: LLMs are more powerful when they can interact with external data, tools, and other systems. LangChain provides the abstractions to compose these interactions into reliable, production-ready pipelines. It supports both Python and JavaScript/TypeScript.
+      </p>
+
+      <h2 id="ecosystem">The LangChain Ecosystem</h2>
+      <ul class="feature-list">
+        <li><span class="feat-icon">🔗</span><div><strong>LangChain Core</strong> — The base library with LCEL (LangChain Expression Language), chains, agents, and tool integrations. MIT licensed, free forever.</div></li>
+        <li><span class="feat-icon">🔍</span><div><strong>LangSmith</strong> — Observability and evaluation platform. Debug, trace, and evaluate LLM calls in production. Free tier available, paid for higher volume.</div></li>
+        <li><span class="feat-icon">🌊</span><div><strong>LangGraph</strong> — Framework for building stateful multi-agent workflows. Defines agents as graphs with explicit state and conditional edges. Ideal for complex agent architectures.</div></li>
+        <li><span class="feat-icon">☁️</span><div><strong>LangGraph Cloud</strong> — Managed deployment for LangGraph agents. Handles scalability, persistence, and streaming. Paid service.</div></li>
+      </ul>
+
+      <h2 id="lcel">LCEL: LangChain Expression Language</h2>
+      <p>LCEL is the modern way to compose chains using Python's pipe operator:</p>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; margin:16px 0; font-family:'Fira Code',monospace; font-size:13px; color:var(--text-2);">
+        from langchain_openai import ChatOpenAI<br>
+        from langchain_core.prompts import ChatPromptTemplate<br>
+        from langchain_core.output_parsers import StrOutputParser<br><br>
+        prompt = ChatPromptTemplate.from_template("Tell me about {topic}")<br>
+        llm = ChatOpenAI(model="gpt-4o")<br>
+        chain = prompt | llm | StrOutputParser()<br><br>
+        result = chain.invoke({"topic": "LangChain"})
+      </div>
+      <p>LCEL chains automatically support streaming, batch processing, and async execution without any extra code.</p>
+
+      <h2 id="use-cases">Use Cases</h2>
+      <h3>RAG (Retrieval-Augmented Generation)</h3>
+      <p>Build document Q&A systems that ground LLM responses in your own data. LangChain provides document loaders (PDF, web, database), text splitters, vector store integrations (Chroma, Pinecone, Weaviate), and retrieval chains out of the box.</p>
+
+      <h3>Conversational AI</h3>
+      <p>Build chatbots with persistent memory, multi-turn conversation history, and tool use. LangChain's memory modules handle conversation history, while tool integrations let chatbots search the web, query databases, or call APIs.</p>
+
+      <h3>AI Agents</h3>
+      <p>Build agents that can reason, plan, and execute multi-step tasks. LangGraph extends LangChain for complex multi-agent workflows where agents collaborate, hand off tasks, and maintain shared state.</p>
+
+      <h2 id="pros-cons">Pros & Cons</h2>
+      <div class="pros-cons">
+        <div class="pros-box"><h4>Pros</h4><ul>
+          <li>Largest ecosystem: 300+ integrations</li>
+          <li>Both Python and JS/TS supported</li>
+          <li>LCEL makes composing chains simple</li>
+          <li>LangSmith for debugging & evaluation</li>
+          <li>LangGraph for complex agent workflows</li>
+          <li>Huge community & documentation</li>
+        </ul></div>
+        <div class="cons-box"><h4>Cons</h4><ul>
+          <li>Abstraction overhead for simple use cases</li>
+          <li>Rapid API changes can break code</li>
+          <li>Can feel overly complex for small projects</li>
+          <li>LangSmith/LangGraph Cloud requires paid plans at scale</li>
+          <li>Steeper learning curve than raw API calls</li>
+        </ul></div>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What is LangChain used for? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">LangChain is used to build LLM-powered applications: chatbots with memory, RAG document Q&A systems, multi-step AI agents, structured data extraction pipelines, and production AI workflows that integrate with external tools and databases.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">LangChain vs LlamaIndex? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">LangChain is better for building agents and general LLM pipelines. LlamaIndex specializes in RAG and document indexing with more sophisticated retrieval. Many production apps use both: LlamaIndex for retrieval, LangChain for orchestration.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Is LangChain still worth using in 2026? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes. Despite competition from simpler alternatives, LangChain remains the most widely adopted LLM framework. LangGraph in particular has become the standard for multi-agent workflows. The ecosystem size (integrations, community, tutorials) is unmatched.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">What is LangGraph? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">LangGraph is an extension of LangChain for building stateful multi-agent applications. It models agent workflows as graphs with nodes (agents/tools) and edges (transitions). It handles cycles, human-in-the-loop, and persistence—things basic LangChain chains can't do.</div></div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faqToggle(this)">Does LangChain support local LLMs? <span class="faq-arr">▼</span></div><div class="faq-a"><div class="faq-a-inner">Yes. LangChain integrates with Ollama, llama.cpp, LM Studio, HuggingFace Hub, and other local model providers. Swap between cloud and local models by changing the LLM provider in your chain—no other code changes needed.</div></div></div>
+      </div>
+
+    </article>
+
+    <aside class="content-sidebar">
+      <div class="sidebar-card"><h4>Quick Facts</h4><div style="font-size:13px; color:var(--text-2);">
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Website:</span> <a href="https://langchain.com" target="_blank" rel="noopener" style="color:var(--accent)">langchain.com</a></div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 93k+ GitHub</div>
+        <div style="margin-bottom:8px"><span style="color:var(--text-3)">Languages:</span> Python, JS/TS</div>
+        <div><span style="color:var(--text-3)">Free:</span> ✅ Core is free</div>
+      </div></div>
+      <div class="sidebar-card"><h4>Table of Contents</h4><ul class="toc-list">
+        <li><a href="#what-is">What Is LangChain?</a></li>
+        <li><a href="#ecosystem">Ecosystem</a></li>
+        <li><a href="#lcel">LCEL</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul></div>
+      <div class="sidebar-card"><h4>Related Tools</h4><ul class="toc-list">
+        <li><a href="ollama.html">Ollama</a></li>
+        <li><a href="autogpt.html">AutoGPT</a></li>
+        <li><a href="dify.html">Dify</a></li>
+      </ul></div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div><p>A curated directory of the best open-source AI tools.</p></div>
+      <div class="footer-col"><h4>Categories</h4><ul><li><a href="../index.html#ai-tools">AI Tools</a></li><li><a href="../index.html#skill">Skill Frameworks</a></li><li><a href="../index.html#agent">AI Agents</a></li></ul></div>
+      <div class="footer-col"><h4>Site</h4><ul><li><a href="../about.html">About</a></li><li><a href="../contact.html">Contact</a></li><li><a href="../privacy-policy.html">Privacy Policy</a></li></ul></div>
+      <div class="footer-col"><h4>Tools</h4><ul><li><a href="cursor.html">Cursor AI</a></li><li><a href="ollama.html">Ollama</a></li><li><a href="autogpt.html">AutoGPT</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 AI Nav · Built for the AI community ❤️</p></div>
+  </div>
+</footer>
+<script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+</body>
+</html>
