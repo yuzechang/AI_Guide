@@ -13,17 +13,17 @@
   <meta name="theme-color" content="#080c14">
 
   <!-- ===== Canonical & Hreflang ===== -->
-  <link rel="canonical" href="https://yourdomain.com/">
-  <link rel="alternate" hreflang="en" href="https://yourdomain.com/?lang=en">
-  <link rel="alternate" hreflang="zh-CN" href="https://yourdomain.com/?lang=zh">
-  <link rel="alternate" hreflang="x-default" href="https://yourdomain.com/">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/">
+  <link rel="alternate" hreflang="en" href="https://yuzechang.github.io/AI_Guide/?lang=en">
+  <link rel="alternate" hreflang="zh-CN" href="https://yuzechang.github.io/AI_Guide/?lang=zh">
+  <link rel="alternate" hreflang="x-default" href="https://yuzechang.github.io/AI_Guide/">
 
   <!-- ===== Open Graph ===== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="AI Tools Directory 2025 – Best AI Tools, Agent Frameworks & Skill Libraries">
   <meta property="og:description" content="Discover 45+ curated open-source AI tools, agent frameworks & skill libraries. Updated weekly.">
-  <meta property="og:url" content="https://yourdomain.com/">
-  <meta property="og:image" content="https://yourdomain.com/og-cover.png">
+  <meta property="og:url" content="https://yuzechang.github.io/AI_Guide/">
+  <meta property="og:image" content="https://yuzechang.github.io/AI_Guide/og-cover.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="AI Nav">
@@ -34,7 +34,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AI Tools Directory 2025 – Best AI Tools, Agent Frameworks & Skill Libraries">
   <meta name="twitter:description" content="45+ curated open-source AI tools, agent frameworks & skill libraries. Updated weekly.">
-  <meta name="twitter:image" content="https://yourdomain.com/og-cover.png">
+  <meta name="twitter:image" content="https://yuzechang.github.io/AI_Guide/og-cover.png">
 
   <!-- ===== Schema.org JSON-LD ===== -->
   <script type="application/ld+json">
@@ -43,12 +43,12 @@
     "@type": "WebSite",
     "name": "AI Tools Directory",
     "alternateName": "AI工具导航",
-    "url": "https://yourdomain.com",
+    "url": "https://yuzechang.github.io/AI_Guide",
     "description": "Curated directory of 45+ open-source AI tools, agent frameworks and skill libraries from GitHub",
     "inLanguage": ["en", "zh-CN"],
     "potentialAction": {
       "@type": "SearchAction",
-      "target": { "@type": "EntryPoint", "urlTemplate": "https://yourdomain.com/?q={search_term_string}" },
+      "target": { "@type": "EntryPoint", "urlTemplate": "https://yuzechang.github.io/AI_Guide/?q={search_term_string}" },
       "query-input": "required name=search_term_string"
     }
   }
@@ -58,8 +58,8 @@
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "AI Nav",
-    "url": "https://yourdomain.com",
-    "logo": { "@type": "ImageObject", "url": "https://yourdomain.com/logo.png", "width": 200, "height": 60 }
+    "url": "https://yuzechang.github.io/AI_Guide",
+    "logo": { "@type": "ImageObject", "url": "https://yuzechang.github.io/AI_Guide/logo.png", "width": 200, "height": 60 }
   }
   </script>
   <script type="application/ld+json">
@@ -230,6 +230,39 @@
     .stat-num { font-weight: 700; color: var(--text); font-size: 16px; }
     .stat-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 
+    /* ===== Featured Section ===== */
+    .featured-section {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px 40px;
+    }
+    .featured-inner {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px 32px;
+    }
+    .featured-h { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .featured-sub { font-size: 14px; color: var(--text-2); margin-bottom: 24px; }
+    .featured-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .feat-card {
+      display: flex; flex-direction: column; gap: 6px;
+      padding: 16px; background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); transition: all 0.2s; text-decoration: none;
+    }
+    .feat-card:hover {
+      border-color: var(--accent); transform: translateY(-2px);
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .feat-card-ico { font-size: 24px; }
+    .feat-card-nm { font-size: 14px; font-weight: 700; color: var(--text); }
+    .feat-card-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+    .feat-card-tag {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      padding: 2px 8px; border-radius: 4px; margin-top: auto;
+      background: var(--accent-dim); color: var(--accent); width: fit-content;
+    }
+    @media (max-width: 1100px) { .featured-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .featured-grid { grid-template-columns: 1fr; } .featured-inner { padding: 24px 16px; } }
+
     /* ===== Layout ===== */
     .main-wrap {
       max-width: 1280px; margin: 0 auto; padding: 0 24px 72px;
@@ -303,6 +336,14 @@
       cursor: pointer; transition: all 0.15s;
     }
     .visit-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .detail-btn {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 5px 11px; background: none;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      color: var(--text-2); font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .detail-btn:hover { background: var(--card-hover); border-color: var(--border-bright); color: var(--text); }
 
     /* ===== In-feed Ad Card ===== */
     .card-ad {
@@ -528,6 +569,80 @@
 </section>
 
 <!-- ====================================================
+     FEATURED TOOLS
+===================================================== -->
+<section class="featured-section" aria-label="Featured Tools">
+  <div class="featured-inner">
+    <h2 class="featured-h">
+      <span class="en">Featured AI Tools</span>
+      <span class="zh">精选 AI 工具</span>
+    </h2>
+    <p class="featured-sub">
+      <span class="en">In-depth reviews of the most popular AI tools with pricing, features, and alternatives.</span>
+      <span class="zh">最热门 AI 工具的深度评测，涵盖定价、功能对比与替代方案。</span>
+    </p>
+    <div class="featured-grid">
+      <a href="tools/cursor.html" class="feat-card">
+        <span class="feat-card-ico">💻</span>
+        <span class="feat-card-nm">Cursor AI</span>
+        <span class="feat-card-desc en">AI-powered code editor with built-in copilot</span>
+        <span class="feat-card-desc zh">内置 AI 编程助手的智能代码编辑器</span>
+        <span class="feat-card-tag">AI Coding</span>
+      </a>
+      <a href="tools/claude-code.html" class="feat-card">
+        <span class="feat-card-ico">🧠</span>
+        <span class="feat-card-nm">Claude Code</span>
+        <span class="feat-card-desc en">Anthropic's agentic coding assistant in terminal</span>
+        <span class="feat-card-desc zh">Anthropic 终端智能编程代理</span>
+        <span class="feat-card-tag">AI Coding</span>
+      </a>
+      <a href="tools/chatgpt.html" class="feat-card">
+        <span class="feat-card-ico">💬</span>
+        <span class="feat-card-nm">ChatGPT</span>
+        <span class="feat-card-desc en">OpenAI's conversational AI with GPT-4o</span>
+        <span class="feat-card-desc zh">OpenAI 对话式 AI，搭载 GPT-4o</span>
+        <span class="feat-card-tag">AI Chat</span>
+      </a>
+      <a href="tools/ollama.html" class="feat-card">
+        <span class="feat-card-ico">🏠</span>
+        <span class="feat-card-nm">Ollama</span>
+        <span class="feat-card-desc en">Run LLMs locally with one command</span>
+        <span class="feat-card-desc zh">一条命令本地运行大模型</span>
+        <span class="feat-card-tag">Local AI</span>
+      </a>
+      <a href="tools/langchain.html" class="feat-card">
+        <span class="feat-card-ico">🔗</span>
+        <span class="feat-card-nm">LangChain</span>
+        <span class="feat-card-desc en">Build LLM-powered apps with composable chains</span>
+        <span class="feat-card-desc zh">用可组合链构建 LLM 应用</span>
+        <span class="feat-card-tag">Framework</span>
+      </a>
+      <a href="tools/dify.html" class="feat-card">
+        <span class="feat-card-ico">🧩</span>
+        <span class="feat-card-nm">Dify</span>
+        <span class="feat-card-desc en">Open-source LLMOps platform with visual builder</span>
+        <span class="feat-card-desc zh">开源 LLMOps 平台，可视化搭建</span>
+        <span class="feat-card-tag">Platform</span>
+      </a>
+      <a href="tools/stable-diffusion.html" class="feat-card">
+        <span class="feat-card-ico">🎨</span>
+        <span class="feat-card-nm">Stable Diffusion</span>
+        <span class="feat-card-desc en">Open-source AI image generation with WebUI</span>
+        <span class="feat-card-desc zh">开源 AI 图像生成 + WebUI</span>
+        <span class="feat-card-tag">AI Image</span>
+      </a>
+      <a href="tools/autogpt.html" class="feat-card">
+        <span class="feat-card-ico">🚀</span>
+        <span class="feat-card-nm">AutoGPT</span>
+        <span class="feat-card-desc en">Autonomous AI agent for complex task completion</span>
+        <span class="feat-card-desc zh">自主执行复杂任务的 AI 智能体</span>
+        <span class="feat-card-tag">AI Agent</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
      MAIN CONTENT
 ===================================================== -->
 <div class="main-wrap">
@@ -741,6 +856,8 @@ function getEmoji(t){ for(const tag of t.tags){ if(EMOJI[tag]) return EMOJI[tag]
 
 const CATNM = { en:{ 'ai-tools':'AI Tools', skill:'Skill', agent:'Agent' }, zh:{ 'ai-tools':'AI 工具', skill:'技能框架', agent:'智能体' } };
 const CATCLS = { 'ai-tools':'c-ai', skill:'c-sk', agent:'c-ag' };
+const ID_ALIAS = { 'sd-webui':'stable-diffusion' };
+function toolHref(id){ return 'tools/' + (ID_ALIAS[id] || id) + '.html'; }
 
 // ========================================
 // SKELETON LOADING
@@ -866,6 +983,7 @@ function render() {
   <p class="card-desc" itemprop="description">${desc}</p>
   <div class="card-tags">${tags}</div>
   <div class="card-foot">
+    <a href="${toolHref(t.id)}" class="detail-btn">${zh ? '详情' : 'Details'}</a>
     <a href="${t.githubUrl}" target="_blank" rel="noopener noreferrer" class="visit-btn" itemprop="url">GitHub ↗</a>
   </div>
 </article>`;
