@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>摸鱼办 – AI.Nav</title>
+  <meta name="description" content="打工人专属摸鱼小工具：节日倒计时、实时工资计算、打工进度、退休倒计时。纯本地计算，不需要账号。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080c14;
+      --border: #1a2438;
+      --border-bright: #2d3f5e;
+      --accent: #818cf8;
+      --text: #e2e8f0;
+      --text-2: #94a3b8;
+      --text-3: #64748b;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F5F0E8;
+      color: #1f2937;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== HEADER (dark) ===== */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,12,20,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px;
+      height: 58px; display: flex; align-items: center; gap: 16px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 800; font-size: 17px; white-space: nowrap;
+      color: var(--text);
+    }
+    .logo-icon { font-size: 20px; }
+    .logo-accent { color: var(--accent); }
+    .header-spacer { flex: 1; }
+    .nav-home {
+      padding: 5px 13px; border-radius: 6px; font-size: 13px;
+      border: 1px solid var(--border); color: var(--text-2);
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .nav-home:hover { color: var(--text); border-color: var(--border-bright); }
+    .gh-link { color: var(--text-3); transition: color 0.15s; flex-shrink: 0; line-height: 1; }
+    .gh-link:hover { color: var(--text); }
+
+    /* ===== SETUP PANEL ===== */
+    .setup-outer {
+      max-width: 560px; margin: 32px auto; padding: 0 16px 40px;
+    }
+    .setup-card {
+      background: #FFF9EB;
+      border: 1px solid #F5D87A;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(245,184,32,0.12);
+    }
+    .setup-header {
+      background: linear-gradient(135deg, #F5B820, #F5C832);
+      padding: 20px 24px 16px;
+      color: white;
+    }
+    .setup-header h1 { font-size: 20px; font-weight: 800; margin-bottom: 3px; }
+    .setup-header p { font-size: 13px; opacity: 0.9; }
+    .setup-tabs {
+      display: flex; border-bottom: 1px solid #F5D87A;
+      background: #FFFAF0;
+    }
+    .setup-tab {
+      flex: 1; padding: 11px; text-align: center;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      border: none; background: none; color: #B45309;
+      border-bottom: 2px solid transparent; transition: all 0.15s;
+      font-family: inherit;
+    }
+    .setup-tab.active { color: #F5B820; border-bottom-color: #F5B820; background: #FFF9EB; }
+    .setup-body { padding: 20px 24px; }
+    .setup-tab-panel { display: none; }
+    .setup-tab-panel.active { display: block; }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block; font-size: 11px; font-weight: 700;
+      color: #92400E; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .chip-group { display: flex; flex-wrap: wrap; gap: 5px; }
+    .chip {
+      padding: 5px 12px; border-radius: 999px;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      border: 1.5px solid #F5D87A; background: white;
+      color: #92400E; transition: all 0.15s; font-family: inherit;
+    }
+    .chip:hover { border-color: #F5B820; }
+    .chip.active { background: #F5B820; border-color: #F5B820; color: white; }
+    .chip-sm { padding: 3px 7px; font-size: 12px; min-width: 30px; text-align: center; }
+    .form-row { display: flex; gap: 10px; }
+    .form-row .form-group { flex: 1; }
+    select, input[type=number], input[type=text] {
+      width: 100%; padding: 7px 10px;
+      background: white; border: 1.5px solid #F5D87A;
+      border-radius: 8px; color: #1f2937; font-size: 13px;
+      font-family: inherit; outline: none; transition: border-color 0.15s;
+    }
+    select:focus, input[type=number]:focus, input[type=text]:focus {
+      border-color: #F5B820; box-shadow: 0 0 0 3px rgba(245,184,32,0.15);
+    }
+    .time-row { display: flex; align-items: center; gap: 6px; }
+    .time-row select { flex: 1; }
+    .time-sep { color: #B45309; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+    .setup-footer { display: flex; gap: 10px; margin-top: 8px; }
+    .btn-confirm {
+      flex: 2; padding: 11px; border-radius: 10px;
+      background: linear-gradient(135deg, #F5B820, #F5C832);
+      color: white; font-size: 14px; font-weight: 700;
+      border: none; cursor: pointer; transition: opacity 0.15s; font-family: inherit;
+    }
+    .btn-confirm:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-cancel {
+      flex: 1; padding: 11px; border-radius: 10px;
+      background: white; border: 1.5px solid #F5D87A;
+      color: #B45309; font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: all 0.15s; display: none;
+    }
+    .btn-cancel:hover { border-color: #F5B820; }
+    /* Anniversary */
+    .anni-list { margin-bottom: 12px; }
+    .anni-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 11px; background: white;
+      border: 1px solid #F5D87A; border-radius: 8px; margin-bottom: 7px;
+    }
+    .anni-emoji { font-size: 18px; width: 24px; text-align: center; }
+    .anni-info { flex: 1; }
+    .anni-name { font-size: 13px; font-weight: 600; color: #1f2937; }
+    .anni-date { font-size: 11px; color: #92400E; }
+    .anni-del {
+      padding: 2px 8px; border-radius: 5px; font-size: 11px;
+      color: #DC2626; background: #FEE2E2; border: 1px solid #FCA5A5; cursor: pointer;
+    }
+    .anni-add-form {
+      background: #FFFAF0; border: 1.5px dashed #F5D87A;
+      border-radius: 10px; padding: 14px;
+    }
+    .anni-add-form h4 { font-size: 13px; font-weight: 700; color: #92400E; margin-bottom: 10px; }
+    .emoji-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+    .emoji-chip {
+      width: 34px; height: 34px; border-radius: 7px; border: 2px solid transparent;
+      background: white; cursor: pointer; font-size: 16px;
+      display: flex; align-items: center; justify-content: center; transition: all 0.1s;
+    }
+    .emoji-chip.active { border-color: #F5B820; background: #FEF3C7; }
+    .color-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .color-chip {
+      width: 26px; height: 26px; border-radius: 50%;
+      cursor: pointer; border: 2px solid transparent; transition: transform 0.1s;
+    }
+    .color-chip.active { border-color: white; outline: 2px solid #F5B820; transform: scale(1.15); }
+    .btn-add-anni {
+      width: 100%; padding: 8px; border-radius: 8px;
+      background: #F5B820; color: white; font-weight: 600; font-size: 13px;
+      border: none; cursor: pointer; margin-top: 6px; font-family: inherit;
+    }
+    .btn-add-anni:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ===== MAIN PANEL ===== */
+    .main-wrap {
+      max-width: 720px; margin: 0 auto; padding: 24px 16px 60px;
+    }
+    .main-card {
+      background: #FEF9EB;
+      border: 1px solid #F5D87A;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(245,184,32,0.15);
+    }
+    .topbar {
+      background: linear-gradient(135deg, #F5B820, #F5C832);
+      padding: 14px 20px;
+      display: flex; align-items: center;
+    }
+    .topbar-title { flex: 1; font-size: 18px; font-weight: 800; color: white; }
+    .topbar-btn {
+      padding: 5px 12px; border-radius: 8px;
+      background: rgba(255,255,255,0.25); color: white;
+      border: none; cursor: pointer; font-size: 13px; font-weight: 600;
+      margin-left: 8px; transition: background 0.15s; font-family: inherit;
+    }
+    .topbar-btn:hover { background: rgba(255,255,255,0.38); }
+    .date-banner {
+      padding: 14px 20px 10px;
+      background: white; border-bottom: 1px solid #F5E87A;
+    }
+    .date-main { font-size: 20px; font-weight: 800; color: #92400E; }
+    .date-sub { font-size: 13px; color: #B45309; margin-top: 1px; }
+    .panel-body { padding: 16px 20px; }
+    .section { margin-bottom: 18px; }
+    .section-title {
+      font-size: 11px; font-weight: 700; color: #B45309;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 9px;
+    }
+    /* Greeting */
+    .greeting-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: #FFF7DD; border-radius: 12px; padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+    .fish-icon { font-size: 30px; line-height: 1; padding-top: 2px; }
+    .greeting-text h2 { font-size: 16px; font-weight: 700; color: #92400E; }
+    .greeting-text p { font-size: 13px; color: #B45309; margin-top: 2px; }
+    .moyu-tip {
+      font-size: 12px; color: #78350F; background: #FEF3C7;
+      border-left: 3px solid #F5B820; padding: 7px 10px;
+      border-radius: 0 7px 7px 0; margin-top: 8px;
+    }
+    .stars-row {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 12px; color: #B45309; margin-top: 7px;
+    }
+    .stars-row .stars { font-size: 14px; letter-spacing: 1px; }
+    /* Salary */
+    .salary-card {
+      background: white; border: 1px solid #F5D87A; border-radius: 12px;
+      padding: 14px 16px; margin-bottom: 18px;
+    }
+    .salary-label { font-size: 11px; color: #B45309; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .salary-amount { font-size: 28px; font-weight: 800; color: #F5B820; font-variant-numeric: tabular-nums; margin: 3px 0; }
+    .salary-progress { height: 5px; background: #FDE68A; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+    .salary-progress-bar { height: 100%; background: linear-gradient(90deg, #F5B820, #F5C832); border-radius: 3px; transition: width 0.5s; }
+    .salary-sub { font-size: 11px; color: #B45309; margin-top: 5px; }
+    /* Grids */
+    .card-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+    .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .hol-card {
+      background: white; border-radius: 9px; padding: 9px 6px;
+      text-align: center; border: 1px solid #F5E87A;
+    }
+    .hol-emoji { font-size: 18px; }
+    .hol-days { font-size: 18px; font-weight: 800; margin: 2px 0; }
+    .hol-name { font-size: 9px; color: #78350F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hol-tag { font-size: 8px; padding: 1px 4px; border-radius: 3px; background: #FEF3C7; color: #92400E; display: inline-block; margin-top: 2px; }
+    /* Progress */
+    .progress-item { margin-bottom: 10px; }
+    .progress-label { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px; color: #78350F; }
+    .progress-bar { height: 7px; background: #FDE68A; border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #F5B820, #FBBF24); border-radius: 4px; transition: width 0.3s; }
+    /* Personal cards */
+    .pers-card {
+      background: white; border: 1px solid #F5D87A; border-radius: 11px;
+      padding: 12px 10px; text-align: center;
+    }
+    .pers-emoji { font-size: 22px; margin-bottom: 3px; }
+    .pers-num { font-size: 22px; font-weight: 800; color: #F5B820; line-height: 1.1; }
+    .pers-unit { font-size: 11px; color: #B45309; }
+    .pers-label { font-size: 11px; color: #78350F; margin-top: 3px; line-height: 1.3; }
+    /* English card */
+    .english-card {
+      background: white; border: 1px solid #F5D87A; border-radius: 11px;
+      padding: 14px 16px; margin-bottom: 16px;
+    }
+    .english-en { font-size: 13px; color: #1f2937; font-style: italic; line-height: 1.6; }
+    .english-zh { font-size: 12px; color: #78350F; margin-top: 6px; }
+    /* Quote */
+    .quote-banner {
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      border-radius: 11px; padding: 14px 16px;
+      border-left: 4px solid #F5B820;
+      font-size: 13px; color: #78350F; font-weight: 500; line-height: 1.6;
+    }
+    /* Anniversary card */
+    .anni-card {
+      background: white; border-radius: 9px; padding: 9px 6px;
+      text-align: center; border: 1px solid #F5E87A;
+    }
+    .anni-card-emoji { font-size: 20px; }
+    .anni-card-days { font-size: 18px; font-weight: 800; margin: 2px 0; }
+    .anni-card-name { font-size: 9px; color: #78350F; }
+    .anni-card-today { background: #FEF3C7 !important; border-color: #F5B820 !important; }
+    /* Confetti */
+    .coin {
+      position: absolute; top: -40px; font-size: 20px;
+      animation: coin-shower 2.5s ease-in forwards;
+    }
+    @keyframes coin-shower {
+      to { transform: translateY(520px) rotate(720deg); opacity: 0; }
+    }
+    /* Responsive */
+    @media (max-width: 520px) {
+      .card-grid { grid-template-columns: repeat(3, 1fr); }
+      .card-grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .date-main { font-size: 16px; }
+      .salary-amount { font-size: 22px; }
+      .panel-body { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="index.html" class="nav-home">← 返回目录</a>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- SETUP PANEL -->
+<div id="setup-panel" class="setup-outer" style="display:none">
+  <div class="setup-card">
+    <div class="setup-header">
+      <h1>🐟 摸鱼办配置</h1>
+      <p>填写基本信息，开启你的专属摸鱼面板</p>
+    </div>
+    <div class="setup-tabs">
+      <button class="setup-tab active" onclick="switchSetupTab(0)">📋 基本信息</button>
+      <button class="setup-tab" onclick="switchSetupTab(1)">🗓 纪念日</button>
+    </div>
+    <div class="setup-body">
+      <!-- Tab 0: 基本信息 -->
+      <div class="setup-tab-panel active" id="setup-tab-0">
+        <div class="form-group">
+          <label class="form-label">性别</label>
+          <div class="chip-group" id="gender-chips">
+            <button class="chip" data-val="male" onclick="selectGender('male')">👴 男</button>
+            <button class="chip" data-val="female" onclick="selectGender('female')">👵 女</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">出生年份</label>
+            <select id="birth-year" onchange="updateConfirmBtn()">
+              <option value="">请选择</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">出生月份</label>
+            <select id="birth-month" onchange="updateConfirmBtn()">
+              <option value="">请选择</option>
+              <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
+              <option value="4">4月</option><option value="5">5月</option><option value="6">6月</option>
+              <option value="7">7月</option><option value="8">8月</option><option value="9">9月</option>
+              <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">发薪日（每月几号）</label>
+          <div class="chip-group" id="payday-chips"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">上班时间</label>
+            <div class="time-row">
+              <select id="work-start-h"></select>
+              <span class="time-sep">:</span>
+              <select id="work-start-m"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">下班时间</label>
+            <div class="time-row">
+              <select id="work-end-h"></select>
+              <span class="time-sep">:</span>
+              <select id="work-end-m"></select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">月薪（元，可选）</label>
+            <input type="number" id="salary-input" placeholder="0" min="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">每月工作天数</label>
+            <input type="number" id="workdays-input" placeholder="22" min="1" max="31" value="22">
+          </div>
+        </div>
+      </div>
+      <!-- Tab 1: 纪念日 -->
+      <div class="setup-tab-panel" id="setup-tab-1">
+        <div class="anni-list" id="anni-list-setup"></div>
+        <div class="anni-add-form">
+          <h4>+ 添加纪念日（最多10个）</h4>
+          <div class="form-label" style="margin-bottom:5px">选择图标</div>
+          <div class="emoji-row" id="emoji-picker"></div>
+          <div class="form-label" style="margin-bottom:5px">选择颜色</div>
+          <div class="color-row" id="color-picker"></div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">名称</label>
+              <input type="text" id="anni-name" placeholder="如：结婚纪念日" maxlength="10">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">月份</label>
+              <select id="anni-month">
+                <option value="">月</option>
+                <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
+                <option value="4">4月</option><option value="5">5月</option><option value="6">6月</option>
+                <option value="7">7月</option><option value="8">8月</option><option value="9">9月</option>
+                <option value="10">10月</option><option value="11">11月</option><option value="12">12月</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">日期</label>
+              <select id="anni-day">
+                <option value="">日</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">起始年（可选）</label>
+              <input type="number" id="anni-year" placeholder="如：2020" min="1900" max="2030">
+            </div>
+          </div>
+          <button class="btn-add-anni" onclick="addAnniversary()">添加纪念日</button>
+        </div>
+      </div>
+      <!-- Footer buttons -->
+      <div class="setup-footer">
+        <button class="btn-cancel" id="cancel-btn" onclick="cancelSetup()">← 返回</button>
+        <button class="btn-confirm" id="confirm-btn" onclick="confirmSetup()" disabled>完成设置，开始摸鱼 🐟</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN PANEL -->
+<div id="main-panel" class="main-wrap" style="display:none">
+  <div class="main-card">
+    <div class="topbar">
+      <span class="topbar-title">🐟 摸鱼办</span>
+      <button class="topbar-btn" onclick="openSettings()">⚙️ 设置</button>
+    </div>
+    <div class="date-banner">
+      <div class="date-main" id="date-main-text"></div>
+      <div class="date-sub" id="date-sub-text"></div>
+    </div>
+    <div class="panel-body">
+      <!-- Greeting -->
+      <div class="greeting-row">
+        <div class="fish-icon">🐟</div>
+        <div class="greeting-text">
+          <h2 id="greeting-h"></h2>
+          <p id="greeting-s"></p>
+          <div class="moyu-tip" id="moyu-tip"></div>
+          <div class="stars-row">
+            <span>摸鱼指数：</span>
+            <span class="stars" id="moyu-stars"></span>
+          </div>
+        </div>
+      </div>
+      <!-- Salary -->
+      <div id="salary-section"></div>
+      <!-- Holidays -->
+      <div class="section">
+        <div class="section-title">🎉 节日倒计时</div>
+        <div class="card-grid" id="holiday-grid"></div>
+      </div>
+      <!-- Anniversaries -->
+      <div id="anniversary-section"></div>
+      <!-- Progress -->
+      <div class="section">
+        <div class="section-title">📅 打工进度</div>
+        <div id="progress-bars"></div>
+      </div>
+      <!-- Personal -->
+      <div class="section">
+        <div class="section-title">⏰ 我的倒计时</div>
+        <div class="card-grid-3" id="personal-grid"></div>
+      </div>
+      <!-- English -->
+      <div class="section">
+        <div class="section-title">🌍 每日一句</div>
+        <div class="english-card">
+          <div class="english-en" id="english-en"></div>
+          <div class="english-zh" id="english-zh"></div>
+        </div>
+      </div>
+      <!-- Quote -->
+      <div class="quote-banner" id="worker-quote"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Confetti overlay -->
+<div id="confetti" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden"></div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+const STORAGE_KEY = 'moyu_v1'
+const ANNIVERSARY_KEY = 'moyu_anniversaries'
+
+const HOLIDAYS = [
+  { name:'周末',    emoji:'🏖️', color:'#F59E0B', tag:'法定', fn:(t)=>{ const d=t.getDay(); return d===0?0:d===6?0:6-d } },
+  { name:'情人节',  emoji:'💕', color:'#EC4899', tag:'趣味', dates:[new Date(2026,1,14),new Date(2027,1,14),new Date(2028,1,14)] },
+  { name:'妇女节',  emoji:'🌸', color:'#EC4899', tag:'节日', dates:[new Date(2026,2,8),new Date(2027,2,8),new Date(2028,2,8)] },
+  { name:'清明节',  emoji:'🌿', color:'#16A34A', tag:'法定', dates:[new Date(2025,3,4),new Date(2026,3,5),new Date(2027,3,5)] },
+  { name:'劳动节',  emoji:'🔨', color:'#D97706', tag:'法定', dates:[new Date(2025,4,1),new Date(2026,4,1),new Date(2027,4,1)] },
+  { name:'母亲节',  emoji:'🌷', color:'#EC4899', tag:'节日', dates:[new Date(2025,4,11),new Date(2026,4,10),new Date(2027,4,9)] },
+  { name:'端午节',  emoji:'🍃', color:'#16A34A', tag:'法定', dates:[new Date(2025,4,31),new Date(2026,5,19),new Date(2027,5,8)] },
+  { name:'父亲节',  emoji:'👨', color:'#2563EB', tag:'节日', dates:[new Date(2025,5,15),new Date(2026,5,21),new Date(2027,5,20)] },
+  { name:'七夕节',  emoji:'🌠', color:'#8B5CF6', tag:'节日', dates:[new Date(2025,7,29),new Date(2026,7,25),new Date(2027,7,14)] },
+  { name:'中秋节',  emoji:'🌙', color:'#8B5CF6', tag:'法定', dates:[new Date(2025,9,6),new Date(2026,8,25),new Date(2027,9,14)] },
+  { name:'国庆节',  emoji:'🚩', color:'#EF4444', tag:'法定', dates:[new Date(2025,9,1),new Date(2026,9,1),new Date(2027,9,1)] },
+  { name:'重阳节',  emoji:'🍁', color:'#D97706', tag:'节日', dates:[new Date(2025,9,29),new Date(2026,9,20),new Date(2027,10,8)] },
+  { name:'双十一',  emoji:'🛒', color:'#EF4444', tag:'趣味', dates:[new Date(2025,10,11),new Date(2026,10,11),new Date(2027,10,11)] },
+  { name:'圣诞节',  emoji:'🎄', color:'#EF4444', tag:'趣味', dates:[new Date(2025,11,25),new Date(2026,11,25),new Date(2027,11,25)] },
+  { name:'元旦',    emoji:'🎊', color:'#EF4444', tag:'法定', dates:[new Date(2026,0,1),new Date(2027,0,1),new Date(2028,0,1)] },
+  { name:'小年',    emoji:'🏮', color:'#EF4444', tag:'节日', dates:[new Date(2026,0,28),new Date(2027,0,30),new Date(2028,1,18)] },
+  { name:'春节',    emoji:'🧧', color:'#EF4444', tag:'法定', dates:[new Date(2026,1,17),new Date(2027,1,6),new Date(2028,1,26)] },
+]
+
+const GREETINGS = [
+  { r:[0,5],   h:'夜猫子，注意休息！',   s:'深夜的摸鱼者，才是真勇士 💪' },
+  { r:[5,9],   h:'早安！打工人~',         s:'新的一天，继续保持摸鱼状态！' },
+  { r:[9,11],  h:'大家上午好！',           s:'距离午饭又近了一步~' },
+  { r:[11,14], h:'中午了，吃了吗？',      s:'午饭是打工人最大的动力！' },
+  { r:[14,17], h:'大家下午好！',           s:'熬过下午，就是自由时间~' },
+  { r:[17,19], h:'快下班啦！',             s:'今天也辛苦了，准备收工！' },
+  { r:[19,22], h:'晚上好！',               s:'下班了还在看？卷王本王~' },
+  { r:[22,24], h:'夜深了，早点休息~',    s:'明天还要摸鱼，要保持体力！' },
+]
+
+const MOYU_TIPS = [
+  '去茶水间泡杯茶，顺便和同事聊聊宇宙与人生',
+  '去趟卫生间，不用赶时间，慢慢逛',
+  '整理桌面文件夹，一个字一个字地打标签',
+  '盯着显示器放空5分钟，思考人生的意义',
+  '打开一个复杂的Excel，假装在分析数据',
+  '去打印室守着打印机，顺便和路过的同事寒暄',
+  '翻翻内部系统文档，一页一页慢慢看',
+  '去找邻桌喝水，打个招呼就能聊半小时',
+  '假装在搜工作文档，实际刷美食攻略',
+  '打开会议系统，假装在准备下周PPT',
+  '慢慢喝完一整杯水，越慢越好',
+  '去阳台/窗边透透气，假装在打重要电话',
+  '整理桌上文具，按颜色和高矮排序',
+  '假装在做笔记，实际上在练字',
+  '开着工作文档，脑子里规划周末去哪玩',
+  '立即去买零食，分享同事，社交摸鱼两不误',
+  '盯着日历数还有几天到周末，配合叹气更有意境',
+  '把桌子擦干净，最有成就感的工作之一',
+  '给老朋友发条消息问好，维系情谊也是正事',
+  '查查最近新闻热点，保持与社会接轨',
+  '规划下次旅游去哪，顺带查攻略',
+  '看看最近有什么好电影，提前做功课',
+  '给家人发条消息问候，孝顺也是工作',
+  '研究一下附近中午吃什么，重大决策',
+  '假装电脑死机了，趁机休息5分钟',
+  '整理上个月工作总结，越慢越好',
+  '打开音乐APP调好歌单，为下午工作做准备',
+  '翻翻收藏夹，比较比较价格',
+  '计算今年已经工作了多少天，感动自己',
+  '研究一个新的摸鱼方法，举一反三才是高手',
+]
+
+const WORKER_QUOTES = [
+  '打工人，打工魂，打工都是人上人。',
+  '今天的摸鱼，是为了明天更好地摸鱼。',
+  '世界上最幸福的事：到点下班，不加班。',
+  '不是不努力，是在积蓄力量（等发薪日）。',
+  '生活的本质，是花时间等周末。',
+  '愿你的每一杯咖啡，都能撑过一上午。',
+  '只要不放弃摸鱼，老板就永远抓不住我。',
+  '头发掉了可以再长，快乐没了就没了。',
+  '职场生存定律：装忙比摸鱼更有技术含量。',
+  '人生苦短，要喝好茶、吃好饭、好好摸鱼。',
+  '理想很丰满，现实很骨感，发薪日很短暂。',
+  '工资给的多，上班都是快乐的事。',
+  '摸鱼一时爽，一直摸鱼一直爽。',
+  '今天也要做一个快乐的打工人，虽然不知道快乐在哪。',
+  '工作使人快乐，不工作使人更快乐。',
+  '每天下班后都是人生最美好的时刻。',
+  '打工人三大谎言：马上、知道了、在忙。',
+  '钱多事少离家近，睡觉睡到自然醒。',
+  '愿你我都能有朝一日财务自由，不再打工。',
+  '今天的工作可以拖到明天，明天的快乐不能拖到后天。',
+  '人这一辈子，要么赚钱，要么开心，最好两样都有。',
+  '别看我在忙，实际上我也不知道在忙什么。',
+  '加班是在透支寿命，摸鱼是在延长人生。',
+  '努力是会上瘾的，但先让我摸一会儿鱼。',
+  '老板觉得你在努力，你觉得自己在摸鱼，真相在中间。',
+  '上班第一件事：挂上绿色在线，然后摸鱼。',
+  '周一综合症无药可治，只有周五能治好。',
+  '年轻人要有梦想，比如今晚准时下班。',
+  '我不是在摸鱼，我是在提升工作体验。',
+  '祝愿所有打工人，早日实现财务自由，摸鱼自由！',
+]
+
+const DAILY_ENGLISH = [
+  { en:'The smell of wet earth after rain brings peace to the heart.', zh:'雨后泥土的气息，令人心安。' },
+  { en:"A nap is just a practice run for tonight's big sleep.", zh:'午睡不过是为今晚大睡排练。' },
+  { en:'Coffee: because adulting is hard.', zh:'咖啡：因为长大成人太不容易了。' },
+  { en:"Deadlines are suggestions from people who don't know what you're going through.", zh:'Deadline 只是不了解你处境之人给出的建议。' },
+  { en:'Monday is just a reminder that the weekend was only two days.', zh:'周一只是在提醒你：周末只有两天。' },
+  { en:'The brain works the moment you get up and stops when you enter the office.', zh:'大脑很神奇：起床就开始转，进了办公室就停了。' },
+  { en:"I'm not procrastinating. I'm letting my ideas marinate.", zh:'我不是在拖延，我是在让想法慢慢发酵。' },
+  { en:'The early bird gets the worm, but the second mouse gets the cheese.', zh:'早起的鸟儿有虫吃，但第二只老鼠才能吃到奶酪。' },
+  { en:"Hard work never killed anyone, but why take the chance?", zh:'努力工作从未杀死过任何人，但为什么要冒险？' },
+  { en:"I'm not lazy. I'm on energy-saving mode.", zh:'我不懒，我只是切换到了省电模式。' },
+  { en:'Work smarter, not harder — or just take a longer lunch break.', zh:'聪明地工作，而非努力地工作——或者干脆午休长一点。' },
+  { en:"I've just found 10,000 ways that won't work. — Edison", zh:'我没有失败，只是找到了一万种不奏效的方法。——爱迪生' },
+  { en:'Sometimes the most productive thing you can do is relax.', zh:'有时最高效的事，就是好好放松。' },
+  { en:'Life is short. Smile while you still have teeth.', zh:'人生苦短，趁还有牙的时候多笑笑。' },
+  { en:"An apple a day keeps the doctor away — if you throw it hard enough.", zh:'一天一苹果，医生远离我——前提是你扔得够用力。' },
+  { en:'Teamwork means never having to take all the blame yourself.', zh:'团队合作意味着你不必独自承担所有责任。' },
+  { en:'The road to success is always under construction.', zh:'通往成功的路，永远在施工中。' },
+  { en:'Time flies like an arrow. Fruit flies like a banana.', zh:'时间像箭飞逝；果蝇喜欢香蕉。（英文双关）' },
+  { en:'My favorite exercise is a cross between a lunge and a crunch. I call it lunch.', zh:'我最爱的运动是弓步和卷腹的结合，我管它叫午饭。' },
+  { en:'The meetings that could have been emails are the bane of my existence.', zh:'那些本可以是邮件的会议，是我此生最大苦恼。' },
+  { en:"I'm not arguing. I'm just explaining why I'm right.", zh:'我不是在争论，我只是在解释我为什么是对的。' },
+  { en:'My bed is a magical place where I suddenly remember everything I forgot to do.', zh:'我的床是个神奇之地，一躺下就想起所有没做的事。' },
+  { en:"I'm on a seafood diet — I see food and I eat it.", zh:'我在节食：我看见什么就吃什么。' },
+  { en:'Common sense is not so common. — Voltaire', zh:'常识并不那么常见。——伏尔泰' },
+  { en:'Light travels faster than sound. Some appear bright until they speak.', zh:'光比声音快，所以有些人看起来聪明，直到他们开口。' },
+  { en:"We don't stop playing because we grow old; we grow old because we stop playing.", zh:'我们不是因为老了才停止玩耍，而是因为停止玩耍才变老。' },
+  { en:'A smile is a curve that sets everything straight.', zh:'微笑是一条能让一切归位的曲线。' },
+  { en:"Creativity is intelligence having fun. — Einstein", zh:'创造力是智慧在玩耍。——爱因斯坦' },
+  { en:"Experience is what you get when you didn't get what you wanted.", zh:'经验就是你没得到想要的东西时获得的东西。' },
+  { en:'My boss told me to have a good day, so I went home.', zh:'老板让我好好过一天，于是我回家了。' },
+  { en:"Running away from your problems is a race you'll never win.", zh:'逃避问题是一场你永远赢不了的比赛。' },
+  { en:'My wallet is like an onion. Opening it makes me cry.', zh:'我的钱包像洋葱，打开它就让我想哭。' },
+  { en:"Before you criticize someone, walk a mile in their shoes — you'll be a mile away with their shoes.", zh:'批评别人前，先穿着他的鞋走一英里——这样你离他一英里，还顺带有了他的鞋。' },
+  { en:'People who think they know everything annoy those of us who do. — Asimov', zh:'自以为无所不知的人，对真正无所不知的我们来说是个麻烦。——阿西莫夫' },
+  { en:"Today's good mood is sponsored by coffee and zero responsibilities.", zh:'今日好心情由咖啡和零责任感联合赞助。' },
+  { en:"The difference between a pizza and your opinion: I asked for the pizza.", zh:'披萨和你的意见的区别：我点了披萨。' },
+  { en:"Inside my shoe, my sock is slowly sliding off.", zh:'我走来走去好像没事，但其实鞋子里的袜子快滑下来了。' },
+  { en:"Even the darkest night will end and the sun will rise. — Hugo", zh:'即使最黑暗的夜晚也会结束，太阳终将升起。——雨果' },
+  { en:"Be yourself; everyone else is already taken. — Wilde", zh:'做你自己，其他角色都有人了。——王尔德' },
+  { en:"I can resist everything except temptation. — Wilde", zh:'我能抵抗一切，除了诱惑。——王尔德' },
+  { en:"Always borrow money from a pessimist. They won't expect it back.", zh:'永远向悲观者借钱，他们不会指望你还的。' },
+  { en:"Do or do not. There is no try. — Yoda", zh:'要么做，要么不做，没有"尝试"一说。——尤达大师' },
+  { en:"The secret of getting ahead is getting started.", zh:'领先的秘诀就是开始行动。' },
+  { en:"Behind every successful person is a substantial amount of coffee.", zh:'每个成功人士背后，都有大量的咖啡。' },
+  { en:"Nothing is impossible. The word itself says 'I'm possible!' — Hepburn", zh:"没有什么不可能，这个词本身就说'我可能'！——赫本" },
+  { en:"Money can't buy happiness, but it can buy ice cream — basically the same thing.", zh:'钱买不到幸福，但能买冰淇淋，本质上是一样的。' },
+  { en:"I speak fluent sarcasm.", zh:'我精通反讽语。' },
+  { en:"If you think you are too small to make a difference, try sleeping with a mosquito.", zh:'如果觉得自己太渺小无法改变什么，试试和蚊子同睡一晚。' },
+  { en:"The only thing we have to fear is fear itself — and Mondays.", zh:'我们唯一要恐惧的，是恐惧本身——还有周一。' },
+  { en:"If opportunity doesn't knock, build a door.", zh:'如果机会没有敲门，就去建一扇门。' },
+  { en:"Age is merely the number of years the world has been enjoying you.", zh:'年龄只不过是世界享受你陪伴的年数。' },
+  { en:"Stressed is just desserts spelled backward.", zh:'压力(stressed)反过来拼就是甜点(desserts)，这是宇宙的暗示。' },
+  { en:"I put the 'pro' in procrastination.", zh:"我把'pro'放进了拖延症(pro-crastination)里。" },
+  { en:"My hobbies include eating and complaining I'm getting fat.", zh:'我的爱好包括：吃东西，然后抱怨自己在变胖。' },
+  { en:"The brain is 73% water. Stay hydrated, especially on Mondays.", zh:'大脑73%是水。多喝水，尤其是周一。' },
+  { en:"I'm not a morning person. I'm barely an afternoon person.", zh:'我不是早起的人，我勉强算个下午的人。' },
+  { en:"Two things are infinite: the universe and human stupidity. — Einstein", zh:'有两件事是无限的：宇宙和人类的愚蠢；对前者我还不太确定。——爱因斯坦' },
+  { en:"Well-behaved women seldom make history.", zh:'循规蹈矩的女人很少创造历史。' },
+  { en:"Keep calm, carry on, and maybe grab a snack.", zh:'保持冷静，继续前行，顺便抓点零食。' },
+  { en:"It's not the size of the dog in the fight — it's the fight in the dog. — Twain", zh:'重要的不是斗犬有多大，而是狗的斗志有多强。——马克·吐温' },
+  { en:"If you want something done, ask a busy person to do it.", zh:'如果你想要某件事完成，去找一个忙碌的人来做。' },
+  { en:"You can't use up creativity. The more you use, the more you have. — Maya Angelou", zh:'创造力用不完，越用越多。——玛雅·安吉罗' },
+  { en:"The world is a book and those who do not travel read only one page. — Augustine", zh:'世界是一本书，不旅行的人只读了一页。——奥古斯丁' },
+  { en:"Adventure is worthwhile in itself. — Amelia Earhart", zh:'冒险本身就是值得的。——阿梅利亚·埃尔哈特' },
+  { en:"In the middle of every difficulty lies opportunity. — Einstein", zh:'每一个困难的中间都蕴藏着机遇。——爱因斯坦' },
+  { en:"The best time to plant a tree was 20 years ago. The second best time is now.", zh:'种树最好的时间是20年前，其次是现在。' },
+  { en:"You miss 100% of the shots you don't take. — Wayne Gretzky", zh:'你不出手，就会错过100%的机会。——韦恩·格雷茨基' },
+  { en:"Whether you think you can or think you can't, you're right. — Henry Ford", zh:'无论你认为你能还是不能，你都是对的。——亨利·福特' },
+  { en:"Happiness is not something ready-made. It comes from your own actions. — Dalai Lama", zh:'幸福不是现成的，它来自你自己的行动。——达赖喇嘛' },
+  { en:"The only way to do great work is to love what you do. — Steve Jobs", zh:'做出伟大工作的唯一方法，是热爱你所做的事。——乔布斯' },
+  { en:"It always seems impossible until it's done. — Nelson Mandela", zh:'事情在完成之前看起来总是不可能的。——曼德拉' },
+  { en:"In order to be irreplaceable, one must always be different. — Coco Chanel", zh:'要不可替代，就必须与众不同。——可可·香奈儿' },
+  { en:"Life is what happens when you're busy making other plans. — John Lennon", zh:'生活就是当你忙着做其他计划的时候发生的事。——约翰·列侬' },
+  { en:"Spread love everywhere you go. — Mother Teresa", zh:'走到哪里都要传播爱。——特蕾莎修女' },
+  { en:"When you reach the end of your rope, tie a knot and hang on. — Roosevelt", zh:'当你到了绳子末端，打个结，坚持住。——罗斯福' },
+  { en:"You only live once, but if you do it right, once is enough. — Mae West", zh:'你只活一次，但如果活得精彩，一次就够了。——梅·韦斯特' },
+  { en:"In three words I can sum up everything I've learned about life: it goes on. — Frost", zh:'三个字可以总结我对人生的所有认知：它继续。——弗罗斯特' },
+  { en:"To live is the rarest thing in the world. Most people exist, that is all. — Wilde", zh:'活着是世界上最罕见的事，大多数人不过是存在。——王尔德' },
+  { en:"No act of kindness, no matter how small, is ever wasted. — Aesop", zh:'任何善举，不论多么微小，都不会白费。——伊索' },
+  { en:"We know what we are, but know not what we may be. — Shakespeare", zh:'我们知道自己是什么，但不知道自己可以成为什么。——莎士比亚' },
+  { en:"The purpose of our lives is to be happy. — Dalai Lama", zh:'我们生命的目的是快乐。——达赖喇嘛' },
+  { en:"Get busy living, or get busy dying. — Stephen King", zh:'要么忙着活，要么忙着死。——斯蒂芬·金' },
+  { en:"You have brains in your head and feet in your shoes. — Dr. Seuss", zh:'你脑子里有智慧，脚下穿着鞋子，方向由你掌握。——苏斯博士' },
+  { en:"If life were predictable, it would cease to be life. — Eleanor Roosevelt", zh:'如果生活是可预测的，那就不叫生活了。——埃莉诺·罗斯福' },
+  { en:"If you look at what you have in life, you'll always have more.", zh:'如果你看你所拥有的，你永远会有更多。' },
+  { en:"If you set your goals ridiculously high and fail, you will fail above everyone else's success.", zh:'如果你设立了异常高的目标但失败了，你的失败也高过所有人的成功。' },
+  { en:"Life is not measured by the number of breaths we take but the moments that take our breath away.", zh:'生命不以我们呼吸的次数来衡量，而以那些令我们屏息的时刻来衡量。' },
+  { en:"If you want to lift yourself up, lift up someone else.", zh:'想要提升自己，先去提升别人。' },
+  { en:"I've learned that people will forget what you said, but not how you made them feel.", zh:'人们会忘记你说了什么，但不会忘记你让他们感受到了什么。' },
+  { en:"I am not a product of my circumstances. I am a product of my decisions.", zh:'我不是我的处境的产物，我是我的决定的产物。' },
+  { en:"The most wasted of all days is one without laughter. — E.E. Cummings", zh:'所有天中最浪费的是没有笑声的一天。——卡明斯' },
+  { en:"Do one thing every day that scares you.", zh:'每天做一件让你害怕的事。' },
+  { en:"Do what you can with all you have, wherever you are. — Theodore Roosevelt", zh:'在你所在的地方，用你所拥有的，做你能做的。——西奥多·罗斯福' },
+  { en:"You wouldn't worry so much about what others think if you realized how seldom they do.", zh:'如果你意识到别人多么少想到你，你就不会那么担心他们怎么想你了。' },
+  { en:"Remember that not getting what you want is sometimes a wonderful stroke of luck.", zh:'记住，有时得不到你想要的，是一种奇妙的好运。' },
+  { en:"You learn more from failure than from success. Don't let it stop you.", zh:'你从失败中学到的比从成功中学到的更多，不要让失败阻止你。' },
+  { en:"The secret of change is to focus all of your energy on building the new, not fighting the old.", zh:'改变的秘诀是将所有精力集中在建造新事物上，而非与旧事物抗争。' },
+  { en:"Everything you've ever wanted is on the other side of fear.", zh:'你所渴望的一切，都在恐惧的另一面。' },
+  { en:"Not all those who wander are lost. — Tolkien", zh:'并非所有漂泊的人都迷失了方向。——托尔金' },
+  { en:"Try to be a rainbow in someone's cloud. — Maya Angelou", zh:'努力成为别人乌云中的彩虹。——玛雅·安吉罗' },
+  { en:"You are never too old to set another goal or to dream a new dream.", zh:'你永远不会太老，无法设定新目标或做新的梦。' },
+]
+
+const PRESET_EMOJIS = ['💍','🎂','🏠','✈️','🎓','💑','👶','🐶','🌺','🎁','🍾','🌟','🎵','🏋️','🌏','💪','🎯','🌈','☀️','🦋']
+const PRESET_COLORS = ['#EC4899','#EF4444','#F97316','#F5B820','#22C55E','#3B82F6','#8B5CF6','#6B7280']
+const WEEKDAYS = ['周日','周一','周二','周三','周四','周五','周六']
+
+// ══════════════════════════════════════════
+// CALCULATION FUNCTIONS
+// ══════════════════════════════════════════
+function getHolidayCountdowns(today) {
+  const t = new Date(today); t.setHours(0,0,0,0)
+  return HOLIDAYS.map(h => {
+    if (h.fn) return { ...h, days: h.fn(t) }
+    const next = h.dates.find(d => d >= t)
+    return { ...h, days: next ? Math.round((next - t) / 86400000) : -1 }
+  }).filter(h => h.days >= 0).sort((a,b) => a.days - b.days).slice(0, 10)
+}
+
+function getWeekNumber(date) {
+  const d = new Date(date); d.setHours(0,0,0,0)
+  d.setDate(d.getDate() + 3 - (d.getDay() + 6) % 7)
+  const w1 = new Date(d.getFullYear(), 0, 4)
+  return 1 + Math.round(((d - w1) / 86400000 - 3 + (w1.getDay() + 6) % 7) / 7)
+}
+
+function getProgress(today) {
+  const t = new Date(today); t.setHours(0,0,0,0)
+  const dow = t.getDay()
+  const daysFromMon = dow === 0 ? 6 : dow - 1
+  const dom = t.getDate()
+  const daysInMonth = new Date(t.getFullYear(), t.getMonth()+1, 0).getDate()
+  const yearStart = new Date(t.getFullYear(), 0, 1)
+  const yearEnd = new Date(t.getFullYear()+1, 0, 1)
+  const dayOfYear = Math.floor((t - yearStart) / 86400000)
+  const daysInYear = Math.floor((yearEnd - yearStart) / 86400000)
+  return {
+    week:  { past: daysFromMon, total: 7, pct: Math.round(daysFromMon / 7 * 100) },
+    month: { past: dom-1, total: daysInMonth, pct: Math.round((dom-1) / daysInMonth * 100) },
+    year:  { past: dayOfYear, total: daysInYear, pct: Math.round(dayOfYear / daysInYear * 100) },
+  }
+}
+
+function daysUntilPayday(payDay, today) {
+  const t = new Date(today); t.setHours(0,0,0,0)
+  const y = t.getFullYear(), m = t.getMonth()
+  const daysThisMonth = new Date(y, m+1, 0).getDate()
+  let target = new Date(y, m, Math.min(payDay, daysThisMonth))
+  if (target < t) {
+    const nm = m+1 > 11 ? 0 : m+1, ny = m+1 > 11 ? y+1 : y
+    target = new Date(ny, nm, Math.min(payDay, new Date(ny, nm+1, 0).getDate()))
+  }
+  return Math.ceil((target - t) / 86400000)
+}
+
+function calcRetirementDate(birthYear, birthMonth, gender) {
+  const cfg = gender === 'male'
+    ? { base: 60, target: 63, policyBY: 1965, policyBM: 1, interval: 4 }
+    : { base: 55, target: 58, policyBY: 1970, policyBM: 1, interval: 2 }
+  const bm = (birthYear - cfg.policyBY) * 12 + (birthMonth - cfg.policyBM)
+  let extra = 0
+  if (bm >= 0) extra = Math.min(Math.floor(bm / cfg.interval) + 1, (cfg.target - cfg.base) * 12)
+  const retireMonths = cfg.base * 12 + extra
+  const offset = (birthMonth - 1) + retireMonths
+  const rYear = birthYear + Math.floor(offset / 12), rMonth = offset % 12
+  return { date: new Date(rYear, rMonth, 1), ageYears: Math.floor(retireMonths/12), ageMonths: retireMonths%12 }
+}
+
+function getDayOfYear(date) {
+  const d = new Date(date); d.setHours(0,0,0,0)
+  return Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 86400000)
+}
+
+function getGreeting(hour) {
+  return GREETINGS.find(g => hour >= g.r[0] && hour < g.r[1]) || GREETINGS[1]
+}
+
+function getMoyuIndex(date) {
+  const dow = date.getDay(), hour = date.getHours()
+  if (dow === 0 || dow === 6) return 5
+  let score = dow === 5 ? 4 : dow === 1 ? 1 : dow
+  if (hour >= 16) score += 3
+  else if (hour >= 12) score += 2
+  else if (hour >= 9) score += 1
+  return Math.min(5, Math.max(1, Math.ceil(score / 2)))
+}
+
+function getWorkProgress(now, s) {
+  const startSecs = s.workStartHour * 3600 + s.workStartMin * 60
+  const endSecs   = s.workEndHour * 3600 + s.workEndMin * 60
+  const curSecs   = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()
+  const total = endSecs - startSecs
+  if (curSecs < startSecs) return { status:'before', toStart: startSecs - curSecs }
+  if (curSecs >= endSecs)  return { status:'after',  elapsed: total }
+  const elapsed = curSecs - startSecs
+  return { status:'working', pct: Math.round(elapsed/total*1000)/10, elapsed, remaining: endSecs - curSecs }
+}
+
+function getAnniversaryCountdowns(anniversaries, today) {
+  const t = new Date(today); t.setHours(0,0,0,0)
+  const year = t.getFullYear()
+  return anniversaries.map(a => {
+    let target = new Date(year, a.month-1, a.day)
+    if (target < t) target = new Date(year+1, a.month-1, a.day)
+    const days = Math.round((target - t) / 86400000)
+    const yearCount = a.start_year ? target.getFullYear() - a.start_year : null
+    return { ...a, days, isToday: days === 0, yearCount }
+  }).sort((a,b) => a.days - b.days)
+}
+
+// ══════════════════════════════════════════
+// APP STATE
+// ══════════════════════════════════════════
+let settings = null
+let anniversaries = []
+let timerID = null
+let newAnniEmoji = PRESET_EMOJIS[0]
+let newAnniColor = PRESET_COLORS[0]
+let selectedGender = null
+let selectedPayday = null
+let lastConfettiHour = -1
+
+// ══════════════════════════════════════════
+// STORAGE
+// ══════════════════════════════════════════
+function loadMoyuSettings() {
+  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : null } catch { return null }
+}
+function saveMoyuSettings(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)) }
+function loadLocalAnniversaries() {
+  try { const r = localStorage.getItem(ANNIVERSARY_KEY); return r ? JSON.parse(r) : [] } catch { return [] }
+}
+function saveLocalAnniversaries(list) { localStorage.setItem(ANNIVERSARY_KEY, JSON.stringify(list)) }
+
+// ══════════════════════════════════════════
+// SETUP FORM
+// ══════════════════════════════════════════
+function initSetupForm() {
+  const bySelect = document.getElementById('birth-year')
+  for (let y = 2005; y >= 1945; y--) {
+    const o = document.createElement('option'); o.value = y; o.textContent = y + '年'
+    bySelect.appendChild(o)
+  }
+  const paydayChips = document.getElementById('payday-chips')
+  for (let d = 1; d <= 31; d++) {
+    const btn = document.createElement('button')
+    btn.className = 'chip chip-sm'; btn.textContent = d
+    btn.onclick = () => selectPayday(d)
+    paydayChips.appendChild(btn)
+  }
+  const startH = document.getElementById('work-start-h')
+  const endH   = document.getElementById('work-end-h')
+  const startM = document.getElementById('work-start-m')
+  const endM   = document.getElementById('work-end-m')
+  for (let h = 0; h <= 23; h++) {
+    ;[startH, endH].forEach(sel => { const o = document.createElement('option'); o.value = h; o.textContent = h + '时'; sel.appendChild(o) })
+  }
+  for (let m = 0; m <= 55; m += 5) {
+    ;[startM, endM].forEach(sel => { const o = document.createElement('option'); o.value = m; o.textContent = String(m).padStart(2,'0') + '分'; sel.appendChild(o) })
+  }
+  startH.value = 9; startM.value = 0; endH.value = 18; endM.value = 0
+
+  const anniDaySelect = document.getElementById('anni-day')
+  for (let d = 1; d <= 31; d++) {
+    const o = document.createElement('option'); o.value = d; o.textContent = d + '日'; anniDaySelect.appendChild(o)
+  }
+
+  const emojiRow = document.getElementById('emoji-picker')
+  PRESET_EMOJIS.forEach((e, i) => {
+    const btn = document.createElement('button')
+    btn.className = 'emoji-chip' + (i===0?' active':''); btn.textContent = e
+    btn.onclick = () => { newAnniEmoji = e; document.querySelectorAll('.emoji-chip').forEach(b => b.classList.remove('active')); btn.classList.add('active') }
+    emojiRow.appendChild(btn)
+  })
+
+  const colorRow = document.getElementById('color-picker')
+  PRESET_COLORS.forEach((c, i) => {
+    const btn = document.createElement('button')
+    btn.className = 'color-chip' + (i===0?' active':'')
+    btn.style.background = c; btn.title = c
+    btn.onclick = () => { newAnniColor = c; document.querySelectorAll('.color-chip').forEach(b => b.classList.remove('active')); btn.classList.add('active') }
+    colorRow.appendChild(btn)
+  })
+
+  renderAnniListSetup()
+  if (settings) prefillSetupForm()
+}
+
+function prefillSetupForm() {
+  selectGender(settings.gender)
+  document.getElementById('birth-year').value = settings.birthYear || ''
+  document.getElementById('birth-month').value = settings.birthMonth || ''
+  selectPayday(settings.payday)
+  document.getElementById('work-start-h').value = settings.workStartHour
+  document.getElementById('work-start-m').value = settings.workStartMin
+  document.getElementById('work-end-h').value   = settings.workEndHour
+  document.getElementById('work-end-m').value   = settings.workEndMin
+  document.getElementById('salary-input').value  = settings.salary || ''
+  document.getElementById('workdays-input').value = settings.workDays || 22
+  updateConfirmBtn()
+}
+
+function selectGender(val) {
+  selectedGender = val
+  document.querySelectorAll('#gender-chips .chip').forEach(b => b.classList.toggle('active', b.dataset.val === val))
+  updateConfirmBtn()
+}
+
+function selectPayday(val) {
+  selectedPayday = val
+  document.querySelectorAll('#payday-chips .chip').forEach((b, i) => b.classList.toggle('active', (i+1) === val))
+  updateConfirmBtn()
+}
+
+function updateConfirmBtn() {
+  const ok = selectedGender && document.getElementById('birth-year').value && document.getElementById('birth-month').value && selectedPayday
+  document.getElementById('confirm-btn').disabled = !ok
+}
+
+function switchSetupTab(idx) {
+  document.querySelectorAll('.setup-tab').forEach((t,i) => t.classList.toggle('active', i===idx))
+  document.querySelectorAll('.setup-tab-panel').forEach((p,i) => p.classList.toggle('active', i===idx))
+}
+
+function renderAnniListSetup() {
+  const list = document.getElementById('anni-list-setup')
+  if (anniversaries.length === 0) {
+    list.innerHTML = '<p style="font-size:12px;color:#B45309;margin-bottom:10px">暂无纪念日，在下方添加~</p>'
+    return
+  }
+  list.innerHTML = anniversaries.map((a, idx) => `
+    <div class="anni-item">
+      <span class="anni-emoji">${a.emoji}</span>
+      <div class="anni-info">
+        <div class="anni-name">${a.name}</div>
+        <div class="anni-date">${a.month}月${a.day}日${a.start_year ? ' · 起始'+a.start_year+'年' : ''}</div>
+      </div>
+      <button class="anni-del" onclick="deleteAnniversary(${idx})">删除</button>
+    </div>
+  `).join('')
+}
+
+function addAnniversary() {
+  const name  = document.getElementById('anni-name').value.trim()
+  const month = parseInt(document.getElementById('anni-month').value)
+  const day   = parseInt(document.getElementById('anni-day').value)
+  const startYear = document.getElementById('anni-year').value
+  if (!name || !month || !day) { alert('请填写名称、月份和日期'); return }
+  if (anniversaries.length >= 10) { alert('最多添加10个纪念日'); return }
+  anniversaries.push({ emoji: newAnniEmoji, color: newAnniColor, name, month, day, start_year: startYear ? parseInt(startYear) : null })
+  saveLocalAnniversaries(anniversaries)
+  document.getElementById('anni-name').value = ''
+  document.getElementById('anni-month').value = ''
+  document.getElementById('anni-day').value = ''
+  document.getElementById('anni-year').value = ''
+  renderAnniListSetup()
+}
+
+function deleteAnniversary(idx) {
+  anniversaries.splice(idx, 1)
+  saveLocalAnniversaries(anniversaries)
+  renderAnniListSetup()
+}
+
+function confirmSetup() {
+  if (!selectedGender || !document.getElementById('birth-year').value || !document.getElementById('birth-month').value || !selectedPayday) return
+  settings = {
+    gender:        selectedGender,
+    birthYear:     parseInt(document.getElementById('birth-year').value),
+    birthMonth:    parseInt(document.getElementById('birth-month').value),
+    payday:        selectedPayday,
+    workStartHour: parseInt(document.getElementById('work-start-h').value),
+    workStartMin:  parseInt(document.getElementById('work-start-m').value),
+    workEndHour:   parseInt(document.getElementById('work-end-h').value),
+    workEndMin:    parseInt(document.getElementById('work-end-m').value),
+    salary:        parseFloat(document.getElementById('salary-input').value) || 0,
+    workDays:      parseInt(document.getElementById('workdays-input').value) || 22,
+  }
+  saveMoyuSettings(settings)
+  showMainPanel()
+}
+
+function cancelSetup() {
+  if (settings) showMainPanel()
+}
+
+function openSettings() {
+  if (timerID) { clearInterval(timerID); timerID = null }
+  document.getElementById('main-panel').style.display = 'none'
+  document.getElementById('setup-panel').style.display = 'block'
+  document.getElementById('cancel-btn').style.display = settings ? 'block' : 'none'
+  selectedGender = settings ? settings.gender : null
+  selectedPayday = settings ? settings.payday : null
+  if (settings) prefillSetupForm()
+  switchSetupTab(0)
+}
+
+// ══════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════
+function renderPanel() {
+  const now   = new Date()
+  const today = new Date(now); today.setHours(0,0,0,0)
+  const hour  = now.getHours()
+  const mins  = now.getMinutes()
+
+  // Whole-hour confetti during work time
+  if (settings && mins === 0 && now.getSeconds() < 3 && hour !== lastConfettiHour) {
+    const wStart = settings.workStartHour, wEnd = settings.workEndHour
+    if (hour > wStart && hour <= wEnd) { lastConfettiHour = hour; triggerConfetti() }
+  }
+
+  // Date banner
+  const y = now.getFullYear(), mo = now.getMonth()+1, d = now.getDate()
+  document.getElementById('date-main-text').textContent = `${y}年${mo}月${d}日 ${WEEKDAYS[now.getDay()]}`
+  document.getElementById('date-sub-text').textContent  = `第 ${getWeekNumber(now)} 周`
+
+  // Greeting
+  const g = getGreeting(hour)
+  document.getElementById('greeting-h').textContent = g.h
+  document.getElementById('greeting-s').textContent = g.s
+  document.getElementById('moyu-tip').innerHTML = `💡 今日建议：${MOYU_TIPS[getDayOfYear(now) % MOYU_TIPS.length]}`
+
+  // Moyu index
+  const idx = getMoyuIndex(now)
+  document.getElementById('moyu-stars').textContent = '⭐'.repeat(idx) + '☆'.repeat(5-idx)
+
+  // Salary card
+  const salaryEl = document.getElementById('salary-section')
+  if (settings && settings.salary > 0) {
+    const wp = getWorkProgress(now, settings)
+    const workTotalSec = (settings.workEndHour * 60 + settings.workEndMin - settings.workStartHour * 60 - settings.workStartMin) * 60
+    const perSec = settings.salary / settings.workDays / workTotalSec
+    const dow = now.getDay()
+    let html = '<div class="salary-card">'
+    if (dow === 0 || dow === 6) {
+      html += `<div class="salary-label">💰 今日可摸鱼薪资</div>
+               <div class="salary-amount">¥${(settings.salary/settings.workDays).toFixed(2)}</div>
+               <div class="salary-sub">今天休息，尽情享受~</div>`
+    } else if (wp.status === 'before') {
+      const h2 = Math.floor(wp.toStart/3600), m2 = Math.floor((wp.toStart%3600)/60)
+      html += `<div class="salary-label">💰 今日待收</div>
+               <div class="salary-amount">¥${(settings.salary/settings.workDays).toFixed(2)}</div>
+               <div class="salary-sub">${h2}小时${m2}分后开始计薪</div>`
+    } else if (wp.status === 'after') {
+      html += `<div class="salary-label">✅ 今日已赚</div>
+               <div class="salary-amount">¥${(settings.salary/settings.workDays).toFixed(2)}</div>
+               <div class="salary-sub">薪资已全部到账，辛苦了！🎉</div>`
+    } else {
+      const earned = wp.elapsed * perSec
+      const rH = Math.floor(wp.remaining/3600), rM = Math.floor((wp.remaining%3600)/60), rS = wp.remaining%60
+      html += `<div class="salary-label">⏱ 今日实时薪资</div>
+               <div class="salary-amount">¥${earned.toFixed(4)}</div>
+               <div class="salary-progress"><div class="salary-progress-bar" style="width:${wp.pct}%"></div></div>
+               <div class="salary-sub">已工作 ${wp.pct}% · 还有 ${rH}时${rM}分${rS}秒下班</div>`
+    }
+    html += '</div>'
+    salaryEl.innerHTML = html
+  } else {
+    salaryEl.innerHTML = ''
+  }
+
+  // Holiday grid
+  document.getElementById('holiday-grid').innerHTML = getHolidayCountdowns(today).map(h => `
+    <div class="hol-card">
+      <div class="hol-emoji">${h.emoji}</div>
+      <div class="hol-days" style="color:${h.color}">${h.days}</div>
+      <div class="hol-name">${h.name}</div>
+      <div class="hol-tag">${h.tag}</div>
+    </div>
+  `).join('')
+
+  // Anniversary section
+  const anniSec = document.getElementById('anniversary-section')
+  if (anniversaries.length > 0) {
+    const acs = getAnniversaryCountdowns(anniversaries, today)
+    anniSec.innerHTML = `
+      <div class="section">
+        <div class="section-title">🗓 纪念日</div>
+        <div class="card-grid">
+          ${acs.map(a => `
+            <div class="anni-card ${a.isToday ? 'anni-card-today' : ''}">
+              <div class="anni-card-emoji">${a.emoji}</div>
+              <div class="anni-card-days" style="color:${a.color}">${a.isToday ? '🎉' : a.days}</div>
+              <div class="anni-card-name">${a.name}${a.yearCount ? '<br><small style="font-size:8px">第'+a.yearCount+'年</small>' : ''}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>`
+  } else {
+    anniSec.innerHTML = ''
+  }
+
+  // Progress bars
+  const prog = getProgress(today)
+  document.getElementById('progress-bars').innerHTML = [
+    { label:'本周进度', icon:'📅', ...prog.week },
+    { label:'本月进度', icon:'🗓', ...prog.month },
+    { label:'今年进度', icon:'📆', ...prog.year },
+  ].map(p => `
+    <div class="progress-item">
+      <div class="progress-label">
+        <span>${p.icon} ${p.label}</span>
+        <span>${p.past}/${p.total} 天 · ${p.pct}%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${p.pct}%"></div></div>
+    </div>
+  `).join('')
+
+  // Personal grid
+  if (settings) {
+    const paydayDays = daysUntilPayday(settings.payday, today)
+    const retire     = calcRetirementDate(settings.birthYear, settings.birthMonth, settings.gender)
+    const retireDays = Math.max(0, Math.ceil((retire.date - today) / 86400000))
+    const wp2        = getWorkProgress(now, settings)
+    const dow        = now.getDay()
+
+    let workCard
+    if (dow === 0 || dow === 6) {
+      workCard = `<div class="pers-card"><div class="pers-emoji">🏖️</div><div class="pers-num" style="font-size:16px">休息</div><div class="pers-unit">中</div><div class="pers-label">今日不上班</div></div>`
+    } else if (wp2.status === 'after') {
+      workCard = `<div class="pers-card"><div class="pers-emoji">✅</div><div class="pers-num" style="font-size:16px">已下班</div><div class="pers-unit"></div><div class="pers-label">好好休息~</div></div>`
+    } else if (wp2.status === 'before') {
+      const sh = settings.workStartHour, sm = String(settings.workStartMin).padStart(2,'0')
+      workCard = `<div class="pers-card"><div class="pers-emoji">🌅</div><div class="pers-num" style="font-size:16px">${sh}:${sm}</div><div class="pers-unit">上班</div><div class="pers-label">未开始</div></div>`
+    } else {
+      const rH = Math.floor(wp2.remaining/3600), rM = Math.floor((wp2.remaining%3600)/60)
+      workCard = `<div class="pers-card"><div class="pers-emoji">⏰</div><div class="pers-num">${rH}<span style="font-size:13px">h</span>${rM}<span style="font-size:13px">m</span></div><div class="pers-unit">距下班</div><div class="pers-label">加油坚持！</div></div>`
+    }
+
+    const retireNumStr = retireDays > 9999
+      ? `${Math.floor(retireDays/365)}<span style="font-size:13px">年</span>`
+      : `${retireDays}`
+    const retireUnit = retireDays > 9999 ? '' : '天'
+
+    document.getElementById('personal-grid').innerHTML = `
+      <div class="pers-card">
+        <div class="pers-emoji">💰</div>
+        <div class="pers-num">${paydayDays}</div>
+        <div class="pers-unit">天</div>
+        <div class="pers-label">距发薪日</div>
+      </div>
+      <div class="pers-card">
+        <div class="pers-emoji">${settings.gender === 'male' ? '👴' : '👵'}</div>
+        <div class="pers-num">${retireNumStr}</div>
+        <div class="pers-unit">${retireUnit}</div>
+        <div class="pers-label">距退休<br><small style="font-size:10px">${retire.ageYears}岁${retire.ageMonths ? retire.ageMonths+'月' : ''}</small></div>
+      </div>
+      ${workCard}
+    `
+  }
+
+  // Daily English
+  const eng = DAILY_ENGLISH[getDayOfYear(now) % DAILY_ENGLISH.length]
+  document.getElementById('english-en').textContent = `"${eng.en}"`
+  document.getElementById('english-zh').textContent = eng.zh
+
+  // Worker quote
+  document.getElementById('worker-quote').textContent = WORKER_QUOTES[(getDayOfYear(now) + 7) % WORKER_QUOTES.length]
+}
+
+// ══════════════════════════════════════════
+// CONFETTI
+// ══════════════════════════════════════════
+function triggerConfetti() {
+  const wrap = document.getElementById('confetti')
+  for (let i = 0; i < 28; i++) {
+    const coin = document.createElement('span')
+    coin.className = 'coin'
+    coin.textContent = ['🪙','💰','✨'][Math.floor(Math.random()*3)]
+    coin.style.left = (Math.random() * 100) + 'vw'
+    coin.style.animationDelay = (Math.random() * 1.5) + 's'
+    coin.style.fontSize = (16 + Math.random() * 10) + 'px'
+    wrap.appendChild(coin)
+    coin.addEventListener('animationend', () => coin.remove())
+  }
+}
+
+// ══════════════════════════════════════════
+// PANEL TRANSITIONS
+// ══════════════════════════════════════════
+function showMainPanel() {
+  document.getElementById('setup-panel').style.display = 'none'
+  document.getElementById('main-panel').style.display = 'block'
+  renderPanel()
+  if (timerID) clearInterval(timerID)
+  timerID = setInterval(renderPanel, 1000)
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+settings      = loadMoyuSettings()
+anniversaries = loadLocalAnniversaries()
+initSetupForm()
+
+if (settings) {
+  showMainPanel()
+} else {
+  document.getElementById('setup-panel').style.display = 'block'
+  document.getElementById('cancel-btn').style.display = 'none'
+}
+</script>
+</body>
+</html>
