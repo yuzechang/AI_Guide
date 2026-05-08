@@ -1,0 +1,46 @@
+name: 🔄 Auto-update Stars + Regenerate Pages
+
+on:
+  # 每周一 UTC 03:00 自动执行
+  schedule:
+    - cron: '0 3 * * 1'
+  # 支持手动触发
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update stars and regenerate tool pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests jinja2
+
+      - name: Update GitHub star counts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_stars.py
+
+      - name: Regenerate tool detail pages
+        run: python generate.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json data.js tools/ sitemap.xml
+          git diff --staged --quiet || \
+            git commit -m "chore: auto-update stars and regenerate pages [skip ci]"
+
+      - name: Push changes
+        run: git push

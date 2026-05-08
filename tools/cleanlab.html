@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cleanlab Guide 2026 | Data-centric AI library for finding and fixing dataset – AI Nav</title>
+  <meta name="description" content="Data-centric AI library for finding and fixing dataset issues 8k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzechang.github.io/AI_Guide/tools/cleanlab.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cleanlab Guide 2026 | Data-centric AI library for finding and fixing dataset – AI Nav">
+  <meta property="og:description" content="Data-centric AI library for finding and fixing dataset issues 8k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta property="og:url" content="https://yuzechang.github.io/AI_Guide/tools/cleanlab.html">
+  <meta property="og:site_name" content="AI Nav">
+
+  <!-- Schema.org: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Cleanlab",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://github.com/cleanlab/cleanlab",
+    "description": "Data-centric AI library for finding and fixing dataset issues",
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzechang.github.io/AI_Guide/" },
+      { "@type": "ListItem", "position": 2, "name": "Skill Framework", "item": "https://yuzechang.github.io/AI_Guide/#skill" },
+      { "@type": "ListItem", "position": 3, "name": "Cleanlab", "item": "https://yuzechang.github.io/AI_Guide/tools/cleanlab.html" }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "What languages does Cleanlab support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cleanlab primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Is Cleanlab production-ready?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Cleanlab is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "How do I install and get started with Cleanlab?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install cleanlab` (Python) or `npm install cleanlab` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does Cleanlab work with local LLMs like Ollama?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+      }
+      
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html#skill">Skill Framework</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Cleanlab</span>
+</div>
+
+<!-- Hero -->
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+      <span class="article-badge" style="background:rgba(34d3991a);border-color:rgba(34d39940);color:#34d399">
+        ⚙️ Skill Framework
+      </span>
+      <span class="stars-badge">★ 8k+ GitHub Stars</span>
+      
+      <span class="tag-chip">data-quality</span>
+      
+      <span class="tag-chip">mlops</span>
+      
+      <span class="tag-chip">cleaning</span>
+      
+    </div>
+    <h1 class="article-title">
+      <span class="gradient">Cleanlab</span>
+       – Cleanlab 数据质量
+    </h1>
+    <p class="article-desc">Data-centric AI library for finding and fixing dataset issues</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
+      <a href="https://github.com/cleanlab/cleanlab" target="_blank" rel="noopener" class="cta-btn">
+        View on GitHub ↗
+      </a>
+      
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <!-- Quick Facts Grid -->
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-card-label">Category</div>
+          <div class="info-card-value">Skill Framework</div>
+          <div class="info-card-sub">skill</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">GitHub Stars</div>
+          <div class="info-card-value">8k+</div>
+          <div class="info-card-sub">Community adoption</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">License</div>
+          <div class="info-card-value">Open Source</div>
+          <div class="info-card-sub">Free to use</div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-label">Tags</div>
+          <div class="info-card-value" style="font-size:13px">data-quality, mlops, cleaning</div>
+          <div class="info-card-sub">4 tags total</div>
+        </div>
+      </div>
+
+      <!-- What is {name}? -->
+      <h2 id="what-is">What Is Cleanlab?</h2>
+      <p>
+        <strong>Cleanlab</strong> is an open-source developer framework for building AI applications with
+        8k+ GitHub stars. Data-centric AI library for finding and fixing dataset issues
+      </p>
+      <p>
+        As a developer framework for building AI applications, Cleanlab is designed to help developers and teams
+        
+        build production-ready AI applications with reliable, tested abstractions.
+        It handles the complexity of connecting LLMs to external data and tools,
+        so engineers can focus on business logic instead of plumbing.
+        
+      </p>
+      <p>
+        The project is maintained on GitHub at
+        <a href="https://github.com/cleanlab/cleanlab" target="_blank" rel="noopener">github.com/cleanlab/cleanlab</a>
+        and is actively developed with a strong open-source community.
+        
+        Its 8k+ GitHub stars reflect significant community validation and adoption.
+        
+      </p>
+
+      <!-- Features -->
+      
+      <h2 id="features">Key Features</h2>
+      <ul class="feature-list">
+        
+        <li>
+          <span class="feat-icon">🔓</span>
+          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+        </li>
+        
+      </ul>
+      
+
+      <!-- Use Cases -->
+      <h2 id="use-cases">Use Cases</h2>
+      <p>
+        Cleanlab is used across a wide range of applications in the AI development ecosystem.
+        Here are the most common scenarios where teams choose Cleanlab:
+      </p>
+      
+      <h3>🏗️ LLM Application Development</h3>
+      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
+      
+      <h3>📚 RAG & Knowledge Systems</h3>
+      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      
+      <h3>🤖 Agent Orchestration</h3>
+      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      
+      <h3>🔌 Model Provider Abstraction</h3>
+      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      
+
+      <!-- Getting Started -->
+      <h2 id="getting-started">Getting Started with Cleanlab</h2>
+      <p>
+        To get started with Cleanlab, visit the
+        <a href="https://github.com/cleanlab/cleanlab" target="_blank" rel="noopener">GitHub repository</a>
+        and follow the installation instructions in the README.
+        
+        Most Python frameworks can be installed via pip:
+        <code>pip install cleanlab</code>
+        
+      </p>
+      <div class="alert alert-info">
+        💡 <strong>Tip:</strong> Check the GitHub repository's
+        <a href="https://github.com/cleanlab/cleanlab/issues" target="_blank" rel="noopener">Issues</a> and
+        <a href="https://github.com/cleanlab/cleanlab/discussions" target="_blank" rel="noopener">Discussions</a>
+        pages for community support, and the
+        <a href="https://github.com/cleanlab/cleanlab/releases" target="_blank" rel="noopener">Releases</a>
+        page for the latest stable version.
+      </div>
+
+      <!-- Related Tools -->
+      
+      <h2 id="alternatives">Similar Skill Frameworks</h2>
+      <p>
+        If Cleanlab doesn't fit your needs, here are other popular
+        Skill Frameworks you might consider:
+      </p>
+      <div class="related-grid">
+        
+        <a href="dvc.html" class="related-card">
+          <div class="related-card-name">DVC</div>
+          <div class="related-card-desc">ML experiments and data version control system</div>
+        </a>
+        
+        <a href="mlflow.html" class="related-card">
+          <div class="related-card-name">MLflow</div>
+          <div class="related-card-desc">Platform for ML lifecycle: tracking, registry, deployment</div>
+        </a>
+        
+        <a href="evidently.html" class="related-card">
+          <div class="related-card-name">Evidently</div>
+          <div class="related-card-desc">ML and LLM monitoring and evaluation platform</div>
+        </a>
+        
+        <a href="transformers.html" class="related-card">
+          <div class="related-card-name">Transformers</div>
+          <div class="related-card-desc">State-of-the-art ML models for NLP, vision and audio</div>
+        </a>
+        
+      </div>
+      
+
+      <!-- FAQ -->
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            What languages does Cleanlab support? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Cleanlab primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            Is Cleanlab production-ready? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Yes. Cleanlab is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            How do I install and get started with Cleanlab? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Install via pip: `pip install cleanlab` (Python) or `npm install cleanlab` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">
+            Does Cleanlab work with local LLMs like Ollama? <span class="faq-arr">▼</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
+          </div>
+        </div>
+        
+      </div>
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">GitHub:</span>
+            <a href="https://github.com/cleanlab/cleanlab" target="_blank" rel="noopener" style="color:var(--accent)">
+              cleanlab/cleanlab
+            </a>
+          </div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 8k+</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> Skill Framework</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#what-is">What Is Cleanlab?</a></li>
+          <li><a href="#features">Key Features</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#alternatives">Alternatives</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="sidebar-card">
+        <h4>Related Tools</h4>
+        <ul class="toc-list">
+          
+          <li><a href="dvc.html">DVC</a></li>
+          
+          <li><a href="mlflow.html">MLflow</a></li>
+          
+          <li><a href="evidently.html">Evidently</a></li>
+          
+          <li><a href="transformers.html">Transformers</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <div class="sidebar-card">
+        <h4>Tags</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">
+          
+          <span class="tag-chip">data-quality</span>
+          
+          <span class="tag-chip">mlops</span>
+          
+          <span class="tag-chip">cleaning</span>
+          
+          <span class="tag-chip">open-source</span>
+          
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools, agent frameworks, and skill libraries.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Featured</h4>
+        <ul>
+          <li><a href="cursor.html">Cursor AI</a></li>
+          <li><a href="claude-code.html">Claude Code</a></li>
+          <li><a href="chatgpt.html">ChatGPT</a></li>
+          <li><a href="ollama.html">Ollama</a></li>
+          <li><a href="langchain.html">LangChain</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+</script>
+</body>
+</html>
