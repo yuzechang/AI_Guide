@@ -89,7 +89,7 @@ TAG_FEATURES = {
 # ─── 分类元数据 ──────────────────────────────────────────────────────────────
 CATEGORY_INFO = {
     "ai-tools": {
-        "label": "AI Tool", "icon": "🤖",
+        "label": "AI Tool", "labelCn": "AI 工具", "icon": "🤖",
         "color": "#818cf8", "app_category": "AIApplication",
         "type": "end-user AI application",
         "use_cases": [
@@ -110,7 +110,7 @@ CATEGORY_INFO = {
         ]
     },
     "skill": {
-        "label": "Skill Framework", "icon": "⚙️",
+        "label": "Skill Framework", "labelCn": "技能框架", "icon": "⚙️",
         "color": "#34d399", "app_category": "DeveloperApplication",
         "type": "developer framework for building AI applications",
         "use_cases": [
@@ -131,7 +131,7 @@ CATEGORY_INFO = {
         ]
     },
     "agent": {
-        "label": "AI Agent", "icon": "🚀",
+        "label": "AI Agent", "labelCn": "AI 智能体", "icon": "🚀",
         "color": "#fbbf24", "app_category": "AIApplication",
         "type": "autonomous AI agent system",
         "use_cases": [

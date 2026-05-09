@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -303,6 +303,21 @@
       .salary-amount { font-size: 22px; }
       .panel-body { padding: 12px 14px; }
     }
+    /* Language toggle */
+    .lang-toggle {
+      display: flex; align-items: center; gap: 4px;
+      background: rgba(30,41,59,.6); border: 1px solid var(--border);
+      border-radius: 999px; padding: 3px 6px;
+    }
+    .lang-btn {
+      font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+      color: var(--text-3); cursor: pointer; transition: all .15s;
+      background: transparent; border: none; outline: none;
+    }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+    .lang-btn:not(.active):hover { color: var(--text); }
+    [data-lang="zh"] .en { display: none !important; }
+    [data-lang="en"] .zh { display: none !important; }
   </style>
 </head>
 <body>
@@ -315,7 +330,14 @@
       <span>AI<span class="logo-accent">.</span>Nav</span>
     </a>
     <div class="header-spacer"></div>
-    <a href="index.html" class="nav-home">← 返回目录</a>
+    <a href="index.html" class="nav-home">
+      <span class="zh">← 返回目录</span>
+      <span class="en">← Back</span>
+    </a>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中</button>
+    </div>
     <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
     </a>
@@ -326,32 +348,35 @@
 <div id="setup-panel" class="setup-outer" style="display:none">
   <div class="setup-card">
     <div class="setup-header">
-      <h1>🐟 摸鱼办配置</h1>
-      <p>填写基本信息，开启你的专属摸鱼面板</p>
+      <h1>🐟 <span class="zh">摸鱼办配置</span><span class="en">Slack-O-Meter Setup</span></h1>
+      <p>
+        <span class="zh">填写基本信息，开启你的专属摸鱼面板</span>
+        <span class="en">Fill in your details to unlock your personal slacking dashboard</span>
+      </p>
     </div>
     <div class="setup-tabs">
-      <button class="setup-tab active" onclick="switchSetupTab(0)">📋 基本信息</button>
-      <button class="setup-tab" onclick="switchSetupTab(1)">🗓 纪念日</button>
+      <button class="setup-tab active" onclick="switchSetupTab(0)">📋 <span class="zh">基本信息</span><span class="en">Basic Info</span></button>
+      <button class="setup-tab" onclick="switchSetupTab(1)">🗓 <span class="zh">纪念日</span><span class="en">Anniversaries</span></button>
     </div>
     <div class="setup-body">
       <!-- Tab 0: 基本信息 -->
       <div class="setup-tab-panel active" id="setup-tab-0">
         <div class="form-group">
-          <label class="form-label">性别</label>
+          <label class="form-label"><span class="zh">性别</span><span class="en">Gender</span></label>
           <div class="chip-group" id="gender-chips">
-            <button class="chip" data-val="male" onclick="selectGender('male')">👴 男</button>
-            <button class="chip" data-val="female" onclick="selectGender('female')">👵 女</button>
+            <button class="chip" data-val="male" onclick="selectGender('male')">👴 <span class="zh">男</span><span class="en">Male</span></button>
+            <button class="chip" data-val="female" onclick="selectGender('female')">👵 <span class="zh">女</span><span class="en">Female</span></button>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">出生年份</label>
+            <label class="form-label"><span class="zh">出生年份</span><span class="en">Birth Year</span></label>
             <select id="birth-year" onchange="updateConfirmBtn()">
               <option value="">请选择</option>
             </select>
           </div>
           <div class="form-group">
-            <label class="form-label">出生月份</label>
+            <label class="form-label"><span class="zh">出生月份</span><span class="en">Birth Month</span></label>
             <select id="birth-month" onchange="updateConfirmBtn()">
               <option value="">请选择</option>
               <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
@@ -362,12 +387,12 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">发薪日（每月几号）</label>
+          <label class="form-label"><span class="zh">发薪日（每月几号）</span><span class="en">Payday (day of month)</span></label>
           <div class="chip-group" id="payday-chips"></div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">上班时间</label>
+            <label class="form-label"><span class="zh">上班时间</span><span class="en">Work Start</span></label>
             <div class="time-row">
               <select id="work-start-h"></select>
               <span class="time-sep">:</span>
@@ -375,7 +400,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">下班时间</label>
+            <label class="form-label"><span class="zh">下班时间</span><span class="en">Work End</span></label>
             <div class="time-row">
               <select id="work-end-h"></select>
               <span class="time-sep">:</span>
@@ -385,11 +410,11 @@
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">月薪（元，可选）</label>
+            <label class="form-label"><span class="zh">月薪（元，可选）</span><span class="en">Monthly Salary (optional)</span></label>
             <input type="number" id="salary-input" placeholder="0" min="0">
           </div>
           <div class="form-group">
-            <label class="form-label">每月工作天数</label>
+            <label class="form-label"><span class="zh">每月工作天数</span><span class="en">Work Days/Month</span></label>
             <input type="number" id="workdays-input" placeholder="22" min="1" max="31" value="22">
           </div>
         </div>
@@ -398,20 +423,20 @@
       <div class="setup-tab-panel" id="setup-tab-1">
         <div class="anni-list" id="anni-list-setup"></div>
         <div class="anni-add-form">
-          <h4>+ 添加纪念日（最多10个）</h4>
-          <div class="form-label" style="margin-bottom:5px">选择图标</div>
+          <h4>+ <span class="zh">添加纪念日（最多10个）</span><span class="en">Add Anniversary (max 10)</span></h4>
+          <div class="form-label" style="margin-bottom:5px"><span class="zh">选择图标</span><span class="en">Choose Icon</span></div>
           <div class="emoji-row" id="emoji-picker"></div>
-          <div class="form-label" style="margin-bottom:5px">选择颜色</div>
+          <div class="form-label" style="margin-bottom:5px"><span class="zh">选择颜色</span><span class="en">Choose Color</span></div>
           <div class="color-row" id="color-picker"></div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">名称</label>
-              <input type="text" id="anni-name" placeholder="如：结婚纪念日" maxlength="10">
+              <label class="form-label"><span class="zh">名称</span><span class="en">Name</span></label>
+              <input type="text" id="anni-name" placeholder="e.g. Wedding" maxlength="10">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">月份</label>
+              <label class="form-label"><span class="zh">月份</span><span class="en">Month</span></label>
               <select id="anni-month">
                 <option value="">月</option>
                 <option value="1">1月</option><option value="2">2月</option><option value="3">3月</option>
@@ -421,23 +446,23 @@
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">日期</label>
+              <label class="form-label"><span class="zh">日期</span><span class="en">Day</span></label>
               <select id="anni-day">
                 <option value="">日</option>
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">起始年（可选）</label>
+              <label class="form-label"><span class="zh">起始年（可选）</span><span class="en">Start Year (opt.)</span></label>
               <input type="number" id="anni-year" placeholder="如：2020" min="1900" max="2030">
             </div>
           </div>
-          <button class="btn-add-anni" onclick="addAnniversary()">添加纪念日</button>
+          <button class="btn-add-anni" onclick="addAnniversary()"><span class="zh">添加纪念日</span><span class="en">Add Anniversary</span></button>
         </div>
       </div>
       <!-- Footer buttons -->
       <div class="setup-footer">
-        <button class="btn-cancel" id="cancel-btn" onclick="cancelSetup()">← 返回</button>
-        <button class="btn-confirm" id="confirm-btn" onclick="confirmSetup()" disabled>完成设置，开始摸鱼 🐟</button>
+        <button class="btn-cancel" id="cancel-btn" onclick="cancelSetup()"><span class="zh">← 返回</span><span class="en">← Back</span></button>
+        <button class="btn-confirm" id="confirm-btn" onclick="confirmSetup()" disabled><span class="zh">完成设置，开始摸鱼 🐟</span><span class="en">Save &amp; Start Slacking 🐟</span></button>
       </div>
     </div>
   </div>
@@ -447,8 +472,8 @@
 <div id="main-panel" class="main-wrap" style="display:none">
   <div class="main-card">
     <div class="topbar">
-      <span class="topbar-title">🐟 摸鱼办</span>
-      <button class="topbar-btn" onclick="openSettings()">⚙️ 设置</button>
+      <span class="topbar-title">🐟 <span class="zh">摸鱼办</span><span class="en">Slack-O-Meter</span></span>
+      <button class="topbar-btn" onclick="openSettings()">⚙️ <span class="zh">设置</span><span class="en">Settings</span></button>
     </div>
     <div class="date-banner">
       <div class="date-main" id="date-main-text"></div>
@@ -463,7 +488,7 @@
           <p id="greeting-s"></p>
           <div class="moyu-tip" id="moyu-tip"></div>
           <div class="stars-row">
-            <span>摸鱼指数：</span>
+            <span><span class="zh">摸鱼指数：</span><span class="en">Slack Index:</span></span>
             <span class="stars" id="moyu-stars"></span>
           </div>
         </div>
@@ -472,24 +497,24 @@
       <div id="salary-section"></div>
       <!-- Holidays -->
       <div class="section">
-        <div class="section-title">🎉 节日倒计时</div>
+        <div class="section-title">🎉 <span class="zh">节日倒计时</span><span class="en">Holiday Countdown</span></div>
         <div class="card-grid" id="holiday-grid"></div>
       </div>
       <!-- Anniversaries -->
       <div id="anniversary-section"></div>
       <!-- Progress -->
       <div class="section">
-        <div class="section-title">📅 打工进度</div>
+        <div class="section-title">📅 <span class="zh">打工进度</span><span class="en">Work Progress</span></div>
         <div id="progress-bars"></div>
       </div>
       <!-- Personal -->
       <div class="section">
-        <div class="section-title">⏰ 我的倒计时</div>
+        <div class="section-title">⏰ <span class="zh">我的倒计时</span><span class="en">My Countdowns</span></div>
         <div class="card-grid-3" id="personal-grid"></div>
       </div>
       <!-- English -->
       <div class="section">
-        <div class="section-title">🌍 每日一句</div>
+        <div class="section-title">🌍 <span class="zh">每日一句</span><span class="en">Quote of the Day</span></div>
         <div class="english-card">
           <div class="english-en" id="english-en"></div>
           <div class="english-zh" id="english-zh"></div>
@@ -512,23 +537,23 @@ const STORAGE_KEY = 'moyu_v1'
 const ANNIVERSARY_KEY = 'moyu_anniversaries'
 
 const HOLIDAYS = [
-  { name:'周末',    emoji:'🏖️', color:'#F59E0B', tag:'法定', fn:(t)=>{ const d=t.getDay(); return d===0?0:d===6?0:6-d } },
-  { name:'情人节',  emoji:'💕', color:'#EC4899', tag:'趣味', dates:[new Date(2026,1,14),new Date(2027,1,14),new Date(2028,1,14)] },
-  { name:'妇女节',  emoji:'🌸', color:'#EC4899', tag:'节日', dates:[new Date(2026,2,8),new Date(2027,2,8),new Date(2028,2,8)] },
-  { name:'清明节',  emoji:'🌿', color:'#16A34A', tag:'法定', dates:[new Date(2025,3,4),new Date(2026,3,5),new Date(2027,3,5)] },
-  { name:'劳动节',  emoji:'🔨', color:'#D97706', tag:'法定', dates:[new Date(2025,4,1),new Date(2026,4,1),new Date(2027,4,1)] },
-  { name:'母亲节',  emoji:'🌷', color:'#EC4899', tag:'节日', dates:[new Date(2025,4,11),new Date(2026,4,10),new Date(2027,4,9)] },
-  { name:'端午节',  emoji:'🍃', color:'#16A34A', tag:'法定', dates:[new Date(2025,4,31),new Date(2026,5,19),new Date(2027,5,8)] },
-  { name:'父亲节',  emoji:'👨', color:'#2563EB', tag:'节日', dates:[new Date(2025,5,15),new Date(2026,5,21),new Date(2027,5,20)] },
-  { name:'七夕节',  emoji:'🌠', color:'#8B5CF6', tag:'节日', dates:[new Date(2025,7,29),new Date(2026,7,25),new Date(2027,7,14)] },
-  { name:'中秋节',  emoji:'🌙', color:'#8B5CF6', tag:'法定', dates:[new Date(2025,9,6),new Date(2026,8,25),new Date(2027,9,14)] },
-  { name:'国庆节',  emoji:'🚩', color:'#EF4444', tag:'法定', dates:[new Date(2025,9,1),new Date(2026,9,1),new Date(2027,9,1)] },
-  { name:'重阳节',  emoji:'🍁', color:'#D97706', tag:'节日', dates:[new Date(2025,9,29),new Date(2026,9,20),new Date(2027,10,8)] },
-  { name:'双十一',  emoji:'🛒', color:'#EF4444', tag:'趣味', dates:[new Date(2025,10,11),new Date(2026,10,11),new Date(2027,10,11)] },
-  { name:'圣诞节',  emoji:'🎄', color:'#EF4444', tag:'趣味', dates:[new Date(2025,11,25),new Date(2026,11,25),new Date(2027,11,25)] },
-  { name:'元旦',    emoji:'🎊', color:'#EF4444', tag:'法定', dates:[new Date(2026,0,1),new Date(2027,0,1),new Date(2028,0,1)] },
-  { name:'小年',    emoji:'🏮', color:'#EF4444', tag:'节日', dates:[new Date(2026,0,28),new Date(2027,0,30),new Date(2028,1,18)] },
-  { name:'春节',    emoji:'🧧', color:'#EF4444', tag:'法定', dates:[new Date(2026,1,17),new Date(2027,1,6),new Date(2028,1,26)] },
+  { name:'周末',    nameEn:'Weekend',           emoji:'🏖️', color:'#F59E0B', tag:'法定', tagEn:'Official', fn:(t)=>{ const d=t.getDay(); return d===0?0:d===6?0:6-d } },
+  { name:'情人节',  nameEn:"Valentine's Day",   emoji:'💕', color:'#EC4899', tag:'趣味', tagEn:'Fun',      dates:[new Date(2026,1,14),new Date(2027,1,14),new Date(2028,1,14)] },
+  { name:'妇女节',  nameEn:"Women's Day",       emoji:'🌸', color:'#EC4899', tag:'节日', tagEn:'Festival', dates:[new Date(2026,2,8),new Date(2027,2,8),new Date(2028,2,8)] },
+  { name:'清明节',  nameEn:'Qingming',          emoji:'🌿', color:'#16A34A', tag:'法定', tagEn:'Official', dates:[new Date(2025,3,4),new Date(2026,3,5),new Date(2027,3,5)] },
+  { name:'劳动节',  nameEn:'Labor Day',         emoji:'🔨', color:'#D97706', tag:'法定', tagEn:'Official', dates:[new Date(2025,4,1),new Date(2026,4,1),new Date(2027,4,1)] },
+  { name:'母亲节',  nameEn:"Mother's Day",      emoji:'🌷', color:'#EC4899', tag:'节日', tagEn:'Festival', dates:[new Date(2025,4,11),new Date(2026,4,10),new Date(2027,4,9)] },
+  { name:'端午节',  nameEn:'Dragon Boat',       emoji:'🍃', color:'#16A34A', tag:'法定', tagEn:'Official', dates:[new Date(2025,4,31),new Date(2026,5,19),new Date(2027,5,8)] },
+  { name:'父亲节',  nameEn:"Father's Day",      emoji:'👨', color:'#2563EB', tag:'节日', tagEn:'Festival', dates:[new Date(2025,5,15),new Date(2026,5,21),new Date(2027,5,20)] },
+  { name:'七夕节',  nameEn:'Qixi Festival',     emoji:'🌠', color:'#8B5CF6', tag:'节日', tagEn:'Festival', dates:[new Date(2025,7,29),new Date(2026,7,25),new Date(2027,7,14)] },
+  { name:'中秋节',  nameEn:'Mid-Autumn',        emoji:'🌙', color:'#8B5CF6', tag:'法定', tagEn:'Official', dates:[new Date(2025,9,6),new Date(2026,8,25),new Date(2027,9,14)] },
+  { name:'国庆节',  nameEn:'National Day',      emoji:'🚩', color:'#EF4444', tag:'法定', tagEn:'Official', dates:[new Date(2025,9,1),new Date(2026,9,1),new Date(2027,9,1)] },
+  { name:'重阳节',  nameEn:'Double Ninth',      emoji:'🍁', color:'#D97706', tag:'节日', tagEn:'Festival', dates:[new Date(2025,9,29),new Date(2026,9,20),new Date(2027,10,8)] },
+  { name:'双十一',  nameEn:"Singles' Day",      emoji:'🛒', color:'#EF4444', tag:'趣味', tagEn:'Fun',      dates:[new Date(2025,10,11),new Date(2026,10,11),new Date(2027,10,11)] },
+  { name:'圣诞节',  nameEn:'Christmas',         emoji:'🎄', color:'#EF4444', tag:'趣味', tagEn:'Fun',      dates:[new Date(2025,11,25),new Date(2026,11,25),new Date(2027,11,25)] },
+  { name:'元旦',    nameEn:"New Year's Day",    emoji:'🎊', color:'#EF4444', tag:'法定', tagEn:'Official', dates:[new Date(2026,0,1),new Date(2027,0,1),new Date(2028,0,1)] },
+  { name:'小年',    nameEn:'Little New Year',   emoji:'🏮', color:'#EF4444', tag:'节日', tagEn:'Festival', dates:[new Date(2026,0,28),new Date(2027,0,30),new Date(2028,1,18)] },
+  { name:'春节',    nameEn:'Spring Festival',   emoji:'🧧', color:'#EF4444', tag:'法定', tagEn:'Official', dates:[new Date(2026,1,17),new Date(2027,1,6),new Date(2028,1,26)] },
 ]
 
 const GREETINGS = [
@@ -540,6 +565,50 @@ const GREETINGS = [
   { r:[17,19], h:'快下班啦！',             s:'今天也辛苦了，准备收工！' },
   { r:[19,22], h:'晚上好！',               s:'下班了还在看？卷王本王~' },
   { r:[22,24], h:'夜深了，早点休息~',    s:'明天还要摸鱼，要保持体力！' },
+]
+
+const GREETINGS_EN = [
+  { r:[0,5],   h:'Night owl, get some rest!',     s:'Late-night slackers are the true warriors 💪' },
+  { r:[5,9],   h:'Good morning, worker~',          s:'New day, keep up the slacking spirit!' },
+  { r:[9,11],  h:'Good morning everyone!',         s:'One step closer to lunch~' },
+  { r:[11,14], h:"It's noon — have you eaten?",    s:"Lunch is the worker's greatest motivation!" },
+  { r:[14,17], h:'Good afternoon everyone!',       s:"Survive the afternoon and you're free~" },
+  { r:[17,19], h:'Almost time to go home!',        s:'Good work today, time to wrap up!' },
+  { r:[19,22], h:'Good evening!',                  s:'Still working after hours? Total overachiever~' },
+  { r:[22,24], h:"Late night, get some sleep~",    s:"You need energy for tomorrow's slacking!" },
+]
+
+const MOYU_TIPS_EN = [
+  'Head to the break room for tea — and chat about the universe',
+  'Visit the restroom. No rush. Wander slowly.',
+  'Organize your desktop folders, name every file deliberately',
+  'Stare at your monitor for 5 minutes and contemplate life',
+  'Open a complex spreadsheet and pretend to analyze data',
+  'Guard the printer room, chat with everyone who passes by',
+  'Browse internal documentation, one page at a time',
+  "Walk over to a neighbor's desk, end up talking for half an hour",
+  'Pretend to search work docs, actually browsing food guides',
+  'Open the meeting app, pretend to prep for next week\'s slides',
+  'Slowly drink a full glass of water — the slower the better',
+  'Step to the window and pretend you\'re on an important call',
+  'Organize your desk supplies by color and height',
+  'Pretend to take notes, actually practicing your handwriting',
+  'Keep the work doc open while mentally planning your weekend',
+  'Go get snacks and share with coworkers — social slacking wins twice',
+  'Count days to the weekend on the calendar, sigh dramatically',
+  'Wipe your desk clean — most satisfying task of the day',
+  'Message an old friend to say hi — maintaining bonds counts',
+  'Check recent news to stay connected with the world',
+  'Plan your next trip, browse travel guides while you\'re at it',
+  'Look up what movies are showing, do your research early',
+  'Send a message to family checking in — being caring counts',
+  'Research where to eat lunch nearby — a critical decision',
+  'Pretend your computer crashed, use it to rest 5 minutes',
+  'Write up last month\'s work summary — the slower the better',
+  'Open a music app and curate a playlist for the afternoon',
+  'Browse your saved items and compare prices',
+  'Calculate how many days you\'ve worked this year, feel proud',
+  'Research a new slacking method — thinking creatively is a skill',
 ]
 
 const MOYU_TIPS = [
@@ -573,6 +642,39 @@ const MOYU_TIPS = [
   '翻翻收藏夹，比较比较价格',
   '计算今年已经工作了多少天，感动自己',
   '研究一个新的摸鱼方法，举一反三才是高手',
+]
+
+const WORKER_QUOTES_EN = [
+  'Workers of the world, you are legends.',
+  "Today's slacking is tomorrow's fuel.",
+  'The greatest happiness: leave on time, no overtime.',
+  'Not lazy — just conserving energy (until payday).',
+  "Life's essence: spending time waiting for the weekend.",
+  'May your every coffee get you through the morning.',
+  "As long as I keep slacking, the boss can never catch me.",
+  'Hair grows back; joy, once gone, is gone.',
+  'Office survival rule: looking busy beats actual slacking.',
+  'Life is short — good tea, good food, good slacking.',
+  'Dreams are lofty; reality is tough; payday is brief.',
+  'Decent pay makes every workday a joy.',
+  'Slack once, feel great; always slack, feel even better.',
+  "Today I'm a happy worker — just not sure where the happy went.",
+  'Work makes you happy; not working makes you happier.',
+  "Every evening after work is life's most beautiful moment.",
+  'The three great worker lies: soon, got it, I\'m busy.',
+  'Good pay, easy work, close to home, sleep till you wake.',
+  'May we all one day achieve financial freedom and quit the grind.',
+  "Today's work can wait till tomorrow; tomorrow's joy can't wait.",
+  'In life, earn money or be happy — ideally both.',
+  "I look busy, but honestly I don't know what I'm doing.",
+  'Overtime drains your life force; slacking extends it.',
+  'Hard work is addictive, but let me slack a little first.',
+  'Boss thinks you\'re working hard; you think you\'re slacking. Truth is in between.',
+  'First task of the day: show green online status, then slack.',
+  'Monday syndrome has no cure — only Friday can fix it.',
+  'Young people need dreams, like leaving work on time tonight.',
+  "I'm not slacking; I'm optimizing the work experience.",
+  'Wishing all workers early financial freedom and unlimited slacking!',
 ]
 
 const WORKER_QUOTES = [
@@ -714,7 +816,8 @@ const DAILY_ENGLISH = [
 
 const PRESET_EMOJIS = ['💍','🎂','🏠','✈️','🎓','💑','👶','🐶','🌺','🎁','🍾','🌟','🎵','🏋️','🌏','💪','🎯','🌈','☀️','🦋']
 const PRESET_COLORS = ['#EC4899','#EF4444','#F97316','#F5B820','#22C55E','#3B82F6','#8B5CF6','#6B7280']
-const WEEKDAYS = ['周日','周一','周二','周三','周四','周五','周六']
+const WEEKDAYS    = ['周日','周一','周二','周三','周四','周五','周六']
+const WEEKDAYS_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 // ══════════════════════════════════════════
 // CALCULATION FUNCTIONS
@@ -849,7 +952,7 @@ function saveLocalAnniversaries(list) { localStorage.setItem(ANNIVERSARY_KEY, JS
 function initSetupForm() {
   const bySelect = document.getElementById('birth-year')
   for (let y = 2005; y >= 1945; y--) {
-    const o = document.createElement('option'); o.value = y; o.textContent = y + '年'
+    const o = document.createElement('option'); o.value = y; o.textContent = y
     bySelect.appendChild(o)
   }
   const paydayChips = document.getElementById('payday-chips')
@@ -864,10 +967,10 @@ function initSetupForm() {
   const startM = document.getElementById('work-start-m')
   const endM   = document.getElementById('work-end-m')
   for (let h = 0; h <= 23; h++) {
-    ;[startH, endH].forEach(sel => { const o = document.createElement('option'); o.value = h; o.textContent = h + '时'; sel.appendChild(o) })
+    ;[startH, endH].forEach(sel => { const o = document.createElement('option'); o.value = h; o.textContent = h + ':00'; sel.appendChild(o) })
   }
   for (let m = 0; m <= 55; m += 5) {
-    ;[startM, endM].forEach(sel => { const o = document.createElement('option'); o.value = m; o.textContent = String(m).padStart(2,'0') + '分'; sel.appendChild(o) })
+    ;[startM, endM].forEach(sel => { const o = document.createElement('option'); o.value = m; o.textContent = ':' + String(m).padStart(2,'0'); sel.appendChild(o) })
   }
   startH.value = 9; startM.value = 0; endH.value = 18; endM.value = 0
 
@@ -936,7 +1039,7 @@ function switchSetupTab(idx) {
 function renderAnniListSetup() {
   const list = document.getElementById('anni-list-setup')
   if (anniversaries.length === 0) {
-    list.innerHTML = '<p style="font-size:12px;color:#B45309;margin-bottom:10px">暂无纪念日，在下方添加~</p>'
+    list.innerHTML = `<p style="font-size:12px;color:#B45309;margin-bottom:10px"><span class="zh">暂无纪念日，在下方添加~</span><span class="en">No anniversaries yet. Add one below~</span></p>`
     return
   }
   list.innerHTML = anniversaries.map((a, idx) => `
@@ -944,9 +1047,10 @@ function renderAnniListSetup() {
       <span class="anni-emoji">${a.emoji}</span>
       <div class="anni-info">
         <div class="anni-name">${a.name}</div>
-        <div class="anni-date">${a.month}月${a.day}日${a.start_year ? ' · 起始'+a.start_year+'年' : ''}</div>
+        <div class="anni-date zh">${a.month}月${a.day}日${a.start_year ? ' · 起始'+a.start_year+'年' : ''}</div>
+        <div class="anni-date en">${getMonthName(a.month)} ${a.day}${a.start_year ? ' · since '+a.start_year : ''}</div>
       </div>
-      <button class="anni-del" onclick="deleteAnniversary(${idx})">删除</button>
+      <button class="anni-del" onclick="deleteAnniversary(${idx})"><span class="zh">删除</span><span class="en">Del</span></button>
     </div>
   `).join('')
 }
@@ -1023,14 +1127,25 @@ function renderPanel() {
 
   // Date banner
   const y = now.getFullYear(), mo = now.getMonth()+1, d = now.getDate()
-  document.getElementById('date-main-text').textContent = `${y}年${mo}月${d}日 ${WEEKDAYS[now.getDay()]}`
-  document.getElementById('date-sub-text').textContent  = `第 ${getWeekNumber(now)} 周`
+  const zh = isZh()
+  if (zh) {
+    document.getElementById('date-main-text').textContent = `${y}年${mo}月${d}日 ${WEEKDAYS[now.getDay()]}`
+    document.getElementById('date-sub-text').textContent  = `第 ${getWeekNumber(now)} 周`
+  } else {
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    document.getElementById('date-main-text').textContent = `${monthNames[now.getMonth()]} ${d}, ${y} (${WEEKDAYS_EN[now.getDay()]})`
+    document.getElementById('date-sub-text').textContent  = `Week ${getWeekNumber(now)}`
+  }
 
   // Greeting
-  const g = getGreeting(hour)
+  const gArr = zh ? GREETINGS : GREETINGS_EN
+  const g = gArr.find(x => hour >= x.r[0] && hour < x.r[1]) || gArr[1]
   document.getElementById('greeting-h').textContent = g.h
   document.getElementById('greeting-s').textContent = g.s
-  document.getElementById('moyu-tip').innerHTML = `💡 今日建议：${MOYU_TIPS[getDayOfYear(now) % MOYU_TIPS.length]}`
+  const tipArr = zh ? MOYU_TIPS : MOYU_TIPS_EN
+  document.getElementById('moyu-tip').innerHTML = zh
+    ? `💡 今日建议：${tipArr[getDayOfYear(now) % tipArr.length]}`
+    : `💡 Today's tip: ${tipArr[getDayOfYear(now) % tipArr.length]}`
 
   // Moyu index
   const idx = getMoyuIndex(now)
@@ -1045,25 +1160,25 @@ function renderPanel() {
     const dow = now.getDay()
     let html = '<div class="salary-card">'
     if (dow === 0 || dow === 6) {
-      html += `<div class="salary-label">💰 今日可摸鱼薪资</div>
+      html += `<div class="salary-label">💰 ${zh ? '今日可摸鱼薪资' : "Today's Day Off Pay"}</div>
                <div class="salary-amount">¥${(settings.salary/settings.workDays).toFixed(2)}</div>
-               <div class="salary-sub">今天休息，尽情享受~</div>`
+               <div class="salary-sub">${zh ? '今天休息，尽情享受~' : "Rest day — enjoy it!"}</div>`
     } else if (wp.status === 'before') {
       const h2 = Math.floor(wp.toStart/3600), m2 = Math.floor((wp.toStart%3600)/60)
-      html += `<div class="salary-label">💰 今日待收</div>
+      html += `<div class="salary-label">💰 ${zh ? '今日待收' : "Today's Expected Pay"}</div>
                <div class="salary-amount">¥${(settings.salary/settings.workDays).toFixed(2)}</div>
-               <div class="salary-sub">${h2}小时${m2}分后开始计薪</div>`
+               <div class="salary-sub">${zh ? `${h2}小时${m2}分后开始计薪` : `Starts in ${h2}h ${m2}m`}</div>`
     } else if (wp.status === 'after') {
-      html += `<div class="salary-label">✅ 今日已赚</div>
+      html += `<div class="salary-label">✅ ${zh ? '今日已赚' : "Today's Earned"}</div>
                <div class="salary-amount">¥${(settings.salary/settings.workDays).toFixed(2)}</div>
-               <div class="salary-sub">薪资已全部到账，辛苦了！🎉</div>`
+               <div class="salary-sub">${zh ? '薪资已全部到账，辛苦了！🎉' : 'Full day earned. Great work! 🎉'}</div>`
     } else {
       const earned = wp.elapsed * perSec
       const rH = Math.floor(wp.remaining/3600), rM = Math.floor((wp.remaining%3600)/60), rS = wp.remaining%60
-      html += `<div class="salary-label">⏱ 今日实时薪资</div>
+      html += `<div class="salary-label">⏱ ${zh ? '今日实时薪资' : 'Live Earnings Today'}</div>
                <div class="salary-amount">¥${earned.toFixed(4)}</div>
                <div class="salary-progress"><div class="salary-progress-bar" style="width:${wp.pct}%"></div></div>
-               <div class="salary-sub">已工作 ${wp.pct}% · 还有 ${rH}时${rM}分${rS}秒下班</div>`
+               <div class="salary-sub">${zh ? `已工作 ${wp.pct}% · 还有 ${rH}时${rM}分${rS}秒下班` : `${wp.pct}% done · ${rH}h ${rM}m ${rS}s until home`}</div>`
     }
     html += '</div>'
     salaryEl.innerHTML = html
@@ -1076,8 +1191,8 @@ function renderPanel() {
     <div class="hol-card">
       <div class="hol-emoji">${h.emoji}</div>
       <div class="hol-days" style="color:${h.color}">${h.days}</div>
-      <div class="hol-name">${h.name}</div>
-      <div class="hol-tag">${h.tag}</div>
+      <div class="hol-name">${zh ? h.name : (h.nameEn || h.name)}</div>
+      <div class="hol-tag">${zh ? h.tag : (h.tagEn || h.tag)}</div>
     </div>
   `).join('')
 
@@ -1087,13 +1202,13 @@ function renderPanel() {
     const acs = getAnniversaryCountdowns(anniversaries, today)
     anniSec.innerHTML = `
       <div class="section">
-        <div class="section-title">🗓 纪念日</div>
+        <div class="section-title">🗓 ${zh ? '纪念日' : 'Anniversaries'}</div>
         <div class="card-grid">
           ${acs.map(a => `
             <div class="anni-card ${a.isToday ? 'anni-card-today' : ''}">
               <div class="anni-card-emoji">${a.emoji}</div>
               <div class="anni-card-days" style="color:${a.color}">${a.isToday ? '🎉' : a.days}</div>
-              <div class="anni-card-name">${a.name}${a.yearCount ? '<br><small style="font-size:8px">第'+a.yearCount+'年</small>' : ''}</div>
+              <div class="anni-card-name">${a.name}${a.yearCount ? `<br><small style="font-size:8px">${zh ? '第'+a.yearCount+'年' : 'Yr '+a.yearCount}</small>` : ''}</div>
             </div>
           `).join('')}
         </div>
@@ -1105,14 +1220,14 @@ function renderPanel() {
   // Progress bars
   const prog = getProgress(today)
   document.getElementById('progress-bars').innerHTML = [
-    { label:'本周进度', icon:'📅', ...prog.week },
-    { label:'本月进度', icon:'🗓', ...prog.month },
-    { label:'今年进度', icon:'📆', ...prog.year },
+    { labelZh:'本周进度', labelEn:'This Week', icon:'📅', ...prog.week },
+    { labelZh:'本月进度', labelEn:'This Month', icon:'🗓', ...prog.month },
+    { labelZh:'今年进度', labelEn:'This Year', icon:'📆', ...prog.year },
   ].map(p => `
     <div class="progress-item">
       <div class="progress-label">
-        <span>${p.icon} ${p.label}</span>
-        <span>${p.past}/${p.total} 天 · ${p.pct}%</span>
+        <span>${p.icon} ${zh ? p.labelZh : p.labelEn}</span>
+        <span>${p.past}/${p.total} ${zh ? '天' : 'd'} · ${p.pct}%</span>
       </div>
       <div class="progress-bar"><div class="progress-fill" style="width:${p.pct}%"></div></div>
     </div>
@@ -1128,34 +1243,37 @@ function renderPanel() {
 
     let workCard
     if (dow === 0 || dow === 6) {
-      workCard = `<div class="pers-card"><div class="pers-emoji">🏖️</div><div class="pers-num" style="font-size:16px">休息</div><div class="pers-unit">中</div><div class="pers-label">今日不上班</div></div>`
+      workCard = `<div class="pers-card"><div class="pers-emoji">🏖️</div><div class="pers-num" style="font-size:16px">${zh ? '休息' : 'Off'}</div><div class="pers-unit">${zh ? '中' : ''}</div><div class="pers-label">${zh ? '今日不上班' : 'No work today'}</div></div>`
     } else if (wp2.status === 'after') {
-      workCard = `<div class="pers-card"><div class="pers-emoji">✅</div><div class="pers-num" style="font-size:16px">已下班</div><div class="pers-unit"></div><div class="pers-label">好好休息~</div></div>`
+      workCard = `<div class="pers-card"><div class="pers-emoji">✅</div><div class="pers-num" style="font-size:16px">${zh ? '已下班' : 'Done!'}</div><div class="pers-unit"></div><div class="pers-label">${zh ? '好好休息~' : 'Rest well~'}</div></div>`
     } else if (wp2.status === 'before') {
       const sh = settings.workStartHour, sm = String(settings.workStartMin).padStart(2,'0')
-      workCard = `<div class="pers-card"><div class="pers-emoji">🌅</div><div class="pers-num" style="font-size:16px">${sh}:${sm}</div><div class="pers-unit">上班</div><div class="pers-label">未开始</div></div>`
+      workCard = `<div class="pers-card"><div class="pers-emoji">🌅</div><div class="pers-num" style="font-size:16px">${sh}:${sm}</div><div class="pers-unit">${zh ? '上班' : 'start'}</div><div class="pers-label">${zh ? '未开始' : 'Not yet'}</div></div>`
     } else {
       const rH = Math.floor(wp2.remaining/3600), rM = Math.floor((wp2.remaining%3600)/60)
-      workCard = `<div class="pers-card"><div class="pers-emoji">⏰</div><div class="pers-num">${rH}<span style="font-size:13px">h</span>${rM}<span style="font-size:13px">m</span></div><div class="pers-unit">距下班</div><div class="pers-label">加油坚持！</div></div>`
+      workCard = `<div class="pers-card"><div class="pers-emoji">⏰</div><div class="pers-num">${rH}<span style="font-size:13px">h</span>${rM}<span style="font-size:13px">m</span></div><div class="pers-unit">${zh ? '距下班' : 'to home'}</div><div class="pers-label">${zh ? '加油坚持！' : 'Keep going!'}</div></div>`
     }
 
     const retireNumStr = retireDays > 9999
-      ? `${Math.floor(retireDays/365)}<span style="font-size:13px">年</span>`
+      ? `${Math.floor(retireDays/365)}<span style="font-size:13px">${zh ? '年' : 'yr'}</span>`
       : `${retireDays}`
-    const retireUnit = retireDays > 9999 ? '' : '天'
+    const retireUnit = retireDays > 9999 ? '' : (zh ? '天' : 'd')
+    const retireAgeLabel = zh
+      ? `${retire.ageYears}岁${retire.ageMonths ? retire.ageMonths+'月' : ''}`
+      : `age ${retire.ageYears}${retire.ageMonths ? '.'+retire.ageMonths : ''}`
 
     document.getElementById('personal-grid').innerHTML = `
       <div class="pers-card">
         <div class="pers-emoji">💰</div>
         <div class="pers-num">${paydayDays}</div>
-        <div class="pers-unit">天</div>
-        <div class="pers-label">距发薪日</div>
+        <div class="pers-unit">${zh ? '天' : 'd'}</div>
+        <div class="pers-label">${zh ? '距发薪日' : 'to Payday'}</div>
       </div>
       <div class="pers-card">
         <div class="pers-emoji">${settings.gender === 'male' ? '👴' : '👵'}</div>
         <div class="pers-num">${retireNumStr}</div>
         <div class="pers-unit">${retireUnit}</div>
-        <div class="pers-label">距退休<br><small style="font-size:10px">${retire.ageYears}岁${retire.ageMonths ? retire.ageMonths+'月' : ''}</small></div>
+        <div class="pers-label">${zh ? '距退休' : 'to Retire'}<br><small style="font-size:10px">${retireAgeLabel}</small></div>
       </div>
       ${workCard}
     `
@@ -1165,9 +1283,11 @@ function renderPanel() {
   const eng = DAILY_ENGLISH[getDayOfYear(now) % DAILY_ENGLISH.length]
   document.getElementById('english-en').textContent = `"${eng.en}"`
   document.getElementById('english-zh').textContent = eng.zh
+  document.getElementById('english-zh').style.display = zh ? '' : 'none'
 
   // Worker quote
-  document.getElementById('worker-quote').textContent = WORKER_QUOTES[(getDayOfYear(now) + 7) % WORKER_QUOTES.length]
+  const quoteArr = zh ? WORKER_QUOTES : WORKER_QUOTES_EN
+  document.getElementById('worker-quote').textContent = quoteArr[(getDayOfYear(now) + 7) % quoteArr.length]
 }
 
 // ══════════════════════════════════════════
@@ -1199,10 +1319,37 @@ function showMainPanel() {
 }
 
 // ══════════════════════════════════════════
+// LANGUAGE
+// ══════════════════════════════════════════
+function isZh() { return document.documentElement.getAttribute('data-lang') !== 'en' }
+
+function getMonthName(m) {
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1]
+}
+
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang)
+  localStorage.setItem('ai-nav-lang', lang)
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh')
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en')
+  if (settings) renderPanel()
+}
+
+// ══════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════
 settings      = loadMoyuSettings()
 anniversaries = loadLocalAnniversaries()
+
+;(function initLang() {
+  const saved = localStorage.getItem('ai-nav-lang')
+  if (saved === 'en') {
+    document.documentElement.setAttribute('data-lang', 'en')
+    document.getElementById('btn-zh').classList.remove('active')
+    document.getElementById('btn-en').classList.add('active')
+  }
+})()
+
 initSetupForm()
 
 if (settings) {

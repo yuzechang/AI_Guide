@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,15 +75,25 @@
       <span>AI<span class="logo-accent">.</span>Nav</span>
     </a>
     <div class="header-spacer"></div>
-    <a href="../index.html" class="nav-home">← All Tools</a>
+    <a href="../index.html" class="nav-home">
+      <span class="en">← All Tools</span>
+      <span class="zh">← 全部工具</span>
+    </a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中</button>
+    </div>
   </div>
 </header>
 
 <!-- Breadcrumb -->
 <div class="breadcrumb">
-  <a href="../index.html">Home</a>
+  <a href="../index.html"><span class="en">Home</span><span class="zh">首页</span></a>
   <span class="breadcrumb-sep">›</span>
-  <a href="../index.html#{{ tool.category }}">{{ cat.label }}</a>
+  <a href="../index.html#{{ tool.category }}">
+    <span class="en">{{ cat.label }}</span>
+    <span class="zh">{{ cat.labelCn }}</span>
+  </a>
   <span class="breadcrumb-sep">›</span>
   <span class="breadcrumb-cur">{{ tool.name }}</span>
 </div>
@@ -93,7 +103,9 @@
   <div class="page-hero-inner">
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
       <span class="article-badge" style="background:{{ cat.color | replace('#','rgba(') }}1a);border-color:{{ cat.color | replace('#','rgba(') }}40);color:{{ cat.color }}">
-        {{ cat.icon }} {{ cat.label }}
+        {{ cat.icon }}
+        <span class="en">{{ cat.label }}</span>
+        <span class="zh">{{ cat.labelCn }}</span>
       </span>
       <span class="stars-badge">★ {{ tool.starsLabel }} GitHub Stars</span>
       {% for tag in tool.tags[:3] %}
@@ -107,7 +119,8 @@
     <p class="article-desc">{{ tool.descEn }}</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
       <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener" class="cta-btn">
-        View on GitHub ↗
+        <span class="en">View on GitHub ↗</span>
+        <span class="zh">在 GitHub 查看 ↗</span>
       </a>
       {% if tool.affiliateUrl %}
       <a href="{{ tool.affiliateUrl }}" target="_blank" rel="nofollow noopener sponsored" class="cta-btn-outline">
@@ -115,7 +128,8 @@
       </a>
       {% elif tool.website %}
       <a href="{{ tool.website }}" target="_blank" rel="noopener" class="cta-btn-outline">
-        Official Website ↗
+        <span class="en">Official Website ↗</span>
+        <span class="zh">官方网站 ↗</span>
       </a>
       {% endif %}
     </div>
@@ -130,29 +144,38 @@
       <!-- Quick Facts Grid -->
       <div class="info-grid">
         <div class="info-card">
-          <div class="info-card-label">Category</div>
-          <div class="info-card-value">{{ cat.label }}</div>
+          <div class="info-card-label"><span class="en">Category</span><span class="zh">分类</span></div>
+          <div class="info-card-value">
+            <span class="en">{{ cat.label }}</span>
+            <span class="zh">{{ cat.labelCn }}</span>
+          </div>
           <div class="info-card-sub">{{ tool.category }}</div>
         </div>
         <div class="info-card">
-          <div class="info-card-label">GitHub Stars</div>
+          <div class="info-card-label"><span class="en">GitHub Stars</span><span class="zh">GitHub 星数</span></div>
           <div class="info-card-value">{{ tool.starsLabel }}</div>
-          <div class="info-card-sub">Community adoption</div>
+          <div class="info-card-sub"><span class="en">Community adoption</span><span class="zh">社区认可度</span></div>
         </div>
         <div class="info-card">
-          <div class="info-card-label">License</div>
+          <div class="info-card-label"><span class="en">License</span><span class="zh">许可证</span></div>
           <div class="info-card-value">{{ tool.license or "Open Source" }}</div>
-          <div class="info-card-sub">{{ "Free to use" if not tool.license else "Check repository" }}</div>
+          <div class="info-card-sub">
+            <span class="en">{{ "Free to use" if not tool.license else "Check repository" }}</span>
+            <span class="zh">{{ "免费使用" if not tool.license else "查看仓库" }}</span>
+          </div>
         </div>
         <div class="info-card">
-          <div class="info-card-label">Tags</div>
+          <div class="info-card-label"><span class="en">Tags</span><span class="zh">标签</span></div>
           <div class="info-card-value" style="font-size:13px">{{ tool.tags[:3] | join(", ") }}</div>
-          <div class="info-card-sub">{{ tool.tags | length }} tags total</div>
+          <div class="info-card-sub">{{ tool.tags | length }} <span class="en">tags total</span><span class="zh">个标签</span></div>
         </div>
       </div>
 
       <!-- What is {name}? -->
-      <h2 id="what-is">What Is {{ tool.name }}?</h2>
+      <h2 id="what-is">
+        <span class="en">What Is {{ tool.name }}?</span>
+        <span class="zh">{{ tool.name }} 是什么？</span>
+      </h2>
       <p>
         <strong>{{ tool.name }}</strong> is an open-source {{ cat.type }} with
         {{ tool.starsLabel }} GitHub stars. {{ tool.descEn }}
@@ -187,7 +210,10 @@
 
       <!-- Features -->
       {% if features %}
-      <h2 id="features">Key Features</h2>
+      <h2 id="features">
+        <span class="en">Key Features</span>
+        <span class="zh">核心功能</span>
+      </h2>
       <ul class="feature-list">
         {% for feat in features %}
         <li>
@@ -200,11 +226,14 @@
 
       <!-- Pros & Cons -->
       {% if tool.pros or tool.cons %}
-      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <h2 id="pros-cons">
+        <span class="en">Pros &amp; Cons</span>
+        <span class="zh">优缺点</span>
+      </h2>
       <div class="pros-cons">
         {% if tool.pros %}
         <div class="pros-box">
-          <h4>✓ Pros</h4>
+          <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
           <ul>
             {% for p in tool.pros %}
             <li>{{ p }}</li>
@@ -214,7 +243,7 @@
         {% endif %}
         {% if tool.cons %}
         <div class="cons-box">
-          <h4>✕ Cons</h4>
+          <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
           <ul>
             {% for c in tool.cons %}
             <li>{{ c }}</li>
@@ -226,7 +255,10 @@
       {% endif %}
 
       <!-- Use Cases -->
-      <h2 id="use-cases">Use Cases</h2>
+      <h2 id="use-cases">
+        <span class="en">Use Cases</span>
+        <span class="zh">应用场景</span>
+      </h2>
       <p>
         {{ tool.name }} is used across a wide range of applications in the AI development ecosystem.
         Here are the most common scenarios where teams choose {{ tool.name }}:
@@ -237,7 +269,10 @@
       {% endfor %}
 
       <!-- Getting Started -->
-      <h2 id="getting-started">Getting Started with {{ tool.name }}</h2>
+      <h2 id="getting-started">
+        <span class="en">Getting Started with {{ tool.name }}</span>
+        <span class="zh">{{ tool.name }} 快速开始</span>
+      </h2>
       <p>
         To get started with {{ tool.name }}, visit the
         <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">GitHub repository</a>
@@ -266,14 +301,22 @@
       {% if tool.affiliateUrl or tool.website %}
       {% set cta_url = tool.affiliateUrl if tool.affiliateUrl else tool.website %}
       {% set cta_rel = "nofollow noopener sponsored" if tool.affiliateUrl else "noopener" %}
-      {% set cta_text = "Try " + tool.name + " Free" if tool.affiliateUrl else "Visit Official Site" %}
+      {% set cta_text_en = "Try " + tool.name + " Free" if tool.affiliateUrl else "Visit Official Site" %}
+      {% set cta_text_zh = "免费试用 " + tool.name if tool.affiliateUrl else "访问官方网站" %}
       <div class="affiliate-cta">
         <div class="affiliate-cta-left">
-          <div class="affiliate-cta-title">Get Started with {{ tool.name }}</div>
-          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+          <div class="affiliate-cta-title">
+            <span class="en">Get Started with {{ tool.name }}</span>
+            <span class="zh">立即开始使用 {{ tool.name }}</span>
+          </div>
+          <div class="affiliate-cta-desc">
+            <span class="en">Visit the official site for documentation, downloads, and cloud plans.</span>
+            <span class="zh">访问官方网站获取文档、下载和云端方案。</span>
+          </div>
         </div>
         <a href="{{ cta_url }}" target="_blank" rel="{{ cta_rel }}" class="cta-btn affiliate-cta-btn">
-          {{ cta_text }} ↗
+          <span class="en">{{ cta_text_en }} ↗</span>
+          <span class="zh">{{ cta_text_zh }} ↗</span>
         </a>
       </div>
       {% if tool.affiliateUrl %}
@@ -285,7 +328,10 @@
 
       <!-- Related Tools -->
       {% if related %}
-      <h2 id="alternatives">Similar {{ cat.label }}s</h2>
+      <h2 id="alternatives">
+        <span class="en">Similar {{ cat.label }}s</span>
+        <span class="zh">相似 {{ cat.labelCn }}</span>
+      </h2>
       <p>
         If {{ tool.name }} doesn't fit your needs, here are other popular
         {{ cat.label }}s you might consider:
@@ -301,7 +347,10 @@
       {% endif %}
 
       <!-- FAQ -->
-      <h2 id="faq">Frequently Asked Questions</h2>
+      <h2 id="faq">
+        <span class="en">Frequently Asked Questions</span>
+        <span class="zh">常见问题</span>
+      </h2>
       <div class="faq-section">
         {% if tool.faqs %}
           {% for faq in tool.faqs %}
@@ -333,7 +382,7 @@
     <!-- Sidebar -->
     <aside class="content-sidebar">
       <div class="sidebar-card">
-        <h4>Quick Facts</h4>
+        <h4><span class="en">Quick Facts</span><span class="zh">快速概览</span></h4>
         <div style="font-size:13px;color:var(--text-2)">
           <div style="margin-bottom:8px">
             <span style="color:var(--text-3)">GitHub:</span>
@@ -341,35 +390,40 @@
               {{ tool.githubUrl | replace("https://github.com/","") }}
             </a>
           </div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> {{ tool.starsLabel }}</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> {{ cat.label }}</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> {{ tool.license or "Open Source" }}</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">Stars:</span><span class="zh">星数：</span></span> {{ tool.starsLabel }}</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)"><span class="en">Category:</span><span class="zh">分类：</span></span>
+            <span class="en">{{ cat.label }}</span><span class="zh">{{ cat.labelCn }}</span>
+          </div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> {{ tool.license or "Open Source" }}</div>
           {% if tool.website %}
           <div style="margin-bottom:8px">
-            <span style="color:var(--text-3)">Website:</span>
-            <a href="{{ tool.website }}" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+            <span style="color:var(--text-3)"><span class="en">Website:</span><span class="zh">网站：</span></span>
+            <a href="{{ tool.website }}" target="_blank" rel="noopener" style="color:var(--accent)">
+              <span class="en">Official Site ↗</span><span class="zh">官方网站 ↗</span>
+            </a>
           </div>
           {% endif %}
-          <div><span style="color:var(--text-3)">Updated:</span> {{ today }}</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> {{ today }}</div>
         </div>
       </div>
 
       <div class="sidebar-card">
-        <h4>Table of Contents</h4>
+        <h4><span class="en">Table of Contents</span><span class="zh">目录</span></h4>
         <ul class="toc-list">
-          <li><a href="#what-is">What Is {{ tool.name }}?</a></li>
-          {% if features %}<li><a href="#features">Key Features</a></li>{% endif %}
-          {% if tool.pros or tool.cons %}<li><a href="#pros-cons">Pros &amp; Cons</a></li>{% endif %}
-          <li><a href="#use-cases">Use Cases</a></li>
-          <li><a href="#getting-started">Getting Started</a></li>
-          {% if related %}<li><a href="#alternatives">Alternatives</a></li>{% endif %}
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#what-is"><span class="en">What Is {{ tool.name }}?</span><span class="zh">{{ tool.name }} 是什么？</span></a></li>
+          {% if features %}<li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>{% endif %}
+          {% if tool.pros or tool.cons %}<li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>{% endif %}
+          <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
+          <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
+          {% if related %}<li><a href="#alternatives"><span class="en">Alternatives</span><span class="zh">替代工具</span></a></li>{% endif %}
+          <li><a href="#faq"><span class="en">FAQ</span><span class="zh">常见问题</span></a></li>
         </ul>
       </div>
 
       {% if related %}
       <div class="sidebar-card">
-        <h4>Related Tools</h4>
+        <h4><span class="en">Related Tools</span><span class="zh">相关工具</span></h4>
         <ul class="toc-list">
           {% for r in related[:5] %}
           <li><a href="{{ r.id }}.html">{{ r.name }}</a></li>
@@ -379,7 +433,7 @@
       {% endif %}
 
       <div class="sidebar-card">
-        <h4>Tags</h4>
+        <h4><span class="en">Tags</span><span class="zh">标签</span></h4>
         <div style="display:flex;flex-wrap:wrap;gap:4px">
           {% for tag in tool.tags %}
           <span class="tag-chip">{{ tag }}</span>
@@ -396,27 +450,30 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
-        <p>A curated directory of 300+ open-source AI tools, agent frameworks, and skill libraries.</p>
+        <p>
+          <span class="en">A curated directory of 300+ open-source AI tools, agent frameworks, and skill libraries.</span>
+          <span class="zh">精选 300+ 开源 AI 工具、智能体框架与技能库目录。</span>
+        </p>
       </div>
       <div class="footer-col">
-        <h4>Categories</h4>
+        <h4><span class="en">Categories</span><span class="zh">分类</span></h4>
         <ul>
-          <li><a href="../index.html#ai-tools">AI Tools</a></li>
-          <li><a href="../index.html#skill">Skill Frameworks</a></li>
-          <li><a href="../index.html#agent">AI Agents</a></li>
+          <li><a href="../index.html#ai-tools"><span class="en">AI Tools</span><span class="zh">AI 工具</span></a></li>
+          <li><a href="../index.html#skill"><span class="en">Skill Frameworks</span><span class="zh">技能框架</span></a></li>
+          <li><a href="../index.html#agent"><span class="en">AI Agents</span><span class="zh">AI 智能体</span></a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Site</h4>
+        <h4><span class="en">Site</span><span class="zh">站点</span></h4>
         <ul>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="../contact.html">Contact</a></li>
-          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../about.html"><span class="en">About</span><span class="zh">关于</span></a></li>
+          <li><a href="../contact.html"><span class="en">Contact</span><span class="zh">联系</span></a></li>
+          <li><a href="../privacy-policy.html"><span class="en">Privacy Policy</span><span class="zh">隐私政策</span></a></li>
           <li><a href="../sitemap.xml">Sitemap</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Featured</h4>
+        <h4><span class="en">Featured</span><span class="zh">精选工具</span></h4>
         <ul>
           <li><a href="cursor.html">Cursor AI</a></li>
           <li><a href="claude-code.html">Claude Code</a></li>
@@ -427,14 +484,26 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
-      <p>Built for the AI community ❤️</p>
+      <p>© 2025 AI Nav · <span class="en">All tools are open-source, hosted on GitHub.</span><span class="zh">所有工具均为开源项目，托管于 GitHub。</span></p>
+      <p><span class="en">Built for the AI community</span><span class="zh">为 AI 社区而建</span> ❤️</p>
     </div>
   </div>
 </footer>
 
 <script>
 function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  localStorage.setItem('ai-nav-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+}
+
+(function initLang() {
+  var saved = localStorage.getItem('ai-nav-lang');
+  if (saved === 'zh') setLang('zh');
+})();
 </script>
 </body>
 </html>

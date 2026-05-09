@@ -377,6 +377,24 @@ footer { background: var(--surface); border-top: 1px solid var(--border); margin
   .category-tool-card { padding: 14px 16px; }
 }
 
+/* Language toggle */
+.lang-toggle {
+  display: flex; align-items: center; gap: 4px;
+  background: rgba(30,41,59,.6); border: 1px solid var(--border);
+  border-radius: 999px; padding: 3px 6px;
+}
+.lang-btn {
+  font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+  color: var(--text-3); cursor: pointer; transition: all .15s;
+  background: transparent; border: none; outline: none;
+}
+.lang-btn.active { background: var(--accent); color: #fff; }
+.lang-btn:not(.active):hover { color: var(--text); }
+
+/* Bilingual visibility rules */
+[data-lang="zh"] .en { display: none !important; }
+[data-lang="en"] .zh { display: none !important; }
+
 /* Affiliate Disclosure */
 .affiliate-disclosure {
   font-size: 12px; color: var(--text-3); padding: 10px 14px;
