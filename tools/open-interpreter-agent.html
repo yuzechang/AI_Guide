@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/KillianLucas/open-interpreter",
     "description": "Autonomous agent that writes and executes code on your machine",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "AGPL-3.0" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What can Open Interpreter do autonomously?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Open Interpreter can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals\u2014all without human confirmation at each step." }
+        "name": "What can the Open Interpreter agent do autonomously?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It can browse the web, read and write files, execute code, send emails, manipulate images, and chain these actions together to complete multi-step goals described in plain English." }
       },
       
       {
         "@type": "Question",
-        "name": "How much does running Open Interpreter cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50\u2013$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks." }
+        "name": "How does Open Interpreter agent differ from regular Open Interpreter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The agent mode adds autonomous planning and multi-step execution. Instead of requiring a human prompt per action, it formulates a plan and executes multiple steps without intervention." }
       },
       
       {
         "@type": "Question",
-        "name": "Is it safe to run Open Interpreter without supervision?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For production-critical systems, always run with human-in-the-loop confirmation enabled. Open Interpreter includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits." }
+        "name": "Is it safe to run without supervision?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For critical systems, always run with confirmation mode enabled. The agent supports a \u0027safe mode\u0027 that prompts before any destructive action. Never give it access to production environments unsupervised." }
       },
       
       {
         "@type": "Question",
-        "name": "How does Open Interpreter compare to prompt chaining?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Open Interpreter goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results\u2014making it suitable for open-ended tasks where the exact steps aren\u0027t known in advance." }
+        "name": "What LLMs work best with Open Interpreter agent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "GPT-4o and Claude 3.5 Sonnet produce the most reliable autonomous results. For local-only runs, Llama 3.1 70B via Ollama offers a reasonable balance of capability and privacy." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://openinterpreter.com" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">AGPL-3.0</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -215,6 +220,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Autonomous coding agent that can read, write, and execute code</li>
+            
+            <li>Browses the web, manages files, and controls desktop applications</li>
+            
+            <li>Works with GPT-4o, Claude 3.5, and local Ollama models</li>
+            
+            <li>Safe mode requires user confirmation before irreversible actions</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Full computer access creates significant security risk without proper sandboxing</li>
+            
+            <li>Complex multi-step tasks can accumulate large token context costs</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -255,6 +295,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with Open Interpreter</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://openinterpreter.com" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar AI Agents</h2>
@@ -291,41 +348,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What can Open Interpreter do autonomously? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What can the Open Interpreter agent do autonomously? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">It can browse the web, read and write files, execute code, send emails, manipulate images, and chain these actions together to complete multi-step goals described in plain English.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Open Interpreter can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals—all without human confirmation at each step.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How does Open Interpreter agent differ from regular Open Interpreter? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">The agent mode adds autonomous planning and multi-step execution. Instead of requiring a human prompt per action, it formulates a plan and executes multiple steps without intervention.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How much does running Open Interpreter cost? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is it safe to run without supervision? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">For critical systems, always run with confirmation mode enabled. The agent supports a 'safe mode' that prompts before any destructive action. Never give it access to production environments unsupervised.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50–$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What LLMs work best with Open Interpreter agent? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">GPT-4o and Claude 3.5 Sonnet produce the most reliable autonomous results. For local-only runs, Llama 3.1 70B via Ollama offers a reasonable balance of capability and privacy.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is it safe to run Open Interpreter without supervision? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">For production-critical systems, always run with human-in-the-loop confirmation enabled. Open Interpreter includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How does Open Interpreter compare to prompt chaining? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Open Interpreter goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results—making it suitable for open-ended tasks where the exact steps aren't known in advance.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -344,9 +403,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 54k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Agent</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> AGPL-3.0</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://openinterpreter.com" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -355,6 +419,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is Open Interpreter?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

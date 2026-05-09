@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/langgenius/dify",
     "description": "Open-source LLM app development and orchestration platform",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
   </script>
 
@@ -49,28 +49,23 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What can Dify do autonomously?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Dify can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals\u2014all without human confirmation at each step." }
+        "name": "What is Dify?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dify is an open-source LLM application development platform that provides a visual workflow builder, knowledge base management, and multi-model support for building and deploying AI-powered applications." }
       },
       
       {
         "@type": "Question",
-        "name": "How much does running Dify cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50\u2013$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks." }
+        "name": "Is Dify free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dify is open-source (Apache 2.0) and free to self-host. The Dify Cloud hosted service has a free tier (200 OpenAI API calls/day) and paid plans starting at $59/month for teams." }
       },
       
       {
         "@type": "Question",
-        "name": "Is it safe to run Dify without supervision?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For production-critical systems, always run with human-in-the-loop confirmation enabled. Dify includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits." }
-      },
-      
-      {
-        "@type": "Question",
-        "name": "How does Dify compare to prompt chaining?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Dify goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results\u2014making it suitable for open-ended tasks where the exact steps aren\u0027t known in advance." }
+        "name": "How does Dify compare to LangChain?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dify is a no-code/low-code platform focused on rapid deployment of LLM apps through a visual interface. LangChain is a developer-focused Python library for programmatic control. Dify is better for business users; LangChain is better when you need full programmatic control." }
       }
       
     ]
@@ -131,6 +126,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://dify.ai" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +153,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">Apache-2.0</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -215,6 +214,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Visual workflow builder – build RAG and agent apps without code</li>
+            
+            <li>100+ model integrations (OpenAI, Claude, Gemini, Ollama, etc.)</li>
+            
+            <li>Built-in knowledge base management with chunking and embedding</li>
+            
+            <li>Self-hostable with Docker and available as a managed cloud service</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Self-hosted setup requires Docker and moderate DevOps knowledge</li>
+            
+            <li>Advanced customization still requires Python code</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -255,6 +289,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with Dify</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://dify.ai" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar AI Agents</h2>
@@ -291,41 +342,34 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What can Dify do autonomously? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is Dify? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Dify is an open-source LLM application development platform that provides a visual workflow builder, knowledge base management, and multi-model support for building and deploying AI-powered applications.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Dify can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals—all without human confirmation at each step.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is Dify free? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Dify is open-source (Apache 2.0) and free to self-host. The Dify Cloud hosted service has a free tier (200 OpenAI API calls/day) and paid plans starting at $59/month for teams.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How much does running Dify cost? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How does Dify compare to LangChain? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Dify is a no-code/low-code platform focused on rapid deployment of LLM apps through a visual interface. LangChain is a developer-focused Python library for programmatic control. Dify is better for business users; LangChain is better when you need full programmatic control.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50–$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is it safe to run Dify without supervision? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">For production-critical systems, always run with human-in-the-loop confirmation enabled. Dify includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How does Dify compare to prompt chaining? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Dify goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results—making it suitable for open-ended tasks where the exact steps aren't known in advance.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -344,9 +388,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 55k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Agent</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://dify.ai" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -355,6 +404,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is Dify?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

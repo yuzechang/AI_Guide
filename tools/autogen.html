@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/microsoft/autogen",
     "description": "Microsoft\u0027s multi-agent conversation framework for LLM automation",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What can AutoGen do autonomously?",
-        "acceptedAnswer": { "@type": "Answer", "text": "AutoGen can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals\u2014all without human confirmation at each step." }
+        "name": "What is AutoGen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AutoGen is Microsoft\u0027s open-source framework for building multi-agent AI systems. Multiple specialized agents (e.g., Coder, Critic, Planner) collaborate through conversation to complete complex tasks." }
       },
       
       {
         "@type": "Question",
-        "name": "How much does running AutoGen cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50\u2013$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks." }
+        "name": "How is AutoGen different from MetaGPT?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AutoGen provides a flexible conversation-based multi-agent API for general-purpose tasks. MetaGPT enforces a specific software-company structure (PM, engineer, QA) optimized for code generation." }
       },
       
       {
         "@type": "Question",
-        "name": "Is it safe to run AutoGen without supervision?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For production-critical systems, always run with human-in-the-loop confirmation enabled. AutoGen includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits." }
+        "name": "What is AutoGen Studio?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AutoGen Studio is a web-based no-code interface for building and testing AutoGen agent teams. You define agent roles, tools, and conversation workflows visually without writing Python code." }
       },
       
       {
         "@type": "Question",
-        "name": "How does AutoGen compare to prompt chaining?",
-        "acceptedAnswer": { "@type": "Answer", "text": "AutoGen goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results\u2014making it suitable for open-ended tasks where the exact steps aren\u0027t known in advance." }
+        "name": "Does AutoGen support local LLMs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. AutoGen supports any OpenAI-compatible API endpoint. Configure it to point to a local Ollama instance (http://localhost:11434/v1) to run completely offline without API fees." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://microsoft.github.io/autogen" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">MIT</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -210,6 +215,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Microsoft-backed multi-agent framework with active development</li>
+            
+            <li>Supports human-in-the-loop workflows with configurable confirmation prompts</li>
+            
+            <li>AutoGen Studio: no-code UI for building and testing agent teams</li>
+            
+            <li>Native support for code execution in Docker sandboxes</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>API surface has changed significantly between v0.2 and v0.4 releases</li>
+            
+            <li>Complex multi-agent conversations can be hard to debug</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -250,6 +290,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with AutoGen</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://microsoft.github.io/autogen" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar AI Agents</h2>
@@ -286,41 +343,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What can AutoGen do autonomously? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is AutoGen? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">AutoGen is Microsoft's open-source framework for building multi-agent AI systems. Multiple specialized agents (e.g., Coder, Critic, Planner) collaborate through conversation to complete complex tasks.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">AutoGen can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals—all without human confirmation at each step.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How is AutoGen different from MetaGPT? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">AutoGen provides a flexible conversation-based multi-agent API for general-purpose tasks. MetaGPT enforces a specific software-company structure (PM, engineer, QA) optimized for code generation.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How much does running AutoGen cost? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is AutoGen Studio? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">AutoGen Studio is a web-based no-code interface for building and testing AutoGen agent teams. You define agent roles, tools, and conversation workflows visually without writing Python code.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50–$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Does AutoGen support local LLMs? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. AutoGen supports any OpenAI-compatible API endpoint. Configure it to point to a local Ollama instance (http://localhost:11434/v1) to run completely offline without API fees.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is it safe to run AutoGen without supervision? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">For production-critical systems, always run with human-in-the-loop confirmation enabled. AutoGen includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How does AutoGen compare to prompt chaining? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">AutoGen goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results—making it suitable for open-ended tasks where the exact steps aren't known in advance.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -339,9 +398,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 37k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Agent</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://microsoft.github.io/autogen" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -350,6 +414,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is AutoGen?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

@@ -240,6 +240,37 @@
         "generative",
         "open-source",
         "easy-to-use"
+      ],
+      "website": "https://github.com/lllyasviel/Fooocus",
+      "license": "GPL-3.0",
+      "featured": false,
+      "pros": [
+        "One-click setup with automatic model download (SDXL-based)",
+        "No prompt engineering needed: intelligent defaults produce great results",
+        "Runs on 4GB VRAM; CPU mode supported (slow)",
+        "Built-in styles, aspect ratios, and quality presets"
+      ],
+      "cons": [
+        "Less customizable than ComfyUI for advanced workflows",
+        "Limited extensibility compared to AUTOMATIC1111"
+      ],
+      "faqs": [
+        {
+          "q": "What is Fooocus?",
+          "a": "Fooocus is a simplified image generation tool based on SDXL, inspired by Midjourney. It requires minimal setup and no prompt engineering—just describe what you want and it generates high-quality images."
+        },
+        {
+          "q": "How does Fooocus differ from AUTOMATIC1111 and ComfyUI?",
+          "a": "Fooocus prioritizes simplicity and quality out-of-the-box. AUTOMATIC1111 offers more controls and extensions. ComfyUI provides a node-based workflow for complex pipelines. Fooocus is best for beginners."
+        },
+        {
+          "q": "What hardware do I need for Fooocus?",
+          "a": "Fooocus requires 4GB VRAM minimum (8GB recommended for faster generation). It supports NVIDIA, AMD (ROCm), and Apple Silicon GPUs. Intel GPU support is experimental."
+        },
+        {
+          "q": "Is Fooocus free?",
+          "a": "Yes. Fooocus is GPL-3.0 licensed and completely free. It automatically downloads the SDXL model (~7GB) on first run."
+        }
       ]
     },
     {
@@ -257,6 +288,37 @@
         "local",
         "web-ui",
         "open-source"
+      ],
+      "website": "https://github.com/oobabooga/text-generation-webui",
+      "license": "AGPL-3.0",
+      "featured": false,
+      "pros": [
+        "Supports GGUF, AWQ, GPTQ, and EXL2 quantization formats",
+        "Multi-backend: llama.cpp, transformers, ExLlamaV2, AutoGPTQ",
+        "API compatible with OpenAI, enabling drop-in replacement for local models",
+        "Extension system for adding LoRA adapters, TTS, and custom UI elements"
+      ],
+      "cons": [
+        "Setup is more complex than Ollama; requires manual model download",
+        "Frequent updates can occasionally break extensions"
+      ],
+      "faqs": [
+        {
+          "q": "What is text-generation-webui?",
+          "a": "Text-generation-webui (oobabooga) is a Gradio-based web interface for running local LLMs. It supports dozens of model formats and backends, making it one of the most versatile local AI frontends available."
+        },
+        {
+          "q": "How does text-gen-webui compare to Ollama?",
+          "a": "Ollama is simpler for basic model serving with a clean CLI and API. text-gen-webui offers more model format support, fine-tuning, extensions, and a richer GUI. Advanced users often prefer text-gen-webui for its flexibility."
+        },
+        {
+          "q": "What models can I run with text-gen-webui?",
+          "a": "Any GGUF (llama.cpp), AWQ, GPTQ, or standard Hugging Face transformers model. This includes Llama 3, Mistral, Phi-3, Gemma 2, Command R, and thousands of community fine-tunes."
+        },
+        {
+          "q": "How do I enable the OpenAI-compatible API?",
+          "a": "Enable the 'openai' extension in the UI settings. The API runs at http://localhost:5000/v1 and accepts the same request format as OpenAI's API, allowing drop-in replacement in apps."
+        }
       ]
     },
     {
@@ -308,6 +370,37 @@
         "productivity",
         "open-source",
         "llm"
+      ],
+      "website": "https://openinterpreter.com",
+      "license": "AGPL-3.0",
+      "featured": false,
+      "pros": [
+        "Natural language interface for executing code on your local machine",
+        "Supports Python, JavaScript, shell, and 40+ programming languages",
+        "Runs entirely locally with Ollama models for privacy",
+        "Interactive REPL with persistent conversation context"
+      ],
+      "cons": [
+        "Executing AI-generated code locally carries inherent security risks",
+        "Requires explicit user confirmation for high-risk operations by default"
+      ],
+      "faqs": [
+        {
+          "q": "What is Open Interpreter?",
+          "a": "Open Interpreter lets LLMs run code on your local computer. You describe a task in natural language, and it writes and executes Python, JavaScript, or shell code to complete it."
+        },
+        {
+          "q": "Is Open Interpreter safe to use?",
+          "a": "Open Interpreter asks for user confirmation before executing potentially dangerous code. Never grant it access to production systems or sensitive credentials without reviewing each action."
+        },
+        {
+          "q": "Can I use Open Interpreter with local models?",
+          "a": "Yes. Use `interpreter --model ollama/llama3` to run fully offline with Ollama. No OpenAI key needed, and all code execution stays on your machine."
+        },
+        {
+          "q": "How does Open Interpreter differ from ChatGPT Code Interpreter?",
+          "a": "ChatGPT Code Interpreter runs in a sandboxed cloud VM with limited internet access. Open Interpreter runs on your actual local machine with full filesystem and internet access."
+        }
       ]
     },
     {
@@ -1020,6 +1113,37 @@
         "web-ui",
         "open-source",
         "llm"
+      ],
+      "website": "https://lobechat.com",
+      "license": "Apache-2.0",
+      "featured": false,
+      "pros": [
+        "Modern ChatGPT-style interface supporting 30+ LLM providers",
+        "Built-in plugin system with web search, code execution, and image generation",
+        "One-click deployment on Vercel with zero configuration",
+        "Supports local models via Ollama integration"
+      ],
+      "cons": [
+        "Requires your own API keys (OpenAI, Anthropic, etc.)",
+        "Plugin ecosystem still maturing compared to commercial alternatives"
+      ],
+      "faqs": [
+        {
+          "q": "What is Lobe Chat?",
+          "a": "Lobe Chat is an open-source ChatGPT-like UI that works with multiple LLM providers including OpenAI, Anthropic Claude, Google Gemini, DeepSeek, and local models via Ollama."
+        },
+        {
+          "q": "How do I deploy Lobe Chat?",
+          "a": "The easiest method is one-click deployment to Vercel using the template in the GitHub README. You then configure your API keys in the settings. Self-hosting with Docker is also fully supported."
+        },
+        {
+          "q": "Is Lobe Chat free?",
+          "a": "Lobe Chat is Apache-2.0 licensed and free to use. You bring your own LLM API keys and pay only for API usage. The lobechat.com cloud version offers a free tier and paid plans for extra storage."
+        },
+        {
+          "q": "Can Lobe Chat use local models?",
+          "a": "Yes. Enable Ollama integration in settings and set the endpoint to your Ollama server (default: http://localhost:11434). All supported Ollama models appear in the provider dropdown."
+        }
       ]
     },
     {
@@ -1394,6 +1518,37 @@
         "rag",
         "llm",
         "open-source"
+      ],
+      "website": "https://privategpt.dev",
+      "license": "Apache-2.0",
+      "featured": false,
+      "pros": [
+        "100% offline RAG: ingest your documents and chat with them, zero data egress",
+        "Supports PDF, DOCX, TXT, and 30+ document formats",
+        "OpenAI-compatible REST API for integration with existing apps",
+        "Ships with a built-in chat UI via Gradio"
+      ],
+      "cons": [
+        "Slower than cloud RAG solutions on limited hardware",
+        "Requires technical setup for GPU acceleration and model configuration"
+      ],
+      "faqs": [
+        {
+          "q": "What is PrivateGPT?",
+          "a": "PrivateGPT is an open-source project that lets you chat with your documents using a locally running LLM. All data stays on your machine—no documents, queries, or responses are ever sent to the cloud."
+        },
+        {
+          "q": "What document types does PrivateGPT support?",
+          "a": "PrivateGPT supports PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), plain text, CSV, Markdown, HTML, and more. It automatically splits and embeds them into a local vector store."
+        },
+        {
+          "q": "How do I set up PrivateGPT?",
+          "a": "Clone the repo, install dependencies with `poetry install`, download a Mistral or Llama model with Ollama, then run `PGPT_PROFILES=ollama make run`. A full setup guide is in the GitHub README."
+        },
+        {
+          "q": "Can PrivateGPT be used for enterprise deployments?",
+          "a": "Yes. PrivateGPT's Apache-2.0 license allows commercial use. It can be deployed on-premises behind a firewall, making it suitable for processing confidential legal, medical, or financial documents."
+        }
       ]
     },
     {
@@ -1792,6 +1947,37 @@
         "segmentation",
         "model",
         "open-source"
+      ],
+      "website": "https://segment-anything.com",
+      "license": "Apache-2.0",
+      "featured": false,
+      "pros": [
+        "Zero-shot segmentation of any object in any image with a single click",
+        "Pre-trained on 11 million images and 1.1 billion masks by Meta AI",
+        "Three model sizes: ViT-H (best quality), ViT-L (balanced), ViT-B (fastest)",
+        "Powers advanced computer vision pipelines and annotation tools"
+      ],
+      "cons": [
+        "Requires GPU for interactive real-time use (CPU inference is very slow)",
+        "Not optimized for semantic segmentation or instance classification"
+      ],
+      "faqs": [
+        {
+          "q": "What is Segment Anything (SAM)?",
+          "a": "SAM (Segment Anything Model) is Meta AI's foundational image segmentation model. It can segment any object in any image given a point, box, or text prompt—without task-specific training."
+        },
+        {
+          "q": "What are the use cases for SAM?",
+          "a": "SAM is used for automated image annotation, medical image analysis, satellite imagery, robotics perception, photo editing, and as a building block for larger vision-language systems."
+        },
+        {
+          "q": "Is Segment Anything free to use commercially?",
+          "a": "Yes. SAM is released under Apache-2.0, which allows commercial use. Meta has also released SAM 2 with video segmentation capability under the same license."
+        },
+        {
+          "q": "How do I run Segment Anything?",
+          "a": "Install with `pip install segment-anything`, download the model checkpoint (2.4GB), then use the Python API or the interactive demo. GPU strongly recommended for sub-second inference."
+        }
       ]
     },
     {
@@ -1809,6 +1995,37 @@
         "llm",
         "framework",
         "open-source"
+      ],
+      "website": "https://github.com/hiyouga/LLaMA-Factory",
+      "license": "Apache-2.0",
+      "featured": false,
+      "pros": [
+        "One-stop fine-tuning for 100+ models including Llama, Mistral, Qwen, and Gemma",
+        "Supports LoRA, QLoRA, DoRA, ORPO, DPO, and full fine-tuning",
+        "LLaMA Board web UI for no-code model training configuration",
+        "Memory-efficient: QLoRA fine-tunes 7B models on 8GB VRAM"
+      ],
+      "cons": [
+        "Full fine-tuning of large models still requires high-end GPU clusters",
+        "Dataset preparation and formatting require careful attention to templates"
+      ],
+      "faqs": [
+        {
+          "q": "What is LLaMA-Factory?",
+          "a": "LLaMA-Factory is an open-source framework for efficient fine-tuning of large language models. It supports LoRA, QLoRA, and full fine-tuning for 100+ model architectures with a simple YAML configuration."
+        },
+        {
+          "q": "What is the minimum GPU needed for LLaMA-Factory?",
+          "a": "QLoRA fine-tuning of a 7B model requires approximately 8GB VRAM (RTX 3070 or better). Full fine-tuning of a 7B model needs 24GB+ VRAM. Multi-GPU training is supported via DeepSpeed."
+        },
+        {
+          "q": "How do I fine-tune a model with LLaMA-Factory?",
+          "a": "Prepare your dataset in the Alpaca or ShareGPT format, create a YAML config specifying model path, dataset, and LoRA parameters, then run `llamafactory-cli train config.yaml`. The LLaMA Board GUI provides a visual alternative."
+        },
+        {
+          "q": "Which models can LLaMA-Factory fine-tune?",
+          "a": "LLaMA-Factory supports Llama 3/2, Mistral, Qwen2, Gemma 2, Phi-3, ChatGLM, Baichuan, DeepSeek, Yi, InternLM, and 100+ more. See the full list in the GitHub documentation."
+        }
       ]
     },
     {
@@ -1826,6 +2043,37 @@
         "parsing",
         "markdown",
         "microsoft"
+      ],
+      "website": "https://github.com/microsoft/markitdown",
+      "license": "MIT",
+      "featured": false,
+      "pros": [
+        "Converts 15+ file formats to Markdown (PDF, DOCX, PPTX, XLSX, HTML, images)",
+        "Microsoft-maintained with high reliability and consistent output format",
+        "Optional LLM integration for image description in documents",
+        "Simple Python API and CLI tool for integration in data pipelines"
+      ],
+      "cons": [
+        "Complex PDF layouts (multi-column, tables) may produce imperfect Markdown",
+        "No advanced post-processing or format normalization built in"
+      ],
+      "faqs": [
+        {
+          "q": "What is MarkItDown?",
+          "a": "MarkItDown is a Microsoft open-source tool that converts files (PDF, DOCX, PPTX, XLSX, images, HTML) to clean Markdown format. It's designed to prepare documents for LLM ingestion and RAG pipelines."
+        },
+        {
+          "q": "What file formats does MarkItDown support?",
+          "a": "PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), HTML, XML, JSON, CSV, images (with LLM descriptions), audio (with Whisper transcription), ZIP archives, and more."
+        },
+        {
+          "q": "How do I use MarkItDown?",
+          "a": "Install with `pip install markitdown`. CLI usage: `markitdown document.pdf > output.md`. Python API: `from markitdown import MarkItDown; md = MarkItDown(); result = md.convert('file.pdf'); print(result.text_content)`."
+        },
+        {
+          "q": "Is MarkItDown good for RAG document preparation?",
+          "a": "Yes. MarkItDown is specifically designed for LLM/RAG pipelines. It preserves document structure (headings, tables, lists) in Markdown, which helps chunking strategies maintain semantic coherence."
+        }
       ]
     },
     {
@@ -1843,6 +2091,37 @@
         "framework",
         "demo",
         "open-source"
+      ],
+      "website": "https://www.gradio.app",
+      "license": "Apache-2.0",
+      "featured": true,
+      "pros": [
+        "Build shareable ML demo UIs in Python with 3-5 lines of code",
+        "Automatic sharing via Hugging Face Spaces for public demos",
+        "Rich component library: chat, file upload, image, audio, video, dataframe",
+        "OpenAPI endpoint auto-generated from every Gradio app"
+      ],
+      "cons": [
+        "Not designed for production apps with complex state management",
+        "Default styling is functional but less polished than custom-built UIs"
+      ],
+      "faqs": [
+        {
+          "q": "What is Gradio?",
+          "a": "Gradio is a Python library for building interactive web interfaces for ML models and AI applications. It's the standard tool for sharing Hugging Face Space demos and creating quick internal tools."
+        },
+        {
+          "q": "How do I create a chatbot with Gradio?",
+          "a": "Use `gr.ChatInterface(predict_fn)` where `predict_fn(message, history)` returns a string response. This creates a full chat UI with conversation history in ~5 lines of Python."
+        },
+        {
+          "q": "Can I use Gradio with any ML framework?",
+          "a": "Yes. Gradio works with any Python function: PyTorch, TensorFlow, JAX, scikit-learn, or pure Python. Just wrap your model inference function in a Gradio interface."
+        },
+        {
+          "q": "How do I share my Gradio app publicly?",
+          "a": "Use `demo.launch(share=True)` to create a temporary public URL. For permanent hosting, deploy to Hugging Face Spaces for free. Self-hosting on any server that can run Python also works."
+        }
       ]
     },
     {
@@ -2057,6 +2336,37 @@
         "framework",
         "llm",
         "open-source"
+      ],
+      "website": "https://www.llamaindex.ai",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "Comprehensive RAG framework: ingestion, indexing, retrieval, and synthesis",
+        "Supports 100+ data connectors (Notion, Google Drive, databases, APIs)",
+        "LlamaCloud managed service for production RAG pipelines",
+        "Rich ecosystem of integrations with LangChain, Hugging Face, and vector stores"
+      ],
+      "cons": [
+        "Steeper learning curve than LangChain for simple use cases",
+        "API surface area is large; documentation can be hard to navigate"
+      ],
+      "faqs": [
+        {
+          "q": "What is LlamaIndex?",
+          "a": "LlamaIndex is a Python/TypeScript framework for building RAG (Retrieval-Augmented Generation) applications. It handles document ingestion, chunking, embedding, vector storage, retrieval, and LLM-powered answer synthesis."
+        },
+        {
+          "q": "How does LlamaIndex compare to LangChain?",
+          "a": "LlamaIndex specializes deeply in document retrieval and indexing (RAG). LangChain provides a broader toolkit for LLM app development including chains, agents, and tool use. Many teams use both together."
+        },
+        {
+          "q": "How do I install LlamaIndex?",
+          "a": "Install with `pip install llama-index`. For the full ecosystem: `pip install llama-index-core llama-index-llms-openai llama-index-embeddings-openai`. TypeScript version: `npm install llamaindex`."
+        },
+        {
+          "q": "What vector stores does LlamaIndex support?",
+          "a": "LlamaIndex integrates with Chroma, Pinecone, Weaviate, Qdrant, Milvus, Redis, PostgreSQL/pgvector, Elasticsearch, and 20+ more vector databases. It also has a built-in in-memory store for prototyping."
+        }
       ]
     },
     {
@@ -3261,6 +3571,37 @@
         "workflow",
         "no-code",
         "open-source"
+      ],
+      "website": "https://n8n.io",
+      "license": "Sustainable Use License",
+      "featured": true,
+      "pros": [
+        "Visual workflow builder with 400+ integrations (Slack, GitHub, Notion, etc.)",
+        "Self-hostable: run on your own server, Docker, or n8n Cloud",
+        "Built-in AI agent nodes for LLM-powered automation workflows",
+        "Code node allows custom JavaScript/Python for complex logic"
+      ],
+      "cons": [
+        "Sustainable Use License restricts certain commercial use cases",
+        "Complex workflows can become hard to debug without good logging"
+      ],
+      "faqs": [
+        {
+          "q": "What is n8n?",
+          "a": "n8n is an open-source workflow automation tool that connects your apps and services with a visual editor. It's similar to Zapier or Make.com but self-hostable with no per-task pricing."
+        },
+        {
+          "q": "Is n8n free?",
+          "a": "n8n is free to self-host under the Sustainable Use License. The n8n Cloud service starts at $20/month. The self-hosted version has no execution limits but restricts some commercial redistribution."
+        },
+        {
+          "q": "Can n8n integrate with AI models?",
+          "a": "Yes. n8n has native nodes for OpenAI, Anthropic, Google Gemini, and LangChain. You can build AI agents that retrieve data from APIs, process it with LLMs, and take automated actions."
+        },
+        {
+          "q": "How do I self-host n8n?",
+          "a": "Run with Docker: `docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n`. For production, use the official docker-compose.yml with PostgreSQL persistence. Full docs at docs.n8n.io."
+        }
       ]
     },
     {
@@ -3278,6 +3619,37 @@
         "automation",
         "autonomous",
         "open-source"
+      ],
+      "website": "https://browser-use.com",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "Natural language browser control: 'go to website, log in, and fill the form'",
+        "Works with any Playwright-supported browser (Chrome, Firefox, WebKit)",
+        "Supports GPT-4o, Claude, and local LLMs for decision making",
+        "Headless mode for CI/CD and server-side automation"
+      ],
+      "cons": [
+        "Complex multi-page tasks may require multiple LLM calls (high API cost)",
+        "Anti-bot detection on some websites can interrupt automation"
+      ],
+      "faqs": [
+        {
+          "q": "What is browser-use?",
+          "a": "browser-use is a Python library that lets AI agents control web browsers. You describe tasks in natural language (e.g., 'search for X and return the top 5 results'), and the agent uses Playwright to execute them."
+        },
+        {
+          "q": "How does browser-use differ from Playwright?",
+          "a": "Playwright is a low-level browser automation API that requires writing code for every action. browser-use wraps Playwright with an AI agent that interprets natural language instructions and selects appropriate browser actions."
+        },
+        {
+          "q": "What LLMs work with browser-use?",
+          "a": "browser-use works with any LangChain-compatible LLM: GPT-4o, Claude 3.5, Gemini 1.5, and local models via Ollama. GPT-4o with vision produces the most reliable results for visual page parsing."
+        },
+        {
+          "q": "Can browser-use handle login and form submissions?",
+          "a": "Yes. browser-use can fill forms, click buttons, handle dropdowns, and manage authentication flows. For security, store credentials in environment variables rather than hardcoding them."
+        }
       ]
     },
     {
@@ -3295,6 +3667,37 @@
         "vscode",
         "autonomous",
         "open-source"
+      ],
+      "website": "https://cline.bot",
+      "license": "Apache-2.0",
+      "featured": true,
+      "pros": [
+        "Autonomous VS Code extension that reads, writes, and runs code in your IDE",
+        "Full file system and terminal access within the VS Code environment",
+        "Works with Claude 3.5, GPT-4o, DeepSeek, and local models via Ollama",
+        "Shows every file change as a diff for easy review before applying"
+      ],
+      "cons": [
+        "Heavy VS Code extension that can slow down the editor on older hardware",
+        "Complex tasks with many file changes require careful review"
+      ],
+      "faqs": [
+        {
+          "q": "What is Cline?",
+          "a": "Cline is an open-source VS Code extension that gives Claude and other LLMs full access to your code editor: reading files, writing code, running terminal commands, and browsing the web to implement features autonomously."
+        },
+        {
+          "q": "How is Cline different from GitHub Copilot?",
+          "a": "GitHub Copilot provides inline code suggestions and chat. Cline is an autonomous agent that can read your entire codebase, make multi-file edits, run tests, fix errors iteratively, and complete tasks end-to-end."
+        },
+        {
+          "q": "How do I install Cline?",
+          "a": "Install the 'Cline' extension from the VS Code Marketplace. Configure your LLM API key (Anthropic, OpenAI, or others) in the extension settings. Start a task with the Cline chat panel in the sidebar."
+        },
+        {
+          "q": "Can Cline use local models?",
+          "a": "Yes. Set the API provider to 'Ollama' and point it to your local Ollama endpoint. Larger models (32B+) provide better multi-file reasoning. DeepSeek Coder V2 offers excellent results for coding tasks."
+        }
       ]
     },
     {
@@ -3396,6 +3799,37 @@
         "multi-agent",
         "microsoft",
         "open-source"
+      ],
+      "website": "https://microsoft.github.io/autogen",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "Microsoft-backed multi-agent framework with active development",
+        "Supports human-in-the-loop workflows with configurable confirmation prompts",
+        "AutoGen Studio: no-code UI for building and testing agent teams",
+        "Native support for code execution in Docker sandboxes"
+      ],
+      "cons": [
+        "API surface has changed significantly between v0.2 and v0.4 releases",
+        "Complex multi-agent conversations can be hard to debug"
+      ],
+      "faqs": [
+        {
+          "q": "What is AutoGen?",
+          "a": "AutoGen is Microsoft's open-source framework for building multi-agent AI systems. Multiple specialized agents (e.g., Coder, Critic, Planner) collaborate through conversation to complete complex tasks."
+        },
+        {
+          "q": "How is AutoGen different from MetaGPT?",
+          "a": "AutoGen provides a flexible conversation-based multi-agent API for general-purpose tasks. MetaGPT enforces a specific software-company structure (PM, engineer, QA) optimized for code generation."
+        },
+        {
+          "q": "What is AutoGen Studio?",
+          "a": "AutoGen Studio is a web-based no-code interface for building and testing AutoGen agent teams. You define agent roles, tools, and conversation workflows visually without writing Python code."
+        },
+        {
+          "q": "Does AutoGen support local LLMs?",
+          "a": "Yes. AutoGen supports any OpenAI-compatible API endpoint. Configure it to point to a local Ollama instance (http://localhost:11434/v1) to run completely offline without API fees."
+        }
       ]
     },
     {
@@ -3413,6 +3847,37 @@
         "multi-agent",
         "code",
         "open-source"
+      ],
+      "website": "https://deepwisdom.ai",
+      "license": "MIT",
+      "featured": false,
+      "pros": [
+        "Multi-agent framework that mirrors a software development company (PM, engineer, QA)",
+        "Generates PRD, architecture diagrams, code, and tests from a single requirement",
+        "Agents collaborate asynchronously via a shared message bus",
+        "Supports GPT-4o, Claude, and local LLMs"
+      ],
+      "cons": [
+        "Complex tasks consume large numbers of tokens (high API cost for GPT-4o)",
+        "Generated code quality varies; human review still required for production"
+      ],
+      "faqs": [
+        {
+          "q": "What is MetaGPT?",
+          "a": "MetaGPT is a multi-agent framework that assigns different LLM roles (Product Manager, Architect, Engineer, QA) to collaborate on software development tasks, producing code from high-level requirements."
+        },
+        {
+          "q": "How do I use MetaGPT to create software?",
+          "a": "Install with `pip install metagpt`, configure your LLM API key, then run: `metagpt 'create a snake game in Python'`. MetaGPT will produce a PRD, design documents, code files, and unit tests."
+        },
+        {
+          "q": "How does MetaGPT compare to AutoGPT?",
+          "a": "MetaGPT focuses on structured multi-agent software development with defined roles and standardized operating procedures. AutoGPT is a more general autonomous agent for open-ended tasks beyond coding."
+        },
+        {
+          "q": "What LLMs does MetaGPT support?",
+          "a": "MetaGPT supports OpenAI (GPT-4o, GPT-4), Anthropic (Claude 3.5), Google Gemini, ZhipuAI, and local models via Ollama or LiteLLM. GPT-4o and Claude 3.5 Sonnet produce the best results."
+        }
       ]
     },
     {
@@ -3430,6 +3895,37 @@
         "code",
         "autonomous",
         "open-source"
+      ],
+      "website": "https://www.all-hands.dev",
+      "license": "MIT",
+      "featured": true,
+      "pros": [
+        "Full-stack software engineering agent: reads, writes, debugs, and deploys code",
+        "Sandboxed Docker execution environment for safe code running",
+        "Supports 20+ LLM providers including Claude 3.5 and GPT-4o",
+        "Web UI with live code editor and terminal output streaming"
+      ],
+      "cons": [
+        "Requires Docker for sandboxed execution—doesn't run on all environments",
+        "Complex tasks can incur high API token costs with GPT-4o or Claude"
+      ],
+      "faqs": [
+        {
+          "q": "What is OpenHands?",
+          "a": "OpenHands (formerly OpenDevin) is an open-source platform for AI software engineering agents. It can read and write files, run code, browse the web, and complete full software development tasks autonomously."
+        },
+        {
+          "q": "How is OpenHands different from Devin?",
+          "a": "Devin is a proprietary commercial product. OpenHands is its open-source alternative. OpenHands provides similar capabilities—autonomous code writing, debugging, and deployment—but free to self-host."
+        },
+        {
+          "q": "What programming tasks can OpenHands complete?",
+          "a": "OpenHands can create new projects from scratch, fix GitHub issues, write unit tests, refactor code, set up CI/CD pipelines, debug runtime errors, and document existing codebases."
+        },
+        {
+          "q": "Which LLM gives the best results with OpenHands?",
+          "a": "Claude 3.5 Sonnet and GPT-4o provide the best results. The OpenHands team benchmarks models on SWE-Bench. For cost-efficiency, DeepSeek V2.5 and Llama 3.1 70B offer good performance at lower cost."
+        }
       ]
     },
     {
@@ -3481,6 +3977,37 @@
         "workflow",
         "rag",
         "open-source"
+      ],
+      "website": "https://www.langflow.org",
+      "license": "MIT",
+      "featured": false,
+      "pros": [
+        "Visual drag-and-drop builder for LangChain and AI agent workflows",
+        "Hosted on Datastax Astra for zero-infrastructure RAG pipelines",
+        "Export flows as Python code for production deployment",
+        "Real-time chat testing within the visual editor"
+      ],
+      "cons": [
+        "Visual flows can become complex and hard to maintain at scale",
+        "Some advanced LangChain features require dropping down to Python code"
+      ],
+      "faqs": [
+        {
+          "q": "What is Langflow?",
+          "a": "Langflow is a visual builder for LangChain and AI agent applications. You connect components (LLMs, vector stores, tools, prompts) in a drag-and-drop canvas to build and test AI workflows without writing code."
+        },
+        {
+          "q": "How is Langflow different from n8n?",
+          "a": "Langflow is specialized for AI/LLM workflows using LangChain components. n8n is a general-purpose workflow automation tool with broader app integrations. Langflow excels at RAG, chatbot, and AI agent pipelines."
+        },
+        {
+          "q": "Can I self-host Langflow?",
+          "a": "Yes. Install with `pip install langflow` and run `langflow run`. Docker deployment is also supported. The MIT license allows commercial self-hosting without restrictions."
+        },
+        {
+          "q": "How do I use Langflow for RAG?",
+          "a": "In the canvas, connect a Document Loader → Text Splitter → Embeddings → Vector Store for ingestion, then connect a Retriever → Prompt → LLM → Output for retrieval. Test directly in the built-in chat panel."
+        }
       ]
     },
     {
@@ -4501,6 +5028,37 @@
         "generative",
         "model",
         "open-source"
+      ],
+      "website": "https://stability.ai",
+      "license": "CreativeML OpenRAIL-M",
+      "featured": true,
+      "pros": [
+        "The original foundational model behind the Stable Diffusion ecosystem",
+        "Runs on consumer GPUs (4GB+ VRAM for SDXL Turbo)",
+        "Massive community of fine-tuned models on CivitAI and Hugging Face",
+        "Supports txt2img, img2img, inpainting, and ControlNet workflows"
+      ],
+      "cons": [
+        "Raw model requires technical setup; use AUTOMATIC1111 or ComfyUI for GUI",
+        "Generating high-quality images requires prompt engineering experience"
+      ],
+      "faqs": [
+        {
+          "q": "What is Stable Diffusion?",
+          "a": "Stable Diffusion is an open-source text-to-image AI model developed by Stability AI. It generates high-quality images from text prompts and runs locally on your GPU without cloud fees."
+        },
+        {
+          "q": "What GPU do I need for Stable Diffusion?",
+          "a": "Minimum 4GB VRAM for SD 1.5; 8GB+ recommended for SDXL. Apple Silicon (M1/M2) is supported via MPS. CPU mode works but is ~10x slower."
+        },
+        {
+          "q": "Is Stable Diffusion free to use?",
+          "a": "The model weights are free for personal and research use under the CreativeML OpenRAIL-M license. Commercial use requires reviewing the license terms."
+        },
+        {
+          "q": "What's the difference between Stable Diffusion versions?",
+          "a": "SD 1.5 is fast and highly compatible with community models. SDXL produces sharper 1024×1024 images. SDXL Turbo and SD3 are newer with fewer steps needed."
+        }
       ]
     },
     {
@@ -4756,6 +5314,37 @@
         "distributed",
         "performance",
         "microsoft"
+      ],
+      "website": "https://www.deepspeed.ai",
+      "license": "Apache-2.0",
+      "featured": false,
+      "pros": [
+        "ZeRO optimization stages 1/2/3 reduce GPU memory usage by up to 8x",
+        "Supports training 100B+ parameter models across hundreds of GPUs",
+        "Inference kernel optimizations for faster generation throughput",
+        "Drop-in integration with Hugging Face Transformers via one-line config"
+      ],
+      "cons": [
+        "Configuration complexity increases with model and cluster scale",
+        "ZeRO Stage 3 has higher communication overhead on smaller GPU clusters"
+      ],
+      "faqs": [
+        {
+          "q": "What is DeepSpeed?",
+          "a": "DeepSpeed is Microsoft's open-source deep learning optimization library for training and inference of large AI models. It enables training of 100B+ parameter models on hundreds of GPUs through ZeRO memory optimization and model parallelism."
+        },
+        {
+          "q": "When should I use DeepSpeed?",
+          "a": "Use DeepSpeed when your model doesn't fit in a single GPU's memory, or when you need to maximize throughput across multiple GPUs. It's most beneficial for models 7B parameters and larger."
+        },
+        {
+          "q": "How do I integrate DeepSpeed with Hugging Face Transformers?",
+          "a": "Add a DeepSpeed JSON config to your training script and set `deepspeed=config.json` in the `TrainingArguments`. The Transformers library handles the integration automatically. See the HuggingFace DeepSpeed docs for examples."
+        },
+        {
+          "q": "What is ZeRO and what are its stages?",
+          "a": "ZeRO (Zero Redundancy Optimizer) partitions optimizer states (Stage 1), gradients (Stage 2), and model parameters (Stage 3) across GPUs to reduce per-GPU memory usage. Stage 3 allows training models that would otherwise not fit in GPU memory at all."
+        }
       ]
     },
     {
@@ -5504,6 +6093,37 @@
         "code",
         "autonomous",
         "open-source"
+      ],
+      "website": "https://openinterpreter.com",
+      "license": "AGPL-3.0",
+      "featured": false,
+      "pros": [
+        "Autonomous coding agent that can read, write, and execute code",
+        "Browses the web, manages files, and controls desktop applications",
+        "Works with GPT-4o, Claude 3.5, and local Ollama models",
+        "Safe mode requires user confirmation before irreversible actions"
+      ],
+      "cons": [
+        "Full computer access creates significant security risk without proper sandboxing",
+        "Complex multi-step tasks can accumulate large token context costs"
+      ],
+      "faqs": [
+        {
+          "q": "What can the Open Interpreter agent do autonomously?",
+          "a": "It can browse the web, read and write files, execute code, send emails, manipulate images, and chain these actions together to complete multi-step goals described in plain English."
+        },
+        {
+          "q": "How does Open Interpreter agent differ from regular Open Interpreter?",
+          "a": "The agent mode adds autonomous planning and multi-step execution. Instead of requiring a human prompt per action, it formulates a plan and executes multiple steps without intervention."
+        },
+        {
+          "q": "Is it safe to run without supervision?",
+          "a": "For critical systems, always run with confirmation mode enabled. The agent supports a 'safe mode' that prompts before any destructive action. Never give it access to production environments unsupervised."
+        },
+        {
+          "q": "What LLMs work best with Open Interpreter agent?",
+          "a": "GPT-4o and Claude 3.5 Sonnet produce the most reliable autonomous results. For local-only runs, Llama 3.1 70B via Ollama offers a reasonable balance of capability and privacy."
+        }
       ]
     }
   ]

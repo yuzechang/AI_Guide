@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/n8n-io/n8n",
     "description": "Low-code workflow automation with 400+ integrations and AI",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Sustainable Use License" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What can n8n do autonomously?",
-        "acceptedAnswer": { "@type": "Answer", "text": "n8n can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals\u2014all without human confirmation at each step." }
+        "name": "What is n8n?",
+        "acceptedAnswer": { "@type": "Answer", "text": "n8n is an open-source workflow automation tool that connects your apps and services with a visual editor. It\u0027s similar to Zapier or Make.com but self-hostable with no per-task pricing." }
       },
       
       {
         "@type": "Question",
-        "name": "How much does running n8n cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50\u2013$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks." }
+        "name": "Is n8n free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "n8n is free to self-host under the Sustainable Use License. The n8n Cloud service starts at $20/month. The self-hosted version has no execution limits but restricts some commercial redistribution." }
       },
       
       {
         "@type": "Question",
-        "name": "Is it safe to run n8n without supervision?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For production-critical systems, always run with human-in-the-loop confirmation enabled. n8n includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits." }
+        "name": "Can n8n integrate with AI models?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. n8n has native nodes for OpenAI, Anthropic, Google Gemini, and LangChain. You can build AI agents that retrieve data from APIs, process it with LLMs, and take automated actions." }
       },
       
       {
         "@type": "Question",
-        "name": "How does n8n compare to prompt chaining?",
-        "acceptedAnswer": { "@type": "Answer", "text": "n8n goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results\u2014making it suitable for open-ended tasks where the exact steps aren\u0027t known in advance." }
+        "name": "How do I self-host n8n?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Run with Docker: `docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n`. For production, use the official docker-compose.yml with PostgreSQL persistence. Full docs at docs.n8n.io." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://n8n.io" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">Sustainable Use License</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -210,6 +215,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Visual workflow builder with 400+ integrations (Slack, GitHub, Notion, etc.)</li>
+            
+            <li>Self-hostable: run on your own server, Docker, or n8n Cloud</li>
+            
+            <li>Built-in AI agent nodes for LLM-powered automation workflows</li>
+            
+            <li>Code node allows custom JavaScript/Python for complex logic</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Sustainable Use License restricts certain commercial use cases</li>
+            
+            <li>Complex workflows can become hard to debug without good logging</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -250,6 +290,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with n8n</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://n8n.io" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar AI Agents</h2>
@@ -286,41 +343,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What can n8n do autonomously? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is n8n? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">n8n is an open-source workflow automation tool that connects your apps and services with a visual editor. It's similar to Zapier or Make.com but self-hostable with no per-task pricing.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">n8n can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals—all without human confirmation at each step.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is n8n free? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">n8n is free to self-host under the Sustainable Use License. The n8n Cloud service starts at $20/month. The self-hosted version has no execution limits but restricts some commercial redistribution.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How much does running n8n cost? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Can n8n integrate with AI models? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. n8n has native nodes for OpenAI, Anthropic, Google Gemini, and LangChain. You can build AI agents that retrieve data from APIs, process it with LLMs, and take automated actions.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50–$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How do I self-host n8n? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Run with Docker: `docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n`. For production, use the official docker-compose.yml with PostgreSQL persistence. Full docs at docs.n8n.io.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is it safe to run n8n without supervision? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">For production-critical systems, always run with human-in-the-loop confirmation enabled. n8n includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How does n8n compare to prompt chaining? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">n8n goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results—making it suitable for open-ended tasks where the exact steps aren't known in advance.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -339,9 +398,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 49k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Agent</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Sustainable Use License</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://n8n.io" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -350,6 +414,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is n8n?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/OpenInterpreter/open-interpreter",
     "description": "Natural language interface to run code on your computer",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "AGPL-3.0" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "Is Open Interpreter free to use?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Open Interpreter is open-source and free to self-host (MIT or Apache license). Some advanced cloud-hosted tiers have pricing. Check the GitHub repository and official website for the latest licensing and pricing details." }
+        "name": "What is Open Interpreter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Open Interpreter lets LLMs run code on your local computer. You describe a task in natural language, and it writes and executes Python, JavaScript, or shell code to complete it." }
       },
       
       {
         "@type": "Question",
-        "name": "Does Open Interpreter require a GPU?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It depends on the specific workload. Many AI tools run on CPU with acceptable performance for light use. For intensive image generation or large model inference, a modern NVIDIA GPU (8GB+ VRAM) significantly improves speed." }
+        "name": "Is Open Interpreter safe to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Open Interpreter asks for user confirmation before executing potentially dangerous code. Never grant it access to production systems or sensitive credentials without reviewing each action." }
       },
       
       {
         "@type": "Question",
-        "name": "What are the best alternatives to Open Interpreter?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The AI Nav directory lists 100+ tools in the AI Tools category. Use the tag filter to find tools with similar capabilities, or browse the \u0027Similar Tools\u0027 section on this page for direct alternatives." }
+        "name": "Can I use Open Interpreter with local models?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use `interpreter --model ollama/llama3` to run fully offline with Ollama. No OpenAI key needed, and all code execution stays on your machine." }
       },
       
       {
         "@type": "Question",
-        "name": "Can Open Interpreter be self-hosted for enterprise privacy?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. As an open-source project, Open Interpreter can be deployed on your own servers, Kubernetes cluster, or private cloud. This eliminates data egress concerns and satisfies compliance requirements like SOC 2, HIPAA, and GDPR." }
+        "name": "How does Open Interpreter differ from ChatGPT Code Interpreter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ChatGPT Code Interpreter runs in a sandboxed cloud VM with limited internet access. Open Interpreter runs on your actual local machine with full filesystem and internet access." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://openinterpreter.com" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">AGPL-3.0</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -214,6 +219,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Natural language interface for executing code on your local machine</li>
+            
+            <li>Supports Python, JavaScript, shell, and 40+ programming languages</li>
+            
+            <li>Runs entirely locally with Ollama models for privacy</li>
+            
+            <li>Interactive REPL with persistent conversation context</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Executing AI-generated code locally carries inherent security risks</li>
+            
+            <li>Requires explicit user confirmation for high-risk operations by default</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -254,6 +294,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with Open Interpreter</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://openinterpreter.com" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar AI Tools</h2>
@@ -290,41 +347,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is Open Interpreter free to use? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is Open Interpreter? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Open Interpreter lets LLMs run code on your local computer. You describe a task in natural language, and it writes and executes Python, JavaScript, or shell code to complete it.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Open Interpreter is open-source and free to self-host (MIT or Apache license). Some advanced cloud-hosted tiers have pricing. Check the GitHub repository and official website for the latest licensing and pricing details.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is Open Interpreter safe to use? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Open Interpreter asks for user confirmation before executing potentially dangerous code. Never grant it access to production systems or sensitive credentials without reviewing each action.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Does Open Interpreter require a GPU? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Can I use Open Interpreter with local models? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. Use `interpreter --model ollama/llama3` to run fully offline with Ollama. No OpenAI key needed, and all code execution stays on your machine.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">It depends on the specific workload. Many AI tools run on CPU with acceptable performance for light use. For intensive image generation or large model inference, a modern NVIDIA GPU (8GB+ VRAM) significantly improves speed.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How does Open Interpreter differ from ChatGPT Code Interpreter? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">ChatGPT Code Interpreter runs in a sandboxed cloud VM with limited internet access. Open Interpreter runs on your actual local machine with full filesystem and internet access.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What are the best alternatives to Open Interpreter? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The AI Nav directory lists 100+ tools in the AI Tools category. Use the tag filter to find tools with similar capabilities, or browse the 'Similar Tools' section on this page for direct alternatives.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Can Open Interpreter be self-hosted for enterprise privacy? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Yes. As an open-source project, Open Interpreter can be deployed on your own servers, Kubernetes cluster, or private cloud. This eliminates data egress concerns and satisfies compliance requirements like SOC 2, HIPAA, and GDPR.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -343,9 +402,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 54k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Tool</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> AGPL-3.0</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://openinterpreter.com" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -354,6 +418,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is Open Interpreter?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

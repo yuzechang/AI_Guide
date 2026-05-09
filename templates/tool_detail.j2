@@ -109,7 +109,11 @@
       <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener" class="cta-btn">
         View on GitHub ↗
       </a>
-      {% if tool.website %}
+      {% if tool.affiliateUrl %}
+      <a href="{{ tool.affiliateUrl }}" target="_blank" rel="nofollow noopener sponsored" class="cta-btn-outline">
+        Try {{ tool.name }} Free ↗
+      </a>
+      {% elif tool.website %}
       <a href="{{ tool.website }}" target="_blank" rel="noopener" class="cta-btn-outline">
         Official Website ↗
       </a>
@@ -259,16 +263,24 @@
       </div>
 
       <!-- Affiliate / Official Site CTA -->
-      {% if tool.website %}
+      {% if tool.affiliateUrl or tool.website %}
+      {% set cta_url = tool.affiliateUrl if tool.affiliateUrl else tool.website %}
+      {% set cta_rel = "nofollow noopener sponsored" if tool.affiliateUrl else "noopener" %}
+      {% set cta_text = "Try " + tool.name + " Free" if tool.affiliateUrl else "Visit Official Site" %}
       <div class="affiliate-cta">
         <div class="affiliate-cta-left">
           <div class="affiliate-cta-title">Get Started with {{ tool.name }}</div>
           <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
         </div>
-        <a href="{{ tool.website }}" target="_blank" rel="noopener sponsored" class="cta-btn affiliate-cta-btn">
-          Visit Official Site ↗
+        <a href="{{ cta_url }}" target="_blank" rel="{{ cta_rel }}" class="cta-btn affiliate-cta-btn">
+          {{ cta_text }} ↗
         </a>
       </div>
+      {% if tool.affiliateUrl %}
+      <p class="affiliate-disclosure">
+        Disclosure: The link above is an affiliate link. If you sign up or purchase, we may earn a commission at no extra cost to you. This helps support AI Nav's operations. We only link to tools we genuinely recommend.
+      </p>
+      {% endif %}
       {% endif %}
 
       <!-- Related Tools -->

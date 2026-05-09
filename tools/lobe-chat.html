@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/lobehub/lobe-chat",
     "description": "Modern open-source ChatGPT / LLMs UI framework",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "Is LobeChat free to use?",
-        "acceptedAnswer": { "@type": "Answer", "text": "LobeChat is open-source and free to self-host (MIT or Apache license). Some advanced cloud-hosted tiers have pricing. Check the GitHub repository and official website for the latest licensing and pricing details." }
+        "name": "What is Lobe Chat?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Lobe Chat is an open-source ChatGPT-like UI that works with multiple LLM providers including OpenAI, Anthropic Claude, Google Gemini, DeepSeek, and local models via Ollama." }
       },
       
       {
         "@type": "Question",
-        "name": "Does LobeChat require a GPU?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It depends on the specific workload. Many AI tools run on CPU with acceptable performance for light use. For intensive image generation or large model inference, a modern NVIDIA GPU (8GB+ VRAM) significantly improves speed." }
+        "name": "How do I deploy Lobe Chat?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The easiest method is one-click deployment to Vercel using the template in the GitHub README. You then configure your API keys in the settings. Self-hosting with Docker is also fully supported." }
       },
       
       {
         "@type": "Question",
-        "name": "What are the best alternatives to LobeChat?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The AI Nav directory lists 100+ tools in the AI Tools category. Use the tag filter to find tools with similar capabilities, or browse the \u0027Similar Tools\u0027 section on this page for direct alternatives." }
+        "name": "Is Lobe Chat free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Lobe Chat is Apache-2.0 licensed and free to use. You bring your own LLM API keys and pay only for API usage. The lobechat.com cloud version offers a free tier and paid plans for extra storage." }
       },
       
       {
         "@type": "Question",
-        "name": "Can LobeChat be self-hosted for enterprise privacy?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. As an open-source project, LobeChat can be deployed on your own servers, Kubernetes cluster, or private cloud. This eliminates data egress concerns and satisfies compliance requirements like SOC 2, HIPAA, and GDPR." }
+        "name": "Can Lobe Chat use local models?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enable Ollama integration in settings and set the endpoint to your Ollama server (default: http://localhost:11434). All supported Ollama models appear in the provider dropdown." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://lobechat.com" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">Apache-2.0</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -214,6 +219,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Modern ChatGPT-style interface supporting 30+ LLM providers</li>
+            
+            <li>Built-in plugin system with web search, code execution, and image generation</li>
+            
+            <li>One-click deployment on Vercel with zero configuration</li>
+            
+            <li>Supports local models via Ollama integration</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Requires your own API keys (OpenAI, Anthropic, etc.)</li>
+            
+            <li>Plugin ecosystem still maturing compared to commercial alternatives</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -254,6 +294,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with LobeChat</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://lobechat.com" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar AI Tools</h2>
@@ -290,41 +347,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is LobeChat free to use? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is Lobe Chat? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Lobe Chat is an open-source ChatGPT-like UI that works with multiple LLM providers including OpenAI, Anthropic Claude, Google Gemini, DeepSeek, and local models via Ollama.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">LobeChat is open-source and free to self-host (MIT or Apache license). Some advanced cloud-hosted tiers have pricing. Check the GitHub repository and official website for the latest licensing and pricing details.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How do I deploy Lobe Chat? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">The easiest method is one-click deployment to Vercel using the template in the GitHub README. You then configure your API keys in the settings. Self-hosting with Docker is also fully supported.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Does LobeChat require a GPU? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is Lobe Chat free? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Lobe Chat is Apache-2.0 licensed and free to use. You bring your own LLM API keys and pay only for API usage. The lobechat.com cloud version offers a free tier and paid plans for extra storage.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">It depends on the specific workload. Many AI tools run on CPU with acceptable performance for light use. For intensive image generation or large model inference, a modern NVIDIA GPU (8GB+ VRAM) significantly improves speed.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Can Lobe Chat use local models? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. Enable Ollama integration in settings and set the endpoint to your Ollama server (default: http://localhost:11434). All supported Ollama models appear in the provider dropdown.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What are the best alternatives to LobeChat? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The AI Nav directory lists 100+ tools in the AI Tools category. Use the tag filter to find tools with similar capabilities, or browse the 'Similar Tools' section on this page for direct alternatives.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Can LobeChat be self-hosted for enterprise privacy? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Yes. As an open-source project, LobeChat can be deployed on your own servers, Kubernetes cluster, or private cloud. This eliminates data egress concerns and satisfies compliance requirements like SOC 2, HIPAA, and GDPR.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -343,9 +402,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 46k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Tool</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://lobechat.com" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -354,6 +418,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is LobeChat?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

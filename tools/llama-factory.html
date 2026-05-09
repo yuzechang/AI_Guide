@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/hiyouga/LLaMA-Factory",
     "description": "Unified fine-tuning framework for 100+ LLMs with WebUI",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What languages does LLaMA-Factory support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "LLaMA-Factory primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "What is LLaMA-Factory?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LLaMA-Factory is an open-source framework for efficient fine-tuning of large language models. It supports LoRA, QLoRA, and full fine-tuning for 100+ model architectures with a simple YAML configuration." }
       },
       
       {
         "@type": "Question",
-        "name": "Is LLaMA-Factory production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. LLaMA-Factory is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "What is the minimum GPU needed for LLaMA-Factory?",
+        "acceptedAnswer": { "@type": "Answer", "text": "QLoRA fine-tuning of a 7B model requires approximately 8GB VRAM (RTX 3070 or better). Full fine-tuning of a 7B model needs 24GB+ VRAM. Multi-GPU training is supported via DeepSpeed." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with LLaMA-Factory?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install llama-factory` (Python) or `npm install llama-factory` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "How do I fine-tune a model with LLaMA-Factory?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Prepare your dataset in the Alpaca or ShareGPT format, create a YAML config specifying model path, dataset, and LoRA parameters, then run `llamafactory-cli train config.yaml`. The LLaMA Board GUI provides a visual alternative." }
       },
       
       {
         "@type": "Question",
-        "name": "Does LLaMA-Factory work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "Which models can LLaMA-Factory fine-tune?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LLaMA-Factory supports Llama 3/2, Mistral, Qwen2, Gemma 2, Phi-3, ChatGLM, Baichuan, DeepSeek, Yi, InternLM, and 100+ more. See the full list in the GitHub documentation." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://github.com/hiyouga/LLaMA-Factory" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">Apache-2.0</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -215,6 +220,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>One-stop fine-tuning for 100+ models including Llama, Mistral, Qwen, and Gemma</li>
+            
+            <li>Supports LoRA, QLoRA, DoRA, ORPO, DPO, and full fine-tuning</li>
+            
+            <li>LLaMA Board web UI for no-code model training configuration</li>
+            
+            <li>Memory-efficient: QLoRA fine-tunes 7B models on 8GB VRAM</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Full fine-tuning of large models still requires high-end GPU clusters</li>
+            
+            <li>Dataset preparation and formatting require careful attention to templates</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -255,6 +295,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with LLaMA-Factory</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://github.com/hiyouga/LLaMA-Factory" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar Skill Frameworks</h2>
@@ -291,41 +348,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What languages does LLaMA-Factory support? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is LLaMA-Factory? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">LLaMA-Factory is an open-source framework for efficient fine-tuning of large language models. It supports LoRA, QLoRA, and full fine-tuning for 100+ model architectures with a simple YAML configuration.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">LLaMA-Factory primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is the minimum GPU needed for LLaMA-Factory? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">QLoRA fine-tuning of a 7B model requires approximately 8GB VRAM (RTX 3070 or better). Full fine-tuning of a 7B model needs 24GB+ VRAM. Multi-GPU training is supported via DeepSpeed.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is LLaMA-Factory production-ready? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How do I fine-tune a model with LLaMA-Factory? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Prepare your dataset in the Alpaca or ShareGPT format, create a YAML config specifying model path, dataset, and LoRA parameters, then run `llamafactory-cli train config.yaml`. The LLaMA Board GUI provides a visual alternative.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Yes. LLaMA-Factory is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Which models can LLaMA-Factory fine-tune? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">LLaMA-Factory supports Llama 3/2, Mistral, Qwen2, Gemma 2, Phi-3, ChatGLM, Baichuan, DeepSeek, Yi, InternLM, and 100+ more. See the full list in the GitHub documentation.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How do I install and get started with LLaMA-Factory? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Install via pip: `pip install llama-factory` (Python) or `npm install llama-factory` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Does LLaMA-Factory work with local LLMs like Ollama? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -344,9 +403,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 36k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> Skill Framework</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://github.com/hiyouga/LLaMA-Factory" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -355,6 +419,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is LLaMA-Factory?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

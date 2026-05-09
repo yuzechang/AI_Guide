@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/microsoft/markitdown",
     "description": "Microsoft utility to convert files and documents to Markdown",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What languages does MarkItDown support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "MarkItDown primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "What is MarkItDown?",
+        "acceptedAnswer": { "@type": "Answer", "text": "MarkItDown is a Microsoft open-source tool that converts files (PDF, DOCX, PPTX, XLSX, images, HTML) to clean Markdown format. It\u0027s designed to prepare documents for LLM ingestion and RAG pipelines." }
       },
       
       {
         "@type": "Question",
-        "name": "Is MarkItDown production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. MarkItDown is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "What file formats does MarkItDown support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), HTML, XML, JSON, CSV, images (with LLM descriptions), audio (with Whisper transcription), ZIP archives, and more." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with MarkItDown?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install markitdown` (Python) or `npm install markitdown` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "How do I use MarkItDown?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Install with `pip install markitdown`. CLI usage: `markitdown document.pdf \u003e output.md`. Python API: `from markitdown import MarkItDown; md = MarkItDown(); result = md.convert(\u0027file.pdf\u0027); print(result.text_content)`." }
       },
       
       {
         "@type": "Question",
-        "name": "Does MarkItDown work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "Is MarkItDown good for RAG document preparation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. MarkItDown is specifically designed for LLM/RAG pipelines. It preserves document structure (headings, tables, lists) in Markdown, which helps chunking strategies maintain semantic coherence." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">MIT</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -200,6 +205,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Converts 15+ file formats to Markdown (PDF, DOCX, PPTX, XLSX, HTML, images)</li>
+            
+            <li>Microsoft-maintained with high reliability and consistent output format</li>
+            
+            <li>Optional LLM integration for image description in documents</li>
+            
+            <li>Simple Python API and CLI tool for integration in data pipelines</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Complex PDF layouts (multi-column, tables) may produce imperfect Markdown</li>
+            
+            <li>No advanced post-processing or format normalization built in</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -240,6 +280,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with MarkItDown</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar Skill Frameworks</h2>
@@ -276,41 +333,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What languages does MarkItDown support? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is MarkItDown? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">MarkItDown is a Microsoft open-source tool that converts files (PDF, DOCX, PPTX, XLSX, images, HTML) to clean Markdown format. It's designed to prepare documents for LLM ingestion and RAG pipelines.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">MarkItDown primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What file formats does MarkItDown support? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">PDF, Word (DOCX), Excel (XLSX), PowerPoint (PPTX), HTML, XML, JSON, CSV, images (with LLM descriptions), audio (with Whisper transcription), ZIP archives, and more.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is MarkItDown production-ready? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How do I use MarkItDown? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Install with `pip install markitdown`. CLI usage: `markitdown document.pdf > output.md`. Python API: `from markitdown import MarkItDown; md = MarkItDown(); result = md.convert('file.pdf'); print(result.text_content)`.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Yes. MarkItDown is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is MarkItDown good for RAG document preparation? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. MarkItDown is specifically designed for LLM/RAG pipelines. It preserves document structure (headings, tables, lists) in Markdown, which helps chunking strategies maintain semantic coherence.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How do I install and get started with MarkItDown? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Install via pip: `pip install markitdown` (Python) or `npm install markitdown` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Does MarkItDown work with local LLMs like Ollama? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -329,9 +388,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 35k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> Skill Framework</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -340,6 +404,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is MarkItDown?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

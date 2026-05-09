@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/browser-use/browser-use",
     "description": "Let AI control a browser autonomously to complete web tasks",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What can Browser Use do autonomously?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Browser Use can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals\u2014all without human confirmation at each step." }
+        "name": "What is browser-use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "browser-use is a Python library that lets AI agents control web browsers. You describe tasks in natural language (e.g., \u0027search for X and return the top 5 results\u0027), and the agent uses Playwright to execute them." }
       },
       
       {
         "@type": "Question",
-        "name": "How much does running Browser Use cost?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50\u2013$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks." }
+        "name": "How does browser-use differ from Playwright?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Playwright is a low-level browser automation API that requires writing code for every action. browser-use wraps Playwright with an AI agent that interprets natural language instructions and selects appropriate browser actions." }
       },
       
       {
         "@type": "Question",
-        "name": "Is it safe to run Browser Use without supervision?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For production-critical systems, always run with human-in-the-loop confirmation enabled. Browser Use includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits." }
+        "name": "What LLMs work with browser-use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "browser-use works with any LangChain-compatible LLM: GPT-4o, Claude 3.5, Gemini 1.5, and local models via Ollama. GPT-4o with vision produces the most reliable results for visual page parsing." }
       },
       
       {
         "@type": "Question",
-        "name": "How does Browser Use compare to prompt chaining?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Browser Use goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results\u2014making it suitable for open-ended tasks where the exact steps aren\u0027t known in advance." }
+        "name": "Can browser-use handle login and form submissions?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. browser-use can fill forms, click buttons, handle dropdowns, and manage authentication flows. For security, store credentials in environment variables rather than hardcoding them." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://browser-use.com" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">MIT</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -205,6 +210,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Natural language browser control: 'go to website, log in, and fill the form'</li>
+            
+            <li>Works with any Playwright-supported browser (Chrome, Firefox, WebKit)</li>
+            
+            <li>Supports GPT-4o, Claude, and local LLMs for decision making</li>
+            
+            <li>Headless mode for CI/CD and server-side automation</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Complex multi-page tasks may require multiple LLM calls (high API cost)</li>
+            
+            <li>Anti-bot detection on some websites can interrupt automation</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -245,6 +285,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with Browser Use</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://browser-use.com" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar AI Agents</h2>
@@ -281,41 +338,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What can Browser Use do autonomously? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is browser-use? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">browser-use is a Python library that lets AI agents control web browsers. You describe tasks in natural language (e.g., 'search for X and return the top 5 results'), and the agent uses Playwright to execute them.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Browser Use can browse the web, read and write files, execute code in a sandbox, call external APIs, and chain these actions to complete complex multi-step goals—all without human confirmation at each step.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How does browser-use differ from Playwright? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Playwright is a low-level browser automation API that requires writing code for every action. browser-use wraps Playwright with an AI agent that interprets natural language instructions and selects appropriate browser actions.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How much does running Browser Use cost? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What LLMs work with browser-use? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">browser-use works with any LangChain-compatible LLM: GPT-4o, Claude 3.5, Gemini 1.5, and local models via Ollama. GPT-4o with vision produces the most reliable results for visual page parsing.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">The software itself is MIT-licensed and free. It requires an LLM API (OpenAI, Anthropic, or local Ollama). A typical task costs $0.50–$5 in API usage with GPT-4o. Always set a token budget limit to prevent runaway costs on long tasks.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Can browser-use handle login and form submissions? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. browser-use can fill forms, click buttons, handle dropdowns, and manage authentication flows. For security, store credentials in environment variables rather than hardcoding them.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is it safe to run Browser Use without supervision? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">For production-critical systems, always run with human-in-the-loop confirmation enabled. Browser Use includes confirmation prompts for destructive actions by default. Never grant access to credentials or production infrastructure without explicit scope limits.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How does Browser Use compare to prompt chaining? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Browser Use goes beyond prompt chaining by adding dynamic planning, real tool execution, and self-correction loops. Unlike a fixed chain of prompts, it adapts its approach based on intermediate results—making it suitable for open-ended tasks where the exact steps aren't known in advance.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -334,9 +393,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 40k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> AI Agent</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://browser-use.com" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -345,6 +409,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is Browser Use?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

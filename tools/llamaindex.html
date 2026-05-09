@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/run-llama/llama_index",
     "description": "Data framework for LLM applications over custom data",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What languages does LlamaIndex support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "LlamaIndex primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "What is LlamaIndex?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LlamaIndex is a Python/TypeScript framework for building RAG (Retrieval-Augmented Generation) applications. It handles document ingestion, chunking, embedding, vector storage, retrieval, and LLM-powered answer synthesis." }
       },
       
       {
         "@type": "Question",
-        "name": "Is LlamaIndex production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. LlamaIndex is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "How does LlamaIndex compare to LangChain?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LlamaIndex specializes deeply in document retrieval and indexing (RAG). LangChain provides a broader toolkit for LLM app development including chains, agents, and tool use. Many teams use both together." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with LlamaIndex?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install llamaindex` (Python) or `npm install llamaindex` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "How do I install LlamaIndex?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Install with `pip install llama-index`. For the full ecosystem: `pip install llama-index-core llama-index-llms-openai llama-index-embeddings-openai`. TypeScript version: `npm install llamaindex`." }
       },
       
       {
         "@type": "Question",
-        "name": "Does LlamaIndex work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "What vector stores does LlamaIndex support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LlamaIndex integrates with Chroma, Pinecone, Weaviate, Qdrant, Milvus, Redis, PostgreSQL/pgvector, Elasticsearch, and 20+ more vector databases. It also has a built-in in-memory store for prototyping." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://www.llamaindex.ai" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">MIT</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -215,6 +220,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Comprehensive RAG framework: ingestion, indexing, retrieval, and synthesis</li>
+            
+            <li>Supports 100+ data connectors (Notion, Google Drive, databases, APIs)</li>
+            
+            <li>LlamaCloud managed service for production RAG pipelines</li>
+            
+            <li>Rich ecosystem of integrations with LangChain, Hugging Face, and vector stores</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Steeper learning curve than LangChain for simple use cases</li>
+            
+            <li>API surface area is large; documentation can be hard to navigate</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -255,6 +295,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with LlamaIndex</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://www.llamaindex.ai" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar Skill Frameworks</h2>
@@ -291,41 +348,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What languages does LlamaIndex support? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is LlamaIndex? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">LlamaIndex is a Python/TypeScript framework for building RAG (Retrieval-Augmented Generation) applications. It handles document ingestion, chunking, embedding, vector storage, retrieval, and LLM-powered answer synthesis.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">LlamaIndex primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How does LlamaIndex compare to LangChain? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">LlamaIndex specializes deeply in document retrieval and indexing (RAG). LangChain provides a broader toolkit for LLM app development including chains, agents, and tool use. Many teams use both together.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is LlamaIndex production-ready? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How do I install LlamaIndex? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Install with `pip install llama-index`. For the full ecosystem: `pip install llama-index-core llama-index-llms-openai llama-index-embeddings-openai`. TypeScript version: `npm install llamaindex`.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Yes. LlamaIndex is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What vector stores does LlamaIndex support? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">LlamaIndex integrates with Chroma, Pinecone, Weaviate, Qdrant, Milvus, Redis, PostgreSQL/pgvector, Elasticsearch, and 20+ more vector databases. It also has a built-in in-memory store for prototyping.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How do I install and get started with LlamaIndex? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Install via pip: `pip install llamaindex` (Python) or `npm install llamaindex` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Does LlamaIndex work with local LLMs like Ollama? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -344,9 +403,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 37k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> Skill Framework</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://www.llamaindex.ai" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -355,6 +419,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is LlamaIndex?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>

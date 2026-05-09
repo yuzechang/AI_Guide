@@ -24,6 +24,7 @@ BASE_DIR      = Path(__file__).parent
 DATA_FILE     = BASE_DIR / "data.json"
 TEMPLATES_DIR = BASE_DIR / "templates"
 TOOLS_DIR     = BASE_DIR / "tools"
+CATEGORY_DIR  = BASE_DIR / "category"
 SITEMAP_FILE  = BASE_DIR / "sitemap.xml"
 
 BASE_URL = "https://yuzec.com"
@@ -152,6 +153,31 @@ CATEGORY_INFO = {
     },
 }
 
+# ─── Category 页面 SEO 配置 ──────────────────────────────────────────────────
+CATEGORY_SEO = {
+    "ai-tools": {
+        "slug": "ai-tools",
+        "seo_title": "Best Open Source AI Tools 2026 – 100 Top AI Applications | AI Nav",
+        "seo_desc": "Discover the 100 best open source AI tools in 2026, ranked by GitHub stars. Covers local LLMs, image generation, coding assistants, voice AI, and developer tools.",
+        "h1": "Best Open Source AI Tools 2026",
+        "intro": "A curated ranking of the 100 most popular open-source AI tools, sorted by GitHub stars. From local LLMs and image generators to coding assistants and voice models—find the right tool for your project.",
+    },
+    "skill": {
+        "slug": "skill",
+        "seo_title": "Best AI Skill Frameworks & LLM Libraries 2026 – Top 100 | AI Nav",
+        "seo_desc": "Explore 100 top open-source AI skill frameworks and LLM libraries in 2026. Includes LangChain, Transformers, vLLM, LlamaIndex, and more, ranked by GitHub stars.",
+        "h1": "Best AI Skill Frameworks & LLM Libraries 2026",
+        "intro": "A curated ranking of 100 open-source developer frameworks and libraries for building production-ready LLM applications. Covers RAG pipelines, inference engines, fine-tuning toolkits, embeddings, and vector databases.",
+    },
+    "agent": {
+        "slug": "agent",
+        "seo_title": "Best AI Agent Frameworks 2026 – 100 Autonomous AI Systems | AI Nav",
+        "seo_desc": "Browse 100 top open-source AI agent frameworks in 2026, ranked by GitHub stars. Covers AutoGPT, n8n, MetaGPT, browser automation, and multi-agent orchestration.",
+        "h1": "Best Open Source AI Agent Frameworks 2026",
+        "intro": "A curated ranking of 100 open-source autonomous AI agent frameworks, sorted by GitHub stars. From multi-agent orchestration and browser automation to code agents and LLM workflow systems.",
+    },
+}
+
 # ─── SEO title / description templates ──────────────────────────────────────
 TITLE_TEMPLATES = {
     "ai-tools": "{name} Review 2026 | {desc_short} – AI Nav",
@@ -240,6 +266,44 @@ def _tool_priority(tool):
     return "0.7"
 
 
+def generate_category_pages(env, all_tools):
+    """生成三个分类聚合页：/category/ai-tools.html, /category/skill.html, /category/agent.html。"""
+    CATEGORY_DIR.mkdir(exist_ok=True)
+    template = env.get_template("category.j2")
+    # 构建 tool_id → filename 映射
+    tool_filenames = {t["id"]: MANUAL_PAGES.get(t["id"], t["id"]) for t in all_tools}
+    generated = 0
+    for cat_key, seo in CATEGORY_SEO.items():
+        tools = sorted(
+            [t for t in all_tools if t["category"] == cat_key],
+            key=lambda t: t.get("stars", 0), reverse=True
+        )
+        total_stars = sum(t.get("stars", 0) for t in tools)
+        if total_stars >= 1_000_000:
+            total_stars_label = f"{total_stars // 1_000_000:.1f}M+"
+        else:
+            total_stars_label = f"{total_stars // 1000}K+"
+        ctx = {
+            "seo_title":        seo["seo_title"],
+            "seo_desc":         seo["seo_desc"],
+            "h1":               seo["h1"],
+            "intro":            seo["intro"],
+            "cat_slug":         seo["slug"],
+            "cat":              CATEGORY_INFO[cat_key],
+            "tools":            tools,
+            "tool_filenames":   tool_filenames,
+            "total_stars_label": total_stars_label,
+            "base_url":         BASE_URL,
+            "today":            TODAY,
+        }
+        out_path = CATEGORY_DIR / f"{seo['slug']}.html"
+        html = template.render(**ctx)
+        out_path.write_text(html, encoding="utf-8")
+        generated += 1
+    print(f"[category] 已生成 {generated} 个分类聚合页 → {CATEGORY_DIR.name}/")
+    return generated
+
+
 def generate_sitemap(tools_dir, all_tools):
     """生成完整 sitemap.xml，包含首页、静态页、所有工具页（按 stars 设置优先级）。"""
     urls = []
@@ -257,6 +321,13 @@ def generate_sitemap(tools_dir, all_tools):
         ("privacy-policy.html", "0.3", "yearly"),
     ]:
         urls.append(dict(loc=f"{BASE_URL}/{page}", lastmod=TODAY, changefreq=freq, priority=prio))
+
+    # 分类聚合页
+    for cat_key in ["ai-tools", "skill", "agent"]:
+        slug = CATEGORY_SEO[cat_key]["slug"]
+        cat_path = CATEGORY_DIR / f"{slug}.html"
+        if cat_path.exists():
+            urls.append(dict(loc=f"{BASE_URL}/category/{slug}.html", lastmod=TODAY, changefreq="weekly", priority="0.85"))
 
     # 工具页（按 stars 降序排列，高质量页面在 sitemap 靠前）
     sorted_tools = sorted(all_tools, key=lambda t: t.get("stars", 0), reverse=True)
@@ -294,10 +365,11 @@ def generate_sitemap(tools_dir, all_tools):
 
 def main():
     parser = argparse.ArgumentParser(description="AI Nav 静态页面生成器")
-    parser.add_argument("--ids",          help="逗号分隔的工具 ID，只生成这些", default="")
-    parser.add_argument("--force",        action="store_true", help="强制覆盖已有页面（含手写页）")
-    parser.add_argument("--sitemap-only", action="store_true", help="只更新 sitemap.xml")
-    parser.add_argument("--dry-run",      action="store_true", help="打印计划但不写文件")
+    parser.add_argument("--ids",           help="逗号分隔的工具 ID，只生成这些", default="")
+    parser.add_argument("--force",         action="store_true", help="强制覆盖已有页面（含手写页）")
+    parser.add_argument("--sitemap-only",  action="store_true", help="只更新 sitemap.xml")
+    parser.add_argument("--dry-run",       action="store_true", help="打印计划但不写文件")
+    parser.add_argument("--no-category",   action="store_true", help="跳过分类聚合页生成")
     args = parser.parse_args()
 
     # 加载数据
@@ -376,6 +448,10 @@ def main():
                 errors += 1
 
         print(f"[generate] 生成 {generated} 页 | 跳过手写 {skipped_manual} | 跳过已有 {skipped_exists} | 错误 {errors}")
+
+    # 生成分类聚合页
+    if not args.sitemap_only and not args.dry_run and not args.no_category:
+        generate_category_pages(env, all_tools)
 
     # 更新 sitemap.xml
     if not args.dry_run:

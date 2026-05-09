@@ -350,3 +350,37 @@ footer { background: var(--surface); border-top: 1px solid var(--border); margin
   background: rgba(30,41,59,0.8); color: var(--text-3); border: 1px solid var(--border);
   display: inline-block; margin: 2px;
 }
+
+/* Category page – tool list */
+.category-tool-list { display: flex; flex-direction: column; gap: 10px; }
+.category-tool-card {
+  display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  text-decoration: none; color: inherit; transition: border-color .2s, box-shadow .2s;
+}
+.category-tool-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,.2); }
+.ctc-rank {
+  font-size: 12px; font-weight: 700; color: var(--text-3);
+  min-width: 26px; padding-top: 3px; flex-shrink: 0;
+}
+.ctc-body { flex: 1; min-width: 0; }
+.ctc-header {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 5px;
+}
+.ctc-name { font-size: 15px; font-weight: 700; color: var(--text); }
+.ctc-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; margin-bottom: 8px; }
+.ctc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.ctc-arrow { font-size: 16px; color: var(--text-3); padding-top: 3px; flex-shrink: 0; transition: color .2s; }
+.category-tool-card:hover .ctc-arrow { color: var(--accent); }
+@media (max-width: 600px) {
+  .ctc-rank { display: none; }
+  .category-tool-card { padding: 14px 16px; }
+}
+
+/* Affiliate Disclosure */
+.affiliate-disclosure {
+  font-size: 12px; color: var(--text-3); padding: 10px 14px;
+  background: rgba(30,41,59,.5); border-left: 3px solid var(--border-bright);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 24px 0;
+  line-height: 1.6;
+}

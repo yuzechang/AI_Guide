@@ -25,7 +25,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/langchain-ai/langchain",
     "description": "Framework for building LLM-powered applications",
-    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
+    "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT" }]
   }
   </script>
 
@@ -49,28 +49,29 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      
       {
         "@type": "Question",
-        "name": "What languages does LangChain support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "LangChain primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "What is LangChain?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LangChain is an open-source framework for building applications powered by language models. It provides composable building blocks for chaining LLM calls, adding memory, integrating tools, and building RAG pipelines." }
       },
       
       {
         "@type": "Question",
-        "name": "Is LangChain production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. LangChain is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "Is LangChain free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, LangChain the library is MIT-licensed and completely free. LangSmith (the observability platform) has a free tier and paid plans starting at $39/month for teams." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with LangChain?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install langchain` (Python) or `npm install langchain` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "LangChain vs LlamaIndex: which should I use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LangChain excels at building general-purpose LLM applications, agents, and conversational systems. LlamaIndex specializes in document ingestion, indexing, and retrieval (RAG). For pure document Q\u0026A, LlamaIndex is often simpler; for complex agent workflows, LangChain has more flexibility." }
       },
       
       {
         "@type": "Question",
-        "name": "Does LangChain work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "Does LangChain work with local LLMs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. LangChain has a ChatOllama integration that connects to any Ollama-hosted model (Llama 3, Mistral, Gemma 2, etc.) with a single line: ChatOllama(model=\u0027llama3\u0027). No API key required for fully local usage." }
       }
       
     ]
@@ -131,6 +132,10 @@
         View on GitHub ↗
       </a>
       
+      <a href="https://langchain.com" target="_blank" rel="noopener" class="cta-btn-outline">
+        Official Website ↗
+      </a>
+      
     </div>
   </div>
 </div>
@@ -154,8 +159,8 @@
         </div>
         <div class="info-card">
           <div class="info-card-label">License</div>
-          <div class="info-card-value">Open Source</div>
-          <div class="info-card-sub">Free to use</div>
+          <div class="info-card-value">MIT</div>
+          <div class="info-card-sub">Check repository</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">Tags</div>
@@ -215,6 +220,41 @@
       </ul>
       
 
+      <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">Pros &amp; Cons</h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ Pros</h4>
+          <ul>
+            
+            <li>Most widely adopted LLM framework with the largest ecosystem</li>
+            
+            <li>Modular design: swap LLM providers, vector stores, and tools freely</li>
+            
+            <li>Built-in RAG pipeline with 50+ document loaders and vector store integrations</li>
+            
+            <li>LangSmith platform for tracing, debugging, and evaluating chains</li>
+            
+          </ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ Cons</h4>
+          <ul>
+            
+            <li>Heavy abstraction can make debugging difficult for complex chains</li>
+            
+            <li>Rapid API changes require frequent dependency updates</li>
+            
+          </ul>
+        </div>
+        
+      </div>
+      
+
       <!-- Use Cases -->
       <h2 id="use-cases">Use Cases</h2>
       <p>
@@ -255,6 +295,23 @@
         page for the latest stable version.
       </div>
 
+      <!-- Affiliate / Official Site CTA -->
+      
+      
+      
+      
+      <div class="affiliate-cta">
+        <div class="affiliate-cta-left">
+          <div class="affiliate-cta-title">Get Started with LangChain</div>
+          <div class="affiliate-cta-desc">Visit the official site for documentation, downloads, and cloud plans.</div>
+        </div>
+        <a href="https://langchain.com" target="_blank" rel="noopener" class="cta-btn affiliate-cta-btn">
+          Visit Official Site ↗
+        </a>
+      </div>
+      
+      
+
       <!-- Related Tools -->
       
       <h2 id="alternatives">Similar Skill Frameworks</h2>
@@ -291,41 +348,43 @@
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            What languages does LangChain support? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What is LangChain? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">LangChain is an open-source framework for building applications powered by language models. It provides composable building blocks for chaining LLM calls, adding memory, integrating tools, and building RAG pipelines.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">LangChain primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is LangChain free? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes, LangChain the library is MIT-licensed and completely free. LangSmith (the observability platform) has a free tier and paid plans starting at $39/month for teams.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Is LangChain production-ready? <span class="faq-arr">▼</span>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              LangChain vs LlamaIndex: which should I use? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">LangChain excels at building general-purpose LLM applications, agents, and conversational systems. LlamaIndex specializes in document ingestion, indexing, and retrieval (RAG). For pure document Q&A, LlamaIndex is often simpler; for complex agent workflows, LangChain has more flexibility.</div>
+            </div>
           </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Yes. LangChain is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+          
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Does LangChain work with local LLMs? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. LangChain has a ChatOllama integration that connects to any Ollama-hosted model (Llama 3, Mistral, Gemma 2, etc.) with a single line: ChatOllama(model='llama3'). No API key required for fully local usage.</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            How do I install and get started with LangChain? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Install via pip: `pip install langchain` (Python) or `npm install langchain` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">
-            Does LangChain work with local LLMs like Ollama? <span class="faq-arr">▼</span>
-          </div>
-          <div class="faq-a">
-            <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
-          </div>
-        </div>
+          
         
       </div>
 
@@ -344,9 +403,14 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Stars:</span> 93k+</div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)">Category:</span> Skill Framework</div>
-          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:8px"><span style="color:var(--text-3)">License:</span> MIT</div>
           
-          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-08</div>
+          <div style="margin-bottom:8px">
+            <span style="color:var(--text-3)">Website:</span>
+            <a href="https://langchain.com" target="_blank" rel="noopener" style="color:var(--accent)">Official Site ↗</a>
+          </div>
+          
+          <div><span style="color:var(--text-3)">Updated:</span> 2026-05-09</div>
         </div>
       </div>
 
@@ -355,6 +419,7 @@
         <ul class="toc-list">
           <li><a href="#what-is">What Is LangChain?</a></li>
           <li><a href="#features">Key Features</a></li>
+          <li><a href="#pros-cons">Pros &amp; Cons</a></li>
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#alternatives">Alternatives</a></li>
