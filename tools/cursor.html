@@ -248,6 +248,46 @@
         <a href="../index.html" class="related-card"><div class="related-card-name">Continue.dev</div><div class="related-card-desc">Open-source AI coding assistant extension</div></a>
       </div>
 
+      <h2 id="prompt-examples">Prompt Examples</h2>
+      <p>Here are real-world prompts that work well in Cursor's Composer and Chat. Copy and adapt them for your projects.</p>
+
+      <h3>🏗️ Feature Implementation (Composer / Agent)</h3>
+      <p><em>Use in Composer with Agent mode enabled for full autonomous execution.</em></p>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Add a user authentication system to this Express.js app. Use JWT tokens stored in HTTP-only cookies. Protect all /api/user/* routes. Write unit tests with Jest for the auth middleware. Follow the existing code style in this project.</div>
+
+      <h3>🔁 Refactoring Across Files (Composer)</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Refactor all API calls in the /services directory to use the new ApiClient class I created in src/lib/apiClient.ts. Replace every direct fetch() or axios() call. Make sure error handling is consistent. Do not change any business logic.</div>
+
+      <h3>🐛 Bug Investigation (Chat)</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">The checkout flow fails when a user applies a discount code and then changes their cart quantity. Trace through the order calculation logic and identify where the discount is being applied incorrectly. Show me the exact lines causing the issue.</div>
+
+      <h3>📝 Test Generation (Composer)</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Write comprehensive Vitest unit tests for the userService.ts module. Cover all exported functions, edge cases (empty inputs, null values), and error paths. Match the test structure in the existing __tests__ directory.</div>
+
+      <h2 id="best-practices">Best Practices</h2>
+
+      <h3>1. Write a Good .cursorrules File</h3>
+      <p>The single highest-leverage thing you can do to improve Cursor's output. A well-written <code>.cursorrules</code> file means you never have to repeat project context in prompts. Include:</p>
+      <ul>
+        <li><strong>Tech stack</strong>: exact versions — "React 18, TypeScript 5.4, Tailwind CSS 3.4, Prisma 5"</li>
+        <li><strong>Code style rules</strong>: "Use arrow functions, never var, prefer const, use named exports"</li>
+        <li><strong>Testing framework</strong>: "Vitest + React Testing Library, tests in __tests__ next to source files"</li>
+        <li><strong>Patterns to follow</strong>: "State management via Zustand, no Redux. API calls via React Query, not useEffect."</li>
+        <li><strong>What NOT to do</strong>: "Never use class components. Do not add console.log statements."</li>
+      </ul>
+
+      <h3>2. Use Agent Mode for Complex Tasks</h3>
+      <p>Agent mode (Composer with "Agent" toggled on) lets Cursor run terminal commands and iterate until the task passes. Best used for: implementing a feature end-to-end, running and fixing failing tests, setting up a new integration. Be specific about your acceptance criteria—"make all tests pass" is a great stopping condition.</p>
+
+      <h3>3. Scope Your Context with @ Mentions</h3>
+      <p>In Chat and Composer, use <code>@filename</code> to pin specific files into context. This is faster and more precise than letting Cursor guess which files are relevant. For large codebases, always mention the specific files you want edited rather than relying on codebase search.</p>
+
+      <h3>4. Review Multi-File Diffs Before Accepting</h3>
+      <p>When Composer makes changes across multiple files, always review each diff individually before accepting. Cursor occasionally over-edits adjacent functions. Use Ctrl+Z (undo) to revert specific file changes if needed—it works independently per file.</p>
+
+      <h3>5. Set Model Per Task</h3>
+      <p>Use <strong>cursor-small</strong> for Tab completions and simple Chat questions (faster, cheaper). Switch to <strong>Claude 4 or GPT-4o</strong> for complex Composer tasks, architectural questions, and debugging. The model selector is per-request in Chat and can be set as default in Settings.</p>
+
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         <div class="faq-item">
@@ -297,6 +337,8 @@
           <li><a href="#pros-cons">Pros & Cons</a></li>
           <li><a href="#vs-copilot">vs GitHub Copilot</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#prompt-examples">Prompt Examples</a></li>
+          <li><a href="#best-practices">Best Practices</a></li>
           <li><a href="#alternatives">Alternatives</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>

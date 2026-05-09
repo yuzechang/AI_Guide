@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor vs GitHub Copilot (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare Cursor and GitHub Copilot side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/compare/cursor-vs-github-copilot.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cursor vs GitHub Copilot (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare Cursor and GitHub Copilot side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/cursor-vs-github-copilot.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cursor vs GitHub Copilot (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare Cursor and GitHub Copilot side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "Is Cursor better than GitHub Copilot?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cursor is more capable for complex, multi-file coding tasks thanks to its Composer mode and deep codebase indexing. GitHub Copilot is more flexible because it works as a plugin in VS Code, JetBrains, and other editors without switching your IDE. The \u0027better\u0027 choice depends on your workflow: Cursor wins on AI capabilities, Copilot wins on ecosystem integration." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can I use Cursor for free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, Cursor has a free tier that includes a limited number of completions and chat messages per month. The Pro plan at $20/month removes these limits and adds access to premium models like GPT-4o and Claude 3.5 Sonnet. Most developers who use Cursor professionally upgrade to Pro fairly quickly." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does GitHub Copilot work in all IDEs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "GitHub Copilot works as a plugin in VS Code, all JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.), Vim, Neovim, Azure Data Studio, and the GitHub web editor. Cursor is built on VS Code and supports VS Code extensions, but it is a standalone application, not a plugin for the original VS Code." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which is better for Python development?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both work well for Python. Cursor has an edge for complex Python projects that span many files and modules, where its codebase indexing helps it understand your project structure. GitHub Copilot with PyCharm integration is a strong choice for Python developers already in the JetBrains ecosystem who don\u0027t want to change their IDE." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can I use both Cursor and GitHub Copilot?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, but it\u0027s generally not necessary. Cursor already integrates with multiple LLM providers. Some developers run Copilot in VS Code for lightweight work and Cursor for complex tasks, but paying for both ($30/month total) is only worth it if you have a specific reason to maintain both setups." }
+      }
+      
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "Cursor vs GitHub Copilot", "item": "https://yuzec.com/compare/cursor-vs-github-copilot.html" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <style>
+    .compare-hero { background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(52,211,153,.06)); border-bottom: 1px solid var(--border); padding: 40px 0 32px; }
+    .vs-badge { display:inline-flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border-bright);border-radius:999px;padding:6px 18px;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:20px; }
+    .vs-sep { background:var(--accent);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800; }
+    .compare-table { width:100%;border-collapse:collapse;margin:28px 0;font-size:14px; }
+    .compare-table th { background:var(--surface-2);padding:12px 16px;text-align:left;font-weight:600;color:var(--text);border-bottom:2px solid var(--border-bright); }
+    .compare-table th:first-child { width:30%; }
+    .compare-table td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;line-height:1.55; }
+    .compare-table tr:hover td { background:var(--surface-2); }
+    .compare-table .winner { color:var(--accent);font-weight:600; }
+    .compare-table .check { color:#34d399; }
+    .compare-table .cross { color:#f87171; }
+    .verdict-box { background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(52,211,153,.05));border:1px solid var(--border-bright);border-radius:var(--radius);padding:24px 28px;margin:32px 0; }
+    .verdict-box h3 { margin:0 0 10px;font-size:17px;font-weight:700;color:var(--text); }
+    .verdict-box p { margin:0;color:var(--text-2);line-height:1.7; }
+    .choose-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0; }
+    .choose-card { border:1px solid var(--border);border-radius:var(--radius);padding:20px;background:var(--surface-2); }
+    .choose-card h4 { margin:0 0 12px;font-size:15px;font-weight:700; }
+    .choose-card ul { margin:0;padding-left:18px;color:var(--text-2);font-size:13px;line-height:1.8; }
+    @media(max-width:640px){ .choose-grid{grid-template-columns:1fr;} .compare-table td,.compare-table th{padding:10px 12px;font-size:13px;} }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中</button>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html">Compare</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Cursor vs GitHub Copilot</span>
+</div>
+
+<!-- Hero -->
+<div class="compare-hero">
+  <div class="page-hero-inner">
+    <div class="vs-badge">
+      <span>Cursor</span>
+      <span class="vs-sep">VS</span>
+      <span>GitHub Copilot</span>
+    </div>
+    <h1 class="article-title" style="margin-top:0">
+      <span class="gradient">Cursor vs GitHub Copilot</span>
+    </h1>
+    <p class="article-desc">Cursor and GitHub Copilot are the two dominant AI coding assistants in 2025. Both use large language models to accelerate development, but they take fundamentally different approaches: Cursor is a standalone IDE built around AI from the ground up, while Copilot is a plugin that adds AI features to your existing editor. This comparison covers pricing, features, real-world performance, and which one is right for your workflow.</p>
+    <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
+      <span>🗓 Updated: <time datetime="2026-05-09">2026-05</time></span>
+      <span>⭐ Cursor: N/A stars</span>
+      <span>⭐ GitHub Copilot: N/A stars</span>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <!-- TL;DR Verdict -->
+      <div class="verdict-box">
+        <h3>⚡ TL;DR — 30-Second Verdict</h3>
+        <p>Choose Cursor if you want the most powerful AI code editing experience and are willing to switch your IDE. Its multi-file context, Composer mode, and agent capabilities are unmatched. Choose GitHub Copilot if you're committed to VS Code or JetBrains, need enterprise compliance features, or your team is already deep in the GitHub ecosystem. For most individual developers, Cursor delivers more value per dollar.</p>
+      </div>
+
+      <!-- Quick Comparison Table -->
+      <h2 id="comparison">Quick Comparison</h2>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Cursor</th>
+            <th>GitHub Copilot</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>Pricing</strong></td>
+            <td class="">Free (limited) / $20/mo Pro</td>
+            <td class="winner">Free (limited) / $10/mo Individual / $19/mo Business</td>
+          </tr>
+          
+          <tr>
+            <td><strong>IDE</strong></td>
+            <td class="">Standalone (VS Code fork)</td>
+            <td class="winner">Plugin for VS Code, JetBrains, Vim, etc.</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Multi-file context</strong></td>
+            <td class="winner">✓ Full codebase awareness</td>
+            <td class="">Limited – single file focus</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Chat / Ask mode</strong></td>
+            <td class="winner">✓ Built-in with codebase context</td>
+            <td class="">✓ Copilot Chat (separate install)</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Agent / Autonomous mode</strong></td>
+            <td class="winner">✓ Composer mode (multi-file edits)</td>
+            <td class="">✗ No autonomous editing</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Model choice</strong></td>
+            <td class="winner">GPT-4o, Claude 3.5 Sonnet, etc.</td>
+            <td class="">GitHub's own model (GPT-4 based)</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Privacy / Enterprise</strong></td>
+            <td class="">Business plan available, SOC 2</td>
+            <td class="winner">Enterprise with org-level controls</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Offline support</strong></td>
+            <td class="">✗ Requires internet</td>
+            <td class="">✗ Requires internet</td>
+          </tr>
+          
+          <tr>
+            <td><strong>GitHub integration</strong></td>
+            <td class="">Limited</td>
+            <td class="winner">✓ Native – PRs, issues, Actions</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Extensions</strong></td>
+            <td class="">VS Code extensions (most work)</td>
+            <td class="winner">Full VS Code / JetBrains ecosystem</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <!-- What is A -->
+      <h2 id="what-is-cursor">What Is Cursor?</h2>
+      <p>Cursor is an AI-first IDE built as a fork of VS Code. It was designed from the ground up with AI coding assistance as the core feature, not an afterthought. Key capabilities include multi-file editing with Composer mode (where the AI can make coordinated changes across your entire project), deep codebase understanding through indexing, and the ability to use multiple LLM providers including GPT-4o and Claude 3.5 Sonnet. Cursor's Tab completion is widely regarded as the most context-aware autocomplete available, understanding not just the current file but your entire codebase.</p>
+      
+      <p><a href="../tools/cursor.html">→ Read the full Cursor review</a></p>
+
+      <!-- What is B -->
+      <h2 id="what-is-github-copilot">What Is GitHub Copilot?</h2>
+      <p>GitHub Copilot is Microsoft's AI coding assistant, available as a plugin for VS Code, JetBrains IDEs, Vim, Neovim, and other editors. As the first widely-adopted AI pair programmer (launched 2021), it helped define the category. Copilot is powered by a fine-tuned model trained on public GitHub code, and recent versions include Copilot Chat for conversational assistance, Copilot for CLI, and integrations directly into GitHub Pull Requests and GitHub Actions. The Business and Enterprise tiers add organization-level controls, policy management, and audit logging.</p>
+      
+      <p><a href="../tools/github-copilot.html">→ Read the full GitHub Copilot review</a></p>
+
+      <!-- When to Choose -->
+      <h2 id="choose">When to Choose Each</h2>
+      <div class="choose-grid">
+        <div class="choose-card">
+          <h4>Choose Cursor if…</h4>
+          <ul>
+            
+            <li>You want the most powerful AI editing capabilities available</li>
+            
+            <li>You frequently work across multiple files in a single task</li>
+            
+            <li>You need Composer/Agent mode for complex refactoring</li>
+            
+            <li>You're comfortable switching to a new IDE</li>
+            
+            <li>You want to choose your own LLM provider (GPT-4o, Claude, etc.)</li>
+            
+          </ul>
+        </div>
+        <div class="choose-card">
+          <h4>Choose GitHub Copilot if…</h4>
+          <ul>
+            
+            <li>You're committed to staying in JetBrains IDEs (IntelliJ, PyCharm, etc.)</li>
+            
+            <li>Your team is deeply embedded in the GitHub ecosystem</li>
+            
+            <li>Your organization needs enterprise compliance and audit logging</li>
+            
+            <li>You want AI features without switching editors</li>
+            
+            <li>You're on a tight budget and the $10/month plan fits your needs</li>
+            
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deep Dive -->
+      
+      <h2 id="code-completion">Code Completion Quality</h2>
+      <p>Both tools offer solid inline code completions, but Cursor's Tab completion is generally considered more context-aware. Cursor indexes your entire codebase (with your permission) and uses this context to generate completions that are aware of your project's specific patterns, naming conventions, and imports. GitHub Copilot's completions are more file-focused, using nearby context within the current file and a few related files. For developers working on large, complex codebases, this difference becomes significant—Cursor is less likely to suggest code that conflicts with patterns elsewhere in the project.</p>
+      
+      <h2 id="pricing">Pricing Comparison</h2>
+      <p>Cursor's free tier allows limited completions and chat messages per month. The Pro plan at $20/month unlocks unlimited completions and premium model access (GPT-4o, Claude 3.5 Sonnet). Business plans are available for teams. GitHub Copilot's free tier is available for verified students and select open-source maintainers. Individual plans are $10/month, with Business at $19/user/month and Enterprise at $39/user/month. For most individual developers, Copilot's $10/month vs Cursor's $20/month difference reflects the capability gap—Cursor's more advanced features justify the premium for power users.</p>
+      
+      <h2 id="enterprise">Enterprise and Privacy Considerations</h2>
+      <p>Both tools handle privacy seriously, but through different approaches. GitHub Copilot Business and Enterprise include organization-level controls over which repositories Copilot can access, telemetry opt-out, and integration with GitHub's existing enterprise security features. Cursor offers Business plans with SOC 2 compliance, the ability to use your own OpenAI API key (keeping code out of Cursor's servers), and privacy mode that prevents code from being sent to training servers. Organizations with strict data policies should review both companies' data processing agreements carefully before deployment.</p>
+      
+
+      <!-- FAQ -->
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is Cursor better than GitHub Copilot? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Cursor is more capable for complex, multi-file coding tasks thanks to its Composer mode and deep codebase indexing. GitHub Copilot is more flexible because it works as a plugin in VS Code, JetBrains, and other editors without switching your IDE. The 'better' choice depends on your workflow: Cursor wins on AI capabilities, Copilot wins on ecosystem integration.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I use Cursor for free? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, Cursor has a free tier that includes a limited number of completions and chat messages per month. The Pro plan at $20/month removes these limits and adds access to premium models like GPT-4o and Claude 3.5 Sonnet. Most developers who use Cursor professionally upgrade to Pro fairly quickly.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Does GitHub Copilot work in all IDEs? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">GitHub Copilot works as a plugin in VS Code, all JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.), Vim, Neovim, Azure Data Studio, and the GitHub web editor. Cursor is built on VS Code and supports VS Code extensions, but it is a standalone application, not a plugin for the original VS Code.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which is better for Python development? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Both work well for Python. Cursor has an edge for complex Python projects that span many files and modules, where its codebase indexing helps it understand your project structure. GitHub Copilot with PyCharm integration is a strong choice for Python developers already in the JetBrains ecosystem who don't want to change their IDE.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I use both Cursor and GitHub Copilot? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, but it's generally not necessary. Cursor already integrates with multiple LLM providers. Some developers run Copilot in VS Code for lightweight work and Cursor for complex tasks, but paying for both ($30/month total) is only worth it if you have a specific reason to maintain both setups.</div></div>
+        </div>
+        
+      </div>
+
+      <!-- Related Comparisons -->
+      
+      <h2 id="related">Related Comparisons</h2>
+      <div class="related-grid">
+        
+        <a href="vllm-vs-ollama.html" class="related-card">
+          <div class="related-card-name">vLLM vs Ollama</div>
+          <div class="related-card-desc">Compare two leading local LLM serving solutions</div>
+        </a>
+        
+        <a href="langchain-vs-llamaindex.html" class="related-card">
+          <div class="related-card-name">LangChain vs LlamaIndex</div>
+          <div class="related-card-desc">Compare the two top LLM application frameworks</div>
+        </a>
+        
+      </div>
+      
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Cursor</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> N/A</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> N/A</div>
+          <div style="margin-bottom:14px"><a href="#" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">GitHub Copilot</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> N/A</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> N/A</div>
+          <div><a href="#" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison">Quick Comparison</a></li>
+          <li><a href="#what-is-cursor">What Is Cursor?</a></li>
+          <li><a href="#what-is-github-copilot">What Is GitHub Copilot?</a></li>
+          <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#code-completion">Code Completion Quality</a></li>
+          
+          <li><a href="#pricing">Pricing Comparison</a></li>
+          
+          <li><a href="#enterprise">Enterprise and Privacy Considerations</a></li>
+          
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>View Full Reviews</h4>
+        <ul class="toc-list">
+          <li><a href="../tools/cursor.html">Cursor Review →</a></li>
+          <li><a href="../tools/github-copilot.html">GitHub Copilot Review →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools with honest pros, cons, and comparisons.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Comparisons</h4>
+        <ul>
+          <li><a href="cursor-vs-github-copilot.html">Cursor vs Copilot</a></li>
+          <li><a href="langchain-vs-llamaindex.html">LangChain vs LlamaIndex</a></li>
+          <li><a href="vllm-vs-ollama.html">vLLM vs Ollama</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  localStorage.setItem('ai-nav-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+}
+(function initLang() {
+  var saved = localStorage.getItem('ai-nav-lang');
+  if (saved === 'zh') setLang('zh');
+})();
+</script>
+</body>
+</html>

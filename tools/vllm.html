@@ -189,24 +189,18 @@
         <span class="zh">vLLM 是什么？</span>
       </h2>
       <p>
-        <strong>vLLM</strong> is an open-source developer framework for building AI applications with
-        38k+ GitHub stars. High-throughput LLM serving with PagedAttention
+        <strong>vLLM</strong> is an open-source, high-throughput LLM inference and serving engine developed by researchers at UC Berkeley. With 38k+ GitHub stars, it has become the de-facto standard for production LLM serving, used by companies including Nvidia, Microsoft, and major AI startups worldwide.
       </p>
       <p>
-        As a developer framework for building AI applications, vLLM is designed to help developers and teams
-        
-        build production-ready AI applications with reliable, tested abstractions.
-        It handles the complexity of connecting LLMs to external data and tools,
-        so engineers can focus on business logic instead of plumbing.
-        
+        The core innovation behind vLLM is <strong>PagedAttention</strong>—a memory management algorithm inspired by OS virtual memory and paging. Traditional LLM serving frameworks pre-allocate a large, contiguous block of GPU memory for the KV (key-value) cache of each request. This wastes significant VRAM because allocated memory often goes unused. PagedAttention manages KV cache in small, non-contiguous "pages," eliminating internal fragmentation and enabling near-zero memory waste. The result: <strong>up to 24x higher throughput</strong> compared to standard HuggingFace Transformers serving, with the same hardware.
       </p>
       <p>
-        The project is maintained on GitHub at
+        Beyond PagedAttention, vLLM provides an <strong>OpenAI-compatible REST API</strong> out of the box. Any application built against the OpenAI SDK can switch to a self-hosted vLLM server with a single line change: setting the <code>base_url</code> to your vLLM endpoint. This makes migration from OpenAI or Anthropic APIs to self-hosted open-source models remarkably straightforward.
+      </p>
+      <p>
+        The project is maintained at
         <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">github.com/vllm-project/vllm</a>
-        and is actively developed with a strong open-source community.
-        
-        With 38k+ stars, it is one of the most widely adopted tools in its category.
-        
+        and has a very active community with new releases roughly every two weeks.
       </p>
 
       <!-- Features -->
@@ -278,46 +272,87 @@
         <span class="en">Use Cases</span>
         <span class="zh">应用场景</span>
       </h2>
-      <p>
-        vLLM is used across a wide range of applications in the AI development ecosystem.
-        Here are the most common scenarios where teams choose vLLM:
-      </p>
-      
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
-      
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
-      
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
-      
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
-      
+
+      <h3>🏭 Production API Serving</h3>
+      <p>The primary use case: replace an external OpenAI/Anthropic API call with a self-hosted open-source model (Llama 3, Mistral, Gemma, Qwen, etc.) at dramatically lower cost. vLLM handles concurrent requests efficiently using continuous batching—new requests join the batch dynamically without waiting for the current batch to finish, maximizing GPU utilization. Teams serving millions of requests per day commonly report 70–90% cost reductions vs. commercial APIs.</p>
+
+      <h3>⚡ Batch Inference Pipelines</h3>
+      <p>For offline workloads—document processing, data enrichment, classification at scale—vLLM's async Python API and OpenAI-compatible batching endpoints allow you to saturate GPU throughput. Combine with Python asyncio to issue thousands of simultaneous requests to the local server and process results as they arrive.</p>
+
+      <h3>🔬 Research & Experimentation</h3>
+      <p>Researchers use vLLM to benchmark new models, test quantization methods (GPTQ, AWQ, FP8), and experiment with sampling strategies. vLLM supports speculative decoding for accelerating generation of smaller models and tensor parallelism for distributing large models across multiple GPUs.</p>
+
+      <h3>🏢 Private Enterprise Deployment</h3>
+      <p>Organizations with strict data residency requirements deploy vLLM on-premises or in a private cloud (AWS, GCP, Azure). Since all inference happens in-house, no data leaves the security perimeter. vLLM's OpenAI-compatible API means existing integrations (LangChain, LlamaIndex, custom apps) work without code changes.</p>
 
       <!-- Getting Started -->
       <h2 id="getting-started">
         <span class="en">Getting Started with vLLM</span>
         <span class="zh">vLLM 快速开始</span>
       </h2>
-      <p>
-        To get started with vLLM, visit the
-        <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        
-        Most Python frameworks can be installed via pip:
-        <code>pip install vllm</code>
-        
-      </p>
+      <p>vLLM requires an NVIDIA GPU with CUDA 11.8+ and Python 3.9+. For most production models you need at least 16GB VRAM (A10G, A100, H100, or RTX 4090).</p>
+
+      <h3>Step 1: Install</h3>
+      <div class="alert alert-info" style="font-family:monospace; font-size:13px;">pip install vllm</div>
+
+      <h3>Step 2: Launch an OpenAI-Compatible Server</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;"># Serve Llama 3.1 8B (downloads model from HuggingFace automatically)
+vllm serve meta-llama/Llama-3.1-8B-Instruct \
+  --port 8000 \
+  --max-model-len 8192 \
+  --gpu-memory-utilization 0.9</div>
+
+      <h3>Step 3: Call It Like OpenAI</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">from openai import OpenAI
+
+client = OpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key="not-needed",  # vLLM doesn't require auth by default
+)
+
+response = client.chat.completions.create(
+    model="meta-llama/Llama-3.1-8B-Instruct",
+    messages=[{"role": "user", "content": "Explain PagedAttention in 3 sentences."}],
+    max_tokens=256,
+)
+print(response.choices[0].message.content)</div>
+
+      <h3>Step 4: Async Batch Inference (Python)</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">from vllm import LLM, SamplingParams
+
+llm = LLM(model="meta-llama/Llama-3.1-8B-Instruct")
+sampling_params = SamplingParams(temperature=0.7, max_tokens=512)
+
+prompts = [
+    "Summarize this document: ...",
+    "Classify this review as positive or negative: ...",
+    "Extract named entities from: ...",
+]
+outputs = llm.generate(prompts, sampling_params)
+for output in outputs:
+    print(output.outputs[0].text)</div>
+
       <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/vllm-project/vllm/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/vllm-project/vllm/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/vllm-project/vllm/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+        💡 <strong>Multi-GPU tip:</strong> For models larger than your single GPU's VRAM, add <code>--tensor-parallel-size 4</code> to split the model across 4 GPUs. vLLM handles the tensor sharding automatically.
       </div>
+
+      <h2 id="production">Production Deployment Tips</h2>
+      <p>Moving beyond a single-GPU dev setup to a production cluster:</p>
+      <ul>
+        <li><strong>Use a reverse proxy</strong> (nginx, Caddy) in front of vLLM for TLS termination, rate limiting, and authentication. vLLM itself has no auth layer by default.</li>
+        <li><strong>Set <code>--gpu-memory-utilization 0.9</code></strong>: vLLM pre-allocates 90% of available VRAM for KV cache by default. Adjust down if you have OOM errors, or up on a dedicated inference node.</li>
+        <li><strong>Enable <code>--quantization awq</code></strong> to load quantized 4-bit models, roughly halving VRAM usage with minimal quality loss for most workloads.</li>
+        <li><strong>Monitor with Prometheus</strong>: vLLM exposes a <code>/metrics</code> endpoint with throughput, latency histograms, queue depth, and GPU utilization. Plug into Grafana for dashboards.</li>
+        <li><strong>Use Ray Serve for multi-instance scaling</strong>: At high traffic volumes, use <code>vllm serve --pipeline-parallel-size N</code> or deploy multiple instances behind a load balancer with Ray Serve for horizontal scaling.</li>
+      </ul>
+
+      <h2 id="vs-ollama">vLLM vs Ollama: Which Should You Use?</h2>
+      <p>Both vLLM and <a href="ollama.html">Ollama</a> serve local LLMs, but they target very different scenarios:</p>
+      <ul>
+        <li><strong>vLLM</strong>: Designed for production serving with multiple concurrent users. Maximizes throughput and GPU utilization. Requires Linux + NVIDIA GPU. More complex to set up. Best for: API backends, batch jobs, high-traffic inference endpoints.</li>
+        <li><strong>Ollama</strong>: Designed for developer laptops and single-user local inference. Simple one-command install on macOS/Windows/Linux. Supports CPU inference (slower). Best for: local development, personal assistants, prototyping, and environments without dedicated GPU servers.</li>
+      </ul>
+      <p><strong>Rule of thumb:</strong> Use Ollama to build and prototype, switch to vLLM when you're ready for production scale or need to serve more than 5–10 concurrent users.</p>
 
       <!-- Affiliate / Official Site CTA -->
       
@@ -410,7 +445,39 @@
               How do I start vLLM as an OpenAI-compatible server? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Run: vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000. Then point any OpenAI SDK client to http://localhost:8000/v1. The API supports /v1/chat/completions, /v1/completions, and /v1/models endpoints.</div>
+              <div class="faq-a-inner">Run: <code>vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000</code>. Then point any OpenAI SDK client to <code>http://localhost:8000/v1</code>. The API supports /v1/chat/completions, /v1/completions, and /v1/models endpoints. Set <code>api_key="not-needed"</code> in the client since vLLM has no auth by default.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              What models does vLLM support? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">vLLM supports 40+ model architectures including Llama 3/3.1/3.2, Mistral, Mixtral, Gemma 2, Phi-3, Qwen 2, Falcon, Command-R, and DeepSeek. Any model hosted on HuggingFace Hub in a supported architecture can be loaded. Check the <a href="https://docs.vllm.ai/en/latest/models/supported_models.html" target="_blank" rel="noopener">supported models page</a> for the full list.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              How much GPU memory does vLLM need? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">It depends on the model size and quantization. A rough guide: Llama 3.1 8B in FP16 needs ~16GB VRAM; with AWQ 4-bit quantization, ~8GB. Llama 3.1 70B needs ~140GB FP16 (4× A100 80GB), or ~40GB with 4-bit quantization. Use <code>--gpu-memory-utilization 0.9</code> to maximize KV cache allocation.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Does vLLM support streaming responses? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. Set <code>stream=True</code> in your OpenAI client call, exactly as you would with the OpenAI API. vLLM streams tokens via Server-Sent Events (SSE) and is fully compatible with the streaming protocol used by OpenAI, enabling drop-in replacement for streaming chatbots and UIs.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faqToggle(this)">
+              Is vLLM free to use commercially? <span class="faq-arr">▼</span>
+            </div>
+            <div class="faq-a">
+              <div class="faq-a-inner">Yes. vLLM is released under the Apache 2.0 license, which permits commercial use, modification, and distribution with no restrictions. Note that the models you serve (Llama, Mistral, etc.) have their own licenses—check each model's license before commercial deployment.</div>
             </div>
           </div>
           
@@ -455,7 +522,9 @@
           <li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>
           <li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>
           <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
+          <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
           <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
+          <li><a href="#production"><span class="en">Production Tips</span><span class="zh">生产部署</span></a></li>
           <li><a href="#alternatives"><span class="en">Alternatives</span><span class="zh">替代工具</span></a></li>
           <li><a href="#faq"><span class="en">FAQ</span><span class="zh">常见问题</span></a></li>
         </ul>

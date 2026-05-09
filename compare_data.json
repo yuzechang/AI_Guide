@@ -1,0 +1,239 @@
+[
+  {
+    "slug": "cursor-vs-github-copilot",
+    "title": "Cursor vs GitHub Copilot",
+    "tool_a_id": "cursor",
+    "tool_b_id": "github-copilot",
+    "intro": "Cursor and GitHub Copilot are the two dominant AI coding assistants in 2025. Both use large language models to accelerate development, but they take fundamentally different approaches: Cursor is a standalone IDE built around AI from the ground up, while Copilot is a plugin that adds AI features to your existing editor. This comparison covers pricing, features, real-world performance, and which one is right for your workflow.",
+    "verdict": "Choose Cursor if you want the most powerful AI code editing experience and are willing to switch your IDE. Its multi-file context, Composer mode, and agent capabilities are unmatched. Choose GitHub Copilot if you're committed to VS Code or JetBrains, need enterprise compliance features, or your team is already deep in the GitHub ecosystem. For most individual developers, Cursor delivers more value per dollar.",
+    "table": [
+      {"feature": "Pricing", "a": "Free (limited) / $20/mo Pro", "b": "Free (limited) / $10/mo Individual / $19/mo Business", "winner": "b"},
+      {"feature": "IDE", "a": "Standalone (VS Code fork)", "b": "Plugin for VS Code, JetBrains, Vim, etc.", "winner": "b"},
+      {"feature": "Multi-file context", "a": "✓ Full codebase awareness", "b": "Limited – single file focus", "winner": "a"},
+      {"feature": "Chat / Ask mode", "a": "✓ Built-in with codebase context", "b": "✓ Copilot Chat (separate install)", "winner": "a"},
+      {"feature": "Agent / Autonomous mode", "a": "✓ Composer mode (multi-file edits)", "b": "✗ No autonomous editing", "winner": "a"},
+      {"feature": "Model choice", "a": "GPT-4o, Claude 3.5 Sonnet, etc.", "b": "GitHub's own model (GPT-4 based)", "winner": "a"},
+      {"feature": "Privacy / Enterprise", "a": "Business plan available, SOC 2", "b": "Enterprise with org-level controls", "winner": "b"},
+      {"feature": "Offline support", "a": "✗ Requires internet", "b": "✗ Requires internet", "winner": ""},
+      {"feature": "GitHub integration", "a": "Limited", "b": "✓ Native – PRs, issues, Actions", "winner": "b"},
+      {"feature": "Extensions", "a": "VS Code extensions (most work)", "b": "Full VS Code / JetBrains ecosystem", "winner": "b"}
+    ],
+    "desc_a": "Cursor is an AI-first IDE built as a fork of VS Code. It was designed from the ground up with AI coding assistance as the core feature, not an afterthought. Key capabilities include multi-file editing with Composer mode (where the AI can make coordinated changes across your entire project), deep codebase understanding through indexing, and the ability to use multiple LLM providers including GPT-4o and Claude 3.5 Sonnet. Cursor's Tab completion is widely regarded as the most context-aware autocomplete available, understanding not just the current file but your entire codebase.",
+    "desc_b": "GitHub Copilot is Microsoft's AI coding assistant, available as a plugin for VS Code, JetBrains IDEs, Vim, Neovim, and other editors. As the first widely-adopted AI pair programmer (launched 2021), it helped define the category. Copilot is powered by a fine-tuned model trained on public GitHub code, and recent versions include Copilot Chat for conversational assistance, Copilot for CLI, and integrations directly into GitHub Pull Requests and GitHub Actions. The Business and Enterprise tiers add organization-level controls, policy management, and audit logging.",
+    "choose_a": [
+      "You want the most powerful AI editing capabilities available",
+      "You frequently work across multiple files in a single task",
+      "You need Composer/Agent mode for complex refactoring",
+      "You're comfortable switching to a new IDE",
+      "You want to choose your own LLM provider (GPT-4o, Claude, etc.)"
+    ],
+    "choose_b": [
+      "You're committed to staying in JetBrains IDEs (IntelliJ, PyCharm, etc.)",
+      "Your team is deeply embedded in the GitHub ecosystem",
+      "Your organization needs enterprise compliance and audit logging",
+      "You want AI features without switching editors",
+      "You're on a tight budget and the $10/month plan fits your needs"
+    ],
+    "sections": [
+      {
+        "id": "code-completion",
+        "title": "Code Completion Quality",
+        "content": "Both tools offer solid inline code completions, but Cursor's Tab completion is generally considered more context-aware. Cursor indexes your entire codebase (with your permission) and uses this context to generate completions that are aware of your project's specific patterns, naming conventions, and imports. GitHub Copilot's completions are more file-focused, using nearby context within the current file and a few related files. For developers working on large, complex codebases, this difference becomes significant—Cursor is less likely to suggest code that conflicts with patterns elsewhere in the project."
+      },
+      {
+        "id": "pricing",
+        "title": "Pricing Comparison",
+        "content": "Cursor's free tier allows limited completions and chat messages per month. The Pro plan at $20/month unlocks unlimited completions and premium model access (GPT-4o, Claude 3.5 Sonnet). Business plans are available for teams. GitHub Copilot's free tier is available for verified students and select open-source maintainers. Individual plans are $10/month, with Business at $19/user/month and Enterprise at $39/user/month. For most individual developers, Copilot's $10/month vs Cursor's $20/month difference reflects the capability gap—Cursor's more advanced features justify the premium for power users."
+      },
+      {
+        "id": "enterprise",
+        "title": "Enterprise and Privacy Considerations",
+        "content": "Both tools handle privacy seriously, but through different approaches. GitHub Copilot Business and Enterprise include organization-level controls over which repositories Copilot can access, telemetry opt-out, and integration with GitHub's existing enterprise security features. Cursor offers Business plans with SOC 2 compliance, the ability to use your own OpenAI API key (keeping code out of Cursor's servers), and privacy mode that prevents code from being sent to training servers. Organizations with strict data policies should review both companies' data processing agreements carefully before deployment."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Is Cursor better than GitHub Copilot?",
+        "a": "Cursor is more capable for complex, multi-file coding tasks thanks to its Composer mode and deep codebase indexing. GitHub Copilot is more flexible because it works as a plugin in VS Code, JetBrains, and other editors without switching your IDE. The 'better' choice depends on your workflow: Cursor wins on AI capabilities, Copilot wins on ecosystem integration."
+      },
+      {
+        "q": "Can I use Cursor for free?",
+        "a": "Yes, Cursor has a free tier that includes a limited number of completions and chat messages per month. The Pro plan at $20/month removes these limits and adds access to premium models like GPT-4o and Claude 3.5 Sonnet. Most developers who use Cursor professionally upgrade to Pro fairly quickly."
+      },
+      {
+        "q": "Does GitHub Copilot work in all IDEs?",
+        "a": "GitHub Copilot works as a plugin in VS Code, all JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.), Vim, Neovim, Azure Data Studio, and the GitHub web editor. Cursor is built on VS Code and supports VS Code extensions, but it is a standalone application, not a plugin for the original VS Code."
+      },
+      {
+        "q": "Which is better for Python development?",
+        "a": "Both work well for Python. Cursor has an edge for complex Python projects that span many files and modules, where its codebase indexing helps it understand your project structure. GitHub Copilot with PyCharm integration is a strong choice for Python developers already in the JetBrains ecosystem who don't want to change their IDE."
+      },
+      {
+        "q": "Can I use both Cursor and GitHub Copilot?",
+        "a": "Yes, but it's generally not necessary. Cursor already integrates with multiple LLM providers. Some developers run Copilot in VS Code for lightweight work and Cursor for complex tasks, but paying for both ($30/month total) is only worth it if you have a specific reason to maintain both setups."
+      }
+    ],
+    "related_compares": [
+      {"slug": "vllm-vs-ollama", "title": "vLLM vs Ollama", "desc": "Compare two leading local LLM serving solutions"},
+      {"slug": "langchain-vs-llamaindex", "title": "LangChain vs LlamaIndex", "desc": "Compare the two top LLM application frameworks"}
+    ]
+  },
+  {
+    "slug": "langchain-vs-llamaindex",
+    "title": "LangChain vs LlamaIndex",
+    "tool_a_id": "langchain",
+    "tool_b_id": "llamaindex",
+    "intro": "LangChain and LlamaIndex are the two most widely used Python frameworks for building LLM-powered applications. Both provide abstractions for connecting language models to external data and tools, but they have different design philosophies: LangChain is a general-purpose LLM orchestration framework, while LlamaIndex is purpose-built for data indexing and retrieval-augmented generation (RAG). This comparison covers their strengths, limitations, and which one to choose for your project.",
+    "verdict": "Use LlamaIndex when your primary need is document Q&A, knowledge base search, or any RAG pipeline — it excels at data ingestion, chunking, indexing, and retrieval. Use LangChain when you need broad LLM orchestration capabilities, the largest ecosystem of integrations (150+ vector stores, document loaders, tools), or when your team is already familiar with it. For pure RAG, LlamaIndex wins on depth; for general LLM application development, LangChain wins on breadth.",
+    "table": [
+      {"feature": "Primary use case", "a": "General LLM orchestration", "b": "RAG & data-over-LLM", "winner": ""},
+      {"feature": "RAG pipeline quality", "a": "Good – requires more configuration", "b": "Excellent – purpose-built", "winner": "b"},
+      {"feature": "Data connectors", "a": "100+ loaders", "b": "100+ loaders (LlamaHub)", "winner": ""},
+      {"feature": "Agent support", "a": "✓ LangChain Agents, LangGraph", "b": "✓ LlamaIndex agents", "winner": "a"},
+      {"feature": "Integrations ecosystem", "a": "150+ vector stores, tools, LLMs", "b": "Strong but narrower focus", "winner": "a"},
+      {"feature": "Learning curve", "a": "Moderate to steep", "b": "Moderate (RAG-focused)", "winner": "b"},
+      {"feature": "Observability", "a": "LangSmith (separate, paid)", "b": "LlamaCloud (separate)", "winner": ""},
+      {"feature": "API stability", "a": "v0.3 had breaking changes", "b": "v0.10 Core was a rewrite", "winner": ""},
+      {"feature": "Community size", "a": "Largest in category", "b": "Large, RAG-focused", "winner": "a"},
+      {"feature": "Performance at scale", "a": "Good with caching", "b": "Strong for retrieval workloads", "winner": "b"}
+    ],
+    "desc_a": "LangChain is the most widely adopted Python framework for building LLM applications. It provides a comprehensive set of abstractions for chaining LLM calls, connecting to vector stores and external APIs, building conversational agents, and managing memory. LangChain's strength is its extensive ecosystem — it integrates with virtually every major LLM provider, vector database, and external tool. LangGraph (part of the LangChain ecosystem) extends this with graph-based agent orchestration for complex multi-step workflows. The large community means abundant tutorials, Stack Overflow answers, and third-party integrations.",
+    "desc_b": "LlamaIndex (formerly GPT Index) is a data framework specifically designed for building RAG systems and connecting LLMs to external data. Where LangChain is a general orchestrator, LlamaIndex provides deep specialization in data ingestion, chunking strategies, index types (vector, keyword, knowledge graph), and query engines. LlamaIndex's data connectors hub (LlamaHub) provides 100+ connectors for common data sources. The framework's focused design means it handles RAG edge cases — like handling very long documents, managing stale index data, and query routing across multiple indexes — more elegantly than general frameworks.",
+    "choose_a": [
+      "You're building a general-purpose LLM application (not primarily RAG)",
+      "You need the broadest ecosystem of integrations",
+      "Your team already knows LangChain",
+      "You need complex agent orchestration with LangGraph",
+      "You want the largest community and most tutorials available"
+    ],
+    "choose_b": [
+      "Your primary use case is document Q&A or knowledge base search",
+      "You need fine-grained control over chunking, indexing, and retrieval",
+      "You're connecting LLMs to structured or semi-structured data",
+      "You want better out-of-the-box RAG quality with less configuration",
+      "You need to manage multiple document collections with different retrieval strategies"
+    ],
+    "sections": [
+      {
+        "id": "rag-comparison",
+        "title": "RAG Pipeline Comparison",
+        "content": "For RAG applications, LlamaIndex provides more out-of-the-box options and better defaults. LlamaIndex offers multiple index types (vector store, summary, knowledge graph, keyword), hybrid search combining dense and sparse retrieval, node post-processors for reranking, and sub-question query engines for complex multi-hop questions. LangChain can accomplish the same results but typically requires more explicit configuration and custom code. If RAG quality is your primary concern, LlamaIndex's purpose-built abstractions will save you significant engineering time."
+      },
+      {
+        "id": "agents",
+        "title": "Agent Capabilities",
+        "content": "LangChain has a more mature agent ecosystem through LangGraph, which provides graph-based orchestration for complex multi-step agent workflows. LangGraph is particularly well-suited for workflows where the execution path is conditional or where multiple agents need to coordinate. LlamaIndex has added agent capabilities in recent versions with QueryPipelineAgent and multi-agent support, but LangGraph remains more powerful for complex orchestration scenarios. If agents are a significant part of your application, LangChain's ecosystem has a meaningful advantage."
+      },
+      {
+        "id": "migration",
+        "title": "Version Stability and Migration",
+        "content": "Both frameworks have undergone major refactors that required migration work from existing users. LangChain's v0.1 → v0.2 → v0.3 progression introduced breaking changes in the chain and retriever APIs. LlamaIndex's v0.10 (LlamaIndex Core) was a comprehensive redesign that changed import paths and many core APIs. When evaluating either framework, check the current major version's documentation and plan for the possibility of future breaking changes in a fast-moving ecosystem."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Should I use LangChain or LlamaIndex for RAG?",
+        "a": "LlamaIndex is generally the better choice for RAG-focused applications. Its index types, query engines, and retrieval abstractions are purpose-built for this use case. LangChain can do RAG well, but requires more custom code to achieve the same quality. Use LangChain if you need RAG as one component of a larger application with many integrations."
+      },
+      {
+        "q": "Can I use LangChain and LlamaIndex together?",
+        "a": "Yes, they're complementary. A common pattern is to use LlamaIndex for the data ingestion and retrieval layer, then pass retrieved context to LangChain chains or agents for downstream processing. The frameworks are designed to interoperate and both support standard Python patterns."
+      },
+      {
+        "q": "Is LlamaIndex easier to learn than LangChain?",
+        "a": "LlamaIndex is often considered easier to learn for RAG-specific tasks because its abstractions map directly to the problem domain (index, query, retrieve). LangChain's broader scope means more concepts to understand upfront. For developers building document Q&A systems, LlamaIndex's quickstart path is more direct."
+      },
+      {
+        "q": "Which has better documentation?",
+        "a": "Both have extensive documentation. LangChain benefits from having the largest community, which means more third-party tutorials and Stack Overflow answers. LlamaIndex's official documentation is well-organized around use cases. For beginner developers, LangChain's community resources provide more learning paths; for deep RAG work, LlamaIndex's official docs are more specialized and thorough."
+      },
+      {
+        "q": "Are LangChain and LlamaIndex free?",
+        "a": "Both core libraries are MIT-licensed and free to use. LangSmith (LangChain's observability platform) and LlamaCloud (LlamaIndex's cloud service) have paid tiers. The underlying LLM API costs (OpenAI, Anthropic, etc.) are separate and apply regardless of which framework you use."
+      }
+    ],
+    "related_compares": [
+      {"slug": "cursor-vs-github-copilot", "title": "Cursor vs GitHub Copilot", "desc": "Compare the two leading AI coding assistants"},
+      {"slug": "vllm-vs-ollama", "title": "vLLM vs Ollama", "desc": "Compare two leading local LLM serving solutions"}
+    ]
+  },
+  {
+    "slug": "vllm-vs-ollama",
+    "title": "vLLM vs Ollama",
+    "tool_a_id": "vllm",
+    "tool_b_id": "ollama",
+    "intro": "vLLM and Ollama are both popular solutions for running open-source LLMs locally or on your own infrastructure, but they serve fundamentally different use cases. vLLM is a high-performance inference server designed for production API serving at scale, while Ollama is designed for ease of use on developer laptops and personal machines. Understanding the difference is critical for choosing the right tool for your deployment.",
+    "verdict": "Use Ollama for local development, personal use, and getting started with open-source LLMs — it's the simplest way to run models with a one-command install. Use vLLM for production API serving, especially when you need high throughput, concurrent users, or are deploying on cloud GPUs. The performance difference is significant: vLLM's PagedAttention delivers 2-24x higher throughput than naive inference under load.",
+    "table": [
+      {"feature": "Primary use case", "a": "Production API serving", "b": "Local development & personal use", "winner": ""},
+      {"feature": "Throughput (multi-user)", "a": "Excellent – PagedAttention", "b": "Limited – single request focus", "winner": "a"},
+      {"feature": "Setup complexity", "a": "Moderate – requires CUDA GPU", "b": "Very easy – one command", "winner": "b"},
+      {"feature": "OS support", "a": "Linux (CUDA) / WSL2 on Windows", "b": "macOS, Windows, Linux", "winner": "b"},
+      {"feature": "Apple Silicon (M1/M2/M3)", "a": "✗ Not supported", "b": "✓ Native Metal support", "winner": "b"},
+      {"feature": "OpenAI-compatible API", "a": "✓ Full compatibility", "b": "✓ Full compatibility", "winner": ""},
+      {"feature": "Model management", "a": "Manual – download HuggingFace models", "b": "✓ ollama pull <model>", "winner": "b"},
+      {"feature": "Concurrent requests", "a": "✓ Continuous batching", "b": "Sequential by default", "winner": "a"},
+      {"feature": "Memory efficiency", "a": "Excellent – PagedAttention KV cache", "b": "Good", "winner": "a"},
+      {"feature": "Production readiness", "a": "✓ Used at scale in production", "b": "Not designed for production serving", "winner": "a"}
+    ],
+    "desc_a": "vLLM is a high-throughput and memory-efficient inference and serving engine for LLMs, built by researchers at UC Berkeley. Its core innovation is PagedAttention — an algorithm inspired by virtual memory paging in operating systems that manages the KV (key-value) cache much more efficiently than previous approaches. Under multi-user load, vLLM can serve 24x more requests than HuggingFace Transformers while using the same GPU hardware. vLLM is the de facto standard for production LLM API serving when you need to support multiple concurrent users. It provides an OpenAI-compatible API server, making it a drop-in replacement for the OpenAI API in your existing applications.",
+    "desc_b": "Ollama makes running large language models locally as simple as running a single terminal command. Designed for developer laptops and personal machines, it abstracts away the complexity of model formats, quantization, and inference configuration. With ollama pull llama3, you can download and run a model in under a minute. Ollama supports macOS (including native Apple Silicon via Metal), Windows, and Linux. It provides an OpenAI-compatible REST API locally, making it easy to use with existing tools like Continue, Open WebUI, and LangChain. Ollama is built on llama.cpp under the hood for CPU inference and supports GPU acceleration where available.",
+    "choose_a": [
+      "You're building a production API that needs to serve multiple concurrent users",
+      "You have cloud GPU infrastructure (A100, H100, RTX 4090, etc.)",
+      "Throughput and latency under load are critical requirements",
+      "You need to serve 7B+ models at production scale",
+      "You're deploying on Linux servers in a data center or cloud"
+    ],
+    "choose_b": [
+      "You're a developer running models locally on your laptop",
+      "You use a Mac with Apple Silicon (M1/M2/M3)",
+      "You want the simplest possible setup experience",
+      "You're getting started with open-source LLMs",
+      "You're running models for personal use or small-scale development"
+    ],
+    "sections": [
+      {
+        "id": "performance",
+        "title": "Performance Under Load",
+        "content": "The most important difference between vLLM and Ollama is how they behave under concurrent load. Ollama processes requests sequentially by default — when multiple requests arrive simultaneously, they queue up and each waits for the previous one to complete. vLLM uses continuous batching and PagedAttention to process multiple requests simultaneously, dramatically improving throughput. In benchmarks, vLLM serving Llama 3 8B on a single A100 can handle 50+ concurrent requests efficiently. Ollama on the same hardware would process those requests one at a time. For single-user use, the difference is minimal; for production serving, it's transformative."
+      },
+      {
+        "id": "setup",
+        "title": "Setup and Configuration",
+        "content": "Ollama wins decisively on ease of setup. Installing Ollama is a single command on any OS, and models can be downloaded with ollama pull <model-name>. No CUDA configuration, no Python environment management, no manual model download from HuggingFace. vLLM requires a Linux system with NVIDIA GPU (CUDA 11.8+), a Python environment, and knowledge of how to configure the server flags for your specific use case. For developers on Mac or Windows without a Linux GPU server, vLLM is simply not an option — Ollama is the only local LLM solution."
+      },
+      {
+        "id": "api-compatibility",
+        "title": "OpenAI API Compatibility",
+        "content": "Both tools provide OpenAI-compatible REST APIs, which means your existing code that calls openai.ChatCompletion.create() can point to either vLLM (http://localhost:8000/v1) or Ollama (http://localhost:11434/v1) with a single base_url change. This compatibility makes both tools drop-in replacements for development and testing with local models instead of paying for API calls. Tools like LangChain, LlamaIndex, Open WebUI, and Continue all support OpenAI-compatible endpoints and work seamlessly with both vLLM and Ollama."
+      }
+    ],
+    "faqs": [
+      {
+        "q": "Is vLLM better than Ollama?",
+        "a": "It depends on your use case. vLLM is better for production serving with multiple concurrent users — its PagedAttention provides 2-24x higher throughput. Ollama is better for individual developers using local LLMs for development and personal use. Think of it this way: Ollama is for your laptop, vLLM is for your server."
+      },
+      {
+        "q": "Can Ollama be used in production?",
+        "a": "Ollama is not designed for production multi-user API serving. It lacks continuous batching and request queuing designed for concurrent load. For production use cases, vLLM, TGI (HuggingFace), or llama-cpp-python with gunicorn are better choices. Ollama is excellent for local development and prototyping."
+      },
+      {
+        "q": "Does vLLM work on Mac?",
+        "a": "No, vLLM requires a Linux system with NVIDIA CUDA GPUs. It does not support macOS or Apple Silicon. For Mac users who need to run LLMs locally, Ollama is the correct choice — it has native Apple Silicon support via Metal and works excellently on M1/M2/M3 Macs."
+      },
+      {
+        "q": "Can I use vLLM and Ollama together?",
+        "a": "Yes, a common setup is to use Ollama locally during development (easy to use on your laptop) and vLLM in production (high throughput for serving users). Both provide OpenAI-compatible APIs, so switching between them requires only changing a base_url configuration variable."
+      },
+      {
+        "q": "What models does vLLM support?",
+        "a": "vLLM supports all major transformer-based models available on HuggingFace, including Llama 3, Mistral, Mixtral, Phi-3, Gemma, Qwen2, and more. Model support is updated regularly. Check the vLLM documentation for the current list of supported architectures. Models are loaded directly from HuggingFace format, not the GGUF format used by Ollama and llama.cpp."
+      }
+    ],
+    "related_compares": [
+      {"slug": "cursor-vs-github-copilot", "title": "Cursor vs GitHub Copilot", "desc": "Compare the two leading AI coding assistants"},
+      {"slug": "langchain-vs-llamaindex", "title": "LangChain vs LlamaIndex", "desc": "Compare the two top LLM application frameworks"}
+    ]
+  }
+]

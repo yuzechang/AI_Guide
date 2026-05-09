@@ -14,6 +14,16 @@
   <meta property="og:description" content="{{ seo_desc }}">
   <meta property="og:url" content="{{ base_url }}/tools/{{ tool.id }}.html">
   <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="{{ base_url }}/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title }}">
+  <meta name="twitter:description" content="{{ seo_desc }}">
+  <meta name="twitter:image" content="{{ base_url }}/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
 
   <!-- Schema.org: SoftwareApplication -->
   <script type="application/ld+json">
@@ -25,6 +35,8 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": {{ tool.githubUrl | tojson }},
     "description": {{ tool.descEn | tojson }},
+    "dateModified": {{ (tool.updated_at or today) | tojson }},
+    {% if tool.version %}"softwareVersion": {{ tool.version | tojson }},{% endif %}
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": {{ (tool.license or "Open Source") | tojson }} }]
   }
   </script>
@@ -117,6 +129,11 @@
       {% if tool.nameCn and tool.nameCn != tool.name %} – {{ tool.nameCn }}{% endif %}
     </h1>
     <p class="article-desc">{{ tool.descEn }}</p>
+    <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="{{ tool.updated_at or today }}">{{ (tool.updated_at or today)[:7] }}</time></span>
+      {% if tool.version %}<span>📦 <span class="en">Version</span><span class="zh">版本</span>: <strong>{{ tool.version }}</strong></span>{% endif %}
+      <span>⭐ <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener" style="color:var(--text-3)">{{ tool.starsLabel }} GitHub Stars</a></span>
+    </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
       <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener" class="cta-btn">
         <span class="en">View on GitHub ↗</span>
@@ -208,6 +225,51 @@
         {% endif %}
       </p>
 
+      <!-- Expert Take (编辑推荐语，E-E-A-T信号) -->
+      {% if tool.expert_take %}
+      <blockquote class="expert-take">
+        <p class="en">{{ tool.expert_take }}</p>
+        <p class="zh">{{ tool.expert_take_cn or tool.expert_take }}</p>
+        <cite>— AI Nav Editorial Team</cite>
+      </blockquote>
+      {% endif %}
+
+      <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
+      {% if tool.category == "skill" %}
+
+      <!-- Getting Started (skill: 前置) -->
+      <h2 id="getting-started">
+        <span class="en">Getting Started with {{ tool.name }}</span>
+        <span class="zh">{{ tool.name }} 快速开始</span>
+      </h2>
+      <p>
+        Install {{ tool.name }} via pip and follow the
+        <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">official README</a>
+        for configuration examples.
+        Most Python frameworks can be installed in one line:
+        <code>pip install {{ tool.id }}</code>
+      </p>
+      <div class="alert alert-info">
+        💡 <strong>Tip:</strong> Check the
+        <a href="{{ tool.githubUrl }}/releases" target="_blank" rel="noopener">Releases</a>
+        page for the latest stable version and migration notes, and
+        <a href="{{ tool.githubUrl }}/discussions" target="_blank" rel="noopener">Discussions</a>
+        for community Q&amp;A.
+      </div>
+
+      <!-- Further Reading (external links) -->
+      {% if tool.links %}
+      <h2 id="further-reading">
+        <span class="en">Papers &amp; Further Reading</span>
+        <span class="zh">论文与延伸阅读</span>
+      </h2>
+      <ul class="link-list">
+        {% for link in tool.links %}
+        <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if link.desc %} — <span class="en">{{ link.desc }}</span>{% endif %}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
       <!-- Features -->
       {% if features %}
       <h2 id="features">
@@ -234,21 +296,153 @@
         {% if tool.pros %}
         <div class="pros-box">
           <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
-          <ul>
-            {% for p in tool.pros %}
-            <li>{{ p }}</li>
-            {% endfor %}
-          </ul>
+          <ul>{% for p in tool.pros %}<li>{{ p }}</li>{% endfor %}</ul>
         </div>
         {% endif %}
         {% if tool.cons %}
         <div class="cons-box">
           <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
-          <ul>
-            {% for c in tool.cons %}
-            <li>{{ c }}</li>
-            {% endfor %}
-          </ul>
+          <ul>{% for c in tool.cons %}<li>{{ c }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <!-- Use Cases -->
+      <h2 id="use-cases">
+        <span class="en">Use Cases</span>
+        <span class="zh">应用场景</span>
+      </h2>
+      <p>{{ tool.name }} is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
+      {% for uc in cat.use_cases %}
+      <h3>{{ uc.icon }} {{ uc.title }}</h3>
+      <p>{{ uc.desc }}</p>
+      {% endfor %}
+
+      {% elif tool.category == "agent" %}
+
+      <!-- ── agent 类别：Pros/Cons 前置（决策型读者）── -->
+
+      <!-- Pros & Cons (agent: 前置) -->
+      {% if tool.pros or tool.cons %}
+      <h2 id="pros-cons">
+        <span class="en">Pros &amp; Cons</span>
+        <span class="zh">优缺点</span>
+      </h2>
+      <div class="pros-cons">
+        {% if tool.pros %}
+        <div class="pros-box">
+          <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
+          <ul>{% for p in tool.pros %}<li>{{ p }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+        {% if tool.cons %}
+        <div class="cons-box">
+          <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
+          <ul>{% for c in tool.cons %}<li>{{ c }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <!-- Use Cases -->
+      <h2 id="use-cases">
+        <span class="en">Use Cases</span>
+        <span class="zh">应用场景</span>
+      </h2>
+      <p>{{ tool.name }} is used across a wide range of autonomous task scenarios. Here are the most common workflows teams automate with {{ tool.name }}:</p>
+      {% for uc in cat.use_cases %}
+      <h3>{{ uc.icon }} {{ uc.title }}</h3>
+      <p>{{ uc.desc }}</p>
+      {% endfor %}
+
+      <!-- Features -->
+      {% if features %}
+      <h2 id="features">
+        <span class="en">Key Features</span>
+        <span class="zh">核心功能</span>
+      </h2>
+      <ul class="feature-list">
+        {% for feat in features %}
+        <li>
+          <span class="feat-icon">{{ feat.icon }}</span>
+          <div><strong>{{ feat.title }}</strong> — {{ feat.desc }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <!-- Getting Started -->
+      <h2 id="getting-started">
+        <span class="en">Getting Started with {{ tool.name }}</span>
+        <span class="zh">{{ tool.name }} 快速开始</span>
+      </h2>
+      <p>
+        To get started with {{ tool.name }}, visit the
+        <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">GitHub repository</a>
+        and follow the installation instructions in the README.
+        Agent frameworks typically require an API key for the LLM backend
+        (OpenAI, Anthropic, or a local model via Ollama).
+      </p>
+      <div class="alert alert-info">
+        💡 <strong>Tip:</strong> Check the GitHub repository's
+        <a href="{{ tool.githubUrl }}/issues" target="_blank" rel="noopener">Issues</a> and
+        <a href="{{ tool.githubUrl }}/discussions" target="_blank" rel="noopener">Discussions</a>
+        pages for community support, and the
+        <a href="{{ tool.githubUrl }}/releases" target="_blank" rel="noopener">Releases</a>
+        page for the latest stable version.
+      </div>
+
+      <!-- Further Reading -->
+      {% if tool.links %}
+      <h2 id="further-reading">
+        <span class="en">Papers &amp; Further Reading</span>
+        <span class="zh">论文与延伸阅读</span>
+      </h2>
+      <ul class="link-list">
+        {% for link in tool.links %}
+        <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if link.desc %} — <span class="en">{{ link.desc }}</span>{% endif %}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% else %}
+
+      <!-- ── ai-tools 类别：标准顺序 ── -->
+
+      <!-- Features -->
+      {% if features %}
+      <h2 id="features">
+        <span class="en">Key Features</span>
+        <span class="zh">核心功能</span>
+      </h2>
+      <ul class="feature-list">
+        {% for feat in features %}
+        <li>
+          <span class="feat-icon">{{ feat.icon }}</span>
+          <div><strong>{{ feat.title }}</strong> — {{ feat.desc }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <!-- Pros & Cons -->
+      {% if tool.pros or tool.cons %}
+      <h2 id="pros-cons">
+        <span class="en">Pros &amp; Cons</span>
+        <span class="zh">优缺点</span>
+      </h2>
+      <div class="pros-cons">
+        {% if tool.pros %}
+        <div class="pros-box">
+          <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
+          <ul>{% for p in tool.pros %}<li>{{ p }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+        {% if tool.cons %}
+        <div class="cons-box">
+          <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
+          <ul>{% for c in tool.cons %}<li>{{ c }}</li>{% endfor %}</ul>
         </div>
         {% endif %}
       </div>
@@ -277,16 +471,8 @@
         To get started with {{ tool.name }}, visit the
         <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">GitHub repository</a>
         and follow the installation instructions in the README.
-        {% if tool.category == "skill" %}
-        Most Python frameworks can be installed via pip:
-        <code>pip install {{ tool.id }}</code>
-        {% elif tool.category == "ai-tools" %}
         Many AI tools provide Docker images for quick deployment:
         check the repository for the latest <code>docker-compose.yml</code> or installer script.
-        {% else %}
-        Agent frameworks typically require an API key for the LLM backend
-        (OpenAI, Anthropic, or a local model via Ollama).
-        {% endif %}
       </p>
       <div class="alert alert-info">
         💡 <strong>Tip:</strong> Check the GitHub repository's
@@ -296,6 +482,35 @@
         <a href="{{ tool.githubUrl }}/releases" target="_blank" rel="noopener">Releases</a>
         page for the latest stable version.
       </div>
+
+      <!-- Further Reading -->
+      {% if tool.links %}
+      <h2 id="further-reading">
+        <span class="en">Papers &amp; Further Reading</span>
+        <span class="zh">论文与延伸阅读</span>
+      </h2>
+      <ul class="link-list">
+        {% for link in tool.links %}
+        <li><a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>{% if link.desc %} — <span class="en">{{ link.desc }}</span>{% endif %}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      {% endif %}
+      <!-- ── 分类结构结束 ── -->
+
+      <!-- Known Limitations (所有分类通用) -->
+      {% if tool.limitations %}
+      <h2 id="limitations">
+        <span class="en">Known Limitations &amp; Gotchas</span>
+        <span class="zh">已知局限与注意事项</span>
+      </h2>
+      <ul class="limitations-list">
+        {% for lim in tool.limitations %}
+        <li>{{ lim }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
 
       <!-- Affiliate / Official Site CTA -->
       {% if tool.affiliateUrl or tool.website %}
@@ -412,10 +627,26 @@
         <h4><span class="en">Table of Contents</span><span class="zh">目录</span></h4>
         <ul class="toc-list">
           <li><a href="#what-is"><span class="en">What Is {{ tool.name }}?</span><span class="zh">{{ tool.name }} 是什么？</span></a></li>
+          {% if tool.category == "skill" %}
+          <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
+          {% if tool.links %}<li><a href="#further-reading"><span class="en">Papers &amp; Reading</span><span class="zh">论文阅读</span></a></li>{% endif %}
+          {% if features %}<li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>{% endif %}
+          {% if tool.pros or tool.cons %}<li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>{% endif %}
+          <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
+          {% elif tool.category == "agent" %}
+          {% if tool.pros or tool.cons %}<li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>{% endif %}
+          <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
+          {% if features %}<li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>{% endif %}
+          <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
+          {% if tool.links %}<li><a href="#further-reading"><span class="en">Papers &amp; Reading</span><span class="zh">论文阅读</span></a></li>{% endif %}
+          {% else %}
           {% if features %}<li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>{% endif %}
           {% if tool.pros or tool.cons %}<li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>{% endif %}
           <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
           <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
+          {% if tool.links %}<li><a href="#further-reading"><span class="en">Papers &amp; Reading</span><span class="zh">论文阅读</span></a></li>{% endif %}
+          {% endif %}
+          {% if tool.limitations %}<li><a href="#limitations"><span class="en">Known Limitations</span><span class="zh">已知局限</span></a></li>{% endif %}
           {% if related %}<li><a href="#alternatives"><span class="en">Alternatives</span><span class="zh">替代工具</span></a></li>{% endif %}
           <li><a href="#faq"><span class="en">FAQ</span><span class="zh">常见问题</span></a></li>
         </ul>

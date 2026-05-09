@@ -177,6 +177,78 @@
         <li><strong>Many developers use both</strong>: Cursor for day-to-day coding, Claude Code for complex refactoring tasks.</li>
       </ul>
 
+      <h2 id="claude-md">Writing an Effective CLAUDE.md</h2>
+      <p>
+        <code>CLAUDE.md</code> is the most powerful customization lever in Claude Code. It's a Markdown file in your project root that Claude reads at the start of every session—think of it as a persistent system prompt tailored to your codebase. Here's a battle-tested template:
+      </p>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;"># Project: my-saas-app
+
+## Tech Stack
+- Backend: Node.js 20, Express 4, TypeScript 5
+- Database: PostgreSQL 16 via Prisma ORM
+- Frontend: React 18, Vite, Tailwind CSS 3
+- Testing: Vitest + Supertest
+
+## Code Conventions
+- Use async/await, never callbacks
+- All API routes in src/routes/, services in src/services/
+- Error handling: throw AppError class, never raw Error
+- Imports: named exports only, no default exports
+
+## Commands
+- Run tests: npm test
+- Start dev server: npm run dev
+- Build: npm run build
+- Lint: npm run lint
+
+## Important Rules
+- Never expose raw SQL — always use Prisma
+- All env vars accessed via src/config.ts, never process.env directly
+- Write JSDoc for all exported functions</div>
+      <p>Tips for better CLAUDE.md files: be specific about file locations, include the exact test command, list anti-patterns you want avoided, and keep it under 200 lines.</p>
+
+      <h2 id="prompt-examples">Prompt Examples</h2>
+      <p>These prompts work well in a Claude Code session. Start the session from your project root directory.</p>
+
+      <h3>🏗️ Implement a Feature End-to-End</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Add a password reset flow to the auth system. User enters their email, receives a reset link (store token in DB), clicks link to set new password. Write the backend routes, email service call, and React frontend form. Add tests. Make sure all existing tests still pass.</div>
+
+      <h3>🔍 Codebase Exploration</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Trace the complete request lifecycle for a POST /api/orders request. Start from the route handler, follow through validation, service layer, database call, and response. Show me which files are involved and identify any potential race conditions.</div>
+
+      <h3>♻️ Large-Scale Refactoring</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Migrate all database queries from raw SQL (db.query()) to Prisma ORM. The schema is already defined in prisma/schema.prisma. Update every file in src/models/ and src/services/. Run the tests after each file to confirm nothing breaks.</div>
+
+      <h3>🤖 CI/CD Headless Mode</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px; padding:12px">
+# Run as a CI step (non-interactive)
+claude -p "Review all changed files in this PR. Flag any security issues, missing error handling, or test coverage gaps. Output a markdown report." --output-format stream-json</div>
+
+      <h2 id="best-practices">Best Practices</h2>
+
+      <h3>1. Start with a Clear Goal Statement</h3>
+      <p>Claude Code works best when you front-load the goal and acceptance criteria. Instead of "add a search feature," say: "Add full-text search to the /api/products endpoint. Use PostgreSQL's tsvector. Return results sorted by relevance score. Write integration tests. The test command is <code>npm test</code>." The more specific the stopping condition, the better the output.</p>
+
+      <h3>2. Use <code>/compact</code> for Long Sessions</h3>
+      <p>For sessions that span many files and tool calls, run <code>/compact</code> to summarize context and free up the context window. This prevents performance degradation on large codebases without losing task state.</p>
+
+      <h3>3. Budget Your Token Usage</h3>
+      <p>Claude Code bills per token. A complex refactoring session on a large codebase can cost $5–20. To control costs: scope tasks narrowly, use <code>/exit</code> and restart for new tasks instead of extending sessions, and prefer Claude Sonnet 4 over Opus 4 for routine tasks (3–5x cheaper).</p>
+
+      <h3>4. Let It Run Tests</h3>
+      <p>Always include "run the tests and fix any failures" in your prompt. Claude Code's test loop is one of its best features: it implements, runs tests, reads failures, fixes them, and iterates—often reaching a passing state without any human intervention. Make sure your <code>CLAUDE.md</code> includes the correct test command.</p>
+
+      <h3>5. Use Headless Mode for Automation</h3>
+      <p>Claude Code's <code>-p</code> flag runs non-interactively, making it ideal for CI pipelines. Use it to: auto-generate changelogs from git diffs, add docstrings to new functions in PRs, or flag potential issues in code review. The <code>--output-format stream-json</code> flag enables machine-readable output for downstream processing.</p>
+
+      <h2 id="alternatives">Alternatives to Claude Code</h2>
+      <div class="related-grid">
+        <a href="cursor.html" class="related-card"><div class="related-card-name">Cursor AI</div><div class="related-card-desc">AI-first code editor (VS Code fork) with GUI-based multi-file editing and inline completions</div></a>
+        <a href="aider.html" class="related-card"><div class="related-card-name">Aider</div><div class="related-card-desc">Open-source CLI coding agent with git integration, supports all major LLM providers</div></a>
+        <a href="continue.html" class="related-card"><div class="related-card-name">Continue.dev</div><div class="related-card-desc">Open-source AI coding assistant extension for VS Code and JetBrains</div></a>
+        <a href="cline.html" class="related-card"><div class="related-card-name">Cline</div><div class="related-card-desc">Autonomous coding agent VS Code extension with multi-file editing and terminal access</div></a>
+      </div>
+
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
         <div class="faq-item">
@@ -224,6 +296,10 @@
           <li><a href="#use-cases">Use Cases</a></li>
           <li><a href="#pros-cons">Pros & Cons</a></li>
           <li><a href="#vs-cursor">vs Cursor</a></li>
+          <li><a href="#claude-md">CLAUDE.md Guide</a></li>
+          <li><a href="#prompt-examples">Prompt Examples</a></li>
+          <li><a href="#best-practices">Best Practices</a></li>
+          <li><a href="#alternatives">Alternatives</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>

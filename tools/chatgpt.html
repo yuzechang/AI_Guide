@@ -191,6 +191,16 @@
         </ul></div>
       </div>
 
+      <h2 id="getting-started">Getting Started with ChatGPT</h2>
+      <ol>
+        <li><strong>Create a free account</strong> at <a href="https://chat.openai.com" target="_blank" rel="noopener">chat.openai.com</a> using email, Google, or Microsoft sign-in.</li>
+        <li><strong>Choose your model</strong>: The free tier uses GPT-4o mini by default. Click the model selector at the top to switch to GPT-4o when available.</li>
+        <li><strong>Try a task-specific GPT</strong>: Click "Explore GPTs" to find pre-configured assistants for coding, writing, data analysis, and more.</li>
+        <li><strong>Enable memory</strong> (Settings → Personalization → Memory): ChatGPT will remember key facts about you across conversations, like your preferred programming language or writing style.</li>
+        <li><strong>Set up Custom Instructions</strong> (Settings → Personalization → Custom Instructions): Provide persistent context like "I'm a senior backend engineer working in Python and Go" to improve every response automatically.</li>
+      </ol>
+      <div class="alert alert-info">💡 <strong>Pro tip:</strong> Use the <strong>Projects</strong> feature (Plus plan) to organize conversations by topic and share context across chats in a project—great for long-running work like a codebase, a writing project, or a research topic.</div>
+
       <h2 id="vs-claude">ChatGPT vs Claude</h2>
       <p>The most common alternative comparison. Both are excellent; the choice depends on your primary use case:</p>
       <ul>
@@ -199,6 +209,41 @@
         <li><strong>For coding</strong>: Very close. Claude Sonnet 4 and GPT-4o are both top-tier. Try both for your specific language.</li>
         <li><strong>For research</strong>: ChatGPT's web browsing gives it an edge for current information. Claude performs better on document analysis.</li>
       </ul>
+
+      <h2 id="prompt-examples">Prompt Examples for Developers</h2>
+      <p>ChatGPT performs significantly better with structured, context-rich prompts. Here are patterns that consistently produce high-quality output.</p>
+
+      <h3>💻 Code Review & Debugging</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Review this Python function for bugs, edge cases, and performance issues. Explain each issue you find and suggest a fix. Context: this runs in a serverless environment with a 30-second timeout, processing up to 10,000 records per call.
+
+[paste your code here]</div>
+
+      <h3>📊 Data Analysis with Code Interpreter</h3>
+      <p><em>(Requires Plus plan. Upload a CSV file, then use this prompt.)</em></p>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Analyze this sales dataset. Calculate: (1) month-over-month revenue growth %, (2) top 5 products by total revenue, (3) customer churn rate if the "last_purchase_date" column is available. Create a bar chart for revenue by month. Highlight any anomalies you find.</div>
+
+      <h3>✍️ Writing with a Specific Voice</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">Write a LinkedIn post announcing our new product feature: [feature description]. Tone: professional but approachable, first-person, no corporate jargon. Length: 150-200 words. End with a question to drive comments. Do not use em dashes or the word "delve".</div>
+
+      <h3>🔍 Research Summarization</h3>
+      <div class="alert alert-info" style="font-family:monospace; white-space:pre-wrap; font-size:13px;">I'm researching [topic]. Give me: (1) a 3-paragraph overview of the current state, (2) the 3 most important open questions in the field, (3) 5 specific things I should read to get up to speed (papers, books, or key blog posts). Be specific—no generic recommendations.</div>
+
+      <h2 id="tips">Tips &amp; Advanced Features</h2>
+
+      <h3>Use Custom Instructions to Set Persistent Context</h3>
+      <p>Navigate to Settings → Personalization → Custom Instructions to set two things: what ChatGPT should know about you, and how it should respond. Example instructions: "I'm a senior engineer. Skip basic explanations. Always show code in TypeScript. When reviewing code, list issues in order of severity." This applies to every conversation without repeating yourself.</p>
+
+      <h3>Leverage the Code Interpreter for Data Work</h3>
+      <p>Code Interpreter (now called "Advanced Data Analysis") is one of ChatGPT's most underused features. It runs real Python in a sandboxed environment. Upload CSV, Excel, PDF, or image files, and ChatGPT can parse, analyze, visualize, and transform them. For developers, it's invaluable for: analyzing log files, exploring datasets before building a pipeline, converting file formats, and prototyping data transformations.</p>
+
+      <h3>Build a Custom GPT for Repetitive Tasks</h3>
+      <p>If you repeatedly use ChatGPT for the same task—code review in a specific style, customer email replies, content in a brand voice—build a Custom GPT. You can give it a system prompt, upload reference documents, and even connect it to external APIs. Share it privately with your team or publish it to the GPT Store.</p>
+
+      <h3>Use o1 / o3 Models for Hard Reasoning Problems</h3>
+      <p>ChatGPT Plus includes access to OpenAI's "reasoning" model family (o1, o3-mini). These models think step-by-step before answering and dramatically outperform GPT-4o on math, logic, complex coding, and multi-step planning tasks. Switch to o3-mini when you need deep reasoning—it's cheaper than o1 with comparable performance on most tasks.</p>
+
+      <h2 id="api">Using the OpenAI API</h2>
+      <p>ChatGPT is available programmatically via the <a href="https://platform.openai.com" target="_blank" rel="noopener">OpenAI API</a>. Install the Python SDK with <code>pip install openai</code>, then call GPT-4o directly in your applications. API pricing is usage-based: GPT-4o costs $2.50 per million input tokens and $10.00 per million output tokens. For high-volume use cases, consider <strong>Batch API</strong> which processes requests asynchronously at 50% cost. The API also supports function calling (structured tool use), JSON mode for guaranteed JSON output, vision inputs for image analysis, and the Assistants API for building stateful AI assistants with file retrieval and code execution built in.</p>
 
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
@@ -225,7 +270,10 @@
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#use-cases">Use Cases</a></li>
         <li><a href="#pros-cons">Pros & Cons</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
         <li><a href="#vs-claude">vs Claude</a></li>
+        <li><a href="#prompt-examples">Prompt Examples</a></li>
+        <li><a href="#tips">Tips & Advanced Features</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul></div>
       <div class="sidebar-card"><h4>Related Tools</h4><ul class="toc-list">

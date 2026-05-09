@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vLLM vs Ollama (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare vLLM and Ollama side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/compare/vllm-vs-ollama.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="vLLM vs Ollama (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare vLLM and Ollama side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/vllm-vs-ollama.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="vLLM vs Ollama (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare vLLM and Ollama side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "Is vLLM better than Ollama?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on your use case. vLLM is better for production serving with multiple concurrent users \u2014 its PagedAttention provides 2-24x higher throughput. Ollama is better for individual developers using local LLMs for development and personal use. Think of it this way: Ollama is for your laptop, vLLM is for your server." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can Ollama be used in production?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ollama is not designed for production multi-user API serving. It lacks continuous batching and request queuing designed for concurrent load. For production use cases, vLLM, TGI (HuggingFace), or llama-cpp-python with gunicorn are better choices. Ollama is excellent for local development and prototyping." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does vLLM work on Mac?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No, vLLM requires a Linux system with NVIDIA CUDA GPUs. It does not support macOS or Apple Silicon. For Mac users who need to run LLMs locally, Ollama is the correct choice \u2014 it has native Apple Silicon support via Metal and works excellently on M1/M2/M3 Macs." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can I use vLLM and Ollama together?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, a common setup is to use Ollama locally during development (easy to use on your laptop) and vLLM in production (high throughput for serving users). Both provide OpenAI-compatible APIs, so switching between them requires only changing a base_url configuration variable." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "What models does vLLM support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "vLLM supports all major transformer-based models available on HuggingFace, including Llama 3, Mistral, Mixtral, Phi-3, Gemma, Qwen2, and more. Model support is updated regularly. Check the vLLM documentation for the current list of supported architectures. Models are loaded directly from HuggingFace format, not the GGUF format used by Ollama and llama.cpp." }
+      }
+      
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "vLLM vs Ollama", "item": "https://yuzec.com/compare/vllm-vs-ollama.html" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <style>
+    .compare-hero { background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(52,211,153,.06)); border-bottom: 1px solid var(--border); padding: 40px 0 32px; }
+    .vs-badge { display:inline-flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border-bright);border-radius:999px;padding:6px 18px;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:20px; }
+    .vs-sep { background:var(--accent);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800; }
+    .compare-table { width:100%;border-collapse:collapse;margin:28px 0;font-size:14px; }
+    .compare-table th { background:var(--surface-2);padding:12px 16px;text-align:left;font-weight:600;color:var(--text);border-bottom:2px solid var(--border-bright); }
+    .compare-table th:first-child { width:30%; }
+    .compare-table td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;line-height:1.55; }
+    .compare-table tr:hover td { background:var(--surface-2); }
+    .compare-table .winner { color:var(--accent);font-weight:600; }
+    .compare-table .check { color:#34d399; }
+    .compare-table .cross { color:#f87171; }
+    .verdict-box { background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(52,211,153,.05));border:1px solid var(--border-bright);border-radius:var(--radius);padding:24px 28px;margin:32px 0; }
+    .verdict-box h3 { margin:0 0 10px;font-size:17px;font-weight:700;color:var(--text); }
+    .verdict-box p { margin:0;color:var(--text-2);line-height:1.7; }
+    .choose-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0; }
+    .choose-card { border:1px solid var(--border);border-radius:var(--radius);padding:20px;background:var(--surface-2); }
+    .choose-card h4 { margin:0 0 12px;font-size:15px;font-weight:700; }
+    .choose-card ul { margin:0;padding-left:18px;color:var(--text-2);font-size:13px;line-height:1.8; }
+    @media(max-width:640px){ .choose-grid{grid-template-columns:1fr;} .compare-table td,.compare-table th{padding:10px 12px;font-size:13px;} }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中</button>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html">Compare</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">vLLM vs Ollama</span>
+</div>
+
+<!-- Hero -->
+<div class="compare-hero">
+  <div class="page-hero-inner">
+    <div class="vs-badge">
+      <span>vLLM</span>
+      <span class="vs-sep">VS</span>
+      <span>Ollama</span>
+    </div>
+    <h1 class="article-title" style="margin-top:0">
+      <span class="gradient">vLLM vs Ollama</span>
+    </h1>
+    <p class="article-desc">vLLM and Ollama are both popular solutions for running open-source LLMs locally or on your own infrastructure, but they serve fundamentally different use cases. vLLM is a high-performance inference server designed for production API serving at scale, while Ollama is designed for ease of use on developer laptops and personal machines. Understanding the difference is critical for choosing the right tool for your deployment.</p>
+    <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
+      <span>🗓 Updated: <time datetime="2026-05-09">2026-05</time></span>
+      <span>⭐ vLLM: 38k+ stars</span>
+      <span>⭐ Ollama: 85k+ stars</span>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <!-- TL;DR Verdict -->
+      <div class="verdict-box">
+        <h3>⚡ TL;DR — 30-Second Verdict</h3>
+        <p>Use Ollama for local development, personal use, and getting started with open-source LLMs — it's the simplest way to run models with a one-command install. Use vLLM for production API serving, especially when you need high throughput, concurrent users, or are deploying on cloud GPUs. The performance difference is significant: vLLM's PagedAttention delivers 2-24x higher throughput than naive inference under load.</p>
+      </div>
+
+      <!-- Quick Comparison Table -->
+      <h2 id="comparison">Quick Comparison</h2>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>vLLM</th>
+            <th>Ollama</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>Primary use case</strong></td>
+            <td class="">Production API serving</td>
+            <td class="">Local development & personal use</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Throughput (multi-user)</strong></td>
+            <td class="winner">Excellent – PagedAttention</td>
+            <td class="">Limited – single request focus</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Setup complexity</strong></td>
+            <td class="">Moderate – requires CUDA GPU</td>
+            <td class="winner">Very easy – one command</td>
+          </tr>
+          
+          <tr>
+            <td><strong>OS support</strong></td>
+            <td class="">Linux (CUDA) / WSL2 on Windows</td>
+            <td class="winner">macOS, Windows, Linux</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Apple Silicon (M1/M2/M3)</strong></td>
+            <td class="">✗ Not supported</td>
+            <td class="winner">✓ Native Metal support</td>
+          </tr>
+          
+          <tr>
+            <td><strong>OpenAI-compatible API</strong></td>
+            <td class="">✓ Full compatibility</td>
+            <td class="">✓ Full compatibility</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Model management</strong></td>
+            <td class="">Manual – download HuggingFace models</td>
+            <td class="winner">✓ ollama pull <model></td>
+          </tr>
+          
+          <tr>
+            <td><strong>Concurrent requests</strong></td>
+            <td class="winner">✓ Continuous batching</td>
+            <td class="">Sequential by default</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Memory efficiency</strong></td>
+            <td class="winner">Excellent – PagedAttention KV cache</td>
+            <td class="">Good</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Production readiness</strong></td>
+            <td class="winner">✓ Used at scale in production</td>
+            <td class="">Not designed for production serving</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <!-- What is A -->
+      <h2 id="what-is-vllm">What Is vLLM?</h2>
+      <p>vLLM is a high-throughput and memory-efficient inference and serving engine for LLMs, built by researchers at UC Berkeley. Its core innovation is PagedAttention — an algorithm inspired by virtual memory paging in operating systems that manages the KV (key-value) cache much more efficiently than previous approaches. Under multi-user load, vLLM can serve 24x more requests than HuggingFace Transformers while using the same GPU hardware. vLLM is the de facto standard for production LLM API serving when you need to support multiple concurrent users. It provides an OpenAI-compatible API server, making it a drop-in replacement for the OpenAI API in your existing applications.</p>
+      
+      <blockquote class="expert-take">
+        <p>vLLM is the correct answer for production LLM API serving on GPU. The PagedAttention innovation delivers 2–24x throughput over naive HuggingFace inference, and the OpenAI-compatible API means zero client-side changes when migrating from the OpenAI API. If you're deploying any model larger than 7B in production, evaluate vLLM first. The one real limitation: it's GPU-only and requires CUDA.</p>
+        <cite>— AI Nav Editorial Team on vLLM</cite>
+      </blockquote>
+      
+      <p><a href="../tools/vllm.html">→ Read the full vLLM review</a></p>
+
+      <!-- What is B -->
+      <h2 id="what-is-ollama">What Is Ollama?</h2>
+      <p>Ollama makes running large language models locally as simple as running a single terminal command. Designed for developer laptops and personal machines, it abstracts away the complexity of model formats, quantization, and inference configuration. With ollama pull llama3, you can download and run a model in under a minute. Ollama supports macOS (including native Apple Silicon via Metal), Windows, and Linux. It provides an OpenAI-compatible REST API locally, making it easy to use with existing tools like Continue, Open WebUI, and LangChain. Ollama is built on llama.cpp under the hood for CPU inference and supports GPU acceleration where available.</p>
+      
+      <blockquote class="expert-take">
+        <p>Ollama is the easiest way to run LLMs locally for personal use and development. The one-command install and model pull experience is unmatched. For production API serving at scale, graduate to vLLM. For everything else — local development, prototyping, experimentation — Ollama is the right default.</p>
+        <cite>— AI Nav Editorial Team on Ollama</cite>
+      </blockquote>
+      
+      <p><a href="../tools/ollama.html">→ Read the full Ollama review</a></p>
+
+      <!-- When to Choose -->
+      <h2 id="choose">When to Choose Each</h2>
+      <div class="choose-grid">
+        <div class="choose-card">
+          <h4>Choose vLLM if…</h4>
+          <ul>
+            
+            <li>You're building a production API that needs to serve multiple concurrent users</li>
+            
+            <li>You have cloud GPU infrastructure (A100, H100, RTX 4090, etc.)</li>
+            
+            <li>Throughput and latency under load are critical requirements</li>
+            
+            <li>You need to serve 7B+ models at production scale</li>
+            
+            <li>You're deploying on Linux servers in a data center or cloud</li>
+            
+          </ul>
+        </div>
+        <div class="choose-card">
+          <h4>Choose Ollama if…</h4>
+          <ul>
+            
+            <li>You're a developer running models locally on your laptop</li>
+            
+            <li>You use a Mac with Apple Silicon (M1/M2/M3)</li>
+            
+            <li>You want the simplest possible setup experience</li>
+            
+            <li>You're getting started with open-source LLMs</li>
+            
+            <li>You're running models for personal use or small-scale development</li>
+            
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deep Dive -->
+      
+      <h2 id="performance">Performance Under Load</h2>
+      <p>The most important difference between vLLM and Ollama is how they behave under concurrent load. Ollama processes requests sequentially by default — when multiple requests arrive simultaneously, they queue up and each waits for the previous one to complete. vLLM uses continuous batching and PagedAttention to process multiple requests simultaneously, dramatically improving throughput. In benchmarks, vLLM serving Llama 3 8B on a single A100 can handle 50+ concurrent requests efficiently. Ollama on the same hardware would process those requests one at a time. For single-user use, the difference is minimal; for production serving, it's transformative.</p>
+      
+      <h2 id="setup">Setup and Configuration</h2>
+      <p>Ollama wins decisively on ease of setup. Installing Ollama is a single command on any OS, and models can be downloaded with ollama pull <model-name>. No CUDA configuration, no Python environment management, no manual model download from HuggingFace. vLLM requires a Linux system with NVIDIA GPU (CUDA 11.8+), a Python environment, and knowledge of how to configure the server flags for your specific use case. For developers on Mac or Windows without a Linux GPU server, vLLM is simply not an option — Ollama is the only local LLM solution.</p>
+      
+      <h2 id="api-compatibility">OpenAI API Compatibility</h2>
+      <p>Both tools provide OpenAI-compatible REST APIs, which means your existing code that calls openai.ChatCompletion.create() can point to either vLLM (http://localhost:8000/v1) or Ollama (http://localhost:11434/v1) with a single base_url change. This compatibility makes both tools drop-in replacements for development and testing with local models instead of paying for API calls. Tools like LangChain, LlamaIndex, Open WebUI, and Continue all support OpenAI-compatible endpoints and work seamlessly with both vLLM and Ollama.</p>
+      
+
+      <!-- FAQ -->
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is vLLM better than Ollama? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">It depends on your use case. vLLM is better for production serving with multiple concurrent users — its PagedAttention provides 2-24x higher throughput. Ollama is better for individual developers using local LLMs for development and personal use. Think of it this way: Ollama is for your laptop, vLLM is for your server.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can Ollama be used in production? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Ollama is not designed for production multi-user API serving. It lacks continuous batching and request queuing designed for concurrent load. For production use cases, vLLM, TGI (HuggingFace), or llama-cpp-python with gunicorn are better choices. Ollama is excellent for local development and prototyping.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Does vLLM work on Mac? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">No, vLLM requires a Linux system with NVIDIA CUDA GPUs. It does not support macOS or Apple Silicon. For Mac users who need to run LLMs locally, Ollama is the correct choice — it has native Apple Silicon support via Metal and works excellently on M1/M2/M3 Macs.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I use vLLM and Ollama together? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, a common setup is to use Ollama locally during development (easy to use on your laptop) and vLLM in production (high throughput for serving users). Both provide OpenAI-compatible APIs, so switching between them requires only changing a base_url configuration variable.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">What models does vLLM support? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">vLLM supports all major transformer-based models available on HuggingFace, including Llama 3, Mistral, Mixtral, Phi-3, Gemma, Qwen2, and more. Model support is updated regularly. Check the vLLM documentation for the current list of supported architectures. Models are loaded directly from HuggingFace format, not the GGUF format used by Ollama and llama.cpp.</div></div>
+        </div>
+        
+      </div>
+
+      <!-- Related Comparisons -->
+      
+      <h2 id="related">Related Comparisons</h2>
+      <div class="related-grid">
+        
+        <a href="cursor-vs-github-copilot.html" class="related-card">
+          <div class="related-card-name">Cursor vs GitHub Copilot</div>
+          <div class="related-card-desc">Compare the two leading AI coding assistants</div>
+        </a>
+        
+        <a href="langchain-vs-llamaindex.html" class="related-card">
+          <div class="related-card-name">LangChain vs LlamaIndex</div>
+          <div class="related-card-desc">Compare the two top LLM application frameworks</div>
+        </a>
+        
+      </div>
+      
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">vLLM</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 38k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
+          <div style="margin-bottom:14px"><a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Ollama</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 85k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> MIT</div>
+          <div><a href="https://github.com/ollama/ollama" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison">Quick Comparison</a></li>
+          <li><a href="#what-is-vllm">What Is vLLM?</a></li>
+          <li><a href="#what-is-ollama">What Is Ollama?</a></li>
+          <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#performance">Performance Under Load</a></li>
+          
+          <li><a href="#setup">Setup and Configuration</a></li>
+          
+          <li><a href="#api-compatibility">OpenAI API Compatibility</a></li>
+          
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>View Full Reviews</h4>
+        <ul class="toc-list">
+          <li><a href="../tools/vllm.html">vLLM Review →</a></li>
+          <li><a href="../tools/ollama.html">Ollama Review →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools with honest pros, cons, and comparisons.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Comparisons</h4>
+        <ul>
+          <li><a href="cursor-vs-github-copilot.html">Cursor vs Copilot</a></li>
+          <li><a href="langchain-vs-llamaindex.html">LangChain vs LlamaIndex</a></li>
+          <li><a href="vllm-vs-ollama.html">vLLM vs Ollama</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  localStorage.setItem('ai-nav-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+}
+(function initLang() {
+  var saved = localStorage.getItem('ai-nav-lang');
+  if (saved === 'zh') setLang('zh');
+})();
+</script>
+</body>
+</html>

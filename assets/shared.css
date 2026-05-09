@@ -402,3 +402,44 @@ footer { background: var(--surface); border-top: 1px solid var(--border); margin
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 24px 0;
   line-height: 1.6;
 }
+
+/* Expert Take blockquote (E-E-A-T signal) */
+.expert-take {
+  background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(52,211,153,.06));
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 18px 20px 14px;
+  margin: 28px 0;
+  font-style: italic;
+  color: var(--text-2);
+  line-height: 1.7;
+}
+.expert-take p { margin: 0 0 8px; }
+.expert-take p:last-of-type { margin-bottom: 10px; }
+.expert-take cite { font-size: 12px; font-style: normal; color: var(--text-3); letter-spacing: .03em; }
+
+/* Known Limitations list */
+.limitations-list {
+  list-style: none; padding: 0; margin: 0 0 28px;
+}
+.limitations-list li {
+  padding: 10px 14px 10px 40px; position: relative;
+  border-bottom: 1px solid var(--border); font-size: 14px; color: var(--text-2); line-height: 1.55;
+}
+.limitations-list li:last-child { border-bottom: none; }
+.limitations-list li::before {
+  content: "⚠"; position: absolute; left: 12px; top: 10px;
+  font-size: 14px; color: #fbbf24;
+}
+
+/* Further Reading / Papers link list */
+.link-list {
+  list-style: none; padding: 0; margin: 0 0 28px;
+}
+.link-list li {
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text-2); line-height: 1.55;
+}
+.link-list li:last-child { border-bottom: none; }
+.link-list li a { color: var(--accent); font-weight: 500; }
+.link-list li a:hover { text-decoration: underline; }
