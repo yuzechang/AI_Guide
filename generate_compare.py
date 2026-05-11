@@ -96,7 +96,7 @@ def update_sitemap(compares):
 
     new_urls = []
     for cmp in compares:
-        loc = f"{BASE_URL}/compare/{cmp['slug']}.html"
+        loc = f"{BASE_URL}/compare/{cmp['slug']}"
         new_urls.append(
             f"  <url>\n"
             f"    <loc>{loc}</loc>\n"

@@ -314,22 +314,33 @@ def generate_sitemap(tools_dir, all_tools):
         lastmod=TODAY, changefreq="weekly", priority="1.0",
         alternates=True
     ))
-    # 静态页
-    for page, prio, freq in [
-        ("about.html",          "0.7", "monthly"),
-        ("contact.html",        "0.5", "monthly"),
-        ("privacy-policy.html", "0.3", "yearly"),
+    # 静态页（cleanUrls:true → 无 .html 后缀）
+    for page, slug, prio, freq in [
+        ("about.html",          "about",          "0.7", "monthly"),
+        ("contact.html",        "contact",        "0.5", "monthly"),
+        ("privacy-policy.html", "privacy-policy", "0.3", "yearly"),
     ]:
-        urls.append(dict(loc=f"{BASE_URL}/{page}", lastmod=TODAY, changefreq=freq, priority=prio))
+        urls.append(dict(loc=f"{BASE_URL}/{slug}", lastmod=TODAY, changefreq=freq, priority=prio))
 
-    # 分类聚合页
+    # 分类聚合页（cleanUrls:true → 无 .html 后缀）
     for cat_key in ["ai-tools", "skill", "agent"]:
         slug = CATEGORY_SEO[cat_key]["slug"]
         cat_path = CATEGORY_DIR / f"{slug}.html"
         if cat_path.exists():
-            urls.append(dict(loc=f"{BASE_URL}/category/{slug}.html", lastmod=TODAY, changefreq="weekly", priority="0.85"))
+            urls.append(dict(loc=f"{BASE_URL}/category/{slug}", lastmod=TODAY, changefreq="weekly", priority="0.85"))
 
-    # 工具页（按 stars 降序排列，高质量页面在 sitemap 靠前）
+    # 特殊手写页（不在 data.json，需单独列出）
+    EXTRA_PAGES = [
+        ("cursor",      "0.95", "weekly"),
+        ("claude-code", "0.95", "weekly"),
+        ("chatgpt",     "0.95", "weekly"),
+    ]
+    for slug, prio, freq in EXTRA_PAGES:
+        page_path = tools_dir / f"{slug}.html"
+        if page_path.exists():
+            urls.append(dict(loc=f"{BASE_URL}/tools/{slug}", lastmod=TODAY, changefreq=freq, priority=prio))
+
+    # 工具页（cleanUrls:true → 无 .html 后缀，与 canonical 保持一致）
     sorted_tools = sorted(all_tools, key=lambda t: t.get("stars", 0), reverse=True)
     for t in sorted_tools:
         tid = t["id"]
@@ -339,7 +350,7 @@ def generate_sitemap(tools_dir, all_tools):
             prio = _tool_priority(t)
             freq = "weekly" if t.get("stars", 0) >= 20000 else "monthly"
             urls.append(dict(
-                loc=f"{BASE_URL}/tools/{filename}.html",
+                loc=f"{BASE_URL}/tools/{filename}",
                 lastmod=TODAY, changefreq=freq, priority=prio
             ))
 
