@@ -720,21 +720,21 @@ AI_Guide's operations. We only recommend tools we believe are genuinely useful.
 
 ## 11. 迭代路线图
 
-### Phase 1 — SEO 基础建设（目标：4 周完成）
+### Phase 1 — SEO 基础建设（目标：4 周完成）✅ 已完成
 
 **核心目标**：建立可被 Google 收录的内容站基础设施
 
-| 任务 | 优先级 | 预估工时 |
-|------|--------|---------|
-| 扩展 data.json 字段（website, affiliateUrl, license, faqs, pros, cons） | P0 | 8h |
-| 补全 20-50 个核心工具的完整数据 | P0 | 16h |
-| 升级 tool_detail.j2 模板（添加 pros/cons 对比、定价、Affiliate CTA） | P0 | 8h |
-| 升级 generate.py（支持新字段、增量更新、日志输出） | P0 | 6h |
-| 独立 sitemap 生成脚本（覆盖 /tools/ + /category/） | P0 | 3h |
-| 配置 GitHub Actions 自动化 build.yml | P0 | 3h |
-| 首页 Hero 区 SEO 优化（H1 含核心关键词） | P0 | 4h |
-| 提交 sitemap 到 Google Search Console | P0 | 1h |
-| 申请 Google AdSense（≥50 页后） | P1 | 2h |
+| 任务 | 优先级 | 预估工时 | 状态 |
+|------|--------|---------|------|
+| 扩展 data.json 字段（website, affiliateUrl, license, faqs, pros, cons） | P0 | 8h | ✅ |
+| 补全 20-50 个核心工具的完整数据 | P0 | 16h | ✅ 35条 |
+| 升级 tool_detail.j2 模板（添加 pros/cons 对比、定价、Affiliate CTA） | P0 | 8h | ✅ |
+| 升级 generate.py（支持新字段、增量更新、日志输出） | P0 | 6h | ✅ |
+| 独立 sitemap 生成脚本（覆盖 /tools/ + /category/） | P0 | 3h | ✅ |
+| 配置 GitHub Actions 自动化 build.yml | P0 | 3h | ✅ |
+| 首页 Hero 区 SEO 优化（H1 含核心关键词） | P0 | 4h | ✅ |
+| 提交 sitemap 到 Google Search Console | P0 | 1h | ⏳ 需手动操作 |
+| 申请 Google AdSense（≥50 页后） | P1 | 2h | ✅ pub-2761695780807828 已申请 |
 
 **Phase 1 完成标准**：
 - Google Search Console 显示 sitemap 已处理，URL ≥50
@@ -743,19 +743,19 @@ AI_Guide's operations. We only recommend tools we believe are genuinely useful.
 
 ---
 
-### Phase 2 — 内容深度 + 变现启动（第 5-10 周）
+### Phase 2 — 内容深度 + 变现启动（第 5-10 周）✅ 大部分完成
 
 **核心目标**：提升内容质量，覆盖高价值关键词，开启变现
 
-| 任务 | 优先级 | 预估工时 |
-|------|--------|---------|
-| AI 开发工具专区 6 个页面内容增强（≥1500 字/页） | P1 | 24h |
-| 生成分类聚合页（/category/） | P1 | 8h |
-| 嵌入 Affiliate 链接 + Disclosure 声明 | P1 | 4h |
-| 添加 AdSense 代码（审核通过后） | P1 | 3h |
-| 添加相关工具推荐模块（内链建设） | P1 | 6h |
-| 工具数据扩充至 100+ 条完整字段 | P1 | 16h |
-| FAQ Schema 验证（Google Rich Results Test） | P2 | 4h |
+| 任务 | 优先级 | 预估工时 | 状态 |
+|------|--------|---------|------|
+| AI 开发工具专区 6 个页面内容增强（≥1500 字/页） | P1 | 24h | ✅ cursor/claude-code/chatgpt/vllm 等已完成 |
+| 生成分类聚合页（/category/） | P1 | 8h | ✅ ai-tools/skill/agent 3个页面 |
+| 嵌入 Affiliate 链接 + Disclosure 声明 | P1 | 4h | ✅ affiliateUrl + rel=nofollow sponsored |
+| 添加 AdSense 代码（审核通过后） | P1 | 3h | ⏳ 待 AdSense 审核通过后植入 |
+| 添加相关工具推荐模块（内链建设） | P1 | 6h | ❌ 未完成 |
+| 工具数据扩充至 100+ 条完整字段 | P1 | 16h | ⚠️ 当前 81/300，未达 100 |
+| FAQ Schema 验证（Google Rich Results Test） | P2 | 4h | ❌ 未完成 |
 
 **Phase 2 完成标准**：
 - Google Search Console 已收录 URL ≥100
@@ -764,17 +764,17 @@ AI_Guide's operations. We only recommend tools we believe are genuinely useful.
 
 ---
 
-### Phase 3 — 规模化内容 + 精细化变现（第 11-24 周）
+### Phase 3 — 规模化内容 + 精细化变现（第 11-24 周）⏳ 进行中
 
-| 任务 | 优先级 |
-|------|--------|
-| 工具数据扩充至 200+ 条完整字段 | P1 |
-| 工具对比页 /compare/ 生成逻辑（50 个高流量词） | P1 |
-| Markdown 博客文章系统（20 篇使用教程） | P2 |
-| AdSense 广告位 A/B 测试 | P2 |
-| 接入 Hotjar / Clarity 用户行为分析 | P2 |
-| 申请高佣金 Affiliate 项目（Jasper、Surfer SEO 等） | P2 |
-| Newsletter 订阅系统 | P3 |
+| 任务 | 优先级 | 状态 |
+|------|--------|------|
+| 工具数据扩充至 200+ 条完整字段 | P1 | ⚠️ 当前 81/300 |
+| 工具对比页 /compare/ 生成逻辑（50 个高流量词） | P1 | ⚠️ 当前 3/50 |
+| Markdown 博客文章系统（20 篇使用教程） | P2 | ❌ 未开始 |
+| AdSense 广告位 A/B 测试 | P2 | ❌ 待审核通过 |
+| 接入 Hotjar / Clarity 用户行为分析 | P2 | ❌ 未开始 |
+| 申请高佣金 Affiliate 项目（Jasper、Surfer SEO 等） | P2 | ❌ 未开始 |
+| Newsletter 订阅系统 | P3 | ❌ 未开始 |
 
 **Phase 3 成功信号**：
 - 月自然搜索流量 ≥5,000 Sessions
