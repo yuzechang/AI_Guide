@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ seo_title }}</title>
-  <meta name="description" content="{{ seo_desc }}">
+  <title>Fooocus vs ComfyUI (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare Fooocus and ComfyUI side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{{ base_url }}/compare/{{ cmp.slug }}">
+  <link rel="canonical" href="https://yuzec.com/compare/fooocus-vs-comfyui">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc }}">
-  <meta property="og:url" content="{{ base_url }}/compare/{{ cmp.slug }}">
+  <meta property="og:title" content="Fooocus vs ComfyUI (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare Fooocus and ComfyUI side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/fooocus-vs-comfyui">
   <meta property="og:site_name" content="AI Nav">
-  <meta property="og:image" content="{{ base_url }}/assets/og-default.png">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ seo_title }}">
-  <meta name="twitter:description" content="{{ seo_desc }}">
-  <meta name="twitter:image" content="{{ base_url }}/assets/og-default.png">
+  <meta name="twitter:title" content="Fooocus vs ComfyUI (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare Fooocus and ComfyUI side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
   <!-- Schema.org: FAQPage -->
@@ -31,13 +31,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {% for faq in cmp.faqs %}
-      {
-        "@type": "Question",
-        "name": {{ faq.q | tojson }},
-        "acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
-      }{% if not loop.last %},{% endif %}
-      {% endfor %}
+      
     ]
   }
   </script>
@@ -48,9 +42,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base_url }}/" },
-      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "{{ base_url }}/compare/" },
-      { "@type": "ListItem", "position": 3, "name": {{ cmp.title | tojson }}, "item": "{{ base_url }}/compare/{{ cmp.slug }}.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "Fooocus vs ComfyUI", "item": "https://yuzec.com/compare/fooocus-vs-comfyui.html" }
     ]
   }
   </script>
@@ -109,25 +103,25 @@
   <span class="breadcrumb-sep">›</span>
   <a href="../index.html">Compare</a>
   <span class="breadcrumb-sep">›</span>
-  <span class="breadcrumb-cur">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+  <span class="breadcrumb-cur">Fooocus vs ComfyUI</span>
 </div>
 
 <!-- Hero -->
 <div class="compare-hero">
   <div class="page-hero-inner">
     <div class="vs-badge">
-      <span>{{ tool_a.name }}</span>
+      <span>Fooocus</span>
       <span class="vs-sep">VS</span>
-      <span>{{ tool_b.name }}</span>
+      <span>ComfyUI</span>
     </div>
     <h1 class="article-title" style="margin-top:0">
-      <span class="gradient">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+      <span class="gradient">Fooocus vs ComfyUI</span>
     </h1>
-    <p class="article-desc">{{ cmp.intro }}</p>
+    <p class="article-desc">Fooocus and ComfyUI are both popular interfaces for Stable Diffusion image generation, but they represent opposite ends of the complexity spectrum. Fooocus is designed for simplicity — minimal settings, automatic optimization, just type a prompt and get great results. ComfyUI is a node-based workflow editor for power users who want granular control over every step of the generation pipeline.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="{{ today }}">{{ today[:7] }}</time></span>
-      <span>⭐ {{ tool_a.name }}: {{ tool_a.starsLabel }} stars</span>
-      <span>⭐ {{ tool_b.name }}: {{ tool_b.starsLabel }} stars</span>
+      <span>🗓 Updated: <time datetime="2026-05-12">2026-05</time></span>
+      <span>⭐ Fooocus: 48k+ stars</span>
+      <span>⭐ ComfyUI: 112k+ stars</span>
     </div>
   </div>
 </div>
@@ -140,7 +134,7 @@
       <!-- TL;DR Verdict -->
       <div class="verdict-box">
         <h3>⚡ TL;DR — 30-Second Verdict</h3>
-        <p>{{ cmp.verdict }}</p>
+        <p>Choose Fooocus if you want to generate high-quality images without learning complex settings — it abstracts away SDXL tuning and delivers excellent results with minimal effort. Choose ComfyUI if you need complex multi-step workflows, ControlNet, IP-Adapter, or custom pipelines. Fooocus is the best entry point; ComfyUI is where advanced users live.</p>
       </div>
 
       <!-- Quick Comparison Table -->
@@ -149,93 +143,127 @@
         <thead>
           <tr>
             <th>Feature</th>
-            <th>{{ tool_a.name }}</th>
-            <th>{{ tool_b.name }}</th>
+            <th>Fooocus</th>
+            <th>ComfyUI</th>
           </tr>
         </thead>
         <tbody>
-          {% for row in cmp.table %}
+          
           <tr>
-            <td><strong>{{ row.feature }}</strong></td>
-            <td class="{{ 'winner' if row.winner == 'a' else '' }}">{{ row.a }}</td>
-            <td class="{{ 'winner' if row.winner == 'b' else '' }}">{{ row.b }}</td>
+            <td><strong>Interface</strong></td>
+            <td class="winner">Simple form-based UI</td>
+            <td class="">Node-based workflow editor</td>
           </tr>
-          {% endfor %}
+          
+          <tr>
+            <td><strong>Learning curve</strong></td>
+            <td class="winner">Minimal — works out of the box</td>
+            <td class="">Steep — requires learning nodes</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Workflow power</strong></td>
+            <td class="">Limited to built-in pipeline</td>
+            <td class="winner">Unlimited custom workflows</td>
+          </tr>
+          
+          <tr>
+            <td><strong>VRAM efficiency</strong></td>
+            <td class="winner">Optimized automatically</td>
+            <td class="">Manual optimization needed</td>
+          </tr>
+          
+          <tr>
+            <td><strong>ControlNet</strong></td>
+            <td class="">Basic support</td>
+            <td class="winner">Full ControlNet ecosystem</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Model support</strong></td>
+            <td class="">SDXL + FLUX focused</td>
+            <td class="winner">Any model with GGUF/safetensors</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Community workflows</strong></td>
+            <td class="">N/A</td>
+            <td class="winner">Thousands of shared workflows</td>
+          </tr>
+          
         </tbody>
       </table>
 
       <!-- What is A -->
-      <h2 id="what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</h2>
-      <p>{{ cmp.desc_a }}</p>
-      {% if tool_a.expert_take %}
+      <h2 id="what-is-fooocus">What Is Fooocus?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_a.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_a.name }}</cite>
+        <p>Fooocus is what Midjourney feels like as a local app. The out-of-the-box quality is higher than A1111 WebUI for most users because it handles all the difficult prompt engineering internally. Recommended for creatives who want great results without tweaking CFG scales and schedulers. For full technical control, use ComfyUI or A1111.</p>
+        <cite>— AI Nav Editorial Team on Fooocus</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_a.id }}.html">→ Read the full {{ tool_a.name }} review</a></p>
+      
+      <p><a href="../tools/fooocus.html">→ Read the full Fooocus review</a></p>
 
       <!-- What is B -->
-      <h2 id="what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</h2>
-      <p>{{ cmp.desc_b }}</p>
-      {% if tool_b.expert_take %}
+      <h2 id="what-is-comfyui">What Is ComfyUI?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_b.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_b.name }}</cite>
+        <p>ComfyUI is the power user's choice for Stable Diffusion. The node graph interface is steeper to learn than A1111's forms, but enables workflow automation and visual debugging that form-based UIs can't match. If you're building production image pipelines or doing complex multi-model chaining (ControlNet + IPAdapter + LoRA stacking), ComfyUI is the right tool. Start with A1111 and switch when you hit its limits.</p>
+        <cite>— AI Nav Editorial Team on ComfyUI</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_b.id }}.html">→ Read the full {{ tool_b.name }} review</a></p>
+      
+      <p><a href="../tools/comfyui.html">→ Read the full ComfyUI review</a></p>
 
       <!-- When to Choose -->
       <h2 id="choose">When to Choose Each</h2>
       <div class="choose-grid">
         <div class="choose-card">
-          <h4>Choose {{ tool_a.name }} if…</h4>
+          <h4>Choose Fooocus if…</h4>
           <ul>
-            {% for item in cmp.choose_a %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
         <div class="choose-card">
-          <h4>Choose {{ tool_b.name }} if…</h4>
+          <h4>Choose ComfyUI if…</h4>
           <ul>
-            {% for item in cmp.choose_b %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
       </div>
 
       <!-- Deep Dive -->
-      {% for section in cmp.sections %}
-      <h2 id="{{ section.id }}">{{ section.title }}</h2>
-      <p>{{ section.content }}</p>
-      {% endfor %}
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        {% for faq in cmp.faqs %}
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">{{ faq.q }} <span class="faq-arr">▼</span></div>
-          <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
-        </div>
-        {% endfor %}
+        
       </div>
 
       <!-- Related Comparisons -->
-      {% if related_compares %}
+      
       <h2 id="related">Related Comparisons</h2>
       <div class="related-grid">
-        {% for rc in related_compares %}
-        <a href="{{ rc.slug }}.html" class="related-card">
-          <div class="related-card-name">{{ rc.title }}</div>
-          <div class="related-card-desc">{{ rc.desc }}</div>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e269f0></div>
+          <div class="related-card-desc"></div>
         </a>
-        {% endfor %}
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e32f30></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e32f80></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
       </div>
-      {% endif %}
+      
 
     </article>
 
@@ -244,14 +272,14 @@
       <div class="sidebar-card">
         <h4>Quick Facts</h4>
         <div style="font-size:13px;color:var(--text-2)">
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_a.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_a.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_a.license or "Open Source" }}</div>
-          <div style="margin-bottom:14px"><a href="{{ tool_a.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_b.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_b.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_b.license or "Open Source" }}</div>
-          <div><a href="{{ tool_b.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Fooocus</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 48k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> GPL-3.0</div>
+          <div style="margin-bottom:14px"><a href="https://github.com/lllyasviel/Fooocus" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">ComfyUI</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 112k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> GPL-3.0</div>
+          <div><a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
         </div>
       </div>
 
@@ -259,12 +287,10 @@
         <h4>Table of Contents</h4>
         <ul class="toc-list">
           <li><a href="#comparison">Quick Comparison</a></li>
-          <li><a href="#what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</a></li>
-          <li><a href="#what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</a></li>
+          <li><a href="#what-is-fooocus">What Is Fooocus?</a></li>
+          <li><a href="#what-is-comfyui">What Is ComfyUI?</a></li>
           <li><a href="#choose">When to Choose</a></li>
-          {% for section in cmp.sections %}
-          <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
-          {% endfor %}
+          
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
@@ -272,8 +298,8 @@
       <div class="sidebar-card">
         <h4>View Full Reviews</h4>
         <ul class="toc-list">
-          <li><a href="../tools/{{ tool_a.id }}.html">{{ tool_a.name }} Review →</a></li>
-          <li><a href="../tools/{{ tool_b.id }}.html">{{ tool_b.name }} Review →</a></li>
+          <li><a href="../tools/fooocus.html">Fooocus Review →</a></li>
+          <li><a href="../tools/comfyui.html">ComfyUI Review →</a></li>
         </ul>
       </div>
     </aside>

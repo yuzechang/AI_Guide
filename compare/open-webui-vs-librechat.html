@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ seo_title }}</title>
-  <meta name="description" content="{{ seo_desc }}">
+  <title>Open WebUI vs LibreChat (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare Open WebUI and LibreChat side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{{ base_url }}/compare/{{ cmp.slug }}">
+  <link rel="canonical" href="https://yuzec.com/compare/open-webui-vs-librechat">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc }}">
-  <meta property="og:url" content="{{ base_url }}/compare/{{ cmp.slug }}">
+  <meta property="og:title" content="Open WebUI vs LibreChat (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare Open WebUI and LibreChat side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/open-webui-vs-librechat">
   <meta property="og:site_name" content="AI Nav">
-  <meta property="og:image" content="{{ base_url }}/assets/og-default.png">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ seo_title }}">
-  <meta name="twitter:description" content="{{ seo_desc }}">
-  <meta name="twitter:image" content="{{ base_url }}/assets/og-default.png">
+  <meta name="twitter:title" content="Open WebUI vs LibreChat (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare Open WebUI and LibreChat side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
   <!-- Schema.org: FAQPage -->
@@ -31,13 +31,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {% for faq in cmp.faqs %}
-      {
-        "@type": "Question",
-        "name": {{ faq.q | tojson }},
-        "acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
-      }{% if not loop.last %},{% endif %}
-      {% endfor %}
+      
     ]
   }
   </script>
@@ -48,9 +42,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base_url }}/" },
-      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "{{ base_url }}/compare/" },
-      { "@type": "ListItem", "position": 3, "name": {{ cmp.title | tojson }}, "item": "{{ base_url }}/compare/{{ cmp.slug }}.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "Open WebUI vs LibreChat", "item": "https://yuzec.com/compare/open-webui-vs-librechat.html" }
     ]
   }
   </script>
@@ -109,25 +103,25 @@
   <span class="breadcrumb-sep">›</span>
   <a href="../index.html">Compare</a>
   <span class="breadcrumb-sep">›</span>
-  <span class="breadcrumb-cur">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+  <span class="breadcrumb-cur">Open WebUI vs LibreChat</span>
 </div>
 
 <!-- Hero -->
 <div class="compare-hero">
   <div class="page-hero-inner">
     <div class="vs-badge">
-      <span>{{ tool_a.name }}</span>
+      <span>Open WebUI</span>
       <span class="vs-sep">VS</span>
-      <span>{{ tool_b.name }}</span>
+      <span>LibreChat</span>
     </div>
     <h1 class="article-title" style="margin-top:0">
-      <span class="gradient">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+      <span class="gradient">Open WebUI vs LibreChat</span>
     </h1>
-    <p class="article-desc">{{ cmp.intro }}</p>
+    <p class="article-desc">Open WebUI and LibreChat are both self-hosted ChatGPT-like frontends that support multiple LLM backends. Open WebUI is originally built for Ollama and has become a full-featured AI chat interface. LibreChat started as a ChatGPT clone and expanded to support many providers. Both are excellent self-hosted options; the choice comes down to backend focus and features.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="{{ today }}">{{ today[:7] }}</time></span>
-      <span>⭐ {{ tool_a.name }}: {{ tool_a.starsLabel }} stars</span>
-      <span>⭐ {{ tool_b.name }}: {{ tool_b.starsLabel }} stars</span>
+      <span>🗓 Updated: <time datetime="2026-05-12">2026-05</time></span>
+      <span>⭐ Open WebUI: 136k+ stars</span>
+      <span>⭐ LibreChat: 37k+ stars</span>
     </div>
   </div>
 </div>
@@ -140,7 +134,7 @@
       <!-- TL;DR Verdict -->
       <div class="verdict-box">
         <h3>⚡ TL;DR — 30-Second Verdict</h3>
-        <p>{{ cmp.verdict }}</p>
+        <p>Choose Open WebUI if you primarily use Ollama for local models or want the best Ollama integration with rich multimodal features and an active community. Choose LibreChat if you need support for many cloud providers simultaneously (OpenAI, Anthropic, Google, Azure), advanced conversation management, and plugin support. Open WebUI is better for local AI; LibreChat is better for multi-provider cloud AI.</p>
       </div>
 
       <!-- Quick Comparison Table -->
@@ -149,93 +143,127 @@
         <thead>
           <tr>
             <th>Feature</th>
-            <th>{{ tool_a.name }}</th>
-            <th>{{ tool_b.name }}</th>
+            <th>Open WebUI</th>
+            <th>LibreChat</th>
           </tr>
         </thead>
         <tbody>
-          {% for row in cmp.table %}
+          
           <tr>
-            <td><strong>{{ row.feature }}</strong></td>
-            <td class="{{ 'winner' if row.winner == 'a' else '' }}">{{ row.a }}</td>
-            <td class="{{ 'winner' if row.winner == 'b' else '' }}">{{ row.b }}</td>
+            <td><strong>Ollama integration</strong></td>
+            <td class="winner">Native, first-class</td>
+            <td class="">Supported but secondary</td>
           </tr>
-          {% endfor %}
+          
+          <tr>
+            <td><strong>Cloud LLM support</strong></td>
+            <td class="">OpenAI, Anthropic, etc.</td>
+            <td class="winner">OpenAI, Anthropic, Google, Azure, etc.</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Image generation</strong></td>
+            <td class="winner">AUTOMATIC1111, ComfyUI support</td>
+            <td class="">DALL-E integration</td>
+          </tr>
+          
+          <tr>
+            <td><strong>RAG / Documents</strong></td>
+            <td class="winner">Built-in document RAG</td>
+            <td class="">File uploads + conversation context</td>
+          </tr>
+          
+          <tr>
+            <td><strong>User management</strong></td>
+            <td class="">Multi-user with roles</td>
+            <td class="">Multi-user with roles</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Plugin system</strong></td>
+            <td class="">Tool/function calling</td>
+            <td class="winner">ChatGPT-like plugins</td>
+          </tr>
+          
+          <tr>
+            <td><strong>GitHub stars</strong></td>
+            <td class="winner">40k+</td>
+            <td class="">18k+</td>
+          </tr>
+          
         </tbody>
       </table>
 
       <!-- What is A -->
-      <h2 id="what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</h2>
-      <p>{{ cmp.desc_a }}</p>
-      {% if tool_a.expert_take %}
+      <h2 id="what-is-open-webui">What Is Open WebUI?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_a.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_a.name }}</cite>
+        <p>Open WebUI has become the definitive self-hosted ChatGPT alternative. If you're running Ollama or any OpenAI-compatible endpoint, there's no reason not to use it. The RAG integration with local documents and the multi-user management features make it genuinely useful for small teams, not just personal use.</p>
+        <cite>— AI Nav Editorial Team on Open WebUI</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_a.id }}.html">→ Read the full {{ tool_a.name }} review</a></p>
+      
+      <p><a href="../tools/open-webui.html">→ Read the full Open WebUI review</a></p>
 
       <!-- What is B -->
-      <h2 id="what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</h2>
-      <p>{{ cmp.desc_b }}</p>
-      {% if tool_b.expert_take %}
+      <h2 id="what-is-librechat">What Is LibreChat?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_b.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_b.name }}</cite>
+        <p>LibreChat has found solid traction with 18k+ GitHub stars, indicating real-world adoption beyond early adopters. A well-regarded open-source tool with a strong community and active development. The feature set covers the main use cases, though some advanced workflows require configuration beyond the defaults.</p>
+        <cite>— AI Nav Editorial Team on LibreChat</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_b.id }}.html">→ Read the full {{ tool_b.name }} review</a></p>
+      
+      <p><a href="../tools/librechat.html">→ Read the full LibreChat review</a></p>
 
       <!-- When to Choose -->
       <h2 id="choose">When to Choose Each</h2>
       <div class="choose-grid">
         <div class="choose-card">
-          <h4>Choose {{ tool_a.name }} if…</h4>
+          <h4>Choose Open WebUI if…</h4>
           <ul>
-            {% for item in cmp.choose_a %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
         <div class="choose-card">
-          <h4>Choose {{ tool_b.name }} if…</h4>
+          <h4>Choose LibreChat if…</h4>
           <ul>
-            {% for item in cmp.choose_b %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
       </div>
 
       <!-- Deep Dive -->
-      {% for section in cmp.sections %}
-      <h2 id="{{ section.id }}">{{ section.title }}</h2>
-      <p>{{ section.content }}</p>
-      {% endfor %}
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        {% for faq in cmp.faqs %}
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">{{ faq.q }} <span class="faq-arr">▼</span></div>
-          <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
-        </div>
-        {% endfor %}
+        
       </div>
 
       <!-- Related Comparisons -->
-      {% if related_compares %}
+      
       <h2 id="related">Related Comparisons</h2>
       <div class="related-grid">
-        {% for rc in related_compares %}
-        <a href="{{ rc.slug }}.html" class="related-card">
-          <div class="related-card-name">{{ rc.title }}</div>
-          <div class="related-card-desc">{{ rc.desc }}</div>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e3cab0></div>
+          <div class="related-card-desc"></div>
         </a>
-        {% endfor %}
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e3caf0></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e3d210></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
       </div>
-      {% endif %}
+      
 
     </article>
 
@@ -244,14 +272,14 @@
       <div class="sidebar-card">
         <h4>Quick Facts</h4>
         <div style="font-size:13px;color:var(--text-2)">
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_a.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_a.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_a.license or "Open Source" }}</div>
-          <div style="margin-bottom:14px"><a href="{{ tool_a.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_b.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_b.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_b.license or "Open Source" }}</div>
-          <div><a href="{{ tool_b.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Open WebUI</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 136k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> MIT</div>
+          <div style="margin-bottom:14px"><a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">LibreChat</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 37k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div><a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
         </div>
       </div>
 
@@ -259,12 +287,10 @@
         <h4>Table of Contents</h4>
         <ul class="toc-list">
           <li><a href="#comparison">Quick Comparison</a></li>
-          <li><a href="#what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</a></li>
-          <li><a href="#what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</a></li>
+          <li><a href="#what-is-open-webui">What Is Open WebUI?</a></li>
+          <li><a href="#what-is-librechat">What Is LibreChat?</a></li>
           <li><a href="#choose">When to Choose</a></li>
-          {% for section in cmp.sections %}
-          <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
-          {% endfor %}
+          
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
@@ -272,8 +298,8 @@
       <div class="sidebar-card">
         <h4>View Full Reviews</h4>
         <ul class="toc-list">
-          <li><a href="../tools/{{ tool_a.id }}.html">{{ tool_a.name }} Review →</a></li>
-          <li><a href="../tools/{{ tool_b.id }}.html">{{ tool_b.name }} Review →</a></li>
+          <li><a href="../tools/open-webui.html">Open WebUI Review →</a></li>
+          <li><a href="../tools/librechat.html">LibreChat Review →</a></li>
         </ul>
       </div>
     </aside>

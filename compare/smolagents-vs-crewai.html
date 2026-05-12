@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ seo_title }}</title>
-  <meta name="description" content="{{ seo_desc }}">
+  <title>SmolAgents vs CrewAI (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare SmolAgents and CrewAI side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{{ base_url }}/compare/{{ cmp.slug }}">
+  <link rel="canonical" href="https://yuzec.com/compare/smolagents-vs-crewai">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc }}">
-  <meta property="og:url" content="{{ base_url }}/compare/{{ cmp.slug }}">
+  <meta property="og:title" content="SmolAgents vs CrewAI (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare SmolAgents and CrewAI side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/smolagents-vs-crewai">
   <meta property="og:site_name" content="AI Nav">
-  <meta property="og:image" content="{{ base_url }}/assets/og-default.png">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ seo_title }}">
-  <meta name="twitter:description" content="{{ seo_desc }}">
-  <meta name="twitter:image" content="{{ base_url }}/assets/og-default.png">
+  <meta name="twitter:title" content="SmolAgents vs CrewAI (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare SmolAgents and CrewAI side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
   <!-- Schema.org: FAQPage -->
@@ -31,13 +31,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {% for faq in cmp.faqs %}
-      {
-        "@type": "Question",
-        "name": {{ faq.q | tojson }},
-        "acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
-      }{% if not loop.last %},{% endif %}
-      {% endfor %}
+      
     ]
   }
   </script>
@@ -48,9 +42,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base_url }}/" },
-      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "{{ base_url }}/compare/" },
-      { "@type": "ListItem", "position": 3, "name": {{ cmp.title | tojson }}, "item": "{{ base_url }}/compare/{{ cmp.slug }}.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "smolagents vs CrewAI", "item": "https://yuzec.com/compare/smolagents-vs-crewai.html" }
     ]
   }
   </script>
@@ -109,25 +103,25 @@
   <span class="breadcrumb-sep">›</span>
   <a href="../index.html">Compare</a>
   <span class="breadcrumb-sep">›</span>
-  <span class="breadcrumb-cur">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+  <span class="breadcrumb-cur">SmolAgents vs CrewAI</span>
 </div>
 
 <!-- Hero -->
 <div class="compare-hero">
   <div class="page-hero-inner">
     <div class="vs-badge">
-      <span>{{ tool_a.name }}</span>
+      <span>SmolAgents</span>
       <span class="vs-sep">VS</span>
-      <span>{{ tool_b.name }}</span>
+      <span>CrewAI</span>
     </div>
     <h1 class="article-title" style="margin-top:0">
-      <span class="gradient">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+      <span class="gradient">SmolAgents vs CrewAI</span>
     </h1>
-    <p class="article-desc">{{ cmp.intro }}</p>
+    <p class="article-desc">smolagents (HuggingFace) and CrewAI are both agent frameworks but with different focuses. smolagents prioritizes simplicity and code-first agents — the agent writes Python code to solve tasks rather than using structured tools. CrewAI focuses on role-based multi-agent teams with explicit task delegation. smolagents is newer and more experimental; CrewAI is more mature for production use.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="{{ today }}">{{ today[:7] }}</time></span>
-      <span>⭐ {{ tool_a.name }}: {{ tool_a.starsLabel }} stars</span>
-      <span>⭐ {{ tool_b.name }}: {{ tool_b.starsLabel }} stars</span>
+      <span>🗓 Updated: <time datetime="2026-05-12">2026-05</time></span>
+      <span>⭐ SmolAgents: 27k+ stars</span>
+      <span>⭐ CrewAI: 51k+ stars</span>
     </div>
   </div>
 </div>
@@ -140,7 +134,7 @@
       <!-- TL;DR Verdict -->
       <div class="verdict-box">
         <h3>⚡ TL;DR — 30-Second Verdict</h3>
-        <p>{{ cmp.verdict }}</p>
+        <p>Choose smolagents if you're building agents that need to write and execute code dynamically, want HuggingFace Hub model integration, and prefer a minimal framework. Choose CrewAI for building multi-agent teams with defined roles and tasks in a more structured way. For code-centric AI tasks, smolagents is innovative; for orchestrated multi-agent workflows, CrewAI is more proven.</p>
       </div>
 
       <!-- Quick Comparison Table -->
@@ -149,93 +143,127 @@
         <thead>
           <tr>
             <th>Feature</th>
-            <th>{{ tool_a.name }}</th>
-            <th>{{ tool_b.name }}</th>
+            <th>SmolAgents</th>
+            <th>CrewAI</th>
           </tr>
         </thead>
         <tbody>
-          {% for row in cmp.table %}
+          
           <tr>
-            <td><strong>{{ row.feature }}</strong></td>
-            <td class="{{ 'winner' if row.winner == 'a' else '' }}">{{ row.a }}</td>
-            <td class="{{ 'winner' if row.winner == 'b' else '' }}">{{ row.b }}</td>
+            <td><strong>Agent approach</strong></td>
+            <td class="">Code-writing agents (Python execution)</td>
+            <td class="">Role-based task delegation</td>
           </tr>
-          {% endfor %}
+          
+          <tr>
+            <td><strong>HF Hub integration</strong></td>
+            <td class="winner">Native model support</td>
+            <td class="">Via API clients</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Multi-agent</strong></td>
+            <td class="">Manager + worker agents</td>
+            <td class="winner">Crew with roles and tasks</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Tool use</strong></td>
+            <td class="">Python functions as tools</td>
+            <td class="">Structured tool definitions</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Maturity</strong></td>
+            <td class="">Newer, experimental</td>
+            <td class="winner">Mature, stable API</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Code size</strong></td>
+            <td class="winner">Very minimal (~1k lines)</td>
+            <td class="">Full-featured framework</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Documentation</strong></td>
+            <td class="">Good HF docs</td>
+            <td class="winner">Extensive docs + cookbook</td>
+          </tr>
+          
         </tbody>
       </table>
 
       <!-- What is A -->
-      <h2 id="what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</h2>
-      <p>{{ cmp.desc_a }}</p>
-      {% if tool_a.expert_take %}
+      <h2 id="what-is-smolagents">What Is SmolAgents?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_a.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_a.name }}</cite>
+        <p>SmolAgents's 14k+ community validates its utility—this isn't a weekend project, it's maintained software. Best used for tasks where the steps are known but tedious to execute manually. The reliability for complex reasoning chains has improved but still requires human review of outputs for anything high-stakes.</p>
+        <cite>— AI Nav Editorial Team on SmolAgents</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_a.id }}.html">→ Read the full {{ tool_a.name }} review</a></p>
+      
+      <p><a href="../tools/smolagents.html">→ Read the full SmolAgents review</a></p>
 
       <!-- What is B -->
-      <h2 id="what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</h2>
-      <p>{{ cmp.desc_b }}</p>
-      {% if tool_b.expert_take %}
+      <h2 id="what-is-crewai">What Is CrewAI?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_b.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_b.name }}</cite>
+        <p>CrewAI's 24k+ community validates its utility—this isn't a weekend project, it's maintained software. Best used for tasks where the steps are known but tedious to execute manually. The reliability for complex reasoning chains has improved but still requires human review of outputs for anything high-stakes.</p>
+        <cite>— AI Nav Editorial Team on CrewAI</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_b.id }}.html">→ Read the full {{ tool_b.name }} review</a></p>
+      
+      <p><a href="../tools/crewai.html">→ Read the full CrewAI review</a></p>
 
       <!-- When to Choose -->
       <h2 id="choose">When to Choose Each</h2>
       <div class="choose-grid">
         <div class="choose-card">
-          <h4>Choose {{ tool_a.name }} if…</h4>
+          <h4>Choose SmolAgents if…</h4>
           <ul>
-            {% for item in cmp.choose_a %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
         <div class="choose-card">
-          <h4>Choose {{ tool_b.name }} if…</h4>
+          <h4>Choose CrewAI if…</h4>
           <ul>
-            {% for item in cmp.choose_b %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
       </div>
 
       <!-- Deep Dive -->
-      {% for section in cmp.sections %}
-      <h2 id="{{ section.id }}">{{ section.title }}</h2>
-      <p>{{ section.content }}</p>
-      {% endfor %}
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        {% for faq in cmp.faqs %}
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">{{ faq.q }} <span class="faq-arr">▼</span></div>
-          <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
-        </div>
-        {% endfor %}
+        
       </div>
 
       <!-- Related Comparisons -->
-      {% if related_compares %}
+      
       <h2 id="related">Related Comparisons</h2>
       <div class="related-grid">
-        {% for rc in related_compares %}
-        <a href="{{ rc.slug }}.html" class="related-card">
-          <div class="related-card-name">{{ rc.title }}</div>
-          <div class="related-card-desc">{{ rc.desc }}</div>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e3a350></div>
+          <div class="related-card-desc"></div>
         </a>
-        {% endfor %}
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e3a3a0></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e3a3f0></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
       </div>
-      {% endif %}
+      
 
     </article>
 
@@ -244,14 +272,14 @@
       <div class="sidebar-card">
         <h4>Quick Facts</h4>
         <div style="font-size:13px;color:var(--text-2)">
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_a.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_a.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_a.license or "Open Source" }}</div>
-          <div style="margin-bottom:14px"><a href="{{ tool_a.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_b.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_b.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_b.license or "Open Source" }}</div>
-          <div><a href="{{ tool_b.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">SmolAgents</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 27k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div style="margin-bottom:14px"><a href="https://github.com/huggingface/smolagents" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">CrewAI</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 51k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> MIT</div>
+          <div><a href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
         </div>
       </div>
 
@@ -259,12 +287,10 @@
         <h4>Table of Contents</h4>
         <ul class="toc-list">
           <li><a href="#comparison">Quick Comparison</a></li>
-          <li><a href="#what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</a></li>
-          <li><a href="#what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</a></li>
+          <li><a href="#what-is-smolagents">What Is SmolAgents?</a></li>
+          <li><a href="#what-is-crewai">What Is CrewAI?</a></li>
           <li><a href="#choose">When to Choose</a></li>
-          {% for section in cmp.sections %}
-          <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
-          {% endfor %}
+          
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
@@ -272,8 +298,8 @@
       <div class="sidebar-card">
         <h4>View Full Reviews</h4>
         <ul class="toc-list">
-          <li><a href="../tools/{{ tool_a.id }}.html">{{ tool_a.name }} Review →</a></li>
-          <li><a href="../tools/{{ tool_b.id }}.html">{{ tool_b.name }} Review →</a></li>
+          <li><a href="../tools/smolagents.html">SmolAgents Review →</a></li>
+          <li><a href="../tools/crewai.html">CrewAI Review →</a></li>
         </ul>
       </div>
     </aside>

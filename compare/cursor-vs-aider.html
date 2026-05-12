@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ seo_title }}</title>
-  <meta name="description" content="{{ seo_desc }}">
+  <title>Cursor vs Aider (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare Cursor and Aider side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{{ base_url }}/compare/{{ cmp.slug }}">
+  <link rel="canonical" href="https://yuzec.com/compare/cursor-vs-aider">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc }}">
-  <meta property="og:url" content="{{ base_url }}/compare/{{ cmp.slug }}">
+  <meta property="og:title" content="Cursor vs Aider (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare Cursor and Aider side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/cursor-vs-aider">
   <meta property="og:site_name" content="AI Nav">
-  <meta property="og:image" content="{{ base_url }}/assets/og-default.png">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ seo_title }}">
-  <meta name="twitter:description" content="{{ seo_desc }}">
-  <meta name="twitter:image" content="{{ base_url }}/assets/og-default.png">
+  <meta name="twitter:title" content="Cursor vs Aider (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare Cursor and Aider side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
   <!-- Schema.org: FAQPage -->
@@ -31,13 +31,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {% for faq in cmp.faqs %}
-      {
-        "@type": "Question",
-        "name": {{ faq.q | tojson }},
-        "acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
-      }{% if not loop.last %},{% endif %}
-      {% endfor %}
+      
     ]
   }
   </script>
@@ -48,9 +42,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base_url }}/" },
-      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "{{ base_url }}/compare/" },
-      { "@type": "ListItem", "position": 3, "name": {{ cmp.title | tojson }}, "item": "{{ base_url }}/compare/{{ cmp.slug }}.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "Cursor vs Aider", "item": "https://yuzec.com/compare/cursor-vs-aider.html" }
     ]
   }
   </script>
@@ -109,25 +103,25 @@
   <span class="breadcrumb-sep">›</span>
   <a href="../index.html">Compare</a>
   <span class="breadcrumb-sep">›</span>
-  <span class="breadcrumb-cur">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+  <span class="breadcrumb-cur">Cursor vs Aider</span>
 </div>
 
 <!-- Hero -->
 <div class="compare-hero">
   <div class="page-hero-inner">
     <div class="vs-badge">
-      <span>{{ tool_a.name }}</span>
+      <span>Cursor</span>
       <span class="vs-sep">VS</span>
-      <span>{{ tool_b.name }}</span>
+      <span>Aider</span>
     </div>
     <h1 class="article-title" style="margin-top:0">
-      <span class="gradient">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+      <span class="gradient">Cursor vs Aider</span>
     </h1>
-    <p class="article-desc">{{ cmp.intro }}</p>
+    <p class="article-desc">Cursor and Aider are both AI-powered coding tools but live in different environments. Cursor is a full IDE (fork of VS Code) with AI deeply integrated into the editor experience. Aider is a command-line tool that brings AI pair programming to any editor and any terminal workflow. Cursor offers a richer GUI; Aider offers maximum flexibility and works with your existing setup.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="{{ today }}">{{ today[:7] }}</time></span>
-      <span>⭐ {{ tool_a.name }}: {{ tool_a.starsLabel }} stars</span>
-      <span>⭐ {{ tool_b.name }}: {{ tool_b.starsLabel }} stars</span>
+      <span>🗓 Updated: <time datetime="2026-05-12">2026-05</time></span>
+      <span>⭐ Cursor: N/A stars</span>
+      <span>⭐ Aider: 45k+ stars</span>
     </div>
   </div>
 </div>
@@ -140,7 +134,7 @@
       <!-- TL;DR Verdict -->
       <div class="verdict-box">
         <h3>⚡ TL;DR — 30-Second Verdict</h3>
-        <p>{{ cmp.verdict }}</p>
+        <p>Choose Cursor if you want an all-in-one AI IDE experience with a polished GUI, inline completions, and multi-file AI editing without leaving your editor. Choose Aider if you prefer the terminal, use Vim/Emacs/any editor, or want to script AI coding into CI/CD pipelines. Cursor is the best GUI experience; Aider is the best terminal experience.</p>
       </div>
 
       <!-- Quick Comparison Table -->
@@ -149,93 +143,122 @@
         <thead>
           <tr>
             <th>Feature</th>
-            <th>{{ tool_a.name }}</th>
-            <th>{{ tool_b.name }}</th>
+            <th>Cursor</th>
+            <th>Aider</th>
           </tr>
         </thead>
         <tbody>
-          {% for row in cmp.table %}
+          
           <tr>
-            <td><strong>{{ row.feature }}</strong></td>
-            <td class="{{ 'winner' if row.winner == 'a' else '' }}">{{ row.a }}</td>
-            <td class="{{ 'winner' if row.winner == 'b' else '' }}">{{ row.b }}</td>
+            <td><strong>Interface</strong></td>
+            <td class="winner">Full GUI IDE (VS Code fork)</td>
+            <td class="">Terminal CLI</td>
           </tr>
-          {% endfor %}
+          
+          <tr>
+            <td><strong>Editor flexibility</strong></td>
+            <td class="">Replaces your editor</td>
+            <td class="winner">Works with any editor</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Inline completions</strong></td>
+            <td class="winner">Native Tab completions</td>
+            <td class="">No inline completions</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Multi-file edits</strong></td>
+            <td class="">Composer mode</td>
+            <td class="">Architect mode</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Git integration</strong></td>
+            <td class="">Via VS Code git UI</td>
+            <td class="winner">Auto-commits every change</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Scripting/automation</strong></td>
+            <td class="">Limited</td>
+            <td class="winner">Scriptable via CLI flags</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Pricing</strong></td>
+            <td class="">Free (limited) / $20/mo Pro</td>
+            <td class="winner">Free open-source</td>
+          </tr>
+          
         </tbody>
       </table>
 
       <!-- What is A -->
-      <h2 id="what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</h2>
-      <p>{{ cmp.desc_a }}</p>
-      {% if tool_a.expert_take %}
-      <blockquote class="expert-take">
-        <p>{{ tool_a.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_a.name }}</cite>
-      </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_a.id }}.html">→ Read the full {{ tool_a.name }} review</a></p>
+      <h2 id="what-is-cursor">What Is Cursor?</h2>
+      <p></p>
+      
+      <p><a href="../tools/cursor.html">→ Read the full Cursor review</a></p>
 
       <!-- What is B -->
-      <h2 id="what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</h2>
-      <p>{{ cmp.desc_b }}</p>
-      {% if tool_b.expert_take %}
+      <h2 id="what-is-aider">What Is Aider?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_b.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_b.name }}</cite>
+        <p>A well-regarded project with 21k+ stars, Aider has proven itself in production deployments. Best suited for developers who want AI assistance integrated directly into their workflow rather than switching to a chat interface. The context window size limits its usefulness for very large codebase refactoring tasks.</p>
+        <cite>— AI Nav Editorial Team on Aider</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_b.id }}.html">→ Read the full {{ tool_b.name }} review</a></p>
+      
+      <p><a href="../tools/aider.html">→ Read the full Aider review</a></p>
 
       <!-- When to Choose -->
       <h2 id="choose">When to Choose Each</h2>
       <div class="choose-grid">
         <div class="choose-card">
-          <h4>Choose {{ tool_a.name }} if…</h4>
+          <h4>Choose Cursor if…</h4>
           <ul>
-            {% for item in cmp.choose_a %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
         <div class="choose-card">
-          <h4>Choose {{ tool_b.name }} if…</h4>
+          <h4>Choose Aider if…</h4>
           <ul>
-            {% for item in cmp.choose_b %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
       </div>
 
       <!-- Deep Dive -->
-      {% for section in cmp.sections %}
-      <h2 id="{{ section.id }}">{{ section.title }}</h2>
-      <p>{{ section.content }}</p>
-      {% endfor %}
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        {% for faq in cmp.faqs %}
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">{{ faq.q }} <span class="faq-arr">▼</span></div>
-          <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
-        </div>
-        {% endfor %}
+        
       </div>
 
       <!-- Related Comparisons -->
-      {% if related_compares %}
+      
       <h2 id="related">Related Comparisons</h2>
       <div class="related-grid">
-        {% for rc in related_compares %}
-        <a href="{{ rc.slug }}.html" class="related-card">
-          <div class="related-card-name">{{ rc.title }}</div>
-          <div class="related-card-desc">{{ rc.desc }}</div>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e41e30></div>
+          <div class="related-card-desc"></div>
         </a>
-        {% endfor %}
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e40f30></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e40f80></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
       </div>
-      {% endif %}
+      
 
     </article>
 
@@ -244,14 +267,14 @@
       <div class="sidebar-card">
         <h4>Quick Facts</h4>
         <div style="font-size:13px;color:var(--text-2)">
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_a.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_a.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_a.license or "Open Source" }}</div>
-          <div style="margin-bottom:14px"><a href="{{ tool_a.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_b.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_b.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_b.license or "Open Source" }}</div>
-          <div><a href="{{ tool_b.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Cursor</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> N/A</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> N/A</div>
+          <div style="margin-bottom:14px"><a href="#" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Aider</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 45k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
+          <div><a href="https://github.com/Aider-AI/aider" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
         </div>
       </div>
 
@@ -259,12 +282,10 @@
         <h4>Table of Contents</h4>
         <ul class="toc-list">
           <li><a href="#comparison">Quick Comparison</a></li>
-          <li><a href="#what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</a></li>
-          <li><a href="#what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</a></li>
+          <li><a href="#what-is-cursor">What Is Cursor?</a></li>
+          <li><a href="#what-is-aider">What Is Aider?</a></li>
           <li><a href="#choose">When to Choose</a></li>
-          {% for section in cmp.sections %}
-          <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
-          {% endfor %}
+          
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
@@ -272,8 +293,8 @@
       <div class="sidebar-card">
         <h4>View Full Reviews</h4>
         <ul class="toc-list">
-          <li><a href="../tools/{{ tool_a.id }}.html">{{ tool_a.name }} Review →</a></li>
-          <li><a href="../tools/{{ tool_b.id }}.html">{{ tool_b.name }} Review →</a></li>
+          <li><a href="../tools/cursor.html">Cursor Review →</a></li>
+          <li><a href="../tools/aider.html">Aider Review →</a></li>
         </ul>
       </div>
     </aside>

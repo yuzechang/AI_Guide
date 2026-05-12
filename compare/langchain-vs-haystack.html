@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ seo_title }}</title>
-  <meta name="description" content="{{ seo_desc }}">
+  <title>LangChain vs Haystack (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare LangChain and Haystack side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{{ base_url }}/compare/{{ cmp.slug }}">
+  <link rel="canonical" href="https://yuzec.com/compare/langchain-vs-haystack">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:title" content="{{ seo_title }}">
-  <meta property="og:description" content="{{ seo_desc }}">
-  <meta property="og:url" content="{{ base_url }}/compare/{{ cmp.slug }}">
+  <meta property="og:title" content="LangChain vs Haystack (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare LangChain and Haystack side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/langchain-vs-haystack">
   <meta property="og:site_name" content="AI Nav">
-  <meta property="og:image" content="{{ base_url }}/assets/og-default.png">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ seo_title }}">
-  <meta name="twitter:description" content="{{ seo_desc }}">
-  <meta name="twitter:image" content="{{ base_url }}/assets/og-default.png">
+  <meta name="twitter:title" content="LangChain vs Haystack (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare LangChain and Haystack side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
   <!-- Schema.org: FAQPage -->
@@ -31,13 +31,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {% for faq in cmp.faqs %}
-      {
-        "@type": "Question",
-        "name": {{ faq.q | tojson }},
-        "acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
-      }{% if not loop.last %},{% endif %}
-      {% endfor %}
+      
     ]
   }
   </script>
@@ -48,9 +42,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base_url }}/" },
-      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "{{ base_url }}/compare/" },
-      { "@type": "ListItem", "position": 3, "name": {{ cmp.title | tojson }}, "item": "{{ base_url }}/compare/{{ cmp.slug }}.html" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "LangChain vs Haystack", "item": "https://yuzec.com/compare/langchain-vs-haystack.html" }
     ]
   }
   </script>
@@ -109,25 +103,25 @@
   <span class="breadcrumb-sep">›</span>
   <a href="../index.html">Compare</a>
   <span class="breadcrumb-sep">›</span>
-  <span class="breadcrumb-cur">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+  <span class="breadcrumb-cur">LangChain vs Haystack</span>
 </div>
 
 <!-- Hero -->
 <div class="compare-hero">
   <div class="page-hero-inner">
     <div class="vs-badge">
-      <span>{{ tool_a.name }}</span>
+      <span>LangChain</span>
       <span class="vs-sep">VS</span>
-      <span>{{ tool_b.name }}</span>
+      <span>Haystack</span>
     </div>
     <h1 class="article-title" style="margin-top:0">
-      <span class="gradient">{{ tool_a.name }} vs {{ tool_b.name }}</span>
+      <span class="gradient">LangChain vs Haystack</span>
     </h1>
-    <p class="article-desc">{{ cmp.intro }}</p>
+    <p class="article-desc">LangChain and Haystack are both Python frameworks for building LLM-powered applications with RAG, pipelines, and agent capabilities. LangChain is the most popular LLM framework by GitHub stars and community size. Haystack from deepset has a longer history in the NLP/search space and offers a more production-oriented pipeline architecture. Both support major LLMs and vector databases.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="{{ today }}">{{ today[:7] }}</time></span>
-      <span>⭐ {{ tool_a.name }}: {{ tool_a.starsLabel }} stars</span>
-      <span>⭐ {{ tool_b.name }}: {{ tool_b.starsLabel }} stars</span>
+      <span>🗓 Updated: <time datetime="2026-05-12">2026-05</time></span>
+      <span>⭐ LangChain: 136k+ stars</span>
+      <span>⭐ Haystack: 25k+ stars</span>
     </div>
   </div>
 </div>
@@ -140,7 +134,7 @@
       <!-- TL;DR Verdict -->
       <div class="verdict-box">
         <h3>⚡ TL;DR — 30-Second Verdict</h3>
-        <p>{{ cmp.verdict }}</p>
+        <p>Choose LangChain if you want the largest ecosystem, most tutorials, and widest integration library — it's the de facto standard for LLM app development. Choose Haystack if you're building production search or RAG systems and want a more structured pipeline architecture with better observability. Haystack's pipeline model is more opinionated but scales better in enterprise settings.</p>
       </div>
 
       <!-- Quick Comparison Table -->
@@ -149,93 +143,127 @@
         <thead>
           <tr>
             <th>Feature</th>
-            <th>{{ tool_a.name }}</th>
-            <th>{{ tool_b.name }}</th>
+            <th>LangChain</th>
+            <th>Haystack</th>
           </tr>
         </thead>
         <tbody>
-          {% for row in cmp.table %}
+          
           <tr>
-            <td><strong>{{ row.feature }}</strong></td>
-            <td class="{{ 'winner' if row.winner == 'a' else '' }}">{{ row.a }}</td>
-            <td class="{{ 'winner' if row.winner == 'b' else '' }}">{{ row.b }}</td>
+            <td><strong>GitHub stars</strong></td>
+            <td class="winner">90k+ (most popular)</td>
+            <td class="">17k+</td>
           </tr>
-          {% endfor %}
+          
+          <tr>
+            <td><strong>Architecture</strong></td>
+            <td class="">Chains + Agents + LCEL</td>
+            <td class="">Declarative pipeline components</td>
+          </tr>
+          
+          <tr>
+            <td><strong>RAG support</strong></td>
+            <td class="">Full RAG toolkit</td>
+            <td class="">Production-grade RAG pipelines</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Observability</strong></td>
+            <td class="">LangSmith integration</td>
+            <td class="winner">Built-in pipeline tracing</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Integrations</strong></td>
+            <td class="winner">500+ integrations</td>
+            <td class="">50+ focused integrations</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Learning curve</strong></td>
+            <td class="">Moderate (many abstractions)</td>
+            <td class="">Moderate (pipeline mental model)</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Enterprise adoption</strong></td>
+            <td class="winner">Very high</td>
+            <td class="">Strong in Europe</td>
+          </tr>
+          
         </tbody>
       </table>
 
       <!-- What is A -->
-      <h2 id="what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</h2>
-      <p>{{ cmp.desc_a }}</p>
-      {% if tool_a.expert_take %}
+      <h2 id="what-is-langchain">What Is LangChain?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_a.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_a.name }}</cite>
+        <p>LangChain is the most widely used LLM application framework, which means the most tutorials, community answers, and third-party integrations. That said, the abstraction layer can feel excessive for simple use cases. My recommendation: use LangChain when you need its integrations (150+ vector stores, document loaders, tools) or when team familiarity matters. For simple chains, LangGraph or even raw API calls are often cleaner.</p>
+        <cite>— AI Nav Editorial Team on LangChain</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_a.id }}.html">→ Read the full {{ tool_a.name }} review</a></p>
+      
+      <p><a href="../tools/langchain.html">→ Read the full LangChain review</a></p>
 
       <!-- What is B -->
-      <h2 id="what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</h2>
-      <p>{{ cmp.desc_b }}</p>
-      {% if tool_b.expert_take %}
+      <h2 id="what-is-haystack">What Is Haystack?</h2>
+      <p></p>
+      
       <blockquote class="expert-take">
-        <p>{{ tool_b.expert_take }}</p>
-        <cite>— AI Nav Editorial Team on {{ tool_b.name }}</cite>
+        <p>A well-regarded project with 17k+ stars, Haystack has proven itself in production deployments. Recommended when your primary need is grounding LLM responses in your own document corpus. The vector storage integrations are comprehensive, though you'll want to benchmark retrieval quality on your specific documents before committing.</p>
+        <cite>— AI Nav Editorial Team on Haystack</cite>
       </blockquote>
-      {% endif %}
-      <p><a href="../tools/{{ tool_b.id }}.html">→ Read the full {{ tool_b.name }} review</a></p>
+      
+      <p><a href="../tools/haystack.html">→ Read the full Haystack review</a></p>
 
       <!-- When to Choose -->
       <h2 id="choose">When to Choose Each</h2>
       <div class="choose-grid">
         <div class="choose-card">
-          <h4>Choose {{ tool_a.name }} if…</h4>
+          <h4>Choose LangChain if…</h4>
           <ul>
-            {% for item in cmp.choose_a %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
         <div class="choose-card">
-          <h4>Choose {{ tool_b.name }} if…</h4>
+          <h4>Choose Haystack if…</h4>
           <ul>
-            {% for item in cmp.choose_b %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            
           </ul>
         </div>
       </div>
 
       <!-- Deep Dive -->
-      {% for section in cmp.sections %}
-      <h2 id="{{ section.id }}">{{ section.title }}</h2>
-      <p>{{ section.content }}</p>
-      {% endfor %}
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
-        {% for faq in cmp.faqs %}
-        <div class="faq-item">
-          <div class="faq-q" onclick="faqToggle(this)">{{ faq.q }} <span class="faq-arr">▼</span></div>
-          <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
-        </div>
-        {% endfor %}
+        
       </div>
 
       <!-- Related Comparisons -->
-      {% if related_compares %}
+      
       <h2 id="related">Related Comparisons</h2>
       <div class="related-grid">
-        {% for rc in related_compares %}
-        <a href="{{ rc.slug }}.html" class="related-card">
-          <div class="related-card-name">{{ rc.title }}</div>
-          <div class="related-card-desc">{{ rc.desc }}</div>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e29940></div>
+          <div class="related-card-desc"></div>
         </a>
-        {% endfor %}
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e29990></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
+        <a href=".html" class="related-card">
+          <div class="related-card-name"><built-in method title of str object at 0x105e299e0></div>
+          <div class="related-card-desc"></div>
+        </a>
+        
       </div>
-      {% endif %}
+      
 
     </article>
 
@@ -244,14 +272,14 @@
       <div class="sidebar-card">
         <h4>Quick Facts</h4>
         <div style="font-size:13px;color:var(--text-2)">
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_a.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_a.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_a.license or "Open Source" }}</div>
-          <div style="margin-bottom:14px"><a href="{{ tool_a.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
-          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">{{ tool_b.name }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> {{ tool_b.starsLabel }}</div>
-          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> {{ tool_b.license or "Open Source" }}</div>
-          <div><a href="{{ tool_b.githubUrl }}" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">LangChain</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 136k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> MIT</div>
+          <div style="margin-bottom:14px"><a href="https://github.com/langchain-ai/langchain" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Haystack</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 25k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Open Source</div>
+          <div><a href="https://github.com/deepset-ai/haystack" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
         </div>
       </div>
 
@@ -259,12 +287,10 @@
         <h4>Table of Contents</h4>
         <ul class="toc-list">
           <li><a href="#comparison">Quick Comparison</a></li>
-          <li><a href="#what-is-{{ tool_a.id }}">What Is {{ tool_a.name }}?</a></li>
-          <li><a href="#what-is-{{ tool_b.id }}">What Is {{ tool_b.name }}?</a></li>
+          <li><a href="#what-is-langchain">What Is LangChain?</a></li>
+          <li><a href="#what-is-haystack">What Is Haystack?</a></li>
           <li><a href="#choose">When to Choose</a></li>
-          {% for section in cmp.sections %}
-          <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
-          {% endfor %}
+          
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
@@ -272,8 +298,8 @@
       <div class="sidebar-card">
         <h4>View Full Reviews</h4>
         <ul class="toc-list">
-          <li><a href="../tools/{{ tool_a.id }}.html">{{ tool_a.name }} Review →</a></li>
-          <li><a href="../tools/{{ tool_b.id }}.html">{{ tool_b.name }} Review →</a></li>
+          <li><a href="../tools/langchain.html">LangChain Review →</a></li>
+          <li><a href="../tools/haystack.html">Haystack Review →</a></li>
         </ul>
       </div>
     </aside>
