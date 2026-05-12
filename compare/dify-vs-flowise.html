@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dify vs Flowise (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare Dify and Flowise side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/compare/dify-vs-flowise">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Dify vs Flowise (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare Dify and Flowise side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/dify-vs-flowise">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dify vs Flowise (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare Dify and Flowise side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "Is Dify free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dify\u0027s community edition is Apache 2.0 licensed and free to self-host. Dify Cloud has a free tier with usage limits. Enterprise features (SSO, audit logs) require paid tiers." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Is Flowise easier to set up than Dify?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, significantly. Flowise runs as a single Node.js process with SQLite by default \u2014 you can have it running in under 2 minutes with npx flowise start. Dify requires Docker Compose with multiple services (PostgreSQL, Redis, Weaviate/Qdrant), taking 15-30 minutes to configure properly." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can Dify and Flowise both connect to local LLMs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both support Ollama and any OpenAI-compatible API endpoint, letting you use local models like Llama 3, Mistral, or Qwen without cloud API costs." }
+      }
+      
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "Dify vs Flowise", "item": "https://yuzec.com/compare/dify-vs-flowise.html" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <style>
+    .compare-hero { background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(52,211,153,.06)); border-bottom: 1px solid var(--border); padding: 40px 0 32px; }
+    .vs-badge { display:inline-flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border-bright);border-radius:999px;padding:6px 18px;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:20px; }
+    .vs-sep { background:var(--accent);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800; }
+    .compare-table { width:100%;border-collapse:collapse;margin:28px 0;font-size:14px; }
+    .compare-table th { background:var(--surface-2);padding:12px 16px;text-align:left;font-weight:600;color:var(--text);border-bottom:2px solid var(--border-bright); }
+    .compare-table th:first-child { width:30%; }
+    .compare-table td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;line-height:1.55; }
+    .compare-table tr:hover td { background:var(--surface-2); }
+    .compare-table .winner { color:var(--accent);font-weight:600; }
+    .compare-table .check { color:#34d399; }
+    .compare-table .cross { color:#f87171; }
+    .verdict-box { background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(52,211,153,.05));border:1px solid var(--border-bright);border-radius:var(--radius);padding:24px 28px;margin:32px 0; }
+    .verdict-box h3 { margin:0 0 10px;font-size:17px;font-weight:700;color:var(--text); }
+    .verdict-box p { margin:0;color:var(--text-2);line-height:1.7; }
+    .choose-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0; }
+    .choose-card { border:1px solid var(--border);border-radius:var(--radius);padding:20px;background:var(--surface-2); }
+    .choose-card h4 { margin:0 0 12px;font-size:15px;font-weight:700; }
+    .choose-card ul { margin:0;padding-left:18px;color:var(--text-2);font-size:13px;line-height:1.8; }
+    @media(max-width:640px){ .choose-grid{grid-template-columns:1fr;} .compare-table td,.compare-table th{padding:10px 12px;font-size:13px;} }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中</button>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html">Compare</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Dify vs Flowise</span>
+</div>
+
+<!-- Hero -->
+<div class="compare-hero">
+  <div class="page-hero-inner">
+    <div class="vs-badge">
+      <span>Dify</span>
+      <span class="vs-sep">VS</span>
+      <span>Flowise</span>
+    </div>
+    <h1 class="article-title" style="margin-top:0">
+      <span class="gradient">Dify vs Flowise</span>
+    </h1>
+    <p class="article-desc">Dify and Flowise are both open-source, visual LLM application builders that let you create AI workflows without writing application code. Dify is a comprehensive AI application platform with multi-user management, a full application lifecycle, and production features. Flowise is a lighter-weight LangChain/LlamaIndex visual builder focused on workflow construction. The choice comes down to whether you need a full platform or a focused workflow builder.</p>
+    <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
+      <span>🗓 Updated: <time datetime="2026-05-12">2026-05</time></span>
+      <span>⭐ Dify: 140k+ stars</span>
+      <span>⭐ Flowise: 53k+ stars</span>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <!-- TL;DR Verdict -->
+      <div class="verdict-box">
+        <h3>⚡ TL;DR — 30-Second Verdict</h3>
+        <p>Use Dify if you need a complete AI application platform — multi-user workspaces, built-in RAG with document management, API publishing, and enterprise features. Use Flowise if you want a simpler, faster-to-set-up tool for building LangChain workflows visually without the overhead of a full platform.</p>
+      </div>
+
+      <!-- Quick Comparison Table -->
+      <h2 id="comparison">Quick Comparison</h2>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Dify</th>
+            <th>Flowise</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>GitHub Stars</strong></td>
+            <td class="winner">55k+</td>
+            <td class="">32k+</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Setup complexity</strong></td>
+            <td class="">Higher — multiple services</td>
+            <td class="winner">Simple — single Node.js process</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Multi-user support</strong></td>
+            <td class="winner">Built-in — teams, workspaces</td>
+            <td class="">Limited in community version</td>
+          </tr>
+          
+          <tr>
+            <td><strong>RAG/knowledge base</strong></td>
+            <td class="winner">Full knowledge base management</td>
+            <td class="">Via LlamaIndex nodes</td>
+          </tr>
+          
+          <tr>
+            <td><strong>API publishing</strong></td>
+            <td class="winner">One-click REST API publish</td>
+            <td class="">Available</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Underlying framework</strong></td>
+            <td class="">Custom (not LangChain-tied)</td>
+            <td class="">LangChain + LlamaIndex</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Agent builder</strong></td>
+            <td class="winner">Visual agent canvas</td>
+            <td class="">LangChain agent nodes</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Enterprise features</strong></td>
+            <td class="winner">SSO, audit logs (paid)</td>
+            <td class="">Not available</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Best for</strong></td>
+            <td class="">Full AI application platform</td>
+            <td class="">Quick LangChain workflow builder</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <!-- What is A -->
+      <h2 id="what-is-dify">What Is Dify?</h2>
+      <p>Dify is a comprehensive LLM application development platform with 55k+ GitHub stars. It provides everything needed to build and operate AI applications: a visual workflow builder, knowledge base management with full document processing, multiple application types (chatbot, agent, workflow), API publishing, and usage analytics. Dify's multi-user workspace model makes it suitable for teams, and it offers enterprise features (SSO, audit logs) through its cloud and enterprise tiers. The self-hosted version requires Docker Compose with PostgreSQL, Redis, and a vector database.</p>
+      
+      <blockquote class="expert-take">
+        <p>Dify is the most complete open-source LLM application platform. It combines the visual workflow builder of n8n, the RAG capabilities of LlamaIndex, and a production-ready API layer in a single deployable system. For teams building multiple LLM applications on a shared platform (not just a single RAG app), Dify's app management and collaboration features are worth the operational overhead.</p>
+        <cite>— AI Nav Editorial Team on Dify</cite>
+      </blockquote>
+      
+      <p><a href="../tools/dify.html">→ Read the full Dify review</a></p>
+
+      <!-- What is B -->
+      <h2 id="what-is-flowise">What Is Flowise?</h2>
+      <p>Flowise is a visual builder for LangChain and LlamaIndex workflows with 32k+ stars. You drag-and-drop nodes (LLMs, vector stores, document loaders, chains) to build AI pipelines, then expose them as API endpoints. Flowise is notably simpler to set up than Dify — it's a single Node.js process. Its direct mapping to LangChain's component model means developers familiar with LangChain can be productive immediately. Flowise is better positioned as a development/prototyping tool than a full production platform.</p>
+      
+      <blockquote class="expert-take">
+        <p>The 32k+ GitHub stars on Flowise are earned: this is one of the go-to tools for its use case. Best used for tasks where the steps are known but tedious to execute manually. The reliability for complex reasoning chains has improved but still requires human review of outputs for anything high-stakes.</p>
+        <cite>— AI Nav Editorial Team on Flowise</cite>
+      </blockquote>
+      
+      <p><a href="../tools/flowise.html">→ Read the full Flowise review</a></p>
+
+      <!-- When to Choose -->
+      <h2 id="choose">When to Choose Each</h2>
+      <div class="choose-grid">
+        <div class="choose-card">
+          <h4>Choose Dify if…</h4>
+          <ul>
+            
+            <li>You need multi-user workspaces with role-based access control</li>
+            
+            <li>You want built-in knowledge base management and document processing</li>
+            
+            <li>You're deploying AI applications to end users (not just internal tools)</li>
+            
+            <li>You need production monitoring, usage analytics, and API management</li>
+            
+            <li>Your team includes non-developers who need to build and modify AI apps</li>
+            
+          </ul>
+        </div>
+        <div class="choose-card">
+          <h4>Choose Flowise if…</h4>
+          <ul>
+            
+            <li>You want the fastest path from idea to LangChain workflow</li>
+            
+            <li>You're building internal tools or prototypes, not production-facing apps</li>
+            
+            <li>You prefer minimal infrastructure (single process, SQLite default)</li>
+            
+            <li>You're already familiar with LangChain and want a visual representation</li>
+            
+            <li>Setup simplicity is more important than platform features</li>
+            
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deep Dive -->
+      
+      <h2 id="rag">RAG and Knowledge Base Capabilities</h2>
+      <p>Dify has a significant advantage in knowledge base management. It provides a full document processing pipeline: upload documents in various formats, configure chunking, choose embedding models, and manage the resulting knowledge base with a UI. You can see which document chunks were retrieved for any query, update documents, and monitor retrieval quality. Flowise handles RAG through LlamaIndex and LangChain nodes, which is flexible but requires more manual configuration and lacks Dify's built-in document management UI.</p>
+      
+
+      <!-- FAQ -->
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is Dify free? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Dify's community edition is Apache 2.0 licensed and free to self-host. Dify Cloud has a free tier with usage limits. Enterprise features (SSO, audit logs) require paid tiers.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is Flowise easier to set up than Dify? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, significantly. Flowise runs as a single Node.js process with SQLite by default — you can have it running in under 2 minutes with npx flowise start. Dify requires Docker Compose with multiple services (PostgreSQL, Redis, Weaviate/Qdrant), taking 15-30 minutes to configure properly.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can Dify and Flowise both connect to local LLMs? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes. Both support Ollama and any OpenAI-compatible API endpoint, letting you use local models like Llama 3, Mistral, or Qwen without cloud API costs.</div></div>
+        </div>
+        
+      </div>
+
+      <!-- Related Comparisons -->
+      
+      <h2 id="related">Related Comparisons</h2>
+      <div class="related-grid">
+        
+        <a href="n8n-vs-langchain.html" class="related-card">
+          <div class="related-card-name">n8n vs LangChain</div>
+          <div class="related-card-desc">Compare workflow automation vs LLM framework</div>
+        </a>
+        
+        <a href="langchain-vs-llamaindex.html" class="related-card">
+          <div class="related-card-name">LangChain vs LlamaIndex</div>
+          <div class="related-card-desc">Compare the two top LLM application frameworks</div>
+        </a>
+        
+      </div>
+      
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Dify</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 140k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
+          <div style="margin-bottom:14px"><a href="https://github.com/langgenius/dify" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Flowise</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 53k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Apache-2.0</div>
+          <div><a href="https://github.com/FlowiseAI/Flowise" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison">Quick Comparison</a></li>
+          <li><a href="#what-is-dify">What Is Dify?</a></li>
+          <li><a href="#what-is-flowise">What Is Flowise?</a></li>
+          <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#rag">RAG and Knowledge Base Capabilities</a></li>
+          
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>View Full Reviews</h4>
+        <ul class="toc-list">
+          <li><a href="../tools/dify.html">Dify Review →</a></li>
+          <li><a href="../tools/flowise.html">Flowise Review →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools with honest pros, cons, and comparisons.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Comparisons</h4>
+        <ul>
+          <li><a href="cursor-vs-github-copilot.html">Cursor vs Copilot</a></li>
+          <li><a href="langchain-vs-llamaindex.html">LangChain vs LlamaIndex</a></li>
+          <li><a href="vllm-vs-ollama.html">vLLM vs Ollama</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  localStorage.setItem('ai-nav-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+}
+(function initLang() {
+  var saved = localStorage.getItem('ai-nav-lang');
+  if (saved === 'zh') setLang('zh');
+})();
+</script>
+</body>
+</html>

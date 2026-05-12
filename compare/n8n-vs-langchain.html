@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>n8n vs LangChain (2025): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="Compare n8n and LangChain side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/compare/n8n-vs-langchain">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="n8n vs LangChain (2025): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare n8n and LangChain side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/n8n-vs-langchain">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="n8n vs LangChain (2025): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare n8n and LangChain side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "Can n8n replace LangChain?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not for complex AI applications. n8n\u0027s AI nodes work well for simple LLM tasks in larger workflows, but LangChain provides much deeper control for production AI systems. They\u0027re complementary tools targeting different users." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Is n8n good for RAG?",
+        "acceptedAnswer": { "@type": "Answer", "text": "n8n has basic RAG support through its Vector Store and document loader nodes. For simple Q\u0026A over a document collection it works well. For production RAG with hybrid search, reranking, and custom retrieval strategies, LangChain or LlamaIndex give more control." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which is better for non-technical teams?",
+        "acceptedAnswer": { "@type": "Answer", "text": "n8n is significantly more accessible for non-developers. Its visual interface lets ops and business teams build and modify AI workflows without Python knowledge. LangChain requires Python development skills." }
+      }
+      
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "n8n vs LangChain", "item": "https://yuzec.com/compare/n8n-vs-langchain.html" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <style>
+    .compare-hero { background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(52,211,153,.06)); border-bottom: 1px solid var(--border); padding: 40px 0 32px; }
+    .vs-badge { display:inline-flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border-bright);border-radius:999px;padding:6px 18px;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:20px; }
+    .vs-sep { background:var(--accent);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800; }
+    .compare-table { width:100%;border-collapse:collapse;margin:28px 0;font-size:14px; }
+    .compare-table th { background:var(--surface-2);padding:12px 16px;text-align:left;font-weight:600;color:var(--text);border-bottom:2px solid var(--border-bright); }
+    .compare-table th:first-child { width:30%; }
+    .compare-table td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;line-height:1.55; }
+    .compare-table tr:hover td { background:var(--surface-2); }
+    .compare-table .winner { color:var(--accent);font-weight:600; }
+    .compare-table .check { color:#34d399; }
+    .compare-table .cross { color:#f87171; }
+    .verdict-box { background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(52,211,153,.05));border:1px solid var(--border-bright);border-radius:var(--radius);padding:24px 28px;margin:32px 0; }
+    .verdict-box h3 { margin:0 0 10px;font-size:17px;font-weight:700;color:var(--text); }
+    .verdict-box p { margin:0;color:var(--text-2);line-height:1.7; }
+    .choose-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0; }
+    .choose-card { border:1px solid var(--border);border-radius:var(--radius);padding:20px;background:var(--surface-2); }
+    .choose-card h4 { margin:0 0 12px;font-size:15px;font-weight:700; }
+    .choose-card ul { margin:0;padding-left:18px;color:var(--text-2);font-size:13px;line-height:1.8; }
+    @media(max-width:640px){ .choose-grid{grid-template-columns:1fr;} .compare-table td,.compare-table th{padding:10px 12px;font-size:13px;} }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="../index.html" class="nav-home">← All Tools</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中</button>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="../index.html">Compare</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">n8n vs LangChain</span>
+</div>
+
+<!-- Hero -->
+<div class="compare-hero">
+  <div class="page-hero-inner">
+    <div class="vs-badge">
+      <span>n8n</span>
+      <span class="vs-sep">VS</span>
+      <span>LangChain</span>
+    </div>
+    <h1 class="article-title" style="margin-top:0">
+      <span class="gradient">n8n vs LangChain</span>
+    </h1>
+    <p class="article-desc">n8n and LangChain both help you build AI-powered automation workflows, but from different starting points. n8n is a visual workflow automation platform (think Zapier, but self-hosted and open-source) that has added AI/LLM capabilities. LangChain is a Python/JavaScript developer framework built from the ground up for LLM application development. The right choice depends on whether you need general workflow automation with AI, or AI-first application development.</p>
+    <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
+      <span>🗓 Updated: <time datetime="2026-05-12">2026-05</time></span>
+      <span>⭐ n8n: 187k+ stars</span>
+      <span>⭐ LangChain: 136k+ stars</span>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <!-- TL;DR Verdict -->
+      <div class="verdict-box">
+        <h3>⚡ TL;DR — 30-Second Verdict</h3>
+        <p>Use n8n if you need to automate business processes that include AI steps — connecting CRMs, databases, APIs, and LLMs through a visual interface, without deep coding. Use LangChain if you're a developer building Python applications where LLMs are the core logic, needing RAG pipelines, agent orchestration, or complex prompt management.</p>
+      </div>
+
+      <!-- Quick Comparison Table -->
+      <h2 id="comparison">Quick Comparison</h2>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>n8n</th>
+            <th>LangChain</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>Primary interface</strong></td>
+            <td class="">Visual node editor</td>
+            <td class="">Python / JavaScript SDK</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Target user</strong></td>
+            <td class="">Ops teams, non-developers</td>
+            <td class="">Python developers</td>
+          </tr>
+          
+          <tr>
+            <td><strong>GitHub Stars</strong></td>
+            <td class="">49k+</td>
+            <td class="winner">93k+</td>
+          </tr>
+          
+          <tr>
+            <td><strong>AI/LLM depth</strong></td>
+            <td class="">Good — built-in AI nodes</td>
+            <td class="winner">Excellent — purpose-built for LLMs</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Non-AI integrations</strong></td>
+            <td class="winner">400+ app connectors</td>
+            <td class="">Requires custom code</td>
+          </tr>
+          
+          <tr>
+            <td><strong>RAG pipelines</strong></td>
+            <td class="">Basic via AI nodes</td>
+            <td class="winner">Deep, configurable RAG</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Self-hosting</strong></td>
+            <td class="">Easy Docker deploy</td>
+            <td class="">Python package — no server needed</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Code flexibility</strong></td>
+            <td class="">Code nodes for custom logic</td>
+            <td class="winner">Full Python flexibility</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Learning curve</strong></td>
+            <td class="winner">Low — visual, no-code</td>
+            <td class="">Moderate — Python required</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <!-- What is A -->
+      <h2 id="what-is-n8n">What Is n8n?</h2>
+      <p>n8n is a self-hostable workflow automation platform with 400+ pre-built integrations for apps like Slack, HubSpot, PostgreSQL, Google Sheets, and more. Its visual node editor makes it accessible to non-developers for building automated workflows. The AI nodes (LLM, Vector Store, Chain, Agent) let you incorporate language models into larger workflows — for example, summarizing emails, routing support tickets with AI classification, or generating reports from database queries. n8n is the right tool when AI is one component of a broader automation workflow.</p>
+      
+      <blockquote class="expert-take">
+        <p>n8n is the best self-hostable alternative to Zapier/Make. The code node (JavaScript) makes it significantly more powerful than no-code alternatives for complex transformations. The LLM/AI integration has matured considerably — you can now build sophisticated RAG pipelines and AI agents visually. For teams that want workflow automation without handing all data to a cloud service, n8n is the answer.</p>
+        <cite>— AI Nav Editorial Team on n8n</cite>
+      </blockquote>
+      
+      <p><a href="../tools/n8n.html">→ Read the full n8n review</a></p>
+
+      <!-- What is B -->
+      <h2 id="what-is-langchain">What Is LangChain?</h2>
+      <p>LangChain is the most widely adopted framework for building LLM-first applications in Python and JavaScript. It provides abstractions for prompt management, LLM providers, memory, agents, and retrieval-augmented generation. LangChain's ecosystem is vast — 150+ vector store integrations, 50+ LLM providers, and tools for evaluation, observability, and deployment. It's the starting point for most developers building production chatbots, document Q&A systems, and AI agents.</p>
+      
+      <blockquote class="expert-take">
+        <p>LangChain is the most widely used LLM application framework, which means the most tutorials, community answers, and third-party integrations. That said, the abstraction layer can feel excessive for simple use cases. My recommendation: use LangChain when you need its integrations (150+ vector stores, document loaders, tools) or when team familiarity matters. For simple chains, LangGraph or even raw API calls are often cleaner.</p>
+        <cite>— AI Nav Editorial Team on LangChain</cite>
+      </blockquote>
+      
+      <p><a href="../tools/langchain.html">→ Read the full LangChain review</a></p>
+
+      <!-- When to Choose -->
+      <h2 id="choose">When to Choose Each</h2>
+      <div class="choose-grid">
+        <div class="choose-card">
+          <h4>Choose n8n if…</h4>
+          <ul>
+            
+            <li>You need to connect AI to 400+ existing business apps without writing code</li>
+            
+            <li>Your team includes non-developers who need to build/modify workflows</li>
+            
+            <li>AI is one step in a larger business process automation</li>
+            
+            <li>You want a self-hosted Zapier/Make alternative with AI capabilities</li>
+            
+            <li>You're automating repetitive ops tasks with occasional AI processing</li>
+            
+          </ul>
+        </div>
+        <div class="choose-card">
+          <h4>Choose LangChain if…</h4>
+          <ul>
+            
+            <li>You're a Python developer building AI-first applications</li>
+            
+            <li>You need advanced RAG pipelines or custom retrieval logic</li>
+            
+            <li>You want full control over prompt engineering and LLM behavior</li>
+            
+            <li>You're building production chatbots, agents, or document Q&A systems</li>
+            
+            <li>You need the broadest ecosystem of LLM and vector store integrations</li>
+            
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deep Dive -->
+      
+      <h2 id="ai-depth">AI/LLM Depth Comparison</h2>
+      <p>LangChain was built specifically for LLM application development, giving it a significant depth advantage. Advanced RAG patterns (hybrid search, reranking, multi-query retrieval), agent tool use, conversation memory management, and evaluation frameworks are all first-class in LangChain. n8n's AI capabilities are solid for straightforward use cases — chatting with a document, summarizing text, classifying content — but complex RAG pipelines or custom agent behaviors require dropping into code nodes, at which point you might as well use LangChain directly.</p>
+      
+      <h2 id="use-together">Using n8n and LangChain Together</h2>
+      <p>A common enterprise pattern is to use both: LangChain builds the AI microservice (a Python FastAPI app handling document Q&A or agent logic), and n8n orchestrates the business workflow (triggering the AI service when certain conditions are met, routing results to other systems). This separation of concerns lets each tool do what it does best. n8n handles the 'when and what' of business automation; LangChain handles the 'how' of AI processing.</p>
+      
+
+      <!-- FAQ -->
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can n8n replace LangChain? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Not for complex AI applications. n8n's AI nodes work well for simple LLM tasks in larger workflows, but LangChain provides much deeper control for production AI systems. They're complementary tools targeting different users.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is n8n good for RAG? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">n8n has basic RAG support through its Vector Store and document loader nodes. For simple Q&A over a document collection it works well. For production RAG with hybrid search, reranking, and custom retrieval strategies, LangChain or LlamaIndex give more control.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which is better for non-technical teams? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">n8n is significantly more accessible for non-developers. Its visual interface lets ops and business teams build and modify AI workflows without Python knowledge. LangChain requires Python development skills.</div></div>
+        </div>
+        
+      </div>
+
+      <!-- Related Comparisons -->
+      
+      <h2 id="related">Related Comparisons</h2>
+      <div class="related-grid">
+        
+        <a href="langchain-vs-llamaindex.html" class="related-card">
+          <div class="related-card-name">LangChain vs LlamaIndex</div>
+          <div class="related-card-desc">Compare the two top LLM application frameworks</div>
+        </a>
+        
+        <a href="autogpt-vs-autogen.html" class="related-card">
+          <div class="related-card-name">AutoGPT vs AutoGen</div>
+          <div class="related-card-desc">Compare two leading autonomous AI agent frameworks</div>
+        </a>
+        
+      </div>
+      
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">n8n</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 187k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> Sustainable Use License</div>
+          <div style="margin-bottom:14px"><a href="https://github.com/n8n-io/n8n" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">LangChain</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> 136k+</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> MIT</div>
+          <div><a href="https://github.com/langchain-ai/langchain" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison">Quick Comparison</a></li>
+          <li><a href="#what-is-n8n">What Is n8n?</a></li>
+          <li><a href="#what-is-langchain">What Is LangChain?</a></li>
+          <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#ai-depth">AI/LLM Depth Comparison</a></li>
+          
+          <li><a href="#use-together">Using n8n and LangChain Together</a></li>
+          
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>View Full Reviews</h4>
+        <ul class="toc-list">
+          <li><a href="../tools/n8n.html">n8n Review →</a></li>
+          <li><a href="../tools/langchain.html">LangChain Review →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools with honest pros, cons, and comparisons.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Comparisons</h4>
+        <ul>
+          <li><a href="cursor-vs-github-copilot.html">Cursor vs Copilot</a></li>
+          <li><a href="langchain-vs-llamaindex.html">LangChain vs LlamaIndex</a></li>
+          <li><a href="vllm-vs-ollama.html">vLLM vs Ollama</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  localStorage.setItem('ai-nav-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+}
+(function initLang() {
+  var saved = localStorage.getItem('ai-nav-lang');
+  if (saved === 'zh') setLang('zh');
+})();
+</script>
+</body>
+</html>
