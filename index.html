@@ -508,6 +508,35 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    /* ===== Compare Section ===== */
+    .compare-section {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px 40px;
+    }
+    .compare-inner {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px 32px;
+    }
+    .compare-h { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .compare-sub { font-size: 14px; color: var(--text-2); margin-bottom: 24px; }
+    .compare-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .cmp-card {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 16px; background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); transition: all 0.2s; text-decoration: none;
+      color: var(--text); font-size: 13px; font-weight: 500;
+    }
+    .cmp-card:hover { border-color: var(--accent); background: var(--surface); transform: translateY(-1px); }
+    .cmp-vs { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .compare-all-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 20px; font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500;
+    }
+    .compare-all-link:hover { text-decoration: underline; }
+    @media(max-width:768px){ .compare-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px){ .compare-grid { grid-template-columns: 1fr; } }
   </style>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
@@ -706,6 +735,31 @@
         <span class="feat-card-tag">AI Agent</span>
       </a>
     </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     POPULAR COMPARISONS
+===================================================== -->
+<section class="compare-section" aria-label="Popular AI Tool Comparisons">
+  <div class="compare-inner">
+    <h2 class="compare-h"><span class="en">Popular AI Tool Comparisons</span><span class="zh">热门 AI 工具对比</span></h2>
+    <p class="compare-sub"><span class="en">Side-by-side comparisons with features, pricing, and expert recommendations.</span><span class="zh">功能、定价与专家推荐的对比分析。</span></p>
+    <div class="compare-grid">
+      <a href="compare/cursor-vs-github-copilot.html" class="cmp-card"><span>Cursor</span><span class="cmp-vs">vs</span><span>GitHub Copilot</span></a>
+      <a href="compare/vllm-vs-ollama.html" class="cmp-card"><span>vLLM</span><span class="cmp-vs">vs</span><span>Ollama</span></a>
+      <a href="compare/langchain-vs-llamaindex.html" class="cmp-card"><span>LangChain</span><span class="cmp-vs">vs</span><span>LlamaIndex</span></a>
+      <a href="compare/cline-vs-cursor.html" class="cmp-card"><span>Cline</span><span class="cmp-vs">vs</span><span>Cursor</span></a>
+      <a href="compare/ollama-vs-llama-cpp.html" class="cmp-card"><span>Ollama</span><span class="cmp-vs">vs</span><span>llama.cpp</span></a>
+      <a href="compare/crewai-vs-autogen.html" class="cmp-card"><span>CrewAI</span><span class="cmp-vs">vs</span><span>AutoGen</span></a>
+      <a href="compare/comfyui-vs-stable-diffusion-webui.html" class="cmp-card"><span>ComfyUI</span><span class="cmp-vs">vs</span><span>SD WebUI</span></a>
+      <a href="compare/chroma-vs-qdrant.html" class="cmp-card"><span>Chroma</span><span class="cmp-vs">vs</span><span>Qdrant</span></a>
+      <a href="compare/dify-vs-flowise.html" class="cmp-card"><span>Dify</span><span class="cmp-vs">vs</span><span>Flowise</span></a>
+      <a href="compare/flux-vs-stable-diffusion.html" class="cmp-card"><span>FLUX</span><span class="cmp-vs">vs</span><span>Stable Diffusion</span></a>
+      <a href="compare/langchain-vs-langgraph.html" class="cmp-card"><span>LangChain</span><span class="cmp-vs">vs</span><span>LangGraph</span></a>
+      <a href="compare/cursor-vs-aider.html" class="cmp-card"><span>Cursor</span><span class="cmp-vs">vs</span><span>Aider</span></a>
+    </div>
+    <a href="compare/" class="compare-all-link"><span class="en">View all 48 comparisons →</span><span class="zh">查看全部 48 个对比 →</span></a>
   </div>
 </section>
 
