@@ -182,6 +182,10 @@
         {
           "q": "Is Screenshot to Code free?",
           "a": "The open-source version is MIT-licensed and free. You need to provide your own OpenAI or Anthropic API key (costs ~$0.01–$0.05 per screenshot depending on the model). A hosted version at screenshottocode.com has a free tier."
+        },
+        {
+          "q": "What tech stacks does Screenshot to Code support?",
+          "a": "Screenshot to Code supports HTML/Tailwind CSS, React, Vue, Bootstrap, Ionic, and SVG output formats. You can select your preferred stack before generating, and the tool will produce ready-to-use component code matching the visual layout of your screenshot."
         }
       ],
       "version": "v0.1.x",
@@ -725,6 +729,10 @@
         {
           "q": "How do I deploy ChatGPT Next Web on Vercel?",
           "a": "Fork the GitHub repository, create a Vercel account, import the repo, and set OPENAI_API_KEY as an environment variable. The entire deployment takes less than 5 minutes and runs for free on Vercel's free tier."
+        },
+        {
+          "q": "Does ChatGPT Next Web support models other than GPT?",
+          "a": "Yes. ChatGPT Next Web supports OpenAI models (GPT-3.5, GPT-4), Azure OpenAI, Google Gemini, Anthropic Claude, and any OpenAI-compatible API endpoint. You configure the API key and base URL in the settings panel."
         }
       ],
       "version": "v2.x",
@@ -1525,6 +1533,10 @@
         {
           "q": "GPT4All vs Ollama: which is better for beginners?",
           "a": "GPT4All is better for non-technical users because it has a full desktop GUI with point-and-click installation. Ollama is better for developers who want an API-based interface to integrate local LLMs into their own applications."
+        },
+        {
+          "q": "What hardware does GPT4All require?",
+          "a": "GPT4All runs on standard consumer hardware — a modern CPU with 8GB+ RAM is sufficient for most models. GPU acceleration is optional but supported via Metal (Apple Silicon), CUDA (NVIDIA), and Vulkan. No internet connection is required after the initial model download."
         }
       ],
       "version": "v3.x",
@@ -5529,6 +5541,10 @@
         {
           "q": "How does GPT Engineer compare to GitHub Copilot?",
           "a": "GPT Engineer generates entire projects from scratch based on a spec document. GitHub Copilot assists with code completion and generation within an existing project. Use GPT Engineer for greenfield projects; use Copilot for everyday coding assistance."
+        },
+        {
+          "q": "What languages and frameworks can GPT Engineer generate?",
+          "a": "GPT Engineer can generate code in any language or framework you specify in your prompt — Python, JavaScript, TypeScript, React, FastAPI, and more. It scaffolds the full project structure including files, folders, and dependencies based on your natural language description."
         }
       ],
       "version": "v0.2.x",
