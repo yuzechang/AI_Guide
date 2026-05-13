@@ -414,6 +414,25 @@ footer { background: var(--surface); border-top: 1px solid var(--border); margin
   line-height: 1.6;
 }
 
+/* Commercial Alternatives grid */
+.commercial-alts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin: 20px 0; }
+.commercial-alt-card {
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px 20px;
+  text-decoration: none; color: var(--text); transition: all 0.2s;
+}
+.commercial-alt-card:hover { border-color: var(--accent); background: var(--card-hover); transform: translateY(-2px); }
+.commercial-alt-header { display: flex; align-items: center; gap: 10px; }
+.commercial-alt-name { font-size: 16px; font-weight: 700; color: var(--text); }
+.commercial-alt-badge {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+  background: rgba(129,140,248,.15); color: var(--accent);
+  border: 1px solid rgba(129,140,248,.3); border-radius: 20px; padding: 2px 8px;
+}
+.commercial-alt-tagline { font-size: 13px; color: var(--text-2); line-height: 1.5; flex: 1; }
+.commercial-alt-cta { font-size: 13px; font-weight: 600; color: var(--accent); }
+
 /* Expert Take blockquote (E-E-A-T signal) */
 .expert-take {
   background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(52,211,153,.06));
