@@ -187,6 +187,61 @@
     .gh-link { color: var(--text-3); font-size: 18px; transition: color 0.15s; flex-shrink: 0; line-height: 1; }
     .gh-link:hover { color: var(--text); }
 
+    /* ===== Donate Button ===== */
+    .donate-btn {
+      padding: 5px 11px; border-radius: var(--radius-sm);
+      font-size: 14px; cursor: pointer; transition: all 0.15s; white-space: nowrap;
+      border: 1px solid var(--amber); background: rgba(251,191,36,0.08);
+      color: var(--amber); font-weight: 600; font-family: inherit;
+      flex-shrink: 0; line-height: 1.4;
+    }
+    .donate-btn:hover { background: rgba(251,191,36,0.18); }
+
+    /* ===== Donate Modal ===== */
+    .donate-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.65); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .donate-overlay.show { display: flex; }
+    .donate-modal {
+      background: var(--card); border: 1px solid var(--border-bright);
+      border-radius: 16px; padding: 32px; max-width: 420px; width: 90vw;
+      text-align: center; position: relative; animation: dmFadeIn 0.2s ease;
+    }
+    @keyframes dmFadeIn { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+    .dm-close {
+      position: absolute; top: 12px; right: 16px;
+      background: none; border: none; color: var(--text-3);
+      font-size: 20px; cursor: pointer; padding: 4px; line-height: 1;
+      transition: color 0.15s;
+    }
+    .dm-close:hover { color: var(--text); }
+    .dm-icon { font-size: 40px; margin-bottom: 8px; }
+    .dm-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .dm-sub { font-size: 13px; color: var(--text-2); margin-bottom: 20px; }
+    .dm-methods { display: flex; flex-direction: column; gap: 12px; }
+    .dm-method {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border-radius: 10px;
+      border: 1px solid var(--border); background: var(--surface);
+      cursor: pointer; transition: all 0.15s; text-decoration: none; color: inherit;
+      font-family: inherit; font-size: 14px; text-align: left; width: 100%;
+    }
+    .dm-method:hover { border-color: var(--accent); }
+    .dm-method-ico { font-size: 22px; flex-shrink: 0; }
+    .dm-method-info { flex: 1; }
+    .dm-method-name { font-weight: 600; color: var(--text); font-size: 14px; }
+    .dm-method-desc { font-size: 11px; color: var(--text-3); margin-top: 1px; }
+    .dm-qr-wrap { margin-top: 16px; }
+    .dm-qr-wrap img { max-width: 200px; border-radius: 10px; border: 1px solid var(--border); }
+    .dm-back {
+      display: inline-block; margin-top: 14px;
+      font-size: 12px; color: var(--accent); cursor: pointer;
+      background: none; border: none; font-family: inherit;
+    }
+    .dm-back:hover { text-decoration: underline; }
+
     /* ===== Ad Banners ===== */
     .ad-strip {
       background: var(--surface); border-bottom: 1px solid var(--border);
@@ -563,6 +618,7 @@
       <button class="nav-tab"        data-filter="skill"     onclick="setFilter('skill')"><span class="en">Skill</span><span class="zh">技能框架</span></button>
       <button class="nav-tab"        data-filter="agent"     onclick="setFilter('agent')"><span class="en">Agent</span><span class="zh">智能体</span></button>
       <a href="moyu.html" class="nav-tab" style="text-decoration:none"><span class="en">🐟 Moyu</span><span class="zh">🐟 摸鱼办</span></a>
+      <button class="donate-btn" onclick="openDonate()" title="Donate / 打赏"><span>💰</span></button>
     </nav>
 
     <div class="header-search">
@@ -604,6 +660,7 @@
     <a href="moyu.html" class="mobile-nav-tab" style="text-decoration:none">
       <span class="en">🐟 Moyu</span><span class="zh">🐟 摸鱼办</span>
     </a>
+    <button class="mobile-nav-tab donate-btn" onclick="openDonate()" title="Donate / 打赏"><span>💰</span></button>
   </div>
 </nav>
 
@@ -1158,12 +1215,47 @@ function setLang(lang) {
   const ph = lang === 'zh' ? '搜索 AI 工具、框架、智能体…' : 'Search AI tools, agent frameworks, skill libraries…';
   document.querySelectorAll('input[type=search]').forEach(el => el.placeholder = ph);
   try { localStorage.setItem('ai-nav-lang', lang); } catch(_) {}
+  // 更新打赏弹窗中的 PayPal 显示
+  var pp = document.getElementById('dmPaypal');
+  if (pp) pp.style.display = (lang === 'zh') ? 'none' : '';
   render();
 }
 
 // ========================================
 // FAQ
 // ========================================
+// ========================================
+// DONATE MODAL
+// ========================================
+function openDonate() {
+  document.getElementById('donateOverlay').classList.add('show');
+  showMethodList();
+}
+function closeDonate() {
+  document.getElementById('donateOverlay').classList.remove('show');
+}
+function maybeCloseDonate(e) {
+  if (e.target === document.getElementById('donateOverlay')) closeDonate();
+}
+function showWechatQR() {
+  document.getElementById('dmPaypal').style.display = 'none';
+  document.getElementById('dmWechat').style.display = 'none';
+  document.getElementById('dmQrWrap').style.display = '';
+}
+function showMethodList() {
+  document.getElementById('dmQrWrap').style.display = 'none';
+  document.getElementById('dmWechat').style.display = '';
+  var pp = document.getElementById('dmPaypal');
+  if (pp) {
+    var isZh = document.documentElement.getAttribute('data-lang') === 'zh';
+    pp.style.display = isZh ? 'none' : '';
+  }
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDonate();
+});
+
 function faqToggle(btn) {
   const item = btn.parentElement;
   const open = item.classList.toggle('open');
@@ -1219,6 +1311,44 @@ document.addEventListener('keydown', e => {
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 -->
+
+<!-- ====================================================
+     DONATE MODAL
+===================================================== -->
+<div class="donate-overlay" id="donateOverlay" onclick="maybeCloseDonate(event)">
+  <div class="donate-modal" onclick="event.stopPropagation()">
+    <button class="dm-close" onclick="closeDonate()" aria-label="Close">✕</button>
+    <div class="dm-icon">💰</div>
+    <div class="dm-title"><span class="en">Support AI.Nav</span><span class="zh">支持 AI.Nav</span></div>
+    <div class="dm-sub"><span class="en">Choose a payment method to show your support</span><span class="zh">选择打赏方式，感谢你的支持 ❤️</span></div>
+    <div class="dm-methods" id="dmMethods">
+      <!-- PayPal (English only) -->
+      <a class="dm-method en" href="https://paypal.me/yuzec933" target="_blank" rel="noopener noreferrer" id="dmPaypal">
+        <span class="dm-method-ico">🅿️</span>
+        <div class="dm-method-info">
+          <div class="dm-method-name">PayPal</div>
+          <div class="dm-method-desc">paypal.me/yuzec933</div>
+        </div>
+        <span>↗</span>
+      </a>
+      <!-- WeChat Pay -->
+      <button class="dm-method" onclick="showWechatQR()" id="dmWechat">
+        <span class="dm-method-ico">💚</span>
+        <div class="dm-method-info">
+          <div class="dm-method-name"><span class="en">WeChat Pay</span><span class="zh">微信支付</span></div>
+          <div class="dm-method-desc"><span class="en">Scan QR code to pay</span><span class="zh">扫码支付</span></div>
+        </div>
+        <span>↗</span>
+      </button>
+      <!-- WeChat QR code view -->
+      <div class="dm-qr-wrap" id="dmQrWrap" style="display:none">
+        <img src="ds.jpg" alt="WeChat Pay QR Code" style="width:200px;height:auto">
+        <br>
+        <button class="dm-back" onclick="showMethodList()"><span class="en">← Back</span><span class="zh">← 返回</span></button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
