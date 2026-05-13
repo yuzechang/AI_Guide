@@ -22,6 +22,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 # ─── 路径 ───────────────────────────────────────────────────────────────────
 BASE_DIR      = Path(__file__).parent
 DATA_FILE     = BASE_DIR / "data.json"
+COMPARE_FILE  = BASE_DIR / "compare_data.json"
 TEMPLATES_DIR = BASE_DIR / "templates"
 TOOLS_DIR     = BASE_DIR / "tools"
 CATEGORY_DIR  = BASE_DIR / "category"
@@ -207,16 +208,38 @@ def get_features(tool):
     return feats
 
 
-def get_related(tool, all_tools, n=4):
-    """同类别相关工具（同 tag 优先，排除自身），最多 n 个。"""
+def get_related(tool, all_tools, n=6):
+    """同类别相关工具（同 tag 优先，stars 次之，排除自身），最多 n 个。"""
     same_tags = set(tool.get("tags", []))
     candidates = [
         t for t in all_tools
         if t["category"] == tool["category"] and t["id"] != tool["id"]
     ]
-    # 按共同 tags 数量排序
-    candidates.sort(key=lambda t: -len(set(t.get("tags", [])) & same_tags))
+    candidates.sort(key=lambda t: (
+        -len(set(t.get("tags", [])) & same_tags),
+        -t.get("stars", 0)
+    ))
     return candidates[:n]
+
+
+def build_compare_index(compare_file):
+    """从 compare_data.json 构建 tool_id -> compare页列表 的映射。"""
+    if not compare_file.exists():
+        return {}
+    with open(compare_file, encoding="utf-8") as f:
+        compares = json.load(f)
+    index = {}
+    for c in compares:
+        a_id, b_id = c["tool_a_id"], c["tool_b_id"]
+        a_name = c["title"].split(" vs ")[0].strip()
+        b_name = c["title"].split(" vs ")[-1].strip()
+        index.setdefault(a_id, []).append({
+            "slug": c["slug"], "other_id": b_id, "other_name": b_name
+        })
+        index.setdefault(b_id, []).append({
+            "slug": c["slug"], "other_id": a_id, "other_name": a_name
+        })
+    return index
 
 
 def get_faqs(tool, cat_info, cat_count):
@@ -389,6 +412,9 @@ def main():
     all_tools = data.get("tools", [])
     print(f"[generate] 读取 {len(all_tools)} 个工具")
 
+    # 构建对比页索引
+    compare_index = build_compare_index(COMPARE_FILE)
+
     # 初始化 Jinja2
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES_DIR)),
@@ -446,6 +472,7 @@ def main():
                     "features": get_features(tool),
                     "related":  get_related(tool, all_tools),
                     "faqs":     get_faqs(tool, cat_info, cat_counts.get(tool["category"], 0)),
+                    "compare_pages": compare_index.get(tool["id"], []),
                     "seo_title": seo_title,
                     "seo_desc":  seo_desc,
                     "base_url":  BASE_URL,

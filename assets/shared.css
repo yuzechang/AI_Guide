@@ -212,6 +212,17 @@ header {
 .related-card-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
 .related-card-desc { font-size: 11px; color: var(--text-3); }
 
+/* Compare links grid */
+.compare-links-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.compare-link-card {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 6px 14px;
+  font-size: 13px; color: var(--text); text-decoration: none; transition: all 0.2s;
+}
+.compare-link-card:hover { border-color: var(--accent); color: var(--accent); background: var(--bg2); }
+.compare-link-vs { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+
 /* CTA button */
 .cta-btn {
   display: inline-flex; align-items: center; gap: 8px;
