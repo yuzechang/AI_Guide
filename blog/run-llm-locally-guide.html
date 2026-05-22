@@ -130,6 +130,7 @@
     .tool-card-name { font-size: 18px; font-weight: 700; color: var(--text); }
     .tool-card-verdict { font-size: 12px; color: var(--accent); font-weight: 600; background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
   </style>
+  <script src="../assets/lang.js"></script>
 </head>
 <body>
 
@@ -144,7 +145,11 @@
       <a href="/" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
       <a href="index" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
       <a href="../about" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
-      <a href="https://game.yuzec.com" target="_blank" rel="noopener" style="font-weight:500;font-size:14px;color:var(--text-2);text-decoration:none;padding:4px 10px;border-radius:6px;border:1px solid var(--border)">🎮 小游戏</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+    </div>
     </nav>
   </div>
 </header>

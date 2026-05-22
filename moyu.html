@@ -319,6 +319,7 @@
     [data-lang="zh"] .en { display: none !important; }
     [data-lang="en"] .zh { display: none !important; }
   </style>
+  <script src="assets/lang.js"></script>
 </head>
 <body>
 
@@ -334,10 +335,10 @@
       <span class="zh">← 返回目录</span>
       <span class="en">← Back</span>
     </a>
-    <a href="https://game.yuzec.com" target="_blank" rel="noopener" style="font-weight:500;font-size:14px;color:var(--text-2);text-decoration:none;margin-left:12px;padding:4px 10px;border-radius:6px;border:1px solid var(--border);white-space:nowrap">🎮 小游戏</a>
+    <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
     <div class="lang-toggle">
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中</button>
+      <button class="lang-btn" id="btn-en" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" id="btn-zh" data-langbtn="zh" onclick="setLang('zh')">中</button>
     </div>
     <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -1329,10 +1330,20 @@ function getMonthName(m) {
 }
 
 function setLang(lang) {
+  if (lang !== 'zh' && lang !== 'en') lang = 'en';
   document.documentElement.setAttribute('data-lang', lang)
-  localStorage.setItem('ai-nav-lang', lang)
-  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh')
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en')
+  document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en')
+  try { localStorage.setItem('ai-nav-lang', lang) } catch(e) {}
+  // 写入 URL param
+  try {
+    var url = new URL(location.href);
+    url.searchParams.set('lang', lang);
+    history.replaceState(null, '', url.toString());
+  } catch(e) {}
+  // 更新所有 lang-btn
+  document.querySelectorAll('[data-langbtn]').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-langbtn') === lang);
+  });
   if (settings) renderPanel()
 }
 
@@ -1343,12 +1354,11 @@ settings      = loadMoyuSettings()
 anniversaries = loadLocalAnniversaries()
 
 ;(function initLang() {
-  const saved = localStorage.getItem('ai-nav-lang')
-  if (saved === 'en') {
-    document.documentElement.setAttribute('data-lang', 'en')
-    document.getElementById('btn-zh').classList.remove('active')
-    document.getElementById('btn-en').classList.add('active')
-  }
+  try {
+    var urlLang = new URLSearchParams(location.search).get('lang');
+    var saved = urlLang || localStorage.getItem('ai-nav-lang');
+    if (saved === 'en' || saved === 'zh') setLang(saved);
+  } catch(e) {}
 })()
 
 initSetupForm()

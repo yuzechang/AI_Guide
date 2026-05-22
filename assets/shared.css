@@ -402,6 +402,16 @@ footer { background: var(--surface); border-top: 1px solid var(--border); margin
 .lang-btn.active { background: var(--accent); color: #fff; }
 .lang-btn:not(.active):hover { color: var(--text); }
 
+/* Game nav link — consistent across all pages */
+.nav-game-link {
+  font-weight: 500; font-size: 14px; color: var(--text-2);
+  text-decoration: none; margin-left: 12px;
+  padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--border); white-space: nowrap;
+  transition: border-color .15s, color .15s;
+}
+.nav-game-link:hover { color: var(--text); border-color: var(--border-bright); }
+
 /* Bilingual visibility rules */
 [data-lang="zh"] .en { display: none !important; }
 [data-lang="en"] .zh { display: none !important; }

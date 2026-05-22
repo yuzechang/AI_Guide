@@ -106,6 +106,8 @@
   <!-- ===== Font ===== -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- 语言管理（URL param + localStorage 双轨） -->
+  <script src="assets/lang.js"></script>
   <!-- 内嵌数据：直接用浏览器打开 HTML 时生效，HTTP 服务器下 fetch 会获取最新数据 -->
   <script src="data.js"></script>
 
@@ -619,7 +621,6 @@
       <button class="nav-tab"        data-filter="agent"     onclick="setFilter('agent')"><span class="en">Agent</span><span class="zh">智能体</span></button>
       <a href="moyu.html" class="nav-tab" style="text-decoration:none"><span class="en">🐟 Moyu</span><span class="zh">🐟 摸鱼办</span></a>
       <a href="blog/index.html" class="nav-tab" style="text-decoration:none"><span class="en">📝 Blog</span><span class="zh">📝 博客</span></a>
-      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-tab" style="text-decoration:none"><span class="en">🎮 Games</span><span class="zh">🎮 小游戏</span></a>
       <button class="donate-btn" onclick="openDonate()" title="Donate / 打赏"><span>💰</span></button>
     </nav>
 
@@ -628,9 +629,11 @@
       <input type="search" id="hSearch" placeholder="Search tools…" oninput="onSearch(this.value)" aria-label="Search tools">
     </div>
 
+    <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 <span class="en">Games</span><span class="zh">小游戏</span></a>
+
     <div class="lang-toggle" role="group" aria-label="Language">
-      <button class="lang-btn active" id="lbEn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn"        id="lbZh" onclick="setLang('zh')">中</button>
+      <button class="lang-btn active" data-langbtn="en" id="lbEn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        data-langbtn="zh" id="lbZh" onclick="setLang('zh')">中</button>
     </div>
 
     <a href="https://github.com/trending" target="_blank" rel="noopener noreferrer" class="gh-link" title="GitHub Trending" aria-label="GitHub">
@@ -1270,12 +1273,25 @@ function onSearch(v) {
 // LANGUAGE
 // ========================================
 function setLang(lang) {
+  if (lang !== 'zh' && lang !== 'en') lang = 'en';
   document.documentElement.setAttribute('data-lang', lang);
   document.documentElement.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
-  document.getElementById('lbEn').classList.toggle('active', lang === 'en');
-  document.getElementById('lbZh').classList.toggle('active', lang === 'zh');
+  // 更新所有 lang-btn（含 lang.js 统一管理的 data-langbtn）
+  document.querySelectorAll('[data-langbtn]').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-langbtn') === lang);
+  });
+  // 兼容旧 id（lbEn/lbZh）
+  var lbEn = document.getElementById('lbEn'), lbZh = document.getElementById('lbZh');
+  if (lbEn) lbEn.classList.toggle('active', lang === 'en');
+  if (lbZh) lbZh.classList.toggle('active', lang === 'zh');
   const ph = lang === 'zh' ? '搜索 AI 工具、框架、智能体…' : 'Search AI tools, agent frameworks, skill libraries…';
   document.querySelectorAll('input[type=search]').forEach(el => el.placeholder = ph);
+  // 写入 URL param
+  try {
+    var url = new URL(location.href);
+    url.searchParams.set('lang', lang);
+    history.replaceState(null, '', url.toString());
+  } catch(e) {}
   try { localStorage.setItem('ai-nav-lang', lang); } catch(_) {}
   // 更新打赏弹窗中的 PayPal 显示
   var pp = document.getElementById('dmPaypal');
@@ -1334,9 +1350,10 @@ document.addEventListener('keydown', e => {
 // INIT — 双轨加载：本地变量 + fetch 刷新
 // ========================================
 (async function init() {
-  // 恢复上次语言偏好
+  // 恢复语言偏好：URL param > localStorage > 默认 en
   try {
-    const savedLang = localStorage.getItem('ai-nav-lang');
+    const urlLang = new URLSearchParams(location.search).get('lang');
+    const savedLang = urlLang || localStorage.getItem('ai-nav-lang');
     if (savedLang === 'zh' || savedLang === 'en') setLang(savedLang);
   } catch(_) {}
 
