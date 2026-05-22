@@ -50,7 +50,7 @@ def main():
         name_a = tool_a.get("name", tool_a_id)
         name_b = tool_b.get("name", tool_b_id)
 
-        seo_title = f"{name_a} vs {name_b} (2025): Which Should You Choose? | AI Nav"
+        seo_title = f"{name_a} vs {name_b} (2026): Which Should You Choose? | AI Nav"
         seo_desc  = (f"Compare {name_a} and {name_b} side-by-side. "
                      f"Features, pricing, pros, cons, and expert recommendation. "
                      f"Find out which is right for your use case.")[:160]

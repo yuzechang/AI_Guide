@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Production RAG Pipeline: A Practical Developer Guide | AI Nav</title>
+  <meta name="description" content="Everything you need to build a Retrieval-Augmented Generation system that actually works in production. Covers chunking strategies, embedding models, vector stores, reranking, and evaluation.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/rag-pipeline-guide.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Building a Production RAG Pipeline: A Practical Developer Guide">
+  <meta property="og:description" content="Everything you need to build a RAG system that actually works in production. Chunking, embeddings, vector stores, reranking, and evaluation with code examples.">
+  <meta property="og:url" content="https://yuzec.com/blog/rag-pipeline-guide.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Building a Production RAG Pipeline: A Practical Developer Guide",
+    "description": "A comprehensive guide to building Retrieval-Augmented Generation systems that work in production, covering chunking, embedding, vector stores, reranking, and evaluation.",
+    "datePublished": "2025-05-18",
+    "dateModified": "2025-05-18",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav Editorial Team",
+      "url": "https://yuzec.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/blog/rag-pipeline-guide.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should I use RAG vs fine-tuning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use RAG when your knowledge base changes frequently (documents, databases, live data) or when you need source attribution. Use fine-tuning when you need the model to learn a specific writing style, domain-specific terminology, or response format that stays consistent. For most enterprise knowledge base use cases, RAG is the right default."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best vector database for RAG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For prototyping: Chroma (runs locally, no infrastructure). For production at moderate scale: Qdrant (excellent performance, supports metadata filtering). For high-scale production: Pinecone (fully managed) or Weaviate (self-hosted with rich features). PostgreSQL with pgvector is a good option if you're already using Postgres and want to avoid another service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I evaluate RAG quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the RAGAS framework to measure four key metrics: faithfulness (does the answer stay grounded in retrieved context?), answer relevancy (does the answer address the question?), context precision (is retrieved context relevant?), and context recall (is all needed information retrieved?). Build a golden dataset of question/answer/context triples and track these metrics as you iterate."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .content-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 24px; }
+    .toc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .toc-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .toc-box ol { margin: 0; padding-left: 18px; }
+    .toc-box li { margin-bottom: 8px; }
+    .toc-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .toc-box a:hover { color: var(--accent); }
+    .related-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    .related-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .related-box ul { margin: 0; padding: 0; list-style: none; }
+    .related-box li { margin-bottom: 8px; }
+    .related-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .related-box a:hover { color: var(--accent); }
+    .article-body h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .article-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    .article-body p { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body strong { color: var(--text); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .tool-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .tool-table th { background: var(--card-bg); color: var(--text-2); font-weight: 600; padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+    .tool-table td { padding: 10px 14px; border: 1px solid var(--border); color: var(--text-2); }
+    .tool-table tr:nth-child(even) td { background: var(--card-bg); }
+    .tool-table td:first-child { font-weight: 600; color: var(--text); }
+    .code-block { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #e6edf3; overflow-x: auto; line-height: 1.6; }
+    .code-block .comment { color: #8b949e; }
+    .code-block .keyword { color: #ff7b72; }
+    .code-block .string { color: #a5d6ff; }
+    .callout { background: var(--card-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; }
+    .callout-warn { border-left-color: #f59e0b; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; background: var(--card-bg); }
+    .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .faq-item p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .pipeline-step { display: flex; gap: 16px; margin: 16px 0; align-items: flex-start; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; min-width: 28px; background: var(--accent); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 700; margin-top: 2px; }
+    .step-content h4 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 6px; }
+    .step-content p { font-size: 14px; color: var(--text-2); margin: 0; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="../index.html" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="index.html" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+      <a href="../about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index.html">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Production RAG Pipeline</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">🧠 Tutorial</span>
+    <h1 class="article-title" style="margin-top:12px">
+      Building a Production RAG Pipeline:<br>
+      <span class="gradient">A Practical Developer Guide</span>
+    </h1>
+    <p class="article-desc">
+      Most RAG tutorials get you to a working demo in 20 lines. This guide covers what it takes to make RAG actually work in production — the chunking decisions, embedding trade-offs, reranking, and evaluation framework that tutorials skip.
+    </p>
+    <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--text-3)">🗓 May 2025</span>
+      <span style="font-size:13px;color:var(--text-3)">⏱ 11 min read</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ AI Nav Editorial Team</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <article class="article-body">
+
+      <p>RAG (Retrieval-Augmented Generation) sounds simple in theory: retrieve relevant documents, stuff them into a prompt, get a grounded answer. In practice, the gap between a 5-minute demo and a production system that users trust is enormous.</p>
+
+      <p>This guide is for developers who've seen the basic tutorial and want to understand the real decisions: how to chunk, which embedding model to use, when to add reranking, and how to know when your retrieval is actually working.</p>
+
+      <h2 id="architecture">The Full RAG Architecture</h2>
+
+      <p>A production RAG system has two distinct phases that most guides collapse into one:</p>
+
+      <p><strong>Indexing pipeline</strong> (offline, runs once or on update):</p>
+      <div class="pipeline-step">
+        <span class="step-num">1</span>
+        <div class="step-content">
+          <h4>Document Loading</h4>
+          <p>Ingest PDFs, HTML, databases, APIs. Handle encoding, extract text, preserve structure (headers, tables).</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <span class="step-num">2</span>
+        <div class="step-content">
+          <h4>Chunking</h4>
+          <p>Split documents into units that fit in context and contain coherent semantic units. This decision has outsized impact on retrieval quality.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <span class="step-num">3</span>
+        <div class="step-content">
+          <h4>Embedding</h4>
+          <p>Convert each chunk to a dense vector representation. The embedding model determines what "similar" means in your retrieval.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <span class="step-num">4</span>
+        <div class="step-content">
+          <h4>Vector Storage</h4>
+          <p>Store vectors with metadata in a vector database. Index for fast approximate nearest-neighbor search.</p>
+        </div>
+      </div>
+
+      <p><strong>Query pipeline</strong> (real-time, runs per query):</p>
+      <div class="pipeline-step">
+        <span class="step-num">5</span>
+        <div class="step-content">
+          <h4>Query Embedding &amp; Retrieval</h4>
+          <p>Embed the user's question, retrieve top-k most similar chunks by vector distance.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <span class="step-num">6</span>
+        <div class="step-content">
+          <h4>Reranking (Optional but Recommended)</h4>
+          <p>Use a cross-encoder model to rescore the top-k candidates and filter out irrelevant results before sending to the LLM.</p>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <span class="step-num">7</span>
+        <div class="step-content">
+          <h4>Generation</h4>
+          <p>Pass the final context + user question to the LLM. Include instructions about staying grounded in the provided context.</p>
+        </div>
+      </div>
+
+      <h2 id="chunking">Chunking Strategy: The Most Underrated Decision</h2>
+
+      <p>Most tutorials use <code>RecursiveCharacterTextSplitter</code> with chunk_size=1000. That works for demos. For production, you need to understand what you're actually splitting and why chunk size matters.</p>
+
+      <h3>Why Chunk Size Matters</h3>
+      <p><strong>Too small chunks</strong> (e.g., 100 tokens): Good for precision, but each chunk lacks enough context. If an answer requires understanding two connected paragraphs, you'll retrieve one and miss the other. Also increases storage and retrieval costs.</p>
+      <p><strong>Too large chunks</strong> (e.g., 2000 tokens): Each chunk has full context, but the retrieval signal is diluted. A chunk about "quarterly earnings and corporate governance" matches weakly to both earnings questions and governance questions.</p>
+
+      <h3>Chunking Strategies by Document Type</h3>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Document Type</th>
+            <th>Recommended Strategy</th>
+            <th>Chunk Size</th>
+            <th>Overlap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Prose / Articles</td>
+            <td>Recursive character with paragraph awareness</td>
+            <td>512 tokens</td>
+            <td>64 tokens</td>
+          </tr>
+          <tr>
+            <td>Technical Docs / Code</td>
+            <td>Header-aware splitting (preserve section context)</td>
+            <td>800 tokens</td>
+            <td>0 (header repeated)</td>
+          </tr>
+          <tr>
+            <td>Q&amp;A / FAQ</td>
+            <td>Keep Q+A as single unit</td>
+            <td>Natural</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Tables / Structured Data</td>
+            <td>Row-by-row or table as single unit</td>
+            <td>Natural</td>
+            <td>Include headers</td>
+          </tr>
+          <tr>
+            <td>Legal / Contract</td>
+            <td>Paragraph with clause number preserved</td>
+            <td>400 tokens</td>
+            <td>100 tokens</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>💡 <strong>Parent-child chunking:</strong> Store large parent chunks (full section) alongside smaller child chunks. Retrieve using small chunks for precision, but return the parent chunk to the LLM for context. LlamaIndex calls this "Small-to-Big Retrieval" and it measurably improves answer quality for complex questions.</p>
+      </div>
+
+      <h2 id="embeddings">Choosing an Embedding Model</h2>
+
+      <p>The embedding model is the most consequential component after chunking. It determines what "semantically similar" means, and it needs to match the vocabulary and style of your documents.</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Dimensions</th>
+            <th>MTEB Score</th>
+            <th>Cost</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>text-embedding-3-large</td>
+            <td>3072</td>
+            <td>64.6</td>
+            <td>$0.00013/1K tokens</td>
+            <td>Production, highest accuracy</td>
+          </tr>
+          <tr>
+            <td>text-embedding-3-small</td>
+            <td>1536</td>
+            <td>62.3</td>
+            <td>$0.00002/1K tokens</td>
+            <td>Cost-sensitive production</td>
+          </tr>
+          <tr>
+            <td>BGE-M3 (open-source)</td>
+            <td>1024</td>
+            <td>63.0</td>
+            <td>Free (self-hosted)</td>
+            <td>Privacy, offline, multilingual</td>
+          </tr>
+          <tr>
+            <td>nomic-embed-text</td>
+            <td>768</td>
+            <td>62.0</td>
+            <td>Free (via Ollama)</td>
+            <td>Local development</td>
+          </tr>
+          <tr>
+            <td>mxbai-embed-large</td>
+            <td>1024</td>
+            <td>64.7</td>
+            <td>Free (self-hosted)</td>
+            <td>Open-source, high accuracy</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-warn">
+        <p>⚠️ <strong>Critical:</strong> Always embed queries and documents with the same model. Mixing embedding models (e.g., using OpenAI to index, then switching to an open-source model later) will break your retrieval — the vector spaces are incompatible. Plan your embedding model choice early.</p>
+      </div>
+
+      <h2 id="vector-stores">Vector Stores</h2>
+
+      <p>For most RAG applications, the vector store is not the bottleneck. Choose based on your operational constraints:</p>
+
+      <ul>
+        <li><strong>Chroma:</strong> Best for local development and prototyping. Runs in-process with no server. Not suitable for production scale.</li>
+        <li><strong>Qdrant:</strong> Our recommendation for self-hosted production. Excellent performance, rich filtering, good documentation, Docker-native.</li>
+        <li><strong>Pinecone:</strong> Fully managed, scales to billions of vectors. Good choice if you want no infrastructure management and can tolerate the cost.</li>
+        <li><strong>pgvector (PostgreSQL):</strong> Best choice if you're already on Postgres. Enables hybrid queries (vector + SQL filters) in a single database. Practical limit around 10M vectors.</li>
+        <li><strong>Weaviate:</strong> Strong for hybrid search (vector + keyword BM25) and multi-tenant applications.</li>
+      </ul>
+
+      <!-- 文章中段广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="reranking">Reranking: The High-ROI Upgrade</h2>
+
+      <p>Bi-encoder retrieval (vector search) is fast but imprecise. It retrieves based on embedding similarity, which sometimes returns topically related but contextually irrelevant chunks. Reranking fixes this.</p>
+
+      <p>A <strong>cross-encoder reranker</strong> takes each query-document pair and computes a relevance score by attending to both simultaneously. It's much slower than vector search but much more accurate. The pattern: use vector search to get top-20 candidates, rerank to select top-3, pass those to the LLM.</p>
+
+      <div class="code-block">
+        <span class="comment"># LangChain reranking with Cohere</span><br>
+        <span class="keyword">from</span> langchain.retrievers.contextual_compression <span class="keyword">import</span> ContextualCompressionRetriever<br>
+        <span class="keyword">from</span> langchain_cohere <span class="keyword">import</span> CohereRerank<br><br>
+        <span class="comment"># Base retriever fetches 20 candidates</span><br>
+        base_retriever = vectorstore.as_retriever(search_kwargs={<span class="string">"k"</span>: 20})<br><br>
+        <span class="comment"># Reranker selects top 4</span><br>
+        compressor = CohereRerank(model=<span class="string">"rerank-english-v3.0"</span>, top_n=4)<br>
+        compression_retriever = ContextualCompressionRetriever(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;base_compressor=compressor,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;base_retriever=base_retriever<br>
+        )<br><br>
+        <span class="comment"># Use as drop-in replacement for base_retriever</span><br>
+        results = compression_retriever.invoke(<span class="string">"your query here"</span>)
+      </div>
+
+      <p>If you want a free alternative to Cohere Rerank, <code>cross-encoder/ms-marco-MiniLM-L-6-v2</code> from HuggingFace is an open-source model you can self-host via the <code>sentence-transformers</code> library.</p>
+
+      <h2 id="hybrid-search">Hybrid Search</h2>
+
+      <p>Pure vector search misses exact-match queries. A query for "RFC 7231 section 6.3.1" has no useful semantic component — you want keyword matching. Hybrid search combines BM25 (sparse keyword) + vector (dense semantic) with a weighted merge.</p>
+
+      <div class="code-block">
+        <span class="comment"># Qdrant hybrid search with fusion</span><br>
+        <span class="keyword">from</span> qdrant_client.models <span class="keyword">import</span> SparseVector, NamedSparseVector<br><br>
+        results = client.query_points(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;collection_name=<span class="string">"my_collection"</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;prefetch=[<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prefetch(query=dense_vector, using=<span class="string">"dense"</span>, limit=20),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prefetch(query=sparse_vector, using=<span class="string">"sparse"</span>, limit=20),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;query=FusionQuery(fusion=Fusion.RRF),  <span class="comment"># Reciprocal Rank Fusion</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;limit=5<br>
+        )
+      </div>
+
+      <h2 id="evaluation">Evaluating RAG Quality</h2>
+
+      <p>You can't improve what you don't measure. The RAGAS framework provides the clearest metrics for RAG evaluation:</p>
+
+      <ul>
+        <li><strong>Faithfulness:</strong> Does the answer stay grounded in the retrieved context? (Hallucination detection)</li>
+        <li><strong>Answer Relevancy:</strong> Does the answer actually address the question asked?</li>
+        <li><strong>Context Precision:</strong> Of the retrieved chunks, what fraction were actually relevant?</li>
+        <li><strong>Context Recall:</strong> Did retrieval find all the information needed to answer correctly?</li>
+      </ul>
+
+      <div class="code-block">
+        <span class="keyword">from</span> ragas <span class="keyword">import</span> evaluate<br>
+        <span class="keyword">from</span> ragas.metrics <span class="keyword">import</span> faithfulness, answer_relevancy, context_precision<br>
+        <span class="keyword">from</span> datasets <span class="keyword">import</span> Dataset<br><br>
+        <span class="comment"># Build your evaluation dataset</span><br>
+        data = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"question"</span>: [<span class="string">"What is the return policy?"</span>, ...],<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"answer"</span>: [<span class="string">"Returns accepted within 30 days..."</span>, ...],<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"contexts"</span>: [[<span class="string">"Our return policy states..."</span>], ...],<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"ground_truth"</span>: [<span class="string">"30-day return window..."</span>, ...]<br>
+        }<br><br>
+        result = evaluate(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Dataset.from_dict(data),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;metrics=[faithfulness, answer_relevancy, context_precision]<br>
+        )<br>
+        print(result)  <span class="comment"># DataFrame with per-question scores</span>
+      </div>
+
+      <p>Build a golden dataset of 50–100 questions with known answers before you start optimizing. Track RAGAS scores as you change chunking strategies, embedding models, and reranking thresholds. This is the only way to know if a change actually improved retrieval.</p>
+
+      <h2 id="common-failures">Common Production Failures</h2>
+
+      <p>Here are the failure modes we see most often in RAG systems that seem to work in development but fail in production:</p>
+
+      <ul>
+        <li><strong>Retrieval misses despite relevant documents being present.</strong> Usually a chunking problem — the answer is split across two chunks, and neither chunk alone is sufficient. Fix: increase overlap or use parent-child chunking.</li>
+        <li><strong>LLM ignores retrieved context and answers from training data.</strong> Add explicit grounding instructions: "Answer ONLY based on the provided context. If the answer is not in the context, say you don't know."</li>
+        <li><strong>Slow performance at scale.</strong> Vector search itself is fast (sub-10ms). Bottlenecks are usually embedding generation (batch your queries) and LLM latency (use streaming).</li>
+        <li><strong>Stale data.</strong> If documents update frequently, implement incremental indexing rather than full re-index. Store document IDs and track update timestamps.</li>
+        <li><strong>Query-document language mismatch.</strong> If users query in English but documents are in French, you either need a multilingual embedding model (BGE-M3) or a query translation step.</li>
+      </ul>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>For production RAG: use hybrid search + reranking.</strong> Pure vector search is the baseline — adding BM25 hybrid search improves recall by 15–25% on typical enterprise datasets, and adding a cross-encoder reranker catches the contextually-irrelevant results that vector similarity alone misses. Default chunk size: 512 tokens with 20% overlap. Measure with RAGAS before and after each change, or you're flying blind.</p>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <h3>When should I use RAG vs fine-tuning?</h3>
+          <p>Use RAG when your knowledge base changes frequently (documents, databases, live data) or when you need source attribution. Use fine-tuning when you need the model to learn a specific writing style, domain-specific terminology, or response format that stays consistent. For most enterprise knowledge base use cases, RAG is the right default.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is the best vector database for RAG?</h3>
+          <p>For prototyping: Chroma (runs locally, no infrastructure). For production at moderate scale: Qdrant (excellent performance, supports metadata filtering). For high-scale production: Pinecone (fully managed) or Weaviate (self-hosted with rich features). PostgreSQL with pgvector is a good option if you're already using Postgres and want to avoid another service.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How do I evaluate RAG quality?</h3>
+          <p>Use the RAGAS framework to measure four key metrics: faithfulness (does the answer stay grounded in retrieved context?), answer relevancy (does the answer address the question?), context precision (is retrieved context relevant?), and context recall (is all needed information retrieved?). Build a golden dataset of question/answer/context triples and track these metrics as you iterate.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What chunk size should I use for RAG?</h3>
+          <p>Start with 512 tokens with 20% overlap as a default. For dense technical documentation, smaller chunks (256 tokens) improve precision. For narrative or conversational content, larger chunks (1024 tokens) preserve context better. The right size depends on your embedding model's training — most models are optimized for passages of 256–512 tokens. Always test empirically against your retrieval quality metrics.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How do I reduce hallucinations in a RAG pipeline?</h3>
+          <p>Three effective techniques: (1) Add a reranking step — cross-encoder rerankers eliminate topically related but contextually irrelevant chunks. (2) Use hybrid search (BM25 + vector) instead of pure vector search to catch exact-match terms. (3) Add a faithfulness check using a secondary LLM call that verifies the answer is grounded in the retrieved context before returning it to the user.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What embedding model gives the best retrieval quality?</h3>
+          <p>For English text, text-embedding-3-large (OpenAI) gives the best quality at $0.00013/1K tokens. For open-source/free options, BGE-M3 and E5-Mistral-7B-Instruct are state-of-the-art. For multilingual retrieval, multilingual-e5-large covers 100+ languages. Run your candidates on MTEB benchmarks filtered to your task type (retrieval vs. clustering vs. classification) before committing.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I build a RAG pipeline without LangChain?</h3>
+          <p>Yes. LlamaIndex is a lighter alternative purpose-built for RAG. For minimal dependencies, you can use the OpenAI client directly with any vector store SDK — the core pattern is just: embed query → search vector DB → inject top-k chunks into prompt. LangChain adds value when you need complex agent logic, tool use, or many third-party integrations alongside your RAG pipeline.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <div class="toc-box">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#architecture">Full Architecture</a></li>
+          <li><a href="#chunking">Chunking Strategy</a></li>
+          <li><a href="#embeddings">Embedding Models</a></li>
+          <li><a href="#vector-stores">Vector Stores</a></li>
+          <li><a href="#reranking">Reranking</a></li>
+          <li><a href="#hybrid-search">Hybrid Search</a></li>
+          <li><a href="#evaluation">Evaluation</a></li>
+          <li><a href="#common-failures">Common Failures</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </div>
+      <div class="related-box">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="ai-agent-frameworks-guide-2025.html">LangChain vs AutoGen →</a></li>
+          <li><a href="run-llm-locally-guide.html">Run LLMs Locally →</a></li>
+          <li><a href="llm-inference-optimization.html">LLM Inference Benchmarks →</a></li>
+        </ul>
+      </div>
+      <div class="related-box" style="margin-top:20px">
+        <h3>Tools for RAG</h3>
+        <ul>
+          <li><a href="../tools/langchain.html">LangChain →</a></li>
+          <li><a href="../tools/llamaindex.html">LlamaIndex →</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Articles</h4>
+        <ul>
+          <li><a href="ai-agent-frameworks-guide-2025.html">Framework Comparison</a></li>
+          <li><a href="run-llm-locally-guide.html">Local LLM Guide</a></li>
+          <li><a href="rag-pipeline-guide.html">RAG Tutorial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

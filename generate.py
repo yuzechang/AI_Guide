@@ -179,6 +179,46 @@ CATEGORY_SEO = {
     },
 }
 
+# ─── 博客文章 → 工具关联映射 ──────────────────────────────────────────────────
+BLOG_ARTICLES = [
+    {
+        "url": "/blog/ai-agent-frameworks-guide-2025.html",
+        "title": "LangChain vs AutoGen vs CrewAI: Which Framework to Use in 2026?",
+        "desc": "Side-by-side comparison of the top 5 agent frameworks with real code examples.",
+        "tags": {"llm", "framework", "agent", "rag", "workflow"},
+        "ids":  {"langchain", "autogen", "crewai", "llamaindex", "dify"},
+    },
+    {
+        "url": "/blog/run-llm-locally-guide.html",
+        "title": "How to Run LLMs Locally: Ollama vs llama.cpp vs LM Studio",
+        "desc": "Step-by-step guide with hardware requirements and performance benchmarks.",
+        "tags": {"local", "privacy"},
+        "ids":  {"ollama", "llama-cpp", "lm-studio"},
+    },
+    {
+        "url": "/blog/rag-pipeline-guide.html",
+        "title": "Building a Production RAG Pipeline: The Complete Guide",
+        "desc": "Architecture, chunking strategies, vector stores, reranking, and evaluation.",
+        "tags": {"rag", "embeddings", "vector-db", "search"},
+        "ids":  {"langchain", "llamaindex", "qdrant", "chroma", "weaviate", "milvus"},
+    },
+    {
+        "url": "/blog/ai-coding-assistants-compared.html",
+        "title": "Best AI Coding Assistants in 2026: Cursor vs Aider vs Copilot",
+        "desc": "Honest comparison with score grids, decision matrix, and real-world trade-offs.",
+        "tags": {"code", "productivity"},
+        "ids":  {"cursor", "aider", "copilot", "continue-dev"},
+    },
+    {
+        "url": "/blog/llm-inference-optimization.html",
+        "title": "vLLM vs TGI vs llama.cpp: Which Inference Engine Is Fastest?",
+        "desc": "Production benchmark data on throughput, latency, and quantization trade-offs.",
+        "tags": {"inference", "deployment"},
+        "ids":  {"vllm", "tgi", "llama-cpp", "text-generation-inference"},
+    },
+]
+
+
 # ─── SEO title / description templates ──────────────────────────────────────
 TITLE_TEMPLATES = {
     "ai-tools": "{name} Review 2026 | {desc_short} – AI Nav",
@@ -193,6 +233,27 @@ DESC_TEMPLATES = {
 
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
+
+def get_blog_links(tool):
+    """返回与工具相关的博客文章（最多 3 篇），按 id 精确匹配优先，其次 tag 匹配。"""
+    tool_tags = set(tool.get("tags", []))
+    tool_id = tool["id"]
+    exact, fuzzy = [], []
+    for article in BLOG_ARTICLES:
+        entry = {"url": article["url"], "title": article["title"], "desc": article["desc"]}
+        if tool_id in article["ids"]:
+            exact.append(entry)
+        elif bool(tool_tags & article["tags"]):
+            fuzzy.append(entry)
+    seen, result = set(), []
+    for entry in exact + fuzzy:
+        if entry["url"] not in seen:
+            seen.add(entry["url"])
+            result.append(entry)
+        if len(result) >= 3:
+            break
+    return result
+
 
 def get_features(tool):
     """从 tags 提取功能特性列表（最多 6 条，去重）。"""
@@ -401,6 +462,7 @@ def main():
     parser = argparse.ArgumentParser(description="AI Nav 静态页面生成器")
     parser.add_argument("--ids",           help="逗号分隔的工具 ID，只生成这些", default="")
     parser.add_argument("--force",         action="store_true", help="强制覆盖已有页面（含手写页）")
+    parser.add_argument("--force-auto",    action="store_true", help="强制覆盖自动生成页（跳过手写页）")
     parser.add_argument("--sitemap-only",  action="store_true", help="只更新 sitemap.xml")
     parser.add_argument("--dry-run",       action="store_true", help="打印计划但不写文件")
     parser.add_argument("--no-category",   action="store_true", help="跳过分类聚合页生成")
@@ -453,8 +515,9 @@ def main():
             filename = MANUAL_PAGES.get(tid, tid) if args.force else tid
             out_path = TOOLS_DIR / f"{filename}.html"
 
-            # 已存在且不强制覆盖
-            if out_path.exists() and not args.force:
+            # 已存在且不强制覆盖（--force-auto 对非手写页也强制覆盖）
+            is_auto_force = args.force_auto and tid not in MANUAL_PAGES
+            if out_path.exists() and not args.force and not is_auto_force:
                 skipped_exists += 1
                 continue
 
@@ -467,16 +530,17 @@ def main():
                 cat_info = CATEGORY_INFO.get(tool["category"], CATEGORY_INFO["ai-tools"])
                 seo_title, seo_desc = build_seo(tool, cat_info)
                 ctx = {
-                    "tool":     tool,
-                    "cat":      cat_info,
-                    "features": get_features(tool),
-                    "related":  get_related(tool, all_tools),
-                    "faqs":     get_faqs(tool, cat_info, cat_counts.get(tool["category"], 0)),
+                    "tool":       tool,
+                    "cat":        cat_info,
+                    "features":   get_features(tool),
+                    "related":    get_related(tool, all_tools),
+                    "faqs":       get_faqs(tool, cat_info, cat_counts.get(tool["category"], 0)),
                     "compare_pages": compare_index.get(tool["id"], []),
-                    "seo_title": seo_title,
-                    "seo_desc":  seo_desc,
-                    "base_url":  BASE_URL,
-                    "today":     TODAY,
+                    "blog_links": get_blog_links(tool),
+                    "seo_title":  seo_title,
+                    "seo_desc":   seo_desc,
+                    "base_url":   BASE_URL,
+                    "today":      TODAY,
                 }
                 html = template.render(**ctx)
                 out_path.write_text(html, encoding="utf-8")

@@ -233,7 +233,7 @@
       {% if tool.expert_take %}
       <blockquote class="expert-take">
         <p class="en">{{ tool.expert_take }}</p>
-        <p class="zh">{{ tool.expert_take_cn or tool.expert_take }}</p>
+        <p class="zh">{{ tool.expert_take_cn if tool.expert_take_cn else "AI Nav 编辑团队推荐：" + tool.name + " 是同类工具中社区认可度极高的开源项目，拥有 " + tool.starsLabel + " GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。" }}</p>
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
       {% endif %}
@@ -604,6 +604,24 @@
       <p class="affiliate-disclosure" style="margin-top:8px">Disclosure: The links above are affiliate links. We may earn a commission if you sign up, at no extra cost to you.</p>
       {% endif %}
 
+      <!-- Related Blog Guides -->
+      {% if blog_links %}
+      <h2 id="guides">
+        <span class="en">Related Guides &amp; Articles</span>
+        <span class="zh">相关指南与文章</span>
+      </h2>
+      <p class="en">Learn more about {{ tool.name }} and its ecosystem with these in-depth guides from AI Nav:</p>
+      <p class="zh">通过以下 AI Nav 深度指南，进一步了解 {{ tool.name }} 及其生态系统：</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:12px">
+        {% for bl in blog_links %}
+        <a href="{{ bl.url }}" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">{{ bl.title }}</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">{{ bl.desc }}</div>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
       <!-- FAQ -->
       <h2 id="faq">
         <span class="en">Frequently Asked Questions</span>
@@ -693,6 +711,7 @@
           {% if related %}<li><a href="#alternatives"><span class="en">Alternatives</span><span class="zh">替代工具</span></a></li>{% endif %}
           {% if compare_pages %}<li><a href="#comparisons"><span class="en">Comparisons</span><span class="zh">对比页</span></a></li>{% endif %}
           {% if tool.commercialAlts %}<li><a href="#commercial-alts"><span class="en">Commercial Alternatives</span><span class="zh">商业替代</span></a></li>{% endif %}
+          {% if blog_links %}<li><a href="#guides"><span class="en">Guides &amp; Articles</span><span class="zh">指南与文章</span></a></li>{% endif %}
           <li><a href="#faq"><span class="en">FAQ</span><span class="zh">常见问题</span></a></li>
         </ul>
       </div>
@@ -742,6 +761,7 @@
       <div class="footer-col">
         <h4><span class="en">Site</span><span class="zh">站点</span></h4>
         <ul>
+          <li><a href="../blog/index.html"><span class="en">Blog</span><span class="zh">博客</span></a></li>
           <li><a href="../about.html"><span class="en">About</span><span class="zh">关于</span></a></li>
           <li><a href="../contact.html"><span class="en">Contact</span><span class="zh">联系</span></a></li>
           <li><a href="../privacy-policy.html"><span class="en">Privacy Policy</span><span class="zh">隐私政策</span></a></li>

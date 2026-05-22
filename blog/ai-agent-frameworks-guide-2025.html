@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LangChain vs AutoGen vs CrewAI vs LlamaIndex 2026 – Which AI Framework? | AI Nav</title>
+  <meta name="description" content="A direct, opinionated comparison of the four most popular AI agent frameworks. We cover architecture, strengths, real use cases, and concrete recommendations for LangChain, AutoGen, CrewAI, and LlamaIndex.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/ai-agent-frameworks-guide-2025.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="LangChain vs AutoGen vs CrewAI vs LlamaIndex 2026">
+  <meta property="og:description" content="A direct comparison of the four most popular AI agent frameworks with concrete recommendations for five developer scenarios.">
+  <meta property="og:url" content="https://yuzec.com/blog/ai-agent-frameworks-guide-2025.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+  <meta property="article:published_time" content="2025-05-01">
+  <meta property="article:author" content="AI Nav Editorial Team">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "LangChain vs AutoGen vs CrewAI vs LlamaIndex: Which AI Framework Should You Use in 2025?",
+    "description": "A direct comparison of the four most popular AI agent frameworks with recommendations for five developer scenarios.",
+    "author": { "@type": "Organization", "name": "AI Nav Editorial Team" },
+    "publisher": { "@type": "Organization", "name": "AI Nav", "url": "https://yuzec.com/" },
+    "datePublished": "2025-05-01",
+    "dateModified": "2025-05-20",
+    "url": "https://yuzec.com/blog/ai-agent-frameworks-guide-2025.html",
+    "mainEntityOfPage": "https://yuzec.com/blog/ai-agent-frameworks-guide-2025.html"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between LangChain and LlamaIndex?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LangChain is a general-purpose LLM application framework covering chains, agents, tools, and memory. LlamaIndex specializes in data ingestion, indexing, and retrieval—making it the better choice when your primary need is connecting LLMs to your own documents and databases via RAG pipelines. Many teams use both: LlamaIndex for retrieval and LangChain for the broader application logic." }
+      },
+      {
+        "@type": "Question",
+        "name": "When should I use AutoGen instead of CrewAI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use AutoGen when you need flexible, research-grade multi-agent conversations with programmatic control over agent behavior. AutoGen is also better for tasks involving code generation and execution—its sandbox is more mature. Choose CrewAI when you want a production-ready, role-based agent team with less boilerplate and better built-in observability." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is LangChain still worth learning in 2026?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes—LangChain has 136k+ GitHub stars and the largest ecosystem of integrations (vector stores, document loaders, tool connectors). The LCEL rewrite and LangGraph extension have addressed most of the early criticism about complexity. For teams building complex LLM pipelines that need many integrations, LangChain remains the most practical choice." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use these frameworks with local models instead of OpenAI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, all four frameworks support local LLMs via Ollama's OpenAI-compatible API. Set the base_url to http://localhost:11434/v1 in your LLM configuration. LangChain has native Ollama integration. LlamaIndex supports Ollama as a first-class LLM provider. This lets you build and test pipelines at zero cost before switching to a production API." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best AI agent framework for production use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "CrewAI is the best choice for most production deployments—it has the cleanest abstraction, built-in observability hooks, and a growing set of production case studies. LangGraph (part of LangChain) is the better choice for teams that need precise control over agent state and workflow branching. AutoGen is still primarily a research framework; use it for prototyping, not production." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do LangChain agents compare to OpenAI Assistants API?",
+        "acceptedAnswer": { "@type": "Answer", "text": "OpenAI Assistants API provides hosted memory, file search, and code execution—ideal for rapid prototyping if you're already using GPT-4. LangChain agents are model-agnostic, giving you full control over tool selection logic, memory backend, and LLM provider. For anything beyond a simple demo or where vendor lock-in is a concern, LangChain's flexibility wins." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is CrewAI free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "CrewAI is open-source (MIT license) and free to self-host. The crewai Python package installs via pip and you bring your own LLM API key. CrewAI also offers a commercial platform (crewai.com) with a hosted execution environment, monitoring, and team collaboration—that has a paid tier. The open-source library itself has no usage limits." }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .comparison-table th { background: var(--card-bg); color: var(--text); font-weight: 700; padding: 10px 14px; text-align: left; border: 1px solid var(--border); }
+    .comparison-table td { padding: 9px 14px; border: 1px solid var(--border); color: var(--text-2); vertical-align: top; }
+    .comparison-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+    .verdict-box { background: var(--card-bg); border: 1px solid var(--accent); border-radius: var(--radius); padding: 20px 24px; margin: 28px 0; }
+    .verdict-box h4 { color: var(--accent); font-size: 13px; text-transform: uppercase; letter-spacing: .07em; margin: 0 0 10px; }
+    .verdict-box p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.65; }
+    .scenario-list { list-style: none; padding: 0; }
+    .scenario-list li { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 12px; }
+    .scenario-list li strong { color: var(--text); display: block; margin-bottom: 4px; }
+    .scenario-list li span { font-size: 13px; color: var(--text-2); }
+    .win-badge { display: inline-block; background: rgba(52,211,153,0.12); color: #34d399; border: 1px solid rgba(52,211,153,0.3); border-radius: 4px; font-size: 11px; font-weight: 700; padding: 2px 8px; margin-right: 6px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="../index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Directory</a>
+      <a href="index.html" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index.html">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">AI Agent Frameworks Guide 2025</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">🤖 Framework Comparison</span>
+    <h1 class="article-title" style="margin-top:12px">
+      LangChain vs AutoGen vs CrewAI vs LlamaIndex:<br><span class="gradient">Which AI Framework in 2025?</span>
+    </h1>
+    <p class="article-desc">A direct, opinionated comparison of the four dominant AI agent frameworks — with concrete recommendations for five common developer scenarios.</p>
+    <div class="article-meta" style="margin-top:14px">
+      <span>🗓 May 2025</span>
+      <span>⏱ 9 min read</span>
+      <span>✍️ AI Nav Editorial Team</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <p>
+        In 2025, picking an AI agent framework is one of the most consequential architectural decisions you can make
+        for an LLM-powered application. The wrong choice means refactoring everything six months later.
+        This guide cuts through the hype and gives you a direct answer.
+      </p>
+      <p>
+        We're comparing four frameworks that have proven community adoption (each with 20k+ GitHub stars) and
+        active maintenance: <a href="../tools/langchain.html"><strong>LangChain</strong></a> (136k stars),
+        <a href="../tools/autogen.html"><strong>AutoGen</strong></a> (42k stars),
+        <a href="../tools/crewai.html"><strong>CrewAI</strong></a> (31k stars), and
+        <a href="../tools/llamaindex.html"><strong>LlamaIndex</strong></a> (40k stars).
+      </p>
+
+      <h2 id="quick-comparison">Quick Comparison Table</h2>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Framework</th>
+            <th>Best For</th>
+            <th>Learning Curve</th>
+            <th>Multi-Agent</th>
+            <th>RAG Support</th>
+            <th>Production Ready</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>LangChain</strong></td>
+            <td>General LLM apps, broadest integrations</td>
+            <td>High</td>
+            <td>Via LangGraph</td>
+            <td>Strong (with LangChain RAG + many vector stores)</td>
+            <td>Yes (with LCEL)</td>
+          </tr>
+          <tr>
+            <td><strong>AutoGen</strong></td>
+            <td>Research, flexible multi-agent conversations</td>
+            <td>Medium</td>
+            <td>Native, first-class</td>
+            <td>Basic (requires extension)</td>
+            <td>Improving (v0.4+)</td>
+          </tr>
+          <tr>
+            <td><strong>CrewAI</strong></td>
+            <td>Role-based agent teams, structured workflows</td>
+            <td>Low</td>
+            <td>Native (role-based)</td>
+            <td>Good via tools</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><strong>LlamaIndex</strong></td>
+            <td>Document Q&amp;A, knowledge retrieval, RAG</td>
+            <td>Medium</td>
+            <td>Via LlamaHub agents</td>
+            <td>Best-in-class</td>
+            <td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="langchain">LangChain: The Swiss Army Knife</h2>
+      <p>
+        LangChain's greatest strength is breadth. It integrates with over 150 vector stores, dozens of document loaders,
+        every major LLM provider, and hundreds of tools. If you need to connect an LLM to a niche data source or API,
+        there's almost certainly a LangChain integration for it.
+      </p>
+      <p>
+        The 2023–2024 rewrite introduced <strong>LangChain Expression Language (LCEL)</strong>, which replaced the older
+        chain syntax with a composable, type-safe pipeline system. LCEL is a genuine improvement: async-native,
+        streaming-first, and debuggable via LangSmith. The companion <strong>LangGraph</strong> library extends this
+        with stateful, graph-based agent workflows that handle looping, branching, and human-in-the-loop patterns.
+      </p>
+      <p>
+        <strong>When to choose LangChain:</strong> Your project needs integrations with many external systems, your team
+        wants maximum community resources (tutorials, Stack Overflow answers, third-party extensions), or you're building
+        agents that need to use dozens of different tools dynamically.
+      </p>
+      <p>
+        <strong>When to avoid it:</strong> Simple use cases — a single prompt, a basic RAG pipeline — don't need LangChain's
+        abstraction layers. For those, raw API calls with <a href="../tools/anthropic-sdk.html">Anthropic SDK</a> or OpenAI's
+        official Python client are cleaner and faster to debug.
+      </p>
+
+      <h2 id="autogen">AutoGen: Research-Grade Multi-Agent Conversations</h2>
+      <p>
+        Microsoft's AutoGen pioneered the idea of LLM agents having back-and-forth conversations to solve problems.
+        In AutoGen's model, you define agents with roles and capabilities, then let them converse — sending messages
+        back and forth, calling tools, and arriving at solutions collaboratively.
+      </p>
+      <p>
+        The <strong>AutoGen v0.4 rewrite</strong> (released late 2024) is a significant improvement. It introduced
+        an async-native architecture, better observability, and a cleaner programming model. The new
+        <code>AutoGen Studio</code> provides a no-code interface for prototyping multi-agent workflows.
+      </p>
+      <p>
+        AutoGen shines in <strong>research and exploratory workflows</strong> where you want agents to reason
+        through problems in multiple steps with minimal constraints. It's also excellent when the task involves
+        writing and executing code — AutoGen's code execution sandbox is mature and well-tested.
+      </p>
+      <p>
+        <strong>Limitation to know:</strong> Conversation-based workflows can be unpredictable. Agents sometimes
+        loop or go off-track. For production systems where predictability matters, CrewAI's structured task
+        approach is often a better fit.
+      </p>
+
+      <h2 id="crewai">CrewAI: Production-Ready Role-Based Teams</h2>
+      <p>
+        CrewAI grew to 31k stars faster than almost any other AI framework. Its insight: developers don't want to
+        think in terms of "agent conversations" — they want to assemble a team with clear <strong>roles, goals, and tasks</strong>.
+      </p>
+      <p>
+        In CrewAI, you define a <strong>Crew</strong> of agents, each with a specific role (Researcher, Writer, Analyst),
+        a set of tools, and a backstory. You then define Tasks with expected outputs. The framework handles the orchestration.
+        This maps naturally to real-world workflows and is significantly easier to reason about than conversation-based models.
+      </p>
+
+      <div class="verdict-box">
+        <h4>Code Example: CrewAI Research Team</h4>
+        <pre style="background:var(--bg);border-radius:6px;padding:14px;overflow-x:auto;font-size:12px;line-height:1.5"><code>from crewai import Agent, Task, Crew
+
+researcher = Agent(
+    role="Senior Research Analyst",
+    goal="Uncover accurate information about {topic}",
+    backstory="Expert at finding and synthesizing information",
+    tools=[search_tool]
+)
+
+writer = Agent(
+    role="Tech Content Writer",
+    goal="Create clear explanations of complex topics",
+    backstory="Experienced in making technical content accessible"
+)
+
+research_task = Task(
+    description="Research {topic} and identify key trends",
+    expected_output="A structured report with 5 key findings",
+    agent=researcher
+)
+
+crew = Crew(agents=[researcher, writer], tasks=[research_task])
+result = crew.kickoff(inputs={"topic": "LLM inference optimization"})</code></pre>
+      </div>
+
+      <p>
+        <strong>When to choose CrewAI:</strong> You're building structured workflows (content pipelines, data analysis,
+        research automation) where a team-based metaphor makes sense. Its tooling for observability and built-in
+        process types (sequential, hierarchical) reduce boilerplate significantly.
+      </p>
+
+      <!-- 文章中段广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="llamaindex">LlamaIndex: The RAG Specialist</h2>
+      <p>
+        If your primary problem is <em>connecting an LLM to your own data</em>, LlamaIndex is almost always the
+        right answer. It was built from the ground up for document ingestion, indexing, and retrieval — and the
+        depth of its primitives in this area outpaces every other framework.
+      </p>
+      <p>
+        LlamaIndex offers over 160 data connectors covering PDFs, databases, APIs, cloud storage, and more.
+        Its <strong>query engines</strong> allow complex retrieval patterns: sub-question decomposition,
+        hybrid search, recursive retrieval, and multi-document synthesis. The <code>VectorStoreIndex</code>
+        abstraction works with every major vector database (Pinecone, Weaviate, Chroma, pgvector).
+      </p>
+      <p>
+        For agents, LlamaIndex added <strong>LlamaHub agents</strong> and <strong>Workflows</strong> — an event-driven
+        system for building stateful multi-step processes. These are solid but less mature than LangGraph or AutoGen.
+      </p>
+      <p>
+        <strong>When to choose LlamaIndex:</strong> Your application is primarily about querying a knowledge base
+        (internal documents, customer data, a product catalog). RAG is the core feature, not a supporting component.
+      </p>
+
+      <h2 id="scenarios">Recommendations by Scenario</h2>
+
+      <ul class="scenario-list">
+        <li>
+          <strong>🔍 Customer support bot with knowledge base access</strong>
+          <span><span class="win-badge">LlamaIndex</span> Best document ingestion and retrieval. Combine with LangChain if you need tool use beyond Q&A.</span>
+        </li>
+        <li>
+          <strong>🤖 Autonomous research agent that browses the web and writes reports</strong>
+          <span><span class="win-badge">CrewAI</span> Role-based structure maps well to researcher → writer pipelines. AutoGen is a solid alternative if you want more flexible agent conversations.</span>
+        </li>
+        <li>
+          <strong>🏗️ Enterprise app connecting to 20+ data sources and APIs</strong>
+          <span><span class="win-badge">LangChain</span> No other framework matches its integration breadth. Use LCEL for pipelines and LangGraph for stateful agents.</span>
+        </li>
+        <li>
+          <strong>🔬 Research prototype with complex multi-agent reasoning</strong>
+          <span><span class="win-badge">AutoGen</span> The conversation model and code execution sandbox make it ideal for exploratory, research-style workflows.</span>
+        </li>
+        <li>
+          <strong>⚡ Simple RAG pipeline as part of a larger application</strong>
+          <span><span class="win-badge">None (raw code)</span> For a single vector search + LLM call, using a framework adds overhead. Write it directly with an LLM SDK and a vector store client.</span>
+        </li>
+      </ul>
+
+      <h2 id="conclusion">Bottom Line</h2>
+      <p>
+        There's no universal "best" framework — the answer genuinely depends on your use case. That said,
+        in 2026 we'd recommend:
+      </p>
+      <ul>
+        <li><strong>Default choice for most new projects:</strong> Start with LangChain. The ecosystem is mature,
+            documentation is extensive, and LangGraph handles agent complexity well.</li>
+        <li><strong>If your core feature is RAG:</strong> LlamaIndex. Its retrieval primitives are deeper than
+            LangChain's, and you'll spend less time fighting the framework.</li>
+        <li><strong>If you're building an agent team for workflow automation:</strong> CrewAI. The role-based
+            model is intuitive and its production tooling is well-developed.</li>
+        <li><strong>If you're doing AI research or complex multi-agent experiments:</strong> AutoGen.
+            Its flexibility and code execution capabilities make it the best sandbox for novel agent architectures.</li>
+      </ul>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>For most new projects: start with LangChain.</strong> It has the largest ecosystem, best documentation, and LangGraph covers complex agent workflows. Switch to LlamaIndex if your core feature is RAG, CrewAI if you're building role-based agent teams, or AutoGen if you're doing research-grade multi-agent experiments. All four are worth knowing — pick the one that matches your primary use case first.</p>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <h3>What is the difference between LangChain and LlamaIndex?</h3>
+      <p>
+        LangChain is a general-purpose LLM application framework covering chains, agents, tools, and memory.
+        LlamaIndex specializes in data ingestion, indexing, and retrieval — making it the better choice when
+        your primary need is connecting LLMs to your own documents and databases via RAG pipelines.
+        Many teams use both: LlamaIndex for retrieval and LangChain for the broader application logic.
+      </p>
+
+      <h3>When should I use AutoGen instead of CrewAI?</h3>
+      <p>
+        Use AutoGen when you need flexible, research-grade multi-agent conversations with programmatic control
+        over agent behavior. AutoGen is also better for tasks involving code generation and execution — its
+        sandbox is more mature. Choose CrewAI when you want a production-ready, role-based agent team with
+        less boilerplate and better built-in observability.
+      </p>
+
+      <h3>Is LangChain still worth learning in 2026?</h3>
+      <p>
+        Yes — with 136k+ GitHub stars, LangChain has the largest ecosystem and community of any AI framework.
+        The LCEL rewrite and LangGraph extension have addressed most of the early criticism about complexity.
+        For teams building complex LLM pipelines that need many integrations, LangChain remains the most
+        practical choice.
+      </p>
+
+      <h3>Can I use these frameworks with local models instead of OpenAI?</h3>
+      <p>
+        Yes, all four frameworks support local LLMs via Ollama's OpenAI-compatible API. Set the base_url
+        to http://localhost:11434/v1 in your LLM configuration. LangChain has native Ollama integration.
+        LlamaIndex supports Ollama as a first-class LLM provider. This lets you build and test pipelines
+        at zero cost before switching to a production API.
+      </p>
+
+      <h3>What is the best AI agent framework for production use?</h3>
+      <p>
+        CrewAI is the best choice for most production deployments — it has the cleanest abstraction, built-in
+        observability hooks, and a growing set of production case studies. LangGraph (part of LangChain) is
+        the better choice for teams that need precise control over agent state and workflow branching.
+        AutoGen is still primarily a research framework; use it for prototyping, not production.
+      </p>
+
+      <h3>How do LangChain agents compare to OpenAI Assistants API?</h3>
+      <p>
+        OpenAI Assistants API provides hosted memory, file search, and code execution — ideal for rapid
+        prototyping if you're already using GPT-4. LangChain agents are model-agnostic, giving you full
+        control over the tool selection logic, memory backend, and LLM provider. For anything beyond a simple
+        demo or where vendor lock-in is a concern, LangChain's flexibility wins.
+      </p>
+
+      <h3>Is CrewAI free to use?</h3>
+      <p>
+        CrewAI is open-source (MIT license) and free to self-host. The crewai Python package installs via pip
+        and you bring your own LLM API key. CrewAI also offers a commercial platform (crewai.com) with a hosted
+        execution environment, monitoring, and team collaboration — that has a paid tier. The open-source library
+        itself has no usage limits.
+      </p>
+
+      <div style="margin-top:40px;padding:24px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius)">
+        <h4 style="margin:0 0 12px;font-size:15px">Explore These Frameworks in Our Directory</h4>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="../tools/langchain.html" class="cta-btn-outline" style="font-size:13px;padding:7px 14px">LangChain →</a>
+          <a href="../tools/autogen.html" class="cta-btn-outline" style="font-size:13px;padding:7px 14px">AutoGen →</a>
+          <a href="../tools/crewai.html" class="cta-btn-outline" style="font-size:13px;padding:7px 14px">CrewAI →</a>
+          <a href="../tools/llamaindex.html" class="cta-btn-outline" style="font-size:13px;padding:7px 14px">LlamaIndex →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>In This Article</h4>
+        <ul class="toc-list" style="list-style:none;padding:0;margin:0;font-size:13px">
+          <li style="margin-bottom:8px"><a href="#quick-comparison" style="color:var(--text-2)">Quick Comparison Table</a></li>
+          <li style="margin-bottom:8px"><a href="#langchain" style="color:var(--text-2)">LangChain</a></li>
+          <li style="margin-bottom:8px"><a href="#autogen" style="color:var(--text-2)">AutoGen</a></li>
+          <li style="margin-bottom:8px"><a href="#crewai" style="color:var(--text-2)">CrewAI</a></li>
+          <li style="margin-bottom:8px"><a href="#llamaindex" style="color:var(--text-2)">LlamaIndex</a></li>
+          <li style="margin-bottom:8px"><a href="#scenarios" style="color:var(--text-2)">By Scenario</a></li>
+          <li><a href="#conclusion" style="color:var(--text-2)">Bottom Line</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card" style="margin-top:16px">
+        <h4>Related Articles</h4>
+        <ul style="list-style:none;padding:0;margin:0;font-size:13px">
+          <li style="margin-bottom:10px"><a href="rag-pipeline-guide.html" style="color:var(--accent)">Building a Production RAG Pipeline →</a></li>
+          <li style="margin-bottom:10px"><a href="run-llm-locally-guide.html" style="color:var(--accent)">Run LLMs Locally: Ollama vs llama.cpp →</a></li>
+          <li><a href="llm-inference-optimization.html" style="color:var(--accent)">LLM Inference Benchmarks →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of open-source AI tools, agent frameworks, and skill libraries.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Blog</h4>
+        <ul>
+          <li><a href="ai-agent-frameworks-guide-2025.html">Framework Comparison</a></li>
+          <li><a href="run-llm-locally-guide.html">Local LLM Guide</a></li>
+          <li><a href="rag-pipeline-guide.html">RAG Tutorial</a></li>
+          <li><a href="index.html">All Articles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Directory</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · <a href="../privacy-policy.html">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
