@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Prompt Engineering Guide 2026: Techniques That Actually Work | AI Nav</title>
+  <meta name="description" content="The complete prompt engineering guide for 2026. Learn chain-of-thought, few-shot prompting, role prompting, and advanced techniques to get 10x better results from Claude, ChatGPT, and Gemini.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/ai-prompt-engineering-guide-2026">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI Prompt Engineering Guide 2026: Techniques That Actually Work">
+  <meta property="og:description" content="Master prompt engineering with proven techniques: chain-of-thought, few-shot prompting, role prompting, and structured output. Practical examples for Claude, ChatGPT, and Gemini.">
+  <meta property="og:url" content="https://yuzec.com/blog/ai-prompt-engineering-guide-2026">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Prompt Engineering Guide 2026: Techniques That Actually Work",
+    "description": "A comprehensive guide to prompt engineering for large language models, covering chain-of-thought, few-shot prompting, role prompting, structured output, and advanced techniques with real examples.",
+    "datePublished": "2026-05-22",
+    "dateModified": "2026-05-22",
+    "author": {
+      "@type": "Person",
+      "name": "yuzec",
+      "url": "https://yuzec.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/blog/ai-prompt-engineering-guide-2026"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is prompt engineering?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prompt engineering is the practice of crafting and optimizing the text inputs you give to AI language models to get better, more accurate, and more useful outputs. It involves techniques like providing clear context, using examples, specifying output format, and breaking complex tasks into steps. Good prompt engineering can dramatically improve AI output quality without changing the underlying model."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is chain-of-thought prompting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chain-of-thought (CoT) prompting instructs the AI to show its reasoning step by step before giving a final answer. You trigger it by adding phrases like 'Think step by step' or 'Let's work through this carefully' to your prompt. This technique significantly improves accuracy on math problems, logical reasoning, and complex multi-step tasks. It works because forcing the model to reason explicitly reduces the chance of errors in the final answer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is few-shot prompting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Few-shot prompting means including 2-5 examples of the input-output format you want before your actual question. Instead of explaining the task abstractly, you show the model exactly what you expect. For example, to classify customer emails, you'd show 3 labeled examples first, then ask it to classify a new email. Few-shot prompting works especially well for custom classification, translation between specific formats, and tasks with unusual output requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does prompt engineering still matter in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, significantly. While newer models (Claude 3.5, GPT-4o) are more capable and require less 'tricks,' the fundamental principle remains true: better-structured prompts produce better outputs. The techniques have evolved — you no longer need to 'jailbreak' models or use magic phrases — but clear task specification, structured formatting requests, and explicit constraints still produce meaningfully better results than vague questions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the best prompt engineering techniques for coding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For coding tasks: (1) Specify the language and version explicitly. (2) Include the error message and surrounding context, not just the error. (3) Ask for explanations alongside code. (4) Use 'write a function that...' rather than 'can you help me with...' (5) For complex logic, ask the model to outline the approach before writing code. (6) Specify constraints: 'without using external libraries', 'compatible with Python 3.8', etc."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I get AI to write in my writing style?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The most effective technique is few-shot style transfer: include 2-3 examples of your own writing before the prompt, then ask the model to 'write in the same style.' For ongoing use, describe your style explicitly: 'Write in a conversational tone, use short paragraphs, avoid jargon, and use em dashes for emphasis.' The more specific your style description, the more consistent the output."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a system prompt and a user prompt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A system prompt (also called instructions or context) sets the overall behavior, persona, and constraints for the AI before the conversation starts. A user prompt is your actual question or request. System prompts are persistent across a conversation; user prompts are turn-by-turn. When using the API, you set the system prompt in the 'system' parameter. In ChatGPT's Custom Instructions and Claude's Projects, you can set persistent system prompts without the API."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is role prompting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Role prompting asks the AI to act as a specific type of expert or persona before answering. For example: 'You are a senior software engineer with 15 years of Python experience. Review this code.' Role prompting often improves output quality by activating domain-specific knowledge patterns. It works best when the role is specific and relevant — 'senior backend engineer' is better than 'expert programmer.'"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .content-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 24px; }
+    .toc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .toc-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .toc-box ol { margin: 0; padding-left: 18px; }
+    .toc-box li { margin-bottom: 8px; }
+    .toc-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .toc-box a:hover { color: var(--accent); }
+    .related-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    .related-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .related-box ul { margin: 0; padding: 0; list-style: none; }
+    .related-box li { margin-bottom: 8px; }
+    .related-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .related-box a:hover { color: var(--accent); }
+    .article-body h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .article-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    .article-body p { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body strong { color: var(--text); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .prompt-example { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; }
+    .prompt-example .label { font-family: Inter, sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); margin-bottom: 8px; }
+    .prompt-example .bad { color: #fca5a5; font-size: 14px; line-height: 1.6; }
+    .prompt-example .good { color: #6ee7b7; font-size: 14px; line-height: 1.6; }
+    .prompt-example .neutral { color: var(--text-2); font-size: 14px; line-height: 1.6; }
+    .technique-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 24px 0; }
+    .technique-card h3 { font-size: 18px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
+    .technique-card .when { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .technique-card p { color: var(--text-2); font-size: 14px; line-height: 1.7; margin-bottom: 12px; }
+    .callout { background: var(--card-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; background: var(--card-bg); }
+    .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .faq-item p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    @media (max-width: 600px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comp-bad { background: rgba(69,10,10,.15); border: 1px solid #7f1d1d; border-radius: 8px; padding: 16px; }
+    .comp-good { background: rgba(6,78,59,.15); border: 1px solid #065f46; border-radius: 8px; padding: 16px; }
+    .comp-bad h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #fca5a5; margin: 0 0 10px; }
+    .comp-good h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; color: #6ee7b7; margin: 0 0 10px; }
+    .comp-bad p, .comp-good p { font-family: 'Courier New', monospace; font-size: 13px; color: var(--text-2); margin: 0; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="/" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="index" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+      <a href="../about" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" style="font-weight:500;font-size:14px;color:var(--text-2);text-decoration:none;padding:4px 10px;border-radius:6px;border:1px solid var(--border)">🎮 小游戏</a>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Prompt Engineering Guide</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">🧠 Guide</span>
+    <h1 class="article-title" style="margin-top:12px">
+      AI Prompt Engineering Guide (2026):<br>
+      <span class="gradient">Techniques That Actually Work</span>
+    </h1>
+    <p class="article-desc">
+      The difference between a vague AI response and a genuinely useful one almost always comes down to how you asked. This guide covers every proven technique — from the basics to advanced patterns — with real before/after examples.
+    </p>
+    <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--text-3)">🗓 May 2026</span>
+      <span style="font-size:13px;color:var(--text-3)">⏱ 12 min read</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ yuzec</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <article class="article-body">
+
+      <p>Most people treat AI like a search engine — type a short query and hope for the best. The people getting dramatically better results are doing something different: they're structuring their prompts as precise specifications, not casual questions.</p>
+
+      <p>This guide covers every technique that consistently improves output quality, with real examples you can copy and adapt. It applies to Claude, ChatGPT, Gemini, and any other frontier model.</p>
+
+      <h2 id="fundamentals">The Fundamentals</h2>
+
+      <p>Before any advanced techniques, three basics account for the majority of quality improvements:</p>
+
+      <h3>1. Be Specific About the Output Format</h3>
+      <p>The single most effective change you can make. Tell the model exactly what format you want — not "give me a summary" but "give me a 3-bullet summary, each bullet under 20 words."</p>
+
+      <div class="comparison-grid">
+        <div class="comp-bad">
+          <h4>❌ Vague</h4>
+          <p>Summarize this article about machine learning.</p>
+        </div>
+        <div class="comp-good">
+          <h4>✅ Specific</h4>
+          <p>Summarize this article in exactly 3 bullet points. Each bullet should be one sentence and focus on a different main insight. Avoid technical jargon.</p>
+        </div>
+      </div>
+
+      <h3>2. Give Context, Not Just the Task</h3>
+      <p>Models perform significantly better when they understand who you are, what you're trying to accomplish, and what constraints exist. This isn't padding — it directly shapes the response.</p>
+
+      <div class="comparison-grid">
+        <div class="comp-bad">
+          <h4>❌ No Context</h4>
+          <p>Write an email about the project delay.</p>
+        </div>
+        <div class="comp-good">
+          <h4>✅ With Context</h4>
+          <p>I'm a project manager writing to a client (non-technical, senior executive). Our software delivery is delayed by 2 weeks due to a third-party API issue. Write an email that's apologetic but confident, under 150 words, and proposes a new timeline.</p>
+        </div>
+      </div>
+
+      <h3>3. Specify What You Don't Want</h3>
+      <p>Negative constraints are underused and highly effective. "Don't include preamble" alone eliminates most of the filler text that makes AI responses feel bloated.</p>
+
+      <div class="prompt-example">
+        <div class="label">Effective Negative Constraints</div>
+        <div class="neutral">
+          ...Don't start with "Certainly!" or similar affirmations.<br>
+          Don't include a conclusion paragraph summarizing what you just said.<br>
+          Don't add caveats about consulting professionals.<br>
+          Don't explain what you're about to do — just do it.
+        </div>
+      </div>
+
+      <h2 id="cot">Chain-of-Thought Prompting</h2>
+
+      <p>Chain-of-thought (CoT) prompting tells the model to reason step by step before giving a final answer. It dramatically improves performance on tasks requiring logic, math, and multi-step reasoning.</p>
+
+      <p>Triggering it is simple — add one of these phrases to your prompt:</p>
+      <ul>
+        <li>"Think step by step."</li>
+        <li>"Let's work through this carefully."</li>
+        <li>"Show your reasoning before giving the answer."</li>
+        <li>"Break this down into steps."</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>Why it works:</strong> Language models predict tokens sequentially. When forced to write out reasoning steps, each step conditions the next token prediction — the "working memory" of the reasoning is externalized in the text, reducing the chance of errors that would be invisible in a direct answer.</p>
+      </div>
+
+      <div class="prompt-example">
+        <div class="label">Chain-of-Thought Example</div>
+        <div class="neutral">
+          A server processes 1,200 requests/minute. Each request takes 50ms to process. The server has 8 CPU cores. Is the server overloaded?<br><br>
+          Think step by step, then give your conclusion.
+        </div>
+      </div>
+
+      <p>With CoT, the model will calculate: 1,200 req/min = 20 req/sec → each takes 0.05 sec → total processing load = 20 × 0.05 = 1.0 CPU seconds/sec → with 8 cores, capacity = 8 CPU-sec/sec → 1.0 / 8 = 12.5% utilization. Not overloaded.</p>
+
+      <p>Without CoT, it might just say "yes" or "no" based on surface pattern matching.</p>
+
+      <h2 id="fewshot">Few-Shot Prompting</h2>
+
+      <p>Few-shot prompting provides examples of the input-output pattern you want before your actual query. It's the most reliable technique for non-standard output formats or domain-specific tasks.</p>
+
+      <h3>When to Use It</h3>
+      <ul>
+        <li>Custom classification tasks with specific categories</li>
+        <li>Transforming data from one format to another</li>
+        <li>Any task where "write in this style" isn't descriptive enough</li>
+        <li>Extracting structured data from unstructured text</li>
+      </ul>
+
+      <div class="prompt-example">
+        <div class="label">Few-Shot Example: Sentiment Classification</div>
+        <div class="neutral">
+          Classify these customer messages as: URGENT, QUESTION, or FEEDBACK<br><br>
+          Message: "My order hasn't arrived and it's been 2 weeks" → URGENT<br>
+          Message: "Can I change my delivery address?" → QUESTION<br>
+          Message: "The packaging was really thoughtful, loved it" → FEEDBACK<br><br>
+          Now classify:<br>
+          Message: "I need to cancel my subscription immediately"
+        </div>
+      </div>
+
+      <p>Three examples is typically the sweet spot — one example often isn't enough to disambiguate edge cases, and more than five starts to crowd the context without adding much.</p>
+
+      <!-- AdSense mid-article -->
+      <div style="margin:32px 0">
+        <ins class="adsbygoogle" style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto" data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="role">Role Prompting</h2>
+
+      <p>Asking the model to adopt a specific persona or expertise level before answering consistently improves output quality for technical and professional tasks. The key is specificity — "expert" is vague, but "senior backend engineer who specializes in PostgreSQL performance optimization" activates different knowledge patterns.</p>
+
+      <div class="comparison-grid">
+        <div class="comp-bad">
+          <h4>❌ Generic Role</h4>
+          <p>You are an expert. Review this Python code.</p>
+        </div>
+        <div class="comp-good">
+          <h4>✅ Specific Role</h4>
+          <p>You are a senior Python developer specializing in async programming and API design. Review this FastAPI endpoint for correctness, performance issues, and adherence to REST conventions.</p>
+        </div>
+      </div>
+
+      <p>Role prompting also helps set the <em>level</em> of explanation. "Explain this to a 5-year-old" vs. "Explain this to a computer science PhD" produce very different outputs from the same underlying question.</p>
+
+      <h2 id="structured">Structured Output Prompting</h2>
+
+      <p>For any task feeding into an application or pipeline, you need reliable structured output. The most reliable approach is to specify the format explicitly — JSON schema, Markdown table, XML — and include a literal template.</p>
+
+      <div class="prompt-example">
+        <div class="label">Structured JSON Output</div>
+        <div class="neutral">
+          Extract the key information from this job posting and return it as JSON with exactly this structure:<br><br>
+          {<br>
+          &nbsp;&nbsp;"title": "string",<br>
+          &nbsp;&nbsp;"company": "string",<br>
+          &nbsp;&nbsp;"location": "string",<br>
+          &nbsp;&nbsp;"salary_range": "string or null",<br>
+          &nbsp;&nbsp;"required_skills": ["array of strings"],<br>
+          &nbsp;&nbsp;"remote": true/false<br>
+          }<br><br>
+          Return only the JSON, no other text.<br><br>
+          Job posting: [paste here]
+        </div>
+      </div>
+
+      <p>The phrase "Return only the JSON, no other text" is critical — without it, most models will wrap the JSON in an explanation.</p>
+
+      <h2 id="decomposition">Task Decomposition</h2>
+
+      <p>Complex tasks fail not because the model can't do the subtasks, but because it tries to do everything at once. Breaking a task into sequential steps — either in one prompt or across multiple turns — dramatically improves results for anything with more than 3-4 logical stages.</p>
+
+      <h3>Single-Prompt Decomposition</h3>
+      <p>Ask the model to break down the task first, then execute each step:</p>
+
+      <div class="prompt-example">
+        <div class="label">Decomposition Prompt</div>
+        <div class="neutral">
+          I need you to write a blog post about [topic]. Before writing, first:<br>
+          1. List 5 potential angles or main arguments<br>
+          2. Pick the strongest one and explain why<br>
+          3. Create an outline with 4 sections<br>
+          4. Then write the full post based on the outline<br><br>
+          Show your work at each step.
+        </div>
+      </div>
+
+      <h3>Multi-Turn Decomposition</h3>
+      <p>For complex projects, use separate turns for each phase: first ask for a plan, review it, then ask for execution. This gives you checkpoints to correct direction before the model goes deep on the wrong approach.</p>
+
+      <h2 id="constraints">Using Constraints Effectively</h2>
+
+      <p>Constraints are instructions that narrow the solution space. The more precise your constraints, the less the model has to guess what you actually want.</p>
+
+      <h3>Length Constraints</h3>
+      <ul>
+        <li>"In exactly 3 sentences" — much better than "briefly"</li>
+        <li>"Under 100 words" — avoids the padding that makes responses feel long</li>
+        <li>"One paragraph" — when you want density over comprehensiveness</li>
+      </ul>
+
+      <h3>Scope Constraints</h3>
+      <ul>
+        <li>"Only address the security implications, not the performance ones"</li>
+        <li>"Focus only on Python 3.10+ compatible solutions"</li>
+        <li>"Assume the reader has no prior knowledge of databases"</li>
+      </ul>
+
+      <h3>Style Constraints</h3>
+      <ul>
+        <li>"Write in active voice throughout"</li>
+        <li>"Use a direct, no-fluff tone — no hedging"</li>
+        <li>"Each sentence should be under 20 words"</li>
+      </ul>
+
+      <h2 id="coding">Prompt Engineering for Coding Tasks</h2>
+
+      <p>Coding prompts have specific patterns that consistently produce better output. Tools like <a href="/tools/cursor">Cursor</a> and <a href="/tools/claude-code">Claude Code</a> have built these patterns into their architecture, but understanding them helps even when using the raw chat interface.</p>
+
+      <h3>Include the Full Error Context</h3>
+      <div class="comparison-grid">
+        <div class="comp-bad">
+          <h4>❌ Incomplete</h4>
+          <p>I'm getting an error with my database query. How do I fix it?</p>
+        </div>
+        <div class="comp-good">
+          <h4>✅ Complete</h4>
+          <p>I'm getting this error: [full error message and stack trace]. Here's the relevant code: [code snippet]. Context: PostgreSQL 14, running inside a Docker container, this query worked in staging but fails in production.</p>
+        </div>
+      </div>
+
+      <h3>Specify the Constraints</h3>
+      <div class="prompt-example">
+        <div class="label">Good Coding Prompt Structure</div>
+        <div class="neutral">
+          Write a Python function that [specific task].<br><br>
+          Requirements:<br>
+          - Must be compatible with Python 3.8+<br>
+          - No external dependencies beyond the standard library<br>
+          - Should handle edge cases: [list them]<br>
+          - Include type hints<br>
+          - Return [specific type], not [what you don't want]<br><br>
+          Include a brief docstring but no inline comments.
+        </div>
+      </div>
+
+      <h2 id="system">System Prompts and Persistent Context</h2>
+
+      <p>For repeated use cases, a well-crafted system prompt eliminates the need to repeat context in every message. If you're using the API, always put stable context in the system prompt — it's cached, cheaper, and processed separately from user turns.</p>
+
+      <p>A good system prompt includes:</p>
+      <ul>
+        <li><strong>Role:</strong> Who the model is and what it knows</li>
+        <li><strong>Output defaults:</strong> Always use markdown / never use emoji / always respond in English</li>
+        <li><strong>Behavioral constraints:</strong> Don't speculate, don't add unsolicited advice, stay on topic</li>
+        <li><strong>Domain context:</strong> Background information the model needs for every query</li>
+      </ul>
+
+      <div class="prompt-example">
+        <div class="label">Example System Prompt (Developer Tool)</div>
+        <div class="neutral">
+          You are a code reviewer for a TypeScript/React codebase using Next.js 14 and Tailwind CSS. When reviewing code:<br>
+          - Identify bugs and security issues first<br>
+          - Then performance concerns<br>
+          - Then style/readability issues<br>
+          - Format output as: [SEVERITY] [CATEGORY]: [Issue] — [Fix]<br>
+          - Use HIGH/MEDIUM/LOW for severity<br>
+          - Never add preamble or sign-off phrases<br>
+          - If the code is fine, say "No issues found" and nothing else
+        </div>
+      </div>
+
+      <h2 id="advanced">Advanced Techniques</h2>
+
+      <h3>Self-Consistency</h3>
+      <p>For high-stakes decisions, ask the model to answer the same question multiple times with different reasoning approaches, then pick the most common answer. This reduces variance for factual and logical tasks.</p>
+
+      <h3>Critique and Revise</h3>
+      <p>Two-pass prompting produces better output for writing and code: first generate, then critique, then revise. You can do this in one prompt:</p>
+
+      <div class="prompt-example">
+        <div class="label">Critique-Revise Prompt</div>
+        <div class="neutral">
+          Write a product description for [product].<br><br>
+          After writing it, critique it for: clarity, persuasiveness, and accuracy.<br>
+          Then write an improved version that addresses your critiques.
+        </div>
+      </div>
+
+      <h3>Perspective Prompting</h3>
+      <p>Ask the model to consider a problem from multiple perspectives before recommending a solution. This is especially useful for strategic decisions and architecture choices where different stakeholders have different priorities.</p>
+
+      <h3>The "Expert Panel" Technique</h3>
+      <p>For complex decisions, ask the model to roleplay a panel of experts with different viewpoints and have them debate:</p>
+
+      <div class="prompt-example">
+        <div class="label">Expert Panel Prompt</div>
+        <div class="neutral">
+          I'm deciding whether to use microservices or a monolith for a new SaaS app (5 engineers, 1K users at launch).<br><br>
+          Simulate a brief debate between:<br>
+          - A distributed systems engineer (pro-microservices)<br>
+          - A pragmatic startup engineer (pro-monolith)<br>
+          - A CTO focused on hiring and team velocity<br><br>
+          Then give your recommendation based on the debate.
+        </div>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h3>What is prompt engineering?</h3>
+        <p>Prompt engineering is the practice of crafting and optimizing the text inputs you give to AI language models to get better, more accurate, and more useful outputs. It involves techniques like providing clear context, using examples, specifying output format, and breaking complex tasks into steps. Good prompt engineering can dramatically improve AI output quality without changing the underlying model.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is chain-of-thought prompting?</h3>
+        <p>Chain-of-thought (CoT) prompting instructs the AI to show its reasoning step by step before giving a final answer. Trigger it by adding "Think step by step" or "Show your reasoning" to your prompt. It significantly improves accuracy on math problems, logical reasoning, and complex multi-step tasks.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Does prompt engineering still matter in 2026?</h3>
+        <p>Yes, significantly. While newer models are more capable and require fewer "tricks," the fundamentals remain true: better-structured prompts produce better outputs. Clear task specification, structured formatting requests, and explicit constraints still produce meaningfully better results than vague questions — with any model.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What are the best prompt techniques for coding?</h3>
+        <p>Specify the language and version. Include the full error message and stack trace, not just a description. Ask for explanations alongside code. Use declarative language ("write a function that..."). Specify constraints (no external libraries, Python 3.8+ compatible). For complex logic, ask for an approach outline before code.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is few-shot prompting?</h3>
+        <p>Few-shot prompting means including 2-5 examples of the input-output format you want before your actual question. Instead of explaining the task abstractly, you show the model exactly what you expect. Three examples is the sweet spot for most tasks.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is the difference between a system prompt and a user prompt?</h3>
+        <p>A system prompt sets the overall behavior, persona, and constraints for the AI before the conversation starts. A user prompt is your actual question. System prompts persist across a conversation; user prompts are turn-by-turn. Use system prompts for stable context that applies to every interaction.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>How do I get AI to write in my writing style?</h3>
+        <p>The most effective technique is few-shot style transfer: include 2-3 examples of your own writing before the prompt, then ask the model to "write in the same style." Also describe your style explicitly: tone, sentence length, use of punctuation, vocabulary level. The more specific, the more consistent the output.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What is role prompting?</h3>
+        <p>Role prompting asks the AI to act as a specific type of expert or persona before answering. It works best when the role is specific and relevant — "senior backend engineer specializing in PostgreSQL" is better than "expert programmer." Specificity activates different knowledge patterns and sets the expected depth of response.</p>
+      </div>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>Start with the three fundamentals: specify output format, provide context, and state what you don't want.</strong> These alone eliminate 80% of the frustrating vague responses. Then add chain-of-thought for reasoning tasks, few-shot examples for custom formats, and role prompting for domain-specific work. The difference between a mediocre prompt and a great one isn't magic — it's precision.</p>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <div class="toc-box">
+        <h3>Contents</h3>
+        <ol>
+          <li><a href="#fundamentals">The Fundamentals</a></li>
+          <li><a href="#cot">Chain-of-Thought</a></li>
+          <li><a href="#fewshot">Few-Shot Prompting</a></li>
+          <li><a href="#role">Role Prompting</a></li>
+          <li><a href="#structured">Structured Output</a></li>
+          <li><a href="#decomposition">Task Decomposition</a></li>
+          <li><a href="#constraints">Using Constraints</a></li>
+          <li><a href="#coding">Coding Prompts</a></li>
+          <li><a href="#system">System Prompts</a></li>
+          <li><a href="#advanced">Advanced Techniques</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </div>
+      <div class="related-box">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="claude-vs-chatgpt-vs-gemini-2026">Claude vs ChatGPT vs Gemini</a></li>
+          <li><a href="ai-agent-frameworks-guide-2025">Best AI Agent Frameworks</a></li>
+          <li><a href="ai-coding-assistants-compared">Best AI Coding Assistants</a></li>
+          <li><a href="run-llm-locally-guide">Run LLMs Locally</a></li>
+        </ul>
+      </div>
+      <div class="related-box" style="margin-top:20px">
+        <h3>Tools for Developers</h3>
+        <ul>
+          <li><a href="/tools/claude-code">Claude Code</a></li>
+          <li><a href="/tools/cursor">Cursor</a></li>
+          <li><a href="/tools/chatgpt">ChatGPT</a></li>
+          <li><a href="/tools/langchain">LangChain</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-icon">⚡</span>
+      <strong>AI.Nav</strong>
+      <span style="color:var(--text-3);font-size:13px;margin-left:8px">The AI tools directory</span>
+    </div>
+    <nav class="footer-links">
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/privacy-policy">Privacy</a>
+      <a href="/blog/index">Blog</a>
+    </nav>
+    <p style="font-size:12px;color:var(--text-3);margin:12px 0 0">© 2026 yuzec.com · All rights reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>
