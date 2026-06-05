@@ -154,6 +154,31 @@
 
       <h3>Code Review & Documentation</h3>
       <p>Run Claude Code in headless mode as part of your CI pipeline to automatically add JSDoc/docstring comments, generate README sections, or flag potential bugs in new PRs.</p>
+      <!-- Who Should Use This Tool -->
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use Claude Code?</span>
+        <span class="zh">谁适合使用 Claude Code？</span>
+      </h2>
+      <div class="pros-cons">
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul>
+            <li>Developers who prefer terminal-first workflows and want Claude to read, edit, and run code without leaving the shell</li>
+            <li>Teams building on the Anthropic API who want a fast way to prototype, debug, and refactor with Claude 3.5/3.7 Sonnet</li>
+            <li>Engineers doing codebase exploration — Claude Code can index entire repos and answer architecture questions</li>
+          </ul>
+        </div>
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul>
+            <li>Non-technical users who need a GUI — Claude Code is CLI-only with no visual interface</li>
+            <li>Workflows requiring offline or air-gapped execution — all inference calls go to Anthropic's API</li>
+            <li>Teams on tight token budgets: large repo context can consume thousands of tokens per session</li>
+          </ul>
+        </div>
+      </div>
+
+
 
       <h2 id="pros-cons">Pros & Cons</h2>
       <div class="pros-cons">

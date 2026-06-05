@@ -310,6 +310,31 @@
       
 
       <!-- Pros & Cons -->
+      <!-- Who Should Use This Tool -->
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use vLLM?</span>
+        <span class="zh">谁适合使用 vLLM？</span>
+      </h2>
+      <div class="pros-cons">
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul>
+            <li>Production teams serving LLMs to hundreds of concurrent users — vLLM's PagedAttention delivers 10–30× higher throughput than naive serving</li>
+            <li>GPU-rich environments (A100, H100, RTX 4090) where maximizing tokens/second per dollar is the priority</li>
+            <li>Teams needing OpenAI-compatible API endpoints for drop-in replacement of GPT-4 in existing applications</li>
+          </ul>
+        </div>
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul>
+            <li>Single-user local development — Ollama or llama.cpp are simpler and require less setup</li>
+            <li>CPU-only environments — vLLM requires CUDA-compatible NVIDIA GPUs (or ROCm for AMD)</li>
+            <li>Teams with very small models (<3B params) where simpler inference engines have sufficient throughput</li>
+          </ul>
+        </div>
+      </div>
+
+
       
       <h2 id="pros-cons">
         <span class="en">Pros &amp; Cons</span>
