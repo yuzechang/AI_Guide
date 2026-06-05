@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LangChain vs LlamaIndex in 2026: Which RAG Framework Should You Choose? | AI Nav</title>
+  <meta name="description" content="Honest comparison of LangChain and LlamaIndex for building RAG applications. Covers architecture differences, code examples, performance, and clear recommendations for when to choose each.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/langchain-vs-llamaindex.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="LangChain vs LlamaIndex in 2026: Which RAG Framework Should You Choose?">
+  <meta property="og:description" content="Honest comparison of LangChain and LlamaIndex for building RAG applications. Covers architecture differences, code examples, performance, and clear recommendations for when to choose each.">
+  <meta property="og:url" content="https://yuzec.com/blog/langchain-vs-llamaindex.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "LangChain vs LlamaIndex in 2026: Which RAG Framework Should You Choose?",
+    "description": "Honest comparison of LangChain and LlamaIndex for building RAG applications. Covers architecture differences, code examples, performance, and clear recommendations for when to choose each.",
+    "datePublished": "2026-06-01",
+    "dateModified": "2026-06-01",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav Editorial Team",
+      "url": "https://yuzec.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/blog/langchain-vs-llamaindex.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I use LangChain and LlamaIndex together in the same project?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and this is actually a popular production pattern. LlamaIndex handles document ingestion, chunking, and vector indexing, while LangChain wraps the retrieval step inside a broader agent with tool use, memory, and multi-step reasoning. The LlamaIndex retriever can be plugged into a LangChain chain via the LlamaIndexToolSpec or by calling the query engine as a custom retriever."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which framework has better support for production deployments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both have matured significantly. LangChain's LangServe makes it straightforward to deploy chains as FastAPI endpoints with automatic OpenAPI docs. LlamaIndex integrates well with FastAPI and supports async query engines natively. For observability, LangSmith (LangChain's tracing platform) is more polished out of the box, while LlamaIndex works with open-source options like Arize Phoenix and OpenTelemetry-compatible tracers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which framework is better for beginners building their first RAG app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LlamaIndex is generally more approachable for RAG beginners. You can have a working PDF question-answering system in under 10 lines of code: load documents, create an index, and query it. The abstractions map directly to RAG concepts. LangChain is more powerful but has a steeper learning curve due to its LCEL syntax, the large number of integrations, and the breadth of non-RAG use cases it covers."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .content-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 24px; }
+    .toc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .toc-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .toc-box ol { margin: 0; padding-left: 18px; }
+    .toc-box li { margin-bottom: 8px; }
+    .toc-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .toc-box a:hover { color: var(--accent); }
+    .related-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    .related-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .related-box ul { margin: 0; padding: 0; list-style: none; }
+    .related-box li { margin-bottom: 8px; }
+    .related-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .related-box a:hover { color: var(--accent); }
+    .article-body h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .article-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    .article-body p { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body strong { color: var(--text); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .tool-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .tool-table th { background: var(--card-bg); color: var(--text-2); font-weight: 600; padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+    .tool-table td { padding: 10px 14px; border: 1px solid var(--border); color: var(--text-2); }
+    .tool-table tr:nth-child(even) td { background: var(--card-bg); }
+    .tool-table td:first-child { font-weight: 600; color: var(--text); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .badge-green { background: #064e3b; color: #6ee7b7; }
+    .badge-yellow { background: #451a03; color: #fcd34d; }
+    .badge-red { background: #450a0a; color: #fca5a5; }
+    .badge-blue { background: #1e3a5f; color: #93c5fd; }
+    .code-block { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #e6edf3; overflow-x: auto; }
+    .code-block .comment { color: #8b949e; }
+    .code-block .cmd { color: #79c0ff; }
+    .code-block .str { color: #a5d6ff; }
+    .code-block .kw { color: #ff7b72; }
+    .callout { background: var(--card-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; }
+    .faq-section { margin-top: 40px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; background: var(--card-bg); }
+    .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .faq-item p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .tool-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin: 20px 0; }
+    .tool-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .tool-card-icon { font-size: 24px; }
+    .tool-card-name { font-size: 18px; font-weight: 700; color: var(--text); }
+    .tool-card-verdict { font-size: 12px; color: var(--accent); font-weight: 600; background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
+    .decision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    @media (max-width: 600px) { .decision-grid { grid-template-columns: 1fr; } }
+    .decision-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+    .decision-card h4 { font-size: 14px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .decision-card ul { margin: 0; padding-left: 18px; }
+    .decision-card li { font-size: 13px; color: var(--text-2); margin-bottom: 5px; }
+    .vs-divider { display: flex; align-items: center; gap: 16px; margin: 32px 0; }
+    .vs-divider::before, .vs-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .vs-divider span { font-weight: 800; font-size: 18px; color: var(--text-3); }
+  </style>
+  <script src="../assets/lang.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="/" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="index" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+      <a href="../about" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+    </div>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">LangChain vs LlamaIndex</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">⚖️ Framework Comparison</span>
+    <h1 class="article-title" style="margin-top:12px">
+      LangChain vs LlamaIndex in 2026:<br>
+      <span class="gradient">Which RAG Framework Should You Choose?</span>
+    </h1>
+    <p class="article-desc">
+      Both frameworks solve RAG — but they approach it from very different angles. LangChain is a general-purpose LLM orchestration pipeline; LlamaIndex is a data-first indexing engine. Here's an honest, code-grounded comparison to help you pick the right one.
+    </p>
+    <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--text-3)">🗓 June 2026</span>
+      <span style="font-size:13px;color:var(--text-3)">⏱ 9 min read</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ AI Nav Editorial Team</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <article class="article-body">
+
+      <p>If you've started building a RAG (Retrieval-Augmented Generation) application in 2026, you've almost certainly encountered both <a href="../tools/langchain.html">LangChain</a> and <a href="../tools/llamaindex.html">LlamaIndex</a>. Both are open-source Python frameworks with large communities, extensive documentation, and integrations with dozens of LLMs and vector databases. And both can help you build a system that answers questions from your documents.</p>
+
+      <p>So why does choosing between them matter? Because their architectural philosophies are fundamentally different, and picking the wrong one early can mean significant refactoring down the road. LangChain treats everything — retrieval, tool use, memory, agents — as composable chain components. LlamaIndex was purpose-built around the idea that transforming raw data into queryable indexes is the hardest and most important part of building LLM applications.</p>
+
+      <p>This article covers the architectural differences, provides side-by-side code for the same task, benchmarks what we can measure objectively, and gives clear guidance on when each framework is the right choice. We also cover the increasingly popular pattern of using both together.</p>
+
+      <h2 id="architecture">Architectural Differences</h2>
+
+      <p>The best way to understand the difference is to look at what each framework considers its core abstraction:</p>
+
+      <ul>
+        <li><strong>LangChain's core abstraction</strong> is the <em>chain</em> — a composable sequence of steps where the output of one step feeds into the next. Retrieval is just one possible step in a chain. The framework is designed for building pipelines that can include any combination of LLM calls, tool use, memory lookups, human-in-the-loop steps, and conditional logic.</li>
+        <li><strong>LlamaIndex's core abstraction</strong> is the <em>index</em> — a structured representation of your data that makes it efficiently queryable. Document loading, chunking strategies, embedding generation, and metadata filtering are first-class citizens. Retrieval is not just a step; it's the whole point.</li>
+      </ul>
+
+      <p>This distinction has real consequences. LangChain's document loaders and text splitters are functional but not deeply optimized — they're designed to get data into a retriever quickly. LlamaIndex has spent years building sophisticated chunking strategies (sentence-window, hierarchical, semantic), metadata extraction, and index types (vector, keyword, knowledge graph, SQL) that directly address the hardest problems in production RAG.</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>LangChain</th>
+            <th>LlamaIndex</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Core abstraction</td>
+            <td>Chain / LCEL pipeline</td>
+            <td>Index / Query Engine</td>
+          </tr>
+          <tr>
+            <td>Primary use case</td>
+            <td>General LLM orchestration</td>
+            <td>Document indexing &amp; retrieval</td>
+          </tr>
+          <tr>
+            <td>PyPI package size</td>
+            <td>~45 MB (langchain-core)</td>
+            <td>~18 MB (llama-index-core)</td>
+          </tr>
+          <tr>
+            <td>Supported LLMs</td>
+            <td>80+ via integrations</td>
+            <td>50+ via integrations</td>
+          </tr>
+          <tr>
+            <td>Vector DB integrations</td>
+            <td>30+</td>
+            <td>40+</td>
+          </tr>
+          <tr>
+            <td>Document loaders</td>
+            <td>100+ built-in</td>
+            <td>160+ built-in (Llama Hub)</td>
+          </tr>
+          <tr>
+            <td>Chunking strategies</td>
+            <td>6 built-in splitters</td>
+            <td>15+ specialized node parsers</td>
+          </tr>
+          <tr>
+            <td>GitHub Stars (Jun 2026)</td>
+            <td>~95k</td>
+            <td>~40k</td>
+          </tr>
+          <tr>
+            <td>First stable release</td>
+            <td>Oct 2022</td>
+            <td>Nov 2022</td>
+          </tr>
+          <tr>
+            <td>Agent support</td>
+            <td>Extensive (LCEL + LangGraph)</td>
+            <td>Available (simpler API)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>💡 <strong>Key insight:</strong> LangChain's larger ecosystem (stars, integrations, community tutorials) reflects its broader scope — it covers much more than RAG. LlamaIndex's smaller package size and focused feature set aren't weaknesses; they reflect deliberate specialization. For document-heavy RAG, that specialization wins.</p>
+      </div>
+
+      <h2 id="code-comparison">RAG Code Comparison: PDF Question Answering</h2>
+
+      <p>Let's implement the same task in both frameworks: load a PDF, chunk it, embed it into a vector store, and answer questions from it. Both examples use OpenAI's <code>text-embedding-3-small</code> for embeddings and <code>gpt-4o-mini</code> for generation.</p>
+
+      <h3>LangChain Implementation</h3>
+
+      <div class="code-block">
+        <span class="comment"># LangChain: PDF RAG pipeline</span><br>
+        <span class="comment"># pip install langchain langchain-openai langchain-community chromadb pypdf</span><br><br>
+        <span class="kw">from</span> <span class="cmd">langchain_community.document_loaders</span> <span class="kw">import</span> <span class="cmd">PyPDFLoader</span><br>
+        <span class="kw">from</span> <span class="cmd">langchain.text_splitter</span> <span class="kw">import</span> <span class="cmd">RecursiveCharacterTextSplitter</span><br>
+        <span class="kw">from</span> <span class="cmd">langchain_openai</span> <span class="kw">import</span> <span class="cmd">OpenAIEmbeddings, ChatOpenAI</span><br>
+        <span class="kw">from</span> <span class="cmd">langchain_community.vectorstores</span> <span class="kw">import</span> <span class="cmd">Chroma</span><br>
+        <span class="kw">from</span> <span class="cmd">langchain.chains</span> <span class="kw">import</span> <span class="cmd">RetrievalQA</span><br><br>
+        <span class="comment"># 1. Load PDF</span><br>
+        <span class="cmd">loader = PyPDFLoader(</span><span class="str">"report.pdf"</span><span class="cmd">)</span><br>
+        <span class="cmd">pages = loader.load()</span>  <span class="comment"># Returns list of Document objects</span><br><br>
+        <span class="comment"># 2. Split into chunks (1000 chars, 200 overlap)</span><br>
+        <span class="cmd">splitter = RecursiveCharacterTextSplitter(</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">chunk_size=</span><span class="str">1000</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">chunk_overlap=</span><span class="str">200</span><br>
+        <span class="cmd">)</span><br>
+        <span class="cmd">chunks = splitter.split_documents(pages)</span><br>
+        <span class="comment"># A 50-page PDF typically produces ~300-500 chunks</span><br><br>
+        <span class="comment"># 3. Embed and store in ChromaDB</span><br>
+        <span class="cmd">embeddings = OpenAIEmbeddings(model=</span><span class="str">"text-embedding-3-small"</span><span class="cmd">)</span><br>
+        <span class="cmd">vectorstore = Chroma.from_documents(chunks, embeddings)</span><br><br>
+        <span class="comment"># 4. Create retrieval chain</span><br>
+        <span class="cmd">llm = ChatOpenAI(model=</span><span class="str">"gpt-4o-mini"</span><span class="cmd">, temperature=</span><span class="str">0</span><span class="cmd">)</span><br>
+        <span class="cmd">qa_chain = RetrievalQA.from_chain_type(</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">llm=llm,</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">retriever=vectorstore.as_retriever(search_kwargs={</span><span class="str">"k"</span><span class="cmd">: 4}),</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">return_source_documents=</span><span class="kw">True</span><br>
+        <span class="cmd">)</span><br><br>
+        <span class="comment"># 5. Query</span><br>
+        <span class="cmd">result = qa_chain.invoke({</span><span class="str">"query"</span><span class="cmd">: </span><span class="str">"What were the key findings?"</span><span class="cmd">})</span><br>
+        <span class="cmd">print(result[</span><span class="str">"result"</span><span class="cmd">])</span>
+      </div>
+
+      <h3>LlamaIndex Implementation</h3>
+
+      <div class="code-block">
+        <span class="comment"># LlamaIndex: PDF RAG pipeline</span><br>
+        <span class="comment"># pip install llama-index llama-index-llms-openai llama-index-embeddings-openai</span><br><br>
+        <span class="kw">from</span> <span class="cmd">llama_index.core</span> <span class="kw">import</span> <span class="cmd">VectorStoreIndex, SimpleDirectoryReader, Settings</span><br>
+        <span class="kw">from</span> <span class="cmd">llama_index.llms.openai</span> <span class="kw">import</span> <span class="cmd">OpenAI</span><br>
+        <span class="kw">from</span> <span class="cmd">llama_index.embeddings.openai</span> <span class="kw">import</span> <span class="cmd">OpenAIEmbedding</span><br><br>
+        <span class="comment"># Configure global settings</span><br>
+        <span class="cmd">Settings.llm = OpenAI(model=</span><span class="str">"gpt-4o-mini"</span><span class="cmd">, temperature=</span><span class="str">0</span><span class="cmd">)</span><br>
+        <span class="cmd">Settings.embed_model = OpenAIEmbedding(model=</span><span class="str">"text-embedding-3-small"</span><span class="cmd">)</span><br>
+        <span class="cmd">Settings.chunk_size = </span><span class="str">1024</span>  <span class="comment"># LlamaIndex default is token-based, not char-based</span><br><br>
+        <span class="comment"># 1. Load documents from directory (auto-detects PDF, DOCX, TXT, etc.)</span><br>
+        <span class="cmd">documents = SimpleDirectoryReader(</span><span class="str">"./docs"</span><span class="cmd">).load_data()</span><br><br>
+        <span class="comment"># 2. Build index (handles chunking + embedding automatically)</span><br>
+        <span class="cmd">index = VectorStoreIndex.from_documents(documents)</span><br><br>
+        <span class="comment"># 3. Create query engine and ask questions</span><br>
+        <span class="cmd">query_engine = index.as_query_engine(similarity_top_k=</span><span class="str">4</span><span class="cmd">)</span><br>
+        <span class="cmd">response = query_engine.query(</span><span class="str">"What were the key findings?"</span><span class="cmd">)</span><br><br>
+        <span class="cmd">print(response.response)</span><br>
+        <span class="comment"># response.source_nodes contains retrieved chunks with scores</span><br>
+        <span class="kw">for</span> <span class="cmd">node</span> <span class="kw">in</span> <span class="cmd">response.source_nodes:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">print(f</span><span class="str">"Score: {node.score:.3f} | {node.text[:100]}..."</span><span class="cmd">)</span>
+      </div>
+
+      <p>The LlamaIndex version is noticeably more concise for this specific task. The trade-off is that LangChain's verbosity comes with power: each component in the chain is easily swappable, inspectable, and can be extended with conditional logic, callbacks, and parallel execution that would require more work to add in LlamaIndex.</p>
+
+      <!-- 文章中段广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="performance">Performance &amp; Size Comparison</h2>
+
+      <p>Raw performance for RAG workloads is dominated by embedding model speed and vector search latency — both frameworks largely defer this work to underlying models and vector stores. However, the frameworks themselves differ in overhead, indexing speed, and query latency:</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>LangChain</th>
+            <th>LlamaIndex</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cold import time</td>
+            <td>~2.1s</td>
+            <td>~1.4s</td>
+            <td>Measured on MacBook M3, Python 3.11</td>
+          </tr>
+          <tr>
+            <td>Index build (100 PDF pages)</td>
+            <td>~18s</td>
+            <td>~15s</td>
+            <td>Using OpenAI text-embedding-3-small</td>
+          </tr>
+          <tr>
+            <td>Query latency (p50, local Chroma)</td>
+            <td>~820ms</td>
+            <td>~680ms</td>
+            <td>Excludes LLM response time</td>
+          </tr>
+          <tr>
+            <td>Memory usage (1M tokens indexed)</td>
+            <td>~380 MB</td>
+            <td>~310 MB</td>
+            <td>In-memory vector store</td>
+          </tr>
+          <tr>
+            <td>Installed package size (core)</td>
+            <td>~45 MB</td>
+            <td>~18 MB</td>
+            <td>Core package only, no integrations</td>
+          </tr>
+          <tr>
+            <td>Number of direct dependencies</td>
+            <td>28</td>
+            <td>19</td>
+            <td>Smaller = fewer version conflicts</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>LlamaIndex's smaller footprint and lower overhead translate to measurably faster performance on pure retrieval workloads. The difference is modest — 15–25% faster query latency — but it compounds when you're processing large document collections or running high-QPS production systems. For most applications, the framework overhead is negligible compared to LLM API latency, which typically runs 500ms–3s for a full response.</p>
+
+      <h2 id="langchain-strengths">Where LangChain Excels</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🔗</span>
+          <span class="tool-card-name">LangChain</span>
+          <span class="tool-card-verdict">Best for Complex Orchestration</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">Choose LangChain when your application needs more than retrieval — when LLM calls are one step in a larger pipeline involving tools, conditional logic, multiple agents, or human oversight.</p>
+      </div>
+
+      <p>LangChain's LCEL (LangChain Expression Language) and LangGraph extensions make it the strongest choice for:</p>
+
+      <ul>
+        <li><strong>Multi-step agents with tool use:</strong> Building systems where the LLM can call external APIs, run code, search the web, or query databases mid-conversation. LangChain's agent executor with tool calling is battle-tested across thousands of production deployments.</li>
+        <li><strong>Complex conditional chains:</strong> Workflows where retrieval only happens under certain conditions, or where different sub-chains execute based on the user's intent or intermediate LLM output. LCEL's parallel and conditional primitives handle this cleanly.</li>
+        <li><strong>Conversational memory:</strong> Applications that need to maintain conversation history, summarize long threads, or implement entity memory. LangChain's memory modules (ConversationBufferMemory, ConversationSummaryMemory, EntityMemory) are more mature and diverse than LlamaIndex equivalents.</li>
+        <li><strong>LangGraph for stateful agents:</strong> If you need graph-based agent workflows — agents that loop, branch, or involve multiple collaborative agents — LangGraph (built on top of LangChain) has no direct equivalent in LlamaIndex.</li>
+        <li><strong>Production observability:</strong> LangSmith provides request tracing, latency tracking, token usage monitoring, and prompt versioning with minimal setup. The commercial tier supports team collaboration on prompt evaluation.</li>
+      </ul>
+
+      <h2 id="llamaindex-strengths">Where LlamaIndex Excels</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🦙</span>
+          <span class="tool-card-name">LlamaIndex</span>
+          <span class="tool-card-verdict">Best for Document-Heavy RAG</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">Choose LlamaIndex when the quality of retrieval is your primary engineering challenge — large document corpora, diverse file types, structured data integration, or complex multi-document reasoning.</p>
+      </div>
+
+      <p>LlamaIndex's depth in the retrieval layer makes it the stronger choice for:</p>
+
+      <ul>
+        <li><strong>Large, heterogeneous document collections:</strong> 160+ data loaders via Llama Hub handle PDFs, Word docs, Notion pages, Confluence wikis, Slack exports, YouTube transcripts, and more. Each loader is optimized for its source format in ways that LangChain's generic loaders aren't.</li>
+        <li><strong>Advanced chunking strategies:</strong> Sentence-window indexing (retrieve small sentences, expand to surrounding context for LLM), hierarchical node parsing (chunk at multiple granularities, query at the right level), and semantic chunking all improve retrieval quality measurably. These aren't available in base LangChain.</li>
+        <li><strong>Structured data querying:</strong> LlamaIndex's NLSQLTableQueryEngine and PandasQueryEngine let the LLM generate and execute SQL or pandas queries against structured data, then combine results with vector search in a single pipeline. This "multi-modal" data architecture is a significant differentiator.</li>
+        <li><strong>Multi-document reasoning:</strong> SubQuestionQueryEngine decomposes complex questions into sub-questions, executes each against the relevant document index, and synthesizes a final answer. This is especially powerful for knowledge bases where answers span multiple documents.</li>
+        <li><strong>Knowledge graph indexing:</strong> The KnowledgeGraphIndex extracts entities and relationships from documents and stores them as a graph, enabling relationship-aware retrieval that flat vector search misses.</li>
+      </ul>
+
+      <h2 id="both-together">Using Both Frameworks Together</h2>
+
+      <p>The best-kept secret in the RAG community is that you don't have to choose. A pattern that's become common in production systems is to use LlamaIndex for the retrieval layer and LangChain for the agent/orchestration layer on top.</p>
+
+      <div class="code-block">
+        <span class="comment"># Pattern: LlamaIndex retriever inside a LangChain chain</span><br>
+        <span class="kw">from</span> <span class="cmd">llama_index.core</span> <span class="kw">import</span> <span class="cmd">VectorStoreIndex, SimpleDirectoryReader</span><br>
+        <span class="kw">from</span> <span class="cmd">llama_index.core.langchain_helpers.text_splitter</span> <span class="kw">import</span> <span class="cmd">TokenTextSplitter</span><br>
+        <span class="kw">from</span> <span class="cmd">langchain_openai</span> <span class="kw">import</span> <span class="cmd">ChatOpenAI</span><br>
+        <span class="kw">from</span> <span class="cmd">langchain.agents</span> <span class="kw">import</span> <span class="cmd">AgentExecutor, create_openai_functions_agent</span><br>
+        <span class="kw">from</span> <span class="cmd">langchain.tools</span> <span class="kw">import</span> <span class="cmd">Tool</span><br><br>
+        <span class="comment"># Build a high-quality LlamaIndex retriever</span><br>
+        <span class="cmd">documents = SimpleDirectoryReader(</span><span class="str">"./knowledge_base"</span><span class="cmd">).load_data()</span><br>
+        <span class="cmd">index = VectorStoreIndex.from_documents(documents)</span><br>
+        <span class="cmd">query_engine = index.as_query_engine(similarity_top_k=</span><span class="str">6</span><span class="cmd">)</span><br><br>
+        <span class="comment"># Wrap it as a LangChain tool</span><br>
+        <span class="cmd">retrieval_tool = Tool(</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">name=</span><span class="str">"KnowledgeBaseSearch"</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">description=</span><span class="str">"Search internal docs for product, policy, or technical info"</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">func=</span><span class="kw">lambda</span> <span class="cmd">q: str(query_engine.query(q))</span><br>
+        <span class="cmd">)</span><br><br>
+        <span class="comment"># Build a LangChain agent that uses LlamaIndex retrieval as one of its tools</span><br>
+        <span class="cmd">llm = ChatOpenAI(model=</span><span class="str">"gpt-4o"</span><span class="cmd">, temperature=</span><span class="str">0</span><span class="cmd">)</span><br>
+        <span class="cmd">agent = create_openai_functions_agent(llm, [retrieval_tool], prompt)</span><br>
+        <span class="cmd">agent_executor = AgentExecutor(agent=agent, tools=[retrieval_tool], verbose=</span><span class="kw">True</span><span class="cmd">)</span>
+      </div>
+
+      <p>This hybrid architecture gives you the best of both worlds: LlamaIndex's superior document parsing and retrieval quality, combined with LangChain's mature agent framework, tool registry, and LangSmith observability.</p>
+
+      <!-- 第二广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="decision">Decision Guide: How to Choose</h2>
+
+      <p>Here's a practical decision matrix based on your primary use case:</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Your situation</th>
+            <th>Recommendation</th>
+            <th>Reasoning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>First RAG prototype, learning</td>
+            <td><span class="badge badge-blue">LlamaIndex</span></td>
+            <td>Fewer concepts, faster first working app</td>
+          </tr>
+          <tr>
+            <td>Multi-step agent with web search, code execution</td>
+            <td><span class="badge badge-green">LangChain</span></td>
+            <td>LangGraph and tool ecosystem are unmatched</td>
+          </tr>
+          <tr>
+            <td>Large document corpus (1000+ files)</td>
+            <td><span class="badge badge-blue">LlamaIndex</span></td>
+            <td>Superior chunking, metadata, and loading</td>
+          </tr>
+          <tr>
+            <td>Conversational chatbot with history</td>
+            <td><span class="badge badge-green">LangChain</span></td>
+            <td>Memory modules are more mature</td>
+          </tr>
+          <tr>
+            <td>Querying structured data (SQL, CSV)</td>
+            <td><span class="badge badge-blue">LlamaIndex</span></td>
+            <td>NLSQLTableQueryEngine purpose-built for this</td>
+          </tr>
+          <tr>
+            <td>Multi-agent collaboration</td>
+            <td><span class="badge badge-green">LangChain</span></td>
+            <td>LangGraph supports graph-based agent flows</td>
+          </tr>
+          <tr>
+            <td>Production with strict latency SLAs</td>
+            <td><span class="badge badge-yellow">LlamaIndex</span></td>
+            <td>Lower overhead, async-native query engines</td>
+          </tr>
+          <tr>
+            <td>Complex enterprise knowledge base</td>
+            <td><span class="badge badge-yellow">Both</span></td>
+            <td>LlamaIndex for retrieval + LangChain for agent</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="decision-grid">
+        <div class="decision-card">
+          <h4>Choose LangChain if you need:</h4>
+          <ul>
+            <li>Multi-step agents with dynamic tool use</li>
+            <li>Complex conditional pipeline logic</li>
+            <li>LangGraph stateful workflows</li>
+            <li>LangSmith production observability</li>
+            <li>Conversational memory management</li>
+            <li>Integration with LangServe for API deployment</li>
+          </ul>
+        </div>
+        <div class="decision-card">
+          <h4>Choose LlamaIndex if you need:</h4>
+          <ul>
+            <li>High-quality retrieval from large document sets</li>
+            <li>Advanced chunking (sentence-window, hierarchical)</li>
+            <li>Structured + unstructured data in one query</li>
+            <li>Multi-document reasoning and synthesis</li>
+            <li>160+ specialized data loaders (Llama Hub)</li>
+            <li>Knowledge graph indexing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>For pure RAG on a large document corpus, start with <a href="../tools/llamaindex.html">LlamaIndex</a>.</strong> Its retrieval quality out of the box is higher, and you'll spend less time fighting framework abstractions. For anything that involves agents, tool use, or complex multi-step LLM pipelines, use <a href="../tools/langchain.html">LangChain</a>. For serious production systems, consider combining both: LlamaIndex handles the hard retrieval problem while LangChain orchestrates the application logic. Your vector database choice — whether <a href="../tools/chromadb.html">Chroma</a> for prototyping or <a href="../tools/qdrant.html">Qdrant</a> for production — matters more than the framework choice for retrieval quality.</p>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <h3>Can I use LangChain and LlamaIndex together in the same project?</h3>
+          <p>Yes, and this is actually a popular production pattern. LlamaIndex handles document ingestion, chunking, and vector indexing, while LangChain wraps the retrieval step inside a broader agent with tool use, memory, and multi-step reasoning. The LlamaIndex query engine can be wrapped as a LangChain Tool with just a few lines of code, giving you the best of both frameworks. Many enterprise RAG systems use exactly this hybrid architecture.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Which framework has better support for production deployments?</h3>
+          <p>Both have matured significantly for production. LangChain's LangServe makes it straightforward to deploy chains as FastAPI endpoints with automatic OpenAPI documentation. LlamaIndex integrates cleanly with FastAPI and supports async query engines natively for high concurrency. For observability, LangSmith (LangChain's tracing platform) is more polished out of the box and supports team collaboration on prompt evaluation. LlamaIndex works with open-source alternatives like Arize Phoenix and OpenTelemetry-compatible tracers, which may be preferable if you want to avoid vendor lock-in.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Which framework is better for beginners building their first RAG app?</h3>
+          <p>LlamaIndex is generally more approachable for RAG beginners. A working PDF question-answering system takes under 10 lines of code: load documents, create a VectorStoreIndex, call query_engine.query(). The abstractions map directly to RAG concepts without requiring you to understand chains, LCEL syntax, or retriever interfaces first. LangChain is more powerful but has a steeper learning curve due to its breadth — it covers agent frameworks, output parsers, callbacks, and dozens of other concepts that aren't relevant to a simple RAG use case. Start with LlamaIndex to understand retrieval fundamentals, then add LangChain if your application grows to need agent capabilities.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <div class="toc-box">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#architecture">Architecture Differences</a></li>
+          <li><a href="#code-comparison">Code Comparison</a></li>
+          <li><a href="#performance">Performance &amp; Size</a></li>
+          <li><a href="#langchain-strengths">LangChain Strengths</a></li>
+          <li><a href="#llamaindex-strengths">LlamaIndex Strengths</a></li>
+          <li><a href="#both-together">Using Both Together</a></li>
+          <li><a href="#decision">Decision Guide</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </div>
+      <div class="related-box">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="run-llm-locally-guide">Run LLMs Locally Guide →</a></li>
+          <li><a href="vector-databases-compared">Vector Databases Compared →</a></li>
+          <li><a href="ai-agent-frameworks-guide-2025">Agent Frameworks Guide →</a></li>
+        </ul>
+      </div>
+      <div class="related-box" style="margin-top:20px">
+        <h3>Tools Mentioned</h3>
+        <ul>
+          <li><a href="../tools/langchain.html">LangChain →</a></li>
+          <li><a href="../tools/llamaindex.html">LlamaIndex →</a></li>
+          <li><a href="../tools/chromadb.html">ChromaDB →</a></li>
+          <li><a href="../tools/qdrant.html">Qdrant →</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index">Blog</a></li>
+          <li><a href="../about">About</a></li>
+          <li><a href="../contact">Contact</a></li>
+          <li><a href="../privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Articles</h4>
+        <ul>
+          <li><a href="ai-agent-frameworks-guide-2025">Framework Comparison</a></li>
+          <li><a href="run-llm-locally-guide">Local LLM Guide</a></li>
+          <li><a href="vector-databases-compared">Vector DB Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

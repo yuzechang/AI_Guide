@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/huggingface/peft",
     "description": "Parameter-efficient fine-tuning methods including LoRA",
-    "dateModified": "2026-05-22",
+    "dateModified": "2026-06-05",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -154,7 +154,7 @@
     </h1>
     <p class="article-desc">Parameter-efficient fine-tuning methods including LoRA</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-05-22">2026-05</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-05">2026-06</time></span>
       
       <span>⭐ <a href="https://github.com/huggingface/peft" target="_blank" rel="noopener" style="color:var(--text-3)">21k+ GitHub Stars</a></span>
     </div>
@@ -214,23 +214,28 @@
         <span class="zh">PEFT 是什么？</span>
       </h2>
       <p>
-        <strong>PEFT</strong> is an open-source developer framework for building AI applications with
-        21k+ GitHub stars. Parameter-efficient fine-tuning methods including LoRA
+        <strong>PEFT</strong> is an open-source project with
+        21k+ GitHub stars.
+        
+        Licensed under Apache-2.0.
+        
+        Parameter-efficient fine-tuning methods including LoRA
       </p>
       <p>
-        As a developer framework for building AI applications, PEFT is designed to help developers and teams
         
-        build production-ready AI applications with reliable, tested abstractions.
-        It handles the complexity of connecting LLMs to external data and tools,
-        so engineers can focus on business logic instead of plumbing.
+        The project focuses on
+        <strong>fine-tuning, lora, llm</strong>
+        use cases
+        
+        and is designed as a developer library or framework—you integrate it into your own application by importing it as a dependency.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/huggingface/peft" target="_blank" rel="noopener">github.com/huggingface/peft</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/huggingface/peft" target="_blank" rel="noopener">github.com/huggingface/peft</a>.
         
-        With 21k+ stars, it is one of the most widely adopted tools in its category.
+        Its 21k+ GitHub stars indicate strong real-world adoption across engineering teams globally.
         
       </p>
 
@@ -238,9 +243,33 @@
       
       <blockquote class="expert-take">
         <p class="en">PEFT's 16k+ community validates its utility—this isn't a weekend project, it's maintained software. Best for teams who have identified specific quality gaps in their base model that prompt engineering can't address. Document your dataset curation approach carefully; the training data quality matters more than the fine-tuning hyperparameters.</p>
-        <p class="zh">AI Nav 编辑团队推荐：PEFT 是同类工具中社区认可度极高的开源项目，拥有 21k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">PEFT's 16k+ community validates its utility—this isn't a weekend project, it's maintained software. Best for teams who have identified specific quality gaps in their base model that prompt engineering can't address. Document your dataset curation approach carefully; the training data quality matters more than the fine-tuning hyperparameters.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use PEFT?</span>
+        <span class="zh">谁适合使用 PEFT？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Teams with domain-specific labeled data who need customized model behavior</li><li>Enterprise applications that need the model to specialize in vertical terminology and output formats</li><li>Engineers with Python experience building LLM capabilities at the application layer</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Environments without GPUs (fine-tuning requires 16GB+ VRAM minimum)</li><li>Datasets smaller than a few thousand examples (too little data for meaningful fine-tuning gains)</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -305,13 +334,13 @@
         
         <div class="pros-box">
           <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
-          <ul><li>The standard library for parameter-efficient fine-tuning in the HuggingFace ecosystem</li><li>Supports LoRA, QLoRA, Prefix Tuning, Prompt Tuning, and more in a unified API</li><li>Dramatically reduces GPU memory requirements for fine-tuning large models</li><li>Tight integration with Transformers and Accelerate</li></ul>
+          <ul><li>LoRA reduces trainable parameters by 99%+ vs full fine-tuning — train 4M parameters instead of 7B for Llama-3-8B</li><li>QLoRA enables fine-tuning 65B parameter models on a single A100 80GB GPU (impossible with full fine-tuning)</li><li>Hugging Face integration — one-line adapter loading and merging with transformers models</li></ul>
         </div>
         
         
         <div class="cons-box">
           <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
-          <ul><li>Some PEFT methods have subtle quality trade-offs that require careful evaluation</li><li>Merging multiple LoRA adapters can produce unexpected quality degradation</li><li>Adapter management (saving, loading, combining) has more complexity than full fine-tuning</li></ul>
+          <ul><li>LoRA adapter merging can reduce inference throughput by 5-15% vs the base model depending on rank configuration</li><li>Choosing optimal LoRA rank (r=8 vs r=64) and alpha requires experimentation; wrong settings can underfit or overfit</li><li>QLoRA training is ~30% slower than standard LoRA due to quantization overhead during forward passes</li></ul>
         </div>
         
       </div>
@@ -458,6 +487,16 @@
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Side-by-side comparison of the top 5 agent frameworks with real code examples.</div>
         </a>
         
+        <a href="/blog/langchain-vs-llamaindex.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">LangChain vs LlamaIndex: Which RAG Framework to Choose in 2026?</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Head-to-head comparison of architecture, performance, and real-world use cases.</div>
+        </a>
+        
+        <a href="/blog/autogen-vs-crewai-vs-langgraph.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">AutoGen vs CrewAI vs LangGraph: Multi-Agent Frameworks Compared</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Architecture differences, orchestration patterns, and when to use each.</div>
+        </a>
+        
       </div>
       
 
@@ -526,7 +565,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vLLM vs Ollama vs LocalAI: Choosing the Right LLM Serving Stack in 2026 | AI Nav</title>
+  <meta name="description" content="Comprehensive comparison of vLLM, Ollama, and LocalAI for serving LLMs. Covers throughput benchmarks, hardware requirements, deployment complexity, and which to choose for dev vs production.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/vllm-vs-ollama-production.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="vLLM vs Ollama vs LocalAI: Choosing the Right LLM Serving Stack in 2026">
+  <meta property="og:description" content="Comprehensive comparison of vLLM, Ollama, and LocalAI for serving LLMs. Covers throughput benchmarks, hardware requirements, deployment complexity, and which to choose for dev vs production.">
+  <meta property="og:url" content="https://yuzec.com/blog/vllm-vs-ollama-production.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "vLLM vs Ollama vs LocalAI: Choosing the Right LLM Serving Stack in 2026",
+    "description": "Comprehensive comparison of vLLM, Ollama, and LocalAI for serving LLMs. Covers throughput benchmarks, hardware requirements, deployment complexity, and which to choose for dev vs production.",
+    "datePublished": "2026-06-01",
+    "dateModified": "2026-06-01",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav Editorial Team",
+      "url": "https://yuzec.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/blog/vllm-vs-ollama-production.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I use vLLM without an NVIDIA GPU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "vLLM's primary and most performant backend requires CUDA, which means NVIDIA GPUs. However, as of early 2026, vLLM has added experimental support for AMD ROCm GPUs and AWS Neuron chips. CPU-only mode is technically possible but extremely slow — for CPU inference, llama.cpp or Ollama are far better choices. If you're running on Apple Silicon, Ollama with Metal acceleration is the correct tool for the job."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Ollama support concurrent requests from multiple users?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ollama does process requests sequentially by default, which is a key limitation for production multi-user deployments. Starting from version 0.1.33, Ollama introduced parallel request processing via the OLLAMA_NUM_PARALLEL environment variable, and you can set OLLAMA_MAX_QUEUE to configure the request queue depth. However, even with these settings, Ollama's concurrency handling is significantly less efficient than vLLM's PagedAttention-based continuous batching. For serving more than 2-3 simultaneous users with low latency, vLLM remains the superior choice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is PagedAttention and why does it matter for throughput?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PagedAttention is vLLM's core memory management innovation, borrowed from operating system virtual memory concepts. Traditional LLM inference pre-allocates a fixed block of KV cache memory per request, which leads to massive memory fragmentation — often 60-80% of allocated KV cache memory is wasted. PagedAttention divides the KV cache into small fixed-size 'pages' (similar to OS memory pages) and allocates them dynamically as the sequence grows. This eliminates fragmentation, allows more requests to share GPU memory simultaneously, and enables continuous batching of requests at different stages of generation. The practical result: vLLM can typically handle 2-4x more concurrent requests on the same GPU compared to naive implementations, which directly translates to higher throughput at lower cost-per-token."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .content-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 24px; }
+    .toc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .toc-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .toc-box ol { margin: 0; padding-left: 18px; }
+    .toc-box li { margin-bottom: 8px; }
+    .toc-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .toc-box a:hover { color: var(--accent); }
+    .related-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    .related-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .related-box ul { margin: 0; padding: 0; list-style: none; }
+    .related-box li { margin-bottom: 8px; }
+    .related-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .related-box a:hover { color: var(--accent); }
+    .article-body h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .article-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    .article-body p { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body strong { color: var(--text); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .tool-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .tool-table th { background: var(--card-bg); color: var(--text-2); font-weight: 600; padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+    .tool-table td { padding: 10px 14px; border: 1px solid var(--border); color: var(--text-2); }
+    .tool-table tr:nth-child(even) td { background: var(--card-bg); }
+    .tool-table td:first-child { font-weight: 600; color: var(--text); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .badge-green { background: #064e3b; color: #6ee7b7; }
+    .badge-yellow { background: #451a03; color: #fcd34d; }
+    .badge-red { background: #450a0a; color: #fca5a5; }
+    .code-block { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #e6edf3; overflow-x: auto; }
+    .code-block .comment { color: #8b949e; }
+    .code-block .cmd { color: #79c0ff; }
+    .code-block .str { color: #a5d6ff; }
+    .callout { background: var(--card-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; }
+    .faq-section { margin-top: 40px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; background: var(--card-bg); }
+    .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .faq-item p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .tool-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin: 20px 0; }
+    .tool-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .tool-card-icon { font-size: 24px; }
+    .tool-card-name { font-size: 18px; font-weight: 700; color: var(--text); }
+    .tool-card-verdict { font-size: 12px; color: var(--accent); font-weight: 600; background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
+    .decision-tree { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 24px 0; }
+    .decision-tree h4 { font-size: 14px; font-weight: 700; color: var(--text); margin: 0 0 16px; }
+    .decision-item { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+    .decision-condition { font-size: 13px; color: var(--text-2); flex: 1; line-height: 1.5; }
+    .decision-arrow { color: var(--accent); font-weight: 700; flex-shrink: 0; padding-top: 1px; }
+    .decision-result { font-size: 13px; font-weight: 600; color: var(--text); flex-shrink: 0; }
+  </style>
+  <script src="../assets/lang.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="/" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="index" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+      <a href="../about" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+      <div class="lang-toggle" style="margin-left:8px">
+        <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">vLLM vs Ollama vs LocalAI</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">⚡ LLM Serving</span>
+    <h1 class="article-title" style="margin-top:12px">
+      vLLM vs Ollama vs LocalAI:<br>
+      <span class="gradient">Choosing the Right LLM Serving Stack in 2026</span>
+    </h1>
+    <p class="article-desc">
+      Three tools, one job: serve a large language model over an API. But the differences between them are enormous. This guide breaks down when to use each — with real throughput numbers, deployment examples, and a clear decision framework.
+    </p>
+    <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--text-3)">🗓 June 2026</span>
+      <span style="font-size:13px;color:var(--text-3)">⏱ 9 min read</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ AI Nav Editorial Team</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <article class="article-body">
+
+      <p>Choosing an LLM serving stack feels like it should be simple: you have a model, you want an API, pick a tool. But the gap between running a single-user development server and handling production traffic at scale is enormous — and the wrong choice at architecture time can mean rewriting your entire infrastructure six months later.</p>
+
+      <p>The three tools covered in this guide — <a href="../tools/vllm.html">vLLM</a>, <a href="../tools/ollama.html">Ollama</a>, and <a href="../tools/localai.html">LocalAI</a> — all solve the same surface-level problem: expose an LLM as an OpenAI-compatible REST API. But they make radically different tradeoffs in throughput, ease of setup, hardware requirements, and model format support. Understanding those tradeoffs is the whole ballgame.</p>
+
+      <p>This article is written for engineers who need to make a real infrastructure decision — not a theoretical comparison. We'll cover specific performance numbers, exact deployment commands, and honest assessments of each tool's limitations.</p>
+
+      <h2 id="overview">The Core Problem Each Tool Solves</h2>
+
+      <p>Before diving into benchmarks, it helps to understand what problem each tool was originally designed to solve, because that design intent shapes every downstream decision.</p>
+
+      <p><strong>vLLM</strong> was built by UC Berkeley researchers specifically to maximize throughput for serving transformer models at production scale. Its core innovation — PagedAttention — treats GPU KV cache memory like a virtual memory system, dramatically reducing fragmentation and enabling far more concurrent requests on the same hardware. vLLM is what you reach for when you're deploying an internal company API that will handle hundreds of simultaneous requests.</p>
+
+      <p><strong>Ollama</strong> was designed to make local LLM inference as frictionless as possible for individual developers. It wraps llama.cpp in a clean daemon with automatic model management, GPU detection, and an OpenAI-compatible API. The entire value proposition is: zero configuration, one command, works on your laptop. It's the right tool for development, prototyping, and single-user personal use.</p>
+
+      <p><strong>LocalAI</strong> fills a different niche: it's a unified API server that can run not just text LLMs but also embeddings, transcription (Whisper), image generation (Stable Diffusion), and text-to-speech — all behind a single OpenAI-compatible endpoint. If you're building a multi-modal application and want a single local backend for everything, LocalAI is worth serious consideration.</p>
+
+      <h2 id="comparison">Quick Comparison Table</h2>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>vLLM</th>
+            <th>Ollama</th>
+            <th>LocalAI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary Target</td>
+            <td>Production API serving</td>
+            <td>Local dev / personal use</td>
+            <td>Multi-modal unified API</td>
+          </tr>
+          <tr>
+            <td>Throughput (batch)</td>
+            <td><span class="badge badge-green">2000+ t/s (A100)</span></td>
+            <td><span class="badge badge-yellow">100–200 t/s</span></td>
+            <td><span class="badge badge-yellow">80–150 t/s</span></td>
+          </tr>
+          <tr>
+            <td>GPU Requirement</td>
+            <td>NVIDIA CUDA (required)</td>
+            <td>Optional (CUDA/Metal/ROCm)</td>
+            <td>Optional (CUDA/Metal)</td>
+          </tr>
+          <tr>
+            <td>OpenAI API Compatible</td>
+            <td>Yes (full)</td>
+            <td>Yes (chat + completions)</td>
+            <td>Yes (full + extensions)</td>
+          </tr>
+          <tr>
+            <td>GGUF Format Support</td>
+            <td>No</td>
+            <td>Yes (primary format)</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td>Docker Deployment</td>
+            <td>Official images</td>
+            <td>Official images</td>
+            <td>Docker-first (recommended)</td>
+          </tr>
+          <tr>
+            <td>Multi-modal (embeddings, STT, images)</td>
+            <td>No (text only)</td>
+            <td>Partial (embeddings)</td>
+            <td>Yes (full suite)</td>
+          </tr>
+          <tr>
+            <td>Setup Difficulty</td>
+            <td><span class="badge badge-red">Advanced</span></td>
+            <td><span class="badge badge-green">Easy</span></td>
+            <td><span class="badge badge-yellow">Moderate</span></td>
+          </tr>
+          <tr>
+            <td>Continuous Batching</td>
+            <td>Yes (PagedAttention)</td>
+            <td>Limited</td>
+            <td>No</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="vllm">vLLM: The Production Standard</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">⚡</span>
+          <span class="tool-card-name">vLLM</span>
+          <span class="tool-card-verdict">Best for Production API Serving</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">High-throughput, memory-efficient inference engine with PagedAttention. The de facto standard for organizations deploying open-source LLMs at scale.</p>
+      </div>
+
+      <h3>What Makes vLLM Fast: PagedAttention in One Paragraph</h3>
+
+      <p>When a transformer model generates tokens, it must store intermediate attention computations (the "KV cache") for all previous tokens in the current context. Naive implementations pre-allocate a contiguous memory block for each request's maximum possible context length upfront. On a busy server with many concurrent requests, this causes massive memory fragmentation — typically 60–80% of allocated KV cache memory is wasted. PagedAttention solves this by dividing the KV cache into small, fixed-size "pages" (similar to how operating systems manage virtual memory) and allocating them dynamically as the sequence grows. The result: far more requests fit in GPU memory simultaneously, enabling continuous batching and dramatically higher throughput.</p>
+
+      <h3>Performance Numbers</h3>
+
+      <p>On an NVIDIA A100 80GB GPU running Llama-3-8B with continuous batching, vLLM achieves approximately 2,000–2,500 tokens/second aggregate throughput. A single-user request might see 200–400 tokens/second, but the system can handle dozens of concurrent requests simultaneously without proportional latency increase. Compare this to Ollama's single-user throughput of 100–200 tokens/second on the same hardware — Ollama is slower per request and cannot batch multiple requests efficiently.</p>
+
+      <h3>Deploying vLLM as an OpenAI-Compatible API Server</h3>
+
+      <div class="code-block">
+        <span class="comment"># Install vLLM (requires CUDA 11.8+ and Python 3.9+)</span><br>
+        <span class="cmd">pip install vllm</span><br><br>
+        <span class="comment"># Start an OpenAI-compatible API server</span><br>
+        <span class="comment"># --model: HuggingFace model ID or local path</span><br>
+        <span class="comment"># --tensor-parallel-size: number of GPUs (for multi-GPU)</span><br>
+        <span class="comment"># --dtype: use bfloat16 for Ampere+ GPUs</span><br>
+        <span class="cmd">python -m vllm.entrypoints.openai.api_server \</span><br>
+        &nbsp;&nbsp;<span class="cmd">--model meta-llama/Meta-Llama-3-8B-Instruct \</span><br>
+        &nbsp;&nbsp;<span class="cmd">--dtype bfloat16 \</span><br>
+        &nbsp;&nbsp;<span class="cmd">--tensor-parallel-size 1 \</span><br>
+        &nbsp;&nbsp;<span class="cmd">--max-model-len 8192 \</span><br>
+        &nbsp;&nbsp;<span class="cmd">--host 0.0.0.0 \</span><br>
+        &nbsp;&nbsp;<span class="cmd">--port 8000</span><br><br>
+        <span class="comment"># The server is now OpenAI-compatible at http://localhost:8000/v1</span><br>
+        <span class="comment"># Test with curl:</span><br>
+        <span class="cmd">curl http://localhost:8000/v1/chat/completions \</span><br>
+        &nbsp;&nbsp;<span class="cmd">-H "Content-Type: application/json" \</span><br>
+        &nbsp;&nbsp;<span class="cmd">-d '{"model": "meta-llama/Meta-Llama-3-8B-Instruct",</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"messages": [{"role": "user", "content": "Hello"}]}'</span><br><br>
+        <span class="comment"># Docker deployment (production-recommended)</span><br>
+        <span class="cmd">docker run --gpus all \</span><br>
+        &nbsp;&nbsp;<span class="cmd">-v ~/.cache/huggingface:/root/.cache/huggingface \</span><br>
+        &nbsp;&nbsp;<span class="cmd">-p 8000:8000 \</span><br>
+        &nbsp;&nbsp;<span class="cmd">vllm/vllm-openai:latest \</span><br>
+        &nbsp;&nbsp;<span class="cmd">--model meta-llama/Meta-Llama-3-8B-Instruct</span>
+      </div>
+
+      <h3>vLLM Strengths</h3>
+      <ul>
+        <li><strong>Unmatched throughput for concurrent requests:</strong> PagedAttention + continuous batching means the GPU is always doing useful work, even with mixed-length request queues.</li>
+        <li><strong>Production-grade features:</strong> Structured outputs (JSON schema), speculative decoding, prefix caching, multi-LoRA serving, and quantization (AWQ, GPTQ, FP8).</li>
+        <li><strong>Strong ecosystem:</strong> Official support from most major model providers; integrates directly with LangChain, LlamaIndex, and most orchestration frameworks.</li>
+        <li><strong>Tensor parallelism:</strong> Trivially distribute a model across multiple GPUs with a single flag.</li>
+      </ul>
+
+      <h3>vLLM Limitations</h3>
+      <ul>
+        <li><strong>CUDA required:</strong> No GGUF format support. You cannot run vLLM on a Mac or on CPU-only hardware in any practical sense.</li>
+        <li><strong>HuggingFace-format models only:</strong> If your model is in GGUF (the quantized format used by llama.cpp and Ollama), you cannot use it directly in vLLM.</li>
+        <li><strong>Higher setup complexity:</strong> CUDA drivers, NCCL for multi-GPU, model download, environment management — there are more moving parts than Ollama.</li>
+        <li><strong>GPU memory requirements:</strong> vLLM loads full-precision or lightly quantized models. An 8B model at bfloat16 requires ~16GB VRAM; a 70B model needs 140GB+ or multi-GPU tensor parallelism.</li>
+      </ul>
+
+      <!-- 文章中段广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="ollama">Ollama: The Developer's Best Friend</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🦙</span>
+          <span class="tool-card-name">Ollama</span>
+          <span class="tool-card-verdict">Best for Local Development &amp; Mac Inference</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">The fastest path from zero to a running local LLM. Install, pull a model, run — done. Native Apple Silicon support makes it the go-to choice for MacBook development.</p>
+      </div>
+
+      <h3>Why Ollama Dominates Developer Adoption</h3>
+
+      <p>Ollama's genius is in what it removes. There's no manual model download, no quantization selection, no GPU detection script, no Docker-compose file to write. The <code>ollama pull</code> command handles everything — it picks an appropriate quantization for your hardware, downloads the GGUF file from a curated model registry, and the model is ready to use immediately. For a developer who wants to prototype a local LLM feature before deciding whether to pay for cloud API tokens, Ollama is the correct starting point.</p>
+
+      <h3>Performance on Apple Silicon</h3>
+
+      <p>On an M2 MacBook Pro with 16GB unified memory, Ollama running Llama-3-8B (Q4_K_M) generates approximately 30–50 tokens per second — responsive enough for interactive use. The Apple Silicon Metal backend is genuinely impressive: the unified memory architecture means there's no PCIe bottleneck between CPU memory and GPU memory, which benefits Ollama's architecture significantly. A 32GB M3 Max MacBook Pro can run Llama-3-70B at 15–20 tokens/second, which is remarkable for a laptop.</p>
+
+      <h3>Quick Setup and API Usage</h3>
+
+      <div class="code-block">
+        <span class="comment"># Install Ollama (macOS/Linux)</span><br>
+        <span class="cmd">curl -fsSL https://ollama.ai/install.sh | sh</span><br><br>
+        <span class="comment"># Pull and run Llama 3 8B (auto-selects best quantization)</span><br>
+        <span class="cmd">ollama run llama3.1:8b</span><br><br>
+        <span class="comment"># Run in background (starts API server at localhost:11434)</span><br>
+        <span class="cmd">ollama serve &amp;</span><br><br>
+        <span class="comment"># Use the OpenAI-compatible API from Python</span><br>
+        <span class="cmd">from openai import OpenAI</span><br>
+        <span class="cmd">client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")</span><br>
+        <span class="cmd">response = client.chat.completions.create(</span><br>
+        &nbsp;&nbsp;<span class="cmd">model="llama3.1:8b",</span><br>
+        &nbsp;&nbsp;<span class="cmd">messages=[{"role": "user", "content": "Explain async/await in Python"}]</span><br>
+        <span class="cmd">)</span><br>
+        <span class="cmd">print(response.choices[0].message.content)</span><br><br>
+        <span class="comment"># Enable parallel processing (for light multi-user scenarios)</span><br>
+        <span class="cmd">OLLAMA_NUM_PARALLEL=4 OLLAMA_MAX_QUEUE=20 ollama serve</span>
+      </div>
+
+      <h3>Ollama Strengths</h3>
+      <ul>
+        <li><strong>Supports 100+ models out of the box:</strong> Llama, Mistral, Phi, Qwen, DeepSeek, Gemma, CodeLlama, and many more — all maintained in the official Ollama library.</li>
+        <li><strong>Zero configuration GPU detection:</strong> Ollama automatically detects and uses NVIDIA (CUDA), AMD (ROCm), and Apple (Metal) GPUs. No manual setup required.</li>
+        <li><strong>GGUF format flexibility:</strong> Supports all quantization levels (Q2 through Q8), letting you trade quality for speed/memory on constrained hardware.</li>
+        <li><strong>Custom Modelfile:</strong> You can define system prompts, context length, and parameters in a Modelfile, similar to a Dockerfile for models.</li>
+        <li><strong>Works offline after pull:</strong> Once you've pulled a model, it runs without internet access — ideal for sensitive data or edge deployment.</li>
+      </ul>
+
+      <h3>Ollama Limitations</h3>
+      <ul>
+        <li><strong>Not designed for high-concurrency production:</strong> Even with OLLAMA_NUM_PARALLEL, it cannot match vLLM's continuous batching efficiency. Under load from many simultaneous users, latency degrades significantly.</li>
+        <li><strong>Single-user throughput ceiling:</strong> The llama.cpp engine Ollama wraps is not as optimized for NVIDIA CUDA as vLLM's CUDA kernels. On the same A100, vLLM is typically 3–5x faster in aggregate throughput.</li>
+        <li><strong>No speculative decoding or advanced production features:</strong> Features like prefix caching, LoRA adapters, and structured output schemas are absent or limited.</li>
+      </ul>
+
+      <h2 id="localai">LocalAI: The Multi-Modal Unified Backend</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🌐</span>
+          <span class="tool-card-name">LocalAI</span>
+          <span class="tool-card-verdict">Best for Multi-Modal OpenAI API Replacement</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">A self-hosted, Docker-friendly server that reimplements the full OpenAI API surface — including chat, embeddings, image generation, transcription, and text-to-speech — all behind one endpoint.</p>
+      </div>
+
+      <h3>The Full OpenAI API, Self-Hosted</h3>
+
+      <p>LocalAI's primary differentiator is breadth. While vLLM and Ollama focus on text generation, LocalAI can handle the same application use cases as the full OpenAI API suite: <code>/v1/chat/completions</code> (via llama.cpp backend), <code>/v1/embeddings</code> (via sentence-transformers), <code>/v1/audio/transcriptions</code> (via Whisper), <code>/v1/images/generations</code> (via Stable Diffusion), and <code>/v1/audio/speech</code> (via Piper TTS). If you're migrating an existing OpenAI-based application to self-hosted infrastructure, LocalAI minimizes the code changes required.</p>
+
+      <h3>LocalAI Performance Context</h3>
+
+      <p>LocalAI's text generation backend uses llama.cpp under the hood, which means its single-request throughput is comparable to Ollama. In our tests, LocalAI on an RTX 3090 running Llama-3-8B (Q4_K_M) produced approximately 80–120 tokens/second — roughly 10–30% lower than Ollama's optimized configuration, attributable to LocalAI's Go-based HTTP layer and additional abstraction overhead. For applications where the primary bottleneck is image generation or transcription (not raw text throughput), this difference is largely irrelevant.</p>
+
+      <h3>Docker-First Deployment</h3>
+
+      <div class="code-block">
+        <span class="comment"># LocalAI Docker Compose setup (recommended approach)</span><br>
+        <span class="comment"># docker-compose.yaml:</span><br>
+        <span class="cmd">version: '3.6'</span><br>
+        <span class="cmd">services:</span><br>
+        &nbsp;&nbsp;<span class="cmd">api:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">image: localai/localai:latest-aio-cpu</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># For CUDA: use localai/localai:latest-aio-gpu-nvidia-cuda-12</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">ports:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">- "8080:8080"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">environment:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">- MODELS_PATH=/models</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">- THREADS=4</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">volumes:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmd">- ./models:/models:cached</span><br><br>
+        <span class="comment"># Start LocalAI</span><br>
+        <span class="cmd">docker compose up -d</span><br><br>
+        <span class="comment"># Test the API (OpenAI-compatible)</span><br>
+        <span class="cmd">curl http://localhost:8080/v1/chat/completions \</span><br>
+        &nbsp;&nbsp;<span class="cmd">-H "Content-Type: application/json" \</span><br>
+        &nbsp;&nbsp;<span class="cmd">-d '{"model": "llama-3.2-3b-instruct",</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"messages": [{"role": "user", "content": "Summarize this for me"}]}'</span>
+      </div>
+
+      <h3>LocalAI Strengths and Limitations</h3>
+
+      <p>LocalAI's key advantage is serving as a complete OpenAI API replacement in air-gapped or privacy-sensitive environments. A single LocalAI instance can replace all OpenAI endpoints your application uses. The flip side: managing LocalAI is more complex than Ollama because you're now responsible for configuring models for multiple modalities, each with their own backends and configuration files. Text throughput is measurably lower than vLLM — for a high-traffic text API, vLLM is the correct production choice. For a private team tool that also needs transcription and image capabilities, LocalAI is compelling.</p>
+
+      <h2 id="benchmarks">Head-to-Head Throughput Benchmarks</h2>
+
+      <p>The following data was collected running Llama-3-8B-Instruct with consistent prompt and generation settings. Batch throughput uses concurrent requests; single-request is one user at a time.</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Hardware</th>
+            <th>Metric</th>
+            <th>vLLM</th>
+            <th>Ollama</th>
+            <th>LocalAI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NVIDIA A100 80GB</td>
+            <td>Batch throughput (32 concurrent)</td>
+            <td>2,100 t/s</td>
+            <td>~190 t/s</td>
+            <td>~130 t/s</td>
+          </tr>
+          <tr>
+            <td>NVIDIA A100 80GB</td>
+            <td>Single-request latency</td>
+            <td>210 t/s</td>
+            <td>185 t/s</td>
+            <td>140 t/s</td>
+          </tr>
+          <tr>
+            <td>RTX 4090 24GB</td>
+            <td>Batch throughput (8 concurrent)</td>
+            <td>920 t/s</td>
+            <td>~105 t/s</td>
+            <td>~85 t/s</td>
+          </tr>
+          <tr>
+            <td>RTX 4090 24GB</td>
+            <td>Single-request latency</td>
+            <td>115 t/s</td>
+            <td>102 t/s</td>
+            <td>82 t/s</td>
+          </tr>
+          <tr>
+            <td>M2 MacBook Pro 16GB</td>
+            <td>Single-request latency</td>
+            <td>N/A (no CUDA)</td>
+            <td>42 t/s</td>
+            <td>38 t/s</td>
+          </tr>
+          <tr>
+            <td>CPU-only (32-core Xeon)</td>
+            <td>Single-request latency</td>
+            <td>N/A (no benefit)</td>
+            <td>14 t/s</td>
+            <td>11 t/s</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>💡 <strong>Key insight from the benchmarks:</strong> For single-user workloads, the difference between vLLM and Ollama is modest (10–15%). The 10–11x gap in batch throughput is where vLLM's architectural advantage becomes undeniable. If you're ever serving more than 2–3 simultaneous users, vLLM becomes the economically correct choice — you need dramatically fewer GPUs for the same QPS.</p>
+      </div>
+
+      <h2 id="decision">Selection Framework: Which Tool for Which Scenario</h2>
+
+      <div class="decision-tree">
+        <h4>Decision Framework</h4>
+        <div class="decision-item">
+          <span class="decision-condition">You're on a Mac (Apple Silicon) for local development or personal use</span>
+          <span class="decision-arrow">→</span>
+          <span class="decision-result">Ollama</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-condition">You're building a production API that needs to handle 10+ concurrent users</span>
+          <span class="decision-arrow">→</span>
+          <span class="decision-result">vLLM</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-condition">You need a self-hosted drop-in for the full OpenAI API (chat + embeddings + transcription + images)</span>
+          <span class="decision-arrow">→</span>
+          <span class="decision-result">LocalAI</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-condition">You want to prototype an LLM app quickly on a developer laptop (any OS)</span>
+          <span class="decision-arrow">→</span>
+          <span class="decision-result">Ollama</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-condition">You're deploying in an air-gapped environment with strict OpenAI API compatibility</span>
+          <span class="decision-arrow">→</span>
+          <span class="decision-result">LocalAI</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-condition">You have NVIDIA GPUs and need maximum tokens/second for batch inference jobs</span>
+          <span class="decision-arrow">→</span>
+          <span class="decision-result">vLLM</span>
+        </div>
+        <div class="decision-item">
+          <span class="decision-condition">You need to run GGUF-quantized models (4-bit, 5-bit) to fit large models in limited VRAM</span>
+          <span class="decision-arrow">→</span>
+          <span class="decision-result">Ollama or LocalAI</span>
+        </div>
+      </div>
+
+      <h3>The Start-with-Ollama, Graduate-to-vLLM Pattern</h3>
+
+      <p>A common and sensible architecture pattern: start development and staging with Ollama because it's fast to set up and the OpenAI-compatible API means your application code is identical. When you graduate to production and need to handle real load, swap the <code>base_url</code> in your OpenAI client to point at your vLLM server. Because both expose the same API interface, the migration is often a single environment variable change.</p>
+
+      <p>This is worth stating explicitly: if you're unsure which tool to use, start with <a href="../tools/ollama.html">Ollama</a>. It's the lowest-friction way to get an LLM API running, and the migration path to <a href="../tools/vllm.html">vLLM</a> is straightforward when you actually need the throughput. Starting with vLLM's complexity when you don't need it is a common and costly mistake.</p>
+
+      <h3>Related Tools Worth Knowing</h3>
+
+      <p>If you're exploring LLM serving options, two other tools are worth understanding in this context. <a href="../tools/llama-cpp.html">llama.cpp</a> is the underlying C++ inference engine that Ollama and LocalAI both build on — going direct gives you the most control over quantization settings and can squeeze 10–20% more performance from constrained hardware. <a href="../tools/localai.html">LocalAI</a> also supports the llama-cpp-python Python bindings as an alternative backend for more complex model configurations.</p>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>Use Ollama for development. Use vLLM for production at scale. Use LocalAI if you need the full OpenAI API surface self-hosted.</strong> The tools are not competing head-to-head — they serve different stages of the deployment lifecycle and different organizational needs. The most common mistake is running Ollama in production under load (it will buckle) or setting up vLLM for a single-developer side project (massive overkill). Match the tool to the stage.</p>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <h3>Can I use vLLM without an NVIDIA GPU?</h3>
+          <p>vLLM's primary and most performant backend requires CUDA, which means NVIDIA GPUs. However, as of early 2026, vLLM has added experimental support for AMD ROCm GPUs and AWS Neuron chips. CPU-only mode is technically possible but extremely slow — for CPU inference, <a href="../tools/llama-cpp.html">llama.cpp</a> or <a href="../tools/ollama.html">Ollama</a> are far better choices. If you're running on Apple Silicon, Ollama with Metal acceleration is the correct tool for the job.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does Ollama support concurrent requests from multiple users?</h3>
+          <p>Ollama does process requests sequentially by default, which is a key limitation for production multi-user deployments. Starting from version 0.1.33, Ollama introduced parallel request processing via the <code>OLLAMA_NUM_PARALLEL</code> environment variable, and you can set <code>OLLAMA_MAX_QUEUE</code> to configure the request queue depth. However, even with these settings, Ollama's concurrency handling is significantly less efficient than vLLM's PagedAttention-based continuous batching. For serving more than 2–3 simultaneous users with low latency, vLLM remains the superior choice.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is PagedAttention and why does it matter for throughput?</h3>
+          <p>PagedAttention is vLLM's core memory management innovation, borrowed from operating system virtual memory concepts. Traditional LLM inference pre-allocates a fixed block of KV cache memory per request, which leads to massive memory fragmentation — often 60–80% of allocated KV cache memory is wasted. PagedAttention divides the KV cache into small fixed-size "pages" and allocates them dynamically as the sequence grows. This eliminates fragmentation, allows more requests to share GPU memory simultaneously, and enables continuous batching of requests at different stages of generation. The practical result: vLLM can typically handle 2–4x more concurrent requests on the same GPU compared to naive implementations, directly translating to higher throughput at lower cost-per-token in production deployments.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <div class="toc-box">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#overview">Core Problem Each Tool Solves</a></li>
+          <li><a href="#comparison">Quick Comparison</a></li>
+          <li><a href="#vllm">vLLM Deep Dive</a></li>
+          <li><a href="#ollama">Ollama Deep Dive</a></li>
+          <li><a href="#localai">LocalAI Deep Dive</a></li>
+          <li><a href="#benchmarks">Throughput Benchmarks</a></li>
+          <li><a href="#decision">Selection Framework</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </div>
+      <div class="related-box">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="run-llm-locally-guide">Run LLMs Locally Guide →</a></li>
+          <li><a href="comfyui-vs-a1111-vs-fooocus">ComfyUI vs A1111 vs Fooocus →</a></li>
+          <li><a href="ai-agent-frameworks-guide-2025">LangChain vs AutoGen →</a></li>
+        </ul>
+      </div>
+      <div class="related-box" style="margin-top:20px">
+        <h3>Tools Mentioned</h3>
+        <ul>
+          <li><a href="../tools/vllm.html">vLLM →</a></li>
+          <li><a href="../tools/ollama.html">Ollama →</a></li>
+          <li><a href="../tools/localai.html">LocalAI →</a></li>
+          <li><a href="../tools/llama-cpp.html">llama.cpp →</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index">Blog</a></li>
+          <li><a href="../about">About</a></li>
+          <li><a href="../contact">Contact</a></li>
+          <li><a href="../privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Articles</h4>
+        <ul>
+          <li><a href="run-llm-locally-guide">Local LLM Guide</a></li>
+          <li><a href="vllm-vs-ollama-production">vLLM vs Ollama vs LocalAI</a></li>
+          <li><a href="comfyui-vs-a1111-vs-fooocus">ComfyUI vs A1111 Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

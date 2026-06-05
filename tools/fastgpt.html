@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/labring/FastGPT",
     "description": "Knowledge-based platform for building RAG and AI workflows",
-    "dateModified": "2026-05-22",
+    "dateModified": "2026-06-05",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -154,7 +154,7 @@
     </h1>
     <p class="article-desc">Knowledge-based platform for building RAG and AI workflows</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-05-22">2026-05</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-05">2026-06</time></span>
       
       <span>⭐ <a href="https://github.com/labring/FastGPT" target="_blank" rel="noopener" style="color:var(--text-3)">28k+ GitHub Stars</a></span>
     </div>
@@ -214,23 +214,28 @@
         <span class="zh">FastGPT 是什么？</span>
       </h2>
       <p>
-        <strong>FastGPT</strong> is an open-source autonomous AI agent system with
-        28k+ GitHub stars. Knowledge-based platform for building RAG and AI workflows
+        <strong>FastGPT</strong> is an open-source project with
+        28k+ GitHub stars.
+        
+        Licensed under Apache-2.0.
+        
+        Knowledge-based platform for building RAG and AI workflows
       </p>
       <p>
-        As a autonomous AI agent system, FastGPT is designed to help developers and teams
         
-        automate complex tasks by combining planning, tool use, and iterative execution.
-        Instead of following a fixed script, it dynamically adapts its approach
-        based on intermediate results and feedback.
+        The project focuses on
+        <strong>agent, rag, workflow</strong>
+        use cases
+        
+        and operates as an autonomous system that can plan and execute multi-step tasks with minimal human intervention.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/labring/FastGPT" target="_blank" rel="noopener">github.com/labring/FastGPT</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/labring/FastGPT" target="_blank" rel="noopener">github.com/labring/FastGPT</a>.
         
-        With 28k+ stars, it is one of the most widely adopted tools in its category.
+        Its 28k+ GitHub stars indicate strong real-world adoption across engineering teams globally.
         
       </p>
 
@@ -238,9 +243,33 @@
       
       <blockquote class="expert-take">
         <p class="en">FastGPT's 20k+ community validates its utility—this isn't a weekend project, it's maintained software. Useful for teams building internal knowledge assistants. The main consideration is chunking strategy—the default settings work for getting started, but production quality requires tuning chunk size and overlap for your specific document types.</p>
-        <p class="zh">AI Nav 编辑团队推荐：FastGPT 是同类工具中社区认可度极高的开源项目，拥有 28k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">FastGPT's 20k+ community validates its utility—this isn't a weekend project, it's maintained software. Useful for teams building internal knowledge assistants. The main consideration is chunking strategy—the default settings work for getting started, but production quality requires tuning chunk size and overlap for your specific document types.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use FastGPT?</span>
+        <span class="zh">谁适合使用 FastGPT？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Teams automating multi-step tasks that require tool use and dynamic planning</li><li>Engineering and operations teams looking to reduce repetitive manual workflows</li><li>Teams that need LLMs to answer questions grounded in private documents (knowledge base Q&A, enterprise search)</li><li>Applications that need to reduce hallucination and cite sources</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Compliance-sensitive scenarios requiring fully predictable, auditable step-by-step outputs</li><li>Simple single-turn Q&A applications (Agent architecture adds unnecessary complexity)</li><li>Real-time data scenarios (RAG retrieval has latency, not suitable for sub-100ms response requirements)</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -258,13 +287,13 @@
         
         <div class="pros-box">
           <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
-          <ul><li>Full-featured AI knowledge base and workflow platform with a polished Chinese-language interface</li><li>Visual workflow editor for building complex LLM pipelines without code</li><li>Built-in RAG with knowledge base management and Q&A pair optimization</li><li>Active development with a large Chinese developer community</li></ul>
+          <ul><li>One-click deployment with built-in RAG, visual prompt flow editor, and knowledge base management UI</li><li>Supports 10+ LLM providers with OpenAI-compatible API — no vendor lock-in</li><li>Visual workflow editor lets non-engineers build and modify AI pipelines without coding</li></ul>
         </div>
         
         
         <div class="cons-box">
           <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
-          <ul><li>Documentation is primarily in Chinese — may be challenging for non-Chinese-speaking teams</li><li>Requires more infrastructure than simpler tools (MongoDB, PostgreSQL, Redis)</li><li>Enterprise features are separated into a paid tier</li></ul>
+          <ul><li>Self-hosted setup requires MongoDB and Docker — adds operational complexity vs hosted alternatives</li><li>Knowledge base indexing capped at ~100MB per dataset on free tier — paid plans needed for production data volumes</li><li>Primary documentation and community are in Chinese — English support documentation is incomplete</li></ul>
         </div>
         
       </div>
@@ -458,6 +487,11 @@
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Architecture, chunking strategies, vector stores, reranking, and evaluation.</div>
         </a>
         
+        <a href="/blog/langchain-vs-llamaindex.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">LangChain vs LlamaIndex: Which RAG Framework to Choose in 2026?</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Head-to-head comparison of architecture, performance, and real-world use cases.</div>
+        </a>
+        
       </div>
       
 
@@ -526,7 +560,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

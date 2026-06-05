@@ -220,23 +220,28 @@
         <span class="zh">LlamaIndex 是什么？</span>
       </h2>
       <p>
-        <strong>LlamaIndex</strong> is an open-source developer framework for building AI applications with
-        49k+ GitHub stars. Data framework for LLM applications over custom data
+        <strong>LlamaIndex</strong> is an open-source project with
+        49k+ GitHub stars.
+        
+        Licensed under MIT.
+        
+        Data framework for LLM applications over custom data
       </p>
       <p>
-        As a developer framework for building AI applications, LlamaIndex is designed to help developers and teams
         
-        build production-ready AI applications with reliable, tested abstractions.
-        It handles the complexity of connecting LLMs to external data and tools,
-        so engineers can focus on business logic instead of plumbing.
+        The project focuses on
+        <strong>rag, framework, llm</strong>
+        use cases
+        
+        and is designed as a developer library or framework—you integrate it into your own application by importing it as a dependency.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/run-llama/llama_index" target="_blank" rel="noopener">github.com/run-llama/llama_index</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/run-llama/llama_index" target="_blank" rel="noopener">github.com/run-llama/llama_index</a>.
         
-        With 49k+ stars, it is one of the most widely adopted tools in its category.
+        With 49k+ GitHub stars, it ranks among the most battle-tested open-source tools in this space—meaning most common use cases are well-documented with community solutions available.
         
       </p>
 
@@ -244,9 +249,33 @@
       
       <blockquote class="expert-take">
         <p class="en">LlamaIndex is purpose-built for RAG and data-over-LLM workflows — it does this job better than LangChain. If your primary use case is document Q&A, knowledge base search, or structured data querying with LLMs, LlamaIndex's data connectors, index types, and query engines are significantly more powerful. Use LangChain for general orchestration; use LlamaIndex when the data layer is complex.</p>
-        <p class="zh">AI Nav 编辑团队推荐：LlamaIndex 是同类工具中社区认可度极高的开源项目，拥有 49k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">LlamaIndex is purpose-built for RAG and data-over-LLM workflows — it does this job better than LangChain. If your primary use case is document Q&A, knowledge base search, or structured data querying with LLMs, LlamaIndex's data connectors, index types, and query engines are significantly more powerful. Use LangChain for general orchestration; use LlamaIndex when the data layer is complex.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use LlamaIndex?</span>
+        <span class="zh">谁适合使用 LlamaIndex？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Teams that need LLMs to answer questions grounded in private documents (knowledge base Q&A, enterprise search)</li><li>Applications that need to reduce hallucination and cite sources</li><li>Engineers with Python experience building LLM capabilities at the application layer</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Real-time data scenarios (RAG retrieval has latency, not suitable for sub-100ms response requirements)</li><li>Very small corpora (<100 documents) — fitting everything in context is simpler</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -509,6 +538,11 @@
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Architecture, chunking strategies, vector stores, reranking, and evaluation.</div>
         </a>
         
+        <a href="/blog/langchain-vs-llamaindex.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">LangChain vs LlamaIndex: Which RAG Framework to Choose in 2026?</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Head-to-head comparison of architecture, performance, and real-world use cases.</div>
+        </a>
+        
       </div>
       
 
@@ -586,7 +620,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

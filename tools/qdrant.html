@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/qdrant/qdrant",
     "description": "High-performance vector similarity search engine",
-    "dateModified": "2026-05-22",
+    "dateModified": "2026-06-05",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -154,7 +154,7 @@
     </h1>
     <p class="article-desc">High-performance vector similarity search engine</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-05-22">2026-05</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-05">2026-06</time></span>
       
       <span>⭐ <a href="https://github.com/qdrant/qdrant" target="_blank" rel="noopener" style="color:var(--text-3)">31k+ GitHub Stars</a></span>
     </div>
@@ -214,23 +214,28 @@
         <span class="zh">Qdrant 是什么？</span>
       </h2>
       <p>
-        <strong>Qdrant</strong> is an open-source developer framework for building AI applications with
-        31k+ GitHub stars. High-performance vector similarity search engine
+        <strong>Qdrant</strong> is an open-source project with
+        31k+ GitHub stars.
+        
+        Licensed under Apache-2.0.
+        
+        High-performance vector similarity search engine
       </p>
       <p>
-        As a developer framework for building AI applications, Qdrant is designed to help developers and teams
         
-        build production-ready AI applications with reliable, tested abstractions.
-        It handles the complexity of connecting LLMs to external data and tools,
-        so engineers can focus on business logic instead of plumbing.
+        The project focuses on
+        <strong>vector-db, embeddings, rust</strong>
+        use cases
+        
+        and is designed as a developer library or framework—you integrate it into your own application by importing it as a dependency.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/qdrant/qdrant" target="_blank" rel="noopener">github.com/qdrant/qdrant</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/qdrant/qdrant" target="_blank" rel="noopener">github.com/qdrant/qdrant</a>.
         
-        With 31k+ stars, it is one of the most widely adopted tools in its category.
+        With 31k+ GitHub stars, it ranks among the most battle-tested open-source tools in this space—meaning most common use cases are well-documented with community solutions available.
         
       </p>
 
@@ -238,9 +243,33 @@
       
       <blockquote class="expert-take">
         <p class="en">Qdrant's 21k+ community validates its utility—this isn't a weekend project, it's maintained software. Practical for RAG applications, recommendation systems, and semantic search. The main operational consideration is index rebuild time when adding large numbers of new vectors—plan for this in your data pipeline design.</p>
-        <p class="zh">AI Nav 编辑团队推荐：Qdrant 是同类工具中社区认可度极高的开源项目，拥有 31k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">Qdrant's 21k+ community validates its utility—this isn't a weekend project, it's maintained software. Practical for RAG applications, recommendation systems, and semantic search. The main operational consideration is index rebuild time when adding large numbers of new vectors—plan for this in your data pipeline design.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use Qdrant?</span>
+        <span class="zh">谁适合使用 Qdrant？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Engineering teams building semantic search, recommendation systems, or RAG retrieval layers</li><li>Applications doing similarity search across millions of vectors or more</li><li>NLP applications that need to convert text or images into vectors for downstream search or clustering</li><li>Teams building semantic similarity matching or text classification systems</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Small apps that only need simple keyword search (Elasticsearch or SQLite is simpler)</li><li>Datasets under 100K records (a standard database with pgvector extension is sufficient)</li><li>Traditional information retrieval use cases that only need TF-IDF-style sparse search</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -305,13 +334,13 @@
         
         <div class="pros-box">
           <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
-          <ul><li>High performance vector database with payload filtering and hybrid search</li><li>Strong Rust-based implementation for low latency and memory efficiency</li><li>Excellent documentation and developer experience</li><li>Generous free cloud tier and straightforward self-hosting</li></ul>
+          <ul><li>Benchmarks show 2-3x faster filtered vector search vs Weaviate for high-cardinality payload filtering</li><li>Written in Rust — delivers ~40% lower memory usage than comparable Python-based vector databases</li><li>Sparse + dense hybrid search natively supported without additional components</li></ul>
         </div>
         
         
         <div class="cons-box">
           <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
-          <ul><li>Smaller managed cloud scale compared to Pinecone or Weaviate for enterprise use</li><li>Fewer managed integrations than Pinecone for enterprise data pipelines</li><li>Some advanced features (multitenancy at massive scale) require careful configuration</li></ul>
+          <ul><li>Qdrant Cloud free tier limited to 1GB storage and 1 collection — paid plans start at $25/month</li><li>Smaller managed cloud ecosystem compared to Pinecone or Weaviate for enterprise compliance requirements</li><li>Rust-based internals make custom extension development significantly harder than Python-native alternatives</li></ul>
         </div>
         
       </div>
@@ -463,6 +492,16 @@
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Architecture, chunking strategies, vector stores, reranking, and evaluation.</div>
         </a>
         
+        <a href="/blog/vector-databases-compared.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">Vector Database Showdown: Chroma vs Qdrant vs Weaviate vs Milvus</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Performance benchmarks, feature comparison, and deployment considerations.</div>
+        </a>
+        
+        <a href="/blog/build-production-rag-pipeline.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">Build a Production RAG Pipeline in 2026: Architecture to Deployment</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Chunking strategies, embedding models, hybrid search, reranking, and evaluation.</div>
+        </a>
+        
       </div>
       
 
@@ -531,7 +570,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

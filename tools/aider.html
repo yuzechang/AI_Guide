@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/Aider-AI/aider",
     "description": "AI pair programmer in your terminal",
-    "dateModified": "2026-05-22",
+    "dateModified": "2026-06-05",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -154,7 +154,7 @@
     </h1>
     <p class="article-desc">AI pair programmer in your terminal</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-05-22">2026-05</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-05">2026-06</time></span>
       
       <span>⭐ <a href="https://github.com/Aider-AI/aider" target="_blank" rel="noopener" style="color:var(--text-3)">45k+ GitHub Stars</a></span>
     </div>
@@ -214,22 +214,28 @@
         <span class="zh">Aider 是什么？</span>
       </h2>
       <p>
-        <strong>Aider</strong> is an open-source end-user AI application with
-        45k+ GitHub stars. AI pair programmer in your terminal
+        <strong>Aider</strong> is an open-source project with
+        45k+ GitHub stars.
+        
+        Licensed under Apache-2.0.
+        
+        AI pair programmer in your terminal
       </p>
       <p>
-        As a end-user AI application, Aider is designed to help developers and teams
         
-        integrate AI capabilities into their projects without building everything from scratch.
-        It provides a ready-to-use interface that reduces the time from idea to working prototype.
+        The project focuses on
+        <strong>code, terminal, productivity</strong>
+        use cases
+        
+        and is designed as a ready-to-use application—you can deploy or run it directly without writing integration code.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/Aider-AI/aider" target="_blank" rel="noopener">github.com/Aider-AI/aider</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/Aider-AI/aider" target="_blank" rel="noopener">github.com/Aider-AI/aider</a>.
         
-        With 45k+ stars, it is one of the most widely adopted tools in its category.
+        With 45k+ GitHub stars, it ranks among the most battle-tested open-source tools in this space—meaning most common use cases are well-documented with community solutions available.
         
       </p>
 
@@ -237,9 +243,33 @@
       
       <blockquote class="expert-take">
         <p class="en">A well-regarded project with 21k+ stars, Aider has proven itself in production deployments. Best suited for developers who want AI assistance integrated directly into their workflow rather than switching to a chat interface. The context window size limits its usefulness for very large codebase refactoring tasks.</p>
-        <p class="zh">AI Nav 编辑团队推荐：Aider 是同类工具中社区认可度极高的开源项目，拥有 45k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">A well-regarded project with 21k+ stars, Aider has proven itself in production deployments. Best suited for developers who want AI assistance integrated directly into their workflow rather than switching to a chat interface. The context window size limits its usefulness for very large codebase refactoring tasks.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use Aider?</span>
+        <span class="zh">谁适合使用 Aider？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Development teams looking to improve code generation, completion, and review throughput</li><li>Individual developers who want AI-assisted coding integrated directly into their IDE</li><li>Developers and end users who want to use AI capabilities quickly without building integrations from scratch</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Non-technical users (code tools require programming fundamentals)</li><li>Codebases with strict audit requirements (AI-generated code must pass human review before merging)</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -283,13 +313,13 @@
         
         <div class="pros-box">
           <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
-          <ul><li>Git-native AI coding — automatically commits changes with descriptive messages</li><li>Works directly in your terminal without switching IDEs</li><li>Strong performance on SWE-bench — competitive with GUI-based tools on code quality</li><li>Works with any OpenAI-compatible API including local Ollama models</li></ul>
+          <ul><li>Git-native AI coding — automatically creates descriptive git commits for every change made</li><li>Works across entire codebases up to ~100K lines with intelligent file selection</li><li>Average coding session costs ~$0.05-$0.50 with Claude 3.5 Sonnet; predictable API spend</li></ul>
         </div>
         
         
         <div class="cons-box">
           <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
-          <ul><li>Terminal-only — no GUI for users who prefer visual code editors</li><li>Requires comfort with command-line workflows</li><li>Context management for very large codebases requires manual file selection</li></ul>
+          <ul><li>Terminal-only — no GUI for users who prefer visual code editors like VS Code</li><li>Large monorepos (>500K lines) require --map-tokens tuning to avoid context overflow</li><li>Best results require GPT-4o or Claude Sonnet; quality degrades noticeably with smaller models</li></ul>
         </div>
         
       </div>
@@ -473,6 +503,11 @@
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Honest comparison with score grids, decision matrix, and real-world trade-offs.</div>
         </a>
         
+        <a href="/blog/ai-code-assistants-2026.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">Best AI Coding Assistants in 2026: Cursor vs Cline vs Copilot vs Aider</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Deep dive into 5 tools with pricing, model support, and a 7-scenario decision matrix.</div>
+        </a>
+        
       </div>
       
 
@@ -541,7 +576,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

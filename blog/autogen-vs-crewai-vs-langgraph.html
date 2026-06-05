@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoGen vs CrewAI vs LangGraph: Multi-Agent Frameworks Compared 2026 | AI Nav</title>
+  <meta name="description" content="Detailed comparison of AutoGen, CrewAI, and LangGraph for building multi-agent AI systems. Covers architecture, code complexity, control flow, and which to choose for your use case.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/autogen-vs-crewai-vs-langgraph.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AutoGen vs CrewAI vs LangGraph: Multi-Agent Frameworks Compared 2026">
+  <meta property="og:description" content="Detailed comparison of AutoGen, CrewAI, and LangGraph for building multi-agent AI systems. Covers architecture, code complexity, control flow, and which to choose for your use case.">
+  <meta property="og:url" content="https://yuzec.com/blog/autogen-vs-crewai-vs-langgraph.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AutoGen vs CrewAI vs LangGraph: Multi-Agent Frameworks Compared 2026",
+    "description": "Detailed comparison of AutoGen, CrewAI, and LangGraph for building multi-agent AI systems. Covers architecture, code complexity, control flow, and which to choose for your use case.",
+    "datePublished": "2026-06-01",
+    "dateModified": "2026-06-01",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav Editorial Team",
+      "url": "https://yuzec.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/blog/autogen-vs-crewai-vs-langgraph.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can AutoGen, CrewAI, and LangGraph work together in the same project?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, they can be combined. A common pattern is to use LangGraph as the outer orchestration layer (handling routing, state, and human approval nodes) while embedding a CrewAI crew or AutoGen conversation inside a specific LangGraph node. This lets you keep clean high-level control flow in LangGraph while leveraging CrewAI's role-based task assignment for complex subtasks. The integration requires passing state between frameworks via shared dict or message format adapters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which multi-agent framework is easiest to debug in production?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LangGraph offers the best production observability through LangSmith integration — you get a visual trace of every node execution, state snapshot at each step, and the ability to replay specific runs. AutoGen 0.4's new event-driven runtime also logs structured events per agent. CrewAI's debugging story is weaker: verbose=True helps locally but the logs are not structured for production monitoring. If production observability matters, LangGraph + LangSmith is the current best-in-class combination."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the performance overhead of running multiple agents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each agent call is an independent LLM API request, so latency scales roughly linearly with the number of sequential agent steps. A 3-agent CrewAI pipeline with one sequential handoff per agent adds 3x the base LLM latency plus framework overhead (typically 50–200ms per node for LangGraph, negligible for the others). Parallel agent execution is supported in AutoGen (group chats) and LangGraph (parallel node branches) to reduce total wall-clock time. In practice, a well-designed 5-agent workflow completes in 15–40 seconds depending on model and task complexity."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .content-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 24px; }
+    .toc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .toc-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .toc-box ol { margin: 0; padding-left: 18px; }
+    .toc-box li { margin-bottom: 8px; }
+    .toc-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .toc-box a:hover { color: var(--accent); }
+    .related-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    .related-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .related-box ul { margin: 0; padding: 0; list-style: none; }
+    .related-box li { margin-bottom: 8px; }
+    .related-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .related-box a:hover { color: var(--accent); }
+    .article-body h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .article-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    .article-body p { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body strong { color: var(--text); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .tool-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .tool-table th { background: var(--card-bg); color: var(--text-2); font-weight: 600; padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+    .tool-table td { padding: 10px 14px; border: 1px solid var(--border); color: var(--text-2); }
+    .tool-table tr:nth-child(even) td { background: var(--card-bg); }
+    .tool-table td:first-child { font-weight: 600; color: var(--text); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .badge-green { background: #064e3b; color: #6ee7b7; }
+    .badge-yellow { background: #451a03; color: #fcd34d; }
+    .badge-red { background: #450a0a; color: #fca5a5; }
+    .code-block { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #e6edf3; overflow-x: auto; }
+    .code-block .comment { color: #8b949e; }
+    .code-block .cmd { color: #79c0ff; }
+    .code-block .string { color: #a5d6ff; }
+    .code-block .keyword { color: #ff7b72; }
+    .callout { background: var(--card-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; }
+    .faq-section { margin-top: 40px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; background: var(--card-bg); }
+    .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .faq-item p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .tool-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin: 20px 0; }
+    .tool-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .tool-card-icon { font-size: 24px; }
+    .tool-card-name { font-size: 18px; font-weight: 700; color: var(--text); }
+    .tool-card-verdict { font-size: 12px; color: var(--accent); font-weight: 600; background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
+    .decision-matrix { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 24px 0; }
+    .decision-matrix h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 16px; }
+    .decision-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+    .decision-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .decision-label { min-width: 160px; font-size: 13px; color: var(--text-2); }
+    .decision-answer { font-size: 13px; color: var(--text); font-weight: 600; }
+  </style>
+  <script src="../assets/lang.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="/" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="index" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+      <a href="../about" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+    </div>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">AutoGen vs CrewAI vs LangGraph</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">🤖 Multi-Agent</span>
+    <h1 class="article-title" style="margin-top:12px">
+      AutoGen vs CrewAI vs LangGraph:<br>
+      <span class="gradient">Multi-Agent Frameworks Compared 2026</span>
+    </h1>
+    <p class="article-desc">
+      All three frameworks let you build multi-agent AI systems — but their programming models are fundamentally different. AutoGen thinks in conversations, CrewAI thinks in roles, and LangGraph thinks in state machines. Choosing the wrong one for your use case adds weeks of rework. This guide helps you choose right the first time.
+    </p>
+    <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--text-3)">🗓 June 2026</span>
+      <span style="font-size:13px;color:var(--text-3)">⏱ 10 min read</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ AI Nav Editorial Team</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <article class="article-body">
+
+      <p>The multi-agent AI space has fragmented into three dominant approaches, each with a completely different mental model for how agents should coordinate. <a href="../tools/autogen.html">AutoGen</a> (from Microsoft) treats agent coordination as a conversation between participants. <a href="../tools/crewai.html">CrewAI</a> frames it as a team of specialists with defined roles and tasks. <a href="../tools/langchain.html">LangGraph</a> (from LangChain) models it as a stateful directed graph — the same abstraction used in compilers and workflow engines.</p>
+
+      <p>These are not superficial differences in syntax. They lead to genuinely different architectures, debugging experiences, and failure modes. A system that takes 50 lines to build in CrewAI might require 200 lines in LangGraph — but LangGraph's 200-line version will handle edge cases that silently break in CrewAI. Understanding when each model applies is the key skill for any engineer building production multi-agent systems in 2026.</p>
+
+      <h2 id="quick-comparison">Quick Comparison Table</h2>
+
+      <p>Here's a side-by-side of the most decision-relevant dimensions across the three frameworks:</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>AutoGen 0.4</th>
+            <th>CrewAI 0.70</th>
+            <th>LangGraph 0.2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Programming Model</td>
+            <td>Conversation / message-passing</td>
+            <td>Role-based task delegation</td>
+            <td>Stateful directed graph</td>
+          </tr>
+          <tr>
+            <td>Typical code for 3-agent workflow</td>
+            <td>~60 lines</td>
+            <td>~45 lines</td>
+            <td>~120 lines</td>
+          </tr>
+          <tr>
+            <td>Visual/GUI Builder</td>
+            <td>AutoGen Studio (basic)</td>
+            <td>CrewAI Plus (paid)</td>
+            <td>LangSmith (paid)</td>
+          </tr>
+          <tr>
+            <td>Human-in-the-loop interrupts</td>
+            <td>Native (UserProxyAgent)</td>
+            <td>Limited (human_input_mode)</td>
+            <td>Native (interrupt_before)</td>
+          </tr>
+          <tr>
+            <td>Code execution built-in</td>
+            <td>Yes (Docker sandbox)</td>
+            <td>Via tools only</td>
+            <td>Via tools only</td>
+          </tr>
+          <tr>
+            <td>Conditional routing</td>
+            <td>Termination conditions</td>
+            <td>Router agent (complex)</td>
+            <td>Conditional edges (native)</td>
+          </tr>
+          <tr>
+            <td>Debugging difficulty</td>
+            <td><span class="badge badge-yellow">Medium</span></td>
+            <td><span class="badge badge-green">Easier</span></td>
+            <td><span class="badge badge-red">Harder</span></td>
+          </tr>
+          <tr>
+            <td>GitHub Stars (June 2026)</td>
+            <td>~38k</td>
+            <td>~26k</td>
+            <td>~11k (part of LangChain)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>💡 <strong>The 30-second rule:</strong> If your workflow is a linear pipeline (A → B → C), use CrewAI. If it involves code execution or human approval at multiple points, use AutoGen. If it has loops, conditional branches, or complex state that must persist across steps, use LangGraph.</p>
+      </div>
+
+      <h2 id="autogen">AutoGen: Conversation-Driven Multi-Agent</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🤝</span>
+          <span class="tool-card-name">AutoGen</span>
+          <span class="tool-card-verdict">Best for: Code execution + human-in-the-loop</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">Microsoft's open-source multi-agent framework. Agents communicate by sending and receiving messages — like a group chat where each participant decides when to speak and what to do based on the conversation history.</p>
+      </div>
+
+      <p>AutoGen's core abstraction is the <strong>conversational agent</strong>. Every agent has a system prompt and a set of rules for when to respond, when to execute code, and when to hand off to another agent. The framework handles the message routing loop — you just define what each agent does and when the conversation should end.</p>
+
+      <p>The <code>AssistantAgent</code> is the LLM-powered thinker: it reads the conversation and generates responses, code, or function calls. The <code>UserProxyAgent</code> is the executor and human interface: it runs code, calls tools, and optionally pauses to ask a human for input. This pairing is the central pattern in AutoGen and the source of its distinctive strength — it makes human intervention a first-class concept, not an afterthought.</p>
+
+      <h3>AutoGen Code Example: Two Agents Collaborating on Code</h3>
+
+      <p>The following example shows two agents working together to write, test, and fix a Python function. The <code>UserProxyAgent</code> executes the code and returns results; the <code>AssistantAgent</code> reviews the output and proposes fixes if needed:</p>
+
+      <div class="code-block">
+<span class="keyword">import</span> autogen<br><br>
+<span class="comment"># 配置 LLM（支持 OpenAI、Azure、本地 Ollama）</span><br>
+config_list = [{<span class="string">"model"</span>: <span class="string">"gpt-4o"</span>, <span class="string">"api_key"</span>: <span class="string">"YOUR_KEY"</span>}]<br><br>
+<span class="comment"># 代码生成 Agent（纯 LLM，不执行代码）</span><br>
+assistant = autogen.AssistantAgent(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name=<span class="string">"coder"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;llm_config={<span class="string">"config_list"</span>: config_list},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;system_message=<span class="string">"你是一位资深 Python 工程师，编写代码并在收到错误后自动修复。"</span><br>
+)<br><br>
+<span class="comment"># 执行 Agent（在本地沙箱中运行代码，可设置人工确认）</span><br>
+user_proxy = autogen.UserProxyAgent(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name=<span class="string">"executor"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;human_input_mode=<span class="string">"NEVER"</span>,  <span class="comment"># 改为 "ALWAYS" 可在每步暂停等待人工确认</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;code_execution_config={<span class="string">"work_dir"</span>: <span class="string">"sandbox"</span>, <span class="string">"use_docker"</span>: <span class="keyword">True</span>},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;max_consecutive_auto_reply=<span class="string">10</span>,<br>
+)<br><br>
+<span class="comment"># 启动对话：executor 发起任务，coder 响应并生成代码，executor 执行后反馈</span><br>
+user_proxy.initiate_chat(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;assistant,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;message=<span class="string">"写一个 Python 函数，解析 JSON 日志文件并统计每个错误级别的出现次数。包含单元测试。"</span><br>
+)
+      </div>
+
+      <p>In this pattern, AutoGen handles the entire feedback loop: the assistant writes code in a markdown code block, the user proxy extracts and executes it, returns the stdout/stderr to the conversation, and the assistant decides whether the output is correct or needs revision. This loop continues until the termination condition is met (by default, when the assistant says "TERMINATE").</p>
+
+      <h3>AutoGen Limitations</h3>
+
+      <p>The conversation-loop model has a real weakness: <strong>termination design is hard</strong>. If your termination condition is poorly specified — "stop when the task is done" — the agents may keep refining indefinitely. In production systems we've seen AutoGen pipelines run 40+ conversation turns before the assistant was satisfied, consuming far more tokens than expected. Always set explicit <code>max_consecutive_auto_reply</code> limits and test termination conditions carefully.</p>
+
+      <p>AutoGen 0.4 introduced a new event-driven runtime (replacing the older chat-based API) with better support for async agents and distributed execution. This is the version to use for new projects — the older API is still available but won't receive new features.</p>
+
+      <h2 id="crewai">CrewAI: Role-Based Task Pipelines</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🧑‍✈️</span>
+          <span class="tool-card-name">CrewAI</span>
+          <span class="tool-card-verdict">Best for: Linear pipelines with clear role divisions</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">CrewAI organizes agents like a workplace: a Crew has Agents with specific roles and Backstories, each assigned one or more Tasks. The framework handles the task handoff sequence — you define who does what, not how they talk to each other.</p>
+      </div>
+
+      <p>CrewAI's three-layer architecture (Crew → Agent → Task) maps intuitively to how humans think about delegating work. An agent is defined by its <code>role</code> (job title), <code>goal</code> (what they optimize for), and <code>backstory</code> (context that shapes their responses). A task specifies what needs to be done, who does it, and what the expected output format is.</p>
+
+      <p>The framework's <strong>sequential process</strong> (default) passes each task's output as context to the next task, making it naturally suited to pipelines like: research → draft → review → publish. The <strong>hierarchical process</strong> adds a manager agent that assigns and supervises tasks — useful when you don't know upfront which specialist agent should handle a given input.</p>
+
+      <h3>CrewAI Code Example: Research-Write-Edit Pipeline</h3>
+
+      <div class="code-block">
+<span class="keyword">from</span> crewai <span class="keyword">import</span> Agent, Task, Crew, Process<br>
+<span class="keyword">from</span> crewai_tools <span class="keyword">import</span> SerperDevTool<br><br>
+search_tool = SerperDevTool()<br><br>
+<span class="comment"># 定义三个角色明确的 Agent</span><br>
+researcher = Agent(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;role=<span class="string">"Senior Research Analyst"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goal=<span class="string">"找到最准确、最新的信息，并提供有来源支持的摘要"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;backstory=<span class="string">"你是一位严谨的研究员，擅长分辨可靠信息和噪音"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tools=[search_tool], verbose=<span class="keyword">True</span><br>
+)<br><br>
+writer = Agent(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;role=<span class="string">"Technical Content Writer"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goal=<span class="string">"将研究成果转化为清晰、有吸引力的技术文章"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;backstory=<span class="string">"你擅长将复杂技术内容写得让工程师和非技术读者都能理解"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;verbose=<span class="keyword">True</span><br>
+)<br><br>
+editor = Agent(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;role=<span class="string">"Senior Editor"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goal=<span class="string">"确保文章准确、结构清晰、语气一致，并符合 SEO 最佳实践"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;backstory=<span class="string">"你有 10 年技术编辑经验，对标题党和不准确的内容零容忍"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;verbose=<span class="keyword">True</span><br>
+)<br><br>
+<span class="comment"># 定义任务（每个任务的 output 自动成为下一个任务的 context）</span><br>
+research_task = Task(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description=<span class="string">"调研 2026 年最佳开源 LLM，重点关注 MMLU 分数、参数量和许可证"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_output=<span class="string">"包含 5 个模型的对比摘要，含具体数据"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;agent=researcher<br>
+)<br><br>
+write_task = Task(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description=<span class="string">"根据研究结果写一篇 800 字的技术博客文章"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_output=<span class="string">"完整的 Markdown 格式文章，含标题和小节"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;agent=writer<br>
+)<br><br>
+edit_task = Task(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description=<span class="string">"审阅并润色文章，修正任何事实错误或表达问题"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;expected_output=<span class="string">"经过校对的最终版文章"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;agent=editor<br>
+)<br><br>
+<span class="comment"># 组建 Crew 并运行</span><br>
+crew = Crew(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;agents=[researcher, writer, editor],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tasks=[research_task, write_task, edit_task],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;process=Process.sequential<br>
+)<br><br>
+result = crew.kickoff()
+      </div>
+
+      <!-- 文章中段广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h3>CrewAI Limitations</h3>
+
+      <p>CrewAI's biggest weakness is <strong>conditional routing</strong>. The sequential process passes every task output to the next task in order — there's no built-in way to say "if the researcher found no relevant results, skip the writing task and return an error." You can hack this with a Router agent in hierarchical mode, but it adds complexity that partially negates CrewAI's simplicity advantage.</p>
+
+      <p>The output format between tasks is also relatively rigid. Tasks communicate via plain text, which means complex structured data (nested JSON, function call results) must be serialized to string and parsed by the next agent — introducing potential parsing failures that are hard to catch before production.</p>
+
+      <h2 id="langgraph">LangGraph: Graph State Machines for Production</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🗺️</span>
+          <span class="tool-card-name">LangGraph</span>
+          <span class="tool-card-verdict">Best for: Complex routing, loops, and production systems</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">LangGraph models agent workflows as a directed graph: nodes represent agent or tool calls, edges represent transitions, and a typed State dictionary persists across the entire workflow. Conditional edges let you route to different nodes based on the current state.</p>
+      </div>
+
+      <p>LangGraph's mental model requires an upfront investment. You need to understand three concepts before writing any code: <strong>State</strong> (a typed TypedDict that accumulates information across the entire graph run), <strong>Nodes</strong> (Python functions that receive and return state), and <strong>Edges</strong> (transitions between nodes, which can be conditional).</p>
+
+      <p>The payoff is control. LangGraph is the only framework of the three where you can natively express patterns like: "call the tool, check the result, loop back to the LLM if it fails, stop after 3 retries, and if still failing, route to a human approval node." This is exactly the kind of logic production systems require — and it's exactly what becomes a mess of special-case code in the other frameworks.</p>
+
+      <h3>LangGraph Code Example: Tool-Calling Agent with Conditional Routing</h3>
+
+      <div class="code-block">
+<span class="keyword">from</span> langgraph.graph <span class="keyword">import</span> StateGraph, END<br>
+<span class="keyword">from</span> typing <span class="keyword">import</span> TypedDict, Annotated<br>
+<span class="keyword">import</span> operator<br><br>
+<span class="comment"># 1. 定义图的共享状态</span><br>
+<span class="keyword">class</span> AgentState(TypedDict):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;messages: Annotated[list, operator.add]  <span class="comment"># 消息累积（不覆盖）</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;tool_result: str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;retry_count: int<br><br>
+<span class="comment"># 2. 定义节点（每个节点是接收 state 并返回 state 更新的函数）</span><br>
+<span class="keyword">def</span> call_llm(state: AgentState):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># 调用 LLM，返回消息追加到 state</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;response = llm_with_tools.invoke(state[<span class="string">"messages"</span>])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> {<span class="string">"messages"</span>: [response]}<br><br>
+<span class="keyword">def</span> run_tool(state: AgentState):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># 执行工具调用，记录结果</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;result = execute_tool_call(state[<span class="string">"messages"</span>][-1])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> {<span class="string">"tool_result"</span>: result, <span class="string">"messages"</span>: [result]}<br><br>
+<span class="comment"># 3. 条件路由函数：根据 LLM 输出决定下一步</span><br>
+<span class="keyword">def</span> should_continue(state: AgentState) -> str:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;last_message = state[<span class="string">"messages"</span>][-1]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> hasattr(last_message, <span class="string">"tool_calls"</span>) <span class="keyword">and</span> last_message.tool_calls:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"run_tool"</span>    <span class="comment"># LLM 决定调用工具 → 路由到工具节点</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">elif</span> state[<span class="string">"retry_count"</span>] > 3:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"human_review"</span>  <span class="comment"># 超过重试次数 → 路由到人工审核</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> END             <span class="comment"># 任务完成 → 结束图</span><br><br>
+<span class="comment"># 4. 构建图</span><br>
+graph = StateGraph(AgentState)<br>
+graph.add_node(<span class="string">"call_llm"</span>, call_llm)<br>
+graph.add_node(<span class="string">"run_tool"</span>, run_tool)<br>
+graph.set_entry_point(<span class="string">"call_llm"</span>)<br>
+graph.add_conditional_edges(<span class="string">"call_llm"</span>, should_continue)<br>
+graph.add_edge(<span class="string">"run_tool"</span>, <span class="string">"call_llm"</span>)  <span class="comment"># 工具调用后返回 LLM</span><br><br>
+app = graph.compile()<br>
+result = app.invoke({<span class="string">"messages"</span>: [initial_message], <span class="string">"retry_count"</span>: 0})
+      </div>
+
+      <h3>LangGraph Limitations</h3>
+
+      <p>LangGraph has a steep learning curve. The graph state model, conditional edges, and reducer functions (which control how state is merged) take most engineers 1–2 days to fully internalize. Common beginner mistakes include forgetting to use <code>Annotated[list, operator.add]</code> for lists (which causes state to be overwritten instead of accumulated) and building graphs that have no path to <code>END</code> (resulting in infinite loops).</p>
+
+      <p>The framework is also significantly more verbose. A workflow that takes 45 lines in CrewAI typically requires 150–200 lines in LangGraph once you define state, nodes, edges, and the conditional routing logic. For simple linear pipelines, this verbosity provides no benefit.</p>
+
+      <h2 id="architecture-comparison">Architecture Comparison</h2>
+
+      <p>Here's how the three frameworks compare on architectural dimensions that matter most for production deployment:</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Architecture Concern</th>
+            <th>AutoGen</th>
+            <th>CrewAI</th>
+            <th>LangGraph</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>State persistence</td>
+            <td>Conversation history (list)</td>
+            <td>Task outputs (string)</td>
+            <td>Typed State dict (full control)</td>
+          </tr>
+          <tr>
+            <td>Retry logic</td>
+            <td>Manual (in agent code)</td>
+            <td>Manual (in agent code)</td>
+            <td>Native (conditional edges + counter)</td>
+          </tr>
+          <tr>
+            <td>Human approval nodes</td>
+            <td>UserProxyAgent.human_input_mode</td>
+            <td>human_input=True on Task</td>
+            <td>interrupt_before/interrupt_after</td>
+          </tr>
+          <tr>
+            <td>Async support</td>
+            <td>Yes (AsyncAssistantAgent)</td>
+            <td>Partial</td>
+            <td>Yes (async nodes)</td>
+          </tr>
+          <tr>
+            <td>Streaming output</td>
+            <td>Via callback handlers</td>
+            <td>Limited</td>
+            <td>stream_mode support</td>
+          </tr>
+          <tr>
+            <td>Memory / persistence</td>
+            <td>External (Redis/DB)</td>
+            <td>External</td>
+            <td>Native checkpointer (SQLite/PostgreSQL)</td>
+          </tr>
+          <tr>
+            <td>Multi-model support</td>
+            <td>Per-agent config</td>
+            <td>Per-agent LLM param</td>
+            <td>Per-node LLM call</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>LangGraph's native checkpointer is worth highlighting: it serializes the entire graph state to a database at each step, enabling workflows to resume after a crash or be paused for days awaiting human input. This is critical for long-running production workflows and something the other frameworks require you to build yourself.</p>
+
+      <h2 id="when-to-combine">When to Combine Frameworks</h2>
+
+      <p>In production systems, the three frameworks are not mutually exclusive. A common pattern at scale is to use LangGraph as the outer orchestration layer (handling routing, retries, state persistence, and human approval gates) while embedding a CrewAI crew inside a specific LangGraph node for a well-defined subtask like "research this topic and produce a structured report."</p>
+
+      <p>This combination makes sense when: (a) the outer workflow has complex branching logic that would be painful to implement in CrewAI, and (b) one specific subtask maps perfectly to a multi-role pipeline that CrewAI handles well. The integration is straightforward — a LangGraph node is just a Python function, so you can call <code>crew.kickoff()</code> inside it and store the result in the graph state.</p>
+
+      <h2 id="decision-matrix">Selection Decision Matrix</h2>
+
+      <p>Use this table to make your final framework choice:</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Your Use Case</th>
+            <th>Recommended Framework</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Automated code generation + testing</td>
+            <td>AutoGen</td>
+            <td>Native Docker code execution, auto-fix loop</td>
+          </tr>
+          <tr>
+            <td>Content creation pipeline (research → write → edit)</td>
+            <td>CrewAI</td>
+            <td>Sequential task handoff maps perfectly to role model</td>
+          </tr>
+          <tr>
+            <td>Data analysis with human approval gates</td>
+            <td>LangGraph</td>
+            <td>interrupt_before lets you pause and resume cleanly</td>
+          </tr>
+          <tr>
+            <td>Customer support chatbot with tool use</td>
+            <td>LangGraph</td>
+            <td>Conditional routing handles intent classification + fallback</td>
+          </tr>
+          <tr>
+            <td>Report generation (one-shot, no loops)</td>
+            <td>CrewAI</td>
+            <td>Simplest code, role model fits the task</td>
+          </tr>
+          <tr>
+            <td>Rapid prototype / hackathon project</td>
+            <td>CrewAI or AutoGen</td>
+            <td>Fewer concepts to learn, working system in &lt;1 hour</td>
+          </tr>
+          <tr>
+            <td>Production system with SLA requirements</td>
+            <td>LangGraph</td>
+            <td>Checkpointing, observability, retry control</td>
+          </tr>
+          <tr>
+            <td>Low-code / no-code workflow automation</td>
+            <td><a href="../tools/n8n.html">n8n</a> (not these three)</td>
+            <td>Visual builder is more appropriate than Python code</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>For most new projects in 2026, start with CrewAI if your workflow is a clear pipeline, or LangGraph if it has any branching or loop requirements.</strong> AutoGen's code execution sandbox is compelling for developer-tool use cases, but the conversation-loop model is harder to reason about in production. LangGraph has the steepest learning curve but the best production story — checkpointing, streaming, and observability are all first-class features.</p>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <h3>Can AutoGen, CrewAI, and LangGraph work together in the same project?</h3>
+          <p>Yes, they can be combined. A common pattern is to use LangGraph as the outer orchestration layer (handling routing, state, and human approval nodes) while embedding a CrewAI crew or AutoGen conversation inside a specific LangGraph node. This lets you keep clean high-level control flow in LangGraph while leveraging CrewAI's role-based task assignment for complex subtasks. The integration requires passing state between frameworks via shared dict or message format adapters.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Which multi-agent framework is easiest to debug in production?</h3>
+          <p>LangGraph offers the best production observability through LangSmith integration — you get a visual trace of every node execution, state snapshot at each step, and the ability to replay specific runs. AutoGen 0.4's new event-driven runtime also logs structured events per agent. CrewAI's debugging story is weaker: <code>verbose=True</code> helps locally but the logs are not structured for production monitoring. If production observability matters, LangGraph + LangSmith is the current best-in-class combination.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is the performance overhead of running multiple agents?</h3>
+          <p>Each agent call is an independent LLM API request, so latency scales roughly linearly with the number of sequential agent steps. A 3-agent CrewAI pipeline with one sequential handoff per agent adds 3× the base LLM latency plus framework overhead (typically 50–200ms per node for LangGraph, negligible for the others). Parallel agent execution is supported in AutoGen (group chats) and LangGraph (parallel node branches) to reduce total wall-clock time. In practice, a well-designed 5-agent workflow completes in 15–40 seconds depending on model and task complexity.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <div class="toc-box">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#quick-comparison">Quick Comparison</a></li>
+          <li><a href="#autogen">AutoGen Deep Dive</a></li>
+          <li><a href="#crewai">CrewAI Deep Dive</a></li>
+          <li><a href="#langgraph">LangGraph Deep Dive</a></li>
+          <li><a href="#architecture-comparison">Architecture Comparison</a></li>
+          <li><a href="#when-to-combine">When to Combine</a></li>
+          <li><a href="#decision-matrix">Decision Matrix</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </div>
+      <div class="related-box">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="run-llm-locally-guide">Run LLMs Locally →</a></li>
+          <li><a href="open-source-llms-guide-2026">Best Open Source LLMs 2026 →</a></li>
+        </ul>
+      </div>
+      <div class="related-box" style="margin-top:20px">
+        <h3>Tools Mentioned</h3>
+        <ul>
+          <li><a href="../tools/autogen.html">AutoGen →</a></li>
+          <li><a href="../tools/crewai.html">CrewAI →</a></li>
+          <li><a href="../tools/langchain.html">LangChain / LangGraph →</a></li>
+          <li><a href="../tools/n8n.html">n8n →</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index">Blog</a></li>
+          <li><a href="../about">About</a></li>
+          <li><a href="../contact">Contact</a></li>
+          <li><a href="../privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Articles</h4>
+        <ul>
+          <li><a href="run-llm-locally-guide">Local LLM Guide</a></li>
+          <li><a href="autogen-vs-crewai-vs-langgraph">Multi-Agent Comparison</a></li>
+          <li><a href="open-source-llms-guide-2026">Best Open Source LLMs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

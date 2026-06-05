@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Open Source LLMs in 2026: Llama 3 vs Mistral vs Qwen vs Phi-4 Compared | AI Nav</title>
+  <meta name="description" content="Up-to-date guide to the best open source large language models in 2026. Covers Llama 3.1/3.3, Mistral Small/Large, Qwen 2.5, Phi-4, and DeepSeek-V3 — with benchmarks, hardware requirements, and use case recommendations.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/open-source-llms-guide-2026.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best Open Source LLMs in 2026: Llama 3 vs Mistral vs Qwen vs Phi-4 Compared">
+  <meta property="og:description" content="Up-to-date guide to the best open source large language models in 2026. Covers Llama 3.1/3.3, Mistral Small/Large, Qwen 2.5, Phi-4, and DeepSeek-V3 — benchmarks, hardware requirements, and use case recommendations.">
+  <meta property="og:url" content="https://yuzec.com/blog/open-source-llms-guide-2026.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Open Source LLMs in 2026: Llama 3 vs Mistral vs Qwen vs Phi-4 Compared",
+    "description": "Up-to-date guide to the best open source large language models in 2026. Covers Llama 3.1/3.3, Mistral Small/Large, Qwen 2.5, Phi-4, and DeepSeek-V3 — with benchmarks, hardware requirements, and use case recommendations.",
+    "datePublished": "2026-06-01",
+    "dateModified": "2026-06-01",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav Editorial Team",
+      "url": "https://yuzec.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/blog/open-source-llms-guide-2026.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can open source LLMs replace GPT-4o in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For many use cases, yes. Llama 3.1 70B and DeepSeek-V3 match or exceed GPT-4o on specific tasks like coding benchmarks (HumanEval), structured data extraction, and instruction following. GPT-4o still leads on complex multi-step reasoning, ambiguous instruction interpretation, and tasks requiring broad world knowledge with recency. The honest answer: for well-defined tasks with clear evaluation criteria, open source models are production-ready replacements. For open-ended generalist tasks, GPT-4o/Claude 3.5 Sonnet still have an edge that shrinks each quarter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Q4_K_M and Q8_0 quantization?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Q4_K_M uses 4-bit quantization with K-means optimization for weight clustering, reducing model size to roughly 40% of the original fp16 weight size while preserving about 97–99% of model quality. Q8_0 uses 8-bit quantization with almost no quality loss (less than 0.5% degradation on benchmarks) but at 50% of fp16 size — still smaller than full precision, but requires more VRAM than Q4. For most users, Q4_K_M is the right default: it enables running 7B models on 6GB VRAM and 70B models on 40GB RAM. Use Q8_0 when quality matters more than memory and you have the headroom, or for fine-tuned models where quantization error amplifies."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Llama 3 commercially without paying Meta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Llama 3 uses Meta's custom license, not a standard open-source license like MIT or Apache 2.0. For most commercial uses, it is free: you can build products, deploy APIs, and offer services without paying Meta. The key restriction is that if your product or service has more than 700 million monthly active users, you must request a separate commercial license from Meta. There is also a prohibition on using Llama outputs to train competing foundation models. For the vast majority of companies, these restrictions are not a practical concern. Check the full license at llama.meta.com before deployment in regulated industries."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .content-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 24px; }
+    .toc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .toc-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .toc-box ol { margin: 0; padding-left: 18px; }
+    .toc-box li { margin-bottom: 8px; }
+    .toc-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .toc-box a:hover { color: var(--accent); }
+    .related-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    .related-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .related-box ul { margin: 0; padding: 0; list-style: none; }
+    .related-box li { margin-bottom: 8px; }
+    .related-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .related-box a:hover { color: var(--accent); }
+    .article-body h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .article-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    .article-body p { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body strong { color: var(--text); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .tool-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 12px; }
+    .tool-table th { background: var(--card-bg); color: var(--text-2); font-weight: 600; padding: 10px 12px; border: 1px solid var(--border); text-align: left; }
+    .tool-table td { padding: 10px 12px; border: 1px solid var(--border); color: var(--text-2); }
+    .tool-table tr:nth-child(even) td { background: var(--card-bg); }
+    .tool-table td:first-child { font-weight: 600; color: var(--text); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .badge-green { background: #064e3b; color: #6ee7b7; }
+    .badge-yellow { background: #451a03; color: #fcd34d; }
+    .badge-red { background: #450a0a; color: #fca5a5; }
+    .badge-blue { background: #0c1a4a; color: #93c5fd; }
+    .code-block { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #e6edf3; overflow-x: auto; }
+    .code-block .comment { color: #8b949e; }
+    .code-block .cmd { color: #79c0ff; }
+    .code-block .string { color: #a5d6ff; }
+    .code-block .keyword { color: #ff7b72; }
+    .callout { background: var(--card-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; }
+    .faq-section { margin-top: 40px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; background: var(--card-bg); }
+    .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .faq-item p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .model-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin: 16px 0; }
+    .model-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .model-card-name { font-size: 17px; font-weight: 700; color: var(--text); }
+    .model-card-tag { font-size: 11px; font-weight: 700; background: rgba(99,102,241,.12); color: var(--accent); padding: 2px 8px; border-radius: 4px; }
+    .scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    @media (max-width: 600px) { .scenario-grid { grid-template-columns: 1fr; } }
+    .scenario-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+    .scenario-card h4 { font-size: 13px; font-weight: 700; color: var(--text); margin: 0 0 8px; }
+    .scenario-card p { font-size: 12px; color: var(--text-2); margin: 0; line-height: 1.5; }
+    .scenario-card .rec { font-size: 12px; color: var(--accent); font-weight: 600; margin-top: 6px; }
+  </style>
+  <script src="../assets/lang.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="/" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="index" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+      <a href="../about" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+    </div>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Best Open Source LLMs 2026</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">🧠 LLM Guide</span>
+    <h1 class="article-title" style="margin-top:12px">
+      Best Open Source LLMs in 2026:<br>
+      <span class="gradient">Llama 3 vs Mistral vs Qwen vs Phi-4 Compared</span>
+    </h1>
+    <p class="article-desc">
+      Open source LLMs have reached a turning point in 2026. Several models now match or exceed GPT-4o performance on specific tasks — while running entirely on your own hardware. This guide covers every major model with real benchmark numbers, honest hardware requirements, and clear recommendations for nine common use cases.
+    </p>
+    <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--text-3)">🗓 June 2026</span>
+      <span style="font-size:13px;color:var(--text-3)">⏱ 11 min read</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ AI Nav Editorial Team</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <article class="article-body">
+
+      <p>Two years ago, "open source LLM" meant accepting a significant quality penalty compared to GPT-4. In 2026, that tradeoff has largely disappeared for well-defined tasks. Llama 3.1 70B matches GPT-3.5 Turbo quality for most instruction-following tasks. DeepSeek-V3 beats GPT-4o on several coding benchmarks. Qwen 2.5-Coder achieves 88.4% on HumanEval — higher than GPT-4's original score. These are not cherry-picked numbers; they represent a genuine shift in the landscape.</p>
+
+      <p>The remaining gap is narrowest in coding, structured extraction, and translation tasks — and widest in open-ended reasoning, ambiguous instruction interpretation, and tasks requiring very recent world knowledge. Understanding where the gap is and isn't is what separates teams that successfully migrate to open source from those that try and roll back.</p>
+
+      <p>This guide gives you everything you need to make that decision: benchmark data, hardware requirements, licensing details, and specific use-case recommendations for the major models available in 2026.</p>
+
+      <h2 id="benchmark-dimensions">What the Benchmarks Actually Measure</h2>
+
+      <p>Before diving into model scores, it's worth knowing what each benchmark actually tells you — because different tasks demand different model strengths:</p>
+
+      <ul>
+        <li><strong>MMLU (Massive Multitask Language Understanding):</strong> 57 subjects from STEM to humanities, multiple-choice questions. Measures broad world knowledge and reasoning. A 70%+ score is generally considered strong; GPT-4 level is around 85–90%. Best proxy for "general assistant" quality.</li>
+        <li><strong>HumanEval:</strong> 164 Python coding problems, testing whether the model can write correct, executable code. Pass@1 rate measures how often the first attempt passes unit tests. This is the most reliable coding benchmark — scores above 80% mean the model is genuinely useful for code generation tasks.</li>
+        <li><strong>MT-Bench:</strong> 80 multi-turn conversation questions judged by GPT-4. Measures instruction following, reasoning, and multi-turn coherence. Scores are 1–10; GPT-4 scores around 8.99. Best proxy for "chatbot / assistant" quality in real conversations.</li>
+        <li><strong>MATH:</strong> Competition-level math problems. Scores below 30% mean the model struggles with hard math; above 60% indicates strong quantitative reasoning. Most relevant for scientific and financial applications.</li>
+      </ul>
+
+      <h2 id="model-comparison">Full Model Comparison Table</h2>
+
+      <p>All benchmark scores are from publicly reported evaluations as of Q1 2026. Hardware requirements are for Q4_K_M quantization via <a href="../tools/ollama.html">Ollama</a> or <a href="../tools/llama-cpp.html">llama.cpp</a>.</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Params</th>
+            <th>Context</th>
+            <th>License</th>
+            <th>MMLU</th>
+            <th>HumanEval</th>
+            <th>Min VRAM/RAM</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Llama 3.1 8B</td>
+            <td>8B</td>
+            <td>128K</td>
+            <td>Meta Custom</td>
+            <td>73.0%</td>
+            <td>72.6%</td>
+            <td>6 GB</td>
+            <td>General assistant, privacy</td>
+          </tr>
+          <tr>
+            <td>Llama 3.1 70B</td>
+            <td>70B</td>
+            <td>128K</td>
+            <td>Meta Custom</td>
+            <td>82.6%</td>
+            <td>80.5%</td>
+            <td>40 GB</td>
+            <td>Long docs, complex reasoning</td>
+          </tr>
+          <tr>
+            <td>Llama 3.1 405B</td>
+            <td>405B</td>
+            <td>128K</td>
+            <td>Meta Custom</td>
+            <td>88.6%</td>
+            <td>89.0%</td>
+            <td>256 GB</td>
+            <td>GPT-4o replacement</td>
+          </tr>
+          <tr>
+            <td>Llama 3.3 70B</td>
+            <td>70B</td>
+            <td>128K</td>
+            <td>Meta Custom</td>
+            <td>86.0%</td>
+            <td>83.1%</td>
+            <td>40 GB</td>
+            <td>Best 70B overall (2025 release)</td>
+          </tr>
+          <tr>
+            <td>Mistral Small 3.1</td>
+            <td>24B</td>
+            <td>128K</td>
+            <td>Apache 2.0</td>
+            <td>81.2%</td>
+            <td>75.0%</td>
+            <td>16 GB</td>
+            <td>Commercial use, EU privacy</td>
+          </tr>
+          <tr>
+            <td>Mistral Large 2</td>
+            <td>123B</td>
+            <td>128K</td>
+            <td>Mistral Research</td>
+            <td>84.0%</td>
+            <td>92.0%</td>
+            <td>80 GB</td>
+            <td>Code + multilingual</td>
+          </tr>
+          <tr>
+            <td>Qwen 2.5 7B</td>
+            <td>7B</td>
+            <td>128K</td>
+            <td>Apache 2.0</td>
+            <td>74.2%</td>
+            <td>79.9%</td>
+            <td>6 GB</td>
+            <td>Code generation, Chinese NLP</td>
+          </tr>
+          <tr>
+            <td>Qwen 2.5 72B</td>
+            <td>72B</td>
+            <td>128K</td>
+            <td>Apache 2.0</td>
+            <td>86.1%</td>
+            <td>86.7%</td>
+            <td>40 GB</td>
+            <td>Enterprise, multilingual reasoning</td>
+          </tr>
+          <tr>
+            <td>Qwen 2.5-Coder 7B</td>
+            <td>7B</td>
+            <td>128K</td>
+            <td>Apache 2.0</td>
+            <td>72.0%</td>
+            <td>88.4%</td>
+            <td>6 GB</td>
+            <td>Code generation (best-in-class at 7B)</td>
+          </tr>
+          <tr>
+            <td>Phi-4</td>
+            <td>14B</td>
+            <td>16K</td>
+            <td>MIT</td>
+            <td>84.8%</td>
+            <td>82.6%</td>
+            <td>10 GB</td>
+            <td>STEM, reasoning, constrained hardware</td>
+          </tr>
+          <tr>
+            <td>Phi-4 Mini</td>
+            <td>3.8B</td>
+            <td>128K</td>
+            <td>MIT</td>
+            <td>68.5%</td>
+            <td>67.8%</td>
+            <td>3 GB</td>
+            <td>Edge devices, resource-constrained</td>
+          </tr>
+          <tr>
+            <td>DeepSeek-V3</td>
+            <td>671B MoE</td>
+            <td>128K</td>
+            <td>MIT</td>
+            <td>88.5%</td>
+            <td>91.6%</td>
+            <td>400+ GB</td>
+            <td>Enterprise inference, API deployment</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>💡 <strong>MoE note:</strong> DeepSeek-V3's 671B parameters is a Mixture-of-Experts architecture — only 37B parameters are active per token. This means inference compute is closer to a 37B model, but memory requirements still reflect loading all expert weights. In practice, DeepSeek-V3 is most accessible via API (DeepSeek's own API costs 50-70% less than GPT-4o) or on multi-GPU server setups.</p>
+      </div>
+
+      <h2 id="use-case-recommendations">Use-Case Recommendations</h2>
+
+      <p>Raw benchmark numbers don't tell you which model to use. Here are concrete recommendations for the most common deployment scenarios:</p>
+
+      <h3>Local Inference / Privacy-First Deployments</h3>
+
+      <div class="model-card">
+        <div class="model-card-header">
+          <span class="model-card-name">Llama 3.1 8B (Q4_K_M)</span>
+          <span class="model-card-tag">Recommended</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0 0 10px">For fully air-gapped deployments where data cannot leave the machine, Llama 3.1 8B is the best default. It fits in 6GB VRAM (easily on most modern GPUs) or 8GB RAM for CPU inference, and performs strongly on instruction following and Q&amp;A tasks. With <a href="../tools/ollama.html">Ollama</a>, the entire setup takes under 5 minutes:</p>
+        <div class="code-block">
+<span class="comment"># 单命令安装并运行（自动下载 4.7GB 模型）</span><br>
+<span class="cmd">ollama run llama3.1:8b</span><br><br>
+<span class="comment"># 或指定量化版本（节省内存）</span><br>
+<span class="cmd">ollama run llama3.1:8b-instruct-q4_K_M</span><br><br>
+<span class="comment"># 用 OpenAI 兼容 API（可替代 GPT 调用）</span><br>
+<span class="cmd">curl http://localhost:11434/v1/chat/completions \</span><br>
+&nbsp;&nbsp;<span class="cmd">-H "Content-Type: application/json" \</span><br>
+&nbsp;&nbsp;<span class="cmd">-d '{"model": "llama3.1:8b", "messages": [{"role":"user","content":"Hello"}]}'</span>
+        </div>
+      </div>
+
+      <h3>Code Generation Tasks</h3>
+
+      <div class="model-card">
+        <div class="model-card-header">
+          <span class="model-card-name">Qwen 2.5-Coder 7B</span>
+          <span class="model-card-tag">Best-in-Class at 7B</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">Qwen 2.5-Coder 7B achieves 88.4% on HumanEval — higher than the original GPT-4 score and exceptional for a 7B model. It's also strong on code explanation, debugging, and test generation. At 6GB VRAM, it's a practical choice for developer workstations. For larger teams running inference at scale, the 32B variant achieves 92.7% HumanEval and fits in a single 24GB GPU with Q4_K_M quantization.</p>
+      </div>
+
+      <!-- 文章中段广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h3>Long-Document Processing (RAG, Summarization)</h3>
+
+      <div class="model-card">
+        <div class="model-card-header">
+          <span class="model-card-name">Llama 3.1 70B</span>
+          <span class="model-card-tag">128K Context Window</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">For tasks that require holding an entire 80-page PDF or a large codebase in context, Llama 3.1 70B's 128K context window is the key feature. At MMLU 82.6%, it's also quality-competitive with GPT-3.5 Turbo. The catch is hardware: 40GB RAM minimum in CPU inference mode. This model is best suited for server deployments rather than local workstations. For RAG pipelines where documents are retrieved into smaller chunks, Llama 3.1 8B is sufficient and much cheaper to run — 128K context is most valuable for summarization of complete documents.</p>
+      </div>
+
+      <h3>Enterprise Reasoning / GPT-4o Alternative</h3>
+
+      <div class="model-card">
+        <div class="model-card-header">
+          <span class="model-card-name">DeepSeek-V3</span>
+          <span class="model-card-tag">MIT License · Near-GPT-4o Quality</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">DeepSeek-V3's combination of 88.5% MMLU, 91.6% HumanEval, MIT license, and competitive API pricing makes it the strongest argument for open-source LLMs in enterprise settings. It outperforms GPT-4o on HumanEval and matches it on most MMLU subsets. For organizations with high token volume (10M+ tokens/day), the cost difference vs. OpenAI is material. Use DeepSeek's own inference API for cost-effective access, or run on multi-GPU clusters for on-premises deployment.</p>
+      </div>
+
+      <h3>Resource-Constrained / Edge Devices</h3>
+
+      <div class="model-card">
+        <div class="model-card-header">
+          <span class="model-card-name">Phi-4 Mini (3.8B)</span>
+          <span class="model-card-tag">3GB VRAM · MIT License</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">Microsoft's Phi-4 Mini punches well above its weight class. At 3.8B parameters and 3GB VRAM, it achieves 68.5% MMLU — comparable to much larger models from two years ago. The MIT license makes it appropriate for any commercial application. It runs on devices with as little as 4GB RAM total, including Raspberry Pi 5 (slowly) and modern smartphones with 8GB RAM. For edge AI, IoT devices, or embedded systems where privacy and offline capability matter, Phi-4 Mini is the current top choice.</p>
+      </div>
+
+      <h2 id="quantization-guide">Quantization Guide: Choosing the Right Format</h2>
+
+      <p>Quantization reduces model weight precision, trading a small amount of quality for dramatically lower memory requirements. Here's how the main quantization levels compare for a 7B model:</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Quantization</th>
+            <th>Bits/Weight</th>
+            <th>7B File Size</th>
+            <th>Quality Loss vs. fp16</th>
+            <th>Min VRAM (7B)</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>fp16 (full)</td>
+            <td>16-bit</td>
+            <td>~14 GB</td>
+            <td>0% (baseline)</td>
+            <td>14 GB</td>
+            <td>Fine-tuning, accuracy-critical research</td>
+          </tr>
+          <tr>
+            <td>Q8_0</td>
+            <td>8-bit</td>
+            <td>~8 GB</td>
+            <td>&lt;0.5%</td>
+            <td>8 GB</td>
+            <td>Best quality/size balance when VRAM allows</td>
+          </tr>
+          <tr>
+            <td>Q6_K</td>
+            <td>6-bit</td>
+            <td>~6 GB</td>
+            <td>~1%</td>
+            <td>6 GB</td>
+            <td>Near-lossless with moderate compression</td>
+          </tr>
+          <tr>
+            <td>Q4_K_M</td>
+            <td>4-bit (K-means)</td>
+            <td>~4.5 GB</td>
+            <td>~2–3%</td>
+            <td>5 GB</td>
+            <td>Default recommendation — best practical tradeoff</td>
+          </tr>
+          <tr>
+            <td>Q4_0</td>
+            <td>4-bit</td>
+            <td>~4 GB</td>
+            <td>~4–5%</td>
+            <td>4.5 GB</td>
+            <td>Tight VRAM budgets, acceptable quality drop</td>
+          </tr>
+          <tr>
+            <td>Q3_K_M</td>
+            <td>3-bit</td>
+            <td>~3.5 GB</td>
+            <td>~7–10%</td>
+            <td>4 GB</td>
+            <td>Very constrained hardware, quality degrades</td>
+          </tr>
+          <tr>
+            <td>Q2_K</td>
+            <td>2-bit</td>
+            <td>~2.5 GB</td>
+            <td>~15–20%</td>
+            <td>3 GB</td>
+            <td>Last resort — noticeable quality issues</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Practical recommendation:</strong> Start with Q4_K_M. It reliably fits a 7B model in 5GB VRAM and 70B models in 40GB RAM. The quality loss (~2–3%) is imperceptible in most chat and instruction-following tasks. Move to Q8_0 only if you're doing sensitive tasks like medical text extraction or legal document analysis where accuracy is critical and you have the VRAM headroom.</p>
+
+      <p>The "K_M" suffix in Q4_K_M refers to K-means clustering of quantization groups — it's a smarter quantization algorithm that minimizes information loss by grouping weights with similar values. Compared to the older Q4_0 format, Q4_K_M typically recovers 1–2% of benchmark score at the same file size, making it the better default.</p>
+
+      <h2 id="context-window">Context Window: When Does Size Matter?</h2>
+
+      <p>Most models in 2026 advertise 128K context windows, but the practical value depends heavily on your use case. Here's an honest breakdown:</p>
+
+      <ul>
+        <li><strong>4K context (old standard):</strong> Sufficient for most single-turn Q&amp;A, code completion, and short text generation. Still adequate for basic chatbots and command-line assistants.</li>
+        <li><strong>32K context:</strong> Handles a full technical paper or a 2,000-line codebase in context. Useful for code refactoring, document Q&amp;A, and multi-turn conversations with large system prompts. Most real-world use cases are satisfied here.</li>
+        <li><strong>128K context:</strong> Genuinely enables processing entire books, legal contracts, full GitHub repositories, or transcripts from hour-long meetings. The quality of attention degrades somewhat at the far end of very long contexts — this is known as the "lost in the middle" problem, where information in the middle of a very long input is less likely to be recalled than information at the start or end. Engineering mitigations (summarization, hierarchical chunking) are still recommended for &gt;64K inputs.</li>
+      </ul>
+
+      <div class="callout">
+        <p>⚠️ <strong>Context window ≠ useful context:</strong> A model that claims 128K context doesn't mean it can perfectly recall any fact from a 128K input. Retrieval accuracy generally degrades past 32K. For production RAG systems, chunking + retrieval still outperforms raw long-context in most accuracy benchmarks — despite using far less memory and computing fewer tokens per call.</p>
+      </div>
+
+      <h2 id="licensing">Licensing: What You Can Actually Build</h2>
+
+      <p>License compatibility is often overlooked until it becomes a legal blocker. Here's what each license means for your product:</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>License Type</th>
+            <th>Models</th>
+            <th>Commercial Use</th>
+            <th>Key Restriction</th>
+            <th>Safe for SaaS?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MIT</td>
+            <td>Phi-4, Phi-4 Mini, DeepSeek-V3</td>
+            <td>Yes, unrestricted</td>
+            <td>Attribution only</td>
+            <td><span class="badge badge-green">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Apache 2.0</td>
+            <td>Qwen 2.5, Mistral Small 3.1, Gemma 2</td>
+            <td>Yes, unrestricted</td>
+            <td>Attribution + license notice</td>
+            <td><span class="badge badge-green">Yes</span></td>
+          </tr>
+          <tr>
+            <td>Meta Llama License</td>
+            <td>Llama 3.x series</td>
+            <td>Yes (under 700M MAU)</td>
+            <td>No training competing foundation models; 700M MAU limit</td>
+            <td><span class="badge badge-yellow">Yes with caveats</span></td>
+          </tr>
+          <tr>
+            <td>Mistral Research License</td>
+            <td>Mistral Large 2</td>
+            <td>Limited — research/evaluation only</td>
+            <td>No commercial deployment without separate agreement</td>
+            <td><span class="badge badge-red">No (without agreement)</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>For the vast majority of commercial applications, <strong>MIT and Apache 2.0 models are the safest choices</strong>. DeepSeek-V3's MIT license is remarkable given its performance level — enterprise teams should strongly consider it for high-volume inference where the cost savings vs. OpenAI are significant. The Phi-4 family (also MIT) is similarly compelling for constrained deployments.</p>
+
+      <p>Meta's Llama license is permissive enough for almost all commercial use cases. The 700 million MAU threshold is beyond the scale of all but a handful of companies globally. The prohibition on using Llama outputs to train competing foundation models is the more practically relevant restriction — but it doesn't prevent using Llama to fine-tune Llama itself, which is explicitly allowed.</p>
+
+      <h2 id="inference-tools">Running These Models: Tool Recommendations</h2>
+
+      <p>The best model is worthless without an inference tool that makes it accessible. Here's how to get started with each main approach:</p>
+
+      <ul>
+        <li><strong><a href="../tools/ollama.html">Ollama</a> — Simplest start:</strong> <code>ollama pull qwen2.5-coder:7b</code> downloads and configures everything. OpenAI-compatible API on port 11434. Best for individual developers and small team deployments.</li>
+        <li><strong><a href="../tools/llama-cpp.html">llama.cpp</a> — Maximum control:</strong> Direct access to quantization parameters, GPU layer offloading, and context window configuration. 15–25% faster than Ollama on identical hardware. Best for performance-critical batch inference.</li>
+        <li><strong><a href="../tools/vllm.html">vLLM</a> — Production throughput:</strong> PagedAttention delivers 2–4× higher throughput than vanilla inference for concurrent users. OpenAI-compatible API server. Best for multi-user deployments and API services.</li>
+        <li><strong><a href="../tools/text-gen-webui.html">text-generation-webui</a> — Feature-rich GUI:</strong> Supports character presets, LoRA adapters, 4-bit/8-bit loading, and conversation history management. Best for power users who want a desktop application.</li>
+      </ul>
+
+      <h2 id="model-rankings">Ranked Recommendations by Use Case</h2>
+
+      <div class="scenario-grid">
+        <div class="scenario-card">
+          <h4>General Assistant (Local)</h4>
+          <p>Balance of quality, speed, and resource use for daily tasks.</p>
+          <div class="rec">→ Llama 3.1 8B Q4_K_M</div>
+        </div>
+        <div class="scenario-card">
+          <h4>Code Generation</h4>
+          <p>Best HumanEval performance at consumer hardware scale.</p>
+          <div class="rec">→ Qwen 2.5-Coder 7B</div>
+        </div>
+        <div class="scenario-card">
+          <h4>Long Document Q&amp;A</h4>
+          <p>128K context + strong reasoning for full-doc comprehension.</p>
+          <div class="rec">→ Llama 3.1 70B</div>
+        </div>
+        <div class="scenario-card">
+          <h4>Enterprise GPT-4o Replacement</h4>
+          <p>Near-GPT-4 quality with MIT license and competitive API cost.</p>
+          <div class="rec">→ DeepSeek-V3</div>
+        </div>
+        <div class="scenario-card">
+          <h4>Edge / Mobile / IoT</h4>
+          <p>Smallest model with acceptable quality, fits 3GB RAM.</p>
+          <div class="rec">→ Phi-4 Mini</div>
+        </div>
+        <div class="scenario-card">
+          <h4>EU Privacy / Apache License</h4>
+          <p>Strongest Apache 2.0 model for GDPR-sensitive deployments.</p>
+          <div class="rec">→ Mistral Small 3.1 24B</div>
+        </div>
+        <div class="scenario-card">
+          <h4>STEM / Math Reasoning</h4>
+          <p>Phi-4's training focus on synthetic STEM data pays off here.</p>
+          <div class="rec">→ Phi-4 14B</div>
+        </div>
+        <div class="scenario-card">
+          <h4>Multilingual Applications</h4>
+          <p>Strong multilingual training, best non-English performance at 72B.</p>
+          <div class="rec">→ Qwen 2.5 72B</div>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>In 2026, there is a credible open-source answer to almost every LLM use case.</strong> Start with Llama 3.1 8B for general local inference — it's the most tested, best-supported option and covers 80% of use cases. For coding tasks specifically, switch to Qwen 2.5-Coder 7B. For enterprise deployments where you need GPT-4 quality, DeepSeek-V3's MIT license and benchmark performance make it the strongest value proposition in the market. The only remaining area where closed-source models maintain a clear lead is complex multi-step reasoning tasks requiring very recent world knowledge — and that gap is narrowing each quarter.</p>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <h3>Can open source LLMs replace GPT-4o in 2026?</h3>
+          <p>For many use cases, yes. Llama 3.1 70B and DeepSeek-V3 match or exceed GPT-4o on specific tasks like coding benchmarks (HumanEval), structured data extraction, and instruction following. GPT-4o still leads on complex multi-step reasoning, ambiguous instruction interpretation, and tasks requiring broad world knowledge with recency. The honest answer: for well-defined tasks with clear evaluation criteria, open source models are production-ready replacements. For open-ended generalist tasks, GPT-4o and Claude 3.5 Sonnet still have an edge that shrinks each quarter.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is the difference between Q4_K_M and Q8_0 quantization?</h3>
+          <p>Q4_K_M uses 4-bit quantization with K-means optimization for weight clustering, reducing model size to roughly 40% of the original fp16 weight size while preserving about 97–99% of model quality. Q8_0 uses 8-bit quantization with almost no quality loss (less than 0.5% degradation on benchmarks) but at 50% of fp16 size — still smaller than full precision, but requires more VRAM than Q4. For most users, Q4_K_M is the right default: it enables running 7B models on 6GB VRAM and 70B models on 40GB RAM. Use Q8_0 when quality matters more than memory and you have the headroom, or for fine-tuned models where quantization error amplifies.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I use Llama 3 commercially without paying Meta?</h3>
+          <p>Llama 3 uses Meta's custom license, not a standard open-source license like MIT or Apache 2.0. For most commercial uses, it is free: you can build products, deploy APIs, and offer services without paying Meta. The key restriction is that if your product or service has more than 700 million monthly active users, you must request a separate commercial license from Meta. There is also a prohibition on using Llama outputs to train competing foundation models. For the vast majority of companies, these restrictions are not a practical concern. Check the full license at llama.meta.com before deployment in regulated industries.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <div class="toc-box">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#benchmark-dimensions">What Benchmarks Measure</a></li>
+          <li><a href="#model-comparison">Full Model Comparison</a></li>
+          <li><a href="#use-case-recommendations">Use-Case Recommendations</a></li>
+          <li><a href="#quantization-guide">Quantization Guide</a></li>
+          <li><a href="#context-window">Context Window Size</a></li>
+          <li><a href="#licensing">Licensing Guide</a></li>
+          <li><a href="#inference-tools">Inference Tools</a></li>
+          <li><a href="#model-rankings">Ranked Recommendations</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </div>
+      <div class="related-box">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="run-llm-locally-guide">Run LLMs Locally →</a></li>
+          <li><a href="autogen-vs-crewai-vs-langgraph">Multi-Agent Frameworks →</a></li>
+        </ul>
+      </div>
+      <div class="related-box" style="margin-top:20px">
+        <h3>Tools Mentioned</h3>
+        <ul>
+          <li><a href="../tools/ollama.html">Ollama →</a></li>
+          <li><a href="../tools/llama-cpp.html">llama.cpp →</a></li>
+          <li><a href="../tools/vllm.html">vLLM →</a></li>
+          <li><a href="../tools/text-gen-webui.html">text-gen-webui →</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index">Blog</a></li>
+          <li><a href="../about">About</a></li>
+          <li><a href="../contact">Contact</a></li>
+          <li><a href="../privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Articles</h4>
+        <ul>
+          <li><a href="run-llm-locally-guide">Local LLM Guide</a></li>
+          <li><a href="autogen-vs-crewai-vs-langgraph">Multi-Agent Comparison</a></li>
+          <li><a href="open-source-llms-guide-2026">Best Open Source LLMs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ seo_title }}</title>
   <meta name="description" content="{{ seo_desc }}">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="{{ 'noindex, nofollow' if not tool.pros and not tool.cons else 'index, follow' }}">
   <link rel="canonical" href="{{ base_url }}/tools/{{ tool.id }}">
 
   <!-- Open Graph -->
@@ -202,34 +202,38 @@
         <span class="zh">{{ tool.name }} 是什么？</span>
       </h2>
       <p>
-        <strong>{{ tool.name }}</strong> is an open-source {{ cat.type }} with
-        {{ tool.starsLabel }} GitHub stars. {{ tool.descEn }}
+        <strong>{{ tool.name }}</strong> is an open-source project with
+        {{ tool.starsLabel }} GitHub stars.
+        {% if tool.license and tool.license != "Open Source" %}
+        Licensed under {{ tool.license }}.
+        {% endif %}
+        {{ tool.descEn }}
       </p>
       <p>
-        As a {{ cat.type }}, {{ tool.name }} is designed to help developers and teams
+        {% if tool.tags %}
+        The project focuses on
+        <strong>{{ tool.tags[:3] | join(", ") }}</strong>
+        use cases
         {% if tool.category == "ai-tools" %}
-        integrate AI capabilities into their projects without building everything from scratch.
-        It provides a ready-to-use interface that reduces the time from idea to working prototype.
+        and is designed as a ready-to-use application—you can deploy or run it directly without writing integration code.
         {% elif tool.category == "skill" %}
-        build production-ready AI applications with reliable, tested abstractions.
-        It handles the complexity of connecting LLMs to external data and tools,
-        so engineers can focus on business logic instead of plumbing.
+        and is designed as a developer library or framework—you integrate it into your own application by importing it as a dependency.
         {% else %}
-        automate complex tasks by combining planning, tool use, and iterative execution.
-        Instead of following a fixed script, it dynamically adapts its approach
-        based on intermediate results and feedback.
+        and operates as an autonomous system that can plan and execute multi-step tasks with minimal human intervention.
+        {% endif %}
         {% endif %}
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">{{ tool.githubUrl | replace("https://github.com/", "github.com/") }}</a>
-        and is actively developed with a strong open-source community.
-        {% if tool.stars >= 10000 %}
-        With {{ tool.starsLabel }} stars, it is one of the most widely adopted tools in its category.
-        {% elif tool.stars >= 5000 %}
-        Its {{ tool.starsLabel }} GitHub stars reflect significant community validation and adoption.
+        Source code is available at
+        <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">{{ tool.githubUrl | replace("https://github.com/", "github.com/") }}</a>.
+        {% if tool.stars >= 30000 %}
+        With {{ tool.starsLabel }} GitHub stars, it ranks among the most battle-tested open-source tools in this space—meaning most common use cases are well-documented with community solutions available.
+        {% elif tool.stars >= 10000 %}
+        Its {{ tool.starsLabel }} GitHub stars indicate strong real-world adoption across engineering teams globally.
+        {% elif tool.stars >= 3000 %}
+        With {{ tool.starsLabel }} stars, it has demonstrated genuine utility beyond initial release hype.
         {% else %}
-        The growing community contributes bug fixes, new features, and documentation improvements regularly.
+        The project is in active development with a growing contributor community.
         {% endif %}
       </p>
 
@@ -237,9 +241,35 @@
       {% if tool.expert_take %}
       <blockquote class="expert-take">
         <p class="en">{{ tool.expert_take }}</p>
-        <p class="zh">{{ tool.expert_take_cn if tool.expert_take_cn else "AI Nav 编辑团队推荐：" + tool.name + " 是同类工具中社区认可度极高的开源项目，拥有 " + tool.starsLabel + " GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。" }}</p>
+        {% if tool.expert_take_cn %}
+        <p class="zh">{{ tool.expert_take_cn }}</p>
+        {% else %}
+        <p class="zh">{{ tool.expert_take }}</p>
+        {% endif %}
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      {% endif %}
+
+      <!-- Who Should Use This Tool -->
+      {% if who_should_use and (who_should_use.fit_for or who_should_use.not_fit_for) %}
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use {{ tool.name }}?</span>
+        <span class="zh">谁适合使用 {{ tool.name }}？</span>
+      </h2>
+      <div class="pros-cons">
+        {% if who_should_use.fit_for %}
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul>{% for item in who_should_use.fit_for %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+        {% if who_should_use.not_fit_for %}
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul>{% for item in who_should_use.not_fit_for %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+      </div>
       {% endif %}
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->

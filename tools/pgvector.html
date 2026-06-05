@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>pgvector Guide 2026 | Open-source vector similarity search for PostgreSQL – AI Nav</title>
   <meta name="description" content="Open-source vector similarity search for PostgreSQL 21k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://yuzec.com/tools/pgvector">
 
   <!-- Open Graph -->
@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/pgvector/pgvector",
     "description": "Open-source vector similarity search for PostgreSQL",
-    "dateModified": "2026-05-22",
+    "dateModified": "2026-06-05",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
@@ -160,7 +160,7 @@
     </h1>
     <p class="article-desc">Open-source vector similarity search for PostgreSQL</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-05-22">2026-05</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-05">2026-06</time></span>
       
       <span>⭐ <a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener" style="color:var(--text-3)">21k+ GitHub Stars</a></span>
     </div>
@@ -215,23 +215,26 @@
         <span class="zh">pgvector 是什么？</span>
       </h2>
       <p>
-        <strong>pgvector</strong> is an open-source developer framework for building AI applications with
-        21k+ GitHub stars. Open-source vector similarity search for PostgreSQL
+        <strong>pgvector</strong> is an open-source project with
+        21k+ GitHub stars.
+        
+        Open-source vector similarity search for PostgreSQL
       </p>
       <p>
-        As a developer framework for building AI applications, pgvector is designed to help developers and teams
         
-        build production-ready AI applications with reliable, tested abstractions.
-        It handles the complexity of connecting LLMs to external data and tools,
-        so engineers can focus on business logic instead of plumbing.
+        The project focuses on
+        <strong>vector-db, postgresql, embeddings</strong>
+        use cases
+        
+        and is designed as a developer library or framework—you integrate it into your own application by importing it as a dependency.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener">github.com/pgvector/pgvector</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/pgvector/pgvector" target="_blank" rel="noopener">github.com/pgvector/pgvector</a>.
         
-        With 21k+ stars, it is one of the most widely adopted tools in its category.
+        Its 21k+ GitHub stars indicate strong real-world adoption across engineering teams globally.
         
       </p>
 
@@ -239,9 +242,33 @@
       
       <blockquote class="expert-take">
         <p class="en">A well-regarded project with 13k+ stars, pgvector has proven itself in production deployments. Worth considering for applications that need to search large collections of embeddings efficiently. The indexing configuration has a meaningful impact on recall vs. speed tradeoffs—benchmark with your actual data distribution before choosing index parameters.</p>
-        <p class="zh">AI Nav 编辑团队推荐：pgvector 是同类工具中社区认可度极高的开源项目，拥有 21k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">A well-regarded project with 13k+ stars, pgvector has proven itself in production deployments. Worth considering for applications that need to search large collections of embeddings efficiently. The indexing configuration has a meaningful impact on recall vs. speed tradeoffs—benchmark with your actual data distribution before choosing index parameters.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use pgvector?</span>
+        <span class="zh">谁适合使用 pgvector？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Engineering teams building semantic search, recommendation systems, or RAG retrieval layers</li><li>Applications doing similarity search across millions of vectors or more</li><li>NLP applications that need to convert text or images into vectors for downstream search or clustering</li><li>Teams building semantic similarity matching or text classification systems</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Small apps that only need simple keyword search (Elasticsearch or SQLite is simpler)</li><li>Datasets under 100K records (a standard database with pgvector extension is sufficient)</li><li>Traditional information retrieval use cases that only need TF-IDF-style sparse search</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -400,9 +427,19 @@
       <p class="zh">通过以下 AI Nav 深度指南，进一步了解 pgvector 及其生态系统：</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:12px">
         
+        <a href="/blog/vector-databases-compared.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">Vector Database Showdown: Chroma vs Qdrant vs Weaviate vs Milvus</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Performance benchmarks, feature comparison, and deployment considerations.</div>
+        </a>
+        
         <a href="/blog/rag-pipeline-guide.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
           <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">Building a Production RAG Pipeline: The Complete Guide</div>
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Architecture, chunking strategies, vector stores, reranking, and evaluation.</div>
+        </a>
+        
+        <a href="/blog/langchain-vs-llamaindex.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">LangChain vs LlamaIndex: Which RAG Framework to Choose in 2026?</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Head-to-head comparison of architecture, performance, and real-world use cases.</div>
         </a>
         
       </div>
@@ -475,7 +512,7 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> Open Source</div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

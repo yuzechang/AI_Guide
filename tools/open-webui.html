@@ -214,22 +214,28 @@
         <span class="zh">Open WebUI 是什么？</span>
       </h2>
       <p>
-        <strong>Open WebUI</strong> is an open-source end-user AI application with
-        137k+ GitHub stars. User-friendly self-hosted web UI for Ollama and LLMs
+        <strong>Open WebUI</strong> is an open-source project with
+        137k+ GitHub stars.
+        
+        Licensed under MIT.
+        
+        User-friendly self-hosted web UI for Ollama and LLMs
       </p>
       <p>
-        As a end-user AI application, Open WebUI is designed to help developers and teams
         
-        integrate AI capabilities into their projects without building everything from scratch.
-        It provides a ready-to-use interface that reduces the time from idea to working prototype.
+        The project focuses on
+        <strong>chat, web-ui, local</strong>
+        use cases
+        
+        and is designed as a ready-to-use application—you can deploy or run it directly without writing integration code.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">github.com/open-webui/open-webui</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">github.com/open-webui/open-webui</a>.
         
-        With 137k+ stars, it is one of the most widely adopted tools in its category.
+        With 137k+ GitHub stars, it ranks among the most battle-tested open-source tools in this space—meaning most common use cases are well-documented with community solutions available.
         
       </p>
 
@@ -237,9 +243,33 @@
       
       <blockquote class="expert-take">
         <p class="en">Open WebUI has become the definitive self-hosted ChatGPT alternative. If you're running Ollama or any OpenAI-compatible endpoint, there's no reason not to use it. The RAG integration with local documents and the multi-user management features make it genuinely useful for small teams, not just personal use.</p>
-        <p class="zh">AI Nav 编辑团队推荐：Open WebUI 是同类工具中社区认可度极高的开源项目，拥有 137k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">Open WebUI has become the definitive self-hosted ChatGPT alternative. If you're running Ollama or any OpenAI-compatible endpoint, there's no reason not to use it. The RAG integration with local documents and the multi-user management features make it genuinely useful for small teams, not just personal use.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use Open WebUI?</span>
+        <span class="zh">谁适合使用 Open WebUI？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Teams building customer service bots, conversational assistants, or internal knowledge Q&A</li><li>Applications requiring multi-turn context dialogue management</li><li>Privacy-sensitive projects (healthcare, legal, internal enterprise data) — code and data never leave your infrastructure</li><li>Developers or students with no ongoing API budget</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Batch processing scenarios that need single-turn stateless API calls</li><li>Workloads requiring large-scale distributed inference beyond local hardware limits</li><li>Non-technical first-time users (local deployment has a real setup overhead)</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -288,13 +318,13 @@
         
         <div class="pros-box">
           <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
-          <ul><li>ChatGPT-like UI for self-hosted LLMs via Ollama or OpenAI API</li><li>Multi-model conversations, document upload, and web search</li><li>User management and access control for team deployments</li><li>Built-in Retrieval-Augmented Generation (RAG) with local documents</li></ul>
+          <ul><li>ChatGPT-like UI for self-hosted LLMs via Ollama or OpenAI API</li><li>Supports 50+ LLM backends including Ollama, OpenAI, Anthropic, and custom endpoints</li><li>Multi-model conversations, document upload (RAG), web search, and voice input in one app</li><li>One-command Docker deployment: docker run -d -p 3000:8080 ghcr.io/open-webui/open-webui:main</li></ul>
         </div>
         
         
         <div class="cons-box">
           <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
-          <ul><li>Requires running Ollama or a compatible API server separately</li><li>Advanced features (voice, vision) depend on underlying model capabilities</li></ul>
+          <ul><li>Requires running Ollama or a compatible API server separately — not standalone</li><li>Docker image is ~2.5GB; initial container startup takes 20-40 seconds on cold boot</li><li>Advanced features (voice, vision) depend on underlying model capabilities, not built-in</li></ul>
         </div>
         
       </div>
@@ -496,6 +526,16 @@
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Step-by-step guide with hardware requirements and performance benchmarks.</div>
         </a>
         
+        <a href="/blog/vllm-vs-ollama-production.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">vLLM vs Ollama vs LocalAI: Production Inference in 2026</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Real throughput numbers, GPU memory usage, and deployment trade-offs.</div>
+        </a>
+        
+        <a href="/blog/comfyui-vs-a1111-vs-fooocus.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">ComfyUI vs Automatic1111 vs Fooocus: Which Image Generator Wins?</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Hands-on comparison of UI, workflow flexibility, and output quality.</div>
+        </a>
+        
       </div>
       
 
@@ -564,7 +604,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

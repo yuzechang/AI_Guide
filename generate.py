@@ -216,6 +216,62 @@ BLOG_ARTICLES = [
         "tags": {"inference", "deployment"},
         "ids":  {"vllm", "tgi", "llama-cpp", "text-generation-inference"},
     },
+    {
+        "url": "/blog/langchain-vs-llamaindex.html",
+        "title": "LangChain vs LlamaIndex: Which RAG Framework to Choose in 2026?",
+        "desc": "Head-to-head comparison of architecture, performance, and real-world use cases.",
+        "tags": {"rag", "framework", "llm", "embeddings"},
+        "ids":  {"langchain", "llamaindex"},
+    },
+    {
+        "url": "/blog/vector-databases-compared.html",
+        "title": "Vector Database Showdown: Chroma vs Qdrant vs Weaviate vs Milvus",
+        "desc": "Performance benchmarks, feature comparison, and deployment considerations.",
+        "tags": {"vector-db", "embeddings", "search", "rag"},
+        "ids":  {"chroma", "qdrant", "weaviate", "milvus", "pgvector"},
+    },
+    {
+        "url": "/blog/vllm-vs-ollama-production.html",
+        "title": "vLLM vs Ollama vs LocalAI: Production Inference in 2026",
+        "desc": "Real throughput numbers, GPU memory usage, and deployment trade-offs.",
+        "tags": {"inference", "local", "deployment"},
+        "ids":  {"vllm", "ollama", "localai"},
+    },
+    {
+        "url": "/blog/comfyui-vs-a1111-vs-fooocus.html",
+        "title": "ComfyUI vs Automatic1111 vs Fooocus: Which Image Generator Wins?",
+        "desc": "Hands-on comparison of UI, workflow flexibility, and output quality.",
+        "tags": {"image", "local"},
+        "ids":  {"comfyui", "stable-diffusion", "fooocus"},
+    },
+    {
+        "url": "/blog/autogen-vs-crewai-vs-langgraph.html",
+        "title": "AutoGen vs CrewAI vs LangGraph: Multi-Agent Frameworks Compared",
+        "desc": "Architecture differences, orchestration patterns, and when to use each.",
+        "tags": {"agent", "framework", "llm", "workflow"},
+        "ids":  {"autogen", "crewai", "langgraph"},
+    },
+    {
+        "url": "/blog/open-source-llms-guide-2026.html",
+        "title": "Best Open Source LLMs in 2026: Llama 3 vs Mistral vs Qwen vs Gemma",
+        "desc": "Benchmark scores, hardware requirements, and scenario-based selection guide.",
+        "tags": {"local", "llm", "inference"},
+        "ids":  {"ollama", "llama-cpp", "lm-studio", "vllm"},
+    },
+    {
+        "url": "/blog/ai-code-assistants-2026.html",
+        "title": "Best AI Coding Assistants in 2026: Cursor vs Cline vs Copilot vs Aider",
+        "desc": "Deep dive into 5 tools with pricing, model support, and a 7-scenario decision matrix.",
+        "tags": {"code", "productivity"},
+        "ids":  {"cursor", "aider", "cline", "continue-dev"},
+    },
+    {
+        "url": "/blog/build-production-rag-pipeline.html",
+        "title": "Build a Production RAG Pipeline in 2026: Architecture to Deployment",
+        "desc": "Chunking strategies, embedding models, hybrid search, reranking, and evaluation.",
+        "tags": {"rag", "embeddings", "vector-db", "framework"},
+        "ids":  {"langchain", "llamaindex", "qdrant", "chroma", "weaviate"},
+    },
 ]
 
 
@@ -233,6 +289,164 @@ DESC_TEMPLATES = {
 
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
+
+# ─── Tag → 适用/不适用场景规则 ────────────────────────────────────────────────
+# 每个 tag 对应 (fit_items, not_fit_items)，每项为字符串
+TAG_FIT_RULES = {
+    "local": (
+        ["Privacy-sensitive projects (healthcare, legal, internal enterprise data) — code and data never leave your infrastructure",
+         "Developers or students with no ongoing API budget",
+         "Offline or air-gapped deployment environments with no internet access"],
+        ["Workloads requiring large-scale distributed inference beyond local hardware limits",
+         "Non-technical first-time users (local deployment has a real setup overhead)"]
+    ),
+    "privacy": (
+        ["Teams handling PII / PHI / regulated data (GDPR, HIPAA, SOC 2 require data not to leave your control)",
+         "Financial and legal projects that require data sovereignty"],
+        ["Small projects prioritizing out-of-the-box convenience over strict data controls"]
+    ),
+    "fine-tuning": (
+        ["Teams with domain-specific labeled data who need customized model behavior",
+         "Enterprise applications that need the model to specialize in vertical terminology and output formats"],
+        ["Environments without GPUs (fine-tuning requires 16GB+ VRAM minimum)",
+         "Datasets smaller than a few thousand examples (too little data for meaningful fine-tuning gains)"]
+    ),
+    "training": (
+        ["AI research teams doing from-scratch pre-training or large-scale continued training",
+         "Academic projects experimenting with model architecture"],
+        ["Production deployment scenarios that only need inference (inference frameworks are more efficient)",
+         "Small and mid-size teams without multi-GPU clusters"]
+    ),
+    "rag": (
+        ["Teams that need LLMs to answer questions grounded in private documents (knowledge base Q&A, enterprise search)",
+         "Applications that need to reduce hallucination and cite sources"],
+        ["Real-time data scenarios (RAG retrieval has latency, not suitable for sub-100ms response requirements)",
+         "Very small corpora (<100 documents) — fitting everything in context is simpler"]
+    ),
+    "agent": (
+        ["Teams automating multi-step tasks that require tool use and dynamic planning",
+         "Engineering and operations teams looking to reduce repetitive manual workflows"],
+        ["Compliance-sensitive scenarios requiring fully predictable, auditable step-by-step outputs",
+         "Simple single-turn Q&A applications (Agent architecture adds unnecessary complexity)"]
+    ),
+    "autonomous": (
+        ["Batch task scenarios where you set a goal and let AI execute end-to-end",
+         "Research projects exploring the boundaries of AI autonomous capability"],
+        ["Mission-critical production systems (autonomous execution has unpredictable failure modes — human approval gates are needed)",
+         "Budget-sensitive projects (unsupervised execution can generate large API costs)"]
+    ),
+    "code": (
+        ["Development teams looking to improve code generation, completion, and review throughput",
+         "Individual developers who want AI-assisted coding integrated directly into their IDE"],
+        ["Non-technical users (code tools require programming fundamentals)",
+         "Codebases with strict audit requirements (AI-generated code must pass human review before merging)"]
+    ),
+    "image": (
+        ["Content creators and designers who need concept images or reference art quickly",
+         "E-commerce and marketing teams that need large volumes of image assets at lower cost than outsourcing"],
+        ["Scenarios requiring photorealistic reproduction of real scenes (diffusion models have creative variance, not guaranteed accuracy)",
+         "Copyright-sensitive commercial use (AI-generated image copyright is still legally contested)"]
+    ),
+    "vector-db": (
+        ["Engineering teams building semantic search, recommendation systems, or RAG retrieval layers",
+         "Applications doing similarity search across millions of vectors or more"],
+        ["Small apps that only need simple keyword search (Elasticsearch or SQLite is simpler)",
+         "Datasets under 100K records (a standard database with pgvector extension is sufficient)"]
+    ),
+    "embeddings": (
+        ["NLP applications that need to convert text or images into vectors for downstream search or clustering",
+         "Teams building semantic similarity matching or text classification systems"],
+        ["Traditional information retrieval use cases that only need TF-IDF-style sparse search"]
+    ),
+    "inference": (
+        ["Teams serving low-latency LLM APIs in production (p99 < 500ms)",
+         "Inference services handling high-concurrency LLM requests with request batching"],
+        ["Exploratory research or single-machine light inference (high configuration cost with low return)",
+         "Environments without GPU servers (high-performance inference frameworks require CUDA or ROCm)"]
+    ),
+    "no-code": (
+        ["Non-technical business users who need to build AI workflows without writing code",
+         "Rapid prototyping phases where you want to test AI logic before committing to engineering"],
+        ["Engineering teams requiring deep API customization or complex integration logic (no-code platforms have hard ceilings)"]
+    ),
+    "workflow": (
+        ["Product and data teams who need to visually manage multi-step AI pipelines",
+         "Organizations that want non-engineers to be able to maintain and modify AI workflows"],
+        ["Simple single-step LLM calls (introducing a workflow engine is over-engineering)"]
+    ),
+    "search": (
+        ["Applications that need to find content by semantic similarity rather than exact keywords (document retrieval, FAQ matching)",
+         "Multi-language content retrieval (semantic search generalizes across languages better than keywords)"],
+        ["Scenarios requiring exact string or regex matching (traditional full-text search is more precise)"]
+    ),
+    "multi-modal": (
+        ["Applications processing text, image, and audio inputs together",
+         "Enterprise apps requiring mixed text-image understanding (invoice processing, document parsing)"],
+        ["Pure text-only scenarios (multimodal models have higher inference overhead)"]
+    ),
+    "chat": (
+        ["Teams building customer service bots, conversational assistants, or internal knowledge Q&A",
+         "Applications requiring multi-turn context dialogue management"],
+        ["Batch processing scenarios that need single-turn stateless API calls"]
+    ),
+}
+
+# 分类通用的适用/不适用（兜底）
+CATEGORY_FIT_DEFAULTS = {
+    "ai-tools": (
+        ["Developers and end users who want to use AI capabilities quickly without building integrations from scratch",
+         "Teams that need a ready-to-use UI interface"],
+        ["Pure backend engineering scenarios requiring deep API customization (framework libraries are a better fit)"]
+    ),
+    "skill": (
+        ["Engineers with Python experience building LLM capabilities at the application layer",
+         "Teams that need portability across different LLM providers (OpenAI, Anthropic, local models)"],
+        ["Non-technical users (libraries require programming experience)",
+         "Users who just need existing products like ChatGPT"]
+    ),
+    "agent": (
+        ["Engineering and operations teams automating repetitive multi-step workflows",
+         "Researchers exploring the boundaries of AI agent capabilities"],
+        ["Compliance-critical production scenarios where every step must be fully auditable",
+         "Budget-constrained projects worried about API cost runaway (always set token limits in agents)"]
+    ),
+}
+
+
+def get_who_should_use(tool):
+    """基于工具 tags 和 category 生成适用/不适用场景（各 3-4 条，工具特有）。"""
+    tags = tool.get("tags", [])
+    category = tool.get("category", "ai-tools")
+    fit_items, not_fit_items = [], []
+    seen_fit, seen_not = set(), set()
+
+    for tag in tags:
+        if tag in TAG_FIT_RULES:
+            fits, nots = TAG_FIT_RULES[tag]
+            for item in fits:
+                if item not in seen_fit and len(fit_items) < 4:
+                    fit_items.append(item)
+                    seen_fit.add(item)
+            for item in nots:
+                if item not in seen_not and len(not_fit_items) < 3:
+                    not_fit_items.append(item)
+                    seen_not.add(item)
+        if len(fit_items) >= 4 and len(not_fit_items) >= 3:
+            break
+
+    # 用分类默认值补足
+    default_fits, default_nots = CATEGORY_FIT_DEFAULTS.get(
+        category, CATEGORY_FIT_DEFAULTS["skill"]
+    )
+    for item in default_fits:
+        if item not in seen_fit and len(fit_items) < 3:
+            fit_items.append(item)
+    for item in default_nots:
+        if item not in seen_not and len(not_fit_items) < 2:
+            not_fit_items.append(item)
+
+    return {"fit_for": fit_items, "not_fit_for": not_fit_items}
+
 
 def get_blog_links(tool):
     """返回与工具相关的博客文章（最多 3 篇），按 id 精确匹配优先，其次 tag 匹配。"""
@@ -424,6 +638,18 @@ def generate_sitemap(tools_dir, all_tools):
         if page_path.exists():
             urls.append(dict(loc=f"{BASE_URL}/tools/{slug}", lastmod=TODAY, changefreq=freq, priority=prio))
 
+    # Blog 文章页
+    blog_dir = BASE_DIR / "blog"
+    if blog_dir.exists():
+        for blog_file in sorted(blog_dir.glob("*.html")):
+            if blog_file.name != "index.html":
+                slug = blog_file.stem
+                urls.append(dict(loc=f"{BASE_URL}/blog/{slug}", lastmod=TODAY, changefreq="monthly", priority="0.8"))
+        # blog index
+        blog_index = blog_dir / "index.html"
+        if blog_index.exists():
+            urls.insert(4, dict(loc=f"{BASE_URL}/blog", lastmod=TODAY, changefreq="weekly", priority="0.85"))
+
     # 工具页（cleanUrls:true → 无 .html 后缀，与 canonical 保持一致）
     sorted_tools = sorted(all_tools, key=lambda t: t.get("stars", 0), reverse=True)
     for t in sorted_tools:
@@ -530,17 +756,18 @@ def main():
                 cat_info = CATEGORY_INFO.get(tool["category"], CATEGORY_INFO["ai-tools"])
                 seo_title, seo_desc = build_seo(tool, cat_info)
                 ctx = {
-                    "tool":       tool,
-                    "cat":        cat_info,
-                    "features":   get_features(tool),
-                    "related":    get_related(tool, all_tools),
-                    "faqs":       get_faqs(tool, cat_info, cat_counts.get(tool["category"], 0)),
-                    "compare_pages": compare_index.get(tool["id"], []),
-                    "blog_links": get_blog_links(tool),
-                    "seo_title":  seo_title,
-                    "seo_desc":   seo_desc,
-                    "base_url":   BASE_URL,
-                    "today":      TODAY,
+                    "tool":            tool,
+                    "cat":             cat_info,
+                    "features":        get_features(tool),
+                    "related":         get_related(tool, all_tools),
+                    "faqs":            get_faqs(tool, cat_info, cat_counts.get(tool["category"], 0)),
+                    "compare_pages":   compare_index.get(tool["id"], []),
+                    "blog_links":      get_blog_links(tool),
+                    "who_should_use":  get_who_should_use(tool),
+                    "seo_title":       seo_title,
+                    "seo_desc":        seo_desc,
+                    "base_url":        BASE_URL,
+                    "today":           TODAY,
                 }
                 html = template.render(**ctx)
                 out_path.write_text(html, encoding="utf-8")

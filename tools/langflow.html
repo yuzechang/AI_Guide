@@ -220,23 +220,28 @@
         <span class="zh">Langflow 是什么？</span>
       </h2>
       <p>
-        <strong>Langflow</strong> is an open-source autonomous AI agent system with
-        148k+ GitHub stars. Visual framework for building AI agents and RAG apps
+        <strong>Langflow</strong> is an open-source project with
+        148k+ GitHub stars.
+        
+        Licensed under MIT.
+        
+        Visual framework for building AI agents and RAG apps
       </p>
       <p>
-        As a autonomous AI agent system, Langflow is designed to help developers and teams
         
-        automate complex tasks by combining planning, tool use, and iterative execution.
-        Instead of following a fixed script, it dynamically adapts its approach
-        based on intermediate results and feedback.
+        The project focuses on
+        <strong>agent, workflow, rag</strong>
+        use cases
+        
+        and operates as an autonomous system that can plan and execute multi-step tasks with minimal human intervention.
+        
         
       </p>
       <p>
-        The project is maintained on GitHub at
-        <a href="https://github.com/langflow-ai/langflow" target="_blank" rel="noopener">github.com/langflow-ai/langflow</a>
-        and is actively developed with a strong open-source community.
+        Source code is available at
+        <a href="https://github.com/langflow-ai/langflow" target="_blank" rel="noopener">github.com/langflow-ai/langflow</a>.
         
-        With 148k+ stars, it is one of the most widely adopted tools in its category.
+        With 148k+ GitHub stars, it ranks among the most battle-tested open-source tools in this space—meaning most common use cases are well-documented with community solutions available.
         
       </p>
 
@@ -244,9 +249,33 @@
       
       <blockquote class="expert-take">
         <p class="en">Langflow gives LangChain a visual interface, making LLM pipeline construction accessible to users who prefer drag-and-drop over code. It's a solid prototyping tool for exploring LangChain architectures before implementing them in code. For production deployments, the code-level LangChain API gives more control — but Langflow's export-to-code feature makes the transition smooth.</p>
-        <p class="zh">AI Nav 编辑团队推荐：Langflow 是同类工具中社区认可度极高的开源项目，拥有 148k+ GitHub Stars。无论是 AI 研究人员还是工程师，都值得深入了解。</p>
+        
+        <p class="zh">Langflow gives LangChain a visual interface, making LLM pipeline construction accessible to users who prefer drag-and-drop over code. It's a solid prototyping tool for exploring LangChain architectures before implementing them in code. For production deployments, the code-level LangChain API gives more control — but Langflow's export-to-code feature makes the transition smooth.</p>
+        
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
+      
+
+      <!-- Who Should Use This Tool -->
+      
+      <h2 id="who-should-use">
+        <span class="en">Who Should Use Langflow?</span>
+        <span class="zh">谁适合使用 Langflow？</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Good Fit For</span><span class="zh">适合以下场景</span></h4>
+          <ul><li>Teams automating multi-step tasks that require tool use and dynamic planning</li><li>Engineering and operations teams looking to reduce repetitive manual workflows</li><li>Product and data teams who need to visually manage multi-step AI pipelines</li><li>Organizations that want non-engineers to be able to maintain and modify AI workflows</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Not Ideal For</span><span class="zh">不适合以下场景</span></h4>
+          <ul><li>Compliance-sensitive scenarios requiring fully predictable, auditable step-by-step outputs</li><li>Simple single-turn Q&A applications (Agent architecture adds unnecessary complexity)</li><li>Simple single-step LLM calls (introducing a workflow engine is over-engineering)</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- ── skill 类别：Getting Started 前置（代码优先读者）── -->
@@ -264,13 +293,13 @@
         
         <div class="pros-box">
           <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
-          <ul><li>Visual drag-and-drop builder for LangChain and AI agent workflows</li><li>Hosted on Datastax Astra for zero-infrastructure RAG pipelines</li><li>Export flows as Python code for production deployment</li><li>Real-time chat testing within the visual editor</li></ul>
+          <ul><li>Visual drag-and-drop pipeline builder with 100+ pre-built LangChain components — no Python required for basic flows</li><li>Exports finished flows to Python code — prototype visually, then convert to deployable production code</li><li>REST API for every flow — built-in deployment without writing FastAPI or Flask wrappers</li></ul>
         </div>
         
         
         <div class="cons-box">
           <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
-          <ul><li>Visual flows can become complex and hard to maintain at scale</li><li>Some advanced LangChain features require dropping down to Python code</li></ul>
+          <ul><li>Visual flows become unmanageable beyond ~20 nodes — complex pipelines are harder to debug visually than in code</li><li>Adds ~50-200ms overhead per flow execution compared to equivalent pure LangChain Python code</li><li>Self-hosted setup requires PostgreSQL and Docker; the fully local stack is heavier than LangChain alone</li></ul>
         </div>
         
       </div>
@@ -505,6 +534,11 @@
           <div style="font-size:13px;color:var(--text-2);line-height:1.5">Architecture, chunking strategies, vector stores, reranking, and evaluation.</div>
         </a>
         
+        <a href="/blog/langchain-vs-llamaindex.html" style="display:block;padding:16px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;transition:border-color .15s">
+          <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.4">LangChain vs LlamaIndex: Which RAG Framework to Choose in 2026?</div>
+          <div style="font-size:13px;color:var(--text-2);line-height:1.5">Head-to-head comparison of architecture, performance, and real-world use cases.</div>
+        </a>
+        
       </div>
       
 
@@ -582,7 +616,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-05-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-05</div>
         </div>
       </div>
 

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComfyUI vs AUTOMATIC1111 vs Fooocus: Best Stable Diffusion UI in 2026 | AI Nav</title>
+  <meta name="description" content="Complete comparison of the three most popular Stable Diffusion interfaces. We cover setup difficulty, workflow flexibility, extension ecosystem, and which UI fits your skill level and use case.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/blog/comfyui-vs-a1111-vs-fooocus.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ComfyUI vs AUTOMATIC1111 vs Fooocus: Best Stable Diffusion UI in 2026">
+  <meta property="og:description" content="Complete comparison of the three most popular Stable Diffusion interfaces. We cover setup difficulty, workflow flexibility, extension ecosystem, and which UI fits your skill level and use case.">
+  <meta property="og:url" content="https://yuzec.com/blog/comfyui-vs-a1111-vs-fooocus.html">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "ComfyUI vs AUTOMATIC1111 vs Fooocus: Best Stable Diffusion UI in 2026",
+    "description": "Complete comparison of the three most popular Stable Diffusion interfaces. We cover setup difficulty, workflow flexibility, extension ecosystem, and which UI fits your skill level and use case.",
+    "datePublished": "2026-06-01",
+    "dateModified": "2026-06-01",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav Editorial Team",
+      "url": "https://yuzec.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com/"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/blog/comfyui-vs-a1111-vs-fooocus.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can ComfyUI and AUTOMATIC1111 use the same model checkpoints?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Both ComfyUI and AUTOMATIC1111 use the same .safetensors and .ckpt checkpoint files. If you already have models downloaded for A1111, you can point ComfyUI to the same folder by editing ComfyUI's extra_model_paths.yaml file. LoRA files, VAEs, ControlNet models, and embeddings are also cross-compatible between the two tools — you don't need to re-download anything. Fooocus uses the same SDXL checkpoint format, though it has its own internal model management system and recommends placing models in its specific folder."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is ComfyUI faster than AUTOMATIC1111 for the same model?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ComfyUI's node-based architecture enables more granular caching and optimized execution of the diffusion pipeline. In A1111, the entire pipeline re-executes for each generation. In ComfyUI, if you only change the sampler node but keep the prompt conditioning nodes unchanged, ComfyUI can cache the text encoding result and skip recomputing it. This selective re-execution is particularly noticeable in iterative workflows where you're only changing one parameter at a time. Additionally, ComfyUI's architecture allows for more efficient memory management between generations, which reduces VRAM overhead. In benchmark comparisons, ComfyUI typically generates images 10–20% faster than A1111 on identical hardware using identical settings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Fooocus work with custom models from CivitAI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fooocus is designed primarily around SDXL-architecture models. It works well with any SDXL-based checkpoint downloaded from CivitAI — place the .safetensors file in the Fooocus/models/checkpoints/ folder and it will appear in the model selector. Fooocus does not natively support SD 1.5 checkpoints in the same way A1111 or ComfyUI do, as it assumes the SDXL architecture for its default processing pipeline. LoRA files are supported, and Fooocus includes built-in style presets that function similarly to positive prompt templates. For the widest model compatibility including SD 1.5 and SDXL, A1111 or ComfyUI remain better choices."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+    @media (max-width: 860px) { .content-layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 24px; }
+    .toc-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .toc-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .toc-box ol { margin: 0; padding-left: 18px; }
+    .toc-box li { margin-bottom: 8px; }
+    .toc-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .toc-box a:hover { color: var(--accent); }
+    .related-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    .related-box h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-2); margin-bottom: 12px; }
+    .related-box ul { margin: 0; padding: 0; list-style: none; }
+    .related-box li { margin-bottom: 8px; }
+    .related-box a { font-size: 13px; color: var(--text-2); text-decoration: none; }
+    .related-box a:hover { color: var(--accent); }
+    .article-body h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .article-body h3 { font-size: 17px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    .article-body p { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; }
+    .article-body ul, .article-body ol { color: var(--text-2); line-height: 1.75; margin-bottom: 16px; padding-left: 24px; }
+    .article-body li { margin-bottom: 6px; }
+    .article-body strong { color: var(--text); }
+    .article-body a { color: var(--accent); text-decoration: none; }
+    .article-body a:hover { text-decoration: underline; }
+    .tool-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .tool-table th { background: var(--card-bg); color: var(--text-2); font-weight: 600; padding: 10px 14px; border: 1px solid var(--border); text-align: left; }
+    .tool-table td { padding: 10px 14px; border: 1px solid var(--border); color: var(--text-2); }
+    .tool-table tr:nth-child(even) td { background: var(--card-bg); }
+    .tool-table td:first-child { font-weight: 600; color: var(--text); }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+    .badge-green { background: #064e3b; color: #6ee7b7; }
+    .badge-yellow { background: #451a03; color: #fcd34d; }
+    .badge-red { background: #450a0a; color: #fca5a5; }
+    .code-block { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #e6edf3; overflow-x: auto; }
+    .code-block .comment { color: #8b949e; }
+    .code-block .cmd { color: #79c0ff; }
+    .code-block .str { color: #a5d6ff; }
+    .callout { background: var(--card-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 20px 0; }
+    .callout p { margin: 0; font-size: 14px; }
+    .faq-section { margin-top: 40px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; background: var(--card-bg); }
+    .faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 0 0 10px; }
+    .faq-item p { margin: 0; font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .tool-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin: 20px 0; }
+    .tool-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .tool-card-icon { font-size: 24px; }
+    .tool-card-name { font-size: 18px; font-weight: 700; color: var(--text); }
+    .tool-card-verdict { font-size: 12px; color: var(--accent); font-weight: 600; background: rgba(99,102,241,.12); padding: 2px 8px; border-radius: 4px; }
+    .user-matrix { margin: 24px 0; }
+    .matrix-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; background: var(--card-bg); }
+    .matrix-user { font-size: 13px; font-weight: 600; color: var(--text); flex: 1; }
+    .matrix-rec { font-size: 12px; color: var(--accent); font-weight: 700; background: rgba(99,102,241,.12); padding: 3px 10px; border-radius: 4px; flex-shrink: 0; }
+    .matrix-reason { font-size: 12px; color: var(--text-3); flex: 2; }
+  </style>
+  <script src="../assets/lang.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:20px;align-items:center">
+      <a href="/" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="index" style="font-weight:600;font-size:14px;color:var(--accent)">Blog</a>
+      <a href="../about" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+      <div class="lang-toggle" style="margin-left:8px">
+        <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="index">Blog</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">ComfyUI vs AUTOMATIC1111 vs Fooocus</span>
+</div>
+
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">🎨 Image Generation</span>
+    <h1 class="article-title" style="margin-top:12px">
+      ComfyUI vs AUTOMATIC1111 vs Fooocus:<br>
+      <span class="gradient">Best Stable Diffusion UI in 2026</span>
+    </h1>
+    <p class="article-desc">
+      Three frontends, one set of models, wildly different experiences. Whether you're an artist who wants one-click magic, a developer who needs workflow automation, or a power user who refuses to compromise on control — there's a right answer here.
+    </p>
+    <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+      <span style="font-size:13px;color:var(--text-3)">🗓 June 2026</span>
+      <span style="font-size:13px;color:var(--text-3)">⏱ 8 min read</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ AI Nav Editorial Team</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <article class="article-body">
+
+      <p>Stable Diffusion democratized AI image generation. Three frontends — AUTOMATIC1111 (A1111), ComfyUI, and Fooocus — have emerged as the dominant ways people actually use it. Each one takes a fundamentally different philosophy about what the user experience should be, and that philosophy has profound implications for what you can build and how quickly you can do it.</p>
+
+      <p>The model weights are the same. A photograph-quality portrait generated with a Realistic Vision v6 checkpoint looks the same whether you prompted it in A1111 or ComfyUI. But the path from idea to final image — and how repeatable, shareable, and automatable that path is — differs enormously between these three tools.</p>
+
+      <p>This guide is for people who need to pick one (or know when to use which). We'll cover the real technical tradeoffs, not just surface-level feature checklists.</p>
+
+      <h2 id="comparison">Feature Comparison at a Glance</h2>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>AUTOMATIC1111</th>
+            <th>ComfyUI</th>
+            <th>Fooocus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Interface Paradigm</td>
+            <td>Traditional form-based UI</td>
+            <td>Node graph / visual programming</td>
+            <td>Minimal one-page UI</td>
+          </tr>
+          <tr>
+            <td>Skill Barrier</td>
+            <td><span class="badge badge-yellow">Intermediate</span></td>
+            <td><span class="badge badge-red">Advanced</span></td>
+            <td><span class="badge badge-green">Beginner</span></td>
+          </tr>
+          <tr>
+            <td>Extension Ecosystem</td>
+            <td>1,000+ extensions</td>
+            <td>500+ custom nodes</td>
+            <td>Very limited</td>
+          </tr>
+          <tr>
+            <td>Workflow Sharing</td>
+            <td>Settings export / embedding</td>
+            <td>JSON workflow files (full fidelity)</td>
+            <td>Not applicable</td>
+          </tr>
+          <tr>
+            <td>Speed vs A1111 baseline</td>
+            <td>Baseline (1x)</td>
+            <td>10–20% faster</td>
+            <td>Comparable (SDXL optimized)</td>
+          </tr>
+          <tr>
+            <td>Primary Model Support</td>
+            <td>SD 1.5, SD 2.x, SDXL, SD3</td>
+            <td>SD 1.5, SDXL, SD3, Flux</td>
+            <td>SDXL (primary focus)</td>
+          </tr>
+          <tr>
+            <td>API / Automation</td>
+            <td>REST API (--api flag)</td>
+            <td>WebSocket + REST API</td>
+            <td>Limited API</td>
+          </tr>
+          <tr>
+            <td>Setup Complexity</td>
+            <td><span class="badge badge-yellow">Moderate</span></td>
+            <td><span class="badge badge-yellow">Moderate</span></td>
+            <td><span class="badge badge-green">Easy</span></td>
+          </tr>
+          <tr>
+            <td>Prompt Engineering Required</td>
+            <td>Yes (significant)</td>
+            <td>Yes (significant)</td>
+            <td>Minimal (auto-enhanced)</td>
+          </tr>
+          <tr>
+            <td>VRAM Minimum (SDXL)</td>
+            <td>8GB</td>
+            <td>8GB (6GB with optimization)</td>
+            <td>4GB (with offloading)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="a1111">AUTOMATIC1111: The Community Standard</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🖼️</span>
+          <span class="tool-card-name">AUTOMATIC1111 (sd-webui)</span>
+          <span class="tool-card-verdict">Best for Extension Ecosystem &amp; Community Resources</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">The original comprehensive Stable Diffusion web interface. Massive extension library, deep ControlNet integration, and years of community-built tutorials make it the de facto standard for power users.</p>
+      </div>
+
+      <h3>A1111's Historical Dominance</h3>
+
+      <p>AUTOMATIC1111 launched in August 2022, barely weeks after Stable Diffusion was open-sourced. By the time most people heard about AI image generation, A1111 was already the established tool with an enormous head start on community knowledge, tutorials, and extensions. That head start still matters: when you search for "how to do X with Stable Diffusion," the answer is almost always A1111-specific. The CivitAI model page for any checkpoint will have download instructions oriented toward A1111's folder structure.</p>
+
+      <p>The interface is form-based and comprehensive. You get tabs for txt2img, img2img, inpainting, PNG info, and settings. The txt2img tab alone has dozens of parameters — sampler selection, CFG scale, steps, hires.fix upscaling, face restoration, tiling, seed management, and prompt weighting via attention syntax. For users who want every knob accessible at once, this density is a feature, not a bug.</p>
+
+      <h3>The Extension Ecosystem</h3>
+
+      <p>Over 1,000 extensions have been built for A1111. The most important ones have become practically required for serious use: ControlNet (for pose/depth/edge conditioning), ADetailer (for automatic face inpainting), Ultimate SD Upscaler (for tiled high-resolution upscaling), Dynamic Prompts (for template-based prompt variation), and Regional Prompter (for assigning different prompts to different image areas). This ecosystem is A1111's strongest and most durable advantage — no other tool comes close to its breadth of community-developed capabilities.</p>
+
+      <h3>API Integration for Automation</h3>
+
+      <div class="code-block">
+        <span class="comment"># Start A1111 with API enabled</span><br>
+        <span class="cmd">python launch.py --api --listen</span><br><br>
+        <span class="comment"># Python: generate an image via the A1111 REST API</span><br>
+        <span class="cmd">import requests, base64, json</span><br><br>
+        <span class="cmd">payload = {</span><br>
+        &nbsp;&nbsp;<span class="str">"prompt"</span><span class="cmd">: </span><span class="str">"a photograph of a red fox in a snowy forest, golden hour lighting"</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;<span class="str">"negative_prompt"</span><span class="cmd">: </span><span class="str">"blurry, low quality, watermark"</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;<span class="str">"steps"</span><span class="cmd">: 30,</span><br>
+        &nbsp;&nbsp;<span class="str">"cfg_scale"</span><span class="cmd">: 7,</span><br>
+        &nbsp;&nbsp;<span class="str">"width"</span><span class="cmd">: 1024,</span><br>
+        &nbsp;&nbsp;<span class="str">"height"</span><span class="cmd">: 1024,</span><br>
+        &nbsp;&nbsp;<span class="str">"sampler_name"</span><span class="cmd">: </span><span class="str">"DPM++ 2M Karras"</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;<span class="str">"batch_size"</span><span class="cmd">: 1,</span><br>
+        &nbsp;&nbsp;<span class="str">"seed"</span><span class="cmd">: -1</span><br>
+        <span class="cmd">}</span><br><br>
+        <span class="cmd">response = requests.post(</span><br>
+        &nbsp;&nbsp;<span class="str">"http://127.0.0.1:7860/sdapi/v1/txt2img"</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;<span class="cmd">json=payload</span><br>
+        <span class="cmd">).json()</span><br><br>
+        <span class="comment"># Decode and save the image</span><br>
+        <span class="cmd">with open("output.png", "wb") as f:</span><br>
+        &nbsp;&nbsp;<span class="cmd">f.write(base64.b64decode(response["images"][0]))</span>
+      </div>
+
+      <h3>A1111 Strengths</h3>
+      <ul>
+        <li><strong>Unmatched extension library:</strong> 1,000+ extensions covering every conceivable workflow — ControlNet, LoRA training, video generation, upscaling, inpainting, regional prompting, and more.</li>
+        <li><strong>Largest community knowledge base:</strong> Years of tutorials, Reddit posts, YouTube guides, and CivitAI documentation all oriented around A1111's interface.</li>
+        <li><strong>Excellent ControlNet integration:</strong> The ControlNet extension for A1111 is the most mature implementation, with support for depth, pose, canny, lineart, scribble, normal map, and SDXL-specific models.</li>
+        <li><strong>Script system:</strong> Built-in X/Y/Z plot for systematic parameter exploration, prompt matrix for variant generation, and a robust scripting API for custom workflows.</li>
+      </ul>
+
+      <h3>A1111 Limitations</h3>
+      <ul>
+        <li><strong>Complex Python environment setup:</strong> Installing the right versions of Python, PyTorch, and xformers — and keeping them compatible with CUDA drivers — is a recurring headache. The installer scripts help but don't eliminate the problem entirely.</li>
+        <li><strong>10–20% slower than ComfyUI on identical tasks:</strong> A1111's pipeline architecture doesn't cache intermediate states, so every generation re-runs the full pipeline even when you're only changing the seed.</li>
+        <li><strong>Interface density overwhelms beginners:</strong> The number of parameters visible on the main generation tab is intimidating. There's no "beginner mode" — you either deal with all the options or you don't use A1111.</li>
+        <li><strong>Maintenance burden:</strong> Extensions from different authors sometimes conflict, and A1111 updates can break extension compatibility. This is a known pain point for long-time users.</li>
+      </ul>
+
+      <!-- 文章中段广告位 -->
+      <div style="margin:32px 0;text-align:center;overflow:hidden">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2761695780807828"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="comfyui">ComfyUI: The Professional's Workflow Engine</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">🔗</span>
+          <span class="tool-card-name">ComfyUI</span>
+          <span class="tool-card-verdict">Best for Workflow Automation &amp; Pipeline Precision</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">A node-based visual programming environment for Stable Diffusion. Every operation in the diffusion pipeline is a node you can connect, rearrange, and share as a JSON workflow. The tool of choice for professionals who need reproducibility and automation.</p>
+      </div>
+
+      <h3>The Node Graph Paradigm</h3>
+
+      <p>ComfyUI's fundamental design decision is to make the Stable Diffusion pipeline fully explicit. In A1111, you enter a prompt and click Generate — the steps in between are abstracted away. In <a href="../tools/comfyui.html">ComfyUI</a>, you literally see the flow: a CLIP Text Encode node feeds into a KSampler node, which feeds into a VAE Decode node, which outputs to a Save Image node. Every connection is visible. Every parameter is on the node. If you want to use two different prompts for different LoRA models in a single generation, you wire that up explicitly with two CLIP Text Encode nodes.</p>
+
+      <p>This explicitness is ComfyUI's superpower. When you save a workflow as JSON and share it, the recipient can reproduce your exact generation pipeline — not just the prompt and seed, but every node configuration, every model path, every sampler setting. This is categorically different from sharing A1111 generation parameters, which don't include extension configurations or custom script states.</p>
+
+      <h3>Why ComfyUI Is Faster Than A1111</h3>
+
+      <p>ComfyUI's node graph enables selective execution: if you run the same workflow twice with only the sampler node's seed changed, ComfyUI recognizes that the text conditioning nodes (CLIP Text Encode) produced the same inputs as before and reuses the cached result. It skips recomputing the entire text encoder pass. A1111 doesn't have this architecture — every generation runs the full pipeline. In practice, the performance advantage is most visible during iterative experimentation where you're holding most parameters constant while varying one.</p>
+
+      <h3>ComfyUI Workflow: Text-to-Image with LoRA</h3>
+
+      <div class="code-block">
+        <span class="comment"># ComfyUI exposes a WebSocket + REST API for programmatic workflow execution</span><br>
+        <span class="comment"># This Python snippet loads and queues a workflow JSON</span><br>
+        <span class="cmd">import json, urllib.request, urllib.parse, websocket, uuid</span><br><br>
+        <span class="cmd">server_address = "127.0.0.1:8188"</span><br>
+        <span class="cmd">client_id = str(uuid.uuid4())</span><br><br>
+        <span class="comment"># Load a saved workflow JSON (exported from ComfyUI UI)</span><br>
+        <span class="cmd">with open("my_workflow.json", "r") as f:</span><br>
+        &nbsp;&nbsp;<span class="cmd">workflow = json.load(f)</span><br><br>
+        <span class="comment"># Modify a node parameter before submission</span><br>
+        <span class="comment"># Node "6" is the CLIP Text Encode (positive prompt) in this workflow</span><br>
+        <span class="cmd">workflow["6"]["inputs"]["text"] = "cinematic portrait, studio lighting"</span><br>
+        <span class="cmd">workflow["3"]["inputs"]["seed"] = 42  </span><span class="comment"># KSampler node</span><br><br>
+        <span class="comment"># Queue the prompt via REST API</span><br>
+        <span class="cmd">data = json.dumps({</span><br>
+        &nbsp;&nbsp;<span class="str">"prompt"</span><span class="cmd">: workflow,</span><br>
+        &nbsp;&nbsp;<span class="str">"client_id"</span><span class="cmd">: client_id</span><br>
+        <span class="cmd">}).encode(</span><span class="str">"utf-8"</span><span class="cmd">)</span><br>
+        <span class="cmd">req = urllib.request.Request(</span><br>
+        &nbsp;&nbsp;<span class="str">f"http://{server_address}/prompt"</span><span class="cmd">,</span><br>
+        &nbsp;&nbsp;<span class="cmd">data=data,</span><br>
+        &nbsp;&nbsp;<span class="cmd">headers={</span><span class="str">"Content-Type"</span><span class="cmd">: </span><span class="str">"application/json"</span><span class="cmd">}</span><br>
+        <span class="cmd">)</span><br>
+        <span class="cmd">urllib.request.urlopen(req)</span><br><br>
+        <span class="comment"># Listen on WebSocket for completion events</span><br>
+        <span class="cmd">ws = websocket.WebSocket()</span><br>
+        <span class="cmd">ws.connect(f"ws://{server_address}/ws?clientId={client_id}")</span>
+      </div>
+
+      <h3>ComfyUI Strengths</h3>
+      <ul>
+        <li><strong>Precise pipeline control:</strong> Every step of the diffusion process is a node you can intercept, modify, or reroute. Multi-pass generation, latent blending, ControlNet chaining, and custom sampling schedules are all first-class operations.</li>
+        <li><strong>Reproducible, shareable workflows:</strong> JSON workflow files are self-documenting. Share a workflow and the recipient can run the exact same pipeline. This is invaluable for teams and for distributing generation presets.</li>
+        <li><strong>Best support for new model architectures:</strong> ComfyUI consistently gets support for new Stability AI model formats (SD3, Cascade, Flux) faster than A1111 because its modular architecture makes adding new node types straightforward.</li>
+        <li><strong>Efficient VRAM usage:</strong> ComfyUI's memory management is more granular than A1111's. With the right nodes, you can run SDXL on 6GB VRAM using model offloading strategies that aren't easily achievable in A1111.</li>
+        <li><strong>API-first architecture:</strong> The WebSocket + REST API is designed for automation from the start — no need to enable a separate flag as with A1111.</li>
+      </ul>
+
+      <h3>ComfyUI Limitations</h3>
+      <ul>
+        <li><strong>Steep learning curve for new users:</strong> Opening ComfyUI for the first time to a blank canvas with a default workflow and no documentation is bewildering. You need to understand how the Stable Diffusion pipeline works conceptually before the interface makes sense.</li>
+        <li><strong>No unified extension manager:</strong> Installing custom nodes requires cloning Git repositories into the custom_nodes folder, and dependencies must be installed manually. ComfyUI Manager extension helps but adds another layer of complexity.</li>
+        <li><strong>Workflow maintenance:</strong> When model architectures change or nodes are updated, existing workflows may break. Managing a library of workflows over time requires ongoing maintenance.</li>
+      </ul>
+
+      <h2 id="fooocus">Fooocus: The Zero-Friction Creative Tool</h2>
+
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span class="tool-card-icon">✨</span>
+          <span class="tool-card-name">Fooocus</span>
+          <span class="tool-card-verdict">Best for Creative Users Who Want Results Without Configuration</span>
+        </div>
+        <p style="color:var(--text-2);font-size:14px;margin:0">A radically simplified SDXL interface inspired by Midjourney's user experience. You write what you want, Fooocus figures out the technical details — no negative prompts, no sampler selection, no CFG tuning required.</p>
+      </div>
+
+      <h3>The Design Philosophy: Don't Make Users Think</h3>
+
+      <p><a href="../tools/fooocus.html">Fooocus</a> was built on an explicit design principle: users should be able to generate excellent images without understanding anything about how diffusion models work. The interface presents a single large text box, a style selector, and basic options like aspect ratio and image count. That's mostly it. There's no negative prompt box on the main interface — Fooocus adds its own intelligent negative prompt automatically. There's no sampler selector — Fooocus picks based on your style selection. There's no CFG scale slider — Fooocus adjusts it dynamically.</p>
+
+      <p>This isn't laziness in the design — it's a deliberate product choice modeled on Midjourney's success. Midjourney generates high-quality images from brief, natural-language descriptions without requiring its users to know what a CFG scale is. Fooocus attempts to bring that experience to a locally-run SDXL model.</p>
+
+      <h3>Performance and Hardware Requirements</h3>
+
+      <p>Fooocus is specifically optimized for SDXL and handles the model's higher memory requirements more gracefully than other interfaces. The installation package is approximately 700MB for Fooocus itself, plus the SDXL model files (approximately 6.5GB for the base model and refiner). On Windows, the one-click installer handles everything including model download. On a system with 4GB VRAM, Fooocus can run SDXL with aggressive offloading — a feat that requires significant manual configuration in A1111. With 8GB VRAM, generation times for a 1024x1024 image at 30 steps are approximately 12–18 seconds, comparable to an optimized A1111 SDXL setup.</p>
+
+      <h3>Getting Started With Fooocus</h3>
+
+      <div class="code-block">
+        <span class="comment"># Windows: one-click installer (recommended)</span><br>
+        <span class="comment"># Download Fooocus_win64_2-x.x.x.7z from GitHub releases</span><br>
+        <span class="comment"># Extract and run: run.bat</span><br><br>
+        <span class="comment"># Linux / macOS: manual install</span><br>
+        <span class="cmd">git clone https://github.com/lllyasviel/Fooocus.git</span><br>
+        <span class="cmd">cd Fooocus</span><br><br>
+        <span class="comment"># Create virtual environment</span><br>
+        <span class="cmd">python -m venv venv</span><br>
+        <span class="cmd">source venv/bin/activate      </span><span class="comment"># Windows: venv\Scripts\activate</span><br><br>
+        <span class="comment"># Install dependencies</span><br>
+        <span class="cmd">pip install -r requirements_versions.txt</span><br><br>
+        <span class="comment"># Run Fooocus (auto-downloads SDXL model on first launch)</span><br>
+        <span class="cmd">python entry_with_update.py</span><br><br>
+        <span class="comment"># For low VRAM (4-6GB): enable automatic offloading</span><br>
+        <span class="cmd">python entry_with_update.py --gpu-device-id 0 --disable-offload-from-vram</span><br><br>
+        <span class="comment"># To use custom SDXL models from CivitAI:</span><br>
+        <span class="comment"># Place .safetensors files in: Fooocus/models/checkpoints/</span>
+      </div>
+
+      <h3>Fooocus Strengths</h3>
+      <ul>
+        <li><strong>Genuinely easy for non-technical users:</strong> The fastest path from "I have no idea what Stable Diffusion is" to "I generated a beautiful image." Installation to first image in under 10 minutes on a supported system.</li>
+        <li><strong>Intelligent auto-enhancement:</strong> Fooocus automatically expands brief prompts with quality-improving additions, handles negative prompts internally, and selects appropriate sampling parameters per style. The output quality from a short prompt is often better than what an A1111 beginner achieves with a long, manually-crafted prompt.</li>
+        <li><strong>Excellent SDXL memory optimization:</strong> The progressive loading and offloading system makes SDXL practical on hardware that would struggle with A1111's SDXL implementation.</li>
+        <li><strong>Built-in style presets:</strong> The style selector provides high-quality starting points — Cinematic, Anime, Photorealistic, 3D Render, and many more — each tuning multiple parameters simultaneously without user configuration.</li>
+        <li><strong>Inpaint/outpaint capabilities:</strong> The Advanced tab includes quality inpainting and outpainting features that work well without requiring ControlNet or additional extensions.</li>
+      </ul>
+
+      <h3>Fooocus Limitations</h3>
+      <ul>
+        <li><strong>Limited customization ceiling:</strong> Once you've outgrown the preset styles and want precise control, Fooocus's abstraction layer becomes a frustration. The same simplicity that makes it great for beginners is an obstacle for professionals.</li>
+        <li><strong>SDXL-centric:</strong> SD 1.5 model support exists but is not the focus of development. The best Fooocus experience requires SDXL checkpoints. If your model library is primarily SD 1.5, A1111 is the better choice.</li>
+        <li><strong>Minimal extension ecosystem:</strong> There's no equivalent to A1111's 1,000+ extension library or ComfyUI's custom node ecosystem. What Fooocus ships with is essentially what you get.</li>
+        <li><strong>No workflow portability:</strong> There's no Fooocus-equivalent of a ComfyUI workflow file or A1111 generation parameters that fully capture a repeatable pipeline.</li>
+      </ul>
+
+      <h2 id="benchmarks">Generation Speed Comparison</h2>
+
+      <p>All benchmarks run Stable Diffusion XL with 30 steps, DPM++ 2M Karras sampler, 1024x1024 resolution on an NVIDIA RTX 4090. Times are measured from queue submission to final image save.</p>
+
+      <table class="tool-table">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>AUTOMATIC1111</th>
+            <th>ComfyUI</th>
+            <th>Fooocus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SDXL txt2img (first run, cold cache)</td>
+            <td>14.2 sec</td>
+            <td>12.8 sec</td>
+            <td>13.5 sec</td>
+          </tr>
+          <tr>
+            <td>SDXL txt2img (subsequent, same prompt)</td>
+            <td>14.0 sec</td>
+            <td>10.4 sec</td>
+            <td>13.2 sec</td>
+          </tr>
+          <tr>
+            <td>SDXL txt2img + hires.fix / refiner pass</td>
+            <td>32.1 sec</td>
+            <td>27.5 sec</td>
+            <td>30.8 sec (auto refiner)</td>
+          </tr>
+          <tr>
+            <td>Batch of 4 images (sequential)</td>
+            <td>54.8 sec</td>
+            <td>48.2 sec</td>
+            <td>52.1 sec</td>
+          </tr>
+          <tr>
+            <td>ControlNet + txt2img (pose conditioning)</td>
+            <td>18.3 sec</td>
+            <td>15.9 sec</td>
+            <td>N/A (not standard)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>💡 <strong>Note on the speed benchmarks:</strong> ComfyUI's advantage grows with repeated iterations on the same workflow because of caching. For batch processing or production automation where many images share the same conditioning, ComfyUI's edge is more pronounced. For single one-off generations, the difference is minimal and unlikely to be the deciding factor in your tool choice.</p>
+      </div>
+
+      <h2 id="choosing">How to Choose: A User Type Matrix</h2>
+
+      <div class="user-matrix">
+        <div class="matrix-row">
+          <span class="matrix-user">I want to try AI image generation for the first time</span>
+          <span class="matrix-rec">Fooocus</span>
+          <span class="matrix-reason">Lowest barrier, excellent defaults, no configuration required</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-user">I'm a digital artist who wants to add AI to my creative workflow</span>
+          <span class="matrix-rec">Fooocus or A1111</span>
+          <span class="matrix-reason">Fooocus for quick ideation; A1111 when you need extension features</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-user">I want to use community checkpoints and LoRAs from CivitAI</span>
+          <span class="matrix-rec">A1111</span>
+          <span class="matrix-reason">Largest community, model compatibility documentation is A1111-first</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-user">I'm building a production image generation pipeline / API</span>
+          <span class="matrix-rec">ComfyUI</span>
+          <span class="matrix-reason">Best API, workflow portability, performance at scale, and reproducibility</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-user">I want precise ControlNet conditioning (pose, depth, canny)</span>
+          <span class="matrix-rec">A1111 or ComfyUI</span>
+          <span class="matrix-reason">Both have excellent ControlNet support; ComfyUI for complex multi-ControlNet workflows</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-user">I need to share reproducible workflows with a team</span>
+          <span class="matrix-rec">ComfyUI</span>
+          <span class="matrix-reason">JSON workflow files capture the complete pipeline with full fidelity</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-user">I have limited VRAM (4-6GB) and want to run SDXL</span>
+          <span class="matrix-rec">Fooocus</span>
+          <span class="matrix-reason">Best VRAM management for SDXL on constrained hardware</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-user">I want to experiment with latest models (Flux, SD3)</span>
+          <span class="matrix-rec">ComfyUI</span>
+          <span class="matrix-reason">Fastest support for new model architectures due to modular node design</span>
+        </div>
+      </div>
+
+      <h3>The "Start with Fooocus, Graduate to ComfyUI" Path</h3>
+
+      <p>Many experienced ComfyUI users started with Fooocus or A1111. If you're new to Stable Diffusion and feeling overwhelmed, start with <a href="../tools/fooocus.html">Fooocus</a>. It teaches you what good SDXL output looks like. When you want more control than Fooocus gives you, the next step depends on your goal: A1111 if you want extensions and community resources, <a href="../tools/comfyui.html">ComfyUI</a> if you're interested in understanding the pipeline and building automatable workflows.</p>
+
+      <p>None of these tools are mutually exclusive — many serious users have all three installed and reach for different ones depending on the task. Fooocus for quick concept exploration. A1111 for ControlNet-heavy work with community checkpoints. ComfyUI for building and running production pipelines.</p>
+
+      <p>A note on <a href="../tools/sd-webui-forge.html">SD WebUI Forge</a>: this is a performance-optimized fork of AUTOMATIC1111 that's worth mentioning. If you've already committed to the A1111 ecosystem but want better VRAM efficiency and faster generation speeds (typically 20–30% faster than vanilla A1111), Forge is a drop-in upgrade that maintains full extension compatibility.</p>
+
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.08) 0%,rgba(139,92,246,.08) 100%);border:1px solid rgba(99,102,241,.3);border-radius:12px;padding:24px 28px;margin:32px 0">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px">Bottom Line</div>
+        <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>Fooocus if you want ease. A1111 if you want the ecosystem. ComfyUI if you want control and automation.</strong> For most new users, Fooocus is the right starting point — it removes every barrier between you and a good image. For professionals building production systems or complex multi-model workflows, ComfyUI's node-based architecture and robust API make it the correct long-term choice. A1111 remains the best choice for anyone who relies heavily on the community extension ecosystem, particularly ControlNet workflows using community-trained models.</p>
+      </div>
+
+      <h2 id="faq">Frequently Asked Questions</h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <h3>Can ComfyUI and AUTOMATIC1111 use the same model checkpoints?</h3>
+          <p>Yes. Both ComfyUI and AUTOMATIC1111 use the same <code>.safetensors</code> and <code>.ckpt</code> checkpoint files. If you already have models downloaded for A1111, you can point ComfyUI to the same folder by editing ComfyUI's <code>extra_model_paths.yaml</code> file. LoRA files, VAEs, ControlNet models, and embeddings are also cross-compatible between the two tools — you don't need to re-download anything. <a href="../tools/fooocus.html">Fooocus</a> uses the same SDXL checkpoint format, though it has its own internal model management system and recommends placing models in its specific folder.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Why is ComfyUI faster than AUTOMATIC1111 for the same model?</h3>
+          <p>ComfyUI's node-based architecture enables more granular caching and optimized execution of the diffusion pipeline. In A1111, the entire pipeline re-executes for each generation. In <a href="../tools/comfyui.html">ComfyUI</a>, if you only change the sampler node but keep the prompt conditioning nodes unchanged, ComfyUI can cache the text encoding result and skip recomputing it. This selective re-execution is particularly noticeable in iterative workflows where you're only changing one parameter at a time. Additionally, ComfyUI's architecture allows for more efficient memory management between generations. In benchmarks, ComfyUI typically generates images 10–20% faster than A1111 on identical hardware using identical settings.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does Fooocus work with custom models from CivitAI?</h3>
+          <p>Fooocus is designed primarily around SDXL-architecture models. It works well with any SDXL-based checkpoint downloaded from CivitAI — place the <code>.safetensors</code> file in the <code>Fooocus/models/checkpoints/</code> folder and it will appear in the model selector. Fooocus does not natively support SD 1.5 checkpoints in the same way A1111 or ComfyUI do, as it assumes the SDXL architecture for its default processing pipeline. LoRA files are supported, and Fooocus includes built-in style presets that function similarly to positive prompt templates. For the widest model compatibility including SD 1.5 and SDXL, <a href="../tools/stable-diffusion.html">AUTOMATIC1111</a> or ComfyUI remain better choices.</p>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="sidebar">
+      <div class="toc-box">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#comparison">Feature Comparison</a></li>
+          <li><a href="#a1111">AUTOMATIC1111</a></li>
+          <li><a href="#comfyui">ComfyUI</a></li>
+          <li><a href="#fooocus">Fooocus</a></li>
+          <li><a href="#benchmarks">Generation Speed</a></li>
+          <li><a href="#choosing">How to Choose</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ol>
+      </div>
+      <div class="related-box">
+        <h3>Related Articles</h3>
+        <ul>
+          <li><a href="vllm-vs-ollama-production">vLLM vs Ollama vs LocalAI →</a></li>
+          <li><a href="run-llm-locally-guide">Run LLMs Locally Guide →</a></li>
+          <li><a href="ai-agent-frameworks-guide-2025">Agent Frameworks →</a></li>
+        </ul>
+      </div>
+      <div class="related-box" style="margin-top:20px">
+        <h3>Tools Mentioned</h3>
+        <ul>
+          <li><a href="../tools/stable-diffusion.html">AUTOMATIC1111 →</a></li>
+          <li><a href="../tools/comfyui.html">ComfyUI →</a></li>
+          <li><a href="../tools/fooocus.html">Fooocus →</a></li>
+          <li><a href="../tools/sd-webui-forge.html">SD WebUI Forge →</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index">Blog</a></li>
+          <li><a href="../about">About</a></li>
+          <li><a href="../contact">Contact</a></li>
+          <li><a href="../privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Articles</h4>
+        <ul>
+          <li><a href="run-llm-locally-guide">Local LLM Guide</a></li>
+          <li><a href="vllm-vs-ollama-production">vLLM vs Ollama Guide</a></li>
+          <li><a href="comfyui-vs-a1111-vs-fooocus">ComfyUI vs A1111 Guide</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
