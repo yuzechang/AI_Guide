@@ -221,6 +221,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://yuzec.com/tools/markitdown</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://yuzec.com/tools/dify</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -237,12 +243,6 @@
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://yuzec.com/tools/markitdown</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://yuzec.com/tools/comfyui</loc>
@@ -341,13 +341,13 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/open-interpreter</loc>
+    <loc>https://yuzec.com/tools/open-interpreter-agent</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/open-interpreter-agent</loc>
+    <loc>https://yuzec.com/tools/open-interpreter</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -557,13 +557,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/agentgpt</loc>
+    <loc>https://yuzec.com/tools/lightrag</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/lightrag</loc>
+    <loc>https://yuzec.com/tools/agentgpt</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -599,13 +599,19 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://yuzec.com/tools/langgraph</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://yuzec.com/tools/task-matrix</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/gpt-pilot</loc>
+    <loc>https://yuzec.com/tools/copilotkit</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -623,6 +629,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://yuzec.com/tools/gpt-pilot</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://yuzec.com/tools/clip</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -635,13 +647,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/tabby</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://yuzec.com/tools/langgraph</loc>
+    <loc>https://yuzec.com/tools/playwright-mcp</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -653,13 +659,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/graphrag</loc>
+    <loc>https://yuzec.com/tools/tabby</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/playwright-mcp</loc>
+    <loc>https://yuzec.com/tools/graphrag</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -672,12 +678,6 @@
   </url>
   <url>
     <loc>https://yuzec.com/tools/chatbot-ui</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://yuzec.com/tools/copilotkit</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -713,13 +713,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/sglang</loc>
+    <loc>https://yuzec.com/tools/sillytavern</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/sillytavern</loc>
+    <loc>https://yuzec.com/tools/sglang</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -779,13 +779,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/label-studio</loc>
+    <loc>https://yuzec.com/tools/gpt-researcher</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/gpt-researcher</loc>
+    <loc>https://yuzec.com/tools/label-studio</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -815,13 +815,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/mlflow</loc>
+    <loc>https://yuzec.com/tools/agentscope</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/agentscope</loc>
+    <loc>https://yuzec.com/tools/mlflow</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -851,13 +851,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/llamafile</loc>
+    <loc>https://yuzec.com/tools/vercel-ai-sdk</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/vercel-ai-sdk</loc>
+    <loc>https://yuzec.com/tools/llamafile</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -869,25 +869,25 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/pandas-ai</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://yuzec.com/tools/vanna</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/audiocraft</loc>
+    <loc>https://yuzec.com/tools/pandas-ai</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://yuzec.com/tools/faster-whisper</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/tools/audiocraft</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -929,13 +929,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/babyagi</loc>
+    <loc>https://yuzec.com/tools/whisperx</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/whisperx</loc>
+    <loc>https://yuzec.com/tools/babyagi</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -947,7 +947,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/openai-swarm</loc>
+    <loc>https://yuzec.com/tools/pgvector</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -959,7 +959,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/pgvector</loc>
+    <loc>https://yuzec.com/tools/openai-swarm</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -1043,12 +1043,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/superagi</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://yuzec.com/tools/pydantic-ai</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -1061,6 +1055,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://yuzec.com/tools/superagi</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/tools/funASR</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://yuzec.com/tools/camel</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -1068,12 +1074,6 @@
   </url>
   <url>
     <loc>https://yuzec.com/tools/anthropic-quickstarts</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yuzec.com/tools/funASR</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1115,13 +1115,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/llmware</loc>
+    <loc>https://yuzec.com/tools/unstructured</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/unstructured</loc>
+    <loc>https://yuzec.com/tools/llmware</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1157,13 +1157,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/annoy</loc>
+    <loc>https://yuzec.com/tools/ragas</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/ragas</loc>
+    <loc>https://yuzec.com/tools/annoy</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1193,13 +1193,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/aisuite</loc>
+    <loc>https://yuzec.com/tools/tensorrt-llm</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/tensorrt-llm</loc>
+    <loc>https://yuzec.com/tools/aisuite</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1283,6 +1283,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://yuzec.com/tools/axolotl</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/tools/llm-cli</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://yuzec.com/tools/instantid</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -1295,19 +1307,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/axolotl</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://yuzec.com/tools/h2ogpt</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://yuzec.com/tools/llm-cli</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1349,13 +1349,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/tgi</loc>
+    <loc>https://yuzec.com/tools/livekit-agents</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/dolly</loc>
+    <loc>https://yuzec.com/tools/tgi</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1367,7 +1367,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/livekit-agents</loc>
+    <loc>https://yuzec.com/tools/dolly</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1415,13 +1415,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/nougat</loc>
+    <loc>https://yuzec.com/tools/phoenix</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/phoenix</loc>
+    <loc>https://yuzec.com/tools/nougat</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1445,13 +1445,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/spring-ai</loc>
+    <loc>https://yuzec.com/tools/ufo</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/ufo</loc>
+    <loc>https://yuzec.com/tools/spring-ai</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1583,13 +1583,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/openplayground</loc>
+    <loc>https://yuzec.com/tools/nemo-guardrails</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/nemo-guardrails</loc>
+    <loc>https://yuzec.com/tools/openplayground</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1607,13 +1607,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/enchanted</loc>
+    <loc>https://yuzec.com/tools/atomic-agents</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/atomic-agents</loc>
+    <loc>https://yuzec.com/tools/enchanted</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -1679,13 +1679,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/openagents</loc>
+    <loc>https://yuzec.com/tools/text-embeddings-inference</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/text-embeddings-inference</loc>
+    <loc>https://yuzec.com/tools/openagents</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1721,13 +1721,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/micro-agent</loc>
+    <loc>https://yuzec.com/tools/agent-service-toolkit</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/agent-service-toolkit</loc>
+    <loc>https://yuzec.com/tools/micro-agent</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1763,13 +1763,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/semantic-router</loc>
+    <loc>https://yuzec.com/tools/anthropic-sdk</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/anthropic-sdk</loc>
+    <loc>https://yuzec.com/tools/semantic-router</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1805,13 +1805,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/gptscript</loc>
+    <loc>https://yuzec.com/tools/bee-agent</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/bee-agent</loc>
+    <loc>https://yuzec.com/tools/gptscript</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1823,13 +1823,13 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/prompttools-skill</loc>
+    <loc>https://yuzec.com/tools/llm-guard</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://yuzec.com/tools/llm-guard</loc>
+    <loc>https://yuzec.com/tools/prompttools-skill</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -1983,5 +1983,293 @@
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/cursor-vs-github-copilot</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/langchain-vs-llamaindex</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/vllm-vs-ollama</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/autogpt-vs-autogen</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/comfyui-vs-stable-diffusion-webui</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/n8n-vs-langchain</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/crewai-vs-autogen</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/dify-vs-flowise</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/cline-vs-cursor</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/ollama-vs-llama-cpp</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/ollama-vs-gpt4all</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/llamafile-vs-ollama</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/vllm-vs-tgi</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/vllm-vs-sglang</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/vllm-vs-lmdeploy</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/langchain-vs-haystack</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/llamaindex-vs-haystack</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/langchain-vs-langgraph</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/chroma-vs-qdrant</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/qdrant-vs-milvus</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/chroma-vs-weaviate</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/flux-vs-stable-diffusion</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/fooocus-vs-comfyui</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/sd-webui-vs-invokeai</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/langgraph-vs-crewai</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/langgraph-vs-autogen</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/smolagents-vs-crewai</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/n8n-vs-dify</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/langflow-vs-flowise</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/open-webui-vs-librechat</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/anything-llm-vs-privateGPT</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/khoj-vs-anything-llm</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/aider-vs-openhands</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/swe-agent-vs-openhands</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/gpt-engineer-vs-aider</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/cursor-vs-aider</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/cursor-vs-continue</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/whisper-vs-faster-whisper</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/whisperx-vs-faster-whisper</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/llama-factory-vs-axolotl</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/peft-vs-trl</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/unsloth-vs-llama-factory</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/deepspeed-vs-unsloth</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/mlflow-vs-langfuse</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/dspy-vs-langchain</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/pydantic-ai-vs-langchain</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/phidata-vs-crewai</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/compare/text-gen-webui-vs-ollama</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
 </urlset>
