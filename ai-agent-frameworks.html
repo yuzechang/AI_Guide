@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best AI Agent Frameworks in 2026 – Open Source Comparison | AI Nav</title>
+  <meta name="description" content="Compare the top open source AI agent frameworks by GitHub stars. LangChain, AutoGen, CrewAI, MetaGPT and more — ranked and reviewed.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/ai-agent-frameworks">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best AI Agent Frameworks in 2026 – Open Source Comparison | AI Nav">
+  <meta property="og:description" content="Compare the top open source AI agent frameworks by GitHub stars. LangChain, AutoGen, CrewAI, MetaGPT and more — ranked and reviewed.">
+  <meta property="og:url" content="https://yuzec.com/ai-agent-frameworks">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best AI Agent Frameworks in 2026 – Open Source Comparison",
+    "description": "Compare the top open source AI agent frameworks by GitHub stars. LangChain, AutoGen, CrewAI, MetaGPT and more — ranked and reviewed.",
+    "url": "https://yuzec.com/ai-agent-frameworks",
+    "datePublished": "2026-06-09",
+    "dateModified": "2026-06-09",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yuzec.com/favicon-32x32.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/ai-agent-frameworks"
+    }
+  }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an AI agent framework?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An AI agent framework is a software library or platform that helps developers build autonomous AI agents — programs that can perceive their environment, make decisions, use tools, and take multi-step actions to complete complex goals. Popular frameworks like LangChain, AutoGen, and CrewAI provide pre-built abstractions for tool calling, memory management, multi-agent orchestration, and LLM integration, so developers don't have to build these components from scratch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the most popular AI agent framework in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "By GitHub stars, n8n (190,545 stars) and AutoGPT (184,687 stars) are the most starred repositories in the AI agent space as of 2026. For Python developers building production agents, LangChain and LangGraph remain the most widely adopted frameworks due to their extensive ecosystem and documentation. For multi-agent use cases, CrewAI and AutoGen have seen rapid growth."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "LangChain vs AutoGen vs CrewAI — which should I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Choose based on your use case: LangChain (and its companion LangGraph) excels at building RAG pipelines, complex chains, and single-agent applications with rich tool integrations. AutoGen (from Microsoft) is best for multi-agent conversation patterns where agents collaborate via structured dialogue. CrewAI is ideal when you want to assign human-like roles (Researcher, Writer, QA Engineer) to agents in a team. For most developers starting out, LangChain's ecosystem and documentation make it the safest starting point."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these AI agent frameworks free and open source?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all the major AI agent frameworks listed here are open source and free to self-host. Most use permissive licenses like MIT or Apache-2.0. The underlying LLM API calls (OpenAI, Anthropic, etc.) cost money, but the frameworks themselves are free. Some frameworks like Dify and Langflow also offer commercial cloud-hosted versions with paid tiers alongside their open-source self-hosted options."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What hardware do I need to run AI agent frameworks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The frameworks themselves are lightweight and run on any standard developer machine (4GB RAM minimum). The hardware requirements depend on your LLM choice: if you use cloud APIs (OpenAI, Anthropic, Google), any machine works. If you want to run local models, you'll need at least 8GB RAM for 7B parameter models, 16GB for 13B models. GPU is recommended for local models but many frameworks support CPU inference via llama.cpp or Ollama."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+
+  <style>
+    /* 对比表格样式 */
+    .compare-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0 32px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .compare-table thead {
+      background: var(--card);
+    }
+    .compare-table th {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .compare-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-2);
+      vertical-align: middle;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(129,140,248,0.03); }
+    .compare-table td:first-child { font-weight: 700; color: var(--text); }
+    .compare-table td a { color: var(--accent); font-weight: 600; }
+    .compare-table td a:hover { color: var(--accent-hover); text-decoration: underline; }
+    .stars-num {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 700; color: var(--star);
+    }
+    .stars-num::before { content: "★"; }
+    .license-badge {
+      display: inline-block; padding: 2px 8px;
+      background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.25);
+      border-radius: 4px; font-size: 11px; font-weight: 600; color: var(--green);
+    }
+    .rank-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent-dim); color: var(--accent);
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    /* 决策卡片 */
+    .decision-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px; margin: 20px 0 28px;
+    }
+    .decision-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+      transition: border-color 0.2s;
+    }
+    .decision-card:hover { border-color: var(--accent); }
+    .decision-card-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 8px;
+    }
+    .decision-card-scenario {
+      font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px;
+    }
+    .decision-card-rec {
+      font-size: 13px; color: var(--text-2); line-height: 1.55;
+    }
+    .decision-card-rec a { color: var(--accent); font-weight: 600; }
+    /* 代码块 */
+    pre {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+      font-size: 13px; line-height: 1.65; color: var(--text-2); margin: 16px 0 24px;
+    }
+    pre code { background: none; border: none; padding: 0; color: inherit; }
+    /* 广告占位 */
+    .ad-slot { margin: 32px 0; text-align: center; }
+    /* 统计条 */
+    .stats-bar {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      padding: 16px 20px; background: var(--card);
+      border: 1px solid var(--border); border-radius: var(--radius); margin: 0 0 28px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 800; color: var(--accent); }
+    .stat-lbl { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    </nav>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn" data-langbtn="en">EN</button>
+      <button class="lang-btn" data-langbtn="zh">中</button>
+    </div>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">
+    <span class="en">AI Agent Frameworks</span>
+    <span class="zh">AI Agent 框架</span>
+  </span>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">
+      <span class="en">🤖 Agent Frameworks</span>
+      <span class="zh">🤖 Agent 框架</span>
+    </span>
+    <h1 class="article-title" style="margin-top:12px">
+      <span class="en">Best AI Agent Frameworks in 2026</span>
+      <span class="zh">2026 年最佳 AI Agent 框架</span>
+    </h1>
+    <div class="article-meta">
+      <span>📅 Updated June 9, 2026</span>
+      <span>⭐ Ranked by GitHub Stars</span>
+      <span>🔢 14 Frameworks Compared</span>
+    </div>
+    <p class="article-desc">
+      <span class="en">An AI agent framework is a software toolkit that enables developers to build autonomous AI agents — programs that can reason, use tools, remember context, and execute multi-step tasks to accomplish complex goals. As LLMs become more capable, these frameworks have become the backbone of modern AI applications: from chatbots that browse the web to coding assistants that write entire codebases. This guide compares the top open source AI agent frameworks by GitHub stars, features, and real-world use cases.</span>
+      <span class="zh">AI Agent 框架是帮助开发者构建自主 AI 智能体的软件工具包——这些智能体能够推理、调用工具、记忆上下文并执行多步骤任务以完成复杂目标。随着大语言模型能力不断增强，这些框架已成为现代 AI 应用的核心基础：从能够浏览网页的聊天机器人，到能编写完整代码库的编程助手。本指南按 GitHub Stars 数、功能特性和实际使用场景对主流开源 AI Agent 框架进行横向对比。</span>
+    </p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <div class="content">
+
+      <!-- 统计摘要 -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">14</div>
+          <div class="stat-lbl">Frameworks Listed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">190K+</div>
+          <div class="stat-lbl">Top Stars (n8n)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">12/14</div>
+          <div class="stat-lbl">MIT Licensed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Jun 2026</div>
+          <div class="stat-lbl">Data Updated</div>
+        </div>
+      </div>
+
+      <h2 id="comparison-table">
+        <span class="en">AI Agent Frameworks Comparison (Ranked by GitHub Stars)</span>
+        <span class="zh">AI Agent 框架对比（按 GitHub Stars 排序）</span>
+      </h2>
+
+      <p class="en">The following table ranks 14 major open source AI agent frameworks by GitHub stars as of June 2026. Star counts reflect community adoption and are updated weekly from GitHub's public API.</p>
+      <p class="zh">下表按 2026 年 6 月的 GitHub Stars 数对 14 个主流开源 AI Agent 框架进行排名，星标数量反映社区采用度，每周从 GitHub 公开 API 自动同步更新。</p>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Framework</th>
+              <th>GitHub Stars</th>
+              <th>Language</th>
+              <th>Best For</th>
+              <th>License</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank-num">1</span></td>
+              <td><a href="tools/n8n.html">n8n</a></td>
+              <td><span class="stars-num">190,545</span></td>
+              <td>JavaScript</td>
+              <td>Low-code workflow automation with 400+ integrations</td>
+              <td><span class="license-badge">Sustainable Use</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">2</span></td>
+              <td><a href="tools/autogpt.html">AutoGPT</a></td>
+              <td><span class="stars-num">184,687</span></td>
+              <td>Python</td>
+              <td>Autonomous task execution and experimentation</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">3</span></td>
+              <td><a href="tools/langflow.html">Langflow</a></td>
+              <td><span class="stars-num">148,969</span></td>
+              <td>Python / JS</td>
+              <td>Visual drag-and-drop agent / RAG builder</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">4</span></td>
+              <td><a href="tools/dify.html">Dify</a></td>
+              <td><span class="stars-num">143,366</span></td>
+              <td>Python</td>
+              <td>LLM app development platform, self-hostable</td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">5</span></td>
+              <td><a href="tools/browser-use.html">Browser Use</a></td>
+              <td><span class="stars-num">96,488</span></td>
+              <td>Python</td>
+              <td>Web browser automation by AI</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">6</span></td>
+              <td><a href="tools/openhands.html">OpenHands</a></td>
+              <td><span class="stars-num">75,540</span></td>
+              <td>Python</td>
+              <td>AI software development agents</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">7</span></td>
+              <td><a href="tools/metagpt.html">MetaGPT</a></td>
+              <td><span class="stars-num">68,451</span></td>
+              <td>Python</td>
+              <td>Multi-agent with software team roles</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">8</span></td>
+              <td><a href="tools/open-interpreter.html">Open Interpreter</a></td>
+              <td><span class="stars-num">63,761</span></td>
+              <td>Python</td>
+              <td>Code writing and execution agent</td>
+              <td><span class="license-badge">AGPL-3.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">9</span></td>
+              <td><a href="tools/cline.html">Cline</a></td>
+              <td><span class="stars-num">62,590</span></td>
+              <td>TypeScript</td>
+              <td>VS Code coding agent with file editing</td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">10</span></td>
+              <td><a href="tools/autogen.html">AutoGen</a></td>
+              <td><span class="stars-num">58,588</span></td>
+              <td>Python</td>
+              <td>Microsoft's multi-agent conversation framework</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">11</span></td>
+              <td><a href="tools/gpt-engineer.html">GPT-Engineer</a></td>
+              <td><span class="stars-num">55,215</span></td>
+              <td>Python</td>
+              <td>Natural language → full codebase generator</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">12</span></td>
+              <td><a href="tools/flowise.html">Flowise</a></td>
+              <td><span class="stars-num">53,242</span></td>
+              <td>JavaScript</td>
+              <td>Drag-and-drop LLM workflow UI</td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">13</span></td>
+              <td><a href="tools/crewai.html">CrewAI</a></td>
+              <td><span class="stars-num">52,573</span></td>
+              <td>Python</td>
+              <td>Role-based collaborative AI agents</td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">14</span></td>
+              <td><a href="tools/agno.html">Agno</a></td>
+              <td><span class="stars-num">40,443</span></td>
+              <td>Python</td>
+              <td>Lightweight multi-modal agent library</td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- AdSense 广告位 -->
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2761695780807828" data-ad-slot="XXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="how-to-choose">
+        <span class="en">Which AI Agent Framework Should You Choose?</span>
+        <span class="zh">如何选择适合你的 AI Agent 框架？</span>
+      </h2>
+
+      <p class="en">Choosing the right AI agent framework depends heavily on your use case, technical background, and whether you prefer a visual UI or code-first approach. Here's a scenario-based guide to help you decide.</p>
+      <p class="zh">选择合适的 AI Agent 框架，很大程度上取决于你的使用场景、技术背景以及你倾向于可视化界面还是代码优先的开发方式。以下是基于场景的决策指南。</p>
+
+      <div class="decision-grid">
+        <div class="decision-card">
+          <div class="decision-card-label">🔧 Use Case</div>
+          <div class="decision-card-scenario">Simple workflow automation (no-code)</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/n8n.html">n8n</a> or <a href="tools/flowise.html">Flowise</a>. Both offer drag-and-drop visual editors with hundreds of pre-built integrations. n8n is better for enterprise workflows; Flowise is purpose-built for LLM pipelines. Neither requires writing Python code.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">🐍 Use Case</div>
+          <div class="decision-card-scenario">Python developer building RAG or complex chains</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/langchain.html">LangChain</a> / <a href="tools/langflow.html">Langflow</a>. LangChain has the largest Python ecosystem, best documentation, and deepest integration with vector databases and LLM providers. Langflow adds a visual UI on top if you prefer to prototype visually.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">👥 Use Case</div>
+          <div class="decision-card-scenario">Multi-agent collaboration with defined roles</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/crewai.html">CrewAI</a>, <a href="tools/autogen.html">AutoGen</a>, or <a href="tools/metagpt.html">MetaGPT</a>. CrewAI makes it easy to define agents with roles like "Researcher" and "Writer" working in a crew. AutoGen excels at structured multi-agent dialogue. MetaGPT assigns entire software engineering team roles.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">💻 Use Case</div>
+          <div class="decision-card-scenario">VS Code coding agent with file editing</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/cline.html">Cline</a> or <a href="tools/openhands.html">OpenHands</a>. Cline is a VS Code extension that gives Claude/GPT direct access to your file system, terminal, and browser within the editor. OpenHands is a more autonomous coding agent that can handle entire development tasks.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">🌐 Use Case</div>
+          <div class="decision-card-scenario">Autonomous web browser control by AI</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/browser-use.html">Browser Use</a>. It's purpose-built for letting AI agents control a web browser — navigate, click, fill forms, and extract data. With 96K+ stars it's the fastest-growing tool in this space. Built on Playwright with a clean Python API.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">🏢 Use Case</div>
+          <div class="decision-card-scenario">Self-hosted LLM app platform for teams</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/dify.html">Dify</a>. It's a fully self-hostable LLM application development platform with a web UI for building, testing, and deploying AI workflows. Supports RAG pipelines, fine-tuning workflows, and team collaboration features out of the box.
+          </div>
+        </div>
+      </div>
+
+      <div class="expert-take">
+        <p class="en">In 2026, the AI agent framework landscape has matured significantly. The key inflection point is whether you need a visual interface or code-first control. For production systems handling complex reasoning, LangGraph (LangChain's stateful graph execution engine) and AutoGen v0.4's event-driven architecture are emerging as the most robust options. For rapid prototyping or team tools, Dify and Langflow reduce the barrier significantly. The right choice is almost always the one that matches your team's existing skill set — framework migrations are expensive.</p>
+        <p class="zh">2026 年，AI Agent 框架生态已趋于成熟。关键分叉点在于你是需要可视化界面还是代码优先的精细控制。对于处理复杂推理的生产系统，LangGraph（LangChain 的有状态图执行引擎）和 AutoGen v0.4 的事件驱动架构正成为最稳健的选择。对于快速原型或团队工具，Dify 和 Langflow 大幅降低了门槛。正确的选择几乎总是与你团队现有技术栈匹配的那个——框架迁移成本很高。</p>
+        <cite>— AI Nav Editorial Team, June 2026</cite>
+      </div>
+
+      <h2 id="framework-details">
+        <span class="en">Framework Deep Dives</span>
+        <span class="zh">框架详细解析</span>
+      </h2>
+
+      <h3>n8n — Low-Code Workflow Automation King</h3>
+      <p class="en">n8n is the most starred AI-adjacent automation tool on GitHub, and for good reason. With 400+ integrations covering everything from Slack to Salesforce, it handles the "last mile" of AI integrations better than any pure-code framework. n8n's workflow execution engine supports conditional branching, loops, error handling, and webhook triggers — making it production-ready out of the box. The fair-code Sustainable Use License allows self-hosting for most use cases, with paid cloud and enterprise tiers available.</p>
+      <p class="zh">n8n 是 GitHub 上星标最多的 AI 相关自动化工具，实至名归。凭借涵盖 Slack、Salesforce 等 400 多个集成，它在处理 AI 集成"最后一公里"方面优于任何纯代码框架。n8n 的工作流执行引擎支持条件分支、循环、错误处理和 Webhook 触发，开箱即可用于生产环境。公平代码的 Sustainable Use 许可证允许大多数用例自托管，同时提供付费云和企业版。</p>
+
+      <h3>AutoGPT — The Autonomous Agent Pioneer</h3>
+      <p class="en">AutoGPT was one of the first projects to demonstrate that GPT-4 could chain its own tool calls autonomously. With 184K+ stars, it became a cultural moment for AI development in 2023. In 2026, AutoGPT has evolved into a full autonomous agent platform with a marketplace for agent templates ("blueprints"), a cloud-hosted "AutoGPT Server", and a local agent execution engine. It's best suited for experimentation and building autonomous pipelines that don't require human approval for each step.</p>
+      <p class="zh">AutoGPT 是最早展示 GPT-4 能自主链接自身工具调用的项目之一。凭借 184K+ 星标，它在 2023 年成为 AI 开发领域的文化事件。2026 年，AutoGPT 已演进为完整的自主 Agent 平台，配备 Agent 模板（"蓝图"）市场、云托管的"AutoGPT Server"和本地 Agent 执行引擎，最适合实验和构建无需每步人工审批的自主流水线。</p>
+
+      <h3>CrewAI — Role-Based Multi-Agent Teams</h3>
+      <p class="en">CrewAI's core innovation is treating multi-agent systems like a human organization: each agent has a role, a goal, a backstory, and a set of tools. You define a "crew" of agents and a sequence of tasks, and CrewAI orchestrates the collaboration. This role-based framing is highly intuitive and maps well to real business processes — a Researcher agent gathers information, a Writer agent drafts content, and a QA agent reviews it. CrewAI supports both sequential and hierarchical execution modes.</p>
+      <p class="zh">CrewAI 的核心创新在于将多 Agent 系统视为人类组织：每个 Agent 有角色、目标、背景故事和工具集。你定义一个 Agent "团队"和任务序列，CrewAI 负责协调协作。这种基于角色的框架直观易懂，与真实业务流程高度契合——研究员 Agent 收集信息，写作员 Agent 起草内容，质检员 Agent 进行审核。CrewAI 支持顺序和层级两种执行模式。</p>
+
+      <h3>AutoGen — Microsoft's Conversational Multi-Agent Framework</h3>
+      <p class="en">AutoGen (from Microsoft Research) takes a conversation-centric approach to multi-agent systems: agents communicate through structured message passing, enabling complex behaviors to emerge from simple conversation patterns. AutoGen v0.4 introduced a completely redesigned async event-driven architecture that makes it significantly more scalable for production use. It has excellent support for human-in-the-loop scenarios where a human can intervene in agent conversations.</p>
+      <p class="zh">AutoGen（来自微软研究院）采用以对话为中心的多 Agent 系统方法：Agent 通过结构化消息传递进行通信，使复杂行为从简单对话模式中涌现。AutoGen v0.4 引入了全新设计的异步事件驱动架构，使其在生产环境中的可扩展性显著提升。它对人机协作场景有极佳支持，允许人类介入 Agent 对话流程。</p>
+
+      <!-- 第二个广告位 -->
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2761695780807828" data-ad-slot="XXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="quick-start">
+        <span class="en">Quick Start: Build Your First AI Agent</span>
+        <span class="zh">快速上手：构建你的第一个 AI Agent</span>
+      </h2>
+
+      <p class="en">Here's a minimal example using CrewAI to build a two-agent research team in Python:</p>
+      <p class="zh">以下是使用 CrewAI 在 Python 中构建双 Agent 研究团队的最简示例：</p>
+
+      <pre><code># 安装依赖
+pip install crewai crewai-tools
+
+from crewai import Agent, Task, Crew
+from crewai_tools import SerperDevTool
+
+# 定义工具
+search_tool = SerperDevTool()
+
+# 定义 Agent（角色、目标、背景）
+researcher = Agent(
+    role='AI Research Specialist',
+    goal='Find the latest developments in AI agent frameworks',
+    backstory='You are an expert researcher who excels at finding accurate information.',
+    tools=[search_tool],
+    verbose=True
+)
+
+writer = Agent(
+    role='Technical Writer',
+    goal='Write clear, comprehensive summaries of technical topics',
+    backstory='You are a skilled technical writer who makes complex topics accessible.',
+    verbose=True
+)
+
+# 定义任务
+research_task = Task(
+    description='Research the top AI agent frameworks of 2026 with their GitHub stars',
+    expected_output='A list of top 5 frameworks with star counts and key features',
+    agent=researcher
+)
+
+write_task = Task(
+    description='Write a 200-word summary of the research findings',
+    expected_output='A concise, well-structured summary suitable for developers',
+    agent=writer
+)
+
+# 组建团队并执行
+crew = Crew(agents=[researcher, writer], tasks=[research_task, write_task])
+result = crew.kickoff()
+print(result)</code></pre>
+
+      <p class="en">For AutoGen, a basic two-agent conversation looks like this:</p>
+      <p class="zh">使用 AutoGen 实现基础双 Agent 对话如下：</p>
+
+      <pre><code># 安装依赖
+pip install pyautogen
+
+import autogen
+
+# 配置 LLM
+config_list = [{"model": "gpt-4o", "api_key": "YOUR_API_KEY"}]
+
+# 创建 Agent
+assistant = autogen.AssistantAgent(
+    name="assistant",
+    llm_config={"config_list": config_list}
+)
+
+user_proxy = autogen.UserProxyAgent(
+    name="user_proxy",
+    human_input_mode="NEVER",  # 全自动模式
+    max_consecutive_auto_reply=5,
+    code_execution_config={"work_dir": "coding", "use_docker": False}
+)
+
+# 启动对话
+user_proxy.initiate_chat(
+    assistant,
+    message="Write a Python script that fetches GitHub stars for the top AI repos"
+)</code></pre>
+
+      <h2 id="faq">
+        <span class="en">Frequently Asked Questions</span>
+        <span class="zh">常见问题解答</span>
+      </h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <div class="faq-q">
+            What is an AI agent framework?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              An AI agent framework is a software library or platform that helps developers build autonomous AI agents — programs that can perceive their environment, make decisions, use tools (like web search, code execution, or API calls), and take multi-step actions to complete complex goals. Popular frameworks like LangChain, AutoGen, and CrewAI provide pre-built abstractions for tool calling, memory management, multi-agent orchestration, and LLM integration. Without a framework, building even a basic agent requires significant boilerplate code for prompt management, tool definitions, response parsing, and error handling.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            What is the most popular AI agent framework in 2026?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              By GitHub stars, n8n (190,545 stars) and AutoGPT (184,687 stars) are the most starred repositories in the AI agent space as of June 2026. However, for Python developers building production agents and RAG pipelines, LangChain (and its stateful execution companion LangGraph) remains the most widely adopted framework due to its extensive ecosystem, documentation, and integrations. For multi-agent collaboration use cases, CrewAI and AutoGen have seen the fastest growth in 2025-2026.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            LangChain vs AutoGen vs CrewAI — which should I use?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Choose based on your primary use case: <strong>LangChain</strong> is best for building RAG pipelines, complex LLM chains, and single-agent applications with rich tool integrations — it has the largest ecosystem and most third-party integrations. <strong>AutoGen</strong> (from Microsoft) excels at multi-agent conversation patterns where agents collaborate via structured dialogue and for human-in-the-loop workflows. <strong>CrewAI</strong> is ideal when you want to assign human-like roles (Researcher, Writer, QA Engineer) to agents working in a team. For most developers starting out, LangChain's documentation and community support make it the safest starting point.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Are these AI agent frameworks free and open source?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Yes, all the major AI agent frameworks listed here are open source and free to self-host. Most use permissive licenses: MIT (AutoGPT, Langflow, MetaGPT, CrewAI, AutoGen, GPT-Engineer), Apache-2.0 (Dify, Cline, Flowise, Agno), or AGPL-3.0 (Open Interpreter). The underlying LLM API calls (OpenAI, Anthropic, etc.) cost money based on token usage, but the frameworks themselves are free. Some frameworks like Dify and Langflow also offer commercial cloud-hosted versions with paid tiers alongside their free self-hosted options.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            What hardware do I need to run AI agent frameworks?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              The agent frameworks themselves are lightweight and run on any standard developer machine (4GB RAM is usually sufficient for the framework layer). The real hardware requirements come from your LLM choice. If you use cloud-based LLM APIs (OpenAI GPT-4o, Anthropic Claude, Google Gemini), any machine works — API calls go to remote servers. If you want to run local models for privacy or cost reasons, you'll need at minimum 8GB RAM for 7B parameter models, 16GB for 13B models, and 48GB+ for 70B models. A GPU with 6GB+ VRAM significantly improves local inference speed but is not required for many models when using quantized versions via Ollama or llama.cpp.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 相关工具 -->
+      <h2 id="related-tools">
+        <span class="en">Related Tools & Categories</span>
+        <span class="zh">相关工具与分类</span>
+      </h2>
+
+      <div class="related-grid">
+        <a href="vector-databases.html" class="related-card">
+          <div class="related-card-name">Vector Databases</div>
+          <div class="related-card-desc">Chroma, Qdrant, Milvus — for RAG memory</div>
+        </a>
+        <a href="local-llm-tools.html" class="related-card">
+          <div class="related-card-name">Local LLM Tools</div>
+          <div class="related-card-desc">Ollama, llama.cpp — run models locally</div>
+        </a>
+        <a href="tools/langchain.html" class="related-card">
+          <div class="related-card-name">LangChain</div>
+          <div class="related-card-desc">The most popular LLM framework</div>
+        </a>
+        <a href="tools/crewai.html" class="related-card">
+          <div class="related-card-name">CrewAI</div>
+          <div class="related-card-desc">Role-based multi-agent teams</div>
+        </a>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
+        <a href="index.html" class="cta-btn">Browse All AI Tools ↗</a>
+        <a href="blog/index.html" class="cta-btn-outline">Read Our Blog</a>
+      </div>
+
+    </div><!-- end .content -->
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison-table">Comparison Table</a></li>
+          <li><a href="#how-to-choose">How to Choose</a></li>
+          <li><a href="#framework-details">Framework Deep Dives</a></li>
+          <li><a href="#quick-start">Quick Start</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#related-tools">Related Tools</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Top Picks</h4>
+        <ul class="toc-list">
+          <li><a href="tools/n8n.html">n8n ⭐ 190K</a></li>
+          <li><a href="tools/autogpt.html">AutoGPT ⭐ 184K</a></li>
+          <li><a href="tools/langflow.html">Langflow ⭐ 148K</a></li>
+          <li><a href="tools/dify.html">Dify ⭐ 143K</a></li>
+          <li><a href="tools/crewai.html">CrewAI ⭐ 52K</a></li>
+          <li><a href="tools/autogen.html">AutoGen ⭐ 58K</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Related Pages</h4>
+        <ul class="toc-list">
+          <li><a href="vector-databases.html">Vector Databases 2026</a></li>
+          <li><a href="local-llm-tools.html">Local LLM Tools 2026</a></li>
+          <li><a href="blog/ai-agent-frameworks-guide-2025.html">Agent Framework Guide</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div><!-- end .content-layout -->
+</div><!-- end .page-wrap-wide -->
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ 折叠交互
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>

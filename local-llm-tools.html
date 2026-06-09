@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Tools to Run LLMs Locally in 2026 | AI Nav</title>
+  <meta name="description" content="Compare Ollama vs llama.cpp vs LM Studio vs GPT4All. Run large language models on your own hardware — free, private, offline.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/local-llm-tools">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best Tools to Run LLMs Locally in 2026 | AI Nav">
+  <meta property="og:description" content="Compare Ollama vs llama.cpp vs LM Studio vs GPT4All. Run large language models on your own hardware — free, private, offline.">
+  <meta property="og:url" content="https://yuzec.com/local-llm-tools">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Tools to Run LLMs Locally in 2026",
+    "description": "Compare Ollama vs llama.cpp vs LM Studio vs GPT4All. Run large language models on your own hardware — free, private, offline.",
+    "url": "https://yuzec.com/local-llm-tools",
+    "datePublished": "2026-06-09",
+    "dateModified": "2026-06-09",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yuzec.com/favicon-32x32.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/local-llm-tools"
+    }
+  }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the easiest way to run an LLM locally?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ollama is the easiest way to run an LLM locally in 2026. On macOS/Linux, a single curl command installs it, then `ollama pull llama3.2` downloads a model and `ollama run llama3.2` starts an interactive chat. On Windows, a one-click installer is available at ollama.com. Ollama handles all the complexity of model quantization, hardware detection (Apple Silicon, NVIDIA CUDA, AMD ROCm), and serving — you interact via a ChatGPT-like CLI or its OpenAI-compatible REST API. For a GUI, install Open WebUI alongside Ollama for a browser-based chat interface."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I run LLMs locally without a GPU?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you can run LLMs locally on CPU only — no GPU required. The experience varies by model size: 3B and 7B quantized models (Q4_K_M format) run at 5-15 tokens/second on a modern CPU, which is usable for most tasks. Tools like Ollama, llama.cpp, GPT4All, and Jan all support pure CPU inference. Apple Silicon Macs (M1/M2/M3/M4) are exceptional for local LLMs because their unified memory architecture means the GPU and CPU share RAM — an M3 Max with 128GB RAM can run 70B models smoothly. On Windows/Linux with Intel/AMD CPUs, expect slower but functional inference for models up to 13B parameters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ollama vs llama.cpp — what's the difference?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "llama.cpp is a low-level C++ inference library that provides the core engine for running quantized GGUF models. It's highly configurable, supports the widest range of quantization formats, and delivers maximum performance for advanced users who want control over inference parameters. Ollama is built on top of llama.cpp (and other backends) and adds a model registry, automatic hardware detection, an OpenAI-compatible REST API, and a much simpler user experience. Think of it this way: llama.cpp is the engine, Ollama is the car. For most developers, Ollama is the better starting point. Use llama.cpp directly when you need fine-grained control, custom quantization, or integration into a C++ application."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What LLM models can I run on 8GB RAM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With 8GB RAM (or 8GB GPU VRAM), you can comfortably run 7B parameter models in Q4_K_M quantization (approximately 4-5GB), which leaves room for the OS and other applications. Good options include: Llama 3.2 7B, Mistral 7B v0.3, Gemma 2 9B (slightly tight but works), Qwen2.5 7B, and Phi-3.5 Mini (3.8B, runs easily). These models deliver surprisingly capable performance for coding assistance, Q&A, summarization, and RAG applications. For the best quality at 8GB, Mistral 7B and Llama 3.2 8B are the community favorites. Pull them with: `ollama pull llama3.2` or `ollama pull mistral`."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is running an LLM locally free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, running LLMs locally is completely free — both the tools (Ollama, llama.cpp, GPT4All, etc.) and the models (Llama, Mistral, Gemma, Qwen, Phi, etc.) are free and open source. There are no API fees, no subscription costs, no per-token charges, and no rate limits. The only costs are the hardware you already own and the electricity to run it. This is one of the key reasons local LLMs have grown so rapidly: a developer with a modern laptop can run a capable 7B model indefinitely at zero marginal cost, compared to paying $15-$60 per million tokens for cloud API access to frontier models."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+
+  <style>
+    .compare-table-wrap {
+      overflow-x: auto; margin: 24px 0 32px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+    .compare-table thead { background: var(--card); }
+    .compare-table th {
+      padding: 12px 16px; text-align: left;
+      font-size: 12px; font-weight: 700; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .compare-table td {
+      padding: 11px 16px; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(129,140,248,0.03); }
+    .compare-table td:first-child { font-weight: 700; color: var(--text); }
+    .compare-table td a { color: var(--accent); font-weight: 600; }
+    .compare-table td a:hover { color: var(--accent-hover); text-decoration: underline; }
+    .stars-num {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 700; color: var(--star);
+    }
+    .stars-num::before { content: "★"; }
+    .ease-stars { color: var(--star); font-size: 13px; letter-spacing: 1px; }
+    .rank-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent-dim); color: var(--accent);
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    .decision-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px; margin: 20px 0 28px;
+    }
+    .decision-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px; transition: border-color 0.2s;
+    }
+    .decision-card:hover { border-color: var(--accent); }
+    .decision-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 8px; }
+    .decision-card-scenario { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .decision-card-rec { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+    .decision-card-rec a { color: var(--accent); font-weight: 600; }
+    pre {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+      font-size: 13px; line-height: 1.65; color: var(--text-2); margin: 16px 0 24px;
+    }
+    pre code { background: none; border: none; padding: 0; color: inherit; }
+    .ad-slot { margin: 32px 0; text-align: center; }
+    .stats-bar {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      padding: 16px 20px; background: var(--card);
+      border: 1px solid var(--border); border-radius: var(--radius); margin: 0 0 28px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 800; color: var(--accent); }
+    .stat-lbl { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+    /* 硬件推荐表格 */
+    .hw-table-wrap {
+      overflow-x: auto; margin: 24px 0 32px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .hw-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+    .hw-table thead { background: var(--card); }
+    .hw-table th {
+      padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 700;
+      color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .hw-table td {
+      padding: 11px 16px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: middle;
+    }
+    .hw-table tr:last-child td { border-bottom: none; }
+    .hw-table tr:hover td { background: rgba(129,140,248,0.03); }
+    .hw-table td:first-child { font-weight: 700; color: var(--text); }
+    /* 步骤块 */
+    .step-block {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
+    }
+    .step-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: 13px; font-weight: 800; flex-shrink: 0;
+    }
+    .step-title { font-size: 14px; font-weight: 700; color: var(--text); }
+    .step-body { padding: 14px 16px; font-size: 13px; color: var(--text-2); line-height: 1.6; }
+    .step-body pre { margin: 10px 0 0; }
+    /* 模型卡片 */
+    .model-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px; margin: 20px 0 28px;
+    }
+    .model-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 16px;
+    }
+    .model-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .model-size { font-size: 11px; color: var(--accent); font-weight: 700; margin-bottom: 6px; }
+    .model-desc { font-size: 12px; color: var(--text-3); line-height: 1.5; }
+    .model-cmd { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--green); margin-top: 8px; background: var(--surface); padding: 3px 8px; border-radius: 4px; display: inline-block; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    </nav>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn" data-langbtn="en">EN</button>
+      <button class="lang-btn" data-langbtn="zh">中</button>
+    </div>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">
+    <span class="en">Local LLM Tools</span>
+    <span class="zh">本地 LLM 工具</span>
+  </span>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">
+      <span class="en">💻 Local LLM Tools</span>
+      <span class="zh">💻 本地 LLM 工具</span>
+    </span>
+    <h1 class="article-title" style="margin-top:12px">
+      <span class="en">Best Tools to Run LLMs<br><span class="gradient">Locally in 2026</span></span>
+      <span class="zh">2026 年本地运行 LLM<br><span class="gradient">最佳工具指南</span></span>
+    </h1>
+    <div class="article-meta">
+      <span>📅 Updated June 9, 2026</span>
+      <span>⭐ Ranked by GitHub Stars</span>
+      <span>🔢 9 Tools Compared</span>
+      <span>🔒 100% Private, Offline</span>
+    </div>
+    <p class="article-desc">
+      <span class="en">Running large language models locally means zero API costs, complete data privacy, no rate limits, and full control over your AI stack. In 2026, the tooling has matured to the point where a developer can run a capable 7B model on any modern laptop with a single command. This guide compares the best tools to run LLMs locally — from one-command setup (Ollama) to maximum-performance inference (llama.cpp and vLLM) — ranked by GitHub stars and ease of use.</span>
+      <span class="zh">在本地运行大语言模型意味着零 API 费用、完整数据隐私、无速率限制，以及对 AI 技术栈的完全掌控。2026 年，相关工具已成熟到开发者只需一条命令就能在任意现代笔记本上运行一个有能力的 7B 模型。本指南对比本地运行 LLM 的最佳工具——从一键安装（Ollama）到极致性能推理（llama.cpp 和 vLLM）——按 GitHub Stars 和易用性排序。</span>
+    </p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <div class="content">
+
+      <!-- 统计摘要 -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">9</div>
+          <div class="stat-lbl">Tools Listed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">172K+</div>
+          <div class="stat-lbl">Top Stars (Ollama)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$0</div>
+          <div class="stat-lbl">API Cost</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Jun 2026</div>
+          <div class="stat-lbl">Data Updated</div>
+        </div>
+      </div>
+
+      <h2 id="comparison-table">
+        <span class="en">Local LLM Tools Comparison (Ranked by GitHub Stars)</span>
+        <span class="zh">本地 LLM 工具对比（按 GitHub Stars 排序）</span>
+      </h2>
+
+      <p class="en">The following table ranks 9 major open source local LLM tools by GitHub stars as of June 2026. Ease of Use ratings reflect the out-of-box experience for a developer with no prior local LLM experience.</p>
+      <p class="zh">下表按 2026 年 6 月的 GitHub Stars 数对 9 个主流开源本地 LLM 工具进行排名。易用性评分反映没有本地 LLM 经验的开发者开箱即用的体验。</p>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tool</th>
+              <th>GitHub Stars</th>
+              <th>Ease of Use</th>
+              <th>GPU Required</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank-num">1</span></td>
+              <td><a href="tools/ollama.html">Ollama</a></td>
+              <td><span class="stars-num">172,789</span></td>
+              <td><span class="ease-stars">★★★★★</span></td>
+              <td>Optional</td>
+              <td>Mac/Linux developers, one-command setup</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">2</span></td>
+              <td><a href="tools/open-webui.html">Open WebUI</a></td>
+              <td><span class="stars-num">139,471</span></td>
+              <td><span class="ease-stars">★★★★★</span></td>
+              <td>Via Ollama</td>
+              <td>Chat UI for Ollama, browser-based ChatGPT alternative</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">3</span></td>
+              <td><a href="tools/vllm.html">vLLM</a></td>
+              <td><span class="stars-num">81,544</span></td>
+              <td><span class="ease-stars">★★★</span></td>
+              <td>Required</td>
+              <td>Production multi-user serving with PagedAttention</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">4</span></td>
+              <td><a href="tools/llama-cpp.html">llama.cpp</a></td>
+              <td><span class="stars-num">114,085</span></td>
+              <td><span class="ease-stars">★★★</span></td>
+              <td>Optional (CPU ok)</td>
+              <td>Maximum performance, C++ developers, custom GGUF</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">5</span></td>
+              <td><a href="tools/gpt4all.html">GPT4All</a></td>
+              <td><span class="stars-num">77,352</span></td>
+              <td><span class="ease-stars">★★★★★</span></td>
+              <td>Optional</td>
+              <td>Windows/macOS users wanting a native GUI app</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">6</span></td>
+              <td><a href="tools/text-generation-webui.html">Text Generation WebUI</a></td>
+              <td><span class="stars-num">47,262</span></td>
+              <td><span class="ease-stars">★★★★</span></td>
+              <td>Recommended</td>
+              <td>Advanced users, many model formats, fine-tuning</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">7</span></td>
+              <td><a href="tools/localai.html">LocalAI</a></td>
+              <td><span class="stars-num">46,595</span></td>
+              <td><span class="ease-stars">★★★★</span></td>
+              <td>Optional</td>
+              <td>OpenAI API-compatible local server (drop-in replacement)</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">8</span></td>
+              <td><a href="tools/jan.html">Jan</a></td>
+              <td><span class="stars-num">42,791</span></td>
+              <td><span class="ease-stars">★★★★★</span></td>
+              <td>Optional</td>
+              <td>Cross-platform desktop app, Electron-based</td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">9</span></td>
+              <td><a href="tools/llamafile.html">Llamafile</a></td>
+              <td><span class="stars-num">24,596</span></td>
+              <td><span class="ease-stars">★★★★★</span></td>
+              <td>Optional</td>
+              <td>Single executable, no install needed, share-anywhere</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- AdSense 广告位 -->
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2761695780807828" data-ad-slot="XXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="quick-start">
+        <span class="en">Quick Start: Run Your First LLM Locally in 5 Steps</span>
+        <span class="zh">快速上手：5 步在本地运行你的第一个 LLM</span>
+      </h2>
+
+      <p class="en">The fastest path to running an LLM locally is Ollama. Here's a complete walkthrough from install to LangChain integration:</p>
+      <p class="zh">在本地运行 LLM 的最快路径是 Ollama。以下是从安装到 LangChain 集成的完整教程：</p>
+
+      <div class="step-block">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <span class="step-title">
+            <span class="en">Install Ollama</span>
+            <span class="zh">安装 Ollama</span>
+          </span>
+        </div>
+        <div class="step-body">
+          <span class="en">One command on macOS/Linux. Windows installer available at ollama.com.</span>
+          <span class="zh">macOS/Linux 一条命令完成。Windows 安装包请访问 ollama.com 下载。</span>
+          <pre><code># macOS / Linux
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 验证安装
+ollama --version</code></pre>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header">
+          <span class="step-num">2</span>
+          <span class="step-title">
+            <span class="en">Download a Model</span>
+            <span class="zh">下载模型</span>
+          </span>
+        </div>
+        <div class="step-body">
+          <span class="en">Ollama auto-detects your hardware and downloads the appropriate quantized version. llama3.2 (~2GB) is a great starting point for 8GB RAM machines.</span>
+          <span class="zh">Ollama 自动检测你的硬件并下载合适的量化版本。llama3.2（约 2GB）是 8GB 内存机器的绝佳起点。</span>
+          <pre><code># 下载 Meta Llama 3.2（推荐入门）
+ollama pull llama3.2
+
+# 或下载其他热门模型
+ollama pull mistral       # Mistral 7B
+ollama pull gemma3        # Google Gemma 3
+ollama pull qwen2.5       # Qwen 2.5
+ollama pull phi4          # Microsoft Phi-4 (小但强)
+
+# 查看已下载的模型
+ollama list</code></pre>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header">
+          <span class="step-num">3</span>
+          <span class="step-title">
+            <span class="en">Chat in Terminal</span>
+            <span class="zh">在终端对话</span>
+          </span>
+        </div>
+        <div class="step-body">
+          <span class="en">Interactive chat session directly in your terminal. Type /bye to exit.</span>
+          <span class="zh">直接在终端进行交互式对话，输入 /bye 退出。</span>
+          <pre><code>ollama run llama3.2
+
+# 输出示例：
+# >>> 你好！请介绍一下向量数据库
+# 向量数据库是专门设计用于存储和检索...
+
+# 非交互式单次调用
+ollama run llama3.2 "解释一下 RAG 的工作原理，用中文回答"</code></pre>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header">
+          <span class="step-num">4</span>
+          <span class="step-title">
+            <span class="en">Use the REST API</span>
+            <span class="zh">调用 REST API</span>
+          </span>
+        </div>
+        <div class="step-body">
+          <span class="en">Ollama exposes an OpenAI-compatible REST API on port 11434. Use it from any language.</span>
+          <span class="zh">Ollama 在 11434 端口提供兼容 OpenAI 的 REST API，可从任意语言调用。</span>
+          <pre><code># 原生 Ollama API
+curl http://localhost:11434/api/generate \
+  -d '{"model": "llama3.2", "prompt": "Hello!", "stream": false}'
+
+# OpenAI 兼容 API（适合替换现有 OpenAI 代码）
+curl http://localhost:11434/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "llama3.2",
+    "messages": [{"role": "user", "content": "What is RAG?"}]
+  }'
+
+# Python SDK（直接替换 openai 库）
+from openai import OpenAI
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
+response = client.chat.completions.create(
+    model="llama3.2",
+    messages=[{"role": "user", "content": "Explain vector databases"}]
+)
+print(response.choices[0].message.content)</code></pre>
+        </div>
+      </div>
+
+      <div class="step-block">
+        <div class="step-header">
+          <span class="step-num">5</span>
+          <span class="step-title">
+            <span class="en">Connect to LangChain / Build RAG</span>
+            <span class="zh">接入 LangChain / 构建 RAG</span>
+          </span>
+        </div>
+        <div class="step-body">
+          <span class="en">Use Ollama as a free, local LLM backend for LangChain, CrewAI, AutoGen, and any other framework.</span>
+          <span class="zh">将 Ollama 作为免费的本地 LLM 后端接入 LangChain、CrewAI、AutoGen 及任何其他框架。</span>
+          <pre><code>pip install langchain-ollama
+
+from langchain_ollama import OllamaLLM, OllamaEmbeddings
+
+# 语言模型
+llm = OllamaLLM(model="llama3.2")
+response = llm.invoke("What are the top AI agent frameworks in 2026?")
+print(response)
+
+# 嵌入模型（用于 RAG 向量化）
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
+vector = embeddings.embed_query("What is a vector database?")
+print(f"嵌入维度: {len(vector)}")  # 输出: 768
+
+# 在 CrewAI 中使用
+from crewai import LLM
+local_llm = LLM(model="ollama/llama3.2", base_url="http://localhost:11434")</code></pre>
+        </div>
+      </div>
+
+      <!-- 第二个广告位 -->
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2761695780807828" data-ad-slot="XXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="hardware">
+        <span class="en">Hardware Requirements by Model Size</span>
+        <span class="zh">不同模型规模的硬件需求</span>
+      </h2>
+
+      <p class="en">Hardware requirements scale with model size. The values below assume Q4_K_M quantization (the most common quality/size trade-off), which is what Ollama uses by default. Actual RAM usage may vary by context length.</p>
+      <p class="zh">硬件需求随模型规模线性增长。以下数值假设使用 Q4_K_M 量化（最常见的质量/大小权衡），这也是 Ollama 的默认设置。实际内存用量可能因上下文长度而有所不同。</p>
+
+      <div class="hw-table-wrap">
+        <table class="hw-table">
+          <thead>
+            <tr>
+              <th>Model Size</th>
+              <th>RAM Required</th>
+              <th>GPU VRAM</th>
+              <th>CPU Speed</th>
+              <th>Recommended Tool</th>
+              <th>Example Models</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3B params</td>
+              <td>4 GB RAM</td>
+              <td>2 GB VRAM</td>
+              <td>~12 tok/s</td>
+              <td>Ollama / Llamafile</td>
+              <td>Llama 3.2 3B, Phi-3.5 Mini, Gemma 2 2B</td>
+            </tr>
+            <tr>
+              <td>7B params</td>
+              <td>8 GB RAM</td>
+              <td>4 GB VRAM</td>
+              <td>~7 tok/s</td>
+              <td>Ollama / llama.cpp</td>
+              <td>Llama 3.1 8B, Mistral 7B, Qwen2.5 7B</td>
+            </tr>
+            <tr>
+              <td>13B params</td>
+              <td>16 GB RAM</td>
+              <td>8 GB VRAM</td>
+              <td>~4 tok/s</td>
+              <td>Ollama / Text Gen WebUI</td>
+              <td>Llama 2 13B, CodeLlama 13B</td>
+            </tr>
+            <tr>
+              <td>32B params</td>
+              <td>24 GB RAM</td>
+              <td>20 GB VRAM</td>
+              <td>~2 tok/s</td>
+              <td>Ollama / llama.cpp</td>
+              <td>Qwen2.5 32B, Llama 3.3 70B Q2</td>
+            </tr>
+            <tr>
+              <td>70B params</td>
+              <td>48 GB RAM</td>
+              <td>40 GB VRAM</td>
+              <td>~1 tok/s</td>
+              <td>vLLM / llama.cpp</td>
+              <td>Llama 3.1 70B, Qwen2.5 72B</td>
+            </tr>
+            <tr>
+              <td>405B+ params</td>
+              <td>256 GB RAM</td>
+              <td>8× 80GB GPU</td>
+              <td>Impractical</td>
+              <td>vLLM (multi-GPU)</td>
+              <td>Llama 3.1 405B, DeepSeek-V3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-info">
+        💡 <strong>Apple Silicon tip:</strong> M-series Macs with unified memory are exceptional for local LLMs. An M3 Max with 128GB unified memory can run 70B models comfortably at ~8 tokens/sec. The memory bandwidth (up to 800GB/s on M4 Max) is what makes Apple Silicon so efficient for inference.
+      </div>
+
+      <h2 id="tool-details">
+        <span class="en">Tool Deep Dives</span>
+        <span class="zh">工具详细解析</span>
+      </h2>
+
+      <h3>Ollama — The Developer Standard for Local LLMs</h3>
+      <p class="en">Ollama has become the de facto standard for running LLMs locally in 2026. Its key innovations are: a Docker-inspired model management system (pull/run/list/rm), automatic hardware detection that routes computation to Apple Metal, NVIDIA CUDA, or AMD ROCm without manual configuration, an OpenAI-compatible REST API that makes it a drop-in replacement for any OpenAI-powered code, and a growing library of 200+ pre-configured models at ollama.com. The server runs as a background daemon and persists between terminal sessions. Ollama is the recommended starting point for virtually every developer exploring local LLMs.</p>
+      <p class="zh">Ollama 已成为 2026 年本地运行 LLM 的事实标准。其核心创新包括：类 Docker 的模型管理系统（pull/run/list/rm）、自动检测硬件并将计算路由到 Apple Metal、NVIDIA CUDA 或 AMD ROCm 而无需手动配置、兼容 OpenAI 的 REST API（使其成为任何 OpenAI 代码的即插即用替代方案），以及 ollama.com 上不断增长的 200 多个预配置模型库。服务器作为后台守护进程运行，跨终端会话持久存在。对于几乎所有探索本地 LLM 的开发者，Ollama 都是首选起点。</p>
+
+      <h3>Open WebUI — The ChatGPT Alternative for Local Models</h3>
+      <p class="en">Open WebUI is a browser-based chat interface that runs on top of Ollama (or any OpenAI-compatible backend). It delivers a ChatGPT-like experience with conversation history, multi-model switching, document upload and RAG, image generation integration, voice input, and a plugin system. With 139K+ stars it's the second most popular local LLM project on GitHub. The recommended setup: install Ollama first, then run Open WebUI via Docker: `docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway ghcr.io/open-webui/open-webui:main` and access it at http://localhost:3000.</p>
+      <p class="zh">Open WebUI 是运行在 Ollama（或任何兼容 OpenAI 的后端）之上的浏览器聊天界面，提供类 ChatGPT 体验，包含对话历史、多模型切换、文档上传和 RAG、图像生成集成、语音输入和插件系统。凭借 139K+ 星标，它是 GitHub 上第二受欢迎的本地 LLM 项目。推荐安装顺序：先装 Ollama，然后通过 Docker 运行 Open WebUI，访问 http://localhost:3000 即可使用。</p>
+
+      <h3>llama.cpp — Maximum Performance, Full Control</h3>
+      <p class="en">llama.cpp is the foundational C++ inference library that powers many other tools (including Ollama's GGUF backend). It supports the widest range of quantization formats (Q2_K through Q8_0, plus experimental 1.5-bit), CPU inference with AVX2/AVX-512 optimizations, GPU offloading with NVIDIA CUDA, Apple Metal, and Vulkan, and has the most configuration options of any local inference tool. For developers who need maximum performance tuning, integration into C++ applications, or want to run custom GGUF models from HuggingFace, llama.cpp is the right tool. The server mode (`llama-server`) provides an OpenAI-compatible API, making it usable as an Ollama alternative for advanced users.</p>
+      <p class="zh">llama.cpp 是驱动众多其他工具（包括 Ollama 的 GGUF 后端）的基础 C++ 推理库。它支持最广泛的量化格式（Q2_K 到 Q8_0，以及实验性 1.5 位）、带 AVX2/AVX-512 优化的 CPU 推理、NVIDIA CUDA/Apple Metal/Vulkan 的 GPU 卸载，并拥有所有本地推理工具中最多的配置选项。对于需要极致性能调优、集成到 C++ 应用，或想运行 HuggingFace 上自定义 GGUF 模型的开发者，llama.cpp 是正确的工具。服务器模式（`llama-server`）提供兼容 OpenAI 的 API，可作为高级用户的 Ollama 替代方案。</p>
+
+      <h3>vLLM — Production Multi-User Serving</h3>
+      <p class="en">vLLM is designed for a different use case than consumer tools: it's optimized for high-throughput multi-user inference serving in production environments. Its breakthrough innovation is PagedAttention — a memory management technique that dramatically reduces GPU memory fragmentation, allowing more parallel requests. vLLM can serve dozens of concurrent users efficiently on a single GPU server. It requires NVIDIA GPU (no CPU support), making it unsuitable for local laptop use, but it's the standard choice for building production-grade LLM APIs when you have GPU infrastructure. Supports OpenAI API compatibility and continuous batching.</p>
+      <p class="zh">vLLM 针对与消费级工具不同的使用场景而设计：它专为生产环境中的高吞吐量多用户推理服务进行了优化。其突破性创新是 PagedAttention——一种显著减少 GPU 内存碎片的内存管理技术，允许更多并行请求。vLLM 可以在单个 GPU 服务器上高效服务数十个并发用户。它需要 NVIDIA GPU（不支持 CPU），不适合笔记本本地使用，但当你拥有 GPU 基础设施时，它是构建生产级 LLM API 的标准选择。支持 OpenAI API 兼容性和连续批处理。</p>
+
+      <h3>GPT4All — The Beginner's Desktop App</h3>
+      <p class="en">GPT4All from Nomic AI provides the most user-friendly desktop experience for non-developers. Available as a native app for Windows, macOS, and Linux, it features a clean chat interface, a built-in model downloader with curated recommendations, local document (PDF, TXT, DOC) chat via RAG, and CPU-first inference that works on virtually any modern PC. It's the recommended tool for non-technical users, business professionals, or anyone who wants to use local AI without touching the terminal. The underlying inference engine uses llama.cpp.</p>
+      <p class="zh">Nomic AI 的 GPT4All 为非开发者提供最友好的桌面体验。作为 Windows、macOS 和 Linux 的原生应用，它具备简洁的聊天界面、内置精选推荐的模型下载器、通过 RAG 实现本地文档（PDF、TXT、DOC）对话，以及几乎在任何现代 PC 上都能运行的 CPU 优先推理。它是非技术用户、商务人士或任何不想接触终端的人的推荐工具，底层推理引擎使用 llama.cpp。</p>
+
+      <h3>Llamafile — The Single-Executable Miracle</h3>
+      <p class="en">Llamafile (from Mozilla and Cosmopolitan Libc) packages a quantized model and a modified llama.cpp inference engine into a single executable file that runs on Windows, macOS, Linux, and FreeBSD without installation. A llamafile for Mistral 7B is around 4GB — download it, chmod +x it, run it, and a local chat server starts. This makes llamafile ideal for sharing AI applications with non-technical users, air-gapped environments, or scenarios where you can't install software but can run an executable. The startup time is fast because there's nothing to install.</p>
+      <p class="zh">Llamafile（来自 Mozilla 和 Cosmopolitan Libc）将量化模型和修改版 llama.cpp 推理引擎打包成单个可执行文件，无需安装即可在 Windows、macOS、Linux 和 FreeBSD 上运行。Mistral 7B 的 llamafile 约 4GB——下载、chmod +x、运行，本地聊天服务器随即启动。这使 llamafile 非常适合向非技术用户分发 AI 应用、用于隔离网络环境，或无法安装软件但可运行可执行文件的场景。启动速度快，因为无需任何安装步骤。</p>
+
+      <h2 id="popular-models">
+        <span class="en">Best Models to Run Locally in 2026</span>
+        <span class="zh">2026 年本地运行最佳模型推荐</span>
+      </h2>
+
+      <p class="en">The open source model landscape has improved dramatically. These are the community favorites for different use cases:</p>
+      <p class="zh">开源模型生态已大幅改善，以下是不同场景下的社区最爱：</p>
+
+      <div class="model-grid">
+        <div class="model-card">
+          <div class="model-name">Llama 3.2 3B</div>
+          <div class="model-size">3B · ~2GB download</div>
+          <div class="model-desc">Best for low-RAM devices. Surprisingly capable for Q&A and simple tasks.</div>
+          <div class="model-cmd">ollama pull llama3.2</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Mistral 7B v0.3</div>
+          <div class="model-size">7B · ~4.1GB download</div>
+          <div class="model-desc">Excellent general performance with 8K context. Community favorite for RAG.</div>
+          <div class="model-cmd">ollama pull mistral</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Llama 3.1 8B</div>
+          <div class="model-size">8B · ~4.7GB download</div>
+          <div class="model-desc">Meta's best small model with 128K context window. Excellent for coding.</div>
+          <div class="model-cmd">ollama pull llama3.1</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Qwen2.5 7B Coder</div>
+          <div class="model-size">7B · ~4.4GB download</div>
+          <div class="model-desc">Best-in-class coding model at 7B. Beats many larger models on code tasks.</div>
+          <div class="model-cmd">ollama pull qwen2.5-coder</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Phi-4 Mini</div>
+          <div class="model-size">3.8B · ~2.5GB download</div>
+          <div class="model-desc">Microsoft's efficient model. Excellent at reasoning with small footprint.</div>
+          <div class="model-cmd">ollama pull phi4-mini</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Gemma 3 27B</div>
+          <div class="model-size">27B · ~17GB download</div>
+          <div class="model-desc">Google's open model. Best multimodal capabilities at this scale.</div>
+          <div class="model-cmd">ollama pull gemma3:27b</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">DeepSeek-R1 7B</div>
+          <div class="model-size">7B · ~4.5GB download</div>
+          <div class="model-desc">Distilled reasoning model. Exceptional at math and logic problems.</div>
+          <div class="model-cmd">ollama pull deepseek-r1:7b</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">nomic-embed-text</div>
+          <div class="model-size">137M · ~270MB download</div>
+          <div class="model-desc">Best local embedding model. Use with Chroma/Qdrant for free RAG.</div>
+          <div class="model-cmd">ollama pull nomic-embed-text</div>
+        </div>
+      </div>
+
+      <h2 id="faq">
+        <span class="en">Frequently Asked Questions</span>
+        <span class="zh">常见问题解答</span>
+      </h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <div class="faq-q">
+            What is the easiest way to run an LLM locally?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Ollama is the easiest way to run an LLM locally in 2026. On macOS or Linux, a single curl command installs it: <code>curl -fsSL https://ollama.com/install.sh | sh</code>. Then <code>ollama pull llama3.2</code> downloads a capable 3B model (about 2GB), and <code>ollama run llama3.2</code> starts an interactive chat session. On Windows, a one-click installer is available at ollama.com/download. The entire process from nothing to chatting with a local AI typically takes under 5 minutes on a decent internet connection. For a GUI experience without the terminal, GPT4All or Jan are excellent alternatives with native desktop apps.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Can I run LLMs locally without a GPU?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Yes, absolutely. CPU-only inference is fully supported by Ollama, llama.cpp, GPT4All, Jan, and Llamafile. Modern CPUs handle quantized 7B models at 5-15 tokens per second — slow but functional for most tasks. A few practical notes: <strong>Apple Silicon Macs are exceptional</strong> — their unified memory architecture means the Neural Engine and GPU can accelerate inference even without a discrete GPU; an M2 MacBook Air with 16GB RAM runs 7B models at ~30 tokens/sec. On Windows/Linux with Intel or AMD CPUs, 7B models run at ~7-12 tokens/sec with modern CPUs. Even at 7 tokens/sec, for document summarization, code review, and Q&A tasks, the experience is quite usable. The only scenario where CPU inference becomes frustrating is real-time conversational use with 13B+ models.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Ollama vs llama.cpp — what's the difference?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              llama.cpp is a low-level C++ inference library — the raw engine that performs the actual matrix operations to generate tokens from a GGUF model file. It's highly configurable, supports the widest range of quantization formats, and provides the foundation for most local inference tools. Ollama is built on top of llama.cpp (for GGUF models) and adds a user-friendly abstraction layer: a model registry at ollama.com with verified models, automatic hardware detection and optimization, an OpenAI-compatible REST API that starts automatically, and Docker-style commands (pull/run/list). For most developers, Ollama is the better choice because it handles complexity automatically. Use llama.cpp directly when: you need custom quantization not in Ollama's registry, you're integrating into a C++ application, you need fine-grained control over inference parameters like rope_freq_base, or you're building a production system and want to minimize dependencies.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            What LLM models can I run on 8GB RAM?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              With 8GB RAM (or 8GB GPU VRAM), you can comfortably run any 7B parameter model in Q4_K_M quantization, which uses approximately 4-5GB. This leaves 3-4GB for your operating system and other applications. Recommended models at 8GB: <strong>Llama 3.2 8B</strong> (Meta's latest small model, excellent general capability), <strong>Mistral 7B v0.3</strong> (community favorite for RAG applications), <strong>Qwen2.5 7B</strong> (strong multilingual and coding), <strong>Phi-4 Mini 3.8B</strong> (excellent reasoning in a small package), and <strong>DeepSeek-R1 7B</strong> (strong math/reasoning). With 8GB you can also run 3B models with full context lengths. The sweet spot is llama3.2 (3B) for speed or mistral:7b for quality. Pull with Ollama: <code>ollama pull mistral</code>.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Is running an LLM locally free?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Yes, completely free. The tools (Ollama, llama.cpp, GPT4All, Open WebUI, Jan, etc.) are all open source with MIT or Apache-2.0 licenses. The models (Meta Llama, Mistral, Google Gemma, Microsoft Phi, Alibaba Qwen, etc.) are also free to download and use — most with commercial-friendly licenses. There are no API fees, no per-token charges, no subscriptions, and no rate limits. The only ongoing costs are electricity (a laptop running a 7B model at full load consumes ~20-40W, roughly $0.50-$1.50 per month of continuous use) and the hardware you already own. This contrasts sharply with cloud APIs: GPT-4o costs ~$5-15 per million tokens, Claude Sonnet costs ~$3-15 per million tokens. For heavy development use, local LLMs pay for themselves quickly.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 相关工具 -->
+      <h2 id="related-tools">
+        <span class="en">Related Tools & Categories</span>
+        <span class="zh">相关工具与分类</span>
+      </h2>
+
+      <div class="related-grid">
+        <a href="ai-agent-frameworks.html" class="related-card">
+          <div class="related-card-name">AI Agent Frameworks</div>
+          <div class="related-card-desc">LangChain, CrewAI — works with Ollama</div>
+        </a>
+        <a href="vector-databases.html" class="related-card">
+          <div class="related-card-name">Vector Databases</div>
+          <div class="related-card-desc">Chroma, Qdrant — for local RAG</div>
+        </a>
+        <a href="tools/ollama.html" class="related-card">
+          <div class="related-card-name">Ollama</div>
+          <div class="related-card-desc">The easiest local LLM runtime</div>
+        </a>
+        <a href="tools/llama-cpp.html" class="related-card">
+          <div class="related-card-name">llama.cpp</div>
+          <div class="related-card-desc">Maximum performance C++ engine</div>
+        </a>
+      </div>
+
+      <div class="expert-take">
+        <p class="en">In 2026, "local LLM" has gone from a hacker hobby to a mainstream development practice. The quality of 7B quantized models has improved to the point where they're genuinely useful for coding assistance, document summarization, and RAG applications — and they're free to run indefinitely. The key insight from the past year: for enterprise deployments prioritizing data privacy (healthcare, legal, finance), local LLMs via Ollama + Open WebUI have become a credible alternative to cloud APIs for many internal use cases. The gap with frontier models (GPT-4o, Claude 3.5 Sonnet) still exists, but it's narrowing rapidly.</p>
+        <p class="zh">2026 年，"本地 LLM"已从黑客爱好演变为主流开发实践。7B 量化模型的质量已提升到对编程助手、文档摘要和 RAG 应用真正有用的程度——且可以永久免费运行。过去一年的关键洞察：对于优先考虑数据隐私的企业部署（医疗、法律、金融），通过 Ollama + Open WebUI 运行本地 LLM 已成为云 API 在许多内部用例中的可信替代方案。与前沿模型（GPT-4o、Claude 3.5 Sonnet）的差距仍然存在，但正在快速缩小。</p>
+        <cite>— AI Nav Editorial Team, June 2026</cite>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
+        <a href="index.html" class="cta-btn">Browse All AI Tools ↗</a>
+        <a href="blog/index.html" class="cta-btn-outline">Read Our Blog</a>
+      </div>
+
+    </div><!-- end .content -->
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison-table">Comparison Table</a></li>
+          <li><a href="#quick-start">Quick Start (5 Steps)</a></li>
+          <li><a href="#hardware">Hardware Requirements</a></li>
+          <li><a href="#tool-details">Tool Deep Dives</a></li>
+          <li><a href="#popular-models">Best Models 2026</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#related-tools">Related Tools</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Top Picks</h4>
+        <ul class="toc-list">
+          <li><a href="tools/ollama.html">Ollama ⭐ 172K</a></li>
+          <li><a href="tools/open-webui.html">Open WebUI ⭐ 139K</a></li>
+          <li><a href="tools/llama-cpp.html">llama.cpp ⭐ 114K</a></li>
+          <li><a href="tools/vllm.html">vLLM ⭐ 81K</a></li>
+          <li><a href="tools/gpt4all.html">GPT4All ⭐ 77K</a></li>
+          <li><a href="tools/jan.html">Jan ⭐ 42K</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Quick Commands</h4>
+        <ul class="toc-list">
+          <li><code style="font-size:11px">ollama pull llama3.2</code></li>
+          <li><code style="font-size:11px">ollama run mistral</code></li>
+          <li><code style="font-size:11px">ollama pull nomic-embed-text</code></li>
+          <li><code style="font-size:11px">ollama list</code></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Related Pages</h4>
+        <ul class="toc-list">
+          <li><a href="ai-agent-frameworks.html">AI Agent Frameworks</a></li>
+          <li><a href="vector-databases.html">Vector Databases</a></li>
+          <li><a href="blog/run-llm-locally-guide.html">Run LLM Locally Guide</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div><!-- end .content-layout -->
+</div><!-- end .page-wrap-wide -->
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ 折叠交互
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Vector Databases in 2026 – Open Source Comparison | AI Nav</title>
+  <meta name="description" content="Compare Chroma vs Qdrant vs Milvus vs Weaviate vs pgvector. GitHub stars, performance, pricing and use cases for each vector database.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/vector-databases">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best Vector Databases in 2026 – Open Source Comparison | AI Nav">
+  <meta property="og:description" content="Compare Chroma vs Qdrant vs Milvus vs Weaviate vs pgvector. GitHub stars, performance, pricing and use cases for each vector database.">
+  <meta property="og:url" content="https://yuzec.com/vector-databases">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/og-cover.png">
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Best Vector Databases in 2026 (Open Source, Ranked by GitHub Stars)",
+    "description": "Compare Chroma vs Qdrant vs Milvus vs Weaviate vs pgvector. GitHub stars, performance, pricing and use cases for each vector database.",
+    "url": "https://yuzec.com/vector-databases",
+    "datePublished": "2026-06-09",
+    "dateModified": "2026-06-09",
+    "author": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Nav",
+      "url": "https://yuzec.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yuzec.com/favicon-32x32.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://yuzec.com/vector-databases"
+    }
+  }
+  </script>
+
+  <!-- FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a vector database and why do I need one for AI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A vector database is a specialized database designed to store, index, and query high-dimensional vector embeddings — the numerical representations that AI models use to encode meaning. When you build a RAG (Retrieval-Augmented Generation) system, your documents are converted into vectors by an embedding model and stored in a vector database. At query time, your question is also converted to a vector, and the database performs similarity search to find the most relevant documents. Traditional SQL databases cannot perform this kind of semantic similarity search efficiently at scale, which is why dedicated vector databases exist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Chroma vs Qdrant — which vector database is better for RAG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For local development and prototyping, Chroma is the easier choice: it runs in-memory or on disk with zero configuration, has excellent LangChain integration, and requires minimal setup. For production RAG systems, Qdrant is generally the better choice: it supports advanced filtering with payload metadata, sparse+dense hybrid search, on-disk indexing for large datasets, and has a Rust-based engine that delivers excellent query performance. Qdrant also offers a managed cloud service if you don't want to self-host. Most developers start with Chroma and migrate to Qdrant or Milvus when they need production-grade performance and filtering."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the fastest open source vector database?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For raw similarity search speed on a single machine, Faiss (from Meta AI) is typically the fastest — it's a highly optimized C++ library with GPU support that underpins many other vector databases internally. For a full production database with filtering, network API, and durability, Qdrant consistently performs at the top of benchmarks (ann-benchmarks.com) due to its Rust implementation. Milvus is optimized for distributed deployments at billion-vector scale. The 'fastest' depends heavily on your dataset size, query complexity, hardware, and whether you need filtering."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use pgvector instead of a dedicated vector database?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, for many use cases pgvector is an excellent choice — especially if you're already running PostgreSQL. It adds vector similarity search as a native PostgreSQL extension with standard SQL syntax. For datasets under ~1 million vectors with moderate query throughput, pgvector performance is typically sufficient. The main advantages: zero infrastructure overhead (use your existing Postgres), ACID transactions, and the ability to combine vector search with standard SQL filters in a single query. The limitations: pgvector doesn't match Qdrant or Milvus at very high query throughput or billion-vector scale. For teams already using Postgres, pgvector is usually the right starting point."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which vector database works best with LangChain?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LangChain has built-in integrations for all major vector databases. Chroma is historically the default recommendation in LangChain tutorials because it requires zero setup — just `pip install chromadb` and you're running. Qdrant, Milvus, Weaviate, pgvector, and LanceDB all have first-class LangChain integrations via the langchain-community package. In practice, Chroma for local dev and Qdrant for production is the most common pattern among LangChain users building RAG applications."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+
+  <style>
+    .compare-table-wrap {
+      overflow-x: auto;
+      margin: 24px 0 32px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .compare-table thead { background: var(--card); }
+    .compare-table th {
+      padding: 12px 16px; text-align: left;
+      font-size: 12px; font-weight: 700; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .compare-table td {
+      padding: 11px 16px; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(129,140,248,0.03); }
+    .compare-table td:first-child { font-weight: 700; color: var(--text); }
+    .compare-table td a { color: var(--accent); font-weight: 600; }
+    .compare-table td a:hover { color: var(--accent-hover); text-decoration: underline; }
+    .stars-num {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 700; color: var(--star);
+    }
+    .stars-num::before { content: "★"; }
+    .license-badge {
+      display: inline-block; padding: 2px 8px;
+      background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.25);
+      border-radius: 4px; font-size: 11px; font-weight: 600; color: var(--green);
+    }
+    .host-badge {
+      display: inline-block; padding: 2px 8px;
+      background: rgba(129,140,248,0.1); border: 1px solid rgba(129,140,248,0.25);
+      border-radius: 4px; font-size: 11px; font-weight: 600; color: var(--accent);
+    }
+    .rank-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent-dim); color: var(--accent);
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    .decision-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px; margin: 20px 0 28px;
+    }
+    .decision-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px; transition: border-color 0.2s;
+    }
+    .decision-card:hover { border-color: var(--accent); }
+    .decision-card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-3); margin-bottom: 8px; }
+    .decision-card-scenario { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .decision-card-rec { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+    .decision-card-rec a { color: var(--accent); font-weight: 600; }
+    pre {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px; overflow-x: auto;
+      font-size: 13px; line-height: 1.65; color: var(--text-2); margin: 16px 0 24px;
+    }
+    pre code { background: none; border: none; padding: 0; color: inherit; }
+    .ad-slot { margin: 32px 0; text-align: center; }
+    .stats-bar {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      padding: 16px 20px; background: var(--card);
+      border: 1px solid var(--border); border-radius: var(--radius); margin: 0 0 28px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 800; color: var(--accent); }
+    .stat-lbl { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+    /* 性能对比矩阵 */
+    .perf-matrix {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px; margin: 20px 0 28px;
+    }
+    .perf-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px; text-align: center;
+    }
+    .perf-card-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .perf-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-3); padding: 3px 0; }
+    .perf-val { color: var(--text-2); font-weight: 600; }
+    .perf-excellent { color: var(--green); }
+    .perf-good { color: var(--accent); }
+    .perf-ok { color: var(--amber); }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    </nav>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn" data-langbtn="en">EN</button>
+      <button class="lang-btn" data-langbtn="zh">中</button>
+    </div>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">
+    <span class="en">Vector Databases</span>
+    <span class="zh">向量数据库</span>
+  </span>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">
+      <span class="en">🗄️ Vector Databases</span>
+      <span class="zh">🗄️ 向量数据库</span>
+    </span>
+    <h1 class="article-title" style="margin-top:12px">
+      <span class="en">Best Vector Databases in 2026<br><span class="gradient">(Open Source, Ranked by GitHub Stars)</span></span>
+      <span class="zh">2026 年最佳向量数据库<br><span class="gradient">（开源，按 GitHub Stars 排序）</span></span>
+    </h1>
+    <div class="article-meta">
+      <span>📅 Updated June 9, 2026</span>
+      <span>⭐ Ranked by GitHub Stars</span>
+      <span>🔢 8 Databases Compared</span>
+    </div>
+    <p class="article-desc">
+      <span class="en">A vector database is a specialized storage system designed to efficiently index and query high-dimensional embeddings — the numerical representations that make AI search, RAG pipelines, and semantic similarity possible at scale. As retrieval-augmented generation (RAG) has become the dominant pattern for grounding LLM responses in real data, choosing the right vector database has become a critical architectural decision. This guide compares the top open source vector databases by GitHub stars, query performance, and real-world use cases.</span>
+      <span class="zh">向量数据库是专门设计用于高效索引和查询高维嵌入向量的存储系统——这些数值表示使得大规模 AI 搜索、RAG 流水线和语义相似性成为可能。随着检索增强生成（RAG）成为将 LLM 响应锚定于真实数据的主流模式，选择合适的向量数据库已成为关键架构决策。本指南按 GitHub Stars、查询性能和实际使用场景对主流开源向量数据库进行横向对比。</span>
+    </p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <div class="content">
+
+      <!-- 统计摘要 -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-num">8</div>
+          <div class="stat-lbl">Databases Listed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">44K+</div>
+          <div class="stat-lbl">Top Stars (Milvus)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6/8</div>
+          <div class="stat-lbl">Support Cloud + Self-host</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Jun 2026</div>
+          <div class="stat-lbl">Data Updated</div>
+        </div>
+      </div>
+
+      <h2 id="comparison-table">
+        <span class="en">Vector Database Comparison (Ranked by GitHub Stars)</span>
+        <span class="zh">向量数据库对比（按 GitHub Stars 排序）</span>
+      </h2>
+
+      <p class="en">The following table ranks 8 major open source vector databases by GitHub stars as of June 2026. All listed databases are open source with self-hosting options; several also offer managed cloud services.</p>
+      <p class="zh">下表按 2026 年 6 月的 GitHub Stars 数对 8 个主流开源向量数据库进行排名，所有列出的数据库均为开源并支持自托管，部分还提供托管云服务。</p>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Database</th>
+              <th>GitHub Stars</th>
+              <th>Best For</th>
+              <th>Cloud / Self-host</th>
+              <th>License</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="rank-num">1</span></td>
+              <td><a href="tools/milvus.html">Milvus</a></td>
+              <td><span class="stars-num">44,567</span></td>
+              <td>Large-scale production with billions of vectors</td>
+              <td><span class="host-badge">Both</span></td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">2</span></td>
+              <td><a href="tools/faiss.html">Faiss</a></td>
+              <td><span class="stars-num">40,175</span></td>
+              <td>Research and batch similarity search</td>
+              <td><span class="host-badge">Self-host only</span></td>
+              <td><span class="license-badge">MIT</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">3</span></td>
+              <td><a href="tools/qdrant.html">Qdrant</a></td>
+              <td><span class="stars-num">31,717</span></td>
+              <td>High-performance filtering + hybrid search</td>
+              <td><span class="host-badge">Both</span></td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">4</span></td>
+              <td><a href="tools/chroma.html">Chroma</a></td>
+              <td><span class="stars-num">28,163</span></td>
+              <td>Local development and LangChain integration</td>
+              <td><span class="host-badge">Both</span></td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">5</span></td>
+              <td><a href="tools/pgvector.html">pgvector</a></td>
+              <td><span class="stars-num">21,548</span></td>
+              <td>Adding vector search to existing PostgreSQL</td>
+              <td><span class="host-badge">Self-host</span></td>
+              <td><span class="license-badge">PostgreSQL</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">6</span></td>
+              <td><a href="tools/txtai.html">txtai</a></td>
+              <td><span class="stars-num">12,622</span></td>
+              <td>All-in-one embeddings + search pipeline</td>
+              <td><span class="host-badge">Self-host</span></td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">7</span></td>
+              <td><a href="tools/weaviate.html">Weaviate</a></td>
+              <td><span class="stars-num">16,258</span></td>
+              <td>Semantic search with built-in ML models</td>
+              <td><span class="host-badge">Both</span></td>
+              <td><span class="license-badge">BSD-3</span></td>
+            </tr>
+            <tr>
+              <td><span class="rank-num">8</span></td>
+              <td><a href="tools/lancedb.html">LanceDB</a></td>
+              <td><span class="stars-num">10,463</span></td>
+              <td>Serverless, embedded vector DB for apps</td>
+              <td><span class="host-badge">Both</span></td>
+              <td><span class="license-badge">Apache-2.0</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- AdSense 广告位 -->
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2761695780807828" data-ad-slot="XXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="how-to-choose">
+        <span class="en">Which Vector Database Should You Choose?</span>
+        <span class="zh">如何选择适合你的向量数据库？</span>
+      </h2>
+
+      <p class="en">The right vector database depends on your development stage, dataset scale, infrastructure preferences, and query requirements. Here's a scenario-based decision guide.</p>
+      <p class="zh">选择合适的向量数据库取决于你的开发阶段、数据集规模、基础设施偏好和查询需求。以下是基于场景的决策指南。</p>
+
+      <div class="decision-grid">
+        <div class="decision-card">
+          <div class="decision-card-label">🚀 Scenario</div>
+          <div class="decision-card-scenario">Local development & prototyping</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/chroma.html">Chroma</a>. It's the easiest to get started with — runs in-memory or on disk with a single Python import, has native LangChain and LlamaIndex integrations, and requires zero configuration. Perfect for building RAG prototypes before choosing a production database.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">🐘 Scenario</div>
+          <div class="decision-card-scenario">Already running PostgreSQL</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/pgvector.html">pgvector</a>. If your application already uses PostgreSQL, pgvector adds vector search as a native extension with standard SQL syntax — no additional infrastructure, ACID transactions, and the ability to combine vector search with SQL filters in a single query. Works great for datasets under ~5 million vectors.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">⚡ Scenario</div>
+          <div class="decision-card-scenario">Production high-performance RAG</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/qdrant.html">Qdrant</a> or <a href="tools/milvus.html">Milvus</a>. Qdrant (Rust-based) excels at high-throughput filtered search and hybrid dense+sparse retrieval — ideal for most production RAG applications. Milvus handles billion-vector scale with distributed architecture. Both offer managed cloud services.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">🔍 Scenario</div>
+          <div class="decision-card-scenario">Semantic search with built-in ML</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/weaviate.html">Weaviate</a>. It has built-in support for running embedding models directly within the database, supports multimodal search (text + images), and has a GraphQL API with powerful cross-reference querying. Good fit for search applications where you want the DB to handle embeddings.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">☁️ Scenario</div>
+          <div class="decision-card-scenario">Serverless / embedded in application</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/lancedb.html">LanceDB</a>. It's designed as an embedded or serverless vector database — stores data in columnar Lance format on local disk or S3/GCS, with zero server process. Works well for edge deployments, serverless functions, or apps where you don't want to manage a separate DB service.
+          </div>
+        </div>
+        <div class="decision-card">
+          <div class="decision-card-label">🔬 Scenario</div>
+          <div class="decision-card-scenario">ML research & offline batch search</div>
+          <div class="decision-card-rec">
+            Use <a href="tools/faiss.html">Faiss</a>. Meta's highly optimized C++ library is the gold standard for offline similarity search experiments. It supports GPU acceleration for massive speedups and offers a wide variety of index types (IVF, HNSW, PQ) for trading off accuracy vs speed. Not a full database — just a search library.
+          </div>
+        </div>
+      </div>
+
+      <div class="expert-take">
+        <p class="en">In 2026, the vector database decision has become clearer: Chroma for prototyping, pgvector if you're Postgres-native, and Qdrant for production RAG at serious scale. Milvus remains the choice when you have genuine billion-vector requirements. The interesting emerging pattern is "hybrid search" — combining dense vector search with sparse BM25 keyword search — which Qdrant and Weaviate handle best. Pure dense vector search alone often underperforms when users include specific named entities or product codes in their queries, which sparse retrieval handles better.</p>
+        <p class="zh">2026 年，向量数据库的选型决策已越来越清晰：原型阶段用 Chroma，Postgres 用户用 pgvector，生产规模 RAG 用 Qdrant。Milvus 是真正需要亿级向量规模时的选择。正在涌现的有趣模式是"混合搜索"——将密集向量搜索与稀疏 BM25 关键词搜索结合——Qdrant 和 Weaviate 在这方面表现最好。单纯的密集向量搜索在用户查询中包含特定命名实体或产品编号时往往表现欠佳，而稀疏检索则能更好处理这类情况。</p>
+        <cite>— AI Nav Editorial Team, June 2026</cite>
+      </div>
+
+      <h2 id="database-details">
+        <span class="en">Database Deep Dives</span>
+        <span class="zh">数据库详细解析</span>
+      </h2>
+
+      <h3>Milvus — Enterprise-Grade at Billion-Vector Scale</h3>
+      <p class="en">Milvus is a cloud-native, distributed vector database purpose-built for production scale. Its architecture separates storage, compute, and coordination into independent microservices, enabling horizontal scaling of each component independently. Milvus supports GPU acceleration, multiple index types (FLAT, IVF_FLAT, HNSW, DiskANN), and can handle tens of billions of vectors with sub-millisecond query latency. The managed cloud version is Zilliz Cloud. If you're building a large-scale recommendation system, image similarity search, or enterprise knowledge base, Milvus is the most battle-tested option.</p>
+      <p class="zh">Milvus 是一个云原生分布式向量数据库，专为生产规模而生。其架构将存储、计算和协调分离为独立的微服务，可对每个组件独立进行水平扩展。Milvus 支持 GPU 加速、多种索引类型（FLAT、IVF_FLAT、HNSW、DiskANN），能以毫秒以下的查询延迟处理数百亿向量。托管云版本为 Zilliz Cloud。如果你在构建大规模推荐系统、图像相似性搜索或企业知识库，Milvus 是经过最充分验证的选择。</p>
+
+      <h3>Qdrant — The Production RAG Champion</h3>
+      <p class="en">Qdrant is written in Rust, which gives it exceptional memory efficiency and query throughput compared to Python or Java-based alternatives. Its standout features are: sparse+dense hybrid search with Reciprocal Rank Fusion (RRF), rich payload metadata filtering evaluated server-side before vector operations, on-disk HNSW indexing for datasets larger than RAM, and a clean REST+gRPC API. Qdrant Cloud offers a generous free tier (1GB) and transparent per-GB pricing. For most developers building production RAG applications in 2026, Qdrant has become the default choice.</p>
+      <p class="zh">Qdrant 使用 Rust 编写，相比 Python 或 Java 的竞品具有卓越的内存效率和查询吞吐量。其突出特性包括：稀疏+密集混合搜索（RRF 融合）、在向量操作前服务端侧评估的丰富元数据过滤、用于超出内存数据集的磁盘 HNSW 索引，以及简洁的 REST+gRPC API。Qdrant Cloud 提供慷慨的免费套餐（1GB）和透明的按 GB 计费。对于 2026 年构建生产 RAG 应用的大多数开发者，Qdrant 已成为默认选择。</p>
+
+      <h3>Chroma — The Developer-Friendly Starting Point</h3>
+      <p class="en">Chroma optimizes for developer experience above all else. It runs as an in-process Python library (no server needed) or as a lightweight server, persists to disk with a single line of code, and integrates natively with LangChain, LlamaIndex, and most other Python AI frameworks. Chroma handles the embedding model management for you if desired. For local development, RAG prototyping, and applications handling up to a few million vectors, Chroma's simplicity is genuinely unmatched. Chroma Cloud (managed service) launched in 2025 for teams that want production Chroma without self-hosting.</p>
+      <p class="zh">Chroma 最优先考虑开发者体验。它可以作为进程内 Python 库（无需服务器）或轻量级服务器运行，用一行代码持久化到磁盘，并与 LangChain、LlamaIndex 及大多数 Python AI 框架原生集成。如有需要，Chroma 还可以为你管理嵌入模型。对于本地开发、RAG 原型以及处理数百万向量以内的应用，Chroma 的简便性确实无与伦比。Chroma Cloud（托管服务）于 2025 年面向不想自托管的团队推出。</p>
+
+      <h3>pgvector — SQL Vector Search for Postgres Users</h3>
+      <p class="en">pgvector adds vector similarity search to PostgreSQL as a native extension. It supports L2 distance, inner product, and cosine distance operators, HNSW and IVFFlat indexing methods, and can store vectors alongside regular Postgres columns in the same table. The key advantage is architectural simplicity: you query vectors with SQL, get ACID transactions, use your existing Postgres tooling (backups, replication, ORMs), and don't need to maintain a second database. Major cloud providers (AWS RDS, Supabase, Neon, Google AlloyDB) support pgvector natively. Performance is sufficient for most applications — limitations only appear at very high query volume or extreme scale.</p>
+      <p class="zh">pgvector 以原生扩展的形式为 PostgreSQL 添加向量相似性搜索。支持 L2 距离、内积和余弦距离算子，HNSW 和 IVFFlat 索引方法，可在同一张表中将向量与普通 Postgres 列一起存储。关键优势在于架构简洁性：你用 SQL 查询向量，获得 ACID 事务，使用现有的 Postgres 工具链（备份、复制、ORM），无需维护第二个数据库。主要云服务商（AWS RDS、Supabase、Neon、Google AlloyDB）均原生支持 pgvector。对大多数应用性能已足够——局限性只在极高查询量或极端规模时才会显现。</p>
+
+      <!-- 第二个广告位 -->
+      <div class="ad-slot">
+        <ins class="adsbygoogle" style="display:block;text-align:center" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-2761695780807828" data-ad-slot="XXXXXXXX"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <h2 id="quick-start">
+        <span class="en">Quick Start: Build a RAG Pipeline with Chroma + LangChain</span>
+        <span class="zh">快速上手：用 Chroma + LangChain 构建 RAG 流水线</span>
+      </h2>
+
+      <p class="en">Here's a minimal working RAG pipeline using Chroma as the vector store and LangChain for orchestration:</p>
+      <p class="zh">以下是使用 Chroma 作为向量存储、LangChain 进行编排的最简可用 RAG 流水线：</p>
+
+      <pre><code># 安装依赖
+pip install langchain langchain-openai langchain-chroma chromadb
+
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+from langchain_chroma import Chroma
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.chains import RetrievalQA
+
+# 准备文档
+documents = [
+    "Qdrant is a vector database written in Rust, optimized for high-performance filtering.",
+    "Milvus is a cloud-native distributed vector database for billion-scale deployments.",
+    "Chroma is designed for developer simplicity and LangChain integration.",
+    "pgvector adds vector search to PostgreSQL as a native extension.",
+]
+
+# 切分文档
+splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
+chunks = splitter.create_documents(documents)
+
+# 创建向量存储（自动嵌入并存储）
+embeddings = OpenAIEmbeddings()
+vectorstore = Chroma.from_documents(
+    documents=chunks,
+    embedding=embeddings,
+    persist_directory="./chroma_db"  # 持久化到磁盘
+)
+
+# 创建 RAG 检索链
+retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+llm = ChatOpenAI(model="gpt-4o-mini")
+
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=retriever,
+    return_source_documents=True
+)
+
+# 提问
+result = qa_chain.invoke("Which vector database is best for high-performance filtering?")
+print(result["result"])</code></pre>
+
+      <p class="en">To switch from Chroma to Qdrant in production, simply replace the vector store initialization:</p>
+      <p class="zh">在生产环境中从 Chroma 切换到 Qdrant，只需替换向量存储初始化部分：</p>
+
+      <pre><code># 安装 Qdrant 客户端
+pip install langchain-qdrant qdrant-client
+
+from langchain_qdrant import Qdrant
+from qdrant_client import QdrantClient
+
+# 连接本地 Qdrant（先 docker run -p 6333:6333 qdrant/qdrant）
+client = QdrantClient(host="localhost", port=6333)
+
+vectorstore = Qdrant.from_documents(
+    documents=chunks,
+    embedding=embeddings,
+    url="http://localhost:6333",
+    collection_name="my_rag_docs",
+)
+
+# 其余代码完全相同 — LangChain 接口统一
+retriever = vectorstore.as_retriever(search_kwargs={"k": 3})</code></pre>
+
+      <h2 id="performance">
+        <span class="en">Performance at a Glance</span>
+        <span class="zh">性能速览</span>
+      </h2>
+
+      <p class="en">This is a high-level comparison based on public benchmarks and community reports. Actual performance varies heavily by dataset size, query complexity, hardware, and configuration.</p>
+      <p class="zh">以下是基于公开基准测试和社区报告的高层对比，实际性能因数据集大小、查询复杂度、硬件和配置不同而差异显著。</p>
+
+      <div class="perf-matrix">
+        <div class="perf-card">
+          <div class="perf-card-name">Qdrant</div>
+          <div class="perf-row"><span>Query Speed</span><span class="perf-val perf-excellent">Excellent</span></div>
+          <div class="perf-row"><span>Filtering</span><span class="perf-val perf-excellent">Best-in-class</span></div>
+          <div class="perf-row"><span>Setup</span><span class="perf-val perf-good">Easy</span></div>
+          <div class="perf-row"><span>Scale Limit</span><span class="perf-val perf-good">~Billions</span></div>
+        </div>
+        <div class="perf-card">
+          <div class="perf-card-name">Milvus</div>
+          <div class="perf-row"><span>Query Speed</span><span class="perf-val perf-excellent">Excellent</span></div>
+          <div class="perf-row"><span>Filtering</span><span class="perf-val perf-good">Good</span></div>
+          <div class="perf-row"><span>Setup</span><span class="perf-val perf-ok">Complex</span></div>
+          <div class="perf-row"><span>Scale Limit</span><span class="perf-val perf-excellent">Billions+</span></div>
+        </div>
+        <div class="perf-card">
+          <div class="perf-card-name">Chroma</div>
+          <div class="perf-row"><span>Query Speed</span><span class="perf-val perf-good">Good</span></div>
+          <div class="perf-row"><span>Filtering</span><span class="perf-val perf-ok">Basic</span></div>
+          <div class="perf-row"><span>Setup</span><span class="perf-val perf-excellent">Trivial</span></div>
+          <div class="perf-row"><span>Scale Limit</span><span class="perf-val perf-ok">~Millions</span></div>
+        </div>
+        <div class="perf-card">
+          <div class="perf-card-name">pgvector</div>
+          <div class="perf-row"><span>Query Speed</span><span class="perf-val perf-ok">Moderate</span></div>
+          <div class="perf-row"><span>Filtering</span><span class="perf-val perf-excellent">Full SQL</span></div>
+          <div class="perf-row"><span>Setup</span><span class="perf-val perf-excellent">Zero (Postgres)</span></div>
+          <div class="perf-row"><span>Scale Limit</span><span class="perf-val perf-ok">~10M rows</span></div>
+        </div>
+        <div class="perf-card">
+          <div class="perf-card-name">Weaviate</div>
+          <div class="perf-row"><span>Query Speed</span><span class="perf-val perf-good">Good</span></div>
+          <div class="perf-row"><span>Filtering</span><span class="perf-val perf-good">Good</span></div>
+          <div class="perf-row"><span>Setup</span><span class="perf-val perf-good">Easy</span></div>
+          <div class="perf-row"><span>Scale Limit</span><span class="perf-val perf-good">~Billions</span></div>
+        </div>
+        <div class="perf-card">
+          <div class="perf-card-name">LanceDB</div>
+          <div class="perf-row"><span>Query Speed</span><span class="perf-val perf-good">Good</span></div>
+          <div class="perf-row"><span>Filtering</span><span class="perf-val perf-good">Good</span></div>
+          <div class="perf-row"><span>Setup</span><span class="perf-val perf-excellent">Embedded</span></div>
+          <div class="perf-row"><span>Scale Limit</span><span class="perf-val perf-good">~Billions</span></div>
+        </div>
+      </div>
+
+      <h2 id="faq">
+        <span class="en">Frequently Asked Questions</span>
+        <span class="zh">常见问题解答</span>
+      </h2>
+
+      <div class="faq-section">
+        <div class="faq-item">
+          <div class="faq-q">
+            What is a vector database and why do I need one for AI?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              A vector database is a specialized database designed to store, index, and query high-dimensional vector embeddings — the numerical representations that AI models use to encode semantic meaning. When you build a RAG (Retrieval-Augmented Generation) system, your documents are chunked, converted into vectors by an embedding model (like OpenAI's text-embedding-3, Cohere's embed-v3, or a local model via Ollama), and stored in the vector database. At query time, your question is also converted to a vector, and the database performs approximate nearest neighbor (ANN) search to find the most semantically similar documents. Traditional SQL databases can do exact k-nearest neighbor search, but they can't do it efficiently at scale — a dedicated vector database can query millions of vectors in under 10ms.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Chroma vs Qdrant — which vector database is better for RAG?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              For local development and prototyping, Chroma is the better choice: it requires zero configuration, runs in-memory or on disk, has excellent LangChain integration, and can be started with just three lines of Python. For production RAG systems, Qdrant is generally superior: it supports advanced filtering on metadata fields (evaluated server-side before vector operations, which is crucial for performance), sparse+dense hybrid search for better retrieval quality, on-disk indexing for large datasets, and has a Rust-based engine that delivers excellent throughput. Most developers start with Chroma and migrate to Qdrant when they need production-grade performance and filtering capabilities.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            What is the fastest open source vector database?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              For raw similarity search speed as a library (not a full database), Faiss (from Meta AI) is typically the fastest — it's a highly optimized C++ library with GPU support. For a full production database with filtering, network API, persistence, and durability, Qdrant consistently scores at the top of ann-benchmarks.com performance tests due to its Rust implementation and HNSW optimization. Milvus is optimized for distributed deployments at billion-vector scale with dedicated query nodes. The "fastest" depends heavily on: dataset size (millions vs billions), whether you need metadata filtering, hardware (CPU vs GPU), query concurrency, and recall-vs-speed trade-offs configured at index build time.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Can I use pgvector instead of a dedicated vector database?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Yes, for many use cases pgvector is an excellent choice — especially if you're already running PostgreSQL. It adds vector similarity search as a native extension with standard SQL syntax and supports HNSW and IVFFlat indexing. For datasets under roughly 5-10 million vectors with moderate query throughput (under a few thousand queries per second), pgvector performance is typically sufficient. The key advantages: zero additional infrastructure (use your existing Postgres instance), full ACID transactions combining vector + SQL queries, and compatibility with the entire PostgreSQL ecosystem (pgAdmin, Supabase, Hasura, ORMs). The limitations: at very high QPS or billion-vector scale, dedicated vector databases like Qdrant or Milvus will significantly outperform pgvector.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            Which vector database works best with LangChain?
+            <span class="faq-arr">▾</span>
+          </div>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              LangChain has first-class built-in integrations for all major vector databases via the langchain-community and database-specific packages (langchain-chroma, langchain-qdrant, etc.). They all implement the same VectorStore interface, so switching between them requires minimal code changes. Chroma is historically the default in LangChain tutorials because it requires zero setup — just pip install chromadb. In practice, the most common production pattern among LangChain users is: Chroma for local development, then Qdrant or Milvus for production deployment, or pgvector if the team is already Postgres-native. LlamaIndex has similarly comprehensive integrations.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 相关工具 -->
+      <h2 id="related-tools">
+        <span class="en">Related Tools & Categories</span>
+        <span class="zh">相关工具与分类</span>
+      </h2>
+
+      <div class="related-grid">
+        <a href="ai-agent-frameworks.html" class="related-card">
+          <div class="related-card-name">AI Agent Frameworks</div>
+          <div class="related-card-desc">LangChain, CrewAI, AutoGen — build agents</div>
+        </a>
+        <a href="local-llm-tools.html" class="related-card">
+          <div class="related-card-name">Local LLM Tools</div>
+          <div class="related-card-desc">Ollama, llama.cpp — run models locally</div>
+        </a>
+        <a href="tools/qdrant.html" class="related-card">
+          <div class="related-card-name">Qdrant</div>
+          <div class="related-card-desc">Production vector search in Rust</div>
+        </a>
+        <a href="tools/chroma.html" class="related-card">
+          <div class="related-card-name">Chroma</div>
+          <div class="related-card-desc">Developer-friendly vector store</div>
+        </a>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px;">
+        <a href="index.html" class="cta-btn">Browse All AI Tools ↗</a>
+        <a href="blog/index.html" class="cta-btn-outline">Read Our Blog</a>
+      </div>
+
+    </div><!-- end .content -->
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison-table">Comparison Table</a></li>
+          <li><a href="#how-to-choose">How to Choose</a></li>
+          <li><a href="#database-details">Database Deep Dives</a></li>
+          <li><a href="#quick-start">Quick Start</a></li>
+          <li><a href="#performance">Performance</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#related-tools">Related Tools</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Top Picks</h4>
+        <ul class="toc-list">
+          <li><a href="tools/milvus.html">Milvus ⭐ 44K</a></li>
+          <li><a href="tools/faiss.html">Faiss ⭐ 40K</a></li>
+          <li><a href="tools/qdrant.html">Qdrant ⭐ 31K</a></li>
+          <li><a href="tools/chroma.html">Chroma ⭐ 28K</a></li>
+          <li><a href="tools/pgvector.html">pgvector ⭐ 21K</a></li>
+          <li><a href="tools/weaviate.html">Weaviate ⭐ 16K</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h4>Related Pages</h4>
+        <ul class="toc-list">
+          <li><a href="ai-agent-frameworks.html">AI Agent Frameworks</a></li>
+          <li><a href="local-llm-tools.html">Local LLM Tools</a></li>
+          <li><a href="blog/rag-pipeline-guide.html">RAG Pipeline Guide</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div><!-- end .content-layout -->
+</div><!-- end .page-wrap-wide -->
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ 折叠交互
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>

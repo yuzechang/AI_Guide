@@ -614,9 +614,13 @@ def generate_sitemap(tools_dir, all_tools):
     ))
     # 静态页（cleanUrls:true → 无 .html 后缀）
     for page, slug, prio, freq in [
-        ("about.html",          "about",          "0.7", "monthly"),
-        ("contact.html",        "contact",        "0.5", "monthly"),
-        ("privacy-policy.html", "privacy-policy", "0.3", "yearly"),
+        ("about.html",                    "about",                    "0.7", "monthly"),
+        ("contact.html",                  "contact",                  "0.5", "monthly"),
+        ("privacy-policy.html",           "privacy-policy",           "0.3", "yearly"),
+        ("ai-agent-frameworks.html",      "ai-agent-frameworks",      "0.85", "monthly"),
+        ("vector-databases.html",         "vector-databases",         "0.85", "monthly"),
+        ("local-llm-tools.html",          "local-llm-tools",          "0.85", "monthly"),
+        ("open-source-ai-leaderboard.html","open-source-ai-leaderboard","0.9", "monthly"),
     ]:
         urls.append(dict(loc=f"{BASE_URL}/{slug}", lastmod=TODAY, changefreq=freq, priority=prio))
 
