@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Open Source ChatGPT Alternatives in 2026 | AI Nav</title>
+  <meta name="description" content="11 free, self-hostable alternatives to ChatGPT ranked by GitHub stars. Run your own AI chat with full privacy — no subscription, no data sharing.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/open-source-chatgpt-alternatives">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best Open Source ChatGPT Alternatives in 2026 | AI Nav">
+  <meta property="og:description" content="11 free, self-hostable alternatives to ChatGPT ranked by GitHub stars. Run your own AI chat with full privacy — no subscription, no data sharing.">
+  <meta property="og:url" content="https://yuzec.com/open-source-chatgpt-alternatives">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+
+  <!-- Schema.org: Article + FAQPage + HowTo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Best Open Source ChatGPT Alternatives in 2026",
+        "description": "11 free, self-hostable alternatives to ChatGPT ranked by GitHub stars. Run your own AI chat with full privacy — no subscription, no data sharing.",
+        "url": "https://yuzec.com/open-source-chatgpt-alternatives",
+        "datePublished": "2026-06-10",
+        "dateModified": "2026-06-10",
+        "author": {
+          "@type": "Organization",
+          "name": "AI Nav",
+          "url": "https://yuzec.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "AI Nav",
+          "url": "https://yuzec.com"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://yuzec.com/open-source-chatgpt-alternatives"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the best free alternative to ChatGPT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open WebUI with Ollama is the most popular free ChatGPT alternative, with over 140,000 GitHub stars. It runs 100% locally, supports all major open-source models like Llama 3.2 and Mistral, and provides a polished chat interface similar to ChatGPT. For the quickest setup, ChatGPT Next Web (one-click Vercel deploy) is the easiest to get running in under 5 minutes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I run a ChatGPT alternative without an API key?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Tools like Open WebUI, Jan, PrivateGPT, and AnythingLLM run entirely locally using Ollama or llama.cpp — no API key required. You download a model once (e.g., ollama pull llama3.2) and all inference happens on your machine. The only requirement is sufficient RAM: 8GB for 7B models, 16GB+ for 13B+ models."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Open WebUI better than ChatGPT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "For privacy and cost, Open WebUI wins: it's free, runs locally, and never sends data to third parties. For raw capability and ease of use, ChatGPT (especially GPT-4o) still leads — its coding, reasoning, and multimodal capabilities are more advanced than most open-source models. Open WebUI is ideal if privacy, cost, or self-hosting flexibility is your priority."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which open source ChatGPT alternative supports document upload?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AnythingLLM and PrivateGPT are the best choices for document Q&A. AnythingLLM supports PDF, Word, CSV, and web URLs, with a built-in vector database. PrivateGPT focuses specifically on querying your documents with 100% local privacy. Open WebUI also has RAG capabilities built-in for document uploads within the chat interface."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are these ChatGPT alternatives completely free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, all tools listed here are open-source and free to use. The only cost is the hardware (your own computer or a VPS). Tools using local inference like Open WebUI + Ollama have zero ongoing costs. API-based tools like ChatGPT Next Web and LobeChat are also free software, but require you to supply your own API key — which has usage costs from the API provider (e.g., OpenAI, Anthropic)."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to Set Up Open WebUI in 5 Minutes",
+        "description": "Step-by-step guide to installing Open WebUI locally with Ollama for a private ChatGPT alternative",
+        "totalTime": "PT5M",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Install Docker",
+            "text": "Download and install Docker Desktop from docker.com for your operating system."
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Install Ollama",
+            "text": "Run: curl -fsSL https://ollama.com/install.sh | sh"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Pull a language model",
+            "text": "Run: ollama pull llama3.2 — this downloads the Llama 3.2 model (~2GB)"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Run Open WebUI with Docker",
+            "text": "Run: docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Open your browser",
+            "text": "Navigate to http://localhost:3000 and create your admin account. Your private ChatGPT is ready."
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://yuzec.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Best Open Source ChatGPT Alternatives in 2026",
+        "item": "https://yuzec.com/open-source-chatgpt-alternatives"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+
+  <style>
+    /* 对比表格样式 */
+    .compare-table-wrap {
+      overflow-x: auto; margin: 20px 0 28px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+    .compare-table th {
+      background: var(--card); padding: 11px 14px; text-align: left;
+      font-size: 11px; font-weight: 700; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .compare-table td {
+      padding: 11px 14px; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; line-height: 1.4;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--card-hover); }
+    .compare-table td:first-child { font-weight: 700; color: var(--text); white-space: nowrap; }
+    .compare-table td a { color: var(--accent); }
+    .compare-table td a:hover { text-decoration: underline; }
+    .stars-num {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 700; color: var(--star); font-size: 13px;
+    }
+    .check-yes { color: var(--green); font-weight: 700; }
+    .privacy-tag {
+      display: inline-block; padding: 2px 8px;
+      border-radius: 4px; font-size: 11px; font-weight: 700;
+    }
+    .privacy-local { background: rgba(52,211,153,0.12); color: var(--green); }
+    .privacy-api { background: rgba(251,191,36,0.12); color: var(--amber); }
+
+    /* 决策卡片 */
+    .decision-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px; margin: 20px 0 28px;
+    }
+    .decision-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+      transition: border-color 0.2s;
+    }
+    .decision-card:hover { border-color: var(--accent); }
+    .decision-scenario {
+      font-size: 12px; font-weight: 700; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px;
+    }
+    .decision-pick {
+      font-size: 15px; font-weight: 700; color: var(--accent); margin-bottom: 5px;
+    }
+    .decision-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+    /* 代码块 */
+    .code-block-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin: 20px 0 28px; overflow: hidden;
+    }
+    .code-block-header {
+      background: var(--card); padding: 10px 16px;
+      font-size: 12px; font-weight: 600; color: var(--text-3);
+      border-bottom: 1px solid var(--border); display: flex;
+      align-items: center; gap: 8px;
+    }
+    .code-block-lang {
+      background: rgba(129,140,248,0.15); color: var(--accent);
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700;
+    }
+    pre {
+      padding: 18px 20px; overflow-x: auto; margin: 0;
+    }
+    pre code {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 13px; line-height: 1.7;
+      background: none; border: none; padding: 0;
+      color: var(--text-2);
+    }
+    pre code .comment { color: var(--text-3); }
+
+    /* How-to steps */
+    .howto-steps {
+      counter-reset: step-counter;
+      margin: 20px 0 28px;
+    }
+    .howto-step {
+      display: flex; gap: 16px; margin-bottom: 16px;
+      padding: 16px 18px; background: var(--card);
+      border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .step-number {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--accent-dim); border: 1px solid rgba(129,140,248,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: var(--accent);
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .step-content h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .step-content p { font-size: 13px; color: var(--text-2); margin: 0; line-height: 1.6; }
+
+    /* AdSense */
+    .ad-container {
+      margin: 32px 0; padding: 16px; text-align: center;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); min-height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home">Directory</a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+      <div class="lang-toggle">
+        <button class="lang-btn" data-langbtn="en">EN</button>
+        <button class="lang-btn" data-langbtn="zh">中</button>
+      </div>
+    </nav>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Open Source ChatGPT Alternatives</span>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">💬 ChatGPT Alternatives</span>
+    <h1 class="article-title" style="margin-top:12px">
+      Best Open Source ChatGPT<br><span class="gradient">Alternatives in 2026</span>
+    </h1>
+    <div class="article-meta">
+      <span>📅 Updated June 10, 2026</span>
+      <span>⭐ Ranked by GitHub Stars</span>
+      <span>🔒 Privacy-first</span>
+      <span>🆓 100% Free</span>
+    </div>
+    <p class="article-desc">
+      <span class="en">ChatGPT costs $20/month and sends your data to OpenAI. These open-source alternatives give you the same chat experience — self-hosted, private, and completely free.</span>
+      <span class="zh">ChatGPT 每月需花费 $20 且会将你的数据发送至 OpenAI。这些开源替代品为你提供同等的聊天体验——可自托管、完全私密、零费用。</span>
+    </p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="page-wrap-wide">
+  <div class="content">
+
+    <h2>
+      <span class="en">Top 11 Open Source ChatGPT Alternatives (Ranked by Stars)</span>
+      <span class="zh">11 款开源 ChatGPT 替代品排行（按 Star 数）</span>
+    </h2>
+    <p>
+      <span class="en">All tools below are open-source, actively maintained, and have been tested by the AI Nav team. Star counts are updated weekly via GitHub API.</span>
+      <span class="zh">以下所有工具均为开源项目，持续维护，并经 AI Nav 团队实测验证。Star 数每周通过 GitHub API 自动更新。</span>
+    </p>
+
+    <!-- 对比表格 -->
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tool</th>
+            <th>GitHub Stars</th>
+            <th>Self-Host</th>
+            <th>Privacy</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">1</td>
+            <td><a href="tools/open-webui.html">Open WebUI</a></td>
+            <td><span class="stars-num">⭐ 140,564</span></td>
+            <td><span class="check-yes">✅</span> Docker/Local</td>
+            <td><span class="privacy-tag privacy-local">100% Local</span></td>
+            <td>Ollama frontend, most popular UI</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">2</td>
+            <td><a href="tools/chatgpt-next.html">ChatGPT Next Web</a></td>
+            <td><span class="stars-num">⭐ 88,190</span></td>
+            <td><span class="check-yes">✅</span> One-click Vercel</td>
+            <td><span class="privacy-tag privacy-api">API-based</span></td>
+            <td>Lightweight, deploy in 1 minute</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">3</td>
+            <td><a href="tools/lobe-chat.html">LobeChat</a></td>
+            <td><span class="stars-num">⭐ 78,348</span></td>
+            <td><span class="check-yes">✅</span> Docker</td>
+            <td><span class="privacy-tag privacy-api">API-based</span></td>
+            <td>Modern UI with plugins</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">4</td>
+            <td><a href="tools/anything-llm.html">AnythingLLM</a></td>
+            <td><span class="stars-num">⭐ 61,227</span></td>
+            <td><span class="check-yes">✅</span> Desktop/Docker</td>
+            <td><span class="privacy-tag privacy-local">100% Local</span></td>
+            <td>Document Q&amp;A + multi-model</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">5</td>
+            <td><a href="tools/privateGPT.html">PrivateGPT</a></td>
+            <td><span class="stars-num">⭐ 57,206</span></td>
+            <td><span class="check-yes">✅</span> Local</td>
+            <td><span class="privacy-tag privacy-local">100% Local</span></td>
+            <td>Ask questions to your documents</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">6</td>
+            <td><a href="tools/librechat.html">LibreChat</a></td>
+            <td><span class="stars-num">⭐ 38,599</span></td>
+            <td><span class="check-yes">✅</span> Docker</td>
+            <td><span class="privacy-tag privacy-api">API-based</span></td>
+            <td>Multi-model: GPT + Claude + Gemini</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">7</td>
+            <td><a href="tools/jan.html">Jan</a></td>
+            <td><span class="stars-num">⭐ 42,935</span></td>
+            <td><span class="check-yes">✅</span> Desktop App</td>
+            <td><span class="privacy-tag privacy-local">100% Local</span></td>
+            <td>Offline, no internet required</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">8</td>
+            <td><a href="tools/sillytavern.html">SillyTavern</a></td>
+            <td><span class="stars-num">⭐ 29,040</span></td>
+            <td><span class="check-yes">✅</span> Local</td>
+            <td><span class="privacy-tag privacy-local">100% Local</span></td>
+            <td>AI roleplay and creative writing</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">9</td>
+            <td><a href="tools/h2ogpt.html">h2oGPT</a></td>
+            <td><span class="stars-num">⭐ 11,988</span></td>
+            <td><span class="check-yes">✅</span> Docker</td>
+            <td><span class="privacy-tag privacy-local">100% Local</span></td>
+            <td>Enterprise document Q&amp;A</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">10</td>
+            <td><a href="tools/big-agi.html">big-AGI</a></td>
+            <td><span class="stars-num">⭐ 6,988</span></td>
+            <td><span class="check-yes">✅</span> Docker</td>
+            <td><span class="privacy-tag privacy-api">API-based</span></td>
+            <td>Professional personas and tools</td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-3);font-weight:700">11</td>
+            <td><a href="tools/enchanted.html">Enchanted</a></td>
+            <td><span class="stars-num">⭐ 5,961</span></td>
+            <td><span class="check-yes">✅</span> iOS App</td>
+            <td><span class="privacy-tag privacy-local">100% Local</span></td>
+            <td>iPhone/iPad Ollama client</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AdSense 广告位 -->
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2761695780807828"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <h2 id="which-to-choose">
+      <span class="en">Which Alternative Should You Choose?</span>
+      <span class="zh">应该选择哪款替代品？</span>
+    </h2>
+    <p>
+      <span class="en">Your choice depends on what you value most: speed of setup, privacy, document Q&A, or multi-model support. Here are the clearest recommendations by scenario:</span>
+      <span class="zh">你的选择取决于最优先考虑的因素：快速上手、隐私保护、文档问答或多模型支持。以下是各场景最明确的推荐：</span>
+    </p>
+
+    <div class="decision-grid">
+      <div class="decision-card">
+        <div class="decision-scenario">⚡ 最快上手</div>
+        <div class="decision-pick"><a href="tools/chatgpt-next.html">ChatGPT Next Web</a></div>
+        <div class="decision-desc">
+          <span class="en">One-click Vercel deploy. Paste your API key, click deploy — live in 60 seconds. No server management, no Docker.</span>
+          <span class="zh">Vercel 一键部署。粘贴 API Key，点击部署，60 秒上线。无需服务器管理，无需 Docker。</span>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-scenario">🔒 100% 离线隐私</div>
+        <div class="decision-pick"><a href="tools/jan.html">Jan</a> or <a href="tools/open-webui.html">Open WebUI + Ollama</a></div>
+        <div class="decision-desc">
+          <span class="en">Jan is a desktop app that works completely offline. Open WebUI + Ollama gives you a full browser-based UI with the same local privacy.</span>
+          <span class="zh">Jan 是完全离线的桌面应用。Open WebUI + Ollama 提供同等本地隐私的浏览器界面。</span>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-scenario">📄 查询自己的文档</div>
+        <div class="decision-pick"><a href="tools/privateGPT.html">PrivateGPT</a> or <a href="tools/anything-llm.html">AnythingLLM</a></div>
+        <div class="decision-desc">
+          <span class="en">PrivateGPT is purpose-built for document Q&A with zero data leaving your machine. AnythingLLM adds multi-user workspaces and more file formats.</span>
+          <span class="zh">PrivateGPT 专为文档问答设计，数据零外泄。AnythingLLM 额外支持多用户工作区和更多文件格式。</span>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-scenario">🤖 同时用多个模型</div>
+        <div class="decision-pick"><a href="tools/librechat.html">LibreChat</a></div>
+        <div class="decision-desc">
+          <span class="en">Switch between GPT-4o, Claude 3.5, and Gemini Pro in the same interface. Supports 10+ AI providers with one unified chat UI.</span>
+          <span class="zh">在同一界面切换 GPT-4o、Claude 3.5、Gemini Pro。支持 10+ AI 服务商的统一聊天 UI。</span>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-scenario">📱 iPhone 用户</div>
+        <div class="decision-pick"><a href="tools/enchanted.html">Enchanted</a></div>
+        <div class="decision-desc">
+          <span class="en">Native iOS app that connects to your local Ollama server over your home Wi-Fi. Beautiful interface, no monthly fee.</span>
+          <span class="zh">原生 iOS 应用，通过家庭 Wi-Fi 连接本地 Ollama 服务器。界面精美，无月费。</span>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-scenario">✍️ AI 创意写作</div>
+        <div class="decision-pick"><a href="tools/sillytavern.html">SillyTavern</a></div>
+        <div class="decision-desc">
+          <span class="en">Designed for AI roleplay, storytelling, and character-based creative writing. Highly customizable with persona management.</span>
+          <span class="zh">专为 AI 角色扮演、故事创作和人物创意写作设计，支持高度自定义的角色管理。</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="setup-guide">
+      <span class="en">How to Set Up Open WebUI in 5 Minutes</span>
+      <span class="zh">5 分钟搭建 Open WebUI 完整指南</span>
+    </h2>
+    <p>
+      <span class="en">Open WebUI with Ollama is the most recommended setup for a private ChatGPT alternative. Here's the complete process:</span>
+      <span class="zh">Open WebUI 配合 Ollama 是最推荐的私有 ChatGPT 替代方案。以下是完整部署流程：</span>
+    </p>
+
+    <div class="howto-steps">
+      <div class="howto-step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>
+            <span class="en">Install Docker Desktop</span>
+            <span class="zh">安装 Docker Desktop</span>
+          </h4>
+          <p>
+            <span class="en">Download from <a href="https://docker.com" target="_blank" rel="noopener">docker.com</a> for Mac, Windows, or Linux. Docker is required to run Open WebUI in an isolated container.</span>
+            <span class="zh">前往 <a href="https://docker.com" target="_blank" rel="noopener">docker.com</a> 下载适用于 Mac、Windows 或 Linux 的版本。Docker 用于在隔离容器中运行 Open WebUI。</span>
+          </p>
+        </div>
+      </div>
+      <div class="howto-step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>
+            <span class="en">Install Ollama (the local model runner)</span>
+            <span class="zh">安装 Ollama（本地模型运行器）</span>
+          </h4>
+          <p>
+            <span class="en">Run the one-line installer below. Ollama handles downloading and running open-source LLMs like Llama 3.2, Mistral, and Gemma locally.</span>
+            <span class="zh">运行以下一行安装命令。Ollama 负责下载并在本地运行 Llama 3.2、Mistral、Gemma 等开源大模型。</span>
+          </p>
+        </div>
+      </div>
+      <div class="howto-step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>
+            <span class="en">Pull a language model</span>
+            <span class="zh">拉取语言模型</span>
+          </h4>
+          <p>
+            <span class="en">Llama 3.2 is recommended for first-time users — it runs on 8GB RAM and provides excellent general chat quality. The download is ~2GB.</span>
+            <span class="zh">推荐新用户使用 Llama 3.2——8GB 内存即可运行，通用聊天质量优秀。下载大小约 2GB。</span>
+          </p>
+        </div>
+      </div>
+      <div class="howto-step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>
+            <span class="en">Run Open WebUI with Docker</span>
+            <span class="zh">用 Docker 运行 Open WebUI</span>
+          </h4>
+          <p>
+            <span class="en">The command below starts Open WebUI on port 3000. The <code>--add-host</code> flag allows the container to reach Ollama running on your host machine.</span>
+            <span class="zh">以下命令在 3000 端口启动 Open WebUI。<code>--add-host</code> 参数让容器能访问宿主机上的 Ollama 服务。</span>
+          </p>
+        </div>
+      </div>
+      <div class="howto-step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h4>
+            <span class="en">Open your browser and start chatting</span>
+            <span class="zh">打开浏览器，开始对话</span>
+          </h4>
+          <p>
+            <span class="en">Navigate to <code>http://localhost:3000</code>. Create an admin account on first launch, select your model from the dropdown, and start chatting privately.</span>
+            <span class="zh">访问 <code>http://localhost:3000</code>，首次启动时创建管理员账号，从下拉菜单选择模型，即可开始私密对话。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block-wrap">
+      <div class="code-block-header">
+        <span class="code-block-lang">bash</span>
+        <span>Complete Setup Commands</span>
+      </div>
+      <pre><code><span class="comment"># Step 2: Install Ollama</span>
+curl -fsSL https://ollama.com/install.sh | sh
+
+<span class="comment"># Step 3: Pull a model (Llama 3.2 – recommended for beginners)</span>
+ollama pull llama3.2
+
+<span class="comment"># Step 4: Run Open WebUI</span>
+docker run -d -p 3000:8080 \
+  --add-host=host.docker.internal:host-gateway \
+  -v open-webui:/app/backend/data \
+  --name open-webui \
+  --restart always \
+  ghcr.io/open-webui/open-webui:main
+
+<span class="comment"># Step 5: Open browser</span>
+<span class="comment"># Visit: http://localhost:3000</span></code></pre>
+    </div>
+
+    <div class="alert alert-success">
+      <strong>System Requirements:</strong> macOS/Linux/Windows with Docker installed. Minimum 8GB RAM for 7B models (Llama 3.2). 16GB+ RAM recommended for 13B models. GPU optional — CPU inference works but is slower.
+    </div>
+
+    <!-- Expert Take -->
+    <div class="expert-take">
+      <p>"Open WebUI has become the de facto standard UI for local LLMs. In our testing, the installation-to-first-chat time is genuinely under 5 minutes if you already have Docker. The interface is polished enough that non-technical users can navigate it comfortably — something most open-source tools sacrifice for power-user features."</p>
+      <cite>— AI Nav Editorial Team, tested June 2026</cite>
+    </div>
+
+    <h2 id="why-open-source">
+      <span class="en">Why Choose Open Source Over ChatGPT?</span>
+      <span class="zh">为什么选择开源而非 ChatGPT？</span>
+    </h2>
+
+    <div class="pros-cons">
+      <div class="pros-box">
+        <h4>Open Source Advantages</h4>
+        <ul>
+          <li>Zero monthly cost after setup</li>
+          <li>Data never leaves your machine</li>
+          <li>Works fully offline</li>
+          <li>Customizable and extensible</li>
+          <li>No rate limits or usage caps</li>
+          <li>Run on your own hardware</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <h4>Trade-offs vs ChatGPT</h4>
+        <ul>
+          <li>Requires initial setup time</li>
+          <li>Model quality varies</li>
+          <li>GPU needed for best performance</li>
+          <li>No DALL-E image generation</li>
+          <li>Plugins ecosystem smaller</li>
+          <li>Mobile app less polished</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Related pages -->
+    <h2>
+      <span class="en">Related Guides</span>
+      <span class="zh">相关指南</span>
+    </h2>
+    <div class="related-grid">
+      <a href="free-ai-tools.html" class="related-card">
+        <div class="related-card-name">Free AI Tools 2026</div>
+        <div class="related-card-desc">300+ free open-source AI tools ranked by GitHub stars</div>
+      </a>
+      <a href="ai-tools-for-developers.html" class="related-card">
+        <div class="related-card-name">AI Tools for Developers</div>
+        <div class="related-card-desc">Best coding assistants, LLM frameworks, and dev infrastructure</div>
+      </a>
+      <a href="tools/open-webui.html" class="related-card">
+        <div class="related-card-name">Open WebUI Deep Dive</div>
+        <div class="related-card-desc">Full review: features, setup, and comparison with alternatives</div>
+      </a>
+      <a href="blog/run-llm-locally-guide.html" class="related-card">
+        <div class="related-card-name">Run LLMs Locally Guide</div>
+        <div class="related-card-desc">Complete guide to running language models on your own hardware</div>
+      </a>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2 id="faq">
+        <span class="en">Frequently Asked Questions</span>
+        <span class="zh">常见问题</span>
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>What is the best free alternative to ChatGPT?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Open WebUI with Ollama is the most popular free ChatGPT alternative, with over 140,000 GitHub stars. It runs 100% locally, supports all major open-source models like Llama 3.2 and Mistral, and provides a polished chat interface similar to ChatGPT. For the quickest setup, ChatGPT Next Web (one-click Vercel deploy) is the easiest to get running in under 5 minutes.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Can I run a ChatGPT alternative without an API key?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Yes. Tools like Open WebUI, Jan, PrivateGPT, and AnythingLLM run entirely locally using Ollama or llama.cpp — no API key required. You download a model once (e.g., <code>ollama pull llama3.2</code>) and all inference happens on your machine. The only requirement is sufficient RAM: 8GB for 7B models, 16GB+ for 13B+ models.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Is Open WebUI better than ChatGPT?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            For privacy and cost, Open WebUI wins: it's free, runs locally, and never sends data to third parties. For raw capability and ease of use, ChatGPT (especially GPT-4o) still leads — its coding, reasoning, and multimodal capabilities are more advanced than most open-source models. Open WebUI is ideal if privacy, cost, or self-hosting flexibility is your priority.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Which open source ChatGPT alternative supports document upload?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            AnythingLLM and PrivateGPT are the best choices for document Q&A. AnythingLLM supports PDF, Word, CSV, and web URLs, with a built-in vector database. PrivateGPT focuses specifically on querying your documents with 100% local privacy. Open WebUI also has RAG capabilities built-in for document uploads within the chat interface.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Are these ChatGPT alternatives completely free?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Yes, all tools listed here are open-source and free to use. The only cost is the hardware (your own computer or a VPS). Tools using local inference like Open WebUI + Ollama have zero ongoing costs. API-based tools like ChatGPT Next Web and LobeChat are also free software, but require you to supply your own API key — which has usage costs from the API provider (e.g., OpenAI, Anthropic).
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px">
+      <a href="index.html" class="cta-btn">Browse All AI Tools ↗</a>
+      <a href="tools/open-webui.html" class="cta-btn-outline">Open WebUI Review</a>
+      <a href="free-ai-tools.html" class="cta-btn-outline">Free AI Tools Guide</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

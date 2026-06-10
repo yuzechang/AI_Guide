@@ -621,6 +621,10 @@ def generate_sitemap(tools_dir, all_tools):
         ("vector-databases.html",         "vector-databases",         "0.85", "monthly"),
         ("local-llm-tools.html",          "local-llm-tools",          "0.85", "monthly"),
         ("open-source-ai-leaderboard.html","open-source-ai-leaderboard","0.9", "monthly"),
+        ("weekly-trending.html",                  "weekly-trending",                  "0.9", "weekly"),
+        ("open-source-chatgpt-alternatives.html", "open-source-chatgpt-alternatives", "0.85", "monthly"),
+        ("ai-tools-for-developers.html",          "ai-tools-for-developers",          "0.85", "monthly"),
+        ("free-ai-tools.html",                    "free-ai-tools",                    "0.85", "monthly"),
     ]:
         urls.append(dict(loc=f"{BASE_URL}/{slug}", lastmod=TODAY, changefreq=freq, priority=prio))
 

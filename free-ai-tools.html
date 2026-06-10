@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Free AI Tools in 2026 – No Subscription Required | AI Nav</title>
+  <meta name="description" content="300+ free, open-source AI tools ranked by GitHub stars. Image generation, coding assistants, LLM chat, voice cloning — all 100% free.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/free-ai-tools">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best Free AI Tools in 2026 – No Subscription Required | AI Nav">
+  <meta property="og:description" content="300+ free, open-source AI tools ranked by GitHub stars. Image generation, coding assistants, LLM chat, voice cloning — all 100% free.">
+  <meta property="og:url" content="https://yuzec.com/free-ai-tools">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+
+  <!-- Schema.org: Article + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Best Free & Open Source AI Tools in 2026",
+        "description": "300+ free, open-source AI tools ranked by GitHub stars. Image generation, coding assistants, LLM chat, voice cloning — all 100% free.",
+        "url": "https://yuzec.com/free-ai-tools",
+        "datePublished": "2026-06-10",
+        "dateModified": "2026-06-10",
+        "author": {
+          "@type": "Organization",
+          "name": "AI Nav",
+          "url": "https://yuzec.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "AI Nav",
+          "url": "https://yuzec.com"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://yuzec.com/free-ai-tools"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are these AI tools really completely free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Every tool listed here is open-source under licenses like MIT, Apache 2.0, or GPL — meaning the software itself is free forever. The only cost is your own hardware (computer, GPU) or a VPS if you self-host. There are no subscriptions, no free tiers with hidden paywalls, and no vendor lock-in. You own your data, your models, and your infrastructure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the best free AI image generator?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Stable Diffusion WebUI (AUTOMATIC1111) is the most popular free AI image generator with 163,000+ GitHub stars. It runs locally on your GPU, supports thousands of community models and LoRA adaptors, and produces commercial-quality images. ComfyUI is the better choice if you want a node-based workflow for complex pipelines. For the easiest installation experience, Fooocus provides a simplified Stable Diffusion interface."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use these free AI tools for commercial projects?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most tools listed here use MIT or Apache 2.0 licenses, which explicitly allow commercial use without royalties. However, some models have specific licensing restrictions — notably, Llama 3 requires a license agreement for large-scale commercial deployment (100M+ users). Always check the specific license of the model (not just the software wrapper) before commercial deployment. When in doubt, models like Mistral 7B (Apache 2.0) are unrestricted for commercial use."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What free AI tools work without GPU?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Many free AI tools work on CPU-only machines: Ollama with llama.cpp backend runs 7B models on 8GB RAM (slower but functional), Whisper (speech recognition) works well on CPU, n8n (workflow automation) has no GPU requirement, and all the UI tools like Open WebUI, LobeChat, and LibreChat need no GPU — only the underlying model does. For image generation, CPU inference is very slow (minutes per image), so a GPU is strongly recommended."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which free AI tools are the best alternatives to paid services?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Top free alternatives to paid AI services: ChatGPT → Open WebUI + Ollama (free, private); Midjourney → Stable Diffusion WebUI (free, local); GitHub Copilot → Cline + Ollama (free, VS Code); ElevenLabs → Bark or OpenVoice (free, open source); Zapier AI → n8n (free, self-hosted); Notion AI → Khoj or AnythingLLM (free, private). All provide comparable functionality without monthly subscriptions."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://yuzec.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Best Free AI Tools in 2026",
+        "item": "https://yuzec.com/free-ai-tools"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+
+  <style>
+    /* 统计区 */
+    .stats-bar {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin: 24px 0 32px;
+    }
+    .stat-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px;
+      flex: 1; min-width: 130px; text-align: center;
+    }
+    .stat-num { font-size: 24px; font-weight: 800; color: var(--accent); line-height: 1.1; }
+    .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+    /* 工具分类区块 */
+    .tool-category-section { margin: 44px 0 8px; }
+    .category-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .category-emoji { font-size: 24px; }
+    .category-info h2 {
+      font-size: 18px; font-weight: 800; color: var(--text);
+      margin: 0; border: none; padding: 0;
+    }
+    .category-info p { font-size: 13px; color: var(--text-3); margin: 3px 0 0; }
+
+    /* 工具卡片网格 */
+    .tool-card-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px; margin-bottom: 12px;
+    }
+    .tool-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+      text-decoration: none; color: inherit;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+    .tool-card:hover {
+      border-color: var(--accent); transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .tc-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .tc-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .tc-stars {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 11px; font-weight: 700; color: var(--star);
+      white-space: nowrap; padding: 2px 6px;
+      background: rgba(251,191,36,0.1); border-radius: 4px;
+      flex-shrink: 0; margin-left: 8px;
+    }
+    .tc-desc { font-size: 12px; color: var(--text-2); line-height: 1.55; margin-bottom: 10px; }
+    .tc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tc-tag {
+      font-size: 10px; padding: 2px 7px; border-radius: 4px;
+      background: rgba(30,41,59,0.8); color: var(--text-3);
+      border: 1px solid var(--border);
+    }
+    .tc-free-badge {
+      font-size: 10px; padding: 2px 7px; border-radius: 4px;
+      background: rgba(52,211,153,0.12); color: var(--green);
+      border: 1px solid rgba(52,211,153,0.2); font-weight: 700;
+    }
+
+    /* Why Open Source 说明区 */
+    .why-opensource {
+      background: linear-gradient(135deg, rgba(129,140,248,0.06) 0%, rgba(56,189,248,0.04) 100%);
+      border: 1px solid rgba(129,140,248,0.2); border-radius: var(--radius);
+      padding: 24px 28px; margin: 28px 0;
+    }
+    .why-opensource h3 {
+      font-size: 16px; font-weight: 700; color: var(--text);
+      margin: 0 0 14px;
+    }
+    .license-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px; margin-top: 16px;
+    }
+    .license-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 12px 14px;
+    }
+    .license-name {
+      font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 4px;
+    }
+    .license-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+
+    /* 分隔线 */
+    .section-divider {
+      border: none; border-top: 1px solid var(--border); margin: 36px 0;
+    }
+
+    /* AdSense */
+    .ad-container {
+      margin: 32px 0; padding: 16px; text-align: center;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); min-height: 100px;
+    }
+
+    /* 对比大表 */
+    .compare-table-wrap {
+      overflow-x: auto; margin: 20px 0 28px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+    .compare-table th {
+      background: var(--card); padding: 11px 14px; text-align: left;
+      font-size: 11px; font-weight: 700; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .compare-table td {
+      padding: 11px 14px; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; line-height: 1.4;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--card-hover); }
+    .compare-table td:first-child { font-weight: 700; color: var(--text); }
+    .compare-table td a { color: var(--accent); }
+    .compare-table td a:hover { text-decoration: underline; }
+    .stars-num {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 700; color: var(--star); font-size: 13px; white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home">Directory</a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+      <div class="lang-toggle">
+        <button class="lang-btn" data-langbtn="en">EN</button>
+        <button class="lang-btn" data-langbtn="zh">中</button>
+      </div>
+    </nav>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Free AI Tools</span>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">🆓 Free & Open Source</span>
+    <h1 class="article-title" style="margin-top:12px">
+      Best Free &amp; Open Source<br><span class="gradient">AI Tools in 2026</span>
+    </h1>
+    <div class="article-meta">
+      <span>📅 Updated June 10, 2026</span>
+      <span>⭐ Ranked by GitHub Stars</span>
+      <span>🔒 No Subscription</span>
+      <span>📦 300+ Tools</span>
+    </div>
+    <p class="article-desc">
+      <span class="en">Every tool in this directory is 100% free and open source — no subscription, no hidden costs, no vendor lock-in. Ranked by GitHub stars so you know which ones the community actually trusts.</span>
+      <span class="zh">本目录中的每一款工具均 100% 免费开源——无订阅费、无隐藏成本、无供应商绑定。按 GitHub Star 数排名，让你清楚知道哪些工具真正获得了社区认可。</span>
+    </p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="page-wrap-wide">
+  <div class="content">
+
+    <!-- 统计栏 -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-num">300+</div>
+        <div class="stat-label">Free Tools Listed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Subscription Cost</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Categories Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2.1M+</div>
+        <div class="stat-label">Combined GitHub Stars</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Weekly</div>
+        <div class="stat-label">Star Count Updates</div>
+      </div>
+    </div>
+
+    <!-- Why Open Source = Truly Free -->
+    <h2 id="why-free">
+      <span class="en">Why "Open Source" Means Truly Free</span>
+      <span class="zh">为什么"开源"意味着真正免费</span>
+    </h2>
+    <p>
+      <span class="en">The word "free" gets abused in tech — free tiers with rate limits, freemium with essential features paywalled, or "free during beta" that converts to paid. Open source is different. These tools are released under software licenses that <strong>legally guarantee</strong> your right to use, modify, and distribute them without paying.</span>
+      <span class="zh">"免费"在科技行业常遭滥用——有速率限制的免费层、核心功能付费墙的免费增值模式，或"测试期免费"后转为付费。开源不同。这些工具发布于<strong>法律上保障</strong>你无需付费即可使用、修改和分发的软件许可证下。</span>
+    </p>
+
+    <div class="why-opensource">
+      <h3>
+        <span class="en">Open Source Licenses: What They Guarantee</span>
+        <span class="zh">开源许可证：它们保障什么</span>
+      </h3>
+      <p style="font-size:14px;color:var(--text-2);margin-bottom:16px">
+        <span class="en">The tools in this directory are released under these permissive licenses. Each one guarantees your freedom to use the software without subscription fees, forever:</span>
+        <span class="zh">本目录中的工具均基于以下宽松许可证发布。每种许可证都永久保障你无需订阅费即可使用该软件：</span>
+      </p>
+      <div class="license-grid">
+        <div class="license-item">
+          <div class="license-name">MIT License</div>
+          <div class="license-desc">
+            <span class="en">Use commercially, modify, distribute, sublicense. No restrictions. Used by: Open WebUI, LangChain, Jan.</span>
+            <span class="zh">可商用、修改、分发、再许可。无任何限制。代表项目：Open WebUI、LangChain、Jan。</span>
+          </div>
+        </div>
+        <div class="license-item">
+          <div class="license-name">Apache 2.0</div>
+          <div class="license-desc">
+            <span class="en">Commercial use allowed. Requires license and copyright notice. Used by: Transformers, vLLM, Ollama.</span>
+            <span class="zh">允许商用，需保留许可证和版权声明。代表项目：Transformers、vLLM、Ollama。</span>
+          </div>
+        </div>
+        <div class="license-item">
+          <div class="license-name">GPL v3</div>
+          <div class="license-desc">
+            <span class="en">Free to use and modify. If you distribute, you must open-source your changes. Used by: Stable Diffusion WebUI.</span>
+            <span class="zh">可自由使用和修改。若分发，须开源你的修改部分。代表项目：Stable Diffusion WebUI。</span>
+          </div>
+        </div>
+        <div class="license-item">
+          <div class="license-name">Self-Hosting</div>
+          <div class="license-desc">
+            <span class="en">Run on your own server or desktop. No API costs, no rate limits, no data sent to third parties. True ownership.</span>
+            <span class="zh">在自己的服务器或桌面运行。无 API 费用、无速率限制、无数据发送至第三方。真正的数据所有权。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 分类 1: AI Image Generation -->
+    <hr class="section-divider">
+    <div class="tool-category-section">
+      <div class="category-header">
+        <span class="category-emoji">🎨</span>
+        <div class="category-info">
+          <h2 id="image-gen">
+            <span class="en">Free AI Image Generation</span>
+            <span class="zh">免费 AI 图像生成</span>
+          </h2>
+          <p>
+            <span class="en">Self-hosted image generators. Run locally, no per-image fees, unlimited generations.</span>
+            <span class="zh">可自托管的图像生成器。本地运行，无单张计费，生成次数无限制。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card-grid">
+      <a href="tools/sd-webui.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Stable Diffusion WebUI</span>
+          <span class="tc-stars">⭐ 163,535</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">The most popular open-source image generator. Supports 50,000+ community models, ControlNet, inpainting, and batch generation. Runs on consumer GPUs.</span>
+          <span class="zh">最受欢迎的开源图像生成器。支持 5 万余种社区模型、ControlNet、局部修复和批量生成。消费级 GPU 即可运行。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">SDXL</span>
+          <span class="tc-tag">ControlNet</span>
+          <span class="tc-tag">Local GPU</span>
+          <span class="tc-tag">163K Stars</span>
+        </div>
+      </a>
+      <a href="tools/comfyui.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">ComfyUI</span>
+          <span class="tc-stars">⭐ 75,108</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Node-based workflow editor for Stable Diffusion. More complex than WebUI but offers precise control over every generation step. Favored by professionals.</span>
+          <span class="zh">Stable Diffusion 的节点式工作流编辑器。比 WebUI 复杂，但对每个生成步骤提供精确控制，深受专业人士青睐。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Node Workflow</span>
+          <span class="tc-tag">Flux</span>
+          <span class="tc-tag">Advanced</span>
+        </div>
+      </a>
+      <a href="tools/invokeai.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">InvokeAI</span>
+          <span class="tc-stars">⭐ 23,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Professional-grade Stable Diffusion interface with a canvas editor for inpainting/outpainting. Clean UI aimed at artists and designers.</span>
+          <span class="zh">专业级 Stable Diffusion 界面，配备局部修复/扩展的画布编辑器，简洁 UI 专为艺术家和设计师打造。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Canvas Editor</span>
+          <span class="tc-tag">Artist-friendly</span>
+        </div>
+      </a>
+      <a href="tools/fooocus.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Fooocus</span>
+          <span class="tc-stars">⭐ 41,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Simplified Stable Diffusion interface inspired by Midjourney. Minimal settings, maximum output quality. Best for beginners who want great results fast.</span>
+          <span class="zh">受 Midjourney 启发的简化版 Stable Diffusion 界面。极简设置，高质量输出。最适合想快速获得优质结果的新手。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Beginner-friendly</span>
+          <span class="tc-tag">Midjourney-style</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- AdSense 广告位 -->
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2761695780807828"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 分类 2: Free AI Chat -->
+    <hr class="section-divider">
+    <div class="tool-category-section">
+      <div class="category-header">
+        <span class="category-emoji">💬</span>
+        <div class="category-info">
+          <h2 id="ai-chat">
+            <span class="en">Free AI Chat (ChatGPT Alternatives)</span>
+            <span class="zh">免费 AI 聊天（ChatGPT 替代品）</span>
+          </h2>
+          <p>
+            <span class="en">Self-hosted chat interfaces. Full privacy, no usage limits, no monthly fees.</span>
+            <span class="zh">可自托管的聊天界面。完全私密、无使用限制、无月费。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card-grid">
+      <a href="tools/open-webui.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Open WebUI</span>
+          <span class="tc-stars">⭐ 140,564</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">The most starred open-source ChatGPT alternative. Polished UI, RAG support, multi-model switching, voice input, and image generation — all in one interface.</span>
+          <span class="zh">Star 数最多的开源 ChatGPT 替代品。精致 UI，支持 RAG、多模型切换、语音输入和图像生成，一体化界面。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">100% Local</span>
+          <span class="tc-tag">Docker</span>
+          <span class="tc-tag">RAG</span>
+        </div>
+      </a>
+      <a href="tools/lobe-chat.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">LobeChat</span>
+          <span class="tc-stars">⭐ 78,348</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Modern, beautifully designed AI chat UI with plugin support. Deploy with Docker or Vercel. Supports GPT-4, Claude, Gemini, and local Ollama models.</span>
+          <span class="zh">现代设计的 AI 聊天界面，支持插件扩展。可通过 Docker 或 Vercel 部署，支持 GPT-4、Claude、Gemini 和本地 Ollama 模型。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Plugins</span>
+          <span class="tc-tag">Multi-model</span>
+          <span class="tc-tag">Beautiful UI</span>
+        </div>
+      </a>
+      <a href="tools/anything-llm.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">AnythingLLM</span>
+          <span class="tc-stars">⭐ 61,227</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">All-in-one AI workspace for documents and chat. Upload PDFs, Word docs, spreadsheets, and websites. Multi-user with role-based access control.</span>
+          <span class="zh">文档与聊天的一体化 AI 工作区。可上传 PDF、Word 文档、电子表格和网站内容，支持多用户及基于角色的访问控制。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Document Q&A</span>
+          <span class="tc-tag">Multi-user</span>
+          <span class="tc-tag">Local</span>
+        </div>
+      </a>
+      <a href="tools/jan.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Jan</span>
+          <span class="tc-stars">⭐ 42,935</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Native desktop AI app for Mac, Windows, and Linux. Works completely offline. Electron-based with a clean interface. Download models directly from the Hub.</span>
+          <span class="zh">适用于 Mac、Windows 和 Linux 的原生桌面 AI 应用。完全离线运行。基于 Electron 构建，界面简洁，可直接从 Hub 下载模型。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Desktop App</span>
+          <span class="tc-tag">Fully Offline</span>
+          <span class="tc-tag">Mac/Win/Linux</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 分类 3: AI Coding Assistants -->
+    <hr class="section-divider">
+    <div class="tool-category-section">
+      <div class="category-header">
+        <span class="category-emoji">💻</span>
+        <div class="category-info">
+          <h2 id="coding">
+            <span class="en">Free AI Coding Assistants</span>
+            <span class="zh">免费 AI 代码助手</span>
+          </h2>
+          <p>
+            <span class="en">Open-source alternatives to GitHub Copilot. No per-seat fees, full IDE integration.</span>
+            <span class="zh">GitHub Copilot 的开源替代品。无按席位收费，完整 IDE 集成。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card-grid">
+      <a href="tools/openhands.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">OpenHands</span>
+          <span class="tc-stars">⭐ 76,204</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Autonomous software engineering agent. Give it a task in natural language — it writes code, runs tests, fixes bugs, and deploys. Supports GPT-4, Claude, and local models.</span>
+          <span class="zh">自主软件工程代理。用自然语言描述任务——它会编写代码、运行测试、修复 Bug 并完成部署。支持 GPT-4、Claude 和本地模型。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Autonomous</span>
+          <span class="tc-tag">Web UI</span>
+          <span class="tc-tag">Multi-model</span>
+        </div>
+      </a>
+      <a href="tools/cline.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Cline</span>
+          <span class="tc-stars">⭐ 62,902</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">VS Code extension that understands your entire codebase. Can edit files, run terminal commands, and browse documentation autonomously. The top open-source Copilot alternative.</span>
+          <span class="zh">能理解整个代码库的 VS Code 扩展。可自主编辑文件、运行终端命令和浏览文档。最受欢迎的开源 Copilot 替代品。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">VS Code</span>
+          <span class="tc-tag">Codebase-aware</span>
+          <span class="tc-tag">Claude 3.5</span>
+        </div>
+      </a>
+      <a href="tools/aider.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Aider</span>
+          <span class="tc-stars">⭐ 34,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">AI pair programmer in your terminal. Automatically edits files and commits changes to Git. Supports 60+ LLMs including local Ollama models.</span>
+          <span class="zh">终端中的 AI 结对编程工具。自动编辑文件并提交 Git 更改。支持包括本地 Ollama 模型在内的 60 余种 LLM。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Terminal</span>
+          <span class="tc-tag">Git Integration</span>
+          <span class="tc-tag">60+ LLMs</span>
+        </div>
+      </a>
+      <a href="tools/continue.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Continue</span>
+          <span class="tc-stars">⭐ 22,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Open-source VS Code and JetBrains extension for AI code completion and chat. Connect to any model — Ollama, Anthropic, OpenAI, or custom endpoints.</span>
+          <span class="zh">用于 AI 代码补全和聊天的开源 VS Code 和 JetBrains 扩展。可连接任意模型——Ollama、Anthropic、OpenAI 或自定义端点。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">VS Code</span>
+          <span class="tc-tag">JetBrains</span>
+          <span class="tc-tag">Any Model</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 分类 4: AI Audio & Voice -->
+    <hr class="section-divider">
+    <div class="tool-category-section">
+      <div class="category-header">
+        <span class="category-emoji">🎵</span>
+        <div class="category-info">
+          <h2 id="audio-voice">
+            <span class="en">Free AI Audio & Voice</span>
+            <span class="zh">免费 AI 音频与语音</span>
+          </h2>
+          <p>
+            <span class="en">Speech recognition, text-to-speech, and voice cloning — all open source.</span>
+            <span class="zh">语音识别、文字转语音和声音克隆——全部开源。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card-grid">
+      <a href="tools/whisper.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Whisper</span>
+          <span class="tc-stars">⭐ 81,250</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">OpenAI's open-source speech recognition model. Transcribes audio in 99 languages with near-human accuracy. Runs locally — no API costs, complete privacy.</span>
+          <span class="zh">OpenAI 的开源语音识别模型。支持 99 种语言，转录准确率接近人工水平。本地运行，无 API 费用，完全私密。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">99 Languages</span>
+          <span class="tc-tag">MIT License</span>
+          <span class="tc-tag">CPU/GPU</span>
+        </div>
+      </a>
+      <a href="tools/bark.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Bark</span>
+          <span class="tc-stars">⭐ 47,521</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Suno AI's text-to-audio model. Generates realistic speech with laughter, sighs, and music. Supports multiple languages and voice styles without a subscription.</span>
+          <span class="zh">Suno AI 的文本转音频模型。可生成包含笑声、叹气声和音乐的逼真语音。支持多种语言和声音风格，无需订阅。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">TTS</span>
+          <span class="tc-tag">Music</span>
+          <span class="tc-tag">Multilingual</span>
+        </div>
+      </a>
+      <a href="tools/openvoice.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">OpenVoice</span>
+          <span class="tc-stars">⭐ 30,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Instant voice cloning from a short audio sample. Clone any voice and control tone, speaking style, and emotion. MIT licensed for commercial use.</span>
+          <span class="zh">从短音频样本进行即时声音克隆。克隆任意声音并控制音调、说话风格和情感。MIT 许可，可商用。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Voice Cloning</span>
+          <span class="tc-tag">MIT License</span>
+          <span class="tc-tag">Commercial OK</span>
+        </div>
+      </a>
+      <a href="tools/so-vits-svc.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">so-vits-svc</span>
+          <span class="tc-stars">⭐ 18,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Voice conversion model that transforms one voice into another. Popular for singing voice synthesis. Requires training on target voice samples.</span>
+          <span class="zh">将一种声音转换为另一种声音的语音转换模型。在歌声合成领域广受欢迎，需要对目标声音样本进行训练。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Voice Conversion</span>
+          <span class="tc-tag">Singing</span>
+          <span class="tc-tag">Training Required</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 分类 5: AI Agents & Automation -->
+    <hr class="section-divider">
+    <div class="tool-category-section">
+      <div class="category-header">
+        <span class="category-emoji">🤖</span>
+        <div class="category-info">
+          <h2 id="agents">
+            <span class="en">Free AI Agents & Automation</span>
+            <span class="zh">免费 AI 代理与自动化</span>
+          </h2>
+          <p>
+            <span class="en">Autonomous AI agents and workflow automation tools. Self-hosted, no per-run fees.</span>
+            <span class="zh">自主 AI 代理和工作流自动化工具。可自托管，无按次计费。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card-grid">
+      <a href="tools/n8n.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">n8n</span>
+          <span class="tc-stars">⭐ 191,556</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">The most starred workflow automation tool. Self-hostable Zapier alternative with 400+ integrations and native AI nodes. Fair-code licensed for self-hosted use.</span>
+          <span class="zh">Star 数最多的工作流自动化工具。可自托管的 Zapier 替代品，拥有 400 余种集成和原生 AI 节点。自托管使用采用公平代码许可证。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE (self-host)</span>
+          <span class="tc-tag">400+ integrations</span>
+          <span class="tc-tag">AI Nodes</span>
+        </div>
+      </a>
+      <a href="tools/autogpt.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">AutoGPT</span>
+          <span class="tc-stars">⭐ 184,840</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">The original autonomous AI agent. Sets its own goals, creates sub-tasks, and executes them in a loop. The project that popularized AI agent architecture.</span>
+          <span class="zh">最早的自主 AI 代理。自主设定目标、创建子任务并循环执行。正是这个项目推广了 AI 代理架构理念。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Autonomous</span>
+          <span class="tc-tag">MIT License</span>
+          <span class="tc-tag">Pioneer</span>
+        </div>
+      </a>
+      <a href="tools/browser-use.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Browser Use</span>
+          <span class="tc-stars">⭐ 96,488</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Connect any LLM to a browser. The agent can browse websites, fill forms, and extract data autonomously. Built on Playwright with a simple Python API.</span>
+          <span class="zh">将任意 LLM 连接到浏览器。代理可自主浏览网站、填写表单和提取数据。基于 Playwright 构建，提供简洁的 Python API。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Browser Agent</span>
+          <span class="tc-tag">Playwright</span>
+          <span class="tc-tag">Python</span>
+        </div>
+      </a>
+      <a href="tools/crewai.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">CrewAI</span>
+          <span class="tc-stars">⭐ 52,573</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Multi-agent orchestration framework. Create teams of AI agents with different roles that collaborate to complete complex tasks. Clean Python API with role-based agents.</span>
+          <span class="zh">多代理编排框架。创建具有不同角色的 AI 代理团队，协作完成复杂任务。提供简洁的 Python API 和基于角色的代理机制。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Multi-agent</span>
+          <span class="tc-tag">Role-based</span>
+          <span class="tc-tag">Python</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 分类 6: RAG & Knowledge -->
+    <hr class="section-divider">
+    <div class="tool-category-section">
+      <div class="category-header">
+        <span class="category-emoji">📚</span>
+        <div class="category-info">
+          <h2 id="rag-knowledge">
+            <span class="en">Free AI for RAG & Knowledge</span>
+            <span class="zh">免费 AI RAG 与知识库工具</span>
+          </h2>
+          <p>
+            <span class="en">Build private knowledge bases and document Q&A systems with complete data privacy.</span>
+            <span class="zh">构建完全数据私密的私有知识库和文档问答系统。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-card-grid">
+      <a href="tools/privateGPT.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">PrivateGPT</span>
+          <span class="tc-stars">⭐ 57,206</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Ask questions to your documents with zero data leaving your machine. Drop in PDFs, Word docs, and text files. 100% local inference, zero internet required.</span>
+          <span class="zh">对本地文档提问，数据完全不离开你的设备。支持拖入 PDF、Word 文档和文本文件。100% 本地推理，无需联网。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">100% Local</span>
+          <span class="tc-tag">Document Q&A</span>
+          <span class="tc-tag">Offline</span>
+        </div>
+      </a>
+      <a href="tools/anything-llm.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">AnythingLLM</span>
+          <span class="tc-stars">⭐ 61,227</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Multi-document workspace with team features. Upload any content type, organize into workspaces, and enable multi-user access with permission control.</span>
+          <span class="zh">支持团队功能的多文档工作区。可上传任意内容类型，组织到工作区中，并启用带权限控制的多用户访问。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Multi-user</span>
+          <span class="tc-tag">All File Types</span>
+          <span class="tc-tag">Local or Cloud</span>
+        </div>
+      </a>
+      <a href="tools/khoj.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Khoj</span>
+          <span class="tc-stars">⭐ 18,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Personal AI assistant that searches your notes, documents, and the web. Integrates with Obsidian, Emacs, and Notion. Self-hostable with local models.</span>
+          <span class="zh">个人 AI 助手，可搜索你的笔记、文档和网络内容。与 Obsidian、Emacs 和 Notion 集成，支持本地模型自托管。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE</span>
+          <span class="tc-tag">Personal AI</span>
+          <span class="tc-tag">Obsidian</span>
+          <span class="tc-tag">Web Search</span>
+        </div>
+      </a>
+      <a href="tools/danswer.html" class="tool-card">
+        <div class="tc-header">
+          <span class="tc-name">Danswer</span>
+          <span class="tc-stars">⭐ 11,000+</span>
+        </div>
+        <p class="tc-desc">
+          <span class="en">Open-source enterprise search with AI. Connect to Slack, Confluence, Jira, and 30+ sources. Answer questions across all your company's knowledge bases.</span>
+          <span class="zh">带 AI 的开源企业搜索工具。可连接 Slack、Confluence、Jira 和 30 余种数据源，跨公司所有知识库回答问题。</span>
+        </p>
+        <div class="tc-tags">
+          <span class="tc-free-badge">FREE (self-host)</span>
+          <span class="tc-tag">Enterprise</span>
+          <span class="tc-tag">30+ Connectors</span>
+          <span class="tc-tag">Team</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 与付费服务对比大表 -->
+    <h2 id="vs-paid">
+      <span class="en">Free Open Source vs Paid Services: Direct Comparison</span>
+      <span class="zh">免费开源 vs 付费服务：直接对比</span>
+    </h2>
+    <p>
+      <span class="en">Every category of paid AI tool now has a free open-source alternative. Here's the direct comparison:</span>
+      <span class="zh">如今，每个付费 AI 工具类别都有对应的免费开源替代品。以下是直接对比：</span>
+    </p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Paid Service</th>
+            <th>Monthly Cost</th>
+            <th>Free Alternative</th>
+            <th>Stars</th>
+            <th>Key Difference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ChatGPT Plus</td>
+            <td style="color:#f87171">$20/mo</td>
+            <td><a href="tools/open-webui.html">Open WebUI + Ollama</a></td>
+            <td><span class="stars-num">⭐ 140K+</span></td>
+            <td>Local, private, no rate limits</td>
+          </tr>
+          <tr>
+            <td>Midjourney</td>
+            <td style="color:#f87171">$10–60/mo</td>
+            <td><a href="tools/sd-webui.html">Stable Diffusion WebUI</a></td>
+            <td><span class="stars-num">⭐ 163K</span></td>
+            <td>Unlimited generations, local GPU</td>
+          </tr>
+          <tr>
+            <td>GitHub Copilot</td>
+            <td style="color:#f87171">$10–19/mo</td>
+            <td><a href="tools/cline.html">Cline</a></td>
+            <td><span class="stars-num">⭐ 62K</span></td>
+            <td>Autonomous, file-level editing</td>
+          </tr>
+          <tr>
+            <td>ElevenLabs</td>
+            <td style="color:#f87171">$5–330/mo</td>
+            <td><a href="tools/bark.html">Bark</a> / OpenVoice</td>
+            <td><span class="stars-num">⭐ 47K+</span></td>
+            <td>Local TTS + voice cloning</td>
+          </tr>
+          <tr>
+            <td>Zapier</td>
+            <td style="color:#f87171">$20–799/mo</td>
+            <td><a href="tools/n8n.html">n8n</a></td>
+            <td><span class="stars-num">⭐ 191K</span></td>
+            <td>400+ integrations, self-hostable</td>
+          </tr>
+          <tr>
+            <td>Notion AI</td>
+            <td style="color:#f87171">$8–16/mo</td>
+            <td><a href="tools/anything-llm.html">AnythingLLM</a></td>
+            <td><span class="stars-num">⭐ 61K</span></td>
+            <td>Private, multi-user workspaces</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2 id="faq">
+        <span class="en">Frequently Asked Questions</span>
+        <span class="zh">常见问题</span>
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Are these AI tools really completely free?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Yes. Every tool listed here is open-source under licenses like MIT, Apache 2.0, or GPL — meaning the software itself is free forever. The only cost is your own hardware (computer, GPU) or a VPS if you self-host. There are no subscriptions, no free tiers with hidden paywalls, and no vendor lock-in. You own your data, your models, and your infrastructure.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>What is the best free AI image generator?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Stable Diffusion WebUI (AUTOMATIC1111) is the most popular free AI image generator with 163,000+ GitHub stars. It runs locally on your GPU, supports thousands of community models and LoRA adaptors, and produces commercial-quality images. ComfyUI is the better choice if you want a node-based workflow for complex pipelines. For the easiest installation experience, Fooocus provides a simplified Stable Diffusion interface.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Can I use these free AI tools for commercial projects?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Most tools listed here use MIT or Apache 2.0 licenses, which explicitly allow commercial use without royalties. However, some models have specific licensing restrictions — notably, Llama 3 requires a license agreement for large-scale commercial deployment (100M+ users). Always check the specific license of the model (not just the software wrapper) before commercial deployment. When in doubt, models like Mistral 7B (Apache 2.0) are unrestricted for commercial use.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>What free AI tools work without GPU?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Many free AI tools work on CPU-only machines: Ollama with llama.cpp backend runs 7B models on 8GB RAM (slower but functional), Whisper (speech recognition) works well on CPU, n8n (workflow automation) has no GPU requirement, and all the UI tools like Open WebUI, LobeChat, and LibreChat need no GPU — only the underlying model does. For image generation, CPU inference is very slow (minutes per image), so a GPU is strongly recommended.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Which free AI tools are the best alternatives to paid services?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Top free alternatives to paid AI services: ChatGPT → Open WebUI + Ollama (free, private); Midjourney → Stable Diffusion WebUI (free, local); GitHub Copilot → Cline + Ollama (free, VS Code); ElevenLabs → Bark or OpenVoice (free, open source); Zapier AI → n8n (free, self-hosted); Notion AI → Khoj or AnythingLLM (free, private). All provide comparable functionality without monthly subscriptions.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related pages -->
+    <h2>
+      <span class="en">Related Guides</span>
+      <span class="zh">相关指南</span>
+    </h2>
+    <div class="related-grid">
+      <a href="open-source-chatgpt-alternatives.html" class="related-card">
+        <div class="related-card-name">ChatGPT Alternatives</div>
+        <div class="related-card-desc">11 open-source alternatives ranked by GitHub stars</div>
+      </a>
+      <a href="ai-tools-for-developers.html" class="related-card">
+        <div class="related-card-name">AI Tools for Developers</div>
+        <div class="related-card-desc">Best coding assistants, LLM frameworks, dev infrastructure</div>
+      </a>
+      <a href="blog/run-llm-locally-guide.html" class="related-card">
+        <div class="related-card-name">Run LLMs Locally</div>
+        <div class="related-card-desc">Complete guide to running language models on your own hardware</div>
+      </a>
+      <a href="blog/ai-agent-frameworks-guide-2025.html" class="related-card">
+        <div class="related-card-name">Agent Frameworks Guide</div>
+        <div class="related-card-desc">LangChain vs AutoGen vs CrewAI comparison</div>
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px">
+      <a href="index.html" class="cta-btn">Browse Full Directory ↗</a>
+      <a href="open-source-chatgpt-alternatives.html" class="cta-btn-outline">ChatGPT Alternatives</a>
+      <a href="ai-tools-for-developers.html" class="cta-btn-outline">Developer Tools</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

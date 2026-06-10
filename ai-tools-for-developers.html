@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best AI Tools for Developers in 2026 – Open Source Picks | AI Nav</title>
+  <meta name="description" content="Top AI coding assistants, LLM frameworks, and developer infrastructure tools ranked by GitHub stars. All open source, all free.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/ai-tools-for-developers">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best AI Tools for Developers in 2026 – Open Source Picks | AI Nav">
+  <meta property="og:description" content="Top AI coding assistants, LLM frameworks, and developer infrastructure tools ranked by GitHub stars. All open source, all free.">
+  <meta property="og:url" content="https://yuzec.com/ai-tools-for-developers">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+
+  <!-- Schema.org: Article + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Best AI Tools for Developers in 2026",
+        "description": "Top AI coding assistants, LLM frameworks, and developer infrastructure tools ranked by GitHub stars. All open source, all free.",
+        "url": "https://yuzec.com/ai-tools-for-developers",
+        "datePublished": "2026-06-10",
+        "dateModified": "2026-06-10",
+        "author": {
+          "@type": "Organization",
+          "name": "AI Nav",
+          "url": "https://yuzec.com"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "AI Nav",
+          "url": "https://yuzec.com"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://yuzec.com/ai-tools-for-developers"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the best AI coding assistant for VS Code?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cline (formerly Claude Dev) is the best open-source AI coding assistant for VS Code in 2026, with 62,900+ GitHub stars. It integrates directly into your VS Code sidebar, supports Claude 3.5 Sonnet and GPT-4o, and can autonomously edit files, run terminal commands, and browse the web to complete tasks. Continue is another strong option for a more lightweight inline code completion experience."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which LLM framework should I use for my project?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It depends on your use case: LangChain (138,000+ stars) is best for building complex chains and RAG pipelines with extensive integrations. LlamaIndex is optimized specifically for connecting data sources to LLMs. Ollama is the go-to for local development without API costs. For production serving at scale, vLLM provides the best throughput. Start with Ollama + LangChain for most projects."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I add AI to my existing application?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The simplest path: (1) Install Ollama locally, (2) Use the LangChain Python library to wrap your Ollama model, (3) Build a RetrievalQA chain if you need document context. For a 5-line example: from langchain_ollama import OllamaLLM; llm = OllamaLLM(model='llama3.2'); response = llm.invoke('Your question'). For production, replace Ollama with vLLM for better throughput."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the best free AI tools for Python developers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The Python AI developer stack in 2026: Transformers (161,000+ stars) for pre-trained model access, LangChain for LLM application development, Ollama for local model running, LlamaIndex for RAG pipelines, Gradio for rapid UI demos, and LangFuse for observability. All are free, open-source, and have excellent Python documentation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which AI tools work without an internet connection?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Tools that work fully offline: Ollama (run LLMs locally), llama.cpp (C++ inference engine), Jan (desktop AI app), Open WebUI (chat UI for local models), PrivateGPT (document Q&A), and AnythingLLM (multi-document workspace). These all use local model inference — no API calls, no internet required after initial model download."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- BreadcrumbList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://yuzec.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Best AI Tools for Developers in 2026",
+        "item": "https://yuzec.com/ai-tools-for-developers"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+
+  <style>
+    /* 对比表格 */
+    .compare-table-wrap {
+      overflow-x: auto; margin: 20px 0 28px;
+      border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .compare-table {
+      width: 100%; border-collapse: collapse; font-size: 14px;
+    }
+    .compare-table th {
+      background: var(--card); padding: 11px 14px; text-align: left;
+      font-size: 11px; font-weight: 700; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .compare-table td {
+      padding: 11px 14px; border-bottom: 1px solid var(--border);
+      color: var(--text-2); vertical-align: middle; line-height: 1.4;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--card-hover); }
+    .compare-table td:first-child { font-weight: 700; color: var(--text); white-space: nowrap; }
+    .compare-table td a { color: var(--accent); }
+    .compare-table td a:hover { text-decoration: underline; }
+    .stars-num {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-weight: 700; color: var(--star); font-size: 13px; white-space: nowrap;
+    }
+
+    /* 分类标题 */
+    .category-section { margin: 40px 0 8px; }
+    .category-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; border-radius: 999px;
+      font-size: 13px; font-weight: 700;
+      background: var(--accent-dim); color: var(--accent);
+      border: 1px solid rgba(129,140,248,0.25); margin-bottom: 14px;
+    }
+
+    /* 阶段卡片 */
+    .phase-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin: 20px 0 28px;
+    }
+    @media (max-width: 700px) {
+      .phase-grid { grid-template-columns: 1fr; }
+    }
+    .phase-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+      transition: border-color 0.2s;
+    }
+    .phase-card:hover { border-color: var(--accent); }
+    .phase-label {
+      font-size: 11px; font-weight: 700; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+    }
+    .phase-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .phase-tools { list-style: none; padding: 0; margin: 0; }
+    .phase-tools li {
+      font-size: 13px; color: var(--text-2); padding: 5px 0;
+      border-bottom: 1px solid var(--border); display: flex;
+      align-items: center; gap: 8px;
+    }
+    .phase-tools li:last-child { border-bottom: none; }
+    .phase-tools li::before { content: "→"; color: var(--accent); font-weight: 700; }
+
+    /* 代码块 */
+    .code-block-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin: 20px 0 28px; overflow: hidden;
+    }
+    .code-block-header {
+      background: var(--card); padding: 10px 16px;
+      font-size: 12px; font-weight: 600; color: var(--text-3);
+      border-bottom: 1px solid var(--border); display: flex;
+      align-items: center; gap: 8px;
+    }
+    .code-block-lang {
+      background: rgba(129,140,248,0.15); color: var(--accent);
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700;
+    }
+    pre {
+      padding: 18px 20px; overflow-x: auto; margin: 0;
+    }
+    pre code {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 13px; line-height: 1.7;
+      background: none; border: none; padding: 0;
+      color: var(--text-2);
+    }
+    pre code .comment { color: var(--text-3); }
+    pre code .keyword { color: var(--accent); }
+    pre code .string { color: var(--green); }
+
+    /* 工具卡片网格 */
+    .tool-highlight-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px; margin: 20px 0 28px;
+    }
+    .tool-highlight-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 18px;
+      text-decoration: none; color: inherit; transition: all 0.2s;
+      display: block;
+    }
+    .tool-highlight-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .thc-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .thc-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .thc-stars { font-size: 12px; font-weight: 700; color: var(--star); }
+    .thc-desc { font-size: 12px; color: var(--text-2); line-height: 1.5; margin-bottom: 8px; }
+    .thc-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .thc-tag {
+      font-size: 10px; padding: 2px 7px; border-radius: 4px;
+      background: var(--accent-dim); color: var(--accent);
+      border: 1px solid rgba(129,140,248,0.2);
+    }
+
+    /* AdSense */
+    .ad-container {
+      margin: 32px 0; padding: 16px; text-align: center;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); min-height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home">Directory</a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+      <div class="lang-toggle">
+        <button class="lang-btn" data-langbtn="en">EN</button>
+        <button class="lang-btn" data-langbtn="zh">中</button>
+      </div>
+    </nav>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">AI Tools for Developers</span>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero" style="margin-top:16px">
+  <div class="page-hero-inner">
+    <span class="article-badge">💻 Developer Tools</span>
+    <h1 class="article-title" style="margin-top:12px">
+      Best AI Tools for<br><span class="gradient">Developers in 2026</span>
+    </h1>
+    <div class="article-meta">
+      <span>📅 Updated June 10, 2026</span>
+      <span>⭐ Ranked by GitHub Stars</span>
+      <span>🔧 Production-tested</span>
+      <span>🆓 All Open Source</span>
+    </div>
+    <p class="article-desc">
+      <span class="en">AI is transforming software development. Here are the open-source tools with the most GitHub stars — tools that millions of developers actually use in production.</span>
+      <span class="zh">AI 正在重塑软件开发。以下是 GitHub Star 数最多的开源工具——数百万开发者在生产环境中实际使用的工具。</span>
+    </p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="page-wrap-wide">
+  <div class="content">
+
+    <!-- 分类 1: AI Coding Assistants -->
+    <div class="category-section">
+      <div class="category-label">🤖 AI Coding Assistants</div>
+    </div>
+    <h2 id="coding-assistants">
+      <span class="en">AI Coding Assistants</span>
+      <span class="zh">AI 代码助手</span>
+    </h2>
+    <p>
+      <span class="en">These tools integrate directly into your development workflow — IDE extensions, terminal agents, and code-generation interfaces. All ranked by GitHub stars to reflect real adoption.</span>
+      <span class="zh">这些工具直接集成到你的开发工作流——IDE 扩展、终端代理和代码生成界面。按 GitHub Star 数排名，反映真实采用率。</span>
+    </p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Stars</th>
+            <th>IDE Support</th>
+            <th>Model Support</th>
+            <th>Key Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="tools/screenshot-to-code.html">Screenshot to Code</a></td>
+            <td><span class="stars-num">⭐ 72,831</span></td>
+            <td>Web-based</td>
+            <td>GPT-4o Vision</td>
+            <td>Convert UI screenshots to clean code</td>
+          </tr>
+          <tr>
+            <td><a href="tools/openhands.html">OpenHands</a></td>
+            <td><span class="stars-num">⭐ 76,204</span></td>
+            <td>Web-based</td>
+            <td>GPT-4, Claude, Local</td>
+            <td>Autonomous software engineering agent</td>
+          </tr>
+          <tr>
+            <td><a href="tools/cline.html">Cline</a></td>
+            <td><span class="stars-num">⭐ 62,902</span></td>
+            <td>VS Code</td>
+            <td>GPT-4o, Claude 3.5</td>
+            <td>File editing + terminal + browser in VS Code</td>
+          </tr>
+          <tr>
+            <td><a href="tools/open-interpreter.html">Open Interpreter</a></td>
+            <td><span class="stars-num">⭐ 63,848</span></td>
+            <td>Terminal</td>
+            <td>Any OpenAI-compatible</td>
+            <td>Run code in your terminal with natural language</td>
+          </tr>
+          <tr>
+            <td><a href="tools/aider.html">Aider</a></td>
+            <td><span class="stars-num">⭐ 34,000+</span></td>
+            <td>Terminal / Git</td>
+            <td>60+ LLM providers</td>
+            <td>AI pair programmer with Git integration</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tool-highlight-grid">
+      <a href="tools/cline.html" class="tool-highlight-card">
+        <div class="thc-header">
+          <span class="thc-name">Cline</span>
+          <span class="thc-stars">⭐ 62,902</span>
+        </div>
+        <p class="thc-desc">The most powerful VS Code AI assistant. Reads your codebase, edits files, runs terminal commands, and can browse the web to look up documentation — all autonomously.</p>
+        <div class="thc-tags">
+          <span class="thc-tag">VS Code</span>
+          <span class="thc-tag">Claude</span>
+          <span class="thc-tag">GPT-4o</span>
+          <span class="thc-tag">Autonomous</span>
+        </div>
+      </a>
+      <a href="tools/openhands.html" class="tool-highlight-card">
+        <div class="thc-header">
+          <span class="thc-name">OpenHands</span>
+          <span class="thc-stars">⭐ 76,204</span>
+        </div>
+        <p class="thc-desc">An autonomous software engineering agent that can handle full tasks: writing code, debugging, running tests, and deploying — from a single natural language prompt.</p>
+        <div class="thc-tags">
+          <span class="thc-tag">Web UI</span>
+          <span class="thc-tag">Autonomous</span>
+          <span class="thc-tag">Multi-model</span>
+        </div>
+      </a>
+      <a href="tools/screenshot-to-code.html" class="tool-highlight-card">
+        <div class="thc-header">
+          <span class="thc-name">Screenshot to Code</span>
+          <span class="thc-stars">⭐ 72,831</span>
+        </div>
+        <p class="thc-desc">Upload any UI screenshot and get clean HTML/CSS/Tailwind code output. Supports React, Vue, and Bootstrap. Powered by GPT-4o Vision.</p>
+        <div class="thc-tags">
+          <span class="thc-tag">UI Conversion</span>
+          <span class="thc-tag">GPT-4o Vision</span>
+          <span class="thc-tag">HTML/CSS</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- AdSense 广告位 -->
+    <div class="ad-container">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2761695780807828"
+           data-ad-slot="auto"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 分类 2: LLM Frameworks -->
+    <div class="category-section">
+      <div class="category-label">⚙️ LLM Frameworks & Libraries</div>
+    </div>
+    <h2 id="llm-frameworks">
+      <span class="en">LLM Frameworks & Libraries</span>
+      <span class="zh">LLM 框架与函数库</span>
+    </h2>
+    <p>
+      <span class="en">The foundational libraries for building AI applications — from model inference to RAG pipelines and production serving. These are the tools that power the AI applications you use every day.</span>
+      <span class="zh">构建 AI 应用的基础库——从模型推理到 RAG 管道，再到生产级服务。这些工具为你日常使用的 AI 应用提供支撑。</span>
+    </p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Stars</th>
+            <th>Language</th>
+            <th>Primary Use Case</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="tools/ollama.html">Ollama</a></td>
+            <td><span class="stars-num">⭐ 173,540</span></td>
+            <td>Go</td>
+            <td>Local LLM development</td>
+            <td>Running models locally in seconds</td>
+          </tr>
+          <tr>
+            <td><a href="tools/transformers.html">Transformers</a></td>
+            <td><span class="stars-num">⭐ 161,409</span></td>
+            <td>Python</td>
+            <td>Pre-trained models, inference</td>
+            <td>Access 400,000+ Hugging Face models</td>
+          </tr>
+          <tr>
+            <td><a href="tools/langchain.html">LangChain</a></td>
+            <td><span class="stars-num">⭐ 138,796</span></td>
+            <td>Python/JS</td>
+            <td>LLM chains, RAG pipelines</td>
+            <td>Building complex LLM applications</td>
+          </tr>
+          <tr>
+            <td><a href="tools/llama-cpp.html">llama.cpp</a></td>
+            <td><span class="stars-num">⭐ 115,486</span></td>
+            <td>C++</td>
+            <td>CPU/GPU inference</td>
+            <td>Maximum performance on consumer hardware</td>
+          </tr>
+          <tr>
+            <td><a href="tools/llamaindex.html">LlamaIndex</a></td>
+            <td><span class="stars-num">⭐ 97,000+</span></td>
+            <td>Python</td>
+            <td>Data-to-LLM connectors</td>
+            <td>Connecting data sources to LLMs</td>
+          </tr>
+          <tr>
+            <td><a href="tools/vllm.html">vLLM</a></td>
+            <td><span class="stars-num">⭐ 82,198</span></td>
+            <td>Python</td>
+            <td>Production model serving</td>
+            <td>High-throughput inference server</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="expert-take">
+      <p>"Ollama has dramatically lowered the barrier to local LLM development. A developer can go from zero to running Llama 3.2 in about 90 seconds on macOS. Combined with LangChain for orchestration, it's now the fastest path to a working local AI app — and the combination has over 310,000 combined GitHub stars as a signal of community adoption."</p>
+      <cite>— AI Nav Editorial Team, tested June 2026</cite>
+    </div>
+
+    <!-- 分类 3: Developer Infrastructure -->
+    <div class="category-section">
+      <div class="category-label">🏗️ Developer Infrastructure</div>
+    </div>
+    <h2 id="dev-infrastructure">
+      <span class="en">AI Developer Infrastructure</span>
+      <span class="zh">AI 开发者基础设施</span>
+    </h2>
+    <p>
+      <span class="en">The MLOps and observability layer — tools for monitoring, testing, deploying, and building UIs around your AI applications.</span>
+      <span class="zh">MLOps 和可观测性层——用于监控、测试、部署 AI 应用以及构建 UI 的工具。</span>
+    </p>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Stars</th>
+            <th>Category</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="tools/bentoml.html">BentoML</a></td>
+            <td><span class="stars-num">⭐ 20,218</span></td>
+            <td>Serving</td>
+            <td>Build and deploy ML model APIs with minimal boilerplate</td>
+          </tr>
+          <tr>
+            <td><a href="tools/langfuse.html">LangFuse</a></td>
+            <td><span class="stars-num">⭐ 16,127</span></td>
+            <td>Observability</td>
+            <td>LLM tracing, analytics, and evaluation for production apps</td>
+          </tr>
+          <tr>
+            <td><a href="tools/mlflow.html">MLflow</a></td>
+            <td><span class="stars-num">⭐ 18,000+</span></td>
+            <td>MLOps</td>
+            <td>Experiment tracking, model registry, and deployment</td>
+          </tr>
+          <tr>
+            <td><a href="tools/gradio.html">Gradio</a></td>
+            <td><span class="stars-num">⭐ 31,000+</span></td>
+            <td>UI</td>
+            <td>Build shareable ML demos in 3 lines of Python</td>
+          </tr>
+          <tr>
+            <td><a href="tools/deepeval.html">DeepEval</a></td>
+            <td><span class="stars-num">⭐ 8,000+</span></td>
+            <td>Testing</td>
+            <td>LLM evaluation framework — pytest for AI applications</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 按开发阶段推荐 -->
+    <h2 id="by-stage">
+      <span class="en">Which Tools Do You Actually Need?</span>
+      <span class="zh">你真正需要哪些工具？</span>
+    </h2>
+    <p>
+      <span class="en">The answer depends on your development stage. Here's the recommended stack at each phase, based on what the community actually uses in production:</span>
+      <span class="zh">答案取决于你的开发阶段。以下是每个阶段基于社区生产实践的推荐栈：</span>
+    </p>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-label">Phase 1</div>
+        <div class="phase-title">
+          <span class="en">Prototype Stage</span>
+          <span class="zh">原型阶段</span>
+        </div>
+        <ul class="phase-tools">
+          <li>
+            <span class="en"><a href="tools/ollama.html">Ollama</a> — local model runner</span>
+            <span class="zh"><a href="tools/ollama.html">Ollama</a> — 本地模型运行器</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/open-webui.html">Open WebUI</a> — chat interface</span>
+            <span class="zh"><a href="tools/open-webui.html">Open WebUI</a> — 聊天界面</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/langchain.html">LangChain</a> — LLM orchestration</span>
+            <span class="zh"><a href="tools/langchain.html">LangChain</a> — LLM 编排</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/gradio.html">Gradio</a> — rapid demo UI</span>
+            <span class="zh"><a href="tools/gradio.html">Gradio</a> — 快速演示界面</span>
+          </li>
+        </ul>
+      </div>
+      <div class="phase-card" style="border-color: rgba(129,140,248,0.4);">
+        <div class="phase-label">Phase 2</div>
+        <div class="phase-title">
+          <span class="en">Development Stage</span>
+          <span class="zh">开发阶段</span>
+        </div>
+        <ul class="phase-tools">
+          <li>
+            <span class="en"><a href="tools/cline.html">Cline</a> — VS Code AI coding</span>
+            <span class="zh"><a href="tools/cline.html">Cline</a> — VS Code AI 编码助手</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/llamaindex.html">LlamaIndex</a> — RAG pipelines</span>
+            <span class="zh"><a href="tools/llamaindex.html">LlamaIndex</a> — RAG 管道</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/langfuse.html">LangFuse</a> — LLM observability</span>
+            <span class="zh"><a href="tools/langfuse.html">LangFuse</a> — LLM 可观测性</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/deepeval.html">DeepEval</a> — LLM testing</span>
+            <span class="zh"><a href="tools/deepeval.html">DeepEval</a> — LLM 测试</span>
+          </li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-label">Phase 3</div>
+        <div class="phase-title">
+          <span class="en">Production Stage</span>
+          <span class="zh">生产阶段</span>
+        </div>
+        <ul class="phase-tools">
+          <li>
+            <span class="en"><a href="tools/vllm.html">vLLM</a> — high-throughput serving</span>
+            <span class="zh"><a href="tools/vllm.html">vLLM</a> — 高吞吐量推理服务</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/bentoml.html">BentoML</a> — model deployment</span>
+            <span class="zh"><a href="tools/bentoml.html">BentoML</a> — 模型部署</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/mlflow.html">MLflow</a> — experiment tracking</span>
+            <span class="zh"><a href="tools/mlflow.html">MLflow</a> — 实验追踪</span>
+          </li>
+          <li>
+            <span class="en"><a href="tools/langfuse.html">LangFuse</a> — production monitoring</span>
+            <span class="zh"><a href="tools/langfuse.html">LangFuse</a> — 生产监控</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 代码示例 -->
+    <h2 id="code-example">
+      <span class="en">5-Line Local RAG with LangChain + Ollama</span>
+      <span class="zh">LangChain + Ollama 5 行代码构建本地 RAG</span>
+    </h2>
+    <p>
+      <span class="en">The fastest way to build a document Q&A system — runs 100% locally, no API key needed, no data leaves your machine:</span>
+      <span class="zh">构建文档问答系统最快的方式——100% 本地运行，无需 API Key，数据零外泄：</span>
+    </p>
+
+    <div class="code-block-wrap">
+      <div class="code-block-header">
+        <span class="code-block-lang">python</span>
+        <span>Local RAG with LangChain + Ollama + Chroma</span>
+      </div>
+      <pre><code><span class="comment"># Install: pip install langchain langchain-ollama langchain-chroma chromadb</span>
+<span class="comment"># Requires: ollama pull llama3.2 (run once)</span>
+
+<span class="keyword">from</span> langchain_ollama <span class="keyword">import</span> OllamaLLM, OllamaEmbeddings
+<span class="keyword">from</span> langchain_chroma <span class="keyword">import</span> Chroma
+<span class="keyword">from</span> langchain.chains <span class="keyword">import</span> RetrievalQA
+<span class="keyword">from</span> langchain.document_loaders <span class="keyword">import</span> DirectoryLoader
+<span class="keyword">from</span> langchain.text_splitter <span class="keyword">import</span> RecursiveCharacterTextSplitter
+
+<span class="comment"># Step 1: Load your documents</span>
+loader = DirectoryLoader(<span class="string">"./docs"</span>, glob=<span class="string">"**/*.pdf"</span>)
+documents = loader.load()
+
+<span class="comment"># Step 2: Split into chunks</span>
+splitter = RecursiveCharacterTextSplitter(chunk_size=<span class="string">1000</span>, chunk_overlap=<span class="string">200</span>)
+chunks = splitter.split_documents(documents)
+
+<span class="comment"># Step 3: Create vector store (stored locally)</span>
+embeddings = OllamaEmbeddings(model=<span class="string">"llama3.2"</span>)
+vectorstore = Chroma.from_documents(chunks, embeddings, persist_directory=<span class="string">"./chroma_db"</span>)
+
+<span class="comment"># Step 4: Build RAG chain</span>
+llm = OllamaLLM(model=<span class="string">"llama3.2"</span>)
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(search_kwargs={<span class="string">"k"</span>: <span class="string">3</span>})
+)
+
+<span class="comment"># Step 5: Query your documents</span>
+response = qa_chain.invoke({<span class="string">"query"</span>: <span class="string">"Summarize the key findings"</span>})
+<span class="keyword">print</span>(response[<span class="string">"result"</span>])</code></pre>
+    </div>
+
+    <div class="alert alert-info">
+      <strong>Prerequisites:</strong> Python 3.9+, <code>pip install langchain langchain-ollama langchain-chroma chromadb</code>, and Ollama running locally with <code>ollama pull llama3.2</code>. The entire stack is free and runs offline.
+    </div>
+
+    <!-- Pros/Cons for using open-source AI tools -->
+    <h2>
+      <span class="en">Open Source vs Paid AI APIs: The Developer's Perspective</span>
+      <span class="zh">开源 vs 付费 AI API：开发者视角对比</span>
+    </h2>
+    <div class="pros-cons">
+      <div class="pros-box">
+        <h4>Open Source Advantages</h4>
+        <ul>
+          <li>No per-token costs in production</li>
+          <li>Data stays on your infrastructure</li>
+          <li>Fine-tune for your specific domain</li>
+          <li>No rate limits or API downtime</li>
+          <li>Full control over model behavior</li>
+          <li>Offline and air-gapped deployment</li>
+        </ul>
+      </div>
+      <div class="cons-box">
+        <h4>Paid API Advantages</h4>
+        <ul>
+          <li>No infrastructure management</li>
+          <li>State-of-the-art model quality</li>
+          <li>Instant scalability</li>
+          <li>Better multimodal capabilities</li>
+          <li>No GPU hardware required</li>
+          <li>Better for early prototyping</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2 id="faq">
+        <span class="en">Frequently Asked Questions</span>
+        <span class="zh">常见问题</span>
+      </h2>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>What is the best AI coding assistant for VS Code?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Cline (formerly Claude Dev) is the best open-source AI coding assistant for VS Code in 2026, with 62,900+ GitHub stars. It integrates directly into your VS Code sidebar, supports Claude 3.5 Sonnet and GPT-4o, and can autonomously edit files, run terminal commands, and browse the web to complete tasks. Continue is another strong option for a more lightweight inline code completion experience.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Which LLM framework should I use for my project?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            It depends on your use case: LangChain (138,000+ stars) is best for building complex chains and RAG pipelines with extensive integrations. LlamaIndex is optimized specifically for connecting data sources to LLMs. Ollama is the go-to for local development without API costs. For production serving at scale, vLLM provides the best throughput. Start with Ollama + LangChain for most projects.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>How do I add AI to my existing application?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            The simplest path: (1) Install Ollama locally, (2) Use the LangChain Python library to wrap your Ollama model, (3) Build a RetrievalQA chain if you need document context. For a minimal example: <code>from langchain_ollama import OllamaLLM; llm = OllamaLLM(model='llama3.2'); response = llm.invoke('Your question')</code>. For production, replace Ollama with vLLM for better throughput.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>What are the best free AI tools for Python developers?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            The Python AI developer stack in 2026: Transformers (161,000+ stars) for pre-trained model access, LangChain for LLM application development, Ollama for local model running, LlamaIndex for RAG pipelines, Gradio for rapid UI demos, and LangFuse for observability. All are free, open-source, and have excellent Python documentation.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Which AI tools work without an internet connection?</span>
+          <span class="faq-arr">▾</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Tools that work fully offline: Ollama (run LLMs locally), llama.cpp (C++ inference engine), Jan (desktop AI app), Open WebUI (chat UI for local models), PrivateGPT (document Q&A), and AnythingLLM (multi-document workspace). These all use local model inference — no API calls, no internet required after initial model download.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related pages -->
+    <h2>
+      <span class="en">Related Guides</span>
+      <span class="zh">相关指南</span>
+    </h2>
+    <div class="related-grid">
+      <a href="open-source-chatgpt-alternatives.html" class="related-card">
+        <div class="related-card-name">ChatGPT Alternatives</div>
+        <div class="related-card-desc">11 open-source alternatives ranked by GitHub stars</div>
+      </a>
+      <a href="free-ai-tools.html" class="related-card">
+        <div class="related-card-name">Free AI Tools 2026</div>
+        <div class="related-card-desc">Complete directory: image gen, chat, coding, voice</div>
+      </a>
+      <a href="blog/ai-agent-frameworks-guide-2025.html" class="related-card">
+        <div class="related-card-name">Agent Frameworks Guide</div>
+        <div class="related-card-desc">LangChain vs AutoGen vs CrewAI comparison</div>
+      </a>
+      <a href="blog/rag-pipeline-guide.html" class="related-card">
+        <div class="related-card-name">RAG Pipeline Tutorial</div>
+        <div class="related-card-desc">Build a production-ready RAG system step by step</div>
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:36px">
+      <a href="index.html" class="cta-btn">Browse All AI Tools ↗</a>
+      <a href="open-source-chatgpt-alternatives.html" class="cta-btn-outline">ChatGPT Alternatives</a>
+      <a href="free-ai-tools.html" class="cta-btn-outline">Free AI Tools Guide</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
