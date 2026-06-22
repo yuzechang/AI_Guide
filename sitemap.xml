@@ -131,6 +131,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://yuzec.com/blog/ai-code-editors-compared-2026</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://yuzec.com/blog/ai-coding-assistants-compared</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -179,7 +185,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://yuzec.com/blog/mcp-tools-guide-2026</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://yuzec.com/blog/open-source-llms-guide-2026</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yuzec.com/blog/open-source-multimodal-ai-2026</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -208,24 +226,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-    <url>
-      <loc>https://yuzec.com/blog/mcp-tools-guide-2026</loc>
-      <lastmod>2026-06-22</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-    <url>
-      <loc>https://yuzec.com/blog/ai-code-editors-compared-2026</loc>
-      <lastmod>2026-06-22</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-    <url>
-      <loc>https://yuzec.com/blog/open-source-multimodal-ai-2026</loc>
-      <lastmod>2026-06-22</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
   <url>
     <loc>https://yuzec.com/tools/n8n</loc>
     <lastmod>2026-06-22</lastmod>
