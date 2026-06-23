@@ -586,6 +586,11 @@
         </div>
       </div>
 
+    
+      <div class="expert-take" style="margin-top:32px; margin-bottom:8px">
+        <p><strong>What I actually use:</strong> Ollama locally, vLLM when I need to serve a model to multiple users or want proper batching. The decision point is simpler than most guides make it: if you're the only user, Ollama. If there are multiple concurrent users, vLLM. Everything else — throughput benchmarks, PagedAttention, continuous batching — matters only once you've crossed that threshold. One thing that surprised me setting up vLLM: the memory requirements are less predictable than Ollama, because PagedAttention allocates memory dynamically. Budget 20-30% more GPU VRAM than your model needs to avoid OOM errors under load.</p>
+        <cite>— Nolan (yuzc), maintainer of AI Nav</cite>
+      </div>
     </article>
 
     <aside class="sidebar">

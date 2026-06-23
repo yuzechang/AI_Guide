@@ -4,7 +4,21 @@
 >
 > A curated directory of 300+ open-source AI tools, skill frameworks and agent systems. Auto-updated weekly via GitHub Actions.
 
-🌐 **在线访问** → [yuzechang.github.io/AI_Guide](https://yuzechang.github.io/AI_Guide/)
+🌐 **在线访问** → [yuzec.com](https://yuzec.com) | [GitHub Pages](https://yuzechang.github.io/AI_Guide/)
+
+---
+
+## 📈 本周涨幅榜 Top 10（GitHub Stars 增量）
+
+> 每周自动更新，数据来源：GitHub API
+
+<!-- WEEKLY_TRENDING_START -->
+| # | 工具 | 分类 | 本周新增 ⭐ | 总 Stars |
+|---|------|------|-----------|---------|
+| 1 | 查看 [weekly-trending](https://yuzec.com/weekly-trending) 获取最新数据 | — | — | — |
+<!-- WEEKLY_TRENDING_END -->
+
+[→ 查看完整涨幅榜](https://yuzec.com/weekly-trending)
 
 ---
 

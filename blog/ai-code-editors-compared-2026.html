@@ -431,6 +431,11 @@
         <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>For most individual developers: Cursor.</strong> For enterprise teams that need security compliance: GitHub Copilot. For large-scale refactoring tasks: Windsurf. For offline or privacy-sensitive environments: Zed + Ollama. The underlying model quality is converging — the real differences are in agent orchestration, editor UX, and security model. Pick based on which dimension matters most for your situation.</p>
       </div>
 
+    
+      <div class="expert-take" style="margin-top:32px; margin-bottom:8px">
+        <p><strong>What I actually use:</strong> Cursor, for everything in this project — from generating the 300+ tool detail pages to writing the comparison articles. The multi-file context makes it possible to have conversations like "this template generates all tool pages, update the FAQ section to match this format." One thing that surprised me: Cursor's @codebase gets noticeably slower on repos with many generated files, because it indexes dist/ and generated/ folders it shouldn't. The fix is adding them to .cursorignore — took me two hours to figure that out. Windsurf's Cascade is genuinely better for some autonomous tasks. I haven't switched because the friction of moving muscle memory isn't worth it yet.</p>
+        <cite>— Nolan (yuzc), maintainer of AI Nav</cite>
+      </div>
     </article>
 
     <aside class="content-sidebar">

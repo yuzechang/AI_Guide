@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ seo_title }}</title>
   <meta name="description" content="{{ seo_desc }}">
-  <meta name="robots" content="{{ 'noindex, nofollow' if not tool.pros and not tool.cons else 'index, follow' }}">
+  <meta name="robots" content="{{ 'noindex, nofollow' if not tool.pros and not tool.cons and not tool.expert_take else 'index, follow' }}">
   <link rel="canonical" href="{{ base_url }}/tools/{{ tool.id }}">
 
   <!-- Open Graph -->

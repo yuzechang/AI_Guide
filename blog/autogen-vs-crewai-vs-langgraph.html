@@ -596,6 +596,11 @@ result = app.invoke({<span class="string">"messages"</span>: [initial_message], 
         </div>
       </div>
 
+    
+      <div class="expert-take" style="margin-top:32px; margin-bottom:8px">
+        <p><strong>What I actually use:</strong> LangGraph, for this project. I use it to prototype multi-step data pipelines that feed into AI_Guide's weekly trending page. The explicit state graph means I can inspect exactly what happened when something breaks — which happens more than I'd like. CrewAI was my first choice and I got a working prototype in an afternoon. Switched to LangGraph when I needed a human approval step before publishing, which CrewAI made awkward. AutoGen I've only used for research experiments where the conversation log is the output, not a side effect. If I were starting a new agent project today with no constraints, I'd prototype in CrewAI and migrate to LangGraph once the workflow stabilizes.</p>
+        <cite>— Nolan (yuzc), maintainer of AI Nav</cite>
+      </div>
     </article>
 
     <aside class="sidebar">

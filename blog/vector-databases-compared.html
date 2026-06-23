@@ -631,6 +631,11 @@
         </div>
       </div>
 
+    
+      <div class="expert-take" style="margin-top:32px; margin-bottom:8px">
+        <p><strong>What I actually use:</strong> Chroma for local development, Qdrant for anything beyond that. I've built with Weaviate and Milvus too, but both felt over-engineered for a project the size of AI_Guide. Qdrant's filtering performance is the practical reason I chose it for production — once you're combining semantic search with metadata filters (like "tools with 10k+ stars in the agent category"), Chroma's performance degrades and Qdrant stays fast. The thing nobody tells you when comparing vector databases: the operational complexity difference matters more than the benchmark numbers at most scales. Chroma requires zero ops; Qdrant requires minimal ops; Milvus requires dedicated ops attention.</p>
+        <cite>— Nolan (yuzc), maintainer of AI Nav</cite>
+      </div>
     </article>
 
     <aside class="sidebar">

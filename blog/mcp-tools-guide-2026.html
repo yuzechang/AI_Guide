@@ -509,6 +509,11 @@
         <p style="margin:0;font-size:15px;color:var(--text);line-height:1.7"><strong>MCP is not hype — it is the emerging standard for connecting AI to the real world.</strong> Start with the filesystem, github, and brave-search servers to immediately make Claude Desktop dramatically more useful. As your needs grow, the 3,000+ community servers cover almost every external system you'd want to connect. For custom integrations, the Python SDK's FastMCP class makes building your own server a 30-minute task, not a multi-day project.</p>
       </div>
 
+    
+      <div class="expert-take" style="margin-top:32px; margin-bottom:8px">
+        <p><strong>What I actually use:</strong> Several MCP servers with Claude Code for building AI_Guide — the filesystem MCP for bulk file operations, and a custom MCP server for querying the tools database. The practical upside of MCP over plain function calling: the separation of concern means I can use the same MCP servers across different AI clients without rewriting integrations. The current limitation I run into: MCP server discovery is still manual — there's no package manager equivalent, so finding reliable servers requires digging through GitHub. That's the gap the tools in this guide are starting to fill.</p>
+        <cite>— Nolan (yuzc), maintainer of AI Nav</cite>
+      </div>
     </article>
 
     <aside class="content-sidebar">

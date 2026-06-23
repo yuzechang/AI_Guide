@@ -13,7 +13,7 @@
   <meta property="og:description" content="Everything you need to build a RAG system that actually works in production. Chunking, embeddings, vector stores, reranking, and evaluation with code examples.">
   <meta property="og:url" content="https://yuzec.com/blog/rag-pipeline-guide">
   <meta property="og:site_name" content="AI Nav">
-  <meta property="article:published_time" content="2025-05-18T00:00:00Z">
+  <meta property="article:published_time" content="2026-06-22T00:00:00Z">
   <meta property="article:modified_time" content="2026-06-22T00:00:00Z">
   <meta property="og:image" content="https://yuzec.com/og-cover.png">
 
@@ -23,7 +23,7 @@
     "@type": "Article",
     "headline": "Building a Production RAG Pipeline: A Practical Developer Guide",
     "description": "A comprehensive guide to building Retrieval-Augmented Generation systems that work in production, covering chunking, embedding, vector stores, reranking, and evaluation.",
-    "datePublished": "2025-05-18",
+    "datePublished": "2026-06-22",
     "dateModified": "2026-06-22",
     "author": {
       "@type": "Person",
@@ -493,6 +493,11 @@
         </div>
       </div>
 
+    
+      <div class="expert-take" style="margin-top:32px; margin-bottom:8px">
+        <p><strong>What I actually use:</strong> A simple RAG pipeline over AI_Guide's tool descriptions using LlamaIndex + Chroma, running locally. The surprise: chunking strategy matters more than the embedding model for this use case. I tried three embedding models and two chunking strategies — the chunking change improved retrieval precision by more than any model swap. The stack I'd recommend for someone starting: LlamaIndex for the orchestration, Chroma for local development (zero config), migrate to Qdrant when you hit the point of needing complex filtering. Don't optimize the embedding model until you've optimized the chunking.</p>
+        <cite>— Nolan (yuzc), maintainer of AI Nav</cite>
+      </div>
     </article>
 
     <aside class="sidebar">

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor vs Claude Code (2026): Which Should You Choose? | AI Nav</title>
+  <meta name="description" content="cursor (?k+ GitHub Stars, ) vs claude-code (?k+ Stars, ). Side-by-side comparison of features, use cases, and expert recommendation. 2026.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/compare/cursor-vs-claude-code">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cursor vs Claude Code (2026): Which Should You Choose? | AI Nav">
+  <meta property="og:description" content="Compare Cursor and Claude Code side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta property="og:url" content="https://yuzec.com/compare/cursor-vs-claude-code">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cursor vs Claude Code (2026): Which Should You Choose? | AI Nav">
+  <meta name="twitter:description" content="Compare Cursor and Claude Code side-by-side. Features, pricing, pros, cons, and expert recommendation. Find out which is right for your use case.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
+
+  <!-- Schema.org: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "Can I use Cursor and Claude Code together?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, and many developers do. A common workflow: use Cursor for interactive coding (autocomplete, quick edits, questions), use Claude Code for autonomous tasks running in a terminal window while you continue in Cursor. They do not conflict since Claude Code makes file changes that Cursor picks up automatically." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Is Claude Code free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Claude Code is included in the Claude Max subscription ($100/month). Without Max, you pay per API token, typically $0.50-3.00 per coding session. There is no free tier for heavy agentic use." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which is better for beginners?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cursor, by a significant margin. The interactive IDE model, visual diffs, and approve-each-change workflow are much more learnable. Claude Code rewards users who understand their codebase and can write clear task descriptions, which requires experience." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which has better context awareness?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For whole-codebase tasks, Claude Code\u0027s 200k token window gives it an edge on medium-sized projects. For interactive line-by-line coding, Cursor\u0027s codebase index and retrieval is more practical since you do not need to load the full project into context every keystroke." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does Claude Code work in VS Code?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, Claude Code has a VS Code extension. You can also run it in any terminal alongside any editor. The terminal version is the primary interface; the VS Code extension adds convenience." }
+      }
+      
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://yuzec.com/compare/" },
+      { "@type": "ListItem", "position": 3, "name": "Cursor vs Claude Code", "item": "https://yuzec.com/compare/cursor-vs-claude-code" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <style>
+    .compare-hero { background: linear-gradient(135deg, rgba(99,102,241,.1), rgba(52,211,153,.06)); border-bottom: 1px solid var(--border); padding: 40px 0 32px; }
+    .vs-badge { display:inline-flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border-bright);border-radius:999px;padding:6px 18px;font-size:13px;font-weight:600;color:var(--text-2);margin-bottom:20px; }
+    .vs-sep { background:var(--accent);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800; }
+    .compare-table { width:100%;border-collapse:collapse;margin:28px 0;font-size:14px; }
+    .compare-table th { background:var(--surface-2);padding:12px 16px;text-align:left;font-weight:600;color:var(--text);border-bottom:2px solid var(--border-bright); }
+    .compare-table th:first-child { width:30%; }
+    .compare-table td { padding:12px 16px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top;line-height:1.55; }
+    .compare-table tr:hover td { background:var(--surface-2); }
+    .compare-table .winner { color:var(--accent);font-weight:600; }
+    .compare-table .check { color:#34d399; }
+    .compare-table .cross { color:#f87171; }
+    .verdict-box { background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(52,211,153,.05));border:1px solid var(--border-bright);border-radius:var(--radius);padding:24px 28px;margin:32px 0; }
+    .verdict-box h3 { margin:0 0 10px;font-size:17px;font-weight:700;color:var(--text); }
+    .verdict-box p { margin:0;color:var(--text-2);line-height:1.7; }
+    .choose-grid { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0; }
+    .choose-card { border:1px solid var(--border);border-radius:var(--radius);padding:20px;background:var(--surface-2); }
+    .choose-card h4 { margin:0 0 12px;font-size:15px;font-weight:700; }
+    .choose-card ul { margin:0;padding-left:18px;color:var(--text-2);font-size:13px;line-height:1.8; }
+    @media(max-width:640px){ .choose-grid{grid-template-columns:1fr;} .compare-table td,.compare-table th{padding:10px 12px;font-size:13px;} }
+  </style>
+  <script src="../assets/lang.js"></script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wpx75a9uax");
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <a href="/" class="nav-home">← All Tools</a>
+    <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="/">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="/">Compare</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">Cursor vs Claude Code</span>
+</div>
+
+<!-- Hero -->
+<div class="compare-hero">
+  <div class="page-hero-inner">
+    <div class="vs-badge">
+      <span>Cursor</span>
+      <span class="vs-sep">VS</span>
+      <span>Claude Code</span>
+    </div>
+    <h1 class="article-title" style="margin-top:0">
+      <span class="gradient">Cursor vs Claude Code</span>
+    </h1>
+    <p class="article-desc">Cursor and Claude Code represent two different philosophies for AI-assisted development in 2026. Cursor is a full IDE (VS Code fork) with AI baked in. Claude Code is a terminal agent that works alongside your existing editor and executes tasks autonomously. Both are powerful, but they solve different problems. This comparison covers where each excels, when to use both together, and how to decide based on your actual workflow.</p>
+    <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
+      <span>🗓 Updated: <time datetime="2026-06-23">2026-06</time></span>
+      <span>⭐ Cursor: N/A stars</span>
+      <span>⭐ Claude Code: N/A stars</span>
+    </div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="page-wrap-wide">
+  <div class="content-layout">
+    <article class="content">
+
+      <!-- TL;DR Verdict -->
+      <div class="verdict-box">
+        <h3>⚡ TL;DR — 30-Second Verdict</h3>
+        <p>Use Cursor for day-to-day coding: autocomplete, multi-file edits, asking questions about your codebase. Use Claude Code for autonomous tasks like migrations, refactors, or adding tests across all files. Many experienced developers use both. If you can only pick one: Cursor for beginners, Claude Code for developers comfortable with terminal workflows.</p>
+      </div>
+
+      <!-- Quick Comparison Table -->
+      <h2 id="comparison">Quick Comparison</h2>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Cursor</th>
+            <th>Claude Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>Interface</strong></td>
+            <td class="">Full IDE (VS Code fork)</td>
+            <td class="">Terminal CLI / VS Code extension</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Pricing</strong></td>
+            <td class="">$20/mo Pro</td>
+            <td class="">Included in Claude Max / API billing</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Autonomy level</strong></td>
+            <td class="">Interactive (approve each change)</td>
+            <td class="winner">Agent (runs tasks end-to-end)</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Multi-file editing</strong></td>
+            <td class="">Composer mode (with approval)</td>
+            <td class="winner">Autonomous with bash + file tools</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Context window</strong></td>
+            <td class="">Codebase index + current files</td>
+            <td class="winner">200k tokens (Claude Sonnet/Opus)</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Model choice</strong></td>
+            <td class="winner">GPT-4o, Claude, Gemini</td>
+            <td class="">Claude Sonnet/Opus only</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Inline autocomplete</strong></td>
+            <td class="winner">Best-in-class Tab completion</td>
+            <td class="">Not applicable (CLI agent)</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Git integration</strong></td>
+            <td class="">Standard IDE git</td>
+            <td class="winner">Native, reads git history</td>
+          </tr>
+          
+          <tr>
+            <td><strong>IDE lock-in</strong></td>
+            <td class="">Must use Cursor IDE</td>
+            <td class="winner">Works in any editor + terminal</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Learning curve</strong></td>
+            <td class="winner">Low (VS Code users adapt fast)</td>
+            <td class="">Medium (requires CLI comfort)</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+      <!-- Try Both CTAs -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0">
+        <a href="#"
+           target="_blank" rel="noopener"
+           style="display:flex;flex-direction:column;align-items:center;padding:18px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;text-align:center;transition:border-color .15s">
+          <span style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">Cursor</span>
+          <span style="font-size:12px;color:var(--text-3);margin-bottom:12px">★ N/A GitHub Stars</span>
+          <span style="font-size:13px;font-weight:600;color:var(--accent)">View on GitHub ↗</span>
+        </a>
+        <a href="#"
+           target="_blank" rel="noopener"
+           style="display:flex;flex-direction:column;align-items:center;padding:18px;background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;text-align:center;transition:border-color .15s">
+          <span style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">Claude Code</span>
+          <span style="font-size:12px;color:var(--text-3);margin-bottom:12px">★ N/A GitHub Stars</span>
+          <span style="font-size:13px;font-weight:600;color:var(--accent)">View on GitHub ↗</span>
+        </a>
+      </div>
+
+      <!-- What is A -->
+      <h2 id="what-is-cursor">What Is Cursor?</h2>
+      <p>Cursor is an AI-first IDE forked from VS Code. It adds deep AI capabilities: Tab autocomplete that understands your whole codebase, Composer mode for multi-file edits, and built-in chat with @codebase context. The interactive model means you see and approve every change. Supports multiple model providers including GPT-4o, Claude Sonnet, and Gemini. The free tier is generous; Pro at $20/month removes limits.</p>
+      
+      <p><a href="../tools/cursor">→ Read the full Cursor review</a></p>
+
+      <!-- What is B -->
+      <h2 id="what-is-claude-code">What Is Claude Code?</h2>
+      <p>Claude Code is Anthropic's terminal-native coding agent. It runs in your terminal, reads your files and git history, executes bash commands, and makes autonomous multi-file changes to accomplish a task you describe in natural language. It uses Claude Sonnet or Opus with a 200k+ token context window. Available in the Claude Max subscription ($100/mo) or via API billing.</p>
+      
+      <p><a href="../tools/claude-code">→ Read the full Claude Code review</a></p>
+
+      <!-- When to Choose -->
+      <h2 id="choose">When to Choose Each</h2>
+      <div class="choose-grid">
+        <div class="choose-card">
+          <h4>Choose Cursor if…</h4>
+          <ul>
+            
+            <li>You want AI autocomplete integrated into every line you write</li>
+            
+            <li>You prefer interactive, approve-each-change workflows</li>
+            
+            <li>You are a VS Code user who wants AI features without switching editors</li>
+            
+            <li>You want to choose from multiple LLM providers</li>
+            
+            <li>You are new to AI coding tools and want a visual interface</li>
+            
+          </ul>
+        </div>
+        <div class="choose-card">
+          <h4>Choose Claude Code if…</h4>
+          <ul>
+            
+            <li>You want to delegate multi-step tasks and come back to results</li>
+            
+            <li>You prefer your current editor and do not want to switch</li>
+            
+            <li>You are comfortable in the terminal and with git workflows</li>
+            
+            <li>You work on large refactors, migrations, or repetitive multi-file changes</li>
+            
+            <li>You need the largest context window for understanding big codebases</li>
+            
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deep Dive -->
+      
+      <h2 id="workflow">Interactive vs Agentic: The Real Difference</h2>
+      <p>The fundamental difference is not features, it is the workflow model. Cursor is interactive: every suggestion is a proposal you accept or reject in real time. Claude Code is agentic: you give it a task, it plans and executes autonomously, then reports back. Interactive is better when you are exploring, learning a codebase, or making design decisions alongside the code. Agentic is better when the task is well-defined and you want to delegate it: adding tests, updating an API contract, migrating a pattern. Most developers end up using both.</p>
+      
+      <h2 id="cost">Cost Comparison: Flat vs Usage-Based</h2>
+      <p>Cursor Pro is $20/month flat, predictable. Claude Code is usage-based: included in Claude Max ($100/month) or billed per token via the API. A typical autonomous coding session costs roughly $0.50-2.00 in tokens. For developers doing heavy agentic work, this adds up faster than Cursor's flat fee. For occasional use, the API model is cheaper. The break-even is roughly 10-40 substantial tasks per month.</p>
+      
+
+      <!-- FAQ -->
+      <h2 id="faq">Frequently Asked Questions</h2>
+      <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I use Cursor and Claude Code together? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, and many developers do. A common workflow: use Cursor for interactive coding (autocomplete, quick edits, questions), use Claude Code for autonomous tasks running in a terminal window while you continue in Cursor. They do not conflict since Claude Code makes file changes that Cursor picks up automatically.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is Claude Code free? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Claude Code is included in the Claude Max subscription ($100/month). Without Max, you pay per API token, typically $0.50-3.00 per coding session. There is no free tier for heavy agentic use.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which is better for beginners? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Cursor, by a significant margin. The interactive IDE model, visual diffs, and approve-each-change workflow are much more learnable. Claude Code rewards users who understand their codebase and can write clear task descriptions, which requires experience.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which has better context awareness? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">For whole-codebase tasks, Claude Code's 200k token window gives it an edge on medium-sized projects. For interactive line-by-line coding, Cursor's codebase index and retrieval is more practical since you do not need to load the full project into context every keystroke.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Does Claude Code work in VS Code? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, Claude Code has a VS Code extension. You can also run it in any terminal alongside any editor. The terminal version is the primary interface; the VS Code extension adds convenience.</div></div>
+        </div>
+        
+      </div>
+
+      <!-- Related Comparisons -->
+      
+      <h2 id="related">Related Comparisons</h2>
+      <div class="related-grid">
+        
+        <a href="cursor-vs-aider" class="related-card">
+          <div class="related-card-name">Cursor vs Aider</div>
+          <div class="related-card-desc">Compare Cursor with Aider, the terminal-native AI pair programmer</div>
+        </a>
+        
+        <a href="cline-vs-cursor" class="related-card">
+          <div class="related-card-name">Cline vs Cursor</div>
+          <div class="related-card-desc">Cline: the free open-source alternative to Cursor</div>
+        </a>
+        
+        <a href="cursor-vs-github-copilot" class="related-card">
+          <div class="related-card-name">Cursor vs GitHub Copilot</div>
+          <div class="related-card-desc">Compare the two most popular AI coding assistants</div>
+        </a>
+        
+      </div>
+      
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="content-sidebar">
+      <div class="sidebar-card">
+        <h4>Quick Facts</h4>
+        <div style="font-size:13px;color:var(--text-2)">
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Cursor</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> N/A</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> N/A</div>
+          <div style="margin-bottom:14px"><a href="#" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+          <div style="margin-bottom:10px;font-weight:600;color:var(--text)">Claude Code</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">Stars:</span> N/A</div>
+          <div style="margin-bottom:6px"><span style="color:var(--text-3)">License:</span> N/A</div>
+          <div><a href="#" target="_blank" rel="noopener" style="color:var(--accent)">GitHub ↗</a></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Table of Contents</h4>
+        <ul class="toc-list">
+          <li><a href="#comparison">Quick Comparison</a></li>
+          <li><a href="#what-is-cursor">What Is Cursor?</a></li>
+          <li><a href="#what-is-claude-code">What Is Claude Code?</a></li>
+          <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#workflow">Interactive vs Agentic: The Real Difference</a></li>
+          
+          <li><a href="#cost">Cost Comparison: Flat vs Usage-Based</a></li>
+          
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>View Full Reviews</h4>
+        <ul class="toc-list">
+          <li><a href="../tools/cursor">Cursor Review →</a></li>
+          <li><a href="../tools/claude-code">Claude Code Review →</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of 300+ open-source AI tools with honest pros, cons, and comparisons.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#ai-tools">AI Tools</a></li>
+          <li><a href="../index.html#skill">Skill Frameworks</a></li>
+          <li><a href="../index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="../about">About</a></li>
+          <li><a href="../privacy-policy">Privacy Policy</a></li>
+          <li><a href="../terms">Terms of Service</a></li>
+          <li><a href="../sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Comparisons</h4>
+        <ul>
+          <li><a href="cursor-vs-github-copilot">Cursor vs Copilot</a></li>
+          <li><a href="langchain-vs-llamaindex">LangChain vs LlamaIndex</a></li>
+          <li><a href="vllm-vs-ollama">vLLM vs Ollama</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+</script>
+<script src="../assets/cookie-consent.js" defer></script>
+</body>
+</html>
