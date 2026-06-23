@@ -67,7 +67,11 @@
     "@type": "Organization",
     "name": "AI Nav",
     "url": "https://yuzec.com",
-    "logo": { "@type": "ImageObject", "url": "https://yuzec.com/logo.png", "width": 200, "height": 60 }
+    "logo": { "@type": "ImageObject", "url": "https://yuzec.com/logo.png", "width": 200, "height": 60 },
+    "sameAs": [
+      "https://github.com/yuzechang",
+      "https://github.com/yuzechang/AI_Guide"
+    ]
   }
   </script>
   <script type="application/ld+json">
@@ -331,6 +335,25 @@
     }
     @media (max-width: 1100px) { .featured-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 480px) { .featured-grid { grid-template-columns: 1fr; } .featured-inner { padding: 24px 16px; } }
+
+    /* ===== Editor's Picks Section ===== */
+    .picks-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 24px; }
+    .picks-inner { max-width: 1280px; margin: 0 auto; }
+    .picks-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+    .picks-h { font-size: 20px; font-weight: 700; }
+    .picks-sub { font-size: 13px; color: var(--text-3); margin-bottom: 24px; }
+    .picks-byline { font-size: 12px; color: var(--text-3); font-style: italic; }
+    .picks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .pick-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s; text-decoration: none; color: inherit; }
+    .pick-card:hover { border-color: var(--accent); }
+    .pick-card-top { display: flex; align-items: center; gap: 10px; }
+    .pick-card-ico { font-size: 24px; flex-shrink: 0; }
+    .pick-card-name { font-size: 15px; font-weight: 700; }
+    .pick-card-stars { font-size: 11px; color: var(--text-3); }
+    .pick-card-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: var(--accent-dim); color: var(--accent); width: fit-content; }
+    .pick-card-note { font-size: 12px; color: var(--text-2); line-height: 1.55; font-style: italic; border-left: 2px solid var(--accent); padding-left: 10px; }
+    @media (max-width: 900px) { .picks-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .picks-grid { grid-template-columns: 1fr; } }
 
     /* ===== Layout ===== */
     .main-wrap {
@@ -829,7 +852,95 @@
       <a href="compare/langchain-vs-langgraph.html" class="cmp-card"><span>LangChain</span><span class="cmp-vs">vs</span><span>LangGraph</span></a>
       <a href="compare/cursor-vs-aider.html" class="cmp-card"><span>Cursor</span><span class="cmp-vs">vs</span><span>Aider</span></a>
     </div>
-    <a href="compare/" class="compare-all-link"><span class="en">View all 48 comparisons →</span><span class="zh">查看全部 48 个对比 →</span></a>
+    <a href="compare/" class="compare-all-link"><span class="en">View all 51 comparisons →</span><span class="zh">查看全部 51 个对比 →</span></a>
+  </div>
+</section>
+
+<!-- ====================================================
+     EDITOR'S PICKS
+===================================================== -->
+<section class="picks-section" aria-label="Editor's Picks">
+  <div class="picks-inner">
+    <div class="picks-header">
+      <h2 class="picks-h"><span class="en">Editor's Picks — June 2026</span><span class="zh">编辑精选 — 2026年6月</span></h2>
+      <span class="picks-byline"><span class="en">Curated by Nolan, AI Nav maintainer</span><span class="zh">Nolan (AI Nav 维护者) 精选</span></span>
+    </div>
+    <p class="picks-sub"><span class="en">Six tools I've personally tested and found genuinely useful — not just high-star counts.</span><span class="zh">亲测有效的六个工具，不只看 Star 数量。</span></p>
+    <div class="picks-grid">
+
+      <a href="tools/langgraph.html" class="pick-card">
+        <div class="pick-card-top">
+          <span class="pick-card-ico">🕸️</span>
+          <div>
+            <div class="pick-card-name">LangGraph</div>
+            <div class="pick-card-stars">⭐ 12k+ Stars · Agent Framework</div>
+          </div>
+        </div>
+        <span class="pick-card-tag">Agent</span>
+        <p class="pick-card-note"><span class="en">"The explicit state graph is the difference between a pipeline I can debug and one I can't. Once I needed a human approval step, nothing else came close."</span><span class="zh">"显式状态图让调试成为可能。需要人工审批节点时，没有其他框架能替代它。"</span></p>
+      </a>
+
+      <a href="tools/cline.html" class="pick-card">
+        <div class="pick-card-top">
+          <span class="pick-card-ico">🤖</span>
+          <div>
+            <div class="pick-card-name">Cline</div>
+            <div class="pick-card-stars">⭐ 47k+ Stars · VS Code Extension</div>
+          </div>
+        </div>
+        <span class="pick-card-tag">AI Coding</span>
+        <p class="pick-card-note"><span class="en">"The free alternative to Cursor that actually works for multi-file edits. Runs inside your existing VS Code — no new IDE to learn."</span><span class="zh">"真正能用的 Cursor 免费替代品，支持多文件编辑，在现有 VS Code 内运行，无需学新 IDE。"</span></p>
+      </a>
+
+      <a href="tools/open-webui.html" class="pick-card">
+        <div class="pick-card-top">
+          <span class="pick-card-ico">💬</span>
+          <div>
+            <div class="pick-card-name">Open WebUI</div>
+            <div class="pick-card-stars">⭐ 142k+ Stars · Local LLM UI</div>
+          </div>
+        </div>
+        <span class="pick-card-tag">AI Tools</span>
+        <p class="pick-card-note"><span class="en">"The best self-hosted ChatGPT replacement. Ollama + Open WebUI is genuinely good enough for 80% of what I used Claude for daily."</span><span class="zh">"最好的自托管 ChatGPT 替代方案。Ollama + Open WebUI 足以覆盖我 80% 的日常使用场景。"</span></p>
+      </a>
+
+      <a href="tools/browser-use.html" class="pick-card">
+        <div class="pick-card-top">
+          <span class="pick-card-ico">🌐</span>
+          <div>
+            <div class="pick-card-name">Browser Use</div>
+            <div class="pick-card-stars">⭐ 41k+ Stars · Web Automation</div>
+          </div>
+        </div>
+        <span class="pick-card-tag">Agent</span>
+        <p class="pick-card-note"><span class="en">"Makes browser automation actually reliable with LLMs. The 41k stars in under a year tells you something — developers were clearly waiting for this."</span><span class="zh">"让基于 LLM 的浏览器自动化真正可靠。不到一年积累 41k Star，开发者显然等这个工具很久了。"</span></p>
+      </a>
+
+      <a href="tools/qdrant.html" class="pick-card">
+        <div class="pick-card-top">
+          <span class="pick-card-ico">🗄️</span>
+          <div>
+            <div class="pick-card-name">Qdrant</div>
+            <div class="pick-card-stars">⭐ 33k+ Stars · Vector Database</div>
+          </div>
+        </div>
+        <span class="pick-card-tag">Skill</span>
+        <p class="pick-card-note"><span class="en">"Once you're combining semantic search with metadata filters in production, Chroma's performance degrades and Qdrant stays fast. That's the real migration trigger."</span><span class="zh">"在生产中结合语义搜索与元数据过滤时，Chroma 性能下滑，Qdrant 保持稳定。这才是迁移的真正原因。"</span></p>
+      </a>
+
+      <a href="tools/whisperx.html" class="pick-card">
+        <div class="pick-card-top">
+          <span class="pick-card-ico">🎙️</span>
+          <div>
+            <div class="pick-card-name">WhisperX</div>
+            <div class="pick-card-stars">⭐ 14k+ Stars · Transcription</div>
+          </div>
+        </div>
+        <span class="pick-card-tag">AI Tools</span>
+        <p class="pick-card-note"><span class="en">"Word-level timestamps and speaker diarization in one tool. If you're building subtitle pipelines or meeting summarizers, this is the version of Whisper to use."</span><span class="zh">"词级时间戳加说话人分离，合二为一。构建字幕流水线或会议摘要工具，就用这个 Whisper 版本。"</span></p>
+      </a>
+
+    </div>
   </div>
 </section>
 
@@ -1065,6 +1176,16 @@
         <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
         <p class="en">A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
         <p class="zh">精选最优质的开源AI工具、Agent框架与技能库，全部来自GitHub高星仓库。</p>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" aria-label="GitHub" title="Star us on GitHub" style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);text-decoration:none;padding:5px 10px;border:1px solid var(--border);border-radius:6px;transition:border-color 0.15s">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a href="feed.xml" target="_blank" rel="noopener" aria-label="RSS Feed" title="RSS Feed" style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);text-decoration:none;padding:5px 10px;border:1px solid var(--border);border-radius:6px;transition:border-color 0.15s">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 012.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 012.18-2.18M4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44m0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/></svg>
+            RSS
+          </a>
+        </div>
       </div>
       <div class="footer-col">
         <h4 class="en">Categories</h4><h4 class="zh">分类</h4>

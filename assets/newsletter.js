@@ -25,9 +25,8 @@
    * 显示订阅成功状态，隐藏表单
    */
   function showSuccess(formWrap, successEl) {
-    if (formWrap) formWrap.style.display = 'none';
-    if (successEl) successEl.style.display = 'block';
     localStorage.setItem(LS_DONE_KEY, '1');
+    window.location.href = '/newsletter-thank-you';
   }
 
   /**
