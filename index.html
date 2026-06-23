@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ===== Primary SEO ===== -->
+  <link rel="alternate" type="application/rss+xml" title="AI Nav Blog RSS Feed" href="/feed.xml">
   <title>Best Open Source AI Tools Directory 2026 – AI Nav</title>
   <meta name="description" content="Discover 300+ curated open-source AI tools, agent frameworks & skill libraries from GitHub. Compare ChatGPT alternatives, LangChain, AutoGen, CrewAI & more. Updated 2026.">
   <meta name="keywords" content="AI tools directory,best AI tools 2026,AI agent frameworks,LLM tools,AI skill libraries,free AI tools,open source AI,LangChain,AutoGen,CrewAI,AI工具导航,AI工具大全,智能体框架,AI工具推荐2026">
@@ -636,6 +637,9 @@
       <button class="lang-btn"        data-langbtn="zh" id="lbZh" onclick="setLang('zh')">中</button>
     </div>
 
+    <a href="search.html" class="search-nav-link" aria-label="Search" title="Search tools" style="display:flex;align-items:center;color:var(--text-2);font-size:20px;text-decoration:none">🔍</a>
+    <a href="favorites.html" title="My Saved Tools" style="display:flex;align-items:center;color:var(--text-2);font-size:20px;text-decoration:none" aria-label="Favorites">♡</a>
+
     <a href="https://github.com/trending" target="_blank" rel="noopener noreferrer" class="gh-link" title="GitHub Trending" aria-label="GitHub">
       <!-- GitHub icon SVG inline -->
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -1008,6 +1012,33 @@
           <span class="zh">查看全部文章 →</span>
         </span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     NEWSLETTER 订阅区块
+===================================================== -->
+<section class="newsletter-section" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-text">
+      <h2 class="newsletter-title">Stay Updated on AI Tools</h2>
+      <p class="newsletter-desc">Get weekly roundups of the fastest-growing open-source AI tools, new framework comparisons, and curated guides — delivered to your inbox.</p>
+      <ul class="newsletter-bullets">
+        <li>📈 Weekly Star Rankings — top gainers in open-source AI</li>
+        <li>📝 New Guides — in-depth framework comparisons</li>
+        <li>🚀 Early Access — new tools before they hit the main list</li>
+      </ul>
+    </div>
+    <div class="newsletter-form-wrap">
+      <form id="newsletterForm" class="newsletter-form">
+        <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="your@email.com" required autocomplete="email">
+        <button type="submit" class="newsletter-btn">Subscribe Free →</button>
+      </form>
+      <p class="newsletter-note">No spam. Unsubscribe anytime. ~500 subscribers.</p>
+      <div id="newsletterSuccess" class="newsletter-success" style="display:none">
+        ✅ <strong>You're subscribed!</strong> First email arrives next Monday.
+      </div>
     </div>
   </div>
 </section>
@@ -1429,6 +1460,7 @@ document.addEventListener('keydown', e => {
   </div>
 </div>
 
+<script src="/assets/newsletter.js" defer></script>
 <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>

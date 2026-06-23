@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Saved Tools – AI Nav</title>
+  <meta name="description" content="Your saved AI tools collection on AI Nav – browse your personal favorites list.">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://yuzec.com/favorites">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+  <!-- Google AdSense Auto Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+  <style>
+    .fav-page-hero { padding: 40px 24px 28px; max-width: 900px; margin: 0 auto; }
+    .fav-page-hero h1 { font-size: clamp(24px, 4vw, 36px); font-weight: 800; margin-bottom: 8px; }
+    .fav-page-hero p { color: var(--text-2); font-size: 15px; }
+    .fav-actions { display: flex; align-items: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+    .fav-count { font-size: 13px; color: var(--text-3); }
+    .fav-clear-btn {
+      background: transparent; border: 1px solid rgba(239,68,68,0.3); color: #ef4444;
+      padding: 7px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .fav-clear-btn:hover { background: rgba(239,68,68,0.08); border-color: rgba(239,68,68,0.5); }
+    .fav-grid { max-width: 900px; margin: 0 auto 40px; padding: 0 24px; }
+    .fav-grid .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .fav-empty {
+      max-width: 500px; margin: 60px auto; text-align: center; padding: 0 24px;
+    }
+    .fav-empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
+    .fav-empty h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .fav-empty p { color: var(--text-2); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+    /* 复用首页 tool-card 样式 */
+    .tool-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px; display: flex; flex-direction: column; gap: 8px;
+      transition: border-color 0.15s, transform 0.15s; text-decoration: none; color: inherit;
+      position: relative;
+    }
+    .tool-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+    .tool-card-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .tool-card-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; flex: 1; }
+    .tool-card-meta { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+    .tool-card-stars { font-size: 12px; color: var(--star); font-weight: 500; }
+    .tool-card-tag { font-size: 11px; padding: 2px 7px; border-radius: 4px; background: var(--accent-dim); color: var(--accent); font-weight: 500; }
+    .tool-card-remove {
+      position: absolute; top: 12px; right: 12px;
+      background: transparent; border: none; color: var(--text-3); font-size: 16px;
+      cursor: pointer; line-height: 1; padding: 2px; transition: color 0.15s;
+    }
+    .tool-card-remove:hover { color: #ef4444; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home" style="font-weight:500;font-size:14px">
+        <span class="en">Directory</span>
+        <span class="zh">工具库</span>
+      </a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    </nav>
+    <div class="lang-toggle" style="margin-left:8px">
+      <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+    </div>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">
+    <span class="en">Home</span>
+    <span class="zh">首页</span>
+  </a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-cur">
+    <span class="en">My Saved Tools</span>
+    <span class="zh">我的收藏</span>
+  </span>
+</div>
+
+<!-- Page Hero -->
+<div class="fav-page-hero">
+  <h1>
+    <span class="en">♥ My Saved Tools</span>
+    <span class="zh">♥ 我的收藏</span>
+  </h1>
+  <p>
+    <span class="en">Your personal collection of saved AI tools. Stored locally in your browser.</span>
+    <span class="zh">你收藏的 AI 工具列表，存储在本地浏览器中。</span>
+  </p>
+  <div class="fav-actions">
+    <span class="fav-count" id="favCount">
+      <span class="en">0 tools saved</span>
+      <span class="zh">已收藏 0 个工具</span>
+    </span>
+    <button class="fav-clear-btn" id="clearAllBtn" onclick="clearAllFavorites()" style="display:none">
+      <span class="en">Clear All</span>
+      <span class="zh">清空收藏</span>
+    </button>
+  </div>
+</div>
+
+<!-- Favorites Grid -->
+<div class="fav-grid">
+  <div id="favGrid" class="tool-grid"></div>
+  <div id="favEmpty" class="fav-empty" style="display:none">
+    <div class="fav-empty-icon">♡</div>
+    <h2>
+      <span class="en">No saved tools yet</span>
+      <span class="zh">还没有收藏的工具</span>
+    </h2>
+    <p>
+      <span class="en">Browse the directory and click "♡ Save" on any tool page to add it here.</span>
+      <span class="zh">浏览工具库，在任意工具页面点击「♡ Save」即可收藏。</span>
+    </p>
+    <a href="index.html" class="cta-btn">
+      <span class="en">Browse All Tools →</span>
+      <span class="zh">浏览全部工具 →</span>
+    </a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>
+          <span class="en">A curated directory of 300+ open-source AI tools, agent frameworks, and skill libraries.</span>
+          <span class="zh">精选 300+ 开源 AI 工具、智能体框架与技能库目录。</span>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en">Categories</span><span class="zh">分类</span></h4>
+        <ul>
+          <li><a href="index.html#ai-tools"><span class="en">AI Tools</span><span class="zh">AI 工具</span></a></li>
+          <li><a href="index.html#skill"><span class="en">Skill Frameworks</span><span class="zh">技能框架</span></a></li>
+          <li><a href="index.html#agent"><span class="en">AI Agents</span><span class="zh">AI 智能体</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en">Site</span><span class="zh">站点</span></h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html"><span class="en">Privacy Policy</span><span class="zh">隐私政策</span></a></li>
+          <li><a href="terms.html"><span class="en">Terms of Service</span><span class="zh">服务条款</span></a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="en">Featured</span><span class="zh">精选工具</span></h4>
+        <ul>
+          <li><a href="tools/cursor">Cursor AI</a></li>
+          <li><a href="tools/claude-code">Claude Code</a></li>
+          <li><a href="tools/chatgpt">ChatGPT</a></li>
+          <li><a href="tools/ollama">Ollama</a></li>
+          <li><a href="tools/langchain">LangChain</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · <span class="en">All tools are open-source, hosted on GitHub.</span><span class="zh">所有工具均为开源项目，托管于 GitHub。</span></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/favorites.js"></script>
+<script>
+(function() {
+  var FAVORITES_KEY = 'ainav_favorites';
+
+  function renderFavorites(data) {
+    var favs = getFavorites();
+    var grid = document.getElementById('favGrid');
+    var empty = document.getElementById('favEmpty');
+    var countEl = document.getElementById('favCount');
+    var clearBtn = document.getElementById('clearAllBtn');
+
+    // 更新计数
+    var count = favs.length;
+    countEl.querySelectorAll('.en').forEach(function(el) { el.textContent = count + ' tool' + (count !== 1 ? 's' : '') + ' saved'; });
+    countEl.querySelectorAll('.zh').forEach(function(el) { el.textContent = '已收藏 ' + count + ' 个工具'; });
+
+    if (count === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      clearBtn.style.display = 'none';
+      return;
+    }
+
+    empty.style.display = 'none';
+    clearBtn.style.display = '';
+    grid.innerHTML = '';
+
+    favs.forEach(function(toolId) {
+      var tool = data[toolId];
+      if (!tool) return;
+
+      var card = document.createElement('a');
+      card.href = 'tools/' + toolId;
+      card.className = 'tool-card';
+
+      var starsLabel = tool.starsLabel || (tool.stars ? formatStars(tool.stars) : '');
+      var tags = tool.tags || [];
+      var firstTag = tags[0] || '';
+      var descEn = tool.descEn || '';
+
+      card.innerHTML =
+        '<button class="tool-card-remove" title="Remove from favorites" data-id="' + toolId + '">✕</button>' +
+        '<div class="tool-card-name">' + escapeHtml(tool.name || toolId) + '</div>' +
+        '<div class="tool-card-desc">' + escapeHtml(descEn.slice(0, 100)) + (descEn.length > 100 ? '…' : '') + '</div>' +
+        '<div class="tool-card-meta">' +
+          (starsLabel ? '<span class="tool-card-stars">★ ' + escapeHtml(starsLabel) + '</span>' : '') +
+          (firstTag ? '<span class="tool-card-tag">' + escapeHtml(firstTag) + '</span>' : '') +
+        '</div>';
+
+      grid.appendChild(card);
+    });
+
+    // 绑定移除按钮事件
+    grid.querySelectorAll('.tool-card-remove').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var id = btn.getAttribute('data-id');
+        toggleFavorite(id);
+        renderFavorites(data);
+      });
+    });
+  }
+
+  function formatStars(n) {
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+    return String(n);
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  window.clearAllFavorites = function() {
+    if (confirm('Remove all saved tools?')) {
+      localStorage.removeItem(FAVORITES_KEY);
+      renderFavorites(window._favData || {});
+    }
+  };
+
+  // 加载 data.json 并渲染
+  fetch('data.json')
+    .then(function(r) { return r.json(); })
+    .then(function(tools) {
+      // data.json 是数组，转为对象
+      var dataMap = {};
+      tools.forEach(function(t) { dataMap[t.id] = t; });
+      window._favData = dataMap;
+      renderFavorites(dataMap);
+    })
+    .catch(function() {
+      // data.json 加载失败时，仅显示 ID
+      var favs = getFavorites();
+      var dataMap = {};
+      favs.forEach(function(id) { dataMap[id] = { name: id, descEn: '', tags: [] }; });
+      window._favData = dataMap;
+      renderFavorites(dataMap);
+    });
+})();
+</script>
+<script src="assets/cookie-consent.js" defer></script>
+</body>
+</html>

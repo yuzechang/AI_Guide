@@ -126,6 +126,9 @@
     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
       <a href="https://cursor.com" target="_blank" rel="noopener" class="cta-btn">Visit cursor.com ↗</a>
       <a href="https://github.com/getcursor/cursor" target="_blank" rel="noopener" class="cta-btn-outline">GitHub ↗</a>
+    
+      <button id="favoriteBtn" class="fav-btn">♡ Save</button>
+      <a href="../index.html?compare=cursor" class="tool-compare-btn">⚖️ Compare</a>
     </div>
   </div>
 </div>
@@ -430,6 +433,14 @@ function faqToggle(el) {
   const item = el.closest('.faq-item');
   item.classList.toggle('open');
 }
+</script>
+<script src="../assets/favorites.js" defer></script>
+<script src="../assets/voting.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  initFavoriteBtn('cursor');
+  initVoting('cursor');
+});
 </script>
 <script src="../assets/cookie-consent.js" defer></script>
 </body>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search AI Tools – AI Nav</title>
+  <meta name="description" content="Search 300+ curated open-source AI tools, agent frameworks, and skill libraries by name, description, or tag.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://yuzec.com/search">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Search AI Tools – AI Nav">
+  <meta property="og:description" content="Search 300+ curated open-source AI tools by name, description, or tag.">
+  <meta property="og:url" content="https://yuzec.com/search">
+  <meta property="og:site_name" content="AI Nav">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2761695780807828" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/shared.css">
+  <script src="assets/lang.js"></script>
+
+  <style>
+    /* ===== 搜索页专属样式 ===== */
+    .search-hero {
+      text-align: center;
+      padding: 48px 20px 32px;
+    }
+    .search-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    .search-hero p {
+      color: var(--text-2);
+      font-size: 15px;
+      margin: 0 0 24px;
+    }
+    .search-box-wrap {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      pointer-events: none;
+    }
+    .search-box {
+      width: 100%;
+      padding: 14px 90px 14px 46px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 16px;
+      outline: none;
+      box-sizing: border-box;
+      font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    .search-box:focus {
+      border-color: var(--accent);
+    }
+    .search-box::placeholder {
+      color: var(--text-3);
+    }
+    .search-count {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+
+    /* ===== 结果区域 ===== */
+    .search-results {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+      display: grid;
+      gap: 12px;
+    }
+    .search-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .search-card:hover {
+      border-color: var(--accent);
+      background: var(--card);
+    }
+    .search-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .search-card-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .search-card-name mark {
+      background: rgba(129,140,248,0.25);
+      color: var(--accent);
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+    .search-card-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .search-card-desc mark {
+      background: rgba(129,140,248,0.2);
+      color: var(--accent-hover);
+      border-radius: 2px;
+      padding: 0 1px;
+    }
+    .search-card-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .search-card-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .search-card-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .search-card-stars {
+      font-size: 13px;
+      color: #fbbf24;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .search-card-category {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: var(--card);
+      color: var(--text-3);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      text-transform: capitalize;
+    }
+
+    /* ===== 空结果 ===== */
+    .search-empty {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--text-2);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .search-empty p {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    /* ===== 加载中 ===== */
+    .search-loading {
+      text-align: center;
+      padding: 48px;
+      color: var(--text-3);
+    }
+    .search-spinner {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== 初始提示（无搜索词时） ===== */
+    .search-hint {
+      text-align: center;
+      padding: 32px 20px;
+      color: var(--text-3);
+      max-width: 860px;
+      margin: 0 auto;
+      font-size: 14px;
+    }
+    .search-hint-cats {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .search-hint-cat {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-2);
+      font-size: 13px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+      cursor: pointer;
+    }
+    .search-hint-cat:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 600px) {
+      .search-hero h1 { font-size: 1.5rem; }
+      .search-card {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .search-card-meta {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+    <div class="header-spacer"></div>
+    <nav style="display:flex;gap:16px;align-items:center">
+      <a href="index.html" class="nav-home" style="font-weight:500;font-size:14px">Directory</a>
+      <a href="blog/index.html" style="font-weight:500;font-size:14px;color:var(--text-2)">Blog</a>
+      <a href="about.html" style="font-weight:500;font-size:14px;color:var(--text-2)">About</a>
+      <a href="https://game.yuzec.com" target="_blank" rel="noopener" class="nav-game-link">🎮 小游戏</a>
+    </nav>
+    <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" class="gh-link" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- 搜索主区域 -->
+<div class="search-hero">
+  <h1>Search <span class="gradient">300+ AI Tools</span></h1>
+  <p>Find open-source AI tools, frameworks, and libraries by name, description, or tag.</p>
+  <div class="search-box-wrap">
+    <span class="search-icon">🔍</span>
+    <input
+      type="search"
+      id="searchInput"
+      class="search-box"
+      placeholder="e.g. RAG, vector database, code agent..."
+      autocomplete="off"
+      autofocus
+      aria-label="Search AI tools"
+    >
+    <span id="searchCount" class="search-count"></span>
+  </div>
+</div>
+
+<!-- 结果容器 -->
+<div id="searchResults" class="search-results"></div>
+
+<!-- 空结果提示 -->
+<div id="searchEmpty" class="search-empty" style="display:none">
+  <p>No tools found for "<strong id="emptyQuery"></strong>"</p>
+  <p style="font-size:13px;color:var(--text-3)">Try shorter keywords or browse by <a href="category/ai-tools" style="color:var(--accent)">AI Tools</a>, <a href="category/skill" style="color:var(--accent)">Skill Frameworks</a>, or <a href="category/agent" style="color:var(--accent)">Agents</a>.</p>
+</div>
+
+<!-- 初始提示（无搜索词时显示） -->
+<div id="searchHint" class="search-hint">
+  <p>Start typing to search across 300+ tools — or browse by category:</p>
+  <div class="search-hint-cats">
+    <span class="search-hint-cat" onclick="fillSearch('RAG')">RAG</span>
+    <span class="search-hint-cat" onclick="fillSearch('vector database')">Vector Database</span>
+    <span class="search-hint-cat" onclick="fillSearch('agent')">AI Agent</span>
+    <span class="search-hint-cat" onclick="fillSearch('code')">Code Assistant</span>
+    <span class="search-hint-cat" onclick="fillSearch('image')">Image Generation</span>
+    <span class="search-hint-cat" onclick="fillSearch('local llm')">Local LLM</span>
+    <span class="search-hint-cat" onclick="fillSearch('fine-tuning')">Fine-tuning</span>
+    <span class="search-hint-cat" onclick="fillSearch('chat')">Chat</span>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p>A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#ai-tools">AI Tools</a></li>
+          <li><a href="index.html#skill">Skill Frameworks</a></li>
+          <li><a href="index.html#agent">AI Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="blog/index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener">GitHub Trending</a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav · All tools are open-source, hosted on GitHub.</p>
+      <p>Built for the AI community ❤️</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/cookie-consent.js" defer></script>
+
+<script>
+(function () {
+  'use strict';
+
+  // ===== 状态变量 =====
+  let allTools = null;        // 缓存的工具数组
+  let currentQuery = '';      // 当前搜索词
+
+  // ===== DOM 引用 =====
+  const inputEl      = document.getElementById('searchInput');
+  const resultsEl    = document.getElementById('searchResults');
+  const emptyEl      = document.getElementById('searchEmpty');
+  const emptyQueryEl = document.getElementById('emptyQuery');
+  const countEl      = document.getElementById('searchCount');
+  const hintEl       = document.getElementById('searchHint');
+
+  // ===== 防抖工具函数 =====
+  function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+  }
+
+  // ===== 转义 HTML 特殊字符（防 XSS） =====
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ===== 高亮匹配文字 =====
+  function highlight(text, query) {
+    if (!query) return escapeHtml(text);
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escaped})`, 'gi');
+    return escapeHtml(text).replace(regex, '<mark>$1</mark>');
+  }
+
+  // ===== 获取分类展示名 =====
+  function categoryLabel(cat) {
+    const map = {
+      'ai-tools': 'AI Tools',
+      'skill': 'Skill',
+      'agent': 'Agent',
+    };
+    return map[cat] || cat;
+  }
+
+  // ===== fetch data.json 并缓存 =====
+  async function fetchData() {
+    if (allTools !== null) return allTools;
+
+    // 显示加载状态
+    resultsEl.innerHTML = '<div class="search-loading"><div class="search-spinner"></div><br>Loading tools...</div>';
+    hintEl.style.display = 'none';
+
+    try {
+      const res = await fetch('./data.json');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const json = await res.json();
+      // 兼容 data.json 的结构：直接数组 或 { tools: [...] }
+      allTools = Array.isArray(json) ? json : (json.tools || []);
+    } catch (e) {
+      resultsEl.innerHTML = '<div class="search-loading" style="color:var(--text-3)">Failed to load data. Please refresh.</div>';
+      allTools = [];
+    }
+
+    return allTools;
+  }
+
+  // ===== 搜索过滤逻辑 =====
+  function searchTools(tools, query) {
+    if (!query) return [];
+    const q = query.toLowerCase().trim();
+    if (!q) return [];
+
+    return tools
+      .filter(tool => {
+        const nameMatch = (tool.name || '').toLowerCase().includes(q);
+        const descMatch = (tool.descEn || '').toLowerCase().includes(q);
+        const tagMatch  = Array.isArray(tool.tags)
+          ? tool.tags.some(tag => tag.toLowerCase().includes(q))
+          : false;
+        return nameMatch || descMatch || tagMatch;
+      })
+      .sort((a, b) => (b.stars || 0) - (a.stars || 0));
+  }
+
+  // ===== 渲染结果卡片 =====
+  function renderResults(results, query) {
+    // 隐藏初始提示
+    hintEl.style.display = 'none';
+
+    if (results.length === 0) {
+      resultsEl.innerHTML = '';
+      emptyEl.style.display = 'block';
+      emptyQueryEl.textContent = query;
+      countEl.textContent = '';
+      return;
+    }
+
+    emptyEl.style.display = 'none';
+    countEl.textContent = results.length + ' result' + (results.length !== 1 ? 's' : '');
+
+    resultsEl.innerHTML = results.map(tool => {
+      const id       = tool.id || '';
+      const name     = tool.name || '';
+      const descEn   = tool.descEn || '';
+      const stars    = tool.starsLabel || (tool.stars ? tool.stars.toLocaleString() : '');
+      const category = tool.category || '';
+      const tags     = Array.isArray(tool.tags) ? tool.tags.slice(0, 4) : [];
+      const desc120  = descEn.length > 120 ? descEn.slice(0, 120) + '…' : descEn;
+      const href     = id ? `./tools/${id}` : '#';
+
+      const tagsHtml = tags.map(tag =>
+        `<span class="search-card-tag">${escapeHtml(tag)}</span>`
+      ).join('');
+
+      return `<a href="${escapeHtml(href)}" class="search-card" aria-label="${escapeHtml(name)}">
+  <div class="search-card-body">
+    <div class="search-card-name">${highlight(name, query)}</div>
+    <div class="search-card-desc">${highlight(desc120, query)}</div>
+    <div class="search-card-tags">${tagsHtml}</div>
+  </div>
+  <div class="search-card-meta">
+    ${stars ? `<span class="search-card-stars">⭐ ${escapeHtml(String(stars))}</span>` : ''}
+    ${category ? `<span class="search-card-category">${escapeHtml(categoryLabel(category))}</span>` : ''}
+  </div>
+</a>`;
+    }).join('');
+  }
+
+  // ===== 执行搜索（含 URL 更新） =====
+  async function doSearch(query) {
+    currentQuery = query;
+
+    // 更新 URL（不刷新页面）
+    const url = new URL(window.location.href);
+    if (query) {
+      url.searchParams.set('q', query);
+    } else {
+      url.searchParams.delete('q');
+    }
+    history.replaceState(null, '', url.toString());
+
+    // 无搜索词时显示初始提示
+    if (!query.trim()) {
+      resultsEl.innerHTML = '';
+      emptyEl.style.display = 'none';
+      countEl.textContent = '';
+      hintEl.style.display = 'block';
+      return;
+    }
+
+    const tools   = await fetchData();
+    const results = searchTools(tools, query);
+    renderResults(results, query.trim());
+  }
+
+  // ===== 点击热门标签快速填充 =====
+  window.fillSearch = function (keyword) {
+    inputEl.value = keyword;
+    doSearch(keyword);
+  };
+
+  // ===== 初始化 =====
+  async function init() {
+    // 预加载数据（不等待）
+    fetchData().then(() => {
+      // 数据加载完成后，如果当前有搜索词则重新渲染
+      const q = inputEl.value.trim();
+      if (q) doSearch(q);
+      else {
+        resultsEl.innerHTML = '';
+        hintEl.style.display = 'block';
+      }
+    });
+
+    // 读取 URL 参数
+    const params = new URLSearchParams(window.location.search);
+    const qParam = params.get('q') || '';
+
+    if (qParam) {
+      inputEl.value = qParam;
+      doSearch(qParam);
+    } else {
+      hintEl.style.display = 'block';
+    }
+
+    // 绑定输入事件（300ms 防抖）
+    const debouncedSearch = debounce(function () {
+      doSearch(inputEl.value);
+    }, 300);
+
+    inputEl.addEventListener('input', debouncedSearch);
+
+    // 回车立即搜索
+    inputEl.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        doSearch(inputEl.value);
+      }
+    });
+  }
+
+  // DOM 就绪后执行
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI Nav Blog – Open-Source AI Tools Guides</title>
+    <link>https://yuzec.com/blog</link>
+    <description>In-depth guides, comparisons, and tutorials for open-source AI tools and frameworks.</description>
+    <language>en-us</language>
+    <atom:link href="https://yuzec.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Mon, 22 Jun 2026 14:37:13 GMT</lastBuildDate>
+    <item>
+      <title>Model Context Protocol (MCP) Tools Guide 2026 – Best MCP Servers &amp; Clients</title>
+      <link>https://yuzec.com/blog/mcp-tools-guide-2026</link>
+      <description><![CDATA[Complete guide to MCP (Model Context Protocol) tools in 2026. Covers top 10 MCP servers, how to configure Claude Desktop and Claude Code, MCP vs traditional APIs, and a full FAQ.]]></description>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/mcp-tools-guide-2026</guid>
+    </item>
+    <item>
+      <title>Best AI Code Editors 2026: Cursor vs Windsurf vs GitHub Copilot vs Zed</title>
+      <link>https://yuzec.com/blog/ai-code-editors-compared-2026</link>
+      <description><![CDATA[Detailed comparison of the four best AI code editors in 2026. Cursor, Windsurf, GitHub Copilot, and Zed — pricing, models, context windows, agent mode, and which to choose for your scenario.]]></description>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/ai-code-editors-compared-2026</guid>
+    </item>
+    <item>
+      <title>Best Open-Source Multimodal AI Models 2026: Vision + Language Tools</title>
+      <link>https://yuzec.com/blog/open-source-multimodal-ai-2026</link>
+      <description><![CDATA[Top 8 open-source multimodal AI models in 2026 compared: LLaVA, InternVL, Qwen-VL, CogVLM, MiniGPT-4, BLIP-2, Idefics, Flamingo. Benchmarks, Ollama setup, and commercial use cases.]]></description>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/open-source-multimodal-ai-2026</guid>
+    </item>
+    <item>
+      <title>vLLM vs Ollama vs LocalAI: Choosing the Right LLM Serving Stack in 2026</title>
+      <link>https://yuzec.com/blog/vllm-vs-ollama-production</link>
+      <description><![CDATA[Comprehensive comparison of vLLM, Ollama, and LocalAI for serving LLMs. Covers throughput benchmarks, hardware requirements, deployment complexity, and which to choose for dev vs production.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/vllm-vs-ollama-production</guid>
+    </item>
+    <item>
+      <title>LangChain vs LlamaIndex in 2026: Which RAG Framework Should You Choose?</title>
+      <link>https://yuzec.com/blog/langchain-vs-llamaindex</link>
+      <description><![CDATA[Honest comparison of LangChain and LlamaIndex for building RAG applications. Covers architecture differences, code examples, performance, and clear recommendations for when to choose each.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/langchain-vs-llamaindex</guid>
+    </item>
+    <item>
+      <title>How to Build a Production RAG Pipeline in 2026: Architecture, Tools, and Pitfalls</title>
+      <link>https://yuzec.com/blog/build-production-rag-pipeline</link>
+      <description><![CDATA[Step-by-step guide to building a production-ready RAG (Retrieval-Augmented Generation) pipeline. Covers chunking strategies, embedding models, vector database selection, reranking, and evaluation.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/build-production-rag-pipeline</guid>
+    </item>
+    <item>
+      <title>Best Open Source LLMs in 2026: Llama 3 vs Mistral vs Qwen vs Phi-4 Compared</title>
+      <link>https://yuzec.com/blog/open-source-llms-guide-2026</link>
+      <description><![CDATA[Up-to-date guide to the best open source large language models in 2026. Covers Llama 3.1/3.3, Mistral Small/Large, Qwen 2.5, Phi-4, and DeepSeek-V3 — with benchmarks, hardware requirements, and use case recommendations.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/open-source-llms-guide-2026</guid>
+    </item>
+    <item>
+      <title>Vector Databases Compared 2026: Chroma vs Qdrant vs Weaviate vs pgvector</title>
+      <link>https://yuzec.com/blog/vector-databases-compared</link>
+      <description><![CDATA[Side-by-side comparison of the top vector databases for AI applications. Covers performance benchmarks, managed vs self-hosted, filtering capabilities, and which to choose for different scale requirements.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/vector-databases-compared</guid>
+    </item>
+    <item>
+      <title>Best AI Coding Assistants in 2026: Cursor vs GitHub Copilot vs Cline vs Continue</title>
+      <link>https://yuzec.com/blog/ai-code-assistants-2026</link>
+      <description><![CDATA[In-depth comparison of the top AI coding assistants in 2026. Covers Cursor, GitHub Copilot, Cline, Continue, and Aider — with pricing, model support, context window, and honest assessments of each.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/ai-code-assistants-2026</guid>
+    </item>
+    <item>
+      <title>ComfyUI vs AUTOMATIC1111 vs Fooocus: Best Stable Diffusion UI in 2026</title>
+      <link>https://yuzec.com/blog/comfyui-vs-a1111-vs-fooocus</link>
+      <description><![CDATA[Complete comparison of the three most popular Stable Diffusion interfaces. We cover setup difficulty, workflow flexibility, extension ecosystem, and which UI fits your skill level and use case.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/comfyui-vs-a1111-vs-fooocus</guid>
+    </item>
+    <item>
+      <title>AutoGen vs CrewAI vs LangGraph: Multi-Agent Frameworks Compared 2026</title>
+      <link>https://yuzec.com/blog/autogen-vs-crewai-vs-langgraph</link>
+      <description><![CDATA[Detailed comparison of AutoGen, CrewAI, and LangGraph for building multi-agent AI systems. Covers architecture, code complexity, control flow, and which to choose for your use case.]]></description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/autogen-vs-crewai-vs-langgraph</guid>
+    </item>
+    <item>
+      <title>Claude vs ChatGPT vs Gemini (2026): Which AI Is Best?</title>
+      <link>https://yuzec.com/blog/claude-vs-chatgpt-vs-gemini-2026</link>
+      <description><![CDATA[In-depth comparison of Claude 3.5, ChatGPT-4o, and Gemini 1.5 Pro on coding, writing, reasoning, and cost. Find out which AI assistant wins for your use case in 2026.]]></description>
+      <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/claude-vs-chatgpt-vs-gemini-2026</guid>
+    </item>
+    <item>
+      <title>AI Prompt Engineering Guide 2026: Techniques That Actually Work</title>
+      <link>https://yuzec.com/blog/ai-prompt-engineering-guide-2026</link>
+      <description><![CDATA[The complete prompt engineering guide for 2026. Learn chain-of-thought, few-shot prompting, role prompting, and advanced techniques to get 10x better results from Claude, ChatGPT, and Gemini.]]></description>
+      <pubDate>Fri, 22 May 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/ai-prompt-engineering-guide-2026</guid>
+    </item>
+    <item>
+      <title>How to Run LLMs Locally in 2026: Ollama vs llama.cpp vs LM Studio</title>
+      <link>https://yuzec.com/blog/run-llm-locally-guide</link>
+      <description><![CDATA[Step-by-step guide for running powerful language models on your own hardware. Covers Ollama, llama.cpp, and LM Studio — installation, model selection, performance, and when to go local vs cloud API.]]></description>
+      <pubDate>Tue, 20 May 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/run-llm-locally-guide</guid>
+    </item>
+    <item>
+      <title>Building a Production RAG Pipeline: A Practical Developer Guide</title>
+      <link>https://yuzec.com/blog/rag-pipeline-guide</link>
+      <description><![CDATA[Everything you need to build a Retrieval-Augmented Generation system that actually works in production. Covers chunking strategies, embedding models, vector stores, reranking, and evaluation.]]></description>
+      <pubDate>Sun, 18 May 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/rag-pipeline-guide</guid>
+    </item>
+    <item>
+      <title>Best AI Coding Assistants in 2026: Cursor vs Aider vs GitHub Copilot</title>
+      <link>https://yuzec.com/blog/ai-coding-assistants-compared</link>
+      <description><![CDATA[We tested five AI coding tools on real tasks: bug fixing, refactoring, test generation, and codebase understanding. Honest results and clear recommendations by workflow type.]]></description>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/ai-coding-assistants-compared</guid>
+    </item>
+    <item>
+      <title>LLM Inference Optimization: vLLM, TGI, and llama.cpp Benchmarked</title>
+      <link>https://yuzec.com/blog/llm-inference-optimization</link>
+      <description><![CDATA[If you're serving LLMs in production, throughput and latency matter. We benchmark vLLM, Text Generation Inference, and llama.cpp on the same hardware and explain when each is the right choice.]]></description>
+      <pubDate>Mon, 12 May 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/llm-inference-optimization</guid>
+    </item>
+    <item>
+      <title>LangChain vs AutoGen vs CrewAI vs LlamaIndex 2026 – Which AI Framework?</title>
+      <link>https://yuzec.com/blog/ai-agent-frameworks-guide-2025</link>
+      <description><![CDATA[A direct, opinionated comparison of the four most popular AI agent frameworks. We cover architecture, strengths, real use cases, and concrete recommendations for LangChain, AutoGen, CrewAI, and LlamaIndex.]]></description>
+      <pubDate>Thu, 01 May 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://yuzec.com/blog/ai-agent-frameworks-guide-2025</guid>
+    </item>
+  </channel>
+</rss>

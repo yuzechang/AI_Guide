@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/TabbyML/tabby",
     "description": "Self-hosted AI coding assistant, open GitHub Copilot alternative",
-    "dateModified": "2026-06-22",
+    "dateModified": "2026-06-23",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -157,7 +157,7 @@
     </h1>
     <p class="article-desc">Self-hosted AI coding assistant, open GitHub Copilot alternative</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-22">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
       
       <span>⭐ <a href="https://github.com/TabbyML/tabby" target="_blank" rel="noopener" style="color:var(--text-3)">34k+ GitHub Stars</a></span>
     </div>
@@ -172,6 +172,8 @@
         <span class="zh">官方网站 ↗</span>
       </a>
       
+      <button id="favoriteBtn" class="fav-btn">♡ Save</button>
+      <a href="../index.html?compare=tabby" class="tool-compare-btn">⚖️ Compare</a>
     </div>
   </div>
 </div>
@@ -513,6 +515,16 @@
         
       </div>
 
+      <!-- 投票区块 -->
+      <div class="vote-section">
+        <span class="vote-label">
+          <span class="en">Was this page helpful?</span>
+          <span class="zh">此页面对你有帮助吗？</span>
+        </span>
+        <button id="voteUp" class="vote-btn" title="Helpful">👍 <span class="en">Helpful</span><span class="zh">有帮助</span></button>
+        <button id="voteDown" class="vote-btn" title="Not helpful">👎 <span class="en">Not helpful</span><span class="zh">没帮助</span></button>
+      </div>
+
     </article>
 
     <!-- Sidebar -->
@@ -540,7 +552,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-22</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
         </div>
       </div>
 
@@ -651,6 +663,14 @@
 
 <script>
 function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }
+</script>
+<script src="../assets/favorites.js" defer></script>
+<script src="../assets/voting.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  initFavoriteBtn('tabby');
+  initVoting('tabby');
+});
 </script>
 <script src="../assets/cookie-consent.js" defer></script>
 </body>

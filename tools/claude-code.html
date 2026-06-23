@@ -103,6 +103,9 @@
     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
       <a href="https://claude.ai/code" target="_blank" rel="noopener" class="cta-btn">Visit claude.ai/code ↗</a>
       <a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener" class="cta-btn-outline">GitHub ↗</a>
+    
+      <button id="favoriteBtn" class="fav-btn">♡ Save</button>
+      <a href="../index.html?compare=claude-code" class="tool-compare-btn">⚖️ Compare</a>
     </div>
   </div>
 </div>
@@ -368,6 +371,14 @@ claude -p "Review all changed files in this PR. Flag any security issues, missin
 </footer>
 
 <script>function faqToggle(el) { el.closest('.faq-item').classList.toggle('open'); }</script>
+<script src="../assets/favorites.js" defer></script>
+<script src="../assets/voting.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  initFavoriteBtn('claude-code');
+  initVoting('claude-code');
+});
+</script>
 <script src="../assets/cookie-consent.js" defer></script>
 </body>
 </html>
