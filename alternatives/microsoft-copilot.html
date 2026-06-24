@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Open Source Microsoft Copilot Alternatives in 2026 — Free & Self-Hosted | AI Nav</title>
+  <meta name="description" content="Looking for a free Microsoft Copilot alternative? Compare the best open source options: Dify, Open WebUI, AnythingLLM. Self-hosted, private, and no subscription fees.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yuzec.com/alternatives/microsoft-copilot">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Best Open Source Microsoft Copilot Alternatives in 2026 — Free & Self-Hosted | AI Nav">
+  <meta property="og:description" content="Looking for a free Microsoft Copilot alternative? Compare the best open source options: Dify, Open WebUI, AnythingLLM. Self-hosted, private, and no subscription fees.">
+  <meta property="og:url" content="https://yuzec.com/alternatives/microsoft-copilot">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Best Open Source Microsoft Copilot Alternatives in 2026 — Free & Self-Hosted | AI Nav">
+  <meta name="twitter:description" content="Looking for a free Microsoft Copilot alternative? Compare the best open source options: Dify, Open WebUI, AnythingLLM. Self-hosted, private, and no subscription fees.">
+  <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
+
+  <!-- Schema: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      
+      {
+        "@type": "Question",
+        "name": "Is there a free alternative to Microsoft Copilot?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Open WebUI + Ollama provides free AI chat without usage limits. For document Q\u0026A (the key Microsoft 365 Copilot feature), AnythingLLM self-hosted offers team document workspaces at zero per-user cost." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can I get AI in Word and Excel without Microsoft Copilot?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not directly integrated, but you can combine Open WebUI or a local LLM with manual paste/export workflows. For Excel specifically, Python scripts with local LLMs handle data analysis tasks that Copilot handles in Excel." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which open source tool is best for AI over company documents?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Danswer is the most enterprise-ready open source alternative, connecting to SharePoint, Teams messages, Confluence, and 30+ other sources \u2014 providing the same document-aware AI chat that M365 Copilot offers." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "What\u0027s the total cost comparison: M365 Copilot vs self-hosted?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Microsoft 365 Copilot is $30/user/month (plus M365 at $22/user/month = $52/user/month). A self-hosted AnythingLLM + Ollama setup on a small server costs ~$50\u2013100/month total for a small team." }
+      }
+      
+    ]
+  }
+  </script>
+
+  <!-- Schema: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yuzec.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "https://yuzec.com/alternatives/" },
+      { "@type": "ListItem", "position": 3, "name": "Microsoft Copilot Alternatives", "item": "https://yuzec.com/alternatives/microsoft-copilot" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <style>
+    .alt-hero { background: linear-gradient(135deg, rgba(239,68,68,.08), rgba(99,102,241,.06)); border-bottom: 1px solid var(--border); padding: 48px 0 36px; text-align: center; }
+    .alt-hero h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; margin: 0 0 12px; }
+    .alt-hero .sub { color: var(--text-2); font-size: 16px; max-width: 640px; margin: 0 auto; line-height: 1.6; }
+    .paid-card { background: var(--surface-2); border: 1px solid var(--border-bright); border-radius: var(--radius); padding: 24px 28px; margin: 24px 0; }
+    .paid-card h2 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
+    .paid-price { background: rgba(239,68,68,.1); color: #ef4444; display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+    .paid-cons { margin: 12px 0 0; padding: 0; list-style: none; }
+    .paid-cons li { padding: 4px 0 4px 20px; position: relative; color: var(--text-2); font-size: 14px; }
+    .paid-cons li::before { content: '✗'; position: absolute; left: 0; color: #ef4444; font-weight: 700; }
+    .why-banner { background: linear-gradient(135deg, rgba(52,211,153,.08), rgba(99,102,241,.06)); border: 1px solid var(--border-bright); border-radius: var(--radius); padding: 18px 24px; margin: 28px 0; font-size: 15px; color: var(--text); line-height: 1.65; }
+    .why-banner strong { color: var(--accent); }
+    .alt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin: 24px 0; }
+    .alt-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; transition: border-color .2s, box-shadow .2s; }
+    .alt-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .alt-card h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; }
+    .alt-card h3 a { color: var(--text); text-decoration: none; }
+    .alt-card h3 a:hover { color: var(--accent); }
+    .alt-card .stars { font-size: 13px; color: var(--text-3); margin-bottom: 8px; }
+    .alt-card .why { font-size: 13px; color: var(--text-2); line-height: 1.55; background: rgba(99,102,241,.06); padding: 8px 12px; border-radius: 8px; }
+    .alt-card .desc { font-size: 14px; color: var(--text-2); margin: 8px 0; line-height: 1.55; }
+    .faq-section { margin: 40px 0; }
+    .faq-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+    .faq-item h3 { font-size: 15px; font-weight: 600; margin: 0 0 8px; cursor: pointer; }
+    .faq-item p { font-size: 14px; color: var(--text-2); margin: 0; line-height: 1.65; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all .2s; }
+    .cta-primary { background: var(--accent); color: #fff; }
+    .cta-primary:hover { filter: brightness(1.1); }
+    .cta-outline { border: 1px solid var(--border-bright); color: var(--text); }
+    .cta-outline:hover { background: var(--surface-2); }
+  </style>
+</head>
+<body>
+  <header>
+  <div class="header-inner">
+    <a href="/" class="logo" style="text-decoration:none">
+      <span class="logo-icon">⚡</span>
+      <span>AI<span class="logo-accent">.</span>Nav</span>
+    </a>
+
+    <nav class="nav-tabs" role="navigation" aria-label="Category navigation">
+      <a href="/" class="nav-tab"><span class="en">🏠 Home</span><span class="zh">🏠 首页</span></a>
+      <a href="/category/ai-tools.html" class="nav-tab"><span class="en">AI Tools</span><span class="zh">AI 工具</span></a>
+      <a href="/category/skill.html" class="nav-tab"><span class="en">Skill</span><span class="zh">技能框架</span></a>
+      <a href="/category/agent.html" class="nav-tab"><span class="en">Agent</span><span class="zh">智能体</span></a>
+      <a href="/moyu.html" class="nav-tab"><span class="en">🐟 Moyu</span><span class="zh">🐟 摸鱼办</span></a>
+      <a href="/blog/index.html" class="nav-tab"><span class="en">📝 Blog</span><span class="zh">📝 博客</span></a>
+    </nav>
+
+    <div class="header-search">
+      <span class="search-ico">🔍</span>
+      <input type="search" id="hSearch" placeholder="Search tools…" oninput="onSearch(this.value)" aria-label="Search tools">
+    </div>
+
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="lang-btn active" data-langbtn="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-langbtn="zh" onclick="setLang('zh')">中</button>
+    </div>
+
+    <a href="/search.html" aria-label="Search" title="Search tools" style="display:flex;align-items:center;color:var(--text-2);font-size:20px;text-decoration:none">🔍</a>
+    <a href="/favorites.html" title="My Saved Tools" style="display:flex;align-items:center;color:var(--text-2);font-size:20px;text-decoration:none" aria-label="Favorites">♡</a>
+
+    <a href="https://github.com/trending" target="_blank" rel="noopener noreferrer" class="gh-link" title="GitHub Trending" aria-label="GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+  <section class="alt-hero">
+    <div class="container">
+      <h1>Microsoft Copilot Alternatives in 2026</h1>
+      <p class="sub">Find the best open source Microsoft Copilot alternatives — self-hosted, free, and private replacements that give you control over your data and costs.</p>
+    </div>
+  </section>
+
+  <main class="container" style="max-width:880px;margin:0 auto;padding:0 20px;">
+
+    <!-- 原始付费工具卡片 -->
+    <div class="paid-card">
+      <h2>About Microsoft Copilot</h2>
+      <span class="paid-price">💰 $30/user/mo (Microsoft 365 Copilot)</span>
+      <p style="margin:8px 0 0;color:var(--text-2);font-size:14px;line-height:1.7;">Microsoft Copilot (formerly Bing Chat) integrates AI into Microsoft 365 products — Word, Excel, PowerPoint, Teams, and Outlook. Powered by GPT-4 with access to your Microsoft 365 data.</p>
+      <ul class="paid-cons">
+        
+        <li>Microsoft 365 Copilot costs $30/user/month on top of M365</li>
+        
+        <li>Requires Microsoft ecosystem lock-in</li>
+        
+        <li>Data processed through Microsoft's servers</li>
+        
+        <li>Consumer Copilot limited vs paid version</li>
+        
+      </ul>
+    </div>
+
+    <!-- 为什么需要开源替代 -->
+    <div class="why-banner">
+      <strong>Why look for Microsoft Copilot open source alternatives?</strong>
+      Open source tools let you build a comparable AI assistant for your documents and workflows without Microsoft's per-user pricing.
+    </div>
+
+    <!-- 替代品列表 -->
+    <h2 style="font-size:20px;font-weight:700;margin:32px 0 4px;">Top Open Source Microsoft Copilot Alternatives</h2>
+    <p style="color:var(--text-3);font-size:14px;margin:0 0 16px;">4 free tools ranked by GitHub stars and community adoption</p>
+
+    <div class="alt-grid">
+      
+      <div class="alt-card">
+        <h3><a href="../tools/dify">Dify</a></h3>
+        <div class="stars">⭐ 146k+ stars on GitHub</div>
+        <div class="desc">Open-source LLM app development and orchestration platform</div>
+        
+        <div class="why">🏆 Best for building custom Copilot-like AI workflows for your specific processes</div>
+        
+      </div>
+      
+      <div class="alt-card">
+        <h3><a href="../tools/open-webui">Open WebUI</a></h3>
+        <div class="stars">⭐ 142k+ stars on GitHub</div>
+        <div class="desc">User-friendly self-hosted web UI for Ollama and LLMs</div>
+        
+        <div class="why">🏆 Best general Copilot replacement for daily AI chat tasks</div>
+        
+      </div>
+      
+      <div class="alt-card">
+        <h3><a href="../tools/anything-llm">AnythingLLM</a></h3>
+        <div class="stars">⭐ 62k+ stars on GitHub</div>
+        <div class="desc">All-in-one desktop and Docker AI application</div>
+        
+        <div class="why">🏆 Best for team document workspace — similar to Copilot for M365 docs</div>
+        
+      </div>
+      
+      <div class="alt-card">
+        <h3><a href="../tools/danswer">Danswer</a></h3>
+        <div class="stars">⭐ 30k+ stars on GitHub</div>
+        <div class="desc">AI-powered enterprise search connecting all company data</div>
+        
+        <div class="why">🏆 Best for enterprise knowledge base Q&A (replaces Copilot's document search)</div>
+        
+      </div>
+      
+    </div>
+
+    <!-- Quick Summary -->
+    <div class="verdict-box">
+      <h3>🏆 Which Microsoft Copilot Alternative Should You Choose?</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+        
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">1</span>
+          <span style="font-size:14px;color:var(--text-2);line-height:1.55;"><strong style="color:var(--text);">Anything-Llm</strong> — Best for team document workspace — similar to Copilot for M365 docs</span>
+        </div>
+        
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">2</span>
+          <span style="font-size:14px;color:var(--text-2);line-height:1.55;"><strong style="color:var(--text);">Open-Webui</strong> — Best general Copilot replacement for daily AI chat tasks</span>
+        </div>
+        
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">3</span>
+          <span style="font-size:14px;color:var(--text-2);line-height:1.55;"><strong style="color:var(--text);">Danswer</strong> — Best for enterprise knowledge base Q&A (replaces Copilot's document search)</span>
+        </div>
+        
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">4</span>
+          <span style="font-size:14px;color:var(--text-2);line-height:1.55;"><strong style="color:var(--text);">Dify</strong> — Best for building custom Copilot-like AI workflows for your specific processes</span>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-row">
+      <a href="../" class="cta-btn cta-primary">🔍 Explore All 300+ AI Tools</a>
+      <a href="../compare/" class="cta-btn cta-outline">⚔️ Compare Tools Side-by-Side</a>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>Frequently Asked Questions About Microsoft Copilot Alternatives</h2>
+      
+      <div class="faq-item">
+        <h3>Is there a free alternative to Microsoft Copilot?</h3>
+        <p>Open WebUI + Ollama provides free AI chat without usage limits. For document Q&A (the key Microsoft 365 Copilot feature), AnythingLLM self-hosted offers team document workspaces at zero per-user cost.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I get AI in Word and Excel without Microsoft Copilot?</h3>
+        <p>Not directly integrated, but you can combine Open WebUI or a local LLM with manual paste/export workflows. For Excel specifically, Python scripts with local LLMs handle data analysis tasks that Copilot handles in Excel.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Which open source tool is best for AI over company documents?</h3>
+        <p>Danswer is the most enterprise-ready open source alternative, connecting to SharePoint, Teams messages, Confluence, and 30+ other sources — providing the same document-aware AI chat that M365 Copilot offers.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the total cost comparison: M365 Copilot vs self-hosted?</h3>
+        <p>Microsoft 365 Copilot is $30/user/month (plus M365 at $22/user/month = $52/user/month). A self-hosted AnythingLLM + Ollama setup on a small server costs ~$50–100/month total for a small team.</p>
+      </div>
+      
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><span class="logo-icon">⚡</span><span>AI<span class="logo-accent">.</span>Nav</span></div>
+        <p class="en">A curated directory of the best open-source AI tools, agent frameworks, and skill libraries from GitHub.</p>
+        <p class="zh">精选最优质的开源AI工具、Agent框架与技能库，全部来自GitHub高星仓库。</p>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <a href="https://github.com/yuzechang/AI_Guide" target="_blank" rel="noopener" aria-label="GitHub" title="Star us on GitHub" style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);text-decoration:none;padding:5px 10px;border:1px solid var(--border);border-radius:6px;transition:border-color 0.15s">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a href="/feed.xml" target="_blank" rel="noopener" aria-label="RSS Feed" title="RSS Feed" style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2);text-decoration:none;padding:5px 10px;border:1px solid var(--border);border-radius:6px;transition:border-color 0.15s">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 012.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 012.18-2.18M4 4.44A15.56 15.56 0 0119.56 20h-2.83A12.73 12.73 0 004 7.27V4.44m0 5.66a9.9 9.9 0 019.9 9.9h-2.83A7.07 7.07 0 004 12.93V10.1z"/></svg>
+            RSS
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="en">Categories</h4><h4 class="zh">分类</h4>
+        <ul>
+          <li><a href="/category/ai-tools.html"><span class="en">AI Tools (100)</span><span class="zh">AI 工具 (100)</span></a></li>
+          <li><a href="/category/skill.html"><span class="en">Skill Frameworks (100)</span><span class="zh">技能框架 (100)</span></a></li>
+          <li><a href="/category/agent.html"><span class="en">AI Agents (100)</span><span class="zh">AI 智能体 (100)</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="en">Resources</h4><h4 class="zh">资源链接</h4>
+        <ul>
+          <li><a href="https://github.com/trending" target="_blank" rel="noopener"><span class="en">GitHub Trending</span><span class="zh">GitHub 趋势</span></a></li>
+          <li><a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank" rel="noopener">Awesome LLM</a></li>
+          <li><a href="https://github.com/e2b-dev/awesome-ai-agents" target="_blank" rel="noopener">Awesome Agents</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="en">About</h4><h4 class="zh">关于</h4>
+        <ul>
+          <li><a href="/about.html"><span class="en">About Us</span><span class="zh">关于我们</span></a></li>
+          <li><a href="/contact.html"><span class="en">Contact</span><span class="zh">联系我们</span></a></li>
+          <li><a href="/privacy-policy.html"><span class="en">Privacy Policy</span><span class="zh">隐私政策</span></a></li>
+          <li><a href="/terms.html"><span class="en">Terms</span><span class="zh">使用条款</span></a></li>
+          <li><a href="/sitemap.xml"><span class="en">Sitemap</span><span class="zh">站点地图</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="en">Featured Tools</h4><h4 class="zh">精选工具</h4>
+        <ul>
+          <li><a href="/tools/cursor.html">Cursor AI</a></li>
+          <li><a href="/tools/claude-code.html">Claude Code</a></li>
+          <li><a href="/tools/chatgpt.html">ChatGPT</a></li>
+          <li><a href="/tools/ollama.html">Ollama</a></li>
+          <li><a href="/tools/langchain.html">LangChain</a></li>
+          <li><a href="/tools/dify.html">Dify</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 AI Nav &nbsp;·&nbsp; <span class="en">All tools are open-source, hosted on GitHub.</span><span class="zh">所有工具均为开源项目，托管于 GitHub。</span></p>
+      <p><span class="en">Built for the AI community ❤️</span><span class="zh">为 AI 社区而建 ❤️</span></p>
+    </div>
+  </div>
+</footer>
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

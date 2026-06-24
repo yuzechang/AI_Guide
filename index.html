@@ -598,6 +598,35 @@
     .compare-all-link:hover { text-decoration: underline; }
     @media(max-width:768px){ .compare-grid { grid-template-columns: repeat(2,1fr); } }
     @media(max-width:480px){ .compare-grid { grid-template-columns: 1fr; } }
+
+    /* ===== Alternatives Section ===== */
+    .alt-section {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px 28px;
+    }
+    .alt-inner {
+      background: linear-gradient(135deg, rgba(239,68,68,.04), rgba(52,211,153,.04));
+      border: 1px solid var(--border); border-radius: 16px; padding: 36px 32px;
+    }
+    .alt-h { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .alt-sub { font-size: 14px; color: var(--text-2); margin-bottom: 24px; }
+    .alt-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    }
+    .alt-card {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 14px; background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); transition: all 0.2s; text-decoration: none;
+      color: var(--text); font-size: 13px; font-weight: 500;
+    }
+    .alt-card:hover { border-color: var(--accent); background: var(--surface); transform: translateY(-1px); }
+    .alt-card-ico { font-size: 16px; flex-shrink: 0; }
+    .alt-all-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 20px; font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500;
+    }
+    .alt-all-link:hover { text-decoration: underline; }
+    @media(max-width:900px){ .alt-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px){ .alt-grid { grid-template-columns: 1fr; } }
   </style>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
@@ -913,6 +942,39 @@
 </section>
 
 <!-- ====================================================
+     OPEN SOURCE ALTERNATIVES
+===================================================== -->
+<section class="alt-section" aria-label="Open Source AI Alternatives">
+  <div class="alt-inner">
+    <h2 class="alt-h"><span class="en">Open Source Alternatives to Paid AI Tools</span><span class="zh">付费 AI 工具的开源替代品</span></h2>
+    <p class="alt-sub"><span class="en">Want to replace subscription tools with free, self-hosted options? Find the best open source alternatives.</span><span class="zh">想用免费的本地化方案替代付费订阅？寻找最佳开源替代品。</span></p>
+    <div class="alt-grid">
+      <a href="alternatives/chatgpt.html" class="alt-card"><span class="alt-card-ico">💬</span><span>ChatGPT</span></a>
+      <a href="alternatives/github-copilot.html" class="alt-card"><span class="alt-card-ico">👨‍💻</span><span>GitHub Copilot</span></a>
+      <a href="alternatives/midjourney.html" class="alt-card"><span class="alt-card-ico">🎨</span><span>Midjourney</span></a>
+      <a href="alternatives/cursor.html" class="alt-card"><span class="alt-card-ico">⌨️</span><span>Cursor AI</span></a>
+      <a href="alternatives/openai-api.html" class="alt-card"><span class="alt-card-ico">🔌</span><span>OpenAI API</span></a>
+      <a href="alternatives/elevenlabs.html" class="alt-card"><span class="alt-card-ico">🎙️</span><span>ElevenLabs</span></a>
+      <a href="alternatives/pinecone.html" class="alt-card"><span class="alt-card-ico">🗂️</span><span>Pinecone</span></a>
+      <a href="alternatives/zapier.html" class="alt-card"><span class="alt-card-ico">⚡</span><span>Zapier</span></a>
+      <a href="alternatives/perplexity-ai.html" class="alt-card"><span class="alt-card-ico">🔎</span><span>Perplexity AI</span></a>
+      <a href="alternatives/notion-ai.html" class="alt-card"><span class="alt-card-ico">📝</span><span>Notion AI</span></a>
+      <a href="alternatives/jasper-ai.html" class="alt-card"><span class="alt-card-ico">✍️</span><span>Jasper AI</span></a>
+      <a href="alternatives/dalle.html" class="alt-card"><span class="alt-card-ico">🖼️</span><span>DALL·E 3</span></a>
+      <a href="alternatives/suno-ai.html" class="alt-card"><span class="alt-card-ico">🎵</span><span>Suno AI</span></a>
+      <a href="alternatives/microsoft-copilot.html" class="alt-card"><span class="alt-card-ico">🪟</span><span>Microsoft Copilot</span></a>
+      <a href="alternatives/adobe-firefly.html" class="alt-card"><span class="alt-card-ico">🔥</span><span>Adobe Firefly</span></a>
+      <a href="alternatives/runway.html" class="alt-card"><span class="alt-card-ico">🎬</span><span>RunwayML</span></a>
+      <a href="alternatives/character-ai.html" class="alt-card"><span class="alt-card-ico">🎭</span><span>Character.ai</span></a>
+      <a href="alternatives/heygen.html" class="alt-card"><span class="alt-card-ico">👤</span><span>HeyGen</span></a>
+      <a href="alternatives/synthesia.html" class="alt-card"><span class="alt-card-ico">🤖</span><span>Synthesia</span></a>
+      <a href="alternatives/otter-ai.html" class="alt-card"><span class="alt-card-ico">🎧</span><span>Otter.ai</span></a>
+    </div>
+    <a href="#" class="alt-all-link" style="pointer-events:none"><span class="en">20 paid tools with open source alternatives →</span><span class="zh">20 个付费工具的开源替代方案 →</span></a>
+  </div>
+</section>
+
+<!-- ====================================================
      MAIN CONTENT
 ===================================================== -->
 <div class="main-wrap">
@@ -939,6 +1001,19 @@
   <!-- ===== Sidebar ===== -->
   <aside class="sidebar" aria-label="Sidebar">
 
+
+    <!-- Open Source Alternatives -->
+    <div class="sb-block">
+      <div class="sb-title en">Open Source Alternatives</div>
+      <div class="sb-title zh">开源替代品</div>
+      <ul class="sb-links">
+        <li><a href="alternatives/chatgpt.html">💬 ChatGPT Alternatives</a></li>
+        <li><a href="alternatives/github-copilot.html">👨‍💻 Copilot Alternatives</a></li>
+        <li><a href="alternatives/midjourney.html">🎨 Midjourney Alternatives</a></li>
+        <li><a href="alternatives/cursor.html">⌨️ Cursor Alternatives</a></li>
+        <li><a href="alternatives/zapier.html">⚡ Zapier Alternatives</a></li>
+      </ul>
+    </div>
 
     <!-- Quick Nav -->
     <div class="sb-block">

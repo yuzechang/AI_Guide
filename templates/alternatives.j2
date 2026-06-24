@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ seo_title }}</title>
+  <meta name="description" content="{{ seo_desc }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ base_url }}/alternatives/{{ alt.slug }}">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_desc }}">
+  <meta property="og:url" content="{{ base_url }}/alternatives/{{ alt.slug }}">
+  <meta property="og:site_name" content="AI Nav">
+  <meta property="og:image" content="{{ base_url }}/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ seo_title }}">
+  <meta name="twitter:description" content="{{ seo_desc }}">
+  <meta name="twitter:image" content="{{ base_url }}/assets/og-default.png">
+  <meta name="twitter:site" content="@ainav">
+
+  <!-- Schema: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {% for faq in alt.faqs %}
+      {
+        "@type": "Question",
+        "name": {{ faq.q | tojson }},
+        "acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+
+  <!-- Schema: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ base_url }}/" },
+      { "@type": "ListItem", "position": 2, "name": "Alternatives", "item": "{{ base_url }}/alternatives/" },
+      { "@type": "ListItem", "position": 3, "name": "{{ alt.paid_name }} Alternatives", "item": "{{ base_url }}/alternatives/{{ alt.slug }}" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/shared.css">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <style>
+    .alt-hero { background: linear-gradient(135deg, rgba(239,68,68,.08), rgba(99,102,241,.06)); border-bottom: 1px solid var(--border); padding: 48px 0 36px; text-align: center; }
+    .alt-hero h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; margin: 0 0 12px; }
+    .alt-hero .sub { color: var(--text-2); font-size: 16px; max-width: 640px; margin: 0 auto; line-height: 1.6; }
+    .paid-card { background: var(--surface-2); border: 1px solid var(--border-bright); border-radius: var(--radius); padding: 24px 28px; margin: 24px 0; }
+    .paid-card h2 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
+    .paid-price { background: rgba(239,68,68,.1); color: #ef4444; display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+    .paid-cons { margin: 12px 0 0; padding: 0; list-style: none; }
+    .paid-cons li { padding: 4px 0 4px 20px; position: relative; color: var(--text-2); font-size: 14px; }
+    .paid-cons li::before { content: '✗'; position: absolute; left: 0; color: #ef4444; font-weight: 700; }
+    .why-banner { background: linear-gradient(135deg, rgba(52,211,153,.08), rgba(99,102,241,.06)); border: 1px solid var(--border-bright); border-radius: var(--radius); padding: 18px 24px; margin: 28px 0; font-size: 15px; color: var(--text); line-height: 1.65; }
+    .why-banner strong { color: var(--accent); }
+    .alt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin: 24px 0; }
+    .alt-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; transition: border-color .2s, box-shadow .2s; }
+    .alt-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .alt-card h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; }
+    .alt-card h3 a { color: var(--text); text-decoration: none; }
+    .alt-card h3 a:hover { color: var(--accent); }
+    .alt-card .stars { font-size: 13px; color: var(--text-3); margin-bottom: 8px; }
+    .alt-card .why { font-size: 13px; color: var(--text-2); line-height: 1.55; background: rgba(99,102,241,.06); padding: 8px 12px; border-radius: 8px; }
+    .alt-card .desc { font-size: 14px; color: var(--text-2); margin: 8px 0; line-height: 1.55; }
+    .faq-section { margin: 40px 0; }
+    .faq-section h2 { font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+    .faq-item h3 { font-size: 15px; font-weight: 600; margin: 0 0 8px; cursor: pointer; }
+    .faq-item p { font-size: 14px; color: var(--text-2); margin: 0; line-height: 1.65; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 32px 0; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all .2s; }
+    .cta-primary { background: var(--accent); color: #fff; }
+    .cta-primary:hover { filter: brightness(1.1); }
+    .cta-outline { border: 1px solid var(--border-bright); color: var(--text); }
+    .cta-outline:hover { background: var(--surface-2); }
+  </style>
+</head>
+<body>
+  {% include 'header.html' %}
+
+  <section class="alt-hero">
+    <div class="container">
+      <h1>{{ alt.paid_name }} Alternatives in 2026</h1>
+      <p class="sub">Find the best open source {{ alt.paid_name }} alternatives — self-hosted, free, and private replacements that give you control over your data and costs.</p>
+    </div>
+  </section>
+
+  <main class="container" style="max-width:880px;margin:0 auto;padding:0 20px;">
+
+    <!-- 原始付费工具卡片 -->
+    <div class="paid-card">
+      <h2>About {{ alt.paid_name }}</h2>
+      <span class="paid-price">💰 {{ alt.paid_price }}</span>
+      <p style="margin:8px 0 0;color:var(--text-2);font-size:14px;line-height:1.7;">{{ alt.paid_desc }}</p>
+      <ul class="paid-cons">
+        {% for con in alt.paid_cons %}
+        <li>{{ con }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- 为什么需要开源替代 -->
+    <div class="why-banner">
+      <strong>Why look for {{ alt.paid_name }} open source alternatives?</strong>
+      {{ alt.why_open_source }}
+    </div>
+
+    <!-- 替代品列表 -->
+    <h2 style="font-size:20px;font-weight:700;margin:32px 0 4px;">Top Open Source {{ alt.paid_name }} Alternatives</h2>
+    <p style="color:var(--text-3);font-size:14px;margin:0 0 16px;">{{ alt_alternatives|length }} free tools ranked by GitHub stars and community adoption</p>
+
+    <div class="alt-grid">
+      {% for a in alt_alternatives %}
+      <div class="alt-card">
+        <h3><a href="../tools/{{ a.id }}">{{ a.name }}</a></h3>
+        <div class="stars">⭐ {{ a.starsLabel }} stars on GitHub</div>
+        <div class="desc">{{ a.descEn }}</div>
+        {% if a.id in alt.quick_picks %}
+        <div class="why">🏆 {{ alt.quick_picks[a.id] }}</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Quick Summary -->
+    <div class="verdict-box">
+      <h3>🏆 Which {{ alt.paid_name }} Alternative Should You Choose?</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+        {% for aid, reason in alt.quick_picks.items() %}
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">{{ loop.index }}</span>
+          <span style="font-size:14px;color:var(--text-2);line-height:1.55;"><strong style="color:var(--text);">{{ aid | replace('_',' ') | title }}</strong> — {{ reason }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-row">
+      <a href="../" class="cta-btn cta-primary">🔍 Explore All 300+ AI Tools</a>
+      <a href="../compare/" class="cta-btn cta-outline">⚔️ Compare Tools Side-by-Side</a>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>Frequently Asked Questions About {{ alt.paid_name }} Alternatives</h2>
+      {% for faq in alt.faqs %}
+      <div class="faq-item">
+        <h3>{{ faq.q }}</h3>
+        <p>{{ faq.a }}</p>
+      </div>
+      {% endfor %}
+    </section>
+
+  </main>
+
+  {% include 'footer.html' %}
+  <script src="../assets/lang.js"></script>
+</body>
+</html>

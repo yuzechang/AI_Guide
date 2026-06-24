@@ -1,0 +1,459 @@
+[
+  {
+    "slug": "chatgpt",
+    "paid_name": "ChatGPT",
+    "paid_vendor": "OpenAI",
+    "paid_url": "https://chat.openai.com",
+    "paid_price": "$20/mo (Plus)",
+    "paid_desc": "The world's most popular AI chatbot by OpenAI, known for its conversational ability, coding help, and broad general knowledge. The free tier is limited; ChatGPT Plus at $20/month unlocks GPT-4o.",
+    "paid_cons": ["Requires monthly subscription for GPT-4 access", "All conversations sent to OpenAI servers", "No self-hosting option", "Usage limits even on paid plan"],
+    "why_open_source": "If you want privacy, unlimited usage, or the ability to run your own models, these open source ChatGPT alternatives give you a web chat UI you can host yourself — often backed by any model you choose.",
+    "alternatives": ["open-webui", "librechat", "anything-llm", "jan", "lobe-chat", "chatgpt-next", "big-agi", "gpt4all"],
+    "quick_picks": {
+      "open-webui": "Best for Ollama users who want a polished web UI",
+      "librechat": "Best if you want to connect 30+ API providers in one interface",
+      "anything-llm": "Best for teams that need to chat with internal documents",
+      "jan": "Best for fully offline, no-internet desktop use"
+    },
+    "faqs": [
+      {"q": "Can I run ChatGPT locally for free?", "a": "ChatGPT itself cannot be run locally — it's a proprietary service. However, you can run open source alternatives like Open WebUI or LibreChat paired with Ollama to get a similar experience completely free and offline."},
+      {"q": "What is the best free alternative to ChatGPT?", "a": "Open WebUI + Ollama is the most popular combination, providing a ChatGPT-like interface that runs locally for free. For a hosted solution with multiple model providers, LibreChat is the top choice."},
+      {"q": "Is there a private alternative to ChatGPT?", "a": "Yes. Jan, Open WebUI, and PrivateGPT all run entirely locally — your conversations never leave your machine. These are ideal for sensitive work or users in regions with data sovereignty requirements."},
+      {"q": "Which ChatGPT alternative supports the most AI models?", "a": "LibreChat supports over 30 providers including OpenAI, Anthropic, Google, Mistral, and local Ollama models. ChatALL lets you query multiple models simultaneously to compare responses."}
+    ]
+  },
+  {
+    "slug": "github-copilot",
+    "paid_name": "GitHub Copilot",
+    "paid_vendor": "GitHub / Microsoft",
+    "paid_url": "https://github.com/features/copilot",
+    "paid_price": "$10–19/mo",
+    "paid_desc": "GitHub Copilot is an AI coding assistant built into VS Code, JetBrains, and Neovim. It autocompletes code, explains functions, and can generate entire files. Backed by GPT-4 and trained on billions of lines of code.",
+    "paid_cons": ["$10/month minimum for individual users", "Code is processed on GitHub's servers", "Limited to in-editor autocomplete on lower tiers", "Multi-file editing requires Copilot Enterprise ($39/user/mo)"],
+    "why_open_source": "Open source coding assistants give you the same (or better) AI pair programming experience — often with full codebase awareness, agentic edit mode, and the ability to use your own API key or local model.",
+    "alternatives": ["cline", "continue", "aider", "tabby", "roo-code"],
+    "quick_picks": {
+      "cline": "Best for autonomous multi-file editing and agentic coding tasks",
+      "continue": "Best drop-in VS Code / JetBrains autocomplete replacement",
+      "aider": "Best for terminal-based developers who prefer git-native workflow",
+      "tabby": "Best for teams that want a fully self-hosted, no-cloud option"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to GitHub Copilot?", "a": "Yes. Continue.dev is a free VS Code / JetBrains extension that works with any model (including free local Ollama models). Cline and Aider are also free and open source."},
+      {"q": "Can I use GitHub Copilot alternatives with local models?", "a": "Yes. Both Continue and Cline support local models via Ollama or LM Studio, meaning your code never leaves your machine. Tabby is a fully self-hosted server designed for teams."},
+      {"q": "What is the best GitHub Copilot alternative for VS Code?", "a": "Continue.dev is the most popular VS Code Copilot alternative with 10k+ GitHub stars. Cline (formerly Claude Dev) offers more powerful agentic capabilities for complex, multi-file tasks."},
+      {"q": "Which Copilot alternative supports the most IDEs?", "a": "Continue supports VS Code and JetBrains family (IntelliJ, PyCharm, WebStorm, etc.). Aider works via terminal in any editor. Tabby has plugins for VS Code, JetBrains, and Vim/Neovim."}
+    ]
+  },
+  {
+    "slug": "midjourney",
+    "paid_name": "Midjourney",
+    "paid_vendor": "Midjourney Inc.",
+    "paid_url": "https://midjourney.com",
+    "paid_price": "$10–120/mo",
+    "paid_desc": "Midjourney is the most popular AI image generator, known for its photorealistic and artistic outputs. Operates via Discord; all generation happens in the cloud.",
+    "paid_cons": ["Requires Discord account", "No free tier as of 2024", "Images generated on Midjourney servers", "Pro plan needed for private/commercial generation without restrictions"],
+    "why_open_source": "Open source image generators let you run the same underlying diffusion models locally — with no subscription, no image limits, and full privacy. You own all outputs.",
+    "alternatives": ["sd-webui", "comfyui", "fooocus", "invokeai", "flux", "sd-webui-forge"],
+    "quick_picks": {
+      "fooocus": "Best zero-config Midjourney-like quality with minimal setup",
+      "sd-webui": "Best for extension ecosystem and maximum community resources",
+      "comfyui": "Best for power users who want node-based workflow control",
+      "invokeai": "Best for professional artists who need a canvas-based workflow"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Midjourney?", "a": "Fooocus is the closest free alternative — it's specifically designed to produce Midjourney-quality images with zero configuration required. AUTOMATIC1111 WebUI (sd-webui) has the largest community and most extensions."},
+      {"q": "Can I run Midjourney-quality AI art locally?", "a": "Yes. FLUX.1 and SDXL models running in ComfyUI or Fooocus produce results comparable to Midjourney v5. NVIDIA GPU with 8GB+ VRAM is recommended; Apple Silicon (M1/M2) also works well."},
+      {"q": "Is there a Midjourney alternative that runs offline?", "a": "All of these alternatives (Fooocus, ComfyUI, AUTOMATIC1111, InvokeAI) run completely offline once models are downloaded. No internet connection required after setup."},
+      {"q": "Do I need a powerful GPU for Midjourney alternatives?", "a": "A GPU with 6–8GB VRAM (like RTX 3060 or RTX 4060) handles SDXL well. FLUX.1 models need 12GB+ for full quality. Apple Silicon Macs (M1/M2/M3) also work via Metal acceleration without a dedicated GPU."}
+    ]
+  },
+  {
+    "slug": "cursor",
+    "paid_name": "Cursor",
+    "paid_vendor": "Anysphere",
+    "paid_url": "https://cursor.so",
+    "paid_price": "$20/mo (Pro)",
+    "paid_desc": "Cursor is an AI-first IDE forked from VS Code that integrates Claude and GPT-4 directly into the editor. Famous for its multi-file Composer mode and codebase-wide chat.",
+    "paid_cons": ["$20/month for unlimited Claude Sonnet access", "Proprietary IDE — you leave VS Code's extension ecosystem", "Code sent to Cursor/Anthropic servers", "Free tier has strict message limits"],
+    "why_open_source": "If you prefer to stay in VS Code or work from the terminal, these open source tools match or exceed Cursor's capabilities — with your own API key, local models, or zero cost.",
+    "alternatives": ["cline", "continue", "aider", "roo-code", "plandex"],
+    "quick_picks": {
+      "cline": "Best like-for-like Cursor replacement with VS Code + agentic editing",
+      "roo-code": "Best Cursor alternative with multiple AI modes and 300+ plugins",
+      "aider": "Best terminal-native alternative for developers who live in the CLI",
+      "plandex": "Best for long multi-session tasks requiring persistent planning"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Cursor?", "a": "Cline (formerly Claude Dev) is the most feature-comparable free alternative. It's a VS Code extension offering Cursor-like multi-file agentic editing, browser automation, and terminal integration."},
+      {"q": "Can I get Cursor-like AI features without leaving VS Code?", "a": "Yes. Cline and Roo Code are VS Code extensions that add Cursor-style agentic editing inside your existing VS Code setup, preserving all your extensions and keybindings."},
+      {"q": "Which Cursor alternative uses the cheapest AI model?", "a": "Cline and Continue both work with local Ollama models (free), Claude haiku (~$0.002/1K tokens), or even DeepSeek R1 which costs a fraction of GPT-4. You control model choice and cost."},
+      {"q": "Is there a Cursor alternative for non-VS Code editors?", "a": "Aider works in any terminal alongside any editor (Vim, Emacs, Neovim, Sublime). Plandex is also terminal-based and editor-agnostic. Tabby has JetBrains IDE plugins."}
+    ]
+  },
+  {
+    "slug": "openai-api",
+    "paid_name": "OpenAI API",
+    "paid_vendor": "OpenAI",
+    "paid_url": "https://platform.openai.com",
+    "paid_price": "Pay-per-token (~$5–30/M tokens for GPT-4)",
+    "paid_desc": "The OpenAI API gives developers access to GPT-4o, GPT-4, and GPT-3.5 via REST API. It powers thousands of AI applications but costs can escalate quickly at scale.",
+    "paid_cons": ["$5–30 per million tokens for GPT-4 class models", "Vendor lock-in to OpenAI infrastructure", "Rate limits on all tiers", "Data processed on OpenAI servers"],
+    "why_open_source": "Self-hosted inference engines let you run Llama 3, Mistral, Qwen, DeepSeek, and other open models for the cost of electricity — with OpenAI-compatible APIs that require no code changes.",
+    "alternatives": ["vllm", "ollama", "localai", "sglang", "lmdeploy", "tgi", "litellm"],
+    "quick_picks": {
+      "vllm": "Best for production GPU servers needing maximum throughput",
+      "ollama": "Best for local development with one-command model management",
+      "localai": "Best OpenAI API drop-in replacement for self-hosted backends",
+      "litellm": "Best if you want one interface to route between 100+ LLM providers"
+    },
+    "faqs": [
+      {"q": "What is the cheapest alternative to the OpenAI API?", "a": "Running open models locally via vLLM or Ollama costs only electricity. For cloud-based alternatives, Together AI and Groq offer Llama 3 at ~$0.20/M tokens versus $5/M for GPT-4o."},
+      {"q": "Is there an OpenAI-compatible self-hosted API?", "a": "Yes. Ollama, vLLM, LocalAI, and LMDeploy all expose OpenAI-compatible endpoints (/v1/chat/completions). Drop-in replacement with no code changes required — just change the base URL."},
+      {"q": "Which self-hosted LLM matches GPT-4 quality?", "a": "Llama 3.1 405B (via vLLM) and DeepSeek V3 are competitive with GPT-4 in benchmark performance. For everyday coding and writing, Llama 3.1 70B running on vLLM provides excellent quality at near-zero cost."},
+      {"q": "Can I use open source LLMs for production applications?", "a": "Yes. vLLM is production-ready, used by companies at millions of requests per day. LMDeploy and SGLang are optimized for high-throughput production serving. All support multi-GPU inference and batching."}
+    ]
+  },
+  {
+    "slug": "elevenlabs",
+    "paid_name": "ElevenLabs",
+    "paid_vendor": "ElevenLabs Inc.",
+    "paid_url": "https://elevenlabs.io",
+    "paid_price": "$5–330/mo",
+    "paid_desc": "ElevenLabs is a leading AI voice synthesis platform offering ultra-realistic text-to-speech, voice cloning, and multilingual audio generation used by content creators and developers.",
+    "paid_cons": ["Free tier limited to 10,000 characters/month", "$5+/month for reasonable usage", "Voice cloning requires paid plan", "All audio processed on ElevenLabs servers"],
+    "why_open_source": "Open source TTS models have caught up significantly in quality. These alternatives run locally with no per-character cost — some with real-time voice cloning capabilities.",
+    "alternatives": ["coqui-tts", "bark", "openvoice", "fish-speech", "f5-tts", "gpt-soVITS", "piper"],
+    "quick_picks": {
+      "f5-tts": "Best quality with fast voice cloning from a short audio sample",
+      "openvoice": "Best for instant cross-lingual voice cloning",
+      "fish-speech": "Best balance of speed, quality, and multilingual support",
+      "piper": "Best for real-time on-device TTS with very low latency"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to ElevenLabs for voice cloning?", "a": "Yes. OpenVoice, F5-TTS, and GPT-SoVITS all offer voice cloning from a few seconds of reference audio, completely free and running locally. No monthly subscription required."},
+      {"q": "Which open source TTS has the most realistic voice output?", "a": "F5-TTS and Fish Speech currently produce the most natural-sounding speech among open source models. Bark is excellent for expressive audio including laughter, sighs, and music."},
+      {"q": "Can I clone my own voice with open source tools?", "a": "Yes. OpenVoice, GPT-SoVITS, and F5-TTS all support voice cloning from a short (3–30 second) audio reference. GPT-SoVITS is particularly popular for Japanese and Chinese voice cloning."},
+      {"q": "Which ElevenLabs alternative works in real-time?", "a": "Piper TTS has the lowest latency and runs in real-time on CPU. Fish Speech and F5-TTS work well on GPU for near-real-time applications. Coqui TTS supports streaming output."}
+    ]
+  },
+  {
+    "slug": "pinecone",
+    "paid_name": "Pinecone",
+    "paid_vendor": "Pinecone Systems",
+    "paid_url": "https://www.pinecone.io",
+    "paid_price": "$0.096/hr per pod (~$70+/mo for production)",
+    "paid_desc": "Pinecone is a managed vector database for similarity search, widely used in RAG (Retrieval-Augmented Generation) pipelines. Fully hosted with a generous free tier up to 1M vectors.",
+    "paid_cons": ["Free tier limited to 1 namespace, 1 index, 1M vectors", "Production costs scale quickly with data volume", "Fully managed — no self-hosting option", "Vendor lock-in: data lives in Pinecone's infrastructure"],
+    "why_open_source": "Self-hosted vector databases offer the same semantic search capabilities with no per-query costs, full control over data, and the ability to scale on your own infrastructure.",
+    "alternatives": ["qdrant", "chroma", "milvus", "weaviate", "pgvector", "lancedb"],
+    "quick_picks": {
+      "qdrant": "Best self-hosted Pinecone replacement for production workloads",
+      "chroma": "Best for quick RAG prototyping with zero configuration",
+      "milvus": "Best for billion-vector enterprise-scale deployments",
+      "pgvector": "Best if you're already using PostgreSQL — just add an extension"
+    },
+    "faqs": [
+      {"q": "What is the best self-hosted alternative to Pinecone?", "a": "Qdrant is the most recommended self-hosted Pinecone alternative — it offers a REST/gRPC API, filtering, payload indexing, and Docker deployment. It handles mid-scale production workloads well."},
+      {"q": "Is there a free vector database for RAG development?", "a": "Chroma is completely free and requires zero configuration to start. It works in-memory or persisted to disk and integrates directly with LangChain and LlamaIndex. Perfect for prototyping."},
+      {"q": "Can I run a vector database in my existing PostgreSQL?", "a": "Yes. pgvector is a PostgreSQL extension that adds vector similarity search. If you're already on Postgres, this is the simplest path — no new infrastructure, no new service to maintain."},
+      {"q": "Which open source vector database scales to the most vectors?", "a": "Milvus is designed for billion-vector scale and is used by Alibaba, Shopee, and other large enterprises. For most applications under 100M vectors, Qdrant or Weaviate are more operationally straightforward."}
+    ]
+  },
+  {
+    "slug": "zapier",
+    "paid_name": "Zapier",
+    "paid_vendor": "Zapier Inc.",
+    "paid_url": "https://zapier.com",
+    "paid_price": "$19.99–799/mo",
+    "paid_desc": "Zapier is the leading no-code workflow automation platform connecting 6,000+ apps. It lets non-technical users automate tasks between services like Gmail, Slack, Salesforce, and thousands more.",
+    "paid_cons": ["Free tier limited to 100 tasks/month (2-step Zaps only)", "$19.99+/month for multi-step automations", "All data processed through Zapier's servers", "Limited AI/LLM integration options"],
+    "why_open_source": "n8n and similar tools give you full workflow automation with unlimited tasks, self-hosted data privacy, and native AI/LLM nodes — at zero per-task cost.",
+    "alternatives": ["n8n", "flowise", "langflow", "dify"],
+    "quick_picks": {
+      "n8n": "Best Zapier replacement with 600+ integrations and self-host option",
+      "dify": "Best if your workflows are primarily AI-first (LLM chains and agents)",
+      "flowise": "Best for building LLM workflow chatbots visually with drag and drop",
+      "langflow": "Best for data scientists who want visual LangChain pipeline building"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Zapier?", "a": "n8n is the closest open source Zapier replacement with 600+ integrations. It can be self-hosted for free (unlimited tasks) or used via n8n Cloud with a free tier. The visual editor is very similar to Zapier."},
+      {"q": "Can I self-host Zapier-like automation?", "a": "Yes. n8n and Prefect are the most popular self-hosted automation tools. n8n focuses on connecting apps (like Zapier), while Prefect is better for data pipeline orchestration."},
+      {"q": "Does n8n have as many app integrations as Zapier?", "a": "n8n has 600+ native integrations vs Zapier's 6,000+. However, n8n's HTTP Request node lets you connect to any REST API, and its community nodes cover most common use cases. For AI workflows, n8n's LLM nodes are more powerful than Zapier's."},
+      {"q": "Which Zapier alternative has the best AI workflow support?", "a": "Dify is purpose-built for AI workflows with native LLM chaining, RAG pipelines, and agent capabilities. n8n also has strong LangChain and AI agent nodes. Both are significantly better than Zapier for AI-heavy automations."}
+    ]
+  },
+  {
+    "slug": "runway",
+    "paid_name": "RunwayML",
+    "paid_vendor": "Runway AI Inc.",
+    "paid_url": "https://runwayml.com",
+    "paid_price": "$15–95/mo + credits",
+    "paid_desc": "RunwayML is a leading AI video generation and editing platform, offering text-to-video (Gen-2, Gen-3), image animation, background removal, and professional video editing AI tools.",
+    "paid_cons": ["Limited credits even on paid plans", "Video generation costs extra beyond subscription", "All processing in Runway's cloud", "Gen-3 videos limited to short clips"],
+    "why_open_source": "Open source video AI tools let you run text-to-video and video editing models locally — no per-second credit cost and full privacy.",
+    "alternatives": ["cogvideo", "animatediff", "sadtalker", "musetalk"],
+    "quick_picks": {
+      "cogvideo": "Best text-to-video generation, comparable to Runway Gen-2 quality",
+      "animatediff": "Best for animating still images and controlling motion in videos",
+      "sadtalker": "Best for animating portraits with audio-driven lip sync",
+      "musetalk": "Best for real-time talking head video with low latency"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to RunwayML?", "a": "CogVideo (via CogVideoX) is the most capable open source text-to-video model. It runs locally on a GPU with 16GB+ VRAM. AnimateDiff works with SDXL for image animation and requires 8GB+ VRAM."},
+      {"q": "Can I generate AI videos locally without paying per second?", "a": "Yes. CogVideoX, AnimateDiff, and other open source models run on your local GPU with no per-clip fees. A single RTX 4080 or better is recommended for reasonable generation speeds."},
+      {"q": "Which RunwayML alternative is best for lip-sync videos?", "a": "SadTalker and MuseTalk are purpose-built for audio-driven portrait animation (lip-sync). SadTalker is more established; MuseTalk offers real-time performance suitable for live streaming."},
+      {"q": "What GPU do I need for open source video generation?", "a": "CogVideoX requires 16–24GB VRAM (RTX 4090, A6000). AnimateDiff works on 8GB VRAM (RTX 3070/4060 Ti). For talking head models like SadTalker, 6–8GB is sufficient."}
+    ]
+  },
+  {
+    "slug": "otter-ai",
+    "paid_name": "Otter.ai",
+    "paid_vendor": "Otter.ai Inc.",
+    "paid_url": "https://otter.ai",
+    "paid_price": "$16.99–40/mo",
+    "paid_desc": "Otter.ai is a popular AI meeting transcription and note-taking service. It records meetings on Zoom, Google Meet, and Teams, generates transcripts with speaker labels, and produces meeting summaries.",
+    "paid_cons": ["Free tier limited to 600 minutes/month", "$16.99+/month for more transcription minutes", "Audio sent to Otter.ai servers", "Speaker diarization requires manual corrections"],
+    "why_open_source": "Open source speech recognition models rival Otter.ai in accuracy — and you can process audio files locally in batch with no monthly fee.",
+    "alternatives": ["whisperx", "faster-whisper", "whisper", "whisper-cpp", "funASR"],
+    "quick_picks": {
+      "whisperx": "Best for meeting transcription with word-level timestamps and speaker labels",
+      "faster-whisper": "Best for batch transcription — 4x faster than original Whisper",
+      "whisper-cpp": "Best for CPU-only transcription with minimal dependencies",
+      "funASR": "Best for Chinese/Asian language transcription accuracy"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Otter.ai?", "a": "WhisperX is the best free alternative — it provides speaker diarization (who spoke when), word-level timestamps, and high accuracy, all running locally. No subscription or audio upload to external servers."},
+      {"q": "Which open source transcription tool has speaker labels?", "a": "WhisperX supports speaker diarization via pyannote.audio integration, identifying different speakers in the transcript. This is the key feature that matches Otter.ai's meeting transcription functionality."},
+      {"q": "Can I transcribe hours of audio for free?", "a": "Yes. Faster Whisper and WhisperX can process any length of audio at no cost. On a modern GPU, Faster Whisper transcribes 1 hour of audio in about 2–5 minutes. CPU processing is slower but works fine for batch tasks."},
+      {"q": "What languages does Whisper support?", "a": "OpenAI Whisper supports 99 languages including English, Spanish, French, German, Chinese, Japanese, Korean, Arabic, and more. WhisperX and Faster Whisper inherit the same multilingual capability."}
+    ]
+  },
+  {
+    "slug": "character-ai",
+    "paid_name": "Character.ai",
+    "paid_vendor": "Character.AI",
+    "paid_url": "https://character.ai",
+    "paid_price": "$9.99/mo (c.ai+)",
+    "paid_desc": "Character.ai is a conversational AI platform for creating and chatting with custom AI characters and personas. Hugely popular for entertainment, roleplay, and social interaction.",
+    "paid_cons": ["Free tier has wait times during peak hours", "$9.99/month for priority access", "Characters are stored on Character.ai servers", "Content filtering limits certain types of roleplay"],
+    "why_open_source": "Self-hosted character chat solutions give you full control over persona settings, no content filtering, and the ability to run any open model locally.",
+    "alternatives": ["sillytavern", "open-webui", "koboldcpp", "jan"],
+    "quick_picks": {
+      "sillytavern": "Best for advanced character creation with detailed persona and lorebook support",
+      "open-webui": "Best for general-purpose character chat with a clean modern UI",
+      "koboldcpp": "Best for running local models for creative writing and roleplay",
+      "jan": "Best for simple offline character chat with no technical setup"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Character.ai?", "a": "SillyTavern is the most feature-rich free alternative, offering advanced character cards, lorebooks, world info, and compatibility with virtually any local or API-based model. It has a large community of custom character creators."},
+      {"q": "Is there a Character.ai alternative with no content filter?", "a": "Self-hosted solutions like SillyTavern + KoboldCpp with local models have no external content filtering. Users are responsible for their own usage and must comply with model licenses."},
+      {"q": "Can I create custom AI characters for free?", "a": "Yes. SillyTavern supports 'character cards' — JSON files defining a character's personality, scenario, and example dialogue. Thousands of community-created character cards are freely available online."},
+      {"q": "What models work best for character roleplay?", "a": "Models fine-tuned for roleplay work best: MythoMax, Noromaid, or various community RP finetunes running in KoboldCpp or Ollama. Llama 3 70B base models also perform well for character consistency."}
+    ]
+  },
+  {
+    "slug": "perplexity-ai",
+    "paid_name": "Perplexity AI",
+    "paid_vendor": "Perplexity AI Inc.",
+    "paid_url": "https://perplexity.ai",
+    "paid_price": "$20/mo (Pro)",
+    "paid_desc": "Perplexity AI is an AI-powered search engine that answers questions with cited sources from the web. Popular as a research assistant for getting answers with references.",
+    "paid_cons": ["Free tier has limited Pro search queries", "$20/month for unlimited GPT-4/Claude searches", "Search results depend on Perplexity's index", "No offline mode"],
+    "why_open_source": "Khoj and similar tools provide AI-powered search over both your personal documents and the web — entirely self-hosted.",
+    "alternatives": ["khoj", "danswer", "quivr", "anything-llm"],
+    "quick_picks": {
+      "khoj": "Best personal AI assistant with both web search and local document search",
+      "danswer": "Best for searching your team's internal documents and knowledge base",
+      "quivr": "Best for creating a personal second-brain from uploaded documents",
+      "anything-llm": "Best for teams needing a self-hosted document Q&A workspace"
+    },
+    "faqs": [
+      {"q": "Is there a self-hosted alternative to Perplexity AI?", "a": "Khoj is the closest open source alternative — it connects to the web, your local files, Notion, and Google Drive, providing AI answers with citations. It can be fully self-hosted."},
+      {"q": "Can I search my own documents like Perplexity searches the web?", "a": "Yes. AnythingLLM, Danswer, and Quivr all let you upload PDFs, Word docs, and other files, then ask questions and get cited answers — essentially Perplexity for your private documents."},
+      {"q": "What is the best free AI search tool?", "a": "Khoj offers a free cloud tier and a self-hosted option. For document search only, Chroma + LlamaIndex or Danswer are fully free to self-host with no usage limits."},
+      {"q": "Which Perplexity alternative integrates with my existing tools?", "a": "Khoj integrates with Notion, Google Docs, GitHub, Obsidian, and local files. Danswer connects to Slack, Confluence, GitHub, Jira, and 30+ enterprise data sources."}
+    ]
+  },
+  {
+    "slug": "jasper-ai",
+    "paid_name": "Jasper AI",
+    "paid_vendor": "Jasper Inc.",
+    "paid_url": "https://jasper.ai",
+    "paid_price": "$49–125/mo",
+    "paid_desc": "Jasper is an AI writing assistant designed for marketing teams, offering templates for blog posts, ad copy, social media, and long-form content. Built on GPT-4.",
+    "paid_cons": ["$49/month minimum — expensive for individual creators", "Built on GPT-4 API, not a unique model", "All content processed on Jasper's servers", "Most features can be replicated with direct ChatGPT prompts"],
+    "why_open_source": "Dify and similar platforms let you build custom AI writing assistants with your own prompts, models, and workflows — at a fraction of the cost.",
+    "alternatives": ["dify", "open-webui", "flowise", "langflow"],
+    "quick_picks": {
+      "dify": "Best for building custom AI writing apps with templates and workflows",
+      "open-webui": "Best for direct AI writing with a clean chat interface",
+      "flowise": "Best for creating visual prompt chain workflows for writing tasks",
+      "langflow": "Best for Python developers who want fine-grained writing pipeline control"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Jasper AI for writing?", "a": "Open WebUI connected to a free API (like Groq's free Llama 3 tier) or local Ollama models provides the same writing capability as Jasper with zero monthly cost. Dify lets you build structured writing workflows."},
+      {"q": "Why does Jasper cost $49/month when ChatGPT is $20?", "a": "Jasper adds templates, brand voice settings, team collaboration, and a structured content calendar on top of GPT-4. These features can be replicated with Dify or Open WebUI's custom system prompts at much lower cost."},
+      {"q": "What AI writing tool is best for blog posts and SEO content?", "a": "Dify lets you create custom AI apps with defined SEO writing workflows. Open WebUI with a well-crafted system prompt (e.g., 'You are an SEO content writer...') handles most blog writing tasks."},
+      {"q": "Can open source tools match Jasper's brand voice features?", "a": "Yes. Both Dify and Open WebUI support custom system prompts that encode brand voice, tone, and style guidelines. Open WebUI's 'Models' feature lets you create named personas with preset instructions."}
+    ]
+  },
+  {
+    "slug": "dalle",
+    "paid_name": "DALL-E 3",
+    "paid_vendor": "OpenAI",
+    "paid_url": "https://openai.com/dall-e-3",
+    "paid_price": "$0.04–0.12 per image",
+    "paid_desc": "DALL-E 3 is OpenAI's text-to-image model integrated into ChatGPT Plus and the OpenAI API. Known for excellent prompt adherence, text rendering in images, and photorealistic outputs.",
+    "paid_cons": ["$0.04–0.12 per image via API", "Requires ChatGPT Plus ($20/mo) for ChatGPT access", "Content policy filters certain image types", "No ability to fine-tune or customize the model"],
+    "why_open_source": "Open source diffusion models produce comparable quality to DALL-E 3 and run locally with no per-image fee — once you have a GPU.",
+    "alternatives": ["flux", "sd-webui", "comfyui", "fooocus", "invokeai"],
+    "quick_picks": {
+      "flux": "Best DALL-E 3 quality match for photorealism and text in images",
+      "fooocus": "Best for beautiful images with minimal configuration",
+      "comfyui": "Best for advanced users wanting fine-grained control",
+      "sd-webui": "Best for the widest selection of community models and extensions"
+    },
+    "faqs": [
+      {"q": "What open source model matches DALL-E 3 quality?", "a": "FLUX.1-dev and FLUX.1-schnell (by Black Forest Labs) are the closest open source matches to DALL-E 3 quality, particularly for photorealism and text rendering in images. Running via ComfyUI or fooocus gives best results."},
+      {"q": "Can I generate images with text (like DALL-E 3) using open source tools?", "a": "FLUX.1 has significantly better text rendering than older Stable Diffusion models. Running FLUX.1 in ComfyUI or Fooocus produces legible text in images, approaching DALL-E 3's capability."},
+      {"q": "Is there a free alternative to DALL-E 3?", "a": "Yes. Fooocus is the easiest free alternative — download models once, then generate unlimited images at no cost. ComfyUI with FLUX.1 models offers near-DALL-E 3 quality. Both require a GPU."},
+      {"q": "How much does FLUX.1 cost to run compared to DALL-E 3?", "a": "DALL-E 3 costs $0.04–0.12 per image. FLUX.1 run locally on an RTX 4070 costs roughly $0.001–0.003 per image in electricity at typical rates — 10–100x cheaper per image over time."}
+    ]
+  },
+  {
+    "slug": "synthesia",
+    "paid_name": "Synthesia",
+    "paid_vendor": "Synthesia Ltd.",
+    "paid_url": "https://synthesia.io",
+    "paid_price": "$22–67/mo",
+    "paid_desc": "Synthesia creates AI avatar videos from text. Upload a script, pick an AI avatar, and generate professional-looking talking head videos without cameras, studios, or actors.",
+    "paid_cons": ["$22+/month for 10 minutes of video", "Avatar customization limited on lower tiers", "Videos created on Synthesia's servers", "Custom avatar creation requires higher plans"],
+    "why_open_source": "Open source talking head models let you create avatar videos from any portrait photo and audio — locally, with your own customized personas.",
+    "alternatives": ["sadtalker", "musetalk", "cogvideo"],
+    "quick_picks": {
+      "musetalk": "Best for real-time talking head video, suitable for live streaming",
+      "sadtalker": "Best for high-quality portrait animation with audio-driven lip sync",
+      "cogvideo": "Best for full text-to-video generation beyond just talking heads"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Synthesia for AI avatar videos?", "a": "SadTalker and MuseTalk are the best free alternatives. Both animate a portrait photo with audio to produce lip-synced talking head videos locally on a GPU. No subscription required."},
+      {"q": "Can I use my own photo for AI avatar video generation?", "a": "Yes. SadTalker and MuseTalk accept any portrait photograph as input. Provide a driving audio file, and they produce a video of that portrait speaking with synchronized lip movements."},
+      {"q": "What hardware do I need for AI talking head video generation?", "a": "SadTalker requires 4–8GB VRAM (RTX 2060 or better). MuseTalk has similar requirements. Generation time for a 30-second clip is typically 1–3 minutes on a mid-range GPU."},
+      {"q": "How does open source talking head quality compare to Synthesia?", "a": "Synthesia's polished avatars still edge out open source tools in consistency and production quality. However, SadTalker and MuseTalk produce convincing results for personal use, education content, and demos."}
+    ]
+  },
+  {
+    "slug": "adobe-firefly",
+    "paid_name": "Adobe Firefly",
+    "paid_vendor": "Adobe Inc.",
+    "paid_url": "https://firefly.adobe.com",
+    "paid_price": "Included in Creative Cloud ($54.99/mo) or 25–2000 credits/mo",
+    "paid_desc": "Adobe Firefly is Adobe's generative AI image tool integrated into Photoshop, Illustrator, and the web. Designed for commercial safety — trained only on licensed images.",
+    "paid_cons": ["Requires Adobe Creative Cloud subscription or credit purchases", "Generative credits limited even on paid plans", "Only available within Adobe's ecosystem", "Less model flexibility than open source alternatives"],
+    "why_open_source": "Open source models like FLUX give you commercial-use outputs with no per-image cost and full control over style and quality.",
+    "alternatives": ["flux", "sd-webui", "comfyui", "fooocus", "invokeai"],
+    "quick_picks": {
+      "flux": "Best Adobe Firefly quality alternative for photorealistic images",
+      "invokeai": "Best for professional artists with canvas workflow similar to Photoshop",
+      "comfyui": "Best for advanced image editing pipelines with ControlNet and inpainting",
+      "fooocus": "Best for quick generation without needing Photoshop familiarity"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Adobe Firefly?", "a": "FLUX.1 running in Fooocus or ComfyUI produces Firefly-comparable image quality for free. InvokeAI offers a canvas interface similar to Photoshop's generative fill feature."},
+      {"q": "Are open source AI image generators safe for commercial use?", "a": "FLUX.1-schnell is released under Apache 2.0, making it free for commercial use. Stable Diffusion XL has a CreativeML license allowing commercial use. Always check the specific model license for your use case."},
+      {"q": "Can I get Photoshop generative fill for free?", "a": "InvokeAI's Unified Canvas provides similar inpainting and outpainting functionality to Photoshop's generative fill, powered by open source models. It's free and runs locally."},
+      {"q": "Which Adobe Firefly alternative integrates with my creative workflow?", "a": "ComfyUI has plugins for Photoshop and After Effects integration. InvokeAI has the most polished canvas interface for professional creatives. Diffusers integrates with Python scripts for custom pipelines."}
+    ]
+  },
+  {
+    "slug": "heygen",
+    "paid_name": "HeyGen",
+    "paid_vendor": "HeyGen Inc.",
+    "paid_url": "https://heygen.com",
+    "paid_price": "$29–89/mo",
+    "paid_desc": "HeyGen is an AI video generation platform for creating talking avatar videos, video translations with lip-sync, and personalized video at scale. Popular for sales videos and content localization.",
+    "paid_cons": ["Limited credits on lower plans", "$29+/month for reasonable output", "Videos processed on HeyGen's servers", "Video translation quality varies by language"],
+    "why_open_source": "Open source talking head models provide similar functionality locally — especially useful for bulk video processing or privacy-sensitive content.",
+    "alternatives": ["musetalk", "sadtalker", "whisperx"],
+    "quick_picks": {
+      "musetalk": "Best real-time talking head for HeyGen-style avatar videos",
+      "sadtalker": "Best for portrait animation quality and expressiveness",
+      "whisperx": "Best for the transcription + subtitling part of HeyGen's workflow"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to HeyGen?", "a": "MuseTalk and SadTalker are the best free alternatives for AI avatar video creation. They animate any portrait photo with audio driving, providing talking head videos similar to HeyGen."},
+      {"q": "Can I translate videos and sync lips like HeyGen for free?", "a": "The full HeyGen pipeline (transcription → translation → voice synthesis → lip-sync) can be replicated using WhisperX (transcription) + a translation model + F5-TTS or Fish Speech (voice) + MuseTalk (lip-sync)."},
+      {"q": "Is there a HeyGen alternative for bulk video generation?", "a": "SadTalker can be run via command line for batch processing. Building a pipeline with WhisperX + MuseTalk via Python allows fully automated bulk video generation with no per-video cost."},
+      {"q": "What quality difference should I expect vs HeyGen?", "a": "HeyGen has more polished Avatar quality and easier UI. Open source tools (MuseTalk, SadTalker) require a GPU and technical setup, but produce comparable quality for portrait-based videos at zero ongoing cost."}
+    ]
+  },
+  {
+    "slug": "notion-ai",
+    "paid_name": "Notion AI",
+    "paid_vendor": "Notion Labs",
+    "paid_url": "https://notion.so",
+    "paid_price": "$10/mo add-on (on top of Notion plan)",
+    "paid_desc": "Notion AI adds AI writing, summarization, and Q&A capabilities within Notion workspaces. It can write, edit, summarize notes, and answer questions about your documents.",
+    "paid_cons": ["Extra $10/month on top of Notion subscription", "Only works within Notion's ecosystem", "AI queries sent to OpenAI/Anthropic through Notion", "No custom model selection"],
+    "why_open_source": "Self-hosted knowledge base tools with RAG capabilities give you AI Q&A over your own docs with any model — without being locked into Notion's ecosystem.",
+    "alternatives": ["anything-llm", "danswer", "quivr", "khoj"],
+    "quick_picks": {
+      "anything-llm": "Best Notion AI alternative for teams with document workspaces",
+      "danswer": "Best for connecting AI to your entire knowledge base (Confluence, GitHub, etc.)",
+      "khoj": "Best personal Notion AI replacement with multi-source search",
+      "quivr": "Best for individuals creating a personal AI second-brain from their notes"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Notion AI?", "a": "AnythingLLM (self-hosted) and Khoj offer Notion AI-like capabilities for free. You can upload your notes and documents, then ask AI questions about them. No Notion subscription required."},
+      {"q": "Can I get AI summarization and Q&A for my personal notes for free?", "a": "Yes. Quivr and AnythingLLM let you upload your notes (PDF, Markdown, Word) and chat with them using open source models. WhisperX can even transcribe meeting notes to feed in."},
+      {"q": "Which Notion AI alternative connects to the most document sources?", "a": "Danswer connects to 30+ sources including Confluence, Notion, Google Drive, Jira, Slack, and GitHub. It's enterprise-focused but open source and self-hostable. Khoj integrates with Notion directly."},
+      {"q": "Can I replace both Notion and Notion AI with open source tools?", "a": "For note-taking: Obsidian (free) or Logseq (open source). For AI Q&A on those notes: Khoj integrates with Obsidian and local files. This combination fully replaces Notion + Notion AI at zero recurring cost."}
+    ]
+  },
+  {
+    "slug": "suno-ai",
+    "paid_name": "Suno AI",
+    "paid_vendor": "Suno Inc.",
+    "paid_url": "https://suno.com",
+    "paid_price": "$10–30/mo",
+    "paid_desc": "Suno is a text-to-music AI that generates full songs with vocals and instrumentals from text prompts. Users describe a genre and mood, and Suno produces studio-quality audio tracks.",
+    "paid_cons": ["Free tier limited to 50 credits/day (10 songs)", "$10–30/month for commercial use rights", "Songs generated on Suno's servers", "Limited control over specific musical elements"],
+    "why_open_source": "Open source music generation models give you unlimited generation with full control over audio components — though they typically require more technical setup.",
+    "alternatives": ["audiocraft", "bark", "demucs"],
+    "quick_picks": {
+      "audiocraft": "Best open source music generation — Meta's MusicGen model produces Suno-like results",
+      "bark": "Best for generating speech, sound effects, and simple music with natural expression",
+      "demucs": "Best for separating and remixing existing music tracks (different use case)"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Suno AI?", "a": "AudioCraft (specifically Meta's MusicGen model) is the best open source music generator. It creates instrumental music from text descriptions. For song-with-vocals generation, no open source tool fully matches Suno's capability yet."},
+      {"q": "Can open source tools generate songs with lyrics and vocals?", "a": "Full song generation with lyrics and singing (like Suno) is still primarily in the commercial domain. AudioCraft generates instrumentals; Bark can generate expressive speech that approximates singing but isn't full vocal generation."},
+      {"q": "Is AudioCraft better than Suno?", "a": "Suno produces more polished results with full lyrics and singing. AudioCraft (MusicGen) excels at instrumental music generation with fine-grained style control. They serve different use cases."},
+      {"q": "What hardware do I need for open source music generation?", "a": "AudioCraft MusicGen runs on a GPU with 8GB+ VRAM or CPU (slower). Small models work on 4GB VRAM. Bark requires similar hardware. All can run on modern consumer hardware."}
+    ]
+  },
+  {
+    "slug": "microsoft-copilot",
+    "paid_name": "Microsoft Copilot",
+    "paid_vendor": "Microsoft",
+    "paid_url": "https://copilot.microsoft.com",
+    "paid_price": "$30/user/mo (Microsoft 365 Copilot)",
+    "paid_desc": "Microsoft Copilot (formerly Bing Chat) integrates AI into Microsoft 365 products — Word, Excel, PowerPoint, Teams, and Outlook. Powered by GPT-4 with access to your Microsoft 365 data.",
+    "paid_cons": ["Microsoft 365 Copilot costs $30/user/month on top of M365", "Requires Microsoft ecosystem lock-in", "Data processed through Microsoft's servers", "Consumer Copilot limited vs paid version"],
+    "why_open_source": "Open source tools let you build a comparable AI assistant for your documents and workflows without Microsoft's per-user pricing.",
+    "alternatives": ["anything-llm", "open-webui", "danswer", "dify"],
+    "quick_picks": {
+      "anything-llm": "Best for team document workspace — similar to Copilot for M365 docs",
+      "open-webui": "Best general Copilot replacement for daily AI chat tasks",
+      "danswer": "Best for enterprise knowledge base Q&A (replaces Copilot's document search)",
+      "dify": "Best for building custom Copilot-like AI workflows for your specific processes"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Microsoft Copilot?", "a": "Open WebUI + Ollama provides free AI chat without usage limits. For document Q&A (the key Microsoft 365 Copilot feature), AnythingLLM self-hosted offers team document workspaces at zero per-user cost."},
+      {"q": "Can I get AI in Word and Excel without Microsoft Copilot?", "a": "Not directly integrated, but you can combine Open WebUI or a local LLM with manual paste/export workflows. For Excel specifically, Python scripts with local LLMs handle data analysis tasks that Copilot handles in Excel."},
+      {"q": "Which open source tool is best for AI over company documents?", "a": "Danswer is the most enterprise-ready open source alternative, connecting to SharePoint, Teams messages, Confluence, and 30+ other sources — providing the same document-aware AI chat that M365 Copilot offers."},
+      {"q": "What's the total cost comparison: M365 Copilot vs self-hosted?", "a": "Microsoft 365 Copilot is $30/user/month (plus M365 at $22/user/month = $52/user/month). A self-hosted AnythingLLM + Ollama setup on a small server costs ~$50–100/month total for a small team."}
+    ]
+  }
+]
