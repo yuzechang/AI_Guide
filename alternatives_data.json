@@ -455,5 +455,198 @@
       {"q": "Which open source tool is best for AI over company documents?", "a": "Danswer is the most enterprise-ready open source alternative, connecting to SharePoint, Teams messages, Confluence, and 30+ other sources — providing the same document-aware AI chat that M365 Copilot offers."},
       {"q": "What's the total cost comparison: M365 Copilot vs self-hosted?", "a": "Microsoft 365 Copilot is $30/user/month (plus M365 at $22/user/month = $52/user/month). A self-hosted AnythingLLM + Ollama setup on a small server costs ~$50–100/month total for a small team."}
     ]
+  },
+  {
+    "slug": "claude-ai",
+    "paid_name": "Claude AI",
+    "paid_vendor": "Anthropic",
+    "paid_url": "https://claude.ai",
+    "paid_price": "$20/mo (Pro)",
+    "paid_desc": "Claude is Anthropic's conversational AI assistant known for its long context window (200K tokens), detailed reasoning, and strong coding abilities. Available via web, API, and integrations.",
+    "paid_cons": ["$20/month for Claude Pro with rate limits", "Free tier has strict message caps", "All conversations processed on Anthropic's servers", "No self-hosting or offline capability"],
+    "why_open_source": "Self-hosted alternatives give you the same long-context, multi-model capability with full privacy and no per-message rate limits.",
+    "alternatives": ["open-webui", "librechat", "ollama", "anything-llm", "jan"],
+    "quick_picks": {
+      "open-webui": "Best Claude-like chat UI with local model support",
+      "librechat": "Best if you want to use both Claude API and local models in one interface",
+      "ollama": "Best for running high-quality open models (Llama 3, Mistral) locally",
+      "anything-llm": "Best for long-document analysis similar to Claude's long context window"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Claude AI?", "a": "Open WebUI + Ollama with Llama 3 or Mistral models provides a comparable experience for free. These models match or exceed Claude-level quality for most everyday tasks."},
+      {"q": "Which open source model matches Claude's long context window?", "a": "Llama 3.1 supports 128K context (close to Claude's 200K), and Mistral offers 32K. For truly long documents, AnythingLLM with chunking strategies handles documents of any length."},
+      {"q": "Can I run a Claude-like AI on my own computer?", "a": "Yes. Open WebUI with Ollama and a 7B–70B parameter model runs locally on most modern computers. For best quality, use Llama 3 70B on a machine with 32GB+ RAM or 24GB VRAM GPU."},
+      {"q": "Which Claude alternative is best for coding?", "a": "Continue.dev with Ollama provides the best local coding alternative. Cline and Aider also offer Claude-comparable coding assistance with the right model. DeepSeek Coder models are optimized specifically for code tasks."}
+    ]
+  },
+  {
+    "slug": "gemini",
+    "paid_name": "Google Gemini",
+    "paid_vendor": "Google",
+    "paid_url": "https://gemini.google.com",
+    "paid_price": "$19.99/mo (Gemini Advanced)",
+    "paid_desc": "Google Gemini is Google's flagship AI model, integrated into Google Workspace (Gmail, Docs, Sheets) and available as a standalone chatbot. Gemini Advanced includes 2TB Google One storage.",
+    "paid_cons": ["Gemini Advanced requires Google One AI Premium ($19.99/mo)", "Answers influenced by Google's search ecosystem", "No self-hosting option", "Rate limits even on paid plan"],
+    "why_open_source": "Open source multi-modal models provide comparable AI power without the Google ecosystem lock-in.",
+    "alternatives": ["ollama", "open-webui", "librechat", "vllm"],
+    "quick_picks": {
+      "ollama": "Best for running open models locally with one-command setup",
+      "open-webui": "Best chat interface for Gemini-like multi-model conversations",
+      "librechat": "Best for accessing multiple AI providers in one unified interface",
+      "vllm": "Best for production-grade model serving at scale"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Google Gemini?", "a": "Open WebUI + Ollama with Llama 3.1 provides a Gemini-comparable experience. The combination is completely free and works offline. Any open model with strong reasoning capabilities can replace Gemini Advanced."},
+      {"q": "Can I get Gemini-like integration with Google Workspace for free?", "a": "Danswer and AnythingLLM can connect to Google Drive and provide AI Q&A over your documents. For Gmail AI assistance, local models with Open WebUI can handle email drafting and summarization by copy-paste workflow."},
+      {"q": "Which open source model is most like Gemini?", "a": "Llama 3.1 (Meta) and Mistral Large are the closest open source analogs to Gemini. Both offer strong reasoning, multilingual support, and large context windows. Gemma (Google's own open model) is also available in Ollama."},
+      {"q": "Does an open source alternative support multi-modal like Gemini?", "a": "LLaVA, BakLLaVA, and CogVLM support image understanding in Ollama and Open WebUI, approaching Gemini's vision capabilities. For code + image + text, LLaVA 1.6 handles most common multi-modal tasks."}
+    ]
+  },
+  {
+    "slug": "grammarly",
+    "paid_name": "Grammarly",
+    "paid_vendor": "Grammarly Inc.",
+    "paid_url": "https://grammarly.com",
+    "paid_price": "$12–30/mo",
+    "paid_desc": "Grammarly is an AI writing assistant that checks grammar, tone, clarity, and plagiarism. It integrates with browsers, Microsoft Office, Google Docs, and desktop apps.",
+    "paid_cons": ["$12+/month for Premium with advanced suggestions", "Free tier covers only basic grammar and spelling", "All text processed on Grammarly's servers", "Limited to English; multi-language support is weak"],
+    "why_open_source": "Open source tools can provide basic writing assistance via LLMs, and some specialized tools handle grammar checking locally.",
+    "alternatives": ["open-webui", "dify"],
+    "quick_picks": {
+      "open-webui": "Best for AI writing assistance — paste text and ask for grammar/style improvements",
+      "dify": "Best for building a custom writing assistant workflow with your own rules"
+    },
+    "faqs": [
+      {"q": "Is there a completely free alternative to Grammarly?", "a": "Open WebUI with any local LLM can provide grammar, clarity, and style suggestions. For dedicated grammar checking, LanguageTool is open source and has browser extensions for basic grammar."},
+      {"q": "Can AI chatbots replace Grammarly for writing?", "a": "Yes. Modern LLMs (Llama 3, Mistral) running in Open WebUI provide grammar correction, tone adjustment, and style improvements comparable to Grammarly Premium. The benefit is full privacy and zero cost."},
+      {"q": "Does an open source tool check plagiarism like Grammarly?", "a": "No open source tool directly replicates Grammarly's plagiarism checker, which uses a proprietary database. For academic plagiarism, tools like Copyleaks (paid) or basic Google search-based checking can partially fill this gap."}
+    ]
+  },
+  {
+    "slug": "copy-ai",
+    "paid_name": "Copy.ai",
+    "paid_vendor": "Copy.ai Inc.",
+    "paid_url": "https://copy.ai",
+    "paid_price": "$49/mo (Pro)",
+    "paid_desc": "Copy.ai is an AI marketing content platform for generating blog posts, social media content, email copy, and sales collateral. Built on GPT-4 with marketing-specific templates.",
+    "paid_cons": ["$49/month for Pro with unlimited words", "Free tier limited to 2,000 words/month", "All content generated on Copy.ai servers", "Marketing templates can be replicated with prompt engineering"],
+    "why_open_source": "Dify lets you build marketing-specific AI writing apps with custom templates, brand voice, and workflow automation — at zero cost with a local model.",
+    "alternatives": ["dify", "open-webui"],
+    "quick_picks": {
+      "dify": "Best for building marketing content workflows with reusable templates",
+      "open-webui": "Best for quick copywriting with a good system prompt"
+    },
+    "faqs": [
+      {"q": "How can I get Copy.ai-like content generation for free?", "a": "Dify with a well-designed workflow and Open WebUI with marketing-specific system prompts provide the same template-driven content generation as Copy.ai, without the $49/month fee. Connect to any model (OpenAI, Anthropic, or local)."},
+      {"q": "Can open source tools match Copy.ai's marketing templates?", "a": "Yes. Dify's template/prompt app system lets you create reusable marketing workflows for blog posts, emails, social media, and ad copy — functionally the same as Copy.ai's template library."},
+      {"q": "What AI model is best for marketing copywriting?", "a": "Claude 3.5 Sonnet and GPT-4o are the best for nuanced marketing copy. For a free local option, Llama 3 70B produces solid marketing content. Mistral models also work well for creative writing tasks."}
+    ]
+  },
+  {
+    "slug": "tabnine",
+    "paid_name": "Tabnine",
+    "paid_vendor": "Tabnine Inc.",
+    "paid_url": "https://tabnine.com",
+    "paid_price": "$12/mo (Pro)",
+    "paid_desc": "Tabnine is an AI code completion tool that integrates with 15+ IDEs. It offers line completions, chat, and code generation. The free tier uses a smaller model; paid tiers unlock the full model.",
+    "paid_cons": ["Free tier uses a limited model", "$12+/month for the full Tabnine model", "Team features require enterprise pricing", "Code processed on Tabnine servers unless you self-host"],
+    "why_open_source": "Open source coding assistants give you better completions with any model you choose — local or API — and full codebase awareness.",
+    "alternatives": ["continue", "tabby", "cline"],
+    "quick_picks": {
+      "continue": "Best VS Code/JetBrains autocomplete alternative with model flexibility",
+      "tabby": "Best for fully self-hosted code completion servers for teams",
+      "cline": "Best for full agentic coding beyond simple line completions"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Tabnine?", "a": "Continue.dev is the most direct free alternative — it provides inline code completions in VS Code and JetBrains, and works with free models (Ollama, Codestral) or any paid API you prefer."},
+      {"q": "Can I self-host code completions like Tabnine Enterprise?", "a": "Yes. Tabby is designed specifically for this — a self-hosted AI coding assistant server that provides completions to your team via IDE plugins. It runs on your own infrastructure for full code privacy."},
+      {"q": "Which coding assistant has the best code completions?", "a": "Continue.dev with Codestral or Claude 3.5 Sonnet provides completions matching or exceeding Tabnine's paid tier. Cline offers more advanced multi-file editing capabilities beyond simple completions."}
+    ]
+  },
+  {
+    "slug": "writesonic",
+    "paid_name": "Writesonic",
+    "paid_vendor": "Writesonic Inc.",
+    "paid_url": "https://writesonic.com",
+    "paid_price": "$20–500/mo",
+    "paid_desc": "Writesonic is an AI content creation platform offering article writing, SEO optimization, chatbot building, and AI image generation. It positions itself as a full-stack AI marketing suite.",
+    "paid_cons": ["$20+/month for individual plan with word limits", "Free tier extremely limited (25 credits one-time)", "AI images cost extra credits", "All generation on Writesonic's servers"],
+    "why_open_source": "Dify and Open WebUI provide the same full-stack content creation capabilities — writing, chat, image gen via plugins — at no recurring cost.",
+    "alternatives": ["dify", "open-webui", "langflow"],
+    "quick_picks": {
+      "dify": "Best for building the full Writesonic feature set: writing, chatbots, workflows",
+      "open-webui": "Best for direct AI content creation with image generation integration",
+      "langflow": "Best for Python developers who want fine-grained content pipeline control"
+    },
+    "faqs": [
+      {"q": "Can I replace Writesonic with open source tools?", "a": "Yes. Dify provides article writing (via prompt templates), chatbot building, and workflow automation, covering Writesonic's core features. Open WebUI with image generation models handles the AI image aspect."},
+      {"q": "Which open source tool has the best SEO writing features?", "a": "Dify lets you build custom SEO content workflows with keyword integration and content structure templates. Combined with a good LLM (Claude 3.5 or GPT-4o via API), the output matches Writesonic's quality."},
+      {"q": "How much can I save using open source instead of Writesonic?", "a": "Writesonic costs $20–500/month. A Dify + Ollama setup costs only electricity. Even with API access to GPT-4o for premium quality, costs typically run $5–20/month for moderate usage — still cheaper than Writesonic's entry plan."}
+    ]
+  },
+  {
+    "slug": "voiceflow",
+    "paid_name": "Voiceflow",
+    "paid_vendor": "Voiceflow Inc.",
+    "paid_url": "https://voiceflow.com",
+    "paid_price": "$50–500/mo",
+    "paid_desc": "Voiceflow is a collaborative platform for designing, prototyping, and testing conversational AI experiences — primarily for Alexa, Google Assistant, chatbots, and voice apps.",
+    "paid_cons": ["$50+/month for team collaboration", "Free tier limited to 2 projects", "Primarily for voice/chatbot design, not AI generation", "Exports limited on lower tiers"],
+    "why_open_source": "Open source conversational AI builders give you full design and deployment capabilities without per-project fees.",
+    "alternatives": ["dify", "flowise", "langflow"],
+    "quick_picks": {
+      "dify": "Best Voiceflow alternative for full conversational app building with LLMs",
+      "flowise": "Best for visual drag-and-drop conversation flow design",
+      "langflow": "Best for complex conversational logic with Python customization"
+    },
+    "faqs": [
+      {"q": "What is the best free alternative to Voiceflow?", "a": "Flowise and Dify are the best Voiceflow alternatives. Flowise offers visual drag-and-drop conversation design; Dify provides full chatbot building with analytics. Both are free and self-hostable."},
+      {"q": "Can I design voice apps with open source tools?", "a": "Dify and Flowise can produce conversation flows that can be adapted for voice. For the TTS/STT component, combine with Piper TTS (speech output) and Whisper (speech recognition) for a complete open voice stack."},
+      {"q": "Can I design voice apps with open source tools?", "a": "Dify and Flowise focus on chat-based conversational AI rather than voice-specific design. For voice app prototyping specifically, Voiceflow's specialized features (SSML, audio response management) are not fully replicated in open source yet."}
+    ]
+  },
+  {
+    "slug": "figma",
+    "paid_name": "Figma",
+    "paid_vendor": "Figma Inc.",
+    "paid_url": "https://figma.com",
+    "paid_price": "$15–75/mo",
+    "paid_desc": "Figma is the leading collaborative UI/UX design tool used by designers worldwide. It offers vector editing, prototyping, design systems, and developer handoff in the browser.",
+    "paid_cons": ["$15/month for professional plan with limited team features", "Design files stored on Figma's cloud", "No true self-hosted option", "AI features (FigJam AI) limited on free tier"],
+    "why_open_source": "Open source alternatives cover aspects of Figma's workflow — from AI-powered UI generation to design-to-code conversion.",
+    "alternatives": ["openui", "draw-a-ui", "screenshot-to-code"],
+    "quick_picks": {
+      "openui": "Best for AI-powered UI generation from text descriptions",
+      "draw-a-ui": "Best for sketch-to-HTML conversion using AI",
+      "screenshot-to-code": "Best for converting design screenshots into production code"
+    },
+    "faqs": [
+      {"q": "Is there a fully open source alternative to Figma?", "a": "Penpot is the closest open source Figma alternative (not in our AI directory, but available at penpot.app). Our directory covers AI tools that complement Figma workflows — AI UI generation, sketch-to-code, and screenshot-to-code conversion."},
+      {"q": "Can AI tools replace Figma's design capabilities?", "a": "Not fully. Screenshot-to-code and OpenUI excel at converting designs or text descriptions to code, but they don't replace Figma's vector editing. They're best used alongside Penpot or as part of a design-to-code pipeline."},
+      {"q": "What is the best AI tool for UI design?", "a": "OpenUI lets you describe a UI in text and generates working HTML/React code. Screenshot-to-code converts visual designs into code. These are complementary tools, not full Figma replacements."}
+    ]
+  },
+  {
+    "slug": "replicate",
+    "paid_name": "Replicate",
+    "paid_vendor": "Replicate Inc.",
+    "paid_url": "https://replicate.com",
+    "paid_price": "Pay-per-second (~$0.0001–0.01/sec of GPU time)",
+    "paid_desc": "Replicate is a cloud platform for running and sharing machine learning models via API. It hosts thousands of open-source models for image generation, text, audio, and video.",
+    "paid_cons": ["Per-second billing adds up quickly for heavy usage", "Cold starts add 30s–2min to first request", "Models run on Replicate's infrastructure", "Can't customize underlying GPU/hardware"],
+    "why_open_source": "Run the same models locally or on your own GPU server at a fixed cost — no per-request billing and no cold starts.",
+    "alternatives": ["ollama", "vllm", "localai", "comfyui"],
+    "quick_picks": {
+      "ollama": "Best for running LLMs and vision models locally like Replicate's API",
+      "comfyui": "Best for running image generation models locally instead of Replicate",
+      "vllm": "Best for production GPU server with high-throughput model serving",
+      "localai": "Best OpenAI-compatible API for self-hosting any model"
+    },
+    "faqs": [
+      {"q": "Is there a free alternative to Replicate?", "a": "Ollama is the most user-friendly free alternative — one command to download and run any model locally, with an API that matches Replicate's interface. ComfyUI handles image models, vLLM handles production LLM serving."},
+      {"q": "Can I self-host the same models that Replicate offers?", "a": "Yes. Replicate runs open source models that you can run yourself. Ollama runs Llama, Mistral, Gemma and more. ComfyUI runs SDXL, FLUX, and other image models. All are available for free local use."},
+      {"q": "How do I avoid Replicate's cold start problem?", "a": "Self-hosting with vLLM or Ollama eliminates cold starts entirely — models stay loaded in GPU memory. For image generation, ComfyUI with pre-loaded checkpoints provides instant generation without Replicate's 30s–2min startup delay."},
+      {"q": "What's the cost comparison: Replicate vs self-hosted?", "a": "Replicate charges ~$0.001–0.01/second for GPU. A dedicated RTX 4090 costs ~$1–2/hour (cloud) or ~$0.10/hour (electricity for owned hardware). For moderate usage, self-hosting is 5–10x cheaper."}
+    ]
   }
 ]
