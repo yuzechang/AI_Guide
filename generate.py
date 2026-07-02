@@ -665,6 +665,13 @@ def generate_sitemap(tools_dir, all_tools):
         filename = MANUAL_PAGES.get(tid, tid)
         page_path = tools_dir / f"{filename}.html"
         if page_path.exists():
+            # 跳过 noindex 页面，不纳入 sitemap
+            try:
+                content = page_path.read_text(encoding="utf-8")
+                if 'content="noindex' in content:
+                    continue
+            except Exception:
+                pass
             prio = _tool_priority(t)
             freq = "weekly" if t.get("stars", 0) >= 20000 else "monthly"
             urls.append(dict(
