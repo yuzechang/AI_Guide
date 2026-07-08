@@ -362,13 +362,11 @@
         <span class="en">Getting Started with Stable Diffusion WebUI</span>
         <span class="zh">Stable Diffusion WebUI 快速开始</span>
       </h2>
-      <p>
-        To get started with Stable Diffusion WebUI, visit the
-        <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>cd stable-diffusion-webui && ./webui.sh</code></pre>
+      </div>
+      <div class="alert alert-info">💡 Windows: run <code>webui-user.bat</code>. Requires NVIDIA GPU 6GB+ VRAM (or <code>--use-cpu</code> for CPU-only). Python 3.10 recommended. First launch downloads several GB of model checkpoints.</div>
       <div class="alert alert-info">
         💡 <strong>Tip:</strong> Check the GitHub repository's
         <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues" target="_blank" rel="noopener">Issues</a> and

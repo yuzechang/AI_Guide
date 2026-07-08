@@ -369,13 +369,11 @@
         <span class="en">Getting Started with Dify</span>
         <span class="zh">Dify 快速开始</span>
       </h2>
-      <p>
-        To get started with Dify, visit the
-        <a href="https://github.com/langgenius/dify" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Agent frameworks typically require an API key for the LLM backend
-        (OpenAI, Anthropic, or a local model via Ollama).
-      </p>
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/langgenius/dify && cd dify/docker</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>docker compose up -d</code></pre>
+      </div>
+      <div class="alert alert-info">💡 Requires Docker & Docker Compose. Web UI at <a href="http://localhost:80" target="_blank" rel="noopener">http://localhost:80</a>. For production, configure PostgreSQL and Redis in <code>.env</code>. Cloud sandbox available at <a href="https://dify.ai" target="_blank" rel="noopener">dify.ai</a> for quick evaluation.</div>
       <div class="alert alert-info">
         💡 <strong>Tip:</strong> Check the GitHub repository's
         <a href="https://github.com/langgenius/dify/issues" target="_blank" rel="noopener">Issues</a> and

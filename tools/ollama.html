@@ -375,13 +375,11 @@
         <span class="en">Getting Started with Ollama</span>
         <span class="zh">Ollama 快速开始</span>
       </h2>
-      <p>
-        To get started with Ollama, visit the
-        <a href="https://github.com/ollama/ollama" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>ollama run llama3.2</code></pre>
+      </div>
+      <div class="alert alert-info">💡 macOS: <code>brew install ollama</code>. Windows: download .msi from <a href="https://ollama.com" target="_blank" rel="noopener">ollama.com</a>. First model download is ~2-4GB. For GPU acceleration, ensure NVIDIA drivers / CUDA / Metal are installed.</div>
       <div class="alert alert-info">
         💡 <strong>Tip:</strong> Check the GitHub repository's
         <a href="https://github.com/ollama/ollama/issues" target="_blank" rel="noopener">Issues</a> and

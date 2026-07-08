@@ -356,13 +356,11 @@
         <span class="en">Getting Started with llama.cpp</span>
         <span class="zh">llama.cpp 快速开始</span>
       </h2>
-      <p>
-        To get started with llama.cpp, visit the
-        <a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/ggerganov/llama.cpp && cd llama.cpp && make -j</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>./llama-cli -m model.gguf -p "Hello, world!"</code></pre>
+      </div>
+      <div class="alert alert-info">💡 macOS Apple Silicon: <code>make LLAMA_METAL=1</code>. Linux NVIDIA: <code>make LLAMA_CUDA=1</code>. Download GGUF models from Hugging Face (search "TheBloke" or "bartowski"). No Python or Docker required—pure C/C++ binary.</div>
       <div class="alert alert-info">
         💡 <strong>Tip:</strong> Check the GitHub repository's
         <a href="https://github.com/ggerganov/llama.cpp/issues" target="_blank" rel="noopener">Issues</a> and
