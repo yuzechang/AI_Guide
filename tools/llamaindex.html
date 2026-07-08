@@ -291,20 +291,13 @@
         <span class="en">Getting Started with LlamaIndex</span>
         <span class="zh">LlamaIndex 快速开始</span>
       </h2>
-      <p>
-        Install LlamaIndex via pip and follow the
-        <a href="https://github.com/run-llama/llama_index" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install llamaindex</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/run-llama/llama_index/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/run-llama/llama_index/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install llama-index</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python -c "from llama_index.core import VectorStoreIndex, SimpleDirectoryReader; print('OK')"</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.9+. Install provider-specific packages (llama-index-llms-openai, llama-index-embeddings-ollama) for your stack. Starter tutorial: docs.llamaindex.ai.</div>
+      
 
       <!-- Further Reading (external links) -->
       
@@ -383,17 +376,15 @@
       </h2>
       <p>LlamaIndex is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>📚 Advanced RAG Architectures</h3>
+      <p>Implement agentic RAG, multi-hop retrieval, recursive summarization, and hybrid search—LlamaIndex provides 40+ built-in retrieval strategies beyond basic vector search.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      <h3>🏗️ Data Ingestion Pipeline</h3>
+      <p>Connect 160+ data sources (Slack, Notion, SharePoint, Salesforce) into a unified index—LlamaIndex handles parsing, chunking, embedding, and incremental sync.</p>
       
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>🤖 Build agents that query both unstructured text AND structured databases—auto-generate SQL from natural language, join with vector search results, and return unified answers.</h3>
+      <p></p>
       
 
       
@@ -624,7 +615,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GraphRAG Guide 2026 | Microsoft's graph-based RAG for complex reasoning over text – AI Nav</title>
   <meta name="description" content="Microsoft's graph-based RAG for complex reasoning over text 34k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yuzec.com/tools/graphrag">
 
   <!-- Open Graph -->
@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/microsoft/graphrag",
     "description": "Microsoft\u0027s graph-based RAG for complex reasoning over text",
-    "dateModified": "2026-06-23",
+    "dateModified": "2026-07-08",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
@@ -163,7 +163,7 @@
     </h1>
     <p class="article-desc">Microsoft's graph-based RAG for complex reasoning over text</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/microsoft/graphrag" target="_blank" rel="noopener" style="color:var(--text-3)">34k+ GitHub Stars</a></span>
     </div>
@@ -284,20 +284,13 @@
         <span class="en">Getting Started with GraphRAG</span>
         <span class="zh">GraphRAG 快速开始</span>
       </h2>
-      <p>
-        Install GraphRAG via pip and follow the
-        <a href="https://github.com/microsoft/graphrag" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install graphrag</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/microsoft/graphrag/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/microsoft/graphrag/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install graphrag</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>graphrag init --root ./my_project</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.10+ and an OpenAI-compatible API key. Run 'graphrag init' to create a project, then 'graphrag index' to build the knowledge graph, then 'graphrag query' to ask questions.</div>
+      
 
       <!-- Further Reading (external links) -->
       
@@ -338,17 +331,15 @@
       </h2>
       <p>GraphRAG is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>🧬 Knowledge Graph RAG</h3>
+      <p>Go beyond vector search—GraphRAG extracts entities, relationships, and communities from documents to answer global questions vector search misses, like 'what are the main themes across this dataset?'</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      <h3>📊 Enterprise Document Intelligence</h3>
+      <p>Process 10,000+ internal documents and build a knowledge graph that reveals cross-document patterns, trends, and contradictions that no single document contains.</p>
       
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>🔍 Global Summarization & Thematic Analysis</h3>
+      <p>Ask 'summarize all customer complaints from 2025' and GraphRAG identifies thematic clusters and representative examples—not just keyword matches but conceptual understanding.</p>
       
 
       
@@ -516,7 +507,7 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> Open Source</div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

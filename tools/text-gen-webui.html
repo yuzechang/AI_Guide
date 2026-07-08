@@ -351,17 +351,15 @@
         Here are the most common scenarios where teams choose Text Generation WebUI:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>💻 Local LLM Playground</h3>
+      <p>Load any GGUF, GPTQ, AWQ, or HF model through a web UI—test prompts, adjust generation parameters in real time, and compare model outputs side by side.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🔧 LoRA Training Interface</h3>
+      <p>Fine-tune models with LoRA directly from the UI—upload your training data in chat format, set rank and alpha, and start training without writing a single line of code.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>🔌 OpenAI-Compatible API Mode</h3>
+      <p>Enable API mode and use text-generation-webui as a drop-in replacement for the OpenAI API—any app that supports custom base URLs can use it.</p>
       
 
       <!-- Getting Started -->
@@ -369,21 +367,13 @@
         <span class="en">Getting Started with Text Generation WebUI</span>
         <span class="zh">Text Generation WebUI 快速开始</span>
       </h2>
-      <p>
-        To get started with Text Generation WebUI, visit the
-        <a href="https://github.com/oobabooga/text-generation-webui" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/oobabooga/text-generation-webui/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/oobabooga/text-generation-webui/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/oobabooga/text-generation-webui/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/oobabooga/text-generation-webui && cd text-generation-webui</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python server.py --listen --api</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires NVIDIA GPU 6GB+ VRAM. Run start_linux.sh / start_macos.sh / start_windows.bat for auto-setup. Supports 20+ model formats. Web UI at http://localhost:7860.</div>
+      
 
       <!-- Further Reading -->
       
@@ -623,7 +613,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

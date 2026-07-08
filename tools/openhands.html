@@ -317,17 +317,15 @@
       </h2>
       <p>OpenHands is used across a wide range of autonomous task scenarios. Here are the most common workflows teams automate with OpenHands:</p>
       
-      <h3>🔍 Research Automation</h3>
-      <p>Gather, analyze, and synthesize information from the web, databases, and documents autonomously.</p>
       
-      <h3>💻 Code Generation & Debugging</h3>
-      <p>Implement features, fix bugs, write tests, and refactor codebases with minimal human intervention.</p>
+      <h3>🐛 Automated Bug Fixing</h3>
+      <p>Point OpenHands at a GitHub issue with reproduction steps; it reads the codebase, implements the fix, writes tests, and opens a PR with a summary.</p>
       
-      <h3>📊 Data Processing Pipelines</h3>
-      <p>Build automated workflows that ingest, transform, validate, and analyze data at scale.</p>
+      <h3>🏗️ Feature Scaffolding from Spec</h3>
+      <p>Feed a product spec markdown and watch OpenHands scaffold the feature across frontend, backend, and database layers with working integration tests.</p>
       
-      <h3>🌐 Multi-Step Task Execution</h3>
-      <p>Complete complex goals requiring planning across many tools, APIs, and decision branches.</p>
+      <h3>📚 Dependency Upgrade Assistant</h3>
+      <p>Instruct it to upgrade all npm packages, run the test suite, fix breaking changes, and produce a changelog of what changed and why.</p>
       
 
       <!-- Features -->
@@ -366,21 +364,13 @@
         <span class="en">Getting Started with OpenHands</span>
         <span class="zh">OpenHands 快速开始</span>
       </h2>
-      <p>
-        To get started with OpenHands, visit the
-        <a href="https://github.com/All-Hands-AI/OpenHands" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Agent frameworks typically require an API key for the LLM backend
-        (OpenAI, Anthropic, or a local model via Ollama).
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/All-Hands-AI/OpenHands/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/All-Hands-AI/OpenHands/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/All-Hands-AI/OpenHands/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>docker pull ghcr.io/all-hands-ai/openhands:latest</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>docker run -it --rm -p 3000:3000 -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/all-hands-ai/openhands</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Docker. The -v flag mounts the host Docker socket so OpenHands can create sandbox containers. Set LLM_API_KEY env var first.</div>
+      
 
       <!-- Further Reading -->
       
@@ -625,7 +615,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

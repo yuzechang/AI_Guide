@@ -139,21 +139,6 @@
   <span class="breadcrumb-cur">Fooocus</span>
 </div>
 
-
-
-<style>
-.alt-ref-row { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;align-items:center; }
-.alt-ref-label { font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
-.alt-ref-badge { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;text-decoration:none;transition:all .15s; }
-.alt-ref-badge:hover { background:rgba(52,211,153,.18);border-color:#34d399; }
-</style>
-
-<div class="alt-ref-row">
-  <span class="alt-ref-label">Open Source Alternative to:</span>
-  <a href="../alternatives/midjourney.html" class="alt-ref-badge" title="Open Source Midjourney Alternative">🔓 Midjourney Alternative</a>
-<a href="../alternatives/dalle.html" class="alt-ref-badge" title="Open Source DALL-E 3 Alternative">🔓 DALL-E 3 Alternative</a>
-<a href="../alternatives/adobe-firefly.html" class="alt-ref-badge" title="Open Source Adobe Firefly Alternative">🔓 Adobe Firefly Alternative</a>
-</div>
 <!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
@@ -361,17 +346,15 @@
         Here are the most common scenarios where teams choose Fooocus:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>🎨 Simplified Stable Diffusion Interface</h3>
+      <p>Generate high-quality images without complex prompts—Fooocus handles prompt expansion, negative prompts, and parameter tuning automatically for consistently good outputs.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🖼️ Inpainting & Outpainting Made Simple</h3>
+      <p>Paint a mask on any image and describe what you want—Fooocus fills the masked area with contextually matching content using advanced inpainting models.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>🔄 Image Style Transfer & Variation</h3>
+      <p>Upload a reference image, adjust the style fidelity slider, and generate variations that keep the composition while changing style, lighting, and details.</p>
       
 
       <!-- Getting Started -->
@@ -379,21 +362,13 @@
         <span class="en">Getting Started with Fooocus</span>
         <span class="zh">Fooocus 快速开始</span>
       </h2>
-      <p>
-        To get started with Fooocus, visit the
-        <a href="https://github.com/lllyasviel/Fooocus" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/lllyasviel/Fooocus/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/lllyasviel/Fooocus/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/lllyasviel/Fooocus/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/lllyasviel/Fooocus && cd Fooocus</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python entry_with_update.py</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires NVIDIA GPU 8GB+ VRAM. Python 3.10. First launch downloads models (several GB). Use --preset realistic or --preset anime for style presets. Web UI at http://localhost:7860.</div>
+      
 
       <!-- Further Reading -->
       
@@ -623,7 +598,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

@@ -291,20 +291,13 @@
         <span class="en">Getting Started with Segment Anything</span>
         <span class="zh">Segment Anything 快速开始</span>
       </h2>
-      <p>
-        Install Segment Anything via pip and follow the
-        <a href="https://github.com/facebookresearch/segment-anything" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install segment-anything</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/facebookresearch/segment-anything/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/facebookresearch/segment-anything/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install git+https://github.com/facebookresearch/segment-anything.git</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python -c "from segment_anything import sam_model_registry; print('OK')"</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.8+ and PyTorch 1.7+. GPU recommended (8GB+ VRAM for ViT-H model). Download model checkpoints from the repo's release page (~2.4GB for ViT-H).</div>
+      
 
       <!-- Further Reading (external links) -->
       
@@ -368,17 +361,15 @@
       </h2>
       <p>Segment Anything is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>🖼️ Zero-Shot Image Segmentation</h3>
+      <p>Segment any object in any image without training—click on what you want, or let SAM auto-segment everything with point, box, or mask prompts.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      <h3>🏷️ Automated Data Annotation</h3>
+      <p>Generate pixel-perfect segmentation masks for computer vision datasets—SAM reduces annotation time from hours to minutes per image.</p>
       
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>🎥 Video Object Tracking & Segmentation</h3>
+      <p>Extend SAM to video with SAM 2—track and segment objects across frames with propagation, enabling video editing and scene understanding pipelines.</p>
       
 
       
@@ -566,7 +557,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

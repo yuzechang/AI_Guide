@@ -346,17 +346,15 @@
         Here are the most common scenarios where teams choose Stable Diffusion:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>🎨 Text-to-Image Generation Research</h3>
+      <p>The original latent diffusion model implementation—use for academic research, understanding the architecture, and as a baseline for image generation experiments.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🧪 Custom Model Training from Scratch</h3>
+      <p>Train your own latent diffusion model on custom datasets—the CompVis repo provides the reference training pipeline for reproducing and extending the original paper.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>🔧 Latent Space Manipulation</h3>
+      <p>Experiment with latent space interpolation, semantic editing, and classifier-free guidance at the architectural level for diffusion model research.</p>
       
 
       <!-- Getting Started -->
@@ -364,21 +362,13 @@
         <span class="en">Getting Started with Stable Diffusion</span>
         <span class="zh">Stable Diffusion 快速开始</span>
       </h2>
-      <p>
-        To get started with Stable Diffusion, visit the
-        <a href="https://github.com/CompVis/stable-diffusion" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/CompVis/stable-diffusion/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/CompVis/stable-diffusion/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/CompVis/stable-diffusion/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/CompVis/stable-diffusion && cd stable-diffusion</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>conda env create -f environment.yaml && conda activate ldm</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires NVIDIA GPU 8GB+ VRAM. This is the original research repo. For practical image generation, use AUTOMATIC1111/stable-diffusion-webui or diffusers library instead.</div>
+      
 
       <!-- Further Reading -->
       
@@ -610,7 +600,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

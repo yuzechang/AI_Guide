@@ -311,17 +311,15 @@
       </h2>
       <p>GPT Engineer is used across a wide range of autonomous task scenarios. Here are the most common workflows teams automate with GPT Engineer:</p>
       
-      <h3>🔍 Research Automation</h3>
-      <p>Gather, analyze, and synthesize information from the web, databases, and documents autonomously.</p>
       
-      <h3>💻 Code Generation & Debugging</h3>
-      <p>Implement features, fix bugs, write tests, and refactor codebases with minimal human intervention.</p>
+      <h3>🏗️ Spec-to-App Generation</h3>
+      <p>Write a natural language specification with clarifications, and GPT Engineer generates the complete codebase with proper file structure, tests, and a README.</p>
       
-      <h3>📊 Data Processing Pipelines</h3>
-      <p>Build automated workflows that ingest, transform, validate, and analyze data at scale.</p>
+      <h3>🔄 Iterative Refinement Loop</h3>
+      <p>After initial generation, provide feedback like 'add pagination to the table' or 'switch to PostgreSQL' and GPT Engineer applies the changes across all affected files.</p>
       
-      <h3>🌐 Multi-Step Task Execution</h3>
-      <p>Complete complex goals requiring planning across many tools, APIs, and decision branches.</p>
+      <h3>📦 Legacy Code Modernization</h3>
+      <p>Feed it an old codebase and ask for a modern rewrite—GPT Engineer analyzes the existing logic and regenerates it with current best practices and dependency versions.</p>
       
 
       <!-- Features -->
@@ -360,21 +358,13 @@
         <span class="en">Getting Started with GPT Engineer</span>
         <span class="zh">GPT Engineer 快速开始</span>
       </h2>
-      <p>
-        To get started with GPT Engineer, visit the
-        <a href="https://github.com/gpt-engineer-org/gpt-engineer" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Agent frameworks typically require an API key for the LLM backend
-        (OpenAI, Anthropic, or a local model via Ollama).
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/gpt-engineer-org/gpt-engineer/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/gpt-engineer-org/gpt-engineer/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/gpt-engineer-org/gpt-engineer/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install gpt-engineer</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>gpt-engineer .</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.10+ and an OpenAI API key. Create a 'prompt' file in your project directory with your specification, then run gpt-engineer in the same directory.</div>
+      
 
       <!-- Further Reading -->
       
@@ -603,7 +593,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

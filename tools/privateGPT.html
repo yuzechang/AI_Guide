@@ -351,17 +351,15 @@
         Here are the most common scenarios where teams choose PrivateGPT:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>🔒 Fully Offline Document Q&A</h3>
+      <p>Ask questions about your documents with zero data leaving your machine—PrivateGPT runs embedding, retrieval, and generation entirely on local hardware.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🏢 Enterprise Compliance Document Search</h3>
+      <p>Index internal policies, contracts, and compliance docs—employees query them conversationally without risking sensitive data exposure to cloud APIs.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>📁 Personal Knowledge Vault</h3>
+      <p>Build your own searchable archive of research papers, notes, and bookmarks—query it with natural language and get grounded answers with source attribution.</p>
       
 
       <!-- Getting Started -->
@@ -369,21 +367,13 @@
         <span class="en">Getting Started with PrivateGPT</span>
         <span class="zh">PrivateGPT 快速开始</span>
       </h2>
-      <p>
-        To get started with PrivateGPT, visit the
-        <a href="https://github.com/zylon-ai/private-gpt" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/zylon-ai/private-gpt/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/zylon-ai/private-gpt/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/zylon-ai/private-gpt/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/zylon-ai/private-gpt && cd private-gpt</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>poetry install && poetry run python -m private_gpt</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.11+ and Poetry. Works best with local Ollama for LLM and embedding models. GPU optional but recommended. Web UI at http://localhost:8001. API at http://localhost:8080.</div>
+      
 
       <!-- Further Reading -->
       
@@ -623,7 +613,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

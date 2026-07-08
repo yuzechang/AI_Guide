@@ -139,20 +139,6 @@
   <span class="breadcrumb-cur">Cline</span>
 </div>
 
-
-
-<style>
-.alt-ref-row { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;align-items:center; }
-.alt-ref-label { font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
-.alt-ref-badge { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;text-decoration:none;transition:all .15s; }
-.alt-ref-badge:hover { background:rgba(52,211,153,.18);border-color:#34d399; }
-</style>
-
-<div class="alt-ref-row">
-  <span class="alt-ref-label">Open Source Alternative to:</span>
-  <a href="../alternatives/github-copilot.html" class="alt-ref-badge" title="Open Source GitHub Copilot Alternative">🔓 GitHub Copilot Alternative</a>
-<a href="../alternatives/cursor.html" class="alt-ref-badge" title="Open Source Cursor Alternative">🔓 Cursor Alternative</a>
-</div>
 <!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
@@ -331,17 +317,15 @@
       </h2>
       <p>Cline is used across a wide range of autonomous task scenarios. Here are the most common workflows teams automate with Cline:</p>
       
-      <h3>🔍 Research Automation</h3>
-      <p>Gather, analyze, and synthesize information from the web, databases, and documents autonomously.</p>
       
-      <h3>💻 Code Generation & Debugging</h3>
-      <p>Implement features, fix bugs, write tests, and refactor codebases with minimal human intervention.</p>
+      <h3>🧩 VS Code Pair Programming</h3>
+      <p>Cline reads your entire project context, edits files with precision, runs terminal commands, and fixes errors autonomously—all from within VS Code.</p>
       
-      <h3>📊 Data Processing Pipelines</h3>
-      <p>Build automated workflows that ingest, transform, validate, and analyze data at scale.</p>
+      <h3>🔍 Codebase Exploration & Onboarding</h3>
+      <p>Open an unfamiliar codebase and ask Cline to explain the architecture, trace request flows, and generate onboarding docs for new team members.</p>
       
-      <h3>🌐 Multi-Step Task Execution</h3>
-      <p>Complete complex goals requiring planning across many tools, APIs, and decision branches.</p>
+      <h3>⚡ Rapid MVP Development</h3>
+      <p>Describe your app idea and watch Cline scaffold a full-stack project, install dependencies, configure the database, and deploy to Vercel or Railway.</p>
       
 
       <!-- Features -->
@@ -375,21 +359,13 @@
         <span class="en">Getting Started with Cline</span>
         <span class="zh">Cline 快速开始</span>
       </h2>
-      <p>
-        To get started with Cline, visit the
-        <a href="https://github.com/cline/cline" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Agent frameworks typically require an API key for the LLM backend
-        (OpenAI, Anthropic, or a local model via Ollama).
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/cline/cline/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/cline/cline/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/cline/cline/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>code --install-extension saoudrizwan.claude-dev</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>Cmd+Shift+P → Cline: Open in New Tab</code></pre>
       </div>
+      <div class="alert alert-info">💡 VS Code extension. Requires an Anthropic API key. Configure in Cline settings (gear icon) before first use. Supports Claude Opus and Sonnet models.</div>
+      
 
       <!-- Further Reading -->
       
@@ -624,7 +600,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

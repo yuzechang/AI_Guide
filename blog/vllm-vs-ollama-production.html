@@ -34,8 +34,7 @@
     },
     "publisher": {
       "@type": "Organization",
-      "name": "AI Nav",
-      "url": "https://yuzec.com/"
+      "name": "AI Nav"
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -183,7 +182,7 @@
     <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
       <span style="font-size:13px;color:var(--text-3)">🗓 June 2026</span>
       <span style="font-size:13px;color:var(--text-3)">⏱ 9 min read</span>
-      <span style="font-size:13px;color:var(--text-3)">✍️ AI Nav Editorial Team</span>
+      <span style="font-size:13px;color:var(--text-3)">✍️ <a href="/authors/nolan" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Nolan</a></span>
     </div>
   </div>
 </div>
@@ -608,6 +607,18 @@
         </ol>
       </div>
       <div class="related-box">
+
+      <!-- 📚 External References & Data Sources -->
+      <h2 id="references">📚 References & Data Sources</h2>
+      <ul>
+        <li><a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener">Efficient Memory Management for Large Language Model Serving with PagedAttention</a> — The vLLM paper (SOSP 2023) introducing PagedAttention, the core innovation behind vLLM's 10-20x throughput gains.</li>
+        <li><a href="https://docs.vllm.ai" target="_blank" rel="noopener">vLLM Official Documentation</a> — Production deployment guides, supported model list, quantization options, and performance tuning parameters.</li>
+        <li><a href="https://ollama.com/blog" target="_blank" rel="noopener">Ollama Engineering Blog</a> — Technical deep-dives on model quantization, GPU scheduling, and infrastructure from the Ollama team.</li>
+        <li><a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener">llama.cpp GitHub</a> — The inference backend that powers Ollama. Readme documents all quantization formats (Q4_K_M to Q8_0) and their memory-vs-quality tradeoffs.</li>
+        <li><a href="https://artificialanalysis.ai/providers" target="_blank" rel="noopener">Artificial Analysis: LLM Provider Benchmarks</a> — Independent throughput, latency, and cost-per-token comparisons across 20+ inference providers including vLLM-based deployments.</li>
+        <li><a href="https://github.com/vllm-project/vllm/tree/main/benchmarks" target="_blank" rel="noopener">vLLM Benchmark Suite</a> — Official benchmark scripts for measuring serving throughput, latency distribution, and GPU utilization under load.</li>
+      </ul>
+
         <h3>Related Articles</h3>
         <ul>
           <li><a href="run-llm-locally-guide">Run LLMs Locally Guide →</a></li>

@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/continuedev/continue",
     "description": "Open-source AI code assistant for VS Code and JetBrains",
-    "dateModified": "2026-06-23",
+    "dateModified": "2026-07-08",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -133,20 +133,6 @@
   <span class="breadcrumb-cur">Continue</span>
 </div>
 
-
-
-<style>
-.alt-ref-row { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;align-items:center; }
-.alt-ref-label { font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
-.alt-ref-badge { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;text-decoration:none;transition:all .15s; }
-.alt-ref-badge:hover { background:rgba(52,211,153,.18);border-color:#34d399; }
-</style>
-
-<div class="alt-ref-row">
-  <span class="alt-ref-label">Open Source Alternative to:</span>
-  <a href="../alternatives/github-copilot.html" class="alt-ref-badge" title="Open Source GitHub Copilot Alternative">🔓 GitHub Copilot Alternative</a>
-<a href="../alternatives/cursor.html" class="alt-ref-badge" title="Open Source Cursor Alternative">🔓 Cursor Alternative</a>
-</div>
 <!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
@@ -171,7 +157,7 @@
     </h1>
     <p class="article-desc">Open-source AI code assistant for VS Code and JetBrains</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/continuedev/continue" target="_blank" rel="noopener" style="color:var(--text-3)">34k+ GitHub Stars</a></span>
     </div>
@@ -354,17 +340,15 @@
         Here are the most common scenarios where teams choose Continue:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>💻 Open-Source AI Coding Assistant</h3>
+      <p>AI-powered code completion, chat, and editing in VS Code and JetBrains—connect to any LLM (cloud or local) with full codebase context awareness.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🔧 Custom Slash Commands</h3>
+      <p>Define project-specific AI commands like '/explain-architecture' or '/generate-tests'—Continue executes your prompt with full context and applies changes to files.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>🏠 Completely Offline AI Coding</h3>
+      <p>Pair with Ollama or LM Studio for AI-assisted coding with zero data leaving your machine—all features work entirely offline.</p>
       
 
       <!-- Getting Started -->
@@ -372,21 +356,13 @@
         <span class="en">Getting Started with Continue</span>
         <span class="zh">Continue 快速开始</span>
       </h2>
-      <p>
-        To get started with Continue, visit the
-        <a href="https://github.com/continuedev/continue" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/continuedev/continue/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/continuedev/continue/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/continuedev/continue/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>code --install-extension Continue.continue</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>Cmd+L to open chat</code></pre>
       </div>
+      <div class="alert alert-info">💡 VS Code / JetBrains extension. Configure model in ~/.continue/config.json. Supports 20+ LLM providers including local models via Ollama. Free and open-source.</div>
+      
 
       <!-- Further Reading -->
       
@@ -584,7 +560,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

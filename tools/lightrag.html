@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LightRAG Guide 2026 | Simple and fast RAG system with knowledge graph support – AI Nav</title>
   <meta name="description" content="Simple and fast RAG system with knowledge graph support 37k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
-  <meta name="robots" content="noindex, follow">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yuzec.com/tools/lightrag">
 
   <!-- Open Graph -->
@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/HKUDS/LightRAG",
     "description": "Simple and fast RAG system with knowledge graph support",
-    "dateModified": "2026-06-23",
+    "dateModified": "2026-07-08",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
@@ -163,7 +163,7 @@
     </h1>
     <p class="article-desc">Simple and fast RAG system with knowledge graph support</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/HKUDS/LightRAG" target="_blank" rel="noopener" style="color:var(--text-3)">37k+ GitHub Stars</a></span>
     </div>
@@ -284,20 +284,13 @@
         <span class="en">Getting Started with LightRAG</span>
         <span class="zh">LightRAG 快速开始</span>
       </h2>
-      <p>
-        Install LightRAG via pip and follow the
-        <a href="https://github.com/HKUDS/LightRAG" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install lightrag</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/HKUDS/LightRAG/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/HKUDS/LightRAG/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install lightrag-hku</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python -c "from lightrag import LightRAG; print('OK')"</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.9+ and an OpenAI-compatible API. Works with local Ollama for fully offline operation. Supports Neo4j, NetworkX, and ArangoDB as graph backends.</div>
+      
 
       <!-- Further Reading (external links) -->
       
@@ -333,17 +326,15 @@
       </h2>
       <p>LightRAG is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>🔍 Graph-Enhanced RAG</h3>
+      <p>Go beyond vector search—LightRAG builds a knowledge graph from your documents and retrieves information through both graph traversal and vector similarity for higher recall.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      <h3>⚡ Cost-Efficient Document Q&A</h3>
+      <p>Process 1000-page documents at a fraction of the API cost of baseline RAG—LightRAG's incremental graph construction eliminates redundant LLM calls.</p>
       
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>🧩 Multi-Hop Reasoning</h3>
+      <p>Answer questions that require connecting facts across different documents—LightRAG's graph structure enables multi-hop reasoning that pure vector search misses.</p>
       
 
       
@@ -511,7 +502,7 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> Open Source</div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

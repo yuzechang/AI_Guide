@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/Aider-AI/aider",
     "description": "AI pair programmer in your terminal",
-    "dateModified": "2026-06-23",
+    "dateModified": "2026-07-08",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -133,20 +133,6 @@
   <span class="breadcrumb-cur">Aider</span>
 </div>
 
-
-
-<style>
-.alt-ref-row { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;align-items:center; }
-.alt-ref-label { font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
-.alt-ref-badge { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;text-decoration:none;transition:all .15s; }
-.alt-ref-badge:hover { background:rgba(52,211,153,.18);border-color:#34d399; }
-</style>
-
-<div class="alt-ref-row">
-  <span class="alt-ref-label">Open Source Alternative to:</span>
-  <a href="../alternatives/github-copilot.html" class="alt-ref-badge" title="Open Source GitHub Copilot Alternative">🔓 GitHub Copilot Alternative</a>
-<a href="../alternatives/cursor.html" class="alt-ref-badge" title="Open Source Cursor Alternative">🔓 Cursor Alternative</a>
-</div>
 <!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
@@ -171,7 +157,7 @@
     </h1>
     <p class="article-desc">AI pair programmer in your terminal</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/Aider-AI/aider" target="_blank" rel="noopener" style="color:var(--text-3)">47k+ GitHub Stars</a></span>
     </div>
@@ -354,17 +340,15 @@
         Here are the most common scenarios where teams choose Aider:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>💻 Terminal-Based AI Pair Programming</h3>
+      <p>Edit code in your terminal with AI that sees your entire git repo—describe changes in natural language, Aider applies them across multiple files with proper edits.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🔄 Iterative Refactoring with Git Guarantees</h3>
+      <p>Every AI edit is a clean git commit—review, revert, or amend changes. Aider respects your .gitignore and automatically commits after each successful edit.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>🗺️ Multi-File Architecture Changes</h3>
+      <p>Ask for 'move all API calls to a separate service layer' and Aider finds every file that needs changing, makes coordinated edits, and ensures imports stay consistent.</p>
       
 
       <!-- Getting Started -->
@@ -372,21 +356,13 @@
         <span class="en">Getting Started with Aider</span>
         <span class="zh">Aider 快速开始</span>
       </h2>
-      <p>
-        To get started with Aider, visit the
-        <a href="https://github.com/Aider-AI/aider" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/Aider-AI/aider/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/Aider-AI/aider/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/Aider-AI/aider/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install aider-chat</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>aider</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.10+ and an LLM API key (Anthropic recommended). Run inside a git repo for best results. Use aider --model sonnet for Claude, aider --4o for GPT-4o.</div>
+      
 
       <!-- Further Reading -->
       
@@ -594,7 +570,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

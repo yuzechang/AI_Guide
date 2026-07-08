@@ -351,17 +351,15 @@
         Here are the most common scenarios where teams choose Open Interpreter:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>💻 Natural Language System Control</h3>
+      <p>Type 'clean up my Downloads folder, keep files from the last 30 days, move old ones to Archive' and Open Interpreter writes and executes the Python/bash to do it.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>📊 Interactive Data Analysis</h3>
+      <p>Ask 'plot revenue by region from this CSV, highlight YoY growth'—Open Interpreter reads the file, writes pandas/matplotlib code, and shows the chart inline.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>🔧 System Administration Automation</h3>
+      <p>Describe admin tasks in plain English: 'find all processes using >1GB RAM, kill the ones not owned by root' and approve the generated commands.</p>
       
 
       <!-- Getting Started -->
@@ -369,21 +367,13 @@
         <span class="en">Getting Started with Open Interpreter</span>
         <span class="zh">Open Interpreter 快速开始</span>
       </h2>
-      <p>
-        To get started with Open Interpreter, visit the
-        <a href="https://github.com/OpenInterpreter/open-interpreter" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/OpenInterpreter/open-interpreter/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/OpenInterpreter/open-interpreter/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/OpenInterpreter/open-interpreter/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install open-interpreter</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>interpreter</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.10+ and an OpenAI API key (or local Ollama). Runs code on your machine with approval prompts. Use interpreter --local for fully offline mode.</div>
+      
 
       <!-- Further Reading -->
       
@@ -610,7 +600,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

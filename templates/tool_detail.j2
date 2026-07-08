@@ -285,6 +285,13 @@
         <span class="en">Getting Started with {{ tool.name }}</span>
         <span class="zh">{{ tool.name }} 快速开始</span>
       </h2>
+      {% if tool.install_guide %}
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>{{ tool.install_guide.cmd }}</code></pre>
+        {% if tool.install_guide.run %}<pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>{{ tool.install_guide.run }}</code></pre>{% endif %}
+      </div>
+      {% if tool.install_guide.note %}<div class="alert alert-info">💡 {{ tool.install_guide.note }}</div>{% endif %}
+      {% else %}
       <p>
         Install {{ tool.name }} via pip and follow the
         <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">official README</a>
@@ -299,6 +306,7 @@
         <a href="{{ tool.githubUrl }}/discussions" target="_blank" rel="noopener">Discussions</a>
         for community Q&amp;A.
       </div>
+      {% endif %}
 
       <!-- Further Reading (external links) -->
       {% if tool.links %}
@@ -357,7 +365,8 @@
         <span class="zh">应用场景</span>
       </h2>
       <p>{{ tool.name }} is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
-      {% for uc in cat.use_cases %}
+      {% set use_cases_list = tool.use_cases if tool.use_cases else cat.use_cases %}
+      {% for uc in use_cases_list %}
       <h3>{{ uc.icon }} {{ uc.title }}</h3>
       <p>{{ uc.desc }}</p>
       {% endfor %}
@@ -394,7 +403,8 @@
         <span class="zh">应用场景</span>
       </h2>
       <p>{{ tool.name }} is used across a wide range of autonomous task scenarios. Here are the most common workflows teams automate with {{ tool.name }}:</p>
-      {% for uc in cat.use_cases %}
+      {% set use_cases_list = tool.use_cases if tool.use_cases else cat.use_cases %}
+      {% for uc in use_cases_list %}
       <h3>{{ uc.icon }} {{ uc.title }}</h3>
       <p>{{ uc.desc }}</p>
       {% endfor %}
@@ -420,6 +430,13 @@
         <span class="en">Getting Started with {{ tool.name }}</span>
         <span class="zh">{{ tool.name }} 快速开始</span>
       </h2>
+      {% if tool.install_guide %}
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>{{ tool.install_guide.cmd }}</code></pre>
+        {% if tool.install_guide.run %}<pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>{{ tool.install_guide.run }}</code></pre>{% endif %}
+      </div>
+      {% if tool.install_guide.note %}<div class="alert alert-info">💡 {{ tool.install_guide.note }}</div>{% endif %}
+      {% else %}
       <p>
         To get started with {{ tool.name }}, visit the
         <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">GitHub repository</a>
@@ -435,6 +452,7 @@
         <a href="{{ tool.githubUrl }}/releases" target="_blank" rel="noopener">Releases</a>
         page for the latest stable version.
       </div>
+      {% endif %}
 
       <!-- Further Reading -->
       {% if tool.links %}
@@ -500,7 +518,8 @@
         {{ tool.name }} is used across a wide range of applications in the AI development ecosystem.
         Here are the most common scenarios where teams choose {{ tool.name }}:
       </p>
-      {% for uc in cat.use_cases %}
+      {% set use_cases_list = tool.use_cases if tool.use_cases else cat.use_cases %}
+      {% for uc in use_cases_list %}
       <h3>{{ uc.icon }} {{ uc.title }}</h3>
       <p>{{ uc.desc }}</p>
       {% endfor %}
@@ -510,6 +529,13 @@
         <span class="en">Getting Started with {{ tool.name }}</span>
         <span class="zh">{{ tool.name }} 快速开始</span>
       </h2>
+      {% if tool.install_guide %}
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>{{ tool.install_guide.cmd }}</code></pre>
+        {% if tool.install_guide.run %}<pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>{{ tool.install_guide.run }}</code></pre>{% endif %}
+      </div>
+      {% if tool.install_guide.note %}<div class="alert alert-info">💡 {{ tool.install_guide.note }}</div>{% endif %}
+      {% else %}
       <p>
         To get started with {{ tool.name }}, visit the
         <a href="{{ tool.githubUrl }}" target="_blank" rel="noopener">GitHub repository</a>
@@ -525,6 +551,7 @@
         <a href="{{ tool.githubUrl }}/releases" target="_blank" rel="noopener">Releases</a>
         page for the latest stable version.
       </div>
+      {% endif %}
 
       <!-- Further Reading -->
       {% if tool.links %}

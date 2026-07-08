@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/facebookresearch/faiss",
     "description": "Facebook\u0027s library for efficient similarity search and clustering",
-    "dateModified": "2026-06-23",
+    "dateModified": "2026-07-08",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT" }]
   }
@@ -157,7 +157,7 @@
     </h1>
     <p class="article-desc">Facebook's library for efficient similarity search and clustering</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/facebookresearch/faiss" target="_blank" rel="noopener" style="color:var(--text-3)">40k+ GitHub Stars</a></span>
     </div>
@@ -285,20 +285,13 @@
         <span class="en">Getting Started with Faiss</span>
         <span class="zh">Faiss 快速开始</span>
       </h2>
-      <p>
-        Install Faiss via pip and follow the
-        <a href="https://github.com/facebookresearch/faiss" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install faiss</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/facebookresearch/faiss/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/facebookresearch/faiss/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install faiss-cpu  # or faiss-gpu for CUDA</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python -c "import faiss; print(faiss.__version__)"</code></pre>
       </div>
+      <div class="alert alert-info">💡 CPU: pip install faiss-cpu. GPU: pip install faiss-gpu (requires CUDA 11.4+). For Conda: conda install -c pytorch faiss-gpu. No server needed—pure library embedded in your Python process.</div>
+      
 
       <!-- Further Reading (external links) -->
       
@@ -353,17 +346,15 @@
       </h2>
       <p>Faiss is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>⚡ Billion-Scale Similarity Search</h3>
+      <p>Search through billions of vectors in milliseconds—FAISS compresses indexes to fit in RAM with near-exact accuracy using Product Quantization and IVF indexes.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      <h3>🔍 Deduplication at Scale</h3>
+      <p>Find near-duplicate images, documents, or user profiles in massive datasets—FAISS identifies clusters and duplicates faster than any other open-source library.</p>
       
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>🧬 Recommendation System Backend</h3>
+      <p>Power the retrieval stage of two-tower recommendation models—FAISS serves candidate generation with sub-10ms latency for millions of items.</p>
       
 
       
@@ -551,7 +542,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

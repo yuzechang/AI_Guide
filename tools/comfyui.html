@@ -133,21 +133,6 @@
   <span class="breadcrumb-cur">ComfyUI</span>
 </div>
 
-
-
-<style>
-.alt-ref-row { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;align-items:center; }
-.alt-ref-label { font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
-.alt-ref-badge { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;text-decoration:none;transition:all .15s; }
-.alt-ref-badge:hover { background:rgba(52,211,153,.18);border-color:#34d399; }
-</style>
-
-<div class="alt-ref-row">
-  <span class="alt-ref-label">Open Source Alternative to:</span>
-  <a href="../alternatives/midjourney.html" class="alt-ref-badge" title="Open Source Midjourney Alternative">🔓 Midjourney Alternative</a>
-<a href="../alternatives/dalle.html" class="alt-ref-badge" title="Open Source DALL-E 3 Alternative">🔓 DALL-E 3 Alternative</a>
-<a href="../alternatives/adobe-firefly.html" class="alt-ref-badge" title="Open Source Adobe Firefly Alternative">🔓 Adobe Firefly Alternative</a>
-</div>
 <!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
@@ -360,17 +345,15 @@
         Here are the most common scenarios where teams choose ComfyUI:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>🔗 Node-Based Image Generation Pipeline</h3>
+      <p>Build custom image generation workflows by connecting nodes for model loading, prompt encoding, sampling, VAE decoding, and upscaling—full control over every step.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🔄 Reproducible Workflow Sharing</h3>
+      <p>Export your entire node graph as a JSON file (or PNG with embedded workflow), share it with the community, and reproduce results pixel-perfect on any machine.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>⚡ API-Driven Batch Processing</h3>
+      <p>Trigger generation workflows programmatically via the REST API, enabling automated batch processing, A/B prompt testing, and integration into CI/CD pipelines.</p>
       
 
       <!-- Getting Started -->
@@ -378,21 +361,13 @@
         <span class="en">Getting Started with ComfyUI</span>
         <span class="zh">ComfyUI 快速开始</span>
       </h2>
-      <p>
-        To get started with ComfyUI, visit the
-        <a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/comfyanonymous/ComfyUI/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/comfyanonymous/ComfyUI/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/comfyanonymous/ComfyUI/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/comfyanonymous/ComfyUI && cd ComfyUI</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python main.py --listen 0.0.0.0</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires NVIDIA GPU with 6GB+ VRAM. Python 3.10+. Place model checkpoints in models/checkpoints/ before starting. Web UI at http://localhost:8188.</div>
+      
 
       <!-- Further Reading -->
       
@@ -630,7 +605,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/Mintplex-Labs/anything-llm",
     "description": "All-in-one desktop and Docker AI application",
-    "dateModified": "2026-06-23",
+    "dateModified": "2026-07-08",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "MIT" }]
   }
@@ -133,22 +133,6 @@
   <span class="breadcrumb-cur">AnythingLLM</span>
 </div>
 
-
-
-<style>
-.alt-ref-row { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;align-items:center; }
-.alt-ref-label { font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
-.alt-ref-badge { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;text-decoration:none;transition:all .15s; }
-.alt-ref-badge:hover { background:rgba(52,211,153,.18);border-color:#34d399; }
-</style>
-
-<div class="alt-ref-row">
-  <span class="alt-ref-label">Open Source Alternative to:</span>
-  <a href="../alternatives/chatgpt.html" class="alt-ref-badge" title="Open Source ChatGPT Alternative">🔓 ChatGPT Alternative</a>
-<a href="../alternatives/perplexity-ai.html" class="alt-ref-badge" title="Open Source Perplexity AI Alternative">🔓 Perplexity AI Alternative</a>
-<a href="../alternatives/notion-ai.html" class="alt-ref-badge" title="Open Source Notion AI Alternative">🔓 Notion AI Alternative</a>
-<a href="../alternatives/microsoft-copilot.html" class="alt-ref-badge" title="Open Source Microsoft Copilot Alternative">🔓 Microsoft Copilot Alternative</a>
-</div>
 <!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
@@ -173,7 +157,7 @@
     </h1>
     <p class="article-desc">All-in-one desktop and Docker AI application</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/Mintplex-Labs/anything-llm" target="_blank" rel="noopener" style="color:var(--text-3)">62k+ GitHub Stars</a></span>
     </div>
@@ -361,17 +345,15 @@
         Here are the most common scenarios where teams choose AnythingLLM:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>📚 Multi-Source Knowledge Base Chat</h3>
+      <p>Connect PDFs, YouTube transcripts, Confluence pages, and GitHub repos into a unified workspace—query across all sources with citations in a single chat.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>🔌 LLM Provider Agnostic Frontend</h3>
+      <p>Switch between OpenAI, Anthropic, Google Gemini, Azure, Ollama, LM Studio, and local models from one interface—compare outputs without changing tools.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>👥 Team Knowledge Management</h3>
+      <p>Create shared workspaces with custom AI agents per workspace, embeddable chat widgets for internal tools, and granular permission controls for enterprise deployment.</p>
       
 
       <!-- Getting Started -->
@@ -379,21 +361,13 @@
         <span class="en">Getting Started with AnythingLLM</span>
         <span class="zh">AnythingLLM 快速开始</span>
       </h2>
-      <p>
-        To get started with AnythingLLM, visit the
-        <a href="https://github.com/Mintplex-Labs/anything-llm" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/Mintplex-Labs/anything-llm/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/Mintplex-Labs/anything-llm/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/Mintplex-Labs/anything-llm/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>docker run -d -p 3001:3001 --name anythingllm -v anythingllm_data:/app/server/storage mintplexlabs/anythingllm</code></pre>
+        
       </div>
+      <div class="alert alert-info">💡 Requires Docker. Web UI at http://localhost:3001. Desktop app also available (Mac/Windows/Linux). Supports 30+ LLM providers, 20+ vector databases, and 10+ embedding models.</div>
+      
 
       <!-- Further Reading -->
       
@@ -601,7 +575,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/agno-agi/agno",
     "description": "Lightweight library for building multi-modal agents",
-    "dateModified": "2026-06-23",
+    "dateModified": "2026-07-08",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Apache-2.0" }]
   }
@@ -157,7 +157,7 @@
     </h1>
     <p class="article-desc">Lightweight library for building multi-modal agents</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-06-23">2026-06</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/agno-agi/agno" target="_blank" rel="noopener" style="color:var(--text-3)">41k+ GitHub Stars</a></span>
     </div>
@@ -311,17 +311,15 @@
       </h2>
       <p>Agno is used across a wide range of autonomous task scenarios. Here are the most common workflows teams automate with Agno:</p>
       
-      <h3>🔍 Research Automation</h3>
-      <p>Gather, analyze, and synthesize information from the web, databases, and documents autonomously.</p>
       
-      <h3>💻 Code Generation & Debugging</h3>
-      <p>Implement features, fix bugs, write tests, and refactor codebases with minimal human intervention.</p>
+      <h3>🧠 Memory-Persistent AI Assistant</h3>
+      <p>Build an assistant that remembers user preferences, conversation history, and context across sessions—stored in PostgreSQL, Pinecone, or local SQLite.</p>
       
-      <h3>📊 Data Processing Pipelines</h3>
-      <p>Build automated workflows that ingest, transform, validate, and analyze data at scale.</p>
+      <h3>🔧 Tool-Equipped Agent Development</h3>
+      <p>Give your agent access to web search, code execution, database queries, and custom API tools with a single decorator per function.</p>
       
-      <h3>🌐 Multi-Step Task Execution</h3>
-      <p>Complete complex goals requiring planning across many tools, APIs, and decision branches.</p>
+      <h3>📈 Multi-Modal Data Pipeline</h3>
+      <p>Ingest text, images, audio, and video into a unified knowledge base that the agent can query and reason over with structured outputs.</p>
       
 
       <!-- Features -->
@@ -360,21 +358,13 @@
         <span class="en">Getting Started with Agno</span>
         <span class="zh">Agno 快速开始</span>
       </h2>
-      <p>
-        To get started with Agno, visit the
-        <a href="https://github.com/agno-agi/agno" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Agent frameworks typically require an API key for the LLM backend
-        (OpenAI, Anthropic, or a local model via Ollama).
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/agno-agi/agno/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/agno-agi/agno/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/agno-agi/agno/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install agno</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python -c "from agno import Agent; print('OK')"</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.8+. Set ANTHROPIC_API_KEY or OPENAI_API_KEY. For full features, also install agno[tools] and agno[memory] extras.</div>
+      
 
       <!-- Further Reading -->
       
@@ -564,7 +554,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

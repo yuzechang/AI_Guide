@@ -291,20 +291,13 @@
         <span class="en">Getting Started with DeepSpeed</span>
         <span class="zh">DeepSpeed 快速开始</span>
       </h2>
-      <p>
-        Install DeepSpeed via pip and follow the
-        <a href="https://github.com/microsoft/DeepSpeed" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install deepspeed</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/microsoft/DeepSpeed/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/microsoft/DeepSpeed/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install deepspeed</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>deepspeed --help</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires NVIDIA GPU + CUDA 11.0+. PyTorch 2.0+ required. For ZeRO-3: add --deepspeed ds_config.json to your training script. Check deepspeed.ai for config templates.</div>
+      
 
       <!-- Further Reading (external links) -->
       
@@ -373,17 +366,15 @@
       </h2>
       <p>DeepSpeed is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>🚀 Train 100B+ Parameter Models</h3>
+      <p>DeepSpeed ZeRO-3 enables training trillion-parameter models across thousands of GPUs—partition optimizer states, gradients, and parameters to eliminate memory bottlenecks.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      <h3>⚡ 3-5x Faster Inference</h3>
+      <p>DeepSpeed Inference delivers up to 5x throughput improvement with kernel fusion, tensor parallelism, and heterogeneous memory management for production serving.</p>
       
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>🎯 Fine-Tuning on Consumer GPUs</h3>
+      <p>Use ZeRO-Offload to fine-tune 13B models on a single 24GB GPU by offloading optimizer states to CPU RAM—what previously required 8 GPUs fits on one.</p>
       
 
       
@@ -584,7 +575,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 

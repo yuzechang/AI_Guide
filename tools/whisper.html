@@ -133,19 +133,6 @@
   <span class="breadcrumb-cur">OpenAI Whisper</span>
 </div>
 
-
-
-<style>
-.alt-ref-row { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0;align-items:center; }
-.alt-ref-label { font-size:11px;color:var(--text-3);font-weight:600;text-transform:uppercase;letter-spacing:.05em; }
-.alt-ref-badge { display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#34d399;text-decoration:none;transition:all .15s; }
-.alt-ref-badge:hover { background:rgba(52,211,153,.18);border-color:#34d399; }
-</style>
-
-<div class="alt-ref-row">
-  <span class="alt-ref-label">Open Source Alternative to:</span>
-  <a href="../alternatives/otter-ai.html" class="alt-ref-badge" title="Open Source Otter.ai Alternative">🔓 Otter.ai Alternative</a>
-</div>
 <!-- Hero -->
 <div class="page-hero" style="margin-top:16px">
   <div class="page-hero-inner">
@@ -353,17 +340,15 @@
         Here are the most common scenarios where teams choose OpenAI Whisper:
       </p>
       
-      <h3>🚀 Rapid Prototyping</h3>
-      <p>Build and test AI-powered features in hours, not weeks, with ready-made interfaces and integrations.</p>
       
-      <h3>⚡ Developer Productivity</h3>
-      <p>Automate repetitive coding, documentation, and analysis tasks to reclaim hours in every sprint.</p>
+      <h3>🎙️ Multilingual Audio Transcription</h3>
+      <p>Transcribe podcasts, meetings, and interviews in 99 languages with near-human accuracy—output to SRT, VTT, TXT, or JSON with word-level timestamps.</p>
       
-      <h3>🔍 Research & Analysis</h3>
-      <p>Process large volumes of text, images, or structured data with AI to extract actionable insights.</p>
+      <h3>📝 Meeting Note Automation</h3>
+      <p>Pipe Zoom recordings through Whisper for transcription, then feed the transcript to an LLM for summary, action items, and key decision extraction.</p>
       
-      <h3>🏠 Local & Private AI</h3>
-      <p>Run AI workloads on your own hardware for complete data privacy—no cloud subscription required.</p>
+      <h3>🌍 Content Localization Pipeline</h3>
+      <p>Transcribe video content, translate the transcript via an LLM, and generate dubbed audio with Coqui TTS—all automated for multi-language content distribution.</p>
       
 
       <!-- Getting Started -->
@@ -371,21 +356,13 @@
         <span class="en">Getting Started with OpenAI Whisper</span>
         <span class="zh">OpenAI Whisper 快速开始</span>
       </h2>
-      <p>
-        To get started with OpenAI Whisper, visit the
-        <a href="https://github.com/openai/whisper" target="_blank" rel="noopener">GitHub repository</a>
-        and follow the installation instructions in the README.
-        Many AI tools provide Docker images for quick deployment:
-        check the repository for the latest <code>docker-compose.yml</code> or installer script.
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the GitHub repository's
-        <a href="https://github.com/openai/whisper/issues" target="_blank" rel="noopener">Issues</a> and
-        <a href="https://github.com/openai/whisper/discussions" target="_blank" rel="noopener">Discussions</a>
-        pages for community support, and the
-        <a href="https://github.com/openai/whisper/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version.
+      
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install openai-whisper</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>whisper audio.mp3 --model medium --language en</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.8+ and ffmpeg (brew install ffmpeg / apt install ffmpeg). Model sizes: tiny (1GB VRAM), base, small, medium (5GB), large-v3 (10GB).</div>
+      
 
       <!-- Further Reading -->
       
@@ -593,7 +570,7 @@
             </a>
           </div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-06-23</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
         </div>
       </div>
 
