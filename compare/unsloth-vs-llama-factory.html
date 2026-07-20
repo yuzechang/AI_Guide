@@ -32,6 +32,30 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      {
+        "@type": "Question",
+        "name": "Is Unsloth actually 2-5x faster than LLaMA-Factory, and why?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes\u2014Unsloth rewrites PyTorch\u0027s standard attention and backward pass operations with hand-optimized CUDA kernels, eliminating unnecessary memory allocation and kernel launch overhead. LLaMA-Factory uses stock PyTorch operations, which are well-optimized but not specialized for QLoRA. On a 7B model with 4-bit quantization, Unsloth typically trains 3-4x faster on consumer GPUs and uses 60% less VRAM." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can I use Unsloth and LLaMA-Factory interchangeably?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Unsloth is a drop-in replacement for LoRA/QLoRA training only\u2014if you need DPO, PPO, or ORPO, you must use LLaMA-Factory or write custom code. However, you can fine-tune with Unsloth, then use LLaMA-Factory for preference alignment in a second pass, since both export to standard HF format." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which tool should I choose if I\u0027m running on limited VRAM (under 8GB)?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Unsloth\u2014its 60% VRAM reduction is transformative on constrained hardware. On an RTX 3060 (12GB VRAM), Unsloth allows 7B model fine-tuning while LLaMA-Factory requires aggressive quantization or fails entirely. LLaMA-Factory becomes viable on the same setup only with multi-GPU or aggressive gradient checkpointing." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does LLaMA-Factory\u0027s web UI (LlamaBoard) work as well as Unsloth\u0027s notebooks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They serve different users. LlamaBoard is better for non-developers and team collaboration\u2014no CLI required. Unsloth\u0027s notebooks are faster to iterate on for programmers but require Python/notebook environment. LlamaBoard has slightly higher latency in parameter tuning and less real-time feedback, making it slower for experimentation." }
+      }
+      
     ]
   }
   </script>
@@ -126,7 +150,7 @@
     </h1>
     <p class="article-desc">Unsloth and LLaMA-Factory are both popular LLM fine-tuning tools, but Unsloth focuses on pure speed — it rewrites the attention and gradient operations with custom CUDA kernels to make QLoRA fine-tuning 2-5x faster with 60% less VRAM. LLaMA-Factory is broader, supporting more training methods (DPO, PPO, ORPO) and offering a web UI. Unsloth wins on speed; LLaMA-Factory wins on features.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ Unsloth: 68k+ stars</span>
       <span>⭐ LLaMA-Factory: 73k+ stars</span>
     </div>
@@ -224,7 +248,7 @@
       <p></p>
       
       <blockquote class="expert-take">
-        <p>A well-regarded project with 22k+ stars, Unsloth has proven itself in production deployments. Worth using when the base model makes consistent errors on domain-specific content or terminology. The required dataset size is smaller than intuition suggests—a few hundred to a few thousand high-quality examples often produce meaningful improvements.</p>
+        <p>Fine-tune Llama 2 on a single GPU in hours instead of days—Unsloth's kernel optimizations make it ideal for researchers prototyping on budget hardware. Unlike standard HuggingFace PEFT, Unsloth achieves 2-5x speedups with 70% less memory, though its 68k+ GitHub stars reflect niche adoption. Skip it if you need inference optimization rather than training efficiency.</p>
         <cite>— AI Nav Editorial Team on Unsloth</cite>
       </blockquote>
       
@@ -235,7 +259,7 @@
       <p></p>
       
       <blockquote class="expert-take">
-        <p>LLaMA-Factory is the most comprehensive open-source fine-tuning toolkit for LLMs. It supports every major PEFT method (LoRA, QLoRA, DoRA, full fine-tuning) on 100+ model architectures via a single unified interface. If you're fine-tuning Llama, Qwen, Mistral, or DeepSeek models, this is where to start — the WebUI makes supervised fine-tuning accessible to ML engineers without a research background.</p>
+        <p>Fine-tuning Mistral for domain-specific tasks becomes dramatically faster with LLaMA-Factory's unified interface versus juggling separate codebases for each model. Unlike Hugging Face's transformers library which requires extensive boilerplate, this 73k+ star framework handles 100+ models with preset configurations. Teams needing custom inference optimization or advanced quantization should look elsewhere, as LLaMA-Factory focuses purely on training workflows.</p>
         <cite>— AI Nav Editorial Team on LLaMA-Factory</cite>
       </blockquote>
       
@@ -260,10 +284,39 @@
 
       <!-- Deep Dive -->
       
+      <h2 id="performance-benchmarks">Performance & Resource Efficiency</h2>
+      <p>Unsloth's custom CUDA kernels deliver measurable speed gains: 2-5x faster QLoRA fine-tuning and 60% VRAM reduction compared to standard implementations. On an RTX 4090, Unsloth trains a 7B model in ~4 hours where stock implementations need 8-20 hours. LLaMA-Factory uses conventional PyTorch operations, making it 1.2-1.5x slower on the same hardware. However, LLaMA-Factory's efficiency varies by training method—DPO and PPO are more memory-intensive than LoRA. If you're constrained by GPU resources (running on consumer GPUs or limited cloud budgets), Unsloth's VRAM savings mean you can fine-tune larger models or batch sizes. LLaMA-Factory remains practical for most scenarios but requires more aggressive quantization or multi-GPU setups for large models.</p>
+      
+      <h2 id="training-methodology">Training Capabilities & Alignment Methods</h2>
+      <p>Unsloth specializes in SFT (supervised fine-tuning) and basic DPO (direct preference optimization), making it ideal for quick model adaptation and preference alignment. LLaMA-Factory offers a comprehensive training toolkit: LoRA, QLoRA, DoRA, SFT, DPO, PPO, ORPO, and SimPO. This breadth matters for production pipelines—if you need RLHF with PPO rewards or advanced alignment via ORPO, Unsloth lacks native support (though you can combine external libraries). LLaMA-Factory's web UI (LlamaBoard) lets non-technical users configure complex training runs without CLI knowledge. For researchers or MLOps teams building full alignment workflows, LLaMA-Factory's feature completeness reduces integration friction. Unsloth excels at rapid experimentation on single-GPU setups but requires scripting for advanced workflows.</p>
+      
+      <h2 id="ecosystem-maturity">Community, Documentation & Integration</h2>
+      <p>Unsloth has strong momentum in the open-source LLM community with active GitHub engagement and free Colab notebooks that work out-of-the-box. Documentation is concise but targets developers comfortable with PyTorch. LLaMA-Factory maintains comprehensive docs, multilingual support, and a larger user base—reflected in more Stack Overflow answers and community recipes. LLaMA-Factory integrates deeper with the Hugging Face ecosystem (automatic model card generation, seamless HF hub uploads). Unsloth's export options (GGUF, HuggingFace format) are sufficient but less extensive than LLaMA-Factory's (also supports vLLM, OpenAI-compatible endpoints). For enterprises or teams standardizing on HuggingFace infrastructure, LLaMA-Factory's integration depth matters. For individual researchers or small teams, Unsloth's simplicity and quick-start notebooks provide faster time-to-first-model.</p>
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is Unsloth actually 2-5x faster than LLaMA-Factory, and why? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes—Unsloth rewrites PyTorch's standard attention and backward pass operations with hand-optimized CUDA kernels, eliminating unnecessary memory allocation and kernel launch overhead. LLaMA-Factory uses stock PyTorch operations, which are well-optimized but not specialized for QLoRA. On a 7B model with 4-bit quantization, Unsloth typically trains 3-4x faster on consumer GPUs and uses 60% less VRAM.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I use Unsloth and LLaMA-Factory interchangeably? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">No. Unsloth is a drop-in replacement for LoRA/QLoRA training only—if you need DPO, PPO, or ORPO, you must use LLaMA-Factory or write custom code. However, you can fine-tune with Unsloth, then use LLaMA-Factory for preference alignment in a second pass, since both export to standard HF format.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which tool should I choose if I'm running on limited VRAM (under 8GB)? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Unsloth—its 60% VRAM reduction is transformative on constrained hardware. On an RTX 3060 (12GB VRAM), Unsloth allows 7B model fine-tuning while LLaMA-Factory requires aggressive quantization or fails entirely. LLaMA-Factory becomes viable on the same setup only with multi-GPU or aggressive gradient checkpointing.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Does LLaMA-Factory's web UI (LlamaBoard) work as well as Unsloth's notebooks? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">They serve different users. LlamaBoard is better for non-developers and team collaboration—no CLI required. Unsloth's notebooks are faster to iterate on for programmers but require Python/notebook environment. LlamaBoard has slightly higher latency in parameter tuning and less real-time feedback, making it slower for experimentation.</div></div>
+        </div>
         
       </div>
 
@@ -273,17 +326,17 @@
       <div class="related-grid">
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6ae0a80></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052ced50></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6add170></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052d08b0></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6ae0ad0></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052ceda0></div>
           <div class="related-card-desc"></div>
         </a>
         
@@ -315,6 +368,12 @@
           <li><a href="#what-is-unsloth">What Is Unsloth?</a></li>
           <li><a href="#what-is-llama-factory">What Is LLaMA-Factory?</a></li>
           <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#performance-benchmarks">Performance & Resource Efficiency</a></li>
+          
+          <li><a href="#training-methodology">Training Capabilities & Alignment Methods</a></li>
+          
+          <li><a href="#ecosystem-maturity">Community, Documentation & Integration</a></li>
           
           <li><a href="#faq">FAQ</a></li>
         </ul>

@@ -150,7 +150,7 @@
     </h1>
     <p class="article-desc">ComfyUI and Stable Diffusion WebUI (A1111) are the two dominant open-source interfaces for Stable Diffusion image generation. Both are free, run locally, and support the same models — but they take completely different approaches. A1111 uses a traditional form-based interface that's easy to learn, while ComfyUI uses a node-based workflow editor that's powerful but requires more learning. Choosing the right one depends on your technical comfort level and workflow needs.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ ComfyUI: 119k+ stars</span>
       <span>⭐ Stable Diffusion WebUI: 163k+ stars</span>
     </div>
@@ -260,7 +260,7 @@
       <p>ComfyUI is a node-based interface for Stable Diffusion that treats image generation as a visual programming problem. You connect nodes — model loaders, samplers, VAEs, ControlNet, upscalers — into a workflow graph, with each node doing one thing. This makes ComfyUI incredibly powerful for complex pipelines: you can visually see exactly what your generation process does, save and share workflows as JSON files, and chain models in ways that form-based UIs can't easily support. ComfyUI has become the preferred tool for power users working on video generation, multi-model workflows, and automation.</p>
       
       <blockquote class="expert-take">
-        <p>ComfyUI is the power user's choice for Stable Diffusion. The node graph interface is steeper to learn than A1111's forms, but enables workflow automation and visual debugging that form-based UIs can't match. If you're building production image pipelines or doing complex multi-model chaining (ControlNet + IPAdapter + LoRA stacking), ComfyUI is the right tool. Start with A1111 and switch when you hit its limits.</p>
+        <p>ComfyUI's node-based system excels at chaining upscaling, inpainting, and ControlNet operations without writing code—tasks that would require scripting in raw Stable Diffusion. Unlike WebUI's simpler interface, ComfyUI offers granular control over each pipeline step with 119k+ GitHub stars reflecting its advanced user base. Skip it if you need one-click generation or lack technical comfort with node graphs.</p>
         <cite>— AI Nav Editorial Team on ComfyUI</cite>
       </blockquote>
       
@@ -271,7 +271,7 @@
       <p>Stable Diffusion WebUI by AUTOMATIC1111 is the most popular Stable Diffusion interface, with 140k+ GitHub stars and the largest extension ecosystem in the space. Its tabbed, form-based interface (txt2img, img2img, Extras, PNG Info) is intuitive enough for beginners to start generating images within minutes. The 1,000+ community extensions cover virtually every Stable Diffusion use case. A1111 is where most people start with local Stable Diffusion, and many users never need to move beyond it.</p>
       
       <blockquote class="expert-take">
-        <p>If you want maximum extension support and the largest community, A1111 WebUI is still the go-to choice for Stable Diffusion. For node-based workflow power users, ComfyUI is worth the learning curve. A1111 is where you start; ComfyUI is where you graduate to.</p>
+        <p>Researchers and artists generating high-quality variations of reference images benefit from Stable Diffusion WebUI's 1000+ community extensions, which enable batch processing and fine-tuning workflows faster than manual Hugging Face model uploads. Compared to Comfy UI, this tool prioritizes accessibility over node-based flexibility, making it simpler for non-technical users. Teams needing production-grade API deployment should look elsewhere, as the 163k+ starred project excels for local experimentation, not scalable inference.</p>
         <cite>— AI Nav Editorial Team on Stable Diffusion WebUI</cite>
       </blockquote>
       

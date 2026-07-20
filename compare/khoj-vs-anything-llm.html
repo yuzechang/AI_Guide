@@ -32,6 +32,30 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      {
+        "@type": "Question",
+        "name": "Can I migrate my documents from Khoj to AnythingLLM or vice versa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Migrating from Khoj to AnythingLLM is straightforward\u2014export your documents and re-upload them. Migrating from AnythingLLM to Khoj is harder because Khoj requires native integrations (Obsidian, Org-mode, etc.), so you\u0027d need to move documents back into those tools first. There\u0027s no direct export/import between the two platforms\u0027 index formats." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which tool has faster search and response times?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both perform similarly for indexed content searches, but Khoj\u0027s web search feature adds latency compared to document-only queries. AnythingLLM\u0027s response time depends entirely on which LLM you connect\u2014using local Ollama is faster than cloud APIs. Neither has a consistent speed advantage; it depends on your configuration." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can I use Khoj or AnythingLLM completely offline?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Khoj can work offline if you\u0027ve already indexed your documents and use a local LLM, but web search requires internet. AnythingLLM with Ollama runs fully offline with no external dependencies. If offline-first is critical, AnythingLLM + Ollama is more reliable, though Khoj\u0027s offline capability exists." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which tool is better for keeping sensitive company documents private?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both support self-hosting for privacy, but AnythingLLM is designed for enterprise security with workspace isolation and user permissions, making it easier to enforce access control across teams. Khoj\u0027s single-user architecture means fewer moving parts to secure, but AnythingLLM offers better audit trails and compliance features for regulated environments." }
+      }
+      
     ]
   }
   </script>
@@ -126,7 +150,7 @@
     </h1>
     <p class="article-desc">Khoj and AnythingLLM are both personal AI assistants that let you chat with your documents and notes. Khoj focuses on being your personal AI second brain — it indexes your notes, documents, and calendar to answer questions about your own knowledge. AnythingLLM is more of a general-purpose private AI workspace for teams and individuals. Khoj is more personal-assistant focused; AnythingLLM is more enterprise-workspace focused.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ Khoj: 35k+ stars</span>
       <span>⭐ AnythingLLM: 63k+ stars</span>
     </div>
@@ -224,7 +248,7 @@
       <p></p>
       
       <blockquote class="expert-take">
-        <p>Khoj's 16k+ community validates its utility—this isn't a weekend project, it's maintained software. Useful for teams building internal knowledge assistants. The main consideration is chunking strategy—the default settings work for getting started, but production quality requires tuning chunk size and overlap for your specific document types.</p>
+        <p>Khoj excels for researchers managing scattered PDFs and notes who need instant cross-document retrieval without uploading sensitive content to cloud services. Unlike Obsidian, which requires manual linking, Khoj's RAG engine automatically connects related concepts across your entire vault. Skip it if you need real-time collaboration features—it's designed for individual knowledge management, though the 35k+ GitHub stars reflect strong single-user adoption.</p>
         <cite>— AI Nav Editorial Team on Khoj</cite>
       </blockquote>
       
@@ -235,7 +259,7 @@
       <p></p>
       
       <blockquote class="expert-take">
-        <p>AnythingLLM has found solid traction with 26k+ GitHub stars, indicating real-world adoption beyond early adopters. A practical choice for document Q&A and knowledge base applications. The RAG pipeline abstractions save significant engineering time compared to rolling your own chunking and retrieval logic. For production use, plan for careful index management as document collections grow.</p>
+        <p>For enterprises managing proprietary documents, AnythingLLM's 63k+ star local-first RAG eliminates external API dependencies and compliance risks inherent in cloud chat solutions. Unlike LangChain's complexity requiring separate infrastructure, AnythingLLM bundles vector DB and LLM management into one interface. Skip this if you need real-time model switching or enterprise SSO features.</p>
         <cite>— AI Nav Editorial Team on AnythingLLM</cite>
       </blockquote>
       
@@ -260,10 +284,39 @@
 
       <!-- Deep Dive -->
       
+      <h2 id="personal-knowledge-indexing">Personal Knowledge Indexing & Integration</h2>
+      <p>Khoj excels at deeply integrating with existing note-taking ecosystems. It natively connects to Obsidian vaults, Org-mode files, Notion workspaces, and Gmail, automatically indexing your personal knowledge without manual uploads. This means your notes stay in your preferred tool while Khoj builds a searchable index. AnythingLLM requires manual file uploads and lacks direct integrations with note apps—you must export or move documents into AnythingLLM's workspace. For knowledge workers already invested in Obsidian or Org-mode, Khoj feels like a natural extension. AnythingLLM works better if you're starting fresh or consolidating documents from disparate sources into a single workspace.</p>
+      
+      <h2 id="team-collaboration-scaling">Team Collaboration & Multi-User Architecture</h2>
+      <p>AnythingLLM is purpose-built for team environments with workspace management, user roles, and permission controls. Multiple team members can access shared workspaces, manage document libraries together, and maintain audit trails. Khoj is fundamentally single-user focused—it's designed as a personal assistant for one person's knowledge base. While Khoj can be self-hosted, it lacks role-based access, team workspace isolation, and collaborative features. If your use case involves 3+ people needing access to shared AI-indexed documents with permission controls, AnythingLLM is the clear choice. Khoj remains the stronger option for individual professionals, researchers, and knowledge workers who don't need collaboration infrastructure.</p>
+      
+      <h2 id="feature-richness-connectivity">Feature Richness & External Connectivity</h2>
+      <p>Khoj offers integrated web search, calendar awareness, and email context—it can answer questions about your schedule or recent emails without plugins. This context-aware approach makes it genuinely feel like a personal assistant. AnythingLLM compensates with flexibility: you can connect external tools, swap between different LLM providers (OpenAI, Claude, Ollama), and customize the workspace heavily. AnythingLLM's strength is adaptability rather than built-in features. Khoj's strength is seamless out-of-the-box integration with personal digital life. For someone wanting a ready-made AI second brain, Khoj requires less configuration. For teams needing custom AI workflows with specific LLM choices, AnythingLLM provides better extensibility.</p>
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I migrate my documents from Khoj to AnythingLLM or vice versa? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Migrating from Khoj to AnythingLLM is straightforward—export your documents and re-upload them. Migrating from AnythingLLM to Khoj is harder because Khoj requires native integrations (Obsidian, Org-mode, etc.), so you'd need to move documents back into those tools first. There's no direct export/import between the two platforms' index formats.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which tool has faster search and response times? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Both perform similarly for indexed content searches, but Khoj's web search feature adds latency compared to document-only queries. AnythingLLM's response time depends entirely on which LLM you connect—using local Ollama is faster than cloud APIs. Neither has a consistent speed advantage; it depends on your configuration.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I use Khoj or AnythingLLM completely offline? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Khoj can work offline if you've already indexed your documents and use a local LLM, but web search requires internet. AnythingLLM with Ollama runs fully offline with no external dependencies. If offline-first is critical, AnythingLLM + Ollama is more reliable, though Khoj's offline capability exists.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which tool is better for keeping sensitive company documents private? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Both support self-hosting for privacy, but AnythingLLM is designed for enterprise security with workspace isolation and user permissions, making it easier to enforce access control across teams. Khoj's single-user architecture means fewer moving parts to secure, but AnythingLLM offers better audit trails and compliance features for regulated environments.</div></div>
+        </div>
         
       </div>
 
@@ -273,17 +326,17 @@
       <div class="related-grid">
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6acdc50></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052bd4e0></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6acdca0></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052bd530></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6acdcf0></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052bd580></div>
           <div class="related-card-desc"></div>
         </a>
         
@@ -315,6 +368,12 @@
           <li><a href="#what-is-khoj">What Is Khoj?</a></li>
           <li><a href="#what-is-anything-llm">What Is AnythingLLM?</a></li>
           <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#personal-knowledge-indexing">Personal Knowledge Indexing & Integration</a></li>
+          
+          <li><a href="#team-collaboration-scaling">Team Collaboration & Multi-User Architecture</a></li>
+          
+          <li><a href="#feature-richness-connectivity">Feature Richness & External Connectivity</a></li>
           
           <li><a href="#faq">FAQ</a></li>
         </ul>

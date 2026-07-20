@@ -156,7 +156,7 @@
     </h1>
     <p class="article-desc">LangChain and LlamaIndex are the two most widely used Python frameworks for building LLM-powered applications. Both provide abstractions for connecting language models to external data and tools, but they have different design philosophies: LangChain is a general-purpose LLM orchestration framework, while LlamaIndex is purpose-built for data indexing and retrieval-augmented generation (RAG). This comparison covers their strengths, limitations, and which one to choose for your project.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ LangChain: 141k+ stars</span>
       <span>⭐ LlamaIndex: 51k+ stars</span>
     </div>
@@ -272,7 +272,7 @@
       <p>LangChain is the most widely adopted Python framework for building LLM applications. It provides a comprehensive set of abstractions for chaining LLM calls, connecting to vector stores and external APIs, building conversational agents, and managing memory. LangChain's strength is its extensive ecosystem — it integrates with virtually every major LLM provider, vector database, and external tool. LangGraph (part of the LangChain ecosystem) extends this with graph-based agent orchestration for complex multi-step workflows. The large community means abundant tutorials, Stack Overflow answers, and third-party integrations.</p>
       
       <blockquote class="expert-take">
-        <p>LangChain is the most widely used LLM application framework, which means the most tutorials, community answers, and third-party integrations. That said, the abstraction layer can feel excessive for simple use cases. My recommendation: use LangChain when you need its integrations (150+ vector stores, document loaders, tools) or when team familiarity matters. For simple chains, LangGraph or even raw API calls are often cleaner.</p>
+        <p>Building RAG pipelines with multiple data sources requires orchestrating retrievers, memory, and LLM calls—LangChain's 141k+ GitHub stars reflect how its chain abstraction handles this complexity elegantly. Unlike LlamaIndex's document-centric focus, LangChain excels at flexible agent workflows and multi-step reasoning. Skip it if you need minimal dependencies or sub-100ms latency for simple completions.</p>
         <cite>— AI Nav Editorial Team on LangChain</cite>
       </blockquote>
       
@@ -283,7 +283,7 @@
       <p>LlamaIndex (formerly GPT Index) is a data framework specifically designed for building RAG systems and connecting LLMs to external data. Where LangChain is a general orchestrator, LlamaIndex provides deep specialization in data ingestion, chunking strategies, index types (vector, keyword, knowledge graph), and query engines. LlamaIndex's data connectors hub (LlamaHub) provides 100+ connectors for common data sources. The framework's focused design means it handles RAG edge cases — like handling very long documents, managing stale index data, and query routing across multiple indexes — more elegantly than general frameworks.</p>
       
       <blockquote class="expert-take">
-        <p>LlamaIndex is purpose-built for RAG and data-over-LLM workflows — it does this job better than LangChain. If your primary use case is document Q&A, knowledge base search, or structured data querying with LLMs, LlamaIndex's data connectors, index types, and query engines are significantly more powerful. Use LangChain for general orchestration; use LlamaIndex when the data layer is complex.</p>
+        <p>LlamaIndex excels at building question-answering systems over enterprise documents because its unified ingestion pipeline handles PDFs, databases, and APIs without custom parsing logic. Unlike LangChain's more modular approach, LlamaIndex's 51k+ GitHub stars reflect its opinionated RAG workflow that trades flexibility for speed. Skip it if you need fine-grained control over retrieval algorithms or plan to heavily customize indexing strategies.</p>
         <cite>— AI Nav Editorial Team on LlamaIndex</cite>
       </blockquote>
       

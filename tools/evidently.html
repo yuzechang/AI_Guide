@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Evidently Guide 2026 | ML and LLM monitoring and evaluation platform – AI Nav</title>
-  <meta name="description" content="ML and LLM monitoring and evaluation platform 7.7k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="description" content="Evidently: Comprehensive ML monitoring covering data drift, model performance, and feature quality in production. 7.7k+ GitHub stars, open-source.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yuzec.com/tools/evidently">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="Evidently Guide 2026 | ML and LLM monitoring and evaluation platform – AI Nav">
-  <meta property="og:description" content="ML and LLM monitoring and evaluation platform 7.7k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta property="og:description" content="Evidently: Comprehensive ML monitoring covering data drift, model performance, and feature quality in production. 7.7k+ GitHub stars, open-source.">
   <meta property="og:url" content="https://yuzec.com/tools/evidently">
   <meta property="og:site_name" content="AI Nav">
   <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
@@ -21,7 +21,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Evidently Guide 2026 | ML and LLM monitoring and evaluation platform – AI Nav">
-  <meta name="twitter:description" content="ML and LLM monitoring and evaluation platform 7.7k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="twitter:description" content="Evidently: Comprehensive ML monitoring covering data drift, model performance, and feature quality in production. 7.7k+ GitHub stars, open-source.">
   <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/evidentlyai/evidently",
     "description": "ML and LLM monitoring and evaluation platform",
-    "dateModified": "2026-07-08",
+    "dateModified": "2026-07-20",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
@@ -64,26 +64,26 @@
       
       {
         "@type": "Question",
-        "name": "What languages does Evidently support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Evidently primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "Can Evidently monitor both traditional ML and LLM models?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, Evidently supports monitoring classical ML models, embeddings, and large language models. It includes specific metrics for LLM evaluation like token usage, latency, and semantic drift detection tailored to generative AI." }
       },
       
       {
         "@type": "Question",
-        "name": "Is Evidently production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Evidently is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "Does Evidently require cloud infrastructure or can it run locally?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Evidently runs entirely on-premise without cloud dependencies. You can deploy it locally, in Docker containers, or on your own infrastructure, giving you complete control over data privacy." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with Evidently?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install evidently` (Python) or `npm install evidently` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "What data sources can Evidently connect to?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Evidently integrates with pandas DataFrames, databases like PostgreSQL and Snowflake, and data warehouses. It also supports batch data from Parquet and CSV files for flexible monitoring workflows." }
       },
       
       {
         "@type": "Question",
-        "name": "Does Evidently work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "How does Evidently detect data drift?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Evidently uses statistical tests including Kolmogorov-Smirnov, Chi-Square, and Jensen-Shannon divergence to identify distribution shifts. It compares reference datasets against production data to flag meaningful changes in real-time." }
       }
       
     ]
@@ -163,7 +163,7 @@
     </h1>
     <p class="article-desc">ML and LLM monitoring and evaluation platform</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-20">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/evidentlyai/evidently" target="_blank" rel="noopener" style="color:var(--text-3)">7.7k+ GitHub Stars</a></span>
     </div>
@@ -246,9 +246,9 @@
       <!-- Expert Take (编辑推荐语，E-E-A-T信号) -->
       
       <blockquote class="expert-take">
-        <p class="en">Evidently takes an opinionated approach that works well for its target use case. A practical choice for teams that want to run this locally. Performance scales with hardware—the quality difference between running on a capable GPU vs. CPU is substantial for latency-sensitive applications.</p>
+        <p class="en">Teams monitoring LLM outputs in production need Evidently's (7.7k+ stars) built-in evaluators for hallucination and drift detection without custom coding. Unlike Arize's heavier infrastructure requirements, Evidently integrates directly into lightweight Python pipelines. Skip this if you need real-time alerts under 100ms latency—its batch-focused architecture won't suffice.</p>
         
-        <p class="zh">Evidently takes an opinionated approach that works well for its target use case. A practical choice for teams that want to run this locally. Performance scales with hardware—the quality difference between running on a capable GPU vs. CPU is substantial for latency-sensitive applications.</p>
+        <p class="zh">Teams monitoring LLM outputs in production need Evidently's (7.7k+ stars) built-in evaluators for hallucination and drift detection without custom coding. Unlike Arize's heavier infrastructure requirements, Evidently integrates directly into lightweight Python pipelines. Skip this if you need real-time alerts under 100ms latency—its batch-focused architecture won't suffice.</p>
         
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
@@ -285,20 +285,11 @@
         <span class="zh">Evidently 快速开始</span>
       </h2>
       
-      <p>
-        Install Evidently via pip and follow the
-        <a href="https://github.com/evidentlyai/evidently" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install evidently</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/evidentlyai/evidently/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/evidentlyai/evidently/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>pip install evidently</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python -c 'from evidently.report import Report; from evidently.metric_preset import DataDriftPreset; report = Report(metrics=[DataDriftPreset()]); report.run(reference_data=df_ref, current_data=df_curr); report.show()'</code></pre>
       </div>
+      <div class="alert alert-info">💡 For LLM monitoring features, install with `pip install evidently[llm]`. GPU acceleration significantly improves latency for large datasets; CPU-only setups work but process slower for production-scale workloads</div>
       
 
       <!-- Further Reading (external links) -->
@@ -313,14 +304,53 @@
       <ul class="feature-list">
         
         <li>
-          <span class="feat-icon">🔓</span>
-          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+          <span class="feat-icon">📊</span>
+          <div><strong>Data Drift Detection Engine</strong> — Automatically identifies statistical shifts in input features and target distributions using Kolmogorov-Smirnov, chi-square, and custom threshold tests for production data.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🎯</span>
+          <div><strong>LLM Prompt & Output Metrics</strong> — Native evaluation of language model quality through token usage tracking, semantic similarity scoring, and consistency checks across different prompts and model versions.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔒</span>
+          <div><strong>On-Premise Deployment</strong> — Runs as self-hosted Python package with zero external dependencies, enabling monitoring of sensitive models and data without cloud transmission or licensing fees.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">📈</span>
+          <div><strong>Multi-Model Performance Dashboards</strong> — Interactive reports visualizing precision, recall, AUC, and custom metrics across model versions, with drill-down capabilities to isolate performance regressions by feature or segment.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">⚙️</span>
+          <div><strong>Grafana & Jupyter Integration</strong> — Export monitoring results directly to Grafana dashboards or generate Python notebooks for custom analysis, enabling integration into existing MLOps pipelines and workflows.</div>
         </li>
         
       </ul>
       
 
       <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">
+        <span class="en">Pros &amp; Cons</span>
+        <span class="zh">优缺点</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
+          <ul><li>Comprehensive ML monitoring covering data drift, model performance, and feature quality in production</li><li>Native LLM evaluation support with built-in metrics for prompt quality and output consistency</li><li>Runs entirely on-premise with no cloud dependencies, maintaining full data privacy and control</li><li>Interactive dashboards and HTML reports generate automatically without additional visualization setup</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
+          <ul><li>Steep learning curve for teams unfamiliar with MLOps concepts; requires understanding of statistical drift detection</li><li>Performance on CPU-only systems causes significant latency for large-scale monitoring workflows requiring optimization</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- Use Cases -->
@@ -331,17 +361,17 @@
       <p>Evidently is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
+      <h3>📊 Production Model Drift Detection</h3>
+      <p>Monitor data and prediction drift in real-time, automatically alerting teams when model performance degrades, reducing delayed detection from weeks to minutes</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>🤖 LLM Output Quality Monitoring</h3>
+      <p>Track prompt performance, token efficiency, and response consistency across production LLM deployments, measuring quality improvements from baseline models</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
+      <h3>🔍 Feature Quality Assurance</h3>
+      <p>Validate data pipeline outputs against expected distributions and ranges, catching feature engineering errors before they impact model predictions</p>
       
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>📈 A/B Test Evaluation</h3>
+      <p>Compare model versions systematically across metrics like accuracy, latency, and data drift, enabling data-driven deployment decisions with statistical confidence</p>
       
 
       
@@ -417,37 +447,37 @@
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              What languages does Evidently support? <span class="faq-arr">▼</span>
+              Can Evidently monitor both traditional ML and LLM models? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Evidently primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+              <div class="faq-a-inner">Yes, Evidently supports monitoring classical ML models, embeddings, and large language models. It includes specific metrics for LLM evaluation like token usage, latency, and semantic drift detection tailored to generative AI.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Is Evidently production-ready? <span class="faq-arr">▼</span>
+              Does Evidently require cloud infrastructure or can it run locally? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Yes. Evidently is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+              <div class="faq-a-inner">Evidently runs entirely on-premise without cloud dependencies. You can deploy it locally, in Docker containers, or on your own infrastructure, giving you complete control over data privacy.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              How do I install and get started with Evidently? <span class="faq-arr">▼</span>
+              What data sources can Evidently connect to? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Install via pip: `pip install evidently` (Python) or `npm install evidently` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
+              <div class="faq-a-inner">Evidently integrates with pandas DataFrames, databases like PostgreSQL and Snowflake, and data warehouses. It also supports batch data from Parquet and CSV files for flexible monitoring workflows.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Does Evidently work with local LLMs like Ollama? <span class="faq-arr">▼</span>
+              How does Evidently detect data drift? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
+              <div class="faq-a-inner">Evidently uses statistical tests including Kolmogorov-Smirnov, Chi-Square, and Jensen-Shannon divergence to identify distribution shifts. It compares reference datasets against production data to flag meaningful changes in real-time.</div>
             </div>
           </div>
           
@@ -484,7 +514,7 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> Open Source</div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-20</div>
         </div>
       </div>
 
@@ -496,7 +526,7 @@
           <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
           
           <li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>
-          
+          <li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>
           <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
           
           

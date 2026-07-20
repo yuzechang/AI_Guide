@@ -144,7 +144,7 @@
     </h1>
     <p class="article-desc">n8n and LangChain both help you build AI-powered automation workflows, but from different starting points. n8n is a visual workflow automation platform (think Zapier, but self-hosted and open-source) that has added AI/LLM capabilities. LangChain is a Python/JavaScript developer framework built from the ground up for LLM application development. The right choice depends on whether you need general workflow automation with AI, or AI-first application development.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ n8n: 195k+ stars</span>
       <span>⭐ LangChain: 141k+ stars</span>
     </div>
@@ -254,7 +254,7 @@
       <p>n8n is a self-hostable workflow automation platform with 400+ pre-built integrations for apps like Slack, HubSpot, PostgreSQL, Google Sheets, and more. Its visual node editor makes it accessible to non-developers for building automated workflows. The AI nodes (LLM, Vector Store, Chain, Agent) let you incorporate language models into larger workflows — for example, summarizing emails, routing support tickets with AI classification, or generating reports from database queries. n8n is the right tool when AI is one component of a broader automation workflow.</p>
       
       <blockquote class="expert-take">
-        <p>n8n is the best self-hostable alternative to Zapier/Make. The code node (JavaScript) makes it significantly more powerful than no-code alternatives for complex transformations. The LLM/AI integration has matured considerably — you can now build sophisticated RAG pipelines and AI agents visually. For teams that want workflow automation without handing all data to a cloud service, n8n is the answer.</p>
+        <p>Use n8n to automate Slack notifications triggered by GitHub commits and Notion database updates—its visual builder handles this multi-app orchestration faster than writing custom webhooks. Unlike Zapier's limited free tier, n8n's open-source model offers unlimited workflows immediately. Skip n8n if you need enterprise-grade error recovery or SLA guarantees; it's community-supported with 195k+ GitHub stars.</p>
         <cite>— AI Nav Editorial Team on n8n</cite>
       </blockquote>
       
@@ -265,7 +265,7 @@
       <p>LangChain is the most widely adopted framework for building LLM-first applications in Python and JavaScript. It provides abstractions for prompt management, LLM providers, memory, agents, and retrieval-augmented generation. LangChain's ecosystem is vast — 150+ vector store integrations, 50+ LLM providers, and tools for evaluation, observability, and deployment. It's the starting point for most developers building production chatbots, document Q&A systems, and AI agents.</p>
       
       <blockquote class="expert-take">
-        <p>LangChain is the most widely used LLM application framework, which means the most tutorials, community answers, and third-party integrations. That said, the abstraction layer can feel excessive for simple use cases. My recommendation: use LangChain when you need its integrations (150+ vector stores, document loaders, tools) or when team familiarity matters. For simple chains, LangGraph or even raw API calls are often cleaner.</p>
+        <p>Building RAG pipelines with multiple data sources requires orchestrating retrievers, memory, and LLM calls—LangChain's 141k+ GitHub stars reflect how its chain abstraction handles this complexity elegantly. Unlike LlamaIndex's document-centric focus, LangChain excels at flexible agent workflows and multi-step reasoning. Skip it if you need minimal dependencies or sub-100ms latency for simple completions.</p>
         <cite>— AI Nav Editorial Team on LangChain</cite>
       </blockquote>
       

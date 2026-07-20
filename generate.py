@@ -282,9 +282,9 @@ TITLE_TEMPLATES = {
     "agent":    "{name} Review 2026 | {desc_short} – AI Nav",
 }
 DESC_TEMPLATES = {
-    "ai-tools": "{desc} Open-source, {stars} GitHub stars. Find alternatives, features, and use cases.",
-    "skill":    "{desc} {stars} GitHub stars. Installation guide, use cases, and comparison with alternatives.",
-    "agent":    "{desc} {stars} GitHub stars. Features, pricing, and how to get started.",
+    "ai-tools": "{desc} {stars} GitHub stars. Open-source, self-hostable.",
+    "skill":    "{desc} {stars} GitHub stars. Open-source library with install guide.",
+    "agent":    "{desc} {stars} GitHub stars. Open-source autonomous AI system.",
 }
 
 
@@ -470,7 +470,12 @@ def get_blog_links(tool):
 
 
 def get_features(tool):
-    """从 tags 提取功能特性列表（最多 6 条，去重）。"""
+    """优先用 features_custom，兜底用 TAG_FEATURES tag 映射（最多 6 条）。"""
+    # 优先：data.json 里的专属特性（由 API 批量生成，精准描述当前工具）
+    custom = tool.get("features_custom")
+    if custom:
+        return custom[:6]
+    # 兜底：通用 tag 映射（跨工具重复，质量较低）
     seen = set()
     feats = []
     for tag in tool.get("tags", []):
@@ -530,20 +535,25 @@ def get_faqs(tool, cat_info, cat_count):
 
 def build_seo(tool, cat_info):
     """生成 SEO title 和 meta description。"""
-    desc = tool.get("descEn", "")
-    # 截短描述用于 title
+    desc  = tool.get("descEn", "")
+    stars = tool.get("starsLabel", "")
+    pros  = tool.get("pros") or []
+    name  = tool["name"]
+
+    # Title：名称 + 简短描述
     desc_short = desc[:60].rstrip()
     if len(desc) > 60:
-        # 找最后一个空格截断
         sp = desc_short.rfind(" ")
         desc_short = (desc_short[:sp] if sp > 30 else desc_short).rstrip(".,;:")
+    title = TITLE_TEMPLATES[tool["category"]].format(name=name, desc_short=desc_short)
 
-    title = TITLE_TEMPLATES[tool["category"]].format(
-        name=tool["name"], desc_short=desc_short
-    )
-    seo_desc = DESC_TEMPLATES[tool["category"]].format(
-        desc=desc, stars=tool.get("starsLabel", ""),
-    )
+    # Meta description：优先用 pros[0]（最具体），兜底用模板
+    if pros:
+        first_pro = pros[0].rstrip(".")
+        seo_desc = f"{name}: {first_pro}. {stars} GitHub stars, open-source."
+    else:
+        seo_desc = DESC_TEMPLATES[tool["category"]].format(desc=desc, stars=stars)
+
     # 保证 meta description ≤ 160 字符
     if len(seo_desc) > 160:
         seo_desc = seo_desc[:157] + "…"

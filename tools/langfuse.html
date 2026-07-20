@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LangFuse Guide 2026 | Open-source LLM engineering platform for observability – AI Nav</title>
-  <meta name="description" content="Open-source LLM engineering platform for observability 31k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="description" content="LangFuse: Traces LLM calls end-to-end with latency, tokens, and cost tracking automatically. 31k+ GitHub stars, open-source.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yuzec.com/tools/langfuse">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="LangFuse Guide 2026 | Open-source LLM engineering platform for observability – AI Nav">
-  <meta property="og:description" content="Open-source LLM engineering platform for observability 31k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta property="og:description" content="LangFuse: Traces LLM calls end-to-end with latency, tokens, and cost tracking automatically. 31k+ GitHub stars, open-source.">
   <meta property="og:url" content="https://yuzec.com/tools/langfuse">
   <meta property="og:site_name" content="AI Nav">
   <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
@@ -21,7 +21,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LangFuse Guide 2026 | Open-source LLM engineering platform for observability – AI Nav">
-  <meta name="twitter:description" content="Open-source LLM engineering platform for observability 31k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="twitter:description" content="LangFuse: Traces LLM calls end-to-end with latency, tokens, and cost tracking automatically. 31k+ GitHub stars, open-source.">
   <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/langfuse/langfuse",
     "description": "Open-source LLM engineering platform for observability",
-    "dateModified": "2026-07-08",
+    "dateModified": "2026-07-20",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
@@ -64,26 +64,26 @@
       
       {
         "@type": "Question",
-        "name": "What languages does LangFuse support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "LangFuse primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "Does LangFuse work with closed-source LLM providers like OpenAI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, LangFuse traces calls to both open-source and proprietary models including OpenAI, Anthropic, and others. It captures observability data regardless of model source." }
       },
       
       {
         "@type": "Question",
-        "name": "Is LangFuse production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. LangFuse is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "What\u0027s the difference between self-hosted and cloud LangFuse?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Self-hosted runs on your infrastructure with complete data privacy but requires maintenance. Cloud version is managed by LangFuse team but sends data to external servers." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with LangFuse?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install langfuse` (Python) or `npm install langfuse` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "Can I export or migrate traced data from LangFuse?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LangFuse stores data in PostgreSQL, allowing direct database exports. The open-source nature enables full data portability without vendor lock-in." }
       },
       
       {
         "@type": "Question",
-        "name": "Does LangFuse work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "How does LangFuse handle high-volume LLM applications?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It supports batching and asynchronous tracing to minimize performance impact. For production workloads, implement sampling strategies and tune your PostgreSQL database accordingly." }
       }
       
     ]
@@ -163,7 +163,7 @@
     </h1>
     <p class="article-desc">Open-source LLM engineering platform for observability</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-20">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/langfuse/langfuse" target="_blank" rel="noopener" style="color:var(--text-3)">31k+ GitHub Stars</a></span>
     </div>
@@ -246,9 +246,9 @@
       <!-- Expert Take (编辑推荐语，E-E-A-T信号) -->
       
       <blockquote class="expert-take">
-        <p class="en">A specialized tool, LangFuse targets a specific need rather than trying to cover every use case. Best used when you need to run models locally without sending data to external services. The installation requires more technical knowledge than Ollama, but gives you lower-level control over quantization and serving configuration.</p>
+        <p class="en">Teams debugging expensive LLM chains need LangFuse's end-to-end tracing to pinpoint which steps consume tokens and cost; manual logging can't track latency across nested calls. Unlike Langsmith's proprietary infrastructure, the 31k+ star open-source project lets you self-host and integrate cost data directly. Skip it if you lack DevOps capacity for self-hosting.</p>
         
-        <p class="zh">A specialized tool, LangFuse targets a specific need rather than trying to cover every use case. Best used when you need to run models locally without sending data to external services. The installation requires more technical knowledge than Ollama, but gives you lower-level control over quantization and serving configuration.</p>
+        <p class="zh">Teams debugging expensive LLM chains need LangFuse's end-to-end tracing to pinpoint which steps consume tokens and cost; manual logging can't track latency across nested calls. Unlike Langsmith's proprietary infrastructure, the 31k+ star open-source project lets you self-host and integrate cost data directly. Skip it if you lack DevOps capacity for self-hosting.</p>
         
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
@@ -285,20 +285,11 @@
         <span class="zh">LangFuse 快速开始</span>
       </h2>
       
-      <p>
-        Install LangFuse via pip and follow the
-        <a href="https://github.com/langfuse/langfuse" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install langfuse</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/langfuse/langfuse/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/langfuse/langfuse/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/langfuse/langfuse.git && cd langfuse && docker compose up -d</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>Access the UI at http://localhost:3000 after Docker containers start. Configure your LLM framework SDK with the Langfuse API endpoint and key.</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Docker and Docker Compose. PostgreSQL database initializes automatically; allow 30-60 seconds for first startup. Generate API keys in the UI before integrating with your application.</div>
       
 
       <!-- Further Reading (external links) -->
@@ -313,19 +304,53 @@
       <ul class="feature-list">
         
         <li>
-          <span class="feat-icon">🤖</span>
-          <div><strong>LLM Integration</strong> — Seamless integration with major LLMs including GPT-4o, Claude 4, Llama 3, and Mistral for text generation and reasoning.</div>
+          <span class="feat-icon">🔍</span>
+          <div><strong>End-to-End Call Tracing</strong> — Track every LLM API call with automatic latency measurement, token counting, and per-request cost calculation across your entire application flow.</div>
         </li>
         
         <li>
-          <span class="feat-icon">🔓</span>
-          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+          <span class="feat-icon">🏠</span>
+          <div><strong>Self-Hosted Deployment</strong> — Deploy LangFuse on your own infrastructure to keep proprietary prompts, responses, and model interactions completely isolated from external services.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔗</span>
+          <div><strong>Framework-Native Instrumentation</strong> — Drop-in compatibility with LangChain and LlamaIndex agents—automatically captures traces without modifying application code or wrapper functions.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">📊</span>
+          <div><strong>Cost & Performance Analytics</strong> — Visualize spending trends across model providers, identify expensive prompts, and correlate latency with token usage for optimization insights.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🛡️</span>
+          <div><strong>Data Privacy Control</strong> — Mask sensitive PII in traces, configure data retention policies, and maintain compliance audit trails—all processing happens within your deployment boundary.</div>
         </li>
         
       </ul>
       
 
       <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">
+        <span class="en">Pros &amp; Cons</span>
+        <span class="zh">优缺点</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
+          <ul><li>Traces LLM calls end-to-end with latency, tokens, and cost tracking automatically</li><li>Self-hosted option keeps sensitive model data on your infrastructure securely</li><li>Integrates seamlessly with LangChain, LlamaIndex, and other LLM frameworks</li><li>Open-source with 31k+ GitHub stars indicates active community and regular updates</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
+          <ul><li>Requires Docker and infrastructure setup knowledge; steeper learning curve than SaaS alternatives</li><li>Self-hosted deployment demands ongoing maintenance, monitoring, and database management responsibilities</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- Use Cases -->
@@ -336,17 +361,14 @@
       <p>LangFuse is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
+      <h3>📊 Monitor token usage and LLM costs</h3>
+      <p>Track per-request token counts and pricing across models to identify expensive queries, optimize prompts, and forecast monthly LLM API spending.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>🔍 Debug LLM application failures</h3>
+      <p>Inspect complete call traces showing inputs, outputs, and latencies to pinpoint where chains break, identify hallucinations, and reproduce production issues.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
-      
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>⚡ Optimize LLM performance and latency</h3>
+      <p>Analyze execution timings across model providers and parameters to reduce response times, batch efficiently, and identify bottlenecks in RAG pipelines.</p>
       
 
       
@@ -460,37 +482,37 @@
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              What languages does LangFuse support? <span class="faq-arr">▼</span>
+              Does LangFuse work with closed-source LLM providers like OpenAI? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">LangFuse primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+              <div class="faq-a-inner">Yes, LangFuse traces calls to both open-source and proprietary models including OpenAI, Anthropic, and others. It captures observability data regardless of model source.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Is LangFuse production-ready? <span class="faq-arr">▼</span>
+              What's the difference between self-hosted and cloud LangFuse? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Yes. LangFuse is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+              <div class="faq-a-inner">Self-hosted runs on your infrastructure with complete data privacy but requires maintenance. Cloud version is managed by LangFuse team but sends data to external servers.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              How do I install and get started with LangFuse? <span class="faq-arr">▼</span>
+              Can I export or migrate traced data from LangFuse? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Install via pip: `pip install langfuse` (Python) or `npm install langfuse` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
+              <div class="faq-a-inner">LangFuse stores data in PostgreSQL, allowing direct database exports. The open-source nature enables full data portability without vendor lock-in.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Does LangFuse work with local LLMs like Ollama? <span class="faq-arr">▼</span>
+              How does LangFuse handle high-volume LLM applications? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
+              <div class="faq-a-inner">It supports batching and asynchronous tracing to minimize performance impact. For production workloads, implement sampling strategies and tune your PostgreSQL database accordingly.</div>
             </div>
           </div>
           
@@ -527,7 +549,7 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> Open Source</div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-20</div>
         </div>
       </div>
 
@@ -539,7 +561,7 @@
           <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
           
           <li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>
-          
+          <li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>
           <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
           
           

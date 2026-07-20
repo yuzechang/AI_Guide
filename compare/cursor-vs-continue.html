@@ -32,6 +32,30 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      {
+        "@type": "Question",
+        "name": "Can I use Continue and Cursor side-by-side, or do I have to choose one?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You can technically run both, but they\u0027re designed for different use cases. Continue works as an extension in your primary editor, while Cursor replaces your editor entirely. Most developers pick one as their main tool rather than context-switching between them. If you want to test Cursor without abandoning VS Code, install Continue first and keep Cursor available as a secondary IDE for specific projects." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does Cursor work with local models like Ollama, or am I forced to use their cloud API?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cursor supports some local models through limited integrations, but cloud APIs (OpenAI, Anthropic) are the primary pathway. Continue is purpose-built for local model flexibility\u2014it connects directly to Ollama or any LiteLLM-compatible service without additional setup. If local-only inference is a hard requirement, Continue is significantly easier to configure." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Will switching to Cursor from VS Code break my existing extensions and workflows?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cursor shares VS Code\u0027s extension ecosystem, so most extensions work identically. However, some rarely-updated or highly specialized extensions may have compatibility issues. You\u0027ll need to migrate your settings, keybindings, and themes manually. Continue avoids this entirely by adding AI features to your existing VS Code setup without requiring any editor switch." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Is Cursor\u0027s Composer feature available in Continue?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Composer is Cursor\u0027s flagship multi-file agent feature with no direct equivalent in Continue. Continue has chat-based editing and @codebase context awareness, but lacks Composer\u0027s specialized orchestration for large refactoring tasks. If agentic multi-file workflows are central to your process, Cursor\u0027s power is noticeable; for traditional chat-and-edit patterns, Continue\u0027s approach is sufficient." }
+      }
+      
     ]
   }
   </script>
@@ -126,7 +150,7 @@
     </h1>
     <p class="article-desc">Cursor and Continue are both AI coding assistants, but with a fundamental difference in philosophy. Cursor is a standalone IDE that you switch to instead of VS Code. Continue is an open-source VS Code / JetBrains extension that brings AI assistance into your existing editor. If you want to keep your current editor, Continue is the answer. If you want the most powerful AI IDE experience, Cursor leads.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ Cursor: N/A stars</span>
       <span>⭐ Continue: 35k+ stars</span>
     </div>
@@ -230,7 +254,7 @@
       <p></p>
       
       <blockquote class="expert-take">
-        <p>Continue's 20k+ community validates its utility—this isn't a weekend project, it's maintained software. Effective for accelerating routine coding tasks like generating tests, writing docstrings, and implementing standard patterns. For complex architectural decisions, use it as a thinking partner rather than expecting production-ready output.</p>
+        <p>Continue's 35k+ stars reflect its strength for developers migrating from GitHub Copilot who need local-first inference without vendor lock-in. Unlike Copilot's cloud dependency, Continue processes code locally, reducing latency and privacy concerns. However, teams requiring sophisticated multi-file refactoring should evaluate commercial alternatives, as open-source tooling here remains less mature.</p>
         <cite>— AI Nav Editorial Team on Continue</cite>
       </blockquote>
       
@@ -255,10 +279,39 @@
 
       <!-- Deep Dive -->
       
+      <h2 id="performance-and-speed">Performance and Speed: IDE Integration vs Extension Overhead</h2>
+      <p>Cursor's standalone architecture gives it inherent performance advantages—as a VS Code fork, it runs the AI engine natively within the IDE with minimal latency. Multi-file edits and agent operations feel snappier because there's no extension-to-editor communication overhead. Continue, being an extension, introduces a slight performance tax; API calls route through VS Code/JetBrains' extension bridge, which can create perceptible delays during heavy agentic workflows. However, Continue's lightweight footprint means faster editor startup times and lower resource consumption overall. For developers working on large codebases with frequent multi-file refactoring, Cursor's native integration delivers noticeably faster interactions. Continue remains responsive for typical chat-and-edit workflows, making the performance difference negligible for most use cases.</p>
+      
+      <h2 id="model-flexibility-and-privacy">Model Flexibility and Privacy: Proprietary Integration vs Open Ecosystem</h2>
+      <p>Continue excels in flexibility by supporting any LLM through LiteLLM integration and direct Ollama connections, enabling developers to run models like Llama 2 locally without cloud dependency. This is critical for enterprises with strict data retention policies or teams handling sensitive code. Cursor defaults to cloud-based models (GPT-4, Claude) and requires payment; its privacy mode exists but isn't as seamless for local-first workflows. For organizations that need to keep code on-premises, Continue becomes the obvious choice—you can host your own inference server and connect it via environment variables. Cursor's closed ecosystem means you're locked into their provider partnerships, though this simplifies configuration for users who prefer managed solutions. The privacy/flexibility tradeoff heavily favors Continue for regulated industries and privacy-conscious teams.</p>
+      
+      <h2 id="learning-curve-and-onboarding">Learning Curve and Onboarding: Familiar Interface vs New Environment</h2>
+      <p>Continue has minimal onboarding friction—if you already use VS Code or JetBrains, you install the extension and start using AI immediately within your existing workflow. The learning curve is nearly flat because you're not adopting new keybindings, settings structures, or menu layouts. Cursor requires developers to learn a new IDE, even though it's based on VS Code. Switching tabs, managing extensions, configuring keyboard shortcuts, and adjusting preferences all require relearning despite surface similarities to VS Code. For teams with established VS Code muscle memory and plugin ecosystems, the context-switching cost of Cursor is substantial. Developers new to AI-assisted coding will find Continue more approachable because they can focus on understanding AI features rather than navigating an unfamiliar editor. However, Cursor's deeper AI integration pays off after the adjustment period with more powerful Composer workflows that feel purposefully designed.</p>
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I use Continue and Cursor side-by-side, or do I have to choose one? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">You can technically run both, but they're designed for different use cases. Continue works as an extension in your primary editor, while Cursor replaces your editor entirely. Most developers pick one as their main tool rather than context-switching between them. If you want to test Cursor without abandoning VS Code, install Continue first and keep Cursor available as a secondary IDE for specific projects.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Does Cursor work with local models like Ollama, or am I forced to use their cloud API? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Cursor supports some local models through limited integrations, but cloud APIs (OpenAI, Anthropic) are the primary pathway. Continue is purpose-built for local model flexibility—it connects directly to Ollama or any LiteLLM-compatible service without additional setup. If local-only inference is a hard requirement, Continue is significantly easier to configure.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Will switching to Cursor from VS Code break my existing extensions and workflows? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Cursor shares VS Code's extension ecosystem, so most extensions work identically. However, some rarely-updated or highly specialized extensions may have compatibility issues. You'll need to migrate your settings, keybindings, and themes manually. Continue avoids this entirely by adding AI features to your existing VS Code setup without requiring any editor switch.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is Cursor's Composer feature available in Continue? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Composer is Cursor's flagship multi-file agent feature with no direct equivalent in Continue. Continue has chat-based editing and @codebase context awareness, but lacks Composer's specialized orchestration for large refactoring tasks. If agentic multi-file workflows are central to your process, Cursor's power is noticeable; for traditional chat-and-edit patterns, Continue's approach is sufficient.</div></div>
+        </div>
         
       </div>
 
@@ -268,17 +321,17 @@
       <div class="related-grid">
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6ad7170></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052c6cb0></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6ad71b0></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052c6cf0></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6acf500></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052c8300></div>
           <div class="related-card-desc"></div>
         </a>
         
@@ -310,6 +363,12 @@
           <li><a href="#what-is-cursor">What Is Cursor?</a></li>
           <li><a href="#what-is-continue">What Is Continue?</a></li>
           <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#performance-and-speed">Performance and Speed: IDE Integration vs Extension Overhead</a></li>
+          
+          <li><a href="#model-flexibility-and-privacy">Model Flexibility and Privacy: Proprietary Integration vs Open Ecosystem</a></li>
+          
+          <li><a href="#learning-curve-and-onboarding">Learning Curve and Onboarding: Familiar Interface vs New Environment</a></li>
           
           <li><a href="#faq">FAQ</a></li>
         </ul>

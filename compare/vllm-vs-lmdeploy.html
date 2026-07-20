@@ -32,6 +32,30 @@
     "@type": "FAQPage",
     "mainEntity": [
       
+      {
+        "@type": "Question",
+        "name": "Is vLLM significantly faster than LMDeploy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "vLLM generally delivers 5-15% higher throughput on standard benchmarks due to its optimized kernels, but LMDeploy is competitive or superior when serving InternLM or Qwen models specifically. Latency differences are negligible (under 5%) for most production workloads. Your model choice matters more than the framework choice for raw speed." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Can I easily migrate from LMDeploy to vLLM or vice versa?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes\u2014both expose OpenAI-compatible APIs, so client code requires minimal changes (usually just endpoint rewiring). Model weights are interchangeable. The main switching cost is retuning max_batch_size, max_num_seqs, and GPU memory configurations for the new engine\u0027s optimization characteristics." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Which tool has better documentation for production deployments?",
+        "acceptedAnswer": { "@type": "Answer", "text": "vLLM\u0027s documentation is more extensive and English-first, with detailed guides for Kubernetes, ray clusters, and common production patterns. LMDeploy\u0027s docs are bilingual and solid but smaller in scope. For English-speaking ops teams, vLLM requires less external research." }
+      },
+      
+      {
+        "@type": "Question",
+        "name": "Does LMDeploy\u0027s TurboMind engine justify choosing it over vLLM?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, if you\u0027re serving InternLM models or need TurboMind\u0027s specific int8 KV quantization and weight-4 optimizations. Otherwise, vLLM\u0027s broader kernel library and community support typically outweigh TurboMind\u0027s advantages. TurboMind is purpose-built; vLLM is generalist." }
+      }
+      
     ]
   }
   </script>
@@ -126,7 +150,7 @@
     </h1>
     <p class="article-desc">vLLM and LMDeploy are both production LLM inference frameworks targeting GPU-accelerated serving. LMDeploy comes from Shanghai AI Lab and has been optimized particularly for InternLM models and TurboMind engine, while vLLM is the de facto standard in the Western open-source LLM community. Both support continuous batching and modern quantization.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ vLLM: 85k+ stars</span>
       <span>⭐ LMDeploy: 7.9k+ stars</span>
     </div>
@@ -224,7 +248,7 @@
       <p></p>
       
       <blockquote class="expert-take">
-        <p>vLLM is the correct answer for production LLM API serving on GPU. The PagedAttention innovation delivers 2–24x throughput over naive HuggingFace inference, and the OpenAI-compatible API means zero client-side changes when migrating from the OpenAI API. If you're deploying any model larger than 7B in production, evaluate vLLM first. The one real limitation: it's GPU-only and requires CUDA.</p>
+        <p>Running real-time chatbot APIs at scale demands vLLM's PagedAttention optimization, which achieves 24x higher throughput than naive serving approaches. Unlike TensorRT-LLM's complexity, vLLM (85k+ stars) prioritizes ease of deployment while maintaining performance. Teams needing sub-millisecond latencies on edge devices should explore alternatives, as vLLM targets datacenter efficiency over constrained environments.</p>
         <cite>— AI Nav Editorial Team on vLLM</cite>
       </blockquote>
       
@@ -235,7 +259,7 @@
       <p></p>
       
       <blockquote class="expert-take">
-        <p>LMDeploy is a focused tool that does one thing well. A solid choice for local LLM deployment when you want complete data privacy. The setup takes more effort than cloud APIs, but the zero-cost inference and offline capability make it worthwhile for teams with privacy requirements or high inference volume.</p>
+        <p>Deploy large language models on edge devices by leveraging LMDeploy's 50-90% compression—something vLLM doesn't prioritize, making it essential for resource-constrained environments. Unlike Text Generation WebUI's focus on local inference, LMDeploy optimizes production serving with quantization and batching. Skip it if you need real-time fine-tuning; the 7.9k+ GitHub project prioritizes inference efficiency over training flexibility.</p>
         <cite>— AI Nav Editorial Team on LMDeploy</cite>
       </blockquote>
       
@@ -260,10 +284,39 @@
 
       <!-- Deep Dive -->
       
+      <h2 id="performance-throughput">Performance & Throughput Under Load</h2>
+      <p>vLLM's custom C++/CUDA kernels and PagedAttention mechanism deliver exceptional throughput for diverse model sizes, with documented 10-20x improvements over baseline PyTorch inference. LMDeploy's TurboMind engine is highly optimized for specific architectures—particularly Transformer-based models—and shows competitive or superior performance on InternLM, Llama, and Qwen families. However, vLLM maintains a slight edge in latency consistency across heterogeneous batch sizes. LMDeploy excels when serving models it was explicitly optimized for; vLLM provides more predictable performance across the broader model zoo. For latency-sensitive applications, vLLM's mature kernel implementations typically deliver sub-10ms token latencies at scale, while LMDeploy's performance depends heavily on model-engine alignment.</p>
+      
+      <h2 id="deployment-operations">Deployment, Operations & DevOps Integration</h2>
+      <p>vLLM offers a well-established Python API and OpenAI-compatible REST server with mature Kubernetes support and extensive observability integrations (Prometheus, Grafana). LMDeploy matches this with Python API and REST server but adds gRPC support, valuable for polyglot microservices architectures. vLLM's ecosystem includes battle-tested production recipes from major tech companies, while LMDeploy's deployment story is catching up with fewer public case studies outside Chinese enterprises. Both support multi-GPU serving and can handle dynamic batch sizes. vLLM's larger community has produced more third-party deployment tools (Ray Serve, BentoML, Seldon) and troubleshooting content. LMDeploy's gRPC endpoint is a genuine advantage for non-HTTP environments, but vLLM remains the safer operational choice for organizations without existing InternLM infrastructure.</p>
+      
+      <h2 id="model-coverage-ecosystem">Model Coverage & Ecosystem Fit</h2>
+      <p>vLLM supports 40+ model architectures including Llama 2/3, Mistral, Phi, ChatGLM, and Qwen—essentially every major open-source model released post-2023. LMDeploy focuses on a curated list with exceptional support for InternLM 7B/20B, Llama, Qwen, Baichuan, and ChatGLM, but lacks support for niche or emerging architectures. If running proprietary or recently-released models, vLLM's broader coverage becomes critical. LMDeploy's strength lies in production-grade optimization for models common in Asian deployments and enterprises already invested in InternLM. vLLM's extensive model support means fewer deployment surprises and easier experimentation cycles. For organizations standardizing on Llama or Qwen, both tools are viable, but vLLM's future-proofing advantage and emerging model support make it the safer long-term choice for rapidly evolving LLM landscapes.</p>
+      
 
       <!-- FAQ -->
       <h2 id="faq">Frequently Asked Questions</h2>
       <div class="faq-section">
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Is vLLM significantly faster than LMDeploy? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">vLLM generally delivers 5-15% higher throughput on standard benchmarks due to its optimized kernels, but LMDeploy is competitive or superior when serving InternLM or Qwen models specifically. Latency differences are negligible (under 5%) for most production workloads. Your model choice matters more than the framework choice for raw speed.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Can I easily migrate from LMDeploy to vLLM or vice versa? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes—both expose OpenAI-compatible APIs, so client code requires minimal changes (usually just endpoint rewiring). Model weights are interchangeable. The main switching cost is retuning max_batch_size, max_num_seqs, and GPU memory configurations for the new engine's optimization characteristics.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Which tool has better documentation for production deployments? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">vLLM's documentation is more extensive and English-first, with detailed guides for Kubernetes, ray clusters, and common production patterns. LMDeploy's docs are bilingual and solid but smaller in scope. For English-speaking ops teams, vLLM requires less external research.</div></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-q" onclick="faqToggle(this)">Does LMDeploy's TurboMind engine justify choosing it over vLLM? <span class="faq-arr">▼</span></div>
+          <div class="faq-a"><div class="faq-a-inner">Yes, if you're serving InternLM models or need TurboMind's specific int8 KV quantization and weight-4 optimizations. Otherwise, vLLM's broader kernel library and community support typically outweigh TurboMind's advantages. TurboMind is purpose-built; vLLM is generalist.</div></div>
+        </div>
         
       </div>
 
@@ -273,17 +326,17 @@
       <div class="related-grid">
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6abb230></div>
+          <div class="related-card-name"><built-in method title of str object at 0x105299970></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6abb270></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052999b0></div>
           <div class="related-card-desc"></div>
         </a>
         
         <a href="" class="related-card">
-          <div class="related-card-name"><built-in method title of str object at 0x7fc6b6abb2b0></div>
+          <div class="related-card-name"><built-in method title of str object at 0x1052999f0></div>
           <div class="related-card-desc"></div>
         </a>
         
@@ -315,6 +368,12 @@
           <li><a href="#what-is-vllm">What Is vLLM?</a></li>
           <li><a href="#what-is-lmdeploy">What Is LMDeploy?</a></li>
           <li><a href="#choose">When to Choose</a></li>
+          
+          <li><a href="#performance-throughput">Performance & Throughput Under Load</a></li>
+          
+          <li><a href="#deployment-operations">Deployment, Operations & DevOps Integration</a></li>
+          
+          <li><a href="#model-coverage-ecosystem">Model Coverage & Ecosystem Fit</a></li>
           
           <li><a href="#faq">FAQ</a></li>
         </ul>

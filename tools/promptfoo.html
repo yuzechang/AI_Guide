@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Promptfoo Guide 2026 | Test and evaluate LLM outputs and prompt quality – AI Nav</title>
-  <meta name="description" content="Test and evaluate LLM outputs and prompt quality 23k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="description" content="Promptfoo: Systematic testing framework for prompt variations and LLM outputs with reproducible results. 23k+ GitHub stars, open-source.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yuzec.com/tools/promptfoo">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="Promptfoo Guide 2026 | Test and evaluate LLM outputs and prompt quality – AI Nav">
-  <meta property="og:description" content="Test and evaluate LLM outputs and prompt quality 23k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta property="og:description" content="Promptfoo: Systematic testing framework for prompt variations and LLM outputs with reproducible results. 23k+ GitHub stars, open-source.">
   <meta property="og:url" content="https://yuzec.com/tools/promptfoo">
   <meta property="og:site_name" content="AI Nav">
   <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
@@ -21,7 +21,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Promptfoo Guide 2026 | Test and evaluate LLM outputs and prompt quality – AI Nav">
-  <meta name="twitter:description" content="Test and evaluate LLM outputs and prompt quality 23k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="twitter:description" content="Promptfoo: Systematic testing framework for prompt variations and LLM outputs with reproducible results. 23k+ GitHub stars, open-source.">
   <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/promptfoo/promptfoo",
     "description": "Test and evaluate LLM outputs and prompt quality",
-    "dateModified": "2026-07-08",
+    "dateModified": "2026-07-20",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
@@ -64,26 +64,26 @@
       
       {
         "@type": "Question",
-        "name": "What languages does Promptfoo support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Promptfoo primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "Does Promptfoo work with my LLM provider?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Promptfoo supports OpenAI, Anthropic, Azure, local models, and custom API integrations. You configure providers via YAML config files or environment variables." }
       },
       
       {
         "@type": "Question",
-        "name": "Is Promptfoo production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Promptfoo is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "Can I integrate Promptfoo into my CI/CD pipeline?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Promptfoo has CLI commands and exit codes for automation. You can add it as a test step to GitHub Actions, GitLab CI, Jenkins, and other CI systems to gate deployments." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with Promptfoo?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install promptfoo` (Python) or `npm install promptfoo` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "What metrics does Promptfoo measure?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Built-in metrics include similarity, classification accuracy, custom JavaScript evaluators, and integration with external scoring systems. You can define pass/fail thresholds per test." }
       },
       
       {
         "@type": "Question",
-        "name": "Does Promptfoo work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "Is there a learning curve for getting started?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Basic usage starts with a simple YAML config defining prompts and test cases. Advanced features like custom evaluators require JavaScript knowledge but are optional." }
       }
       
     ]
@@ -163,7 +163,7 @@
     </h1>
     <p class="article-desc">Test and evaluate LLM outputs and prompt quality</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-20">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/promptfoo/promptfoo" target="_blank" rel="noopener" style="color:var(--text-3)">23k+ GitHub Stars</a></span>
     </div>
@@ -246,9 +246,9 @@
       <!-- Expert Take (编辑推荐语，E-E-A-T信号) -->
       
       <blockquote class="expert-take">
-        <p class="en">Promptfoo takes an opinionated approach that works well for its target use case. A practical choice for teams that want to run this locally. Performance scales with hardware—the quality difference between running on a capable GPU vs. CPU is substantial for latency-sensitive applications.</p>
+        <p class="en">When you're optimizing customer support prompts across Claude, GPT-4, and Llama simultaneously, Promptfoo's matrix testing eliminates manual A/B comparison chaos. Compared to LangSmith's focus on production monitoring, Promptfoo prioritizes rapid iteration with 23k+ stars proving its evaluation-first design. Teams without structured prompt workflows or those needing real-time API monitoring will find its batch-testing approach limiting.</p>
         
-        <p class="zh">Promptfoo takes an opinionated approach that works well for its target use case. A practical choice for teams that want to run this locally. Performance scales with hardware—the quality difference between running on a capable GPU vs. CPU is substantial for latency-sensitive applications.</p>
+        <p class="zh">When you're optimizing customer support prompts across Claude, GPT-4, and Llama simultaneously, Promptfoo's matrix testing eliminates manual A/B comparison chaos. Compared to LangSmith's focus on production monitoring, Promptfoo prioritizes rapid iteration with 23k+ stars proving its evaluation-first design. Teams without structured prompt workflows or those needing real-time API monitoring will find its batch-testing approach limiting.</p>
         
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
@@ -285,20 +285,11 @@
         <span class="zh">Promptfoo 快速开始</span>
       </h2>
       
-      <p>
-        Install Promptfoo via pip and follow the
-        <a href="https://github.com/promptfoo/promptfoo" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install promptfoo</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/promptfoo/promptfoo/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/promptfoo/promptfoo/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>npm install -g promptfoo</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>promptfoo init (creates config) then promptfoo eval</code></pre>
       </div>
+      <div class="alert alert-info">💡 Node.js 18+ required. For local LLM evaluation, ensure sufficient disk space and RAM; GPU acceleration strongly recommended for latency-sensitive applications.</div>
       
 
       <!-- Further Reading (external links) -->
@@ -313,14 +304,53 @@
       <ul class="feature-list">
         
         <li>
-          <span class="feat-icon">🔓</span>
-          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+          <span class="feat-icon">🧪</span>
+          <div><strong>Prompt Variant Testing Matrix</strong> — Compare multiple prompt versions against the same test cases simultaneously. View side-by-side outputs to identify which variations perform best across your specific use cases.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">📊</span>
+          <div><strong>Custom Evaluator Scripts</strong> — Write JavaScript or Python evaluators to grade LLM outputs against your exact criteria. Define pass/fail thresholds without relying on predefined scoring models.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔌</span>
+          <div><strong>Multi-Provider Model Support</strong> — Test prompts across OpenAI, Anthropic, Llama, local models, and custom APIs in a single test run. Compare outputs and costs across different providers instantly.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">⚡</span>
+          <div><strong>Local Evaluation Engine</strong> — Run tests entirely offline or on-premise without sending prompts to external APIs. Cache results and iterate rapidly without accumulating per-API-call expenses.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">📈</span>
+          <div><strong>Automated Regression Detection</strong> — Track prompt quality metrics over time via CLI and Git integration. Automatically flag when new prompt versions underperform previous baselines in your test suite.</div>
         </li>
         
       </ul>
       
 
       <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">
+        <span class="en">Pros &amp; Cons</span>
+        <span class="zh">优缺点</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
+          <ul><li>Systematic testing framework for prompt variations and LLM outputs with reproducible results</li><li>Local-first evaluation reduces API costs and latency compared to cloud-only testing platforms</li><li>Supports multiple LLM providers and custom evaluators for flexible quality assessment</li><li>Open-source with active community, enabling customization and integration into CI/CD pipelines</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
+          <ul><li>Performance heavily dependent on hardware; CPU-only setups experience significant latency compared to GPU environments</li><li>Requires manual setup and configuration; less turnkey than commercial prompt testing alternatives</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- Use Cases -->
@@ -331,17 +361,14 @@
       <p>Promptfoo is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
+      <h3>✅ Automated Prompt Testing Before Production Deployment</h3>
+      <p>Run regression tests on prompt variations against golden datasets to ensure quality doesn't degrade with new versions, measurable via baseline scoring.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>📊 Compare Prompt Performance Across Models</h3>
+      <p>Evaluate identical prompts on GPT-4, Claude, and local models simultaneously to identify which LLM produces highest-quality outputs for your use case.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
-      
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>🎯 A/B Test Prompt Variants Systematically</h3>
+      <p>Test dozens of prompt rewrites against your test suite to quantify which phrasing improves accuracy, reducing subjective decision-making on prompt optimization.</p>
       
 
       
@@ -417,37 +444,37 @@
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              What languages does Promptfoo support? <span class="faq-arr">▼</span>
+              Does Promptfoo work with my LLM provider? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Promptfoo primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+              <div class="faq-a-inner">Promptfoo supports OpenAI, Anthropic, Azure, local models, and custom API integrations. You configure providers via YAML config files or environment variables.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Is Promptfoo production-ready? <span class="faq-arr">▼</span>
+              Can I integrate Promptfoo into my CI/CD pipeline? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Yes. Promptfoo is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+              <div class="faq-a-inner">Yes. Promptfoo has CLI commands and exit codes for automation. You can add it as a test step to GitHub Actions, GitLab CI, Jenkins, and other CI systems to gate deployments.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              How do I install and get started with Promptfoo? <span class="faq-arr">▼</span>
+              What metrics does Promptfoo measure? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Install via pip: `pip install promptfoo` (Python) or `npm install promptfoo` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
+              <div class="faq-a-inner">Built-in metrics include similarity, classification accuracy, custom JavaScript evaluators, and integration with external scoring systems. You can define pass/fail thresholds per test.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Does Promptfoo work with local LLMs like Ollama? <span class="faq-arr">▼</span>
+              Is there a learning curve for getting started? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
+              <div class="faq-a-inner">No. Basic usage starts with a simple YAML config defining prompts and test cases. Advanced features like custom evaluators require JavaScript knowledge but are optional.</div>
             </div>
           </div>
           
@@ -484,7 +511,7 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> Open Source</div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-20</div>
         </div>
       </div>
 
@@ -496,7 +523,7 @@
           <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
           
           <li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>
-          
+          <li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>
           <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
           
           

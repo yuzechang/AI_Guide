@@ -156,7 +156,7 @@
     </h1>
     <p class="article-desc">LangChain and DSPy represent two fundamentally different approaches to building LLM applications. LangChain is imperative: you write explicit chains and prompts, controlling every step. DSPy is declarative: you write what you want to achieve and let the framework optimize how to get there, automatically tuning prompts through a compile step. Both have strong GitHub communities, but they attract very different developers. This comparison explains when each approach is the right choice.</p>
     <div style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap">
-      <span>🗓 Updated: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 Updated: <time datetime="2026-07-20">2026-07</time></span>
       <span>⭐ LangChain: 141k+ stars</span>
       <span>⭐ DSPy: 36k+ stars</span>
     </div>
@@ -272,7 +272,7 @@
       <p>LangChain (140k+ GitHub stars) is the most widely deployed framework for building LLM applications. It provides chains for multi-step pipelines, agents with tool use, retrievers for RAG, memory management, and integrations with 100+ LLM providers and vector stores. The LangChain Expression Language (LCEL) lets you compose pipelines declaratively while keeping full prompt control. LangChain's breadth is its biggest asset and its biggest liability: the API surface is large.</p>
       
       <blockquote class="expert-take">
-        <p>LangChain is the most widely used LLM application framework, which means the most tutorials, community answers, and third-party integrations. That said, the abstraction layer can feel excessive for simple use cases. My recommendation: use LangChain when you need its integrations (150+ vector stores, document loaders, tools) or when team familiarity matters. For simple chains, LangGraph or even raw API calls are often cleaner.</p>
+        <p>Building RAG pipelines with multiple data sources requires orchestrating retrievers, memory, and LLM calls—LangChain's 141k+ GitHub stars reflect how its chain abstraction handles this complexity elegantly. Unlike LlamaIndex's document-centric focus, LangChain excels at flexible agent workflows and multi-step reasoning. Skip it if you need minimal dependencies or sub-100ms latency for simple completions.</p>
         <cite>— AI Nav Editorial Team on LangChain</cite>
       </blockquote>
       
@@ -283,7 +283,7 @@
       <p>DSPy (22k+ GitHub stars, from Stanford NLP) treats prompt engineering as a compilation problem. Instead of writing prompts manually, you define your task as a program with typed input/output signatures, then run a compilation step that automatically finds optimal prompts through few-shot learning and optimization algorithms. DSPy programs are deterministic, versioned, and testable. The key requirement: you need a labeled evaluation set for the optimizer to work.</p>
       
       <blockquote class="expert-take">
-        <p>A well-regarded project with 19k+ stars, DSPy has proven itself in production deployments. Best used when you need to run models locally without sending data to external services. The installation requires more technical knowledge than Ollama, but gives you lower-level control over quantization and serving configuration.</p>
+        <p>DSPy excels at building multi-step RAG systems where you need reproducible, optimized prompts across hundreds of documents—something manual prompting can't scale. Unlike LangChain's chain-based approach, DSPy's 36k+ GitHub stars reflect its systematic optimization layer that reduces trial-and-error. Skip DSPy if you need real-time dynamic responses; it's built for batch pipeline optimization, not chat interfaces.</p>
         <cite>— AI Nav Editorial Team on DSPy</cite>
       </blockquote>
       

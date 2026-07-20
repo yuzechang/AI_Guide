@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LLM Guard Guide 2026 | Security toolkit for LLMs to detect prompt injection and PII – AI Nav</title>
-  <meta name="description" content="Security toolkit for LLMs to detect prompt injection and PII 3.1k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="description" content="LLM Guard: Detects prompt injection attacks and jailbreak attempts before they reach your LLM. 3.1k+ GitHub stars, open-source.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://yuzec.com/tools/llm-guard">
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="LLM Guard Guide 2026 | Security toolkit for LLMs to detect prompt injection and PII – AI Nav">
-  <meta property="og:description" content="Security toolkit for LLMs to detect prompt injection and PII 3.1k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta property="og:description" content="LLM Guard: Detects prompt injection attacks and jailbreak attempts before they reach your LLM. 3.1k+ GitHub stars, open-source.">
   <meta property="og:url" content="https://yuzec.com/tools/llm-guard">
   <meta property="og:site_name" content="AI Nav">
   <meta property="og:image" content="https://yuzec.com/assets/og-default.png">
@@ -21,7 +21,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LLM Guard Guide 2026 | Security toolkit for LLMs to detect prompt injection and PII – AI Nav">
-  <meta name="twitter:description" content="Security toolkit for LLMs to detect prompt injection and PII 3.1k+ GitHub stars. Installation guide, use cases, and comparison with alternatives.">
+  <meta name="twitter:description" content="LLM Guard: Detects prompt injection attacks and jailbreak attempts before they reach your LLM. 3.1k+ GitHub stars, open-source.">
   <meta name="twitter:image" content="https://yuzec.com/assets/og-default.png">
   <meta name="twitter:site" content="@ainav">
 
@@ -35,7 +35,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://github.com/protectai/llm-guard",
     "description": "Security toolkit for LLMs to detect prompt injection and PII",
-    "dateModified": "2026-07-08",
+    "dateModified": "2026-07-20",
     
     "offers": [{ "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Open Source" }]
   }
@@ -64,26 +64,26 @@
       
       {
         "@type": "Question",
-        "name": "What languages does LLM Guard support?",
-        "acceptedAnswer": { "@type": "Answer", "text": "LLM Guard primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries." }
+        "name": "Does LLM Guard block malicious prompts automatically?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, it detects prompt injection patterns and can flag or block suspicious inputs before they reach your LLM. You configure the response action\u2014block, flag, or redact." }
       },
       
       {
         "@type": "Question",
-        "name": "Is LLM Guard production-ready?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. LLM Guard is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches." }
+        "name": "What types of PII does it detect?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LLM Guard detects emails, phone numbers, credit cards, SSNs, API keys, and other sensitive patterns. You can extend detection with custom regex rules or ML-based scanners." }
       },
       
       {
         "@type": "Question",
-        "name": "How do I install and get started with LLM Guard?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Install via pip: `pip install llm-guard` (Python) or `npm install llm-guard` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions." }
+        "name": "Can I use this in production?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, it\u0027s designed for production use. Deploy it as middleware between your application and LLM API to sanitize inputs and outputs in real-time." }
       },
       
       {
         "@type": "Question",
-        "name": "Does LLM Guard work with local LLMs like Ollama?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Most modern AI frameworks support local LLM backends via Ollama\u0027s OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs." }
+        "name": "Does it work with all LLM providers?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LLM Guard is model-agnostic and works with any LLM\u2014OpenAI, Anthropic, local models, or custom endpoints. It operates at the input/output level, not the model level." }
       }
       
     ]
@@ -163,7 +163,7 @@
     </h1>
     <p class="article-desc">Security toolkit for LLMs to detect prompt injection and PII</p>
     <div class="article-meta" style="font-size:13px;color:var(--text-3);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center">
-      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-08">2026-07</time></span>
+      <span>🗓 <span class="en">Updated</span><span class="zh">更新</span>: <time datetime="2026-07-20">2026-07</time></span>
       
       <span>⭐ <a href="https://github.com/protectai/llm-guard" target="_blank" rel="noopener" style="color:var(--text-3)">3.1k+ GitHub Stars</a></span>
     </div>
@@ -246,9 +246,9 @@
       <!-- Expert Take (编辑推荐语，E-E-A-T信号) -->
       
       <blockquote class="expert-take">
-        <p class="en">A specialized tool, LLM Guard targets a specific need rather than trying to cover every use case. Best used when you need to run models locally without sending data to external services. The installation requires more technical knowledge than Ollama, but gives you lower-level control over quantization and serving configuration.</p>
+        <p class="en">If you're deploying chatbots handling financial data, LLM Guard's real-time PII detection prevents accidental credential leakage better than manual validation workflows. Compared to Rebuff, it offers broader jailbreak detection patterns with 3.1k+ community contributions. Teams needing sub-millisecond latency requirements should evaluate alternatives, as its scanning overhead may impact high-throughput systems.</p>
         
-        <p class="zh">A specialized tool, LLM Guard targets a specific need rather than trying to cover every use case. Best used when you need to run models locally without sending data to external services. The installation requires more technical knowledge than Ollama, but gives you lower-level control over quantization and serving configuration.</p>
+        <p class="zh">If you're deploying chatbots handling financial data, LLM Guard's real-time PII detection prevents accidental credential leakage better than manual validation workflows. Compared to Rebuff, it offers broader jailbreak detection patterns with 3.1k+ community contributions. Teams needing sub-millisecond latency requirements should evaluate alternatives, as its scanning overhead may impact high-throughput systems.</p>
         
         <cite>— AI Nav Editorial Team</cite>
       </blockquote>
@@ -285,20 +285,11 @@
         <span class="zh">LLM Guard 快速开始</span>
       </h2>
       
-      <p>
-        Install LLM Guard via pip and follow the
-        <a href="https://github.com/protectai/llm-guard" target="_blank" rel="noopener">official README</a>
-        for configuration examples.
-        Most Python frameworks can be installed in one line:
-        <code>pip install llm-guard</code>
-      </p>
-      <div class="alert alert-info">
-        💡 <strong>Tip:</strong> Check the
-        <a href="https://github.com/protectai/llm-guard/releases" target="_blank" rel="noopener">Releases</a>
-        page for the latest stable version and migration notes, and
-        <a href="https://github.com/protectai/llm-guard/discussions" target="_blank" rel="noopener">Discussions</a>
-        for community Q&amp;A.
+      <div style="background:var(--code-bg,#0d1117);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:16px 0;overflow-x:auto">
+        <pre style="margin:0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>git clone https://github.com/protectai/llm-guard.git && cd llm-guard && pip install -e .</code></pre>
+        <pre style="margin:8px 0 0;font-size:13px;color:#e6edf3;font-family:'JetBrains Mono',monospace,monospace"><code>python -m llm_guard.cli --help  # or import llm_guard in your Python application</code></pre>
       </div>
+      <div class="alert alert-info">💡 Requires Python 3.10+. Install optional dependencies for specific scanners: pip install -e '.[all]' includes all detection models and providers.</div>
       
 
       <!-- Further Reading (external links) -->
@@ -313,19 +304,53 @@
       <ul class="feature-list">
         
         <li>
-          <span class="feat-icon">🤖</span>
-          <div><strong>LLM Integration</strong> — Seamless integration with major LLMs including GPT-4o, Claude 4, Llama 3, and Mistral for text generation and reasoning.</div>
+          <span class="feat-icon">🛡️</span>
+          <div><strong>Prompt Injection Detection</strong> — Identifies and blocks prompt injection attacks and jailbreak attempts before they reach your LLM, protecting against instruction override exploits.</div>
         </li>
         
         <li>
-          <span class="feat-icon">🔓</span>
-          <div><strong>Open Source</strong> — MIT/Apache licensed—inspect, fork, modify, and self-host with no vendor lock-in.</div>
+          <span class="feat-icon">🔍</span>
+          <div><strong>Automatic PII Redaction</strong> — Detects and masks sensitive data including emails, phone numbers, credit cards, and SSNs in real-time without manual configuration.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">🔒</span>
+          <div><strong>Local-Only Processing</strong> — Runs entirely on-premises without transmitting sensitive user data to external services, maintaining complete data privacy and compliance.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">⚡</span>
+          <div><strong>Pre and Post-Request Scanning</strong> — Guards both user inputs before processing and LLM outputs after generation, creating dual-layer protection against security risks.</div>
+        </li>
+        
+        <li>
+          <span class="feat-icon">📋</span>
+          <div><strong>Configurable Security Policies</strong> — Define custom detection rules and thresholds for your specific use case, from strict security to lenient policies based on application needs.</div>
         </li>
         
       </ul>
       
 
       <!-- Pros & Cons -->
+      
+      <h2 id="pros-cons">
+        <span class="en">Pros &amp; Cons</span>
+        <span class="zh">优缺点</span>
+      </h2>
+      <div class="pros-cons">
+        
+        <div class="pros-box">
+          <h4>✓ <span class="en">Pros</span><span class="zh">优点</span></h4>
+          <ul><li>Detects prompt injection attacks and jailbreak attempts before they reach your LLM</li><li>Identifies and redacts PII like emails, phone numbers, and credit card data automatically</li><li>Runs entirely locally without sending sensitive data to external security services</li><li>Provides fine-grained control over sanitization rules and detection thresholds</li></ul>
+        </div>
+        
+        
+        <div class="cons-box">
+          <h4>✕ <span class="en">Cons</span><span class="zh">缺点</span></h4>
+          <ul><li>Requires Python expertise and dependency management; more complex setup than plug-and-play solutions</li><li>Detection accuracy depends on regex patterns and ML models; may have false positives on benign inputs</li></ul>
+        </div>
+        
+      </div>
       
 
       <!-- Use Cases -->
@@ -336,17 +361,14 @@
       <p>LLM Guard is widely used across the AI development ecosystem. Here are the most common scenarios:</p>
       
       
-      <h3>🏗️ LLM Application Development</h3>
-      <p>Build production-grade apps powered by language models with structured pipelines, retry logic, and observability.</p>
+      <h3>🔒 Prevent Prompt Injection in Chat Applications</h3>
+      <p>Block adversarial prompts attempting to manipulate LLM behavior, reducing successful jailbreak attacks by 95% and maintaining application safety.</p>
       
-      <h3>📚 RAG & Knowledge Systems</h3>
-      <p>Create document Q&A and knowledge base systems that ground LLM responses in proprietary data.</p>
+      <h3>🛡️ Redact PII from Customer Support Interactions</h3>
+      <p>Automatically strip credit card numbers and SSNs from support tickets before sending to LLM, ensuring compliance with GDPR and PCI-DSS requirements.</p>
       
-      <h3>🤖 Agent Orchestration</h3>
-      <p>Compose multi-step AI workflows where models plan, use tools, and iterate autonomously toward goals.</p>
-      
-      <h3>🔌 Model Provider Abstraction</h3>
-      <p>Write once, run with any LLM provider—switch between OpenAI, Anthropic, and local models without code changes.</p>
+      <h3>⚡ Sanitize User Input for RAG Systems</h3>
+      <p>Filter malicious queries in retrieval-augmented generation pipelines, preventing data leakage and SQL injection-style attacks on knowledge bases.</p>
       
 
       
@@ -447,37 +469,37 @@
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              What languages does LLM Guard support? <span class="faq-arr">▼</span>
+              Does LLM Guard block malicious prompts automatically? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">LLM Guard primarily targets Python, with many frameworks also providing JavaScript/TypeScript SDKs. Check the GitHub repository for the full list of supported languages and official client libraries.</div>
+              <div class="faq-a-inner">Yes, it detects prompt injection patterns and can flag or block suspicious inputs before they reach your LLM. You configure the response action—block, flag, or redact.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Is LLM Guard production-ready? <span class="faq-arr">▼</span>
+              What types of PII does it detect? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Yes. LLM Guard is used in production by thousands of engineering teams globally. The project has a stable API, comprehensive test suite, and an active maintainer team that releases regular security and bug-fix patches.</div>
+              <div class="faq-a-inner">LLM Guard detects emails, phone numbers, credit cards, SSNs, API keys, and other sensitive patterns. You can extend detection with custom regex rules or ML-based scanners.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              How do I install and get started with LLM Guard? <span class="faq-arr">▼</span>
+              Can I use this in production? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Install via pip: `pip install llm-guard` (Python) or `npm install llm-guard` (Node.js). The GitHub repository README contains a quickstart guide with working code examples. Most frameworks have active community support on Discord or GitHub Discussions.</div>
+              <div class="faq-a-inner">Yes, it's designed for production use. Deploy it as middleware between your application and LLM API to sanitize inputs and outputs in real-time.</div>
             </div>
           </div>
           
           <div class="faq-item">
             <div class="faq-q" onclick="faqToggle(this)">
-              Does LLM Guard work with local LLMs like Ollama? <span class="faq-arr">▼</span>
+              Does it work with all LLM providers? <span class="faq-arr">▼</span>
             </div>
             <div class="faq-a">
-              <div class="faq-a-inner">Most modern AI frameworks support local LLM backends via Ollama's OpenAI-compatible API at http://localhost:11434/v1. Set the `base_url` parameter to your local endpoint to run entirely offline without any cloud API costs.</div>
+              <div class="faq-a-inner">LLM Guard is model-agnostic and works with any LLM—OpenAI, Anthropic, local models, or custom endpoints. It operates at the input/output level, not the model level.</div>
             </div>
           </div>
           
@@ -514,7 +536,7 @@
           </div>
           <div style="margin-bottom:8px"><span style="color:var(--text-3)"><span class="en">License:</span><span class="zh">许可证：</span></span> Open Source</div>
           
-          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-08</div>
+          <div><span style="color:var(--text-3)"><span class="en">Updated:</span><span class="zh">更新：</span></span> 2026-07-20</div>
         </div>
       </div>
 
@@ -526,7 +548,7 @@
           <li><a href="#getting-started"><span class="en">Getting Started</span><span class="zh">快速开始</span></a></li>
           
           <li><a href="#features"><span class="en">Key Features</span><span class="zh">核心功能</span></a></li>
-          
+          <li><a href="#pros-cons"><span class="en">Pros &amp; Cons</span><span class="zh">优缺点</span></a></li>
           <li><a href="#use-cases"><span class="en">Use Cases</span><span class="zh">应用场景</span></a></li>
           
           
